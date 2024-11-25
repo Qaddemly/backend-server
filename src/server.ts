@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import app from './app';
 import databaseConnect from './config/database.connection';
 
-dotenv.config();
+dotenv.config({ path: './../.env' });
 
 // database connection
 
