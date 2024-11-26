@@ -12,7 +12,10 @@ import {
     verifyResetCodeParams,
 } from '../dtos/authDto';
 import catchAsync from 'express-async-handler';
-import { createUserForSignUp } from '../services/authServices';
+import {
+    createUserForSignUp,
+    verifyActivationCode,
+} from '../services/authServices';
 import { generateAndEmailCode } from '../utils/codeUtils';
 
 export const signUp = catchAsync(
@@ -31,6 +34,40 @@ export const signUp = catchAsync(
             message:
                 'User created successfully. Check your email for activation.',
             activationToken,
+        });
+    },
+);
+
+export const activateEmail = catchAsync(
+    async (
+        req: Request<activateEmailParams, {}, activateEmailBody>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        const isSuccess =
+            (await verifyActivationCode(
+                req.body.code,
+                req.params.activationToken,
+                next,
+            )) || null;
+        if (isSuccess) {
+            res.status(200).json({
+                success: true,
+                message: 'email has been activated successfully, please login',
+            });
+        }
+    },
+);
+
+export const resendActivationCode = catchAsync(
+    async (
+        req: Request<activateEmailParams>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        res.status(200).json({
+            success: true,
+            message: 'code sent, please check your mail box',
         });
     },
 );

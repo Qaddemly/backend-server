@@ -43,36 +43,30 @@ export const createUserForSignUp = async (
     return newUser;
 };
 
-export const activateEmail = catchAsync(
-    async (
-        req: Request<activateEmailParams, {}, activateEmailBody>,
-        res: Response,
-        next: NextFunction,
-    ) => {
-        const { activationToken } = req.params;
-        const { code } = req.body;
-        const hashActivationCode = cryptoEncryption(code);
-        const user = await User.findOne({
-            activationToken: activationToken,
-        });
-        if (!user) {
-            return next(new AppError('user not found or token expired', 404));
-        }
+export const verifyActivationCode = async (
+    code: string,
+    activationToken: string,
+    next: NextFunction,
+) => {
+    const hashActivationCode = cryptoEncryption(code);
+    const user = await User.findOne({
+        activationToken: activationToken,
+    });
+    if (!user) {
+        return next(new AppError('user not found or token expired', 404));
+    }
 
-        if (
-            user.activationCode != hashActivationCode ||
-            user.activationCodeExpiresIn!.getTime() < Date.now()
-        ) {
-            return next(new AppError('code is incorrect or expired', 400));
-        }
+    if (
+        user.activationCode != hashActivationCode ||
+        user.activationCodeExpiresIn!.getTime() < Date.now()
+    ) {
+        return next(new AppError('code is incorrect or expired', 400));
+    } else {
         user.isActivated = true;
         resettingUserCodeFields(user);
-        res.status(200).json({
-            success: true,
-            message: 'email has been activated successfully, please login',
-        });
-    },
-);
+        return true;
+    }
+};
 
 export const resendActivationCode = catchAsync(
     async (
