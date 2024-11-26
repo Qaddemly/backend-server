@@ -26,7 +26,7 @@ interface userDoc extends mongoose.Document {
 const phoneSchema = new mongoose.Schema<Phone>({
     countryCode: {
         type: Number,
-        enum: Object.values(CountryCode),
+        enum: CountryCode,
         required: true,
     },
     number: {
@@ -38,7 +38,7 @@ const phoneSchema = new mongoose.Schema<Phone>({
 const addressSchema = new mongoose.Schema<Address>({
     country: {
         type: String,
-        enum: Object.values(Country),
+        enum: Country,
         required: true,
     },
     city: {
@@ -77,7 +77,7 @@ const experienceSchema = new mongoose.Schema<Experience>({
     },
     employmentType: {
         type: String,
-        enum: Object.values(EmploymentType),
+        enum: EmploymentType,
         required: true,
     },
     companyName: {
@@ -90,7 +90,7 @@ const experienceSchema = new mongoose.Schema<Experience>({
     },
     locationType: {
         type: String,
-        enum: Object.values(LocationType),
+        enum: LocationType,
         required: true,
     },
     stillWorking: {
