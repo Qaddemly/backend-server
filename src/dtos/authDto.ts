@@ -1,33 +1,34 @@
-import { IUser } from "../models/user.model";
-import { userDocument } from "../types/documentTypes";
+import { userDoc } from '../models/userModel';
+import { userDocument } from '../types/documentTypes';
 declare global {
-  namespace Express {
-    interface Request {
-      user?: userDocument;
+    namespace Express {
+        interface Request {
+            user?: userDocument;
+        }
     }
-  }
 }
 
-export interface signUpBody extends Pick<IUser, "name" | "email" | "password"> {
-  passwordConfirm: string;
+export interface signUpBody
+    extends Pick<userDoc, 'firstName' | 'lastName' | 'email' | 'password'> {
+    passwordConfirm: string;
 }
 export interface activateEmailBody {
-  code: string;
+    code: string;
 }
 export type activateEmailParams = {
-  activationToken: string;
+    activationToken: string;
 };
 export type verifyResetCodeParams = {
-  resetActivationToken: string;
+    resetActivationToken: string;
 };
 export interface verifyResetCodeBody extends activateEmailBody {}
 export type resetPasswordParams = {
-  passwordResetToken: string;
+    passwordResetToken: string;
 };
 export interface resetPasswordBody {
-  newPassword: string;
-  newPasswordConfirm: string;
+    newPassword: string;
+    newPasswordConfirm: string;
 }
 
-export interface logInBody extends Pick<IUser, "email" | "password"> {}
-export interface forgetPasswordBody extends Pick<IUser, "email"> {}
+export interface logInBody extends Pick<userDoc, 'email' | 'password'> {}
+export interface forgetPasswordBody extends Pick<userDoc, 'email'> {}

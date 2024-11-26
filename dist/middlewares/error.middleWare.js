@@ -26,10 +26,10 @@ const sendErrorProduction = (err, res) => {
 };
 const globalErrorHandler = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
-    if (err.message === "validationErrors") {
+    if (err.message === 'validationErrors') {
         sendValidationError(err, res);
     }
-    else if (process.env.NODE_ENV === "development") {
+    else if (process.env.NODE_ENV === 'development') {
         devError(err, res);
     }
     else {

@@ -1,14 +1,17 @@
-import "colors";
-import dotenv from "dotenv";
-import connectDB from "./config/dbConnection";
+import dotenv from 'dotenv';
 dotenv.config();
-import app from "./app";
-const dbUrl = process.env.DATA_BASE!;
-connectDB(dbUrl);
+
+import app from './app';
+import databaseConnect from './config/database.connection';
+
+
 // database connection
 
 const port = process.env.PORT || 3000;
 
+databaseConnect();
+
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`.green);
+
+    console.log(`Server is running on port ${port}`);
 });
