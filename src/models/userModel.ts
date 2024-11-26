@@ -58,6 +58,8 @@ const educationSchema = new mongoose.Schema<Education>({
     },
     gpa: {
         type: Number,
+        min: 0,
+        max: 4,
         required: true,
     },
     startDate: {
@@ -113,14 +115,22 @@ const userSchema = new mongoose.Schema<userDoc>(
             type: String,
             index: true,
             unique: true,
+            lowercase: true,
+            trim: true,
             required: [true, 'Email address is required'],
+            match: [
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                'Please fill a valid email address',
+            ],
         },
         firstName: {
             type: String,
+            trim: true,
             required: [true, 'First name is required'],
         },
         lastName: {
             type: String,
+            trim: true,
             required: [true, 'Last name is required'],
         },
         password: {
