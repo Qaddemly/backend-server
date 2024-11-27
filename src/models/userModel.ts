@@ -115,7 +115,6 @@ const userSchema = new mongoose.Schema<userDoc>(
             type: String,
             index: true,
             unique: true,
-            lowercase: true,
             trim: true,
             required: [true, 'Email address is required'],
             match: [
