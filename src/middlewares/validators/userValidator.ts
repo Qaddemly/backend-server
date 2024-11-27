@@ -193,3 +193,14 @@ export const confirmPasswordValidator: ValidationChain[] = [
         }
     }),
 ];
+
+export const loginValidator: ValidationChain[] = [
+    body('email')
+        .trim()
+        .notEmpty()
+        .withMessage('Email cannot be empty')
+        .isEmail()
+        .withMessage('Please provide a valid email address')
+        .toLowerCase(),
+    body('password').notEmpty().withMessage('Password cannot be empty'),
+];
