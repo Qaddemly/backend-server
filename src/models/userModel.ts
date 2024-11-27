@@ -29,6 +29,7 @@ export interface userDoc extends mongoose.Document {
     passwordResetCodeExpires?: Date;
     passwordResetVerificationToken?: string;
     passwordResetToken?: string;
+    googleId?: string;
     role?: string;
     active?: boolean;
     expireAt?: boolean;
@@ -177,6 +178,32 @@ const userSchema = new mongoose.Schema<userDoc>(
         resume: {
             type: String,
         },
+        passwordChangedAt: Date,
+        passwordResetCode: String,
+        passwordResetCodeExpires: Date,
+        passwordResetVerificationToken: String,
+        passwordResetToken: String,
+        googleId: String,
+        role: {
+            type: String,
+            default: 'seeker',
+            enum: ['seeker', 'admin', 'manager'],
+        },
+        active: {
+            type: Boolean,
+            default: true,
+        },
+        expireAt: {
+            type: Date,
+            index: { expireAfterSeconds: 10 },
+        },
+        isActivated: {
+            type: Boolean,
+            default: false,
+        },
+        activationCode: String,
+        activationCodeExpiresIn: Date,
+        activationToken: String,
     },
     {
         timestamps: true,

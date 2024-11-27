@@ -1,12 +1,5 @@
 import { userDoc } from '../models/userModel';
 import { userDocument } from '../types/documentTypes';
-declare global {
-    namespace Express {
-        interface Request {
-            user?: userDocument;
-        }
-    }
-}
 
 export interface signUpBody
     extends Pick<userDoc, 'firstName' | 'lastName' | 'email' | 'password'> {

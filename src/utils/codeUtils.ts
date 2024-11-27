@@ -52,14 +52,13 @@ export const generateAnotherActivationCode = async (user: userDocument) => {
 
 export const generateAndEmailCode = async (
     user: userDocument,
-    next: NextFunction,
 ): Promise<string> => {
     const [activationToken, code]: string[] =
         await generateActivationTokenAndCode(user);
     //3- send email to user
     const subject = 'email activation';
     const message = `your activation code is ${code}`;
-    await sendingCodeToEmail(user, subject, message, next);
+    await sendingCodeToEmail(user, subject, message);
     return activationToken;
 };
 
@@ -79,17 +78,14 @@ const generatePassResetTokenAndCode = async (user: userDocument) => {
     return [hashedActivationToken, code];
 };
 
-export const generateAndEmailPassResetCode = async (
-    user: userDocument,
-    next: NextFunction,
-) => {
+export const generateAndEmailPassResetCode = async (user: userDocument) => {
     const [hashedActivationToken, code]: string[] =
         await generatePassResetTokenAndCode(user);
     //3- send email to user
     const subject = 'password reset code';
     const message = `your password reset code is valid for (10 min) \n
   ${code}\n`;
-    await sendingCodeToEmail(user, subject, message, next);
+    await sendingCodeToEmail(user, subject, message);
     return hashedActivationToken;
 };
 

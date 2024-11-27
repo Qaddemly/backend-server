@@ -21,11 +21,12 @@ import {
     generateAndEmailPassResetCode,
     generateAnotherPassResetCode,
     resetCodeVerified,
+    generateAndEmailCode,
 } from '../utils/codeUtils';
 import { hashingPassword, isCorrectPassword } from '../utils/password';
 import { createAccessToken, verifyToken } from '../utils/jwt';
 import { JwtPayload } from 'jsonwebtoken';
-import { userDocument } from '../types/documentTypes';
+import { mongoId, userDocument } from '../types/documentTypes';
 
 export const createUserForSignUp = async (
     reqBody: signUpBody,
@@ -59,32 +60,155 @@ export const verifyActivationCode = async (
         user.activationCode != hashActivationCode ||
         user.activationCodeExpiresIn!.getTime() < Date.now()
     ) {
-        new AppError('code is incorrect or expired', 400);
+        throw new AppError('code is incorrect or expired', 400);
     }
     user.isActivated = true;
-    resettingUserCodeFields(user);
+    await resettingUserCodeFields(user);
 };
 
-export const resendActivationCode = catchAsync(
-    async (
-        req: Request<activateEmailParams>,
-        res: Response,
-        next: NextFunction,
-    ) => {
-        const { activationToken } = req.params;
-        const user = await User.findOne({ activationToken: activationToken });
-        if (!user) {
+export const createAnotherCodeAndResend = async (activationToken: string) => {
+    const user = await User.findOne({ activationToken: activationToken });
+    if (!user) {
+        throw new AppError('user belong to that token does not exist', 400);
+    }
+    const code = await generateAnotherActivationCode(user);
+    const subject = 'email activation';
+    const message = `your activation code is ${code}`;
+    await sendingCodeToEmail(user, subject, message);
+};
+
+export const generateForgetPasswordCodeAndEmail = async (email: string) => {
+    const user = await User.findOne({ email: email });
+    if (!user) {
+        throw new AppError('no user found with this email', 404);
+    }
+    const resetVerificationToken = await generateAndEmailPassResetCode(user);
+
+    return resetVerificationToken;
+};
+
+export const createAnotherResetPasswordCodeAndResend = async (
+    resetActivationToken: string,
+) => {
+    const user = await User.findOne({
+        passwordResetVerificationToken: resetActivationToken,
+    });
+    if (!user) {
+        throw new AppError('user belong to that token does not exist', 400);
+    }
+    const code = await generateAnotherPassResetCode(user);
+    const subject = 'password reset code';
+    const message = `your password reset code is valid for (10 min) \n
+      ${code}\n`;
+    await sendingCodeToEmail(user, subject, message);
+};
+
+export const PasswordResetCodeVerification = async (
+    code: string,
+    resetActivationToken: string,
+) => {
+    const user = await User.findOne({
+        passwordResetVerificationToken: resetActivationToken,
+    });
+    if (!user) {
+        throw new AppError('no user founded with reset token', 404);
+    }
+    const hashedCode = cryptoEncryption(code);
+    if (
+        user.passwordResetCode != hashedCode ||
+        user.passwordResetCodeExpires!.getTime() < Date.now()
+    ) {
+        throw new AppError('invalid or expired code', 400);
+    }
+    const passwordResetToken = await resetCodeVerified(user);
+    return passwordResetToken;
+};
+
+export const createNewPassword = async (
+    passwordResetToken: string,
+    newPassword: string,
+) => {
+    const user = await User.findOne({
+        passwordResetToken,
+    });
+    if (!user) {
+        throw new AppError('no user founded with that token', 404);
+    }
+    const hashedPassword = await hashingPassword(newPassword);
+    user.password = hashedPassword;
+    user.passwordChangedAt = new Date(Date.now());
+    await resettingUserCodeFields(user);
+};
+
+export const logInService = async (email: string, password: string) => {
+    //console.log(typeof req.query.limit, typeof req.query.page);
+    //1- find user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+        throw new AppError('email or password is incorrect', 400);
+    }
+    //2- checking password correction
+    const isPassCorrect = await isCorrectPassword(password, user.password);
+    if (!isPassCorrect) {
+        throw new AppError('email or password is incorrect', 400);
+    }
+    // checking is email active
+    if (!user.isActivated) {
+        const activationToken = await generateAndEmailCode(user);
+        return [false, activationToken, null];
+    } else {
+        //3- create access token
+        const accessToken = createAccessToken(user.id);
+        return [true, accessToken, user];
+    }
+};
+
+export const protect = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        let token: string;
+        if (
+            req.headers.authorization &&
+            req.headers.authorization.startsWith('Bearer')
+        ) {
+            token = req.headers.authorization.split(' ')[0];
+        } else {
+            token = req.cookies.accessToken;
+        }
+        if (!token) {
             return next(
-                new AppError('user belong to that token does not exist', 400),
+                new AppError(
+                    'you are not logged in please login to access this route',
+                    401,
+                ),
             );
         }
-        const code = await generateAnotherActivationCode(user);
-        const subject = 'email activation';
-        const message = `your activation code is ${code}`;
-        await sendingCodeToEmail(user, subject, message, next);
-        res.status(200).json({
-            success: true,
-            message: 'code sent, please check your mail box',
-        });
+        let decoded: JwtPayload;
+        decoded = verifyToken(token);
+        const user = await User.findById(decoded!.userId);
+        if (!user) {
+            return next(
+                new AppError('user belong to that token does not exist', 401),
+            );
+        }
+
+        if (user.passwordChangedAt) {
+            const passChangedAtTimeStamp = parseInt(
+                `${user.passwordChangedAt.getTime() / 1000}`,
+                10,
+            );
+
+            if (passChangedAtTimeStamp > decoded!.iat!) {
+                return next(
+                    new AppError('password is changed please login again', 401),
+                );
+            }
+        }
+        req.user = user; // for letting user to use protected routes
+        next();
     },
 );
+
+export const createAccessTokenForGoogleAuth = (userId: mongoId) => {
+    const accessToken = createAccessToken(userId);
+    return accessToken;
+};
