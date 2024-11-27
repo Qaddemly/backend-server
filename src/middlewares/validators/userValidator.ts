@@ -180,3 +180,16 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
             else throw new Error('Invalid language');
         }),
 ];
+
+export const confirmPasswordValidator: ValidationChain[] = [
+    body('password')
+        .isLength({ min: 8 })
+        .withMessage('Password must be at least 8 characters long'),
+    body('confirmPassword').custom((value, { req }) => {
+        if (value !== req.body.password) {
+            throw new Error('Passwords do not match');
+        } else {
+            return value;
+        }
+    }),
+];
