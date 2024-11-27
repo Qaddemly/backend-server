@@ -46,26 +46,23 @@ export const createUserForSignUp = async (
 export const verifyActivationCode = async (
     code: string,
     activationToken: string,
-    next: NextFunction,
 ) => {
     const hashActivationCode = cryptoEncryption(code);
     const user = await User.findOne({
         activationToken: activationToken,
     });
     if (!user) {
-        return next(new AppError('user not found or token expired', 404));
+        throw new AppError('user not found or token expired', 404);
     }
 
     if (
         user.activationCode != hashActivationCode ||
         user.activationCodeExpiresIn!.getTime() < Date.now()
     ) {
-        return next(new AppError('code is incorrect or expired', 400));
-    } else {
-        user.isActivated = true;
-        resettingUserCodeFields(user);
-        return true;
+        new AppError('code is incorrect or expired', 400);
     }
+    user.isActivated = true;
+    resettingUserCodeFields(user);
 };
 
 export const resendActivationCode = catchAsync(

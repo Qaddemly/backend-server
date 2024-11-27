@@ -24,17 +24,22 @@ export const signUp = catchAsync(
         res: Response,
         next: NextFunction,
     ) => {
-        const userData = req.body;
-        //1-create a new user
-        const newUser = await createUserForSignUp(userData);
-        //2-sending email containing activation code for user mail
-        const activationToken = await generateAndEmailCode(newUser, next);
-        res.status(201).json({
-            success: true,
-            message:
-                'User created successfully. Check your email for activation.',
-            activationToken,
-        });
+        try {
+            const userData = req.body;
+            //1-create a new user
+            const newUser = await createUserForSignUp(userData);
+            //2-sending email containing activation code for user mail
+            const activationToken = await generateAndEmailCode(newUser, next);
+
+            res.status(201).json({
+                success: true,
+                message:
+                    'User created successfully. Check your email for activation.',
+                activationToken,
+            });
+        } catch (err) {
+            return next(err);
+        }
     },
 );
 
@@ -44,17 +49,18 @@ export const activateEmail = catchAsync(
         res: Response,
         next: NextFunction,
     ) => {
-        const isSuccess =
-            (await verifyActivationCode(
+        try {
+            await verifyActivationCode(
                 req.body.code,
                 req.params.activationToken,
-                next,
-            )) || null;
-        if (isSuccess) {
+            );
+
             res.status(200).json({
                 success: true,
                 message: 'email has been activated successfully, please login',
             });
+        } catch (err) {
+            return next(err);
         }
     },
 );
