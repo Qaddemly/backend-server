@@ -10,6 +10,8 @@ import {
     resetPasswordBody,
     resetPasswordParams,
     signUpBody,
+    signUpBodyStepTwoDTO,
+    updateMeBody,
     verifyResetCodeBody,
     verifyResetCodeParams,
 } from '../dtos/authDto';
@@ -24,8 +26,11 @@ import {
     createNewPassword,
     logInService,
     createAccessTokenForGoogleAuth,
+    updateUserForSignUpStepTwo,
+    updateMyInfo,
 } from '../services/authServices';
 import { generateAndEmailCode } from '../utils/codeUtils';
+import { uploadSingleImage } from '../middlewares/uploadImage.middleWare';
 
 export const signUp = catchAsync(
     async (
@@ -45,6 +50,30 @@ export const signUp = catchAsync(
                 message:
                     'User created successfully. Check your email for activation.',
                 activationToken,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const SignUpStepTwo = catchAsync(
+    async (
+        req: Request<{}, {}, signUpBodyStepTwoDTO, {}>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        try {
+            const user = await updateUserForSignUpStepTwo(
+                req.user?.id,
+                req.body,
+            );
+
+            res.status(201).json({
+                success: true,
+                message:
+                    'congrats you have complete your registration successfully',
+                user,
             });
         } catch (err) {
             return next(err);
@@ -236,3 +265,21 @@ export const googleRedirection = [
         });
     },
 ];
+
+export const updateMe = catchAsync(
+    async (
+        req: Request<{}, {}, updateMeBody>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        try {
+            const user = await updateMyInfo(req.body, req.user?.id);
+            res.status(200).json({
+                success: true,
+                user,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);

@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmploymentType = void 0;
 var EmploymentType;
 (function (EmploymentType) {
-    EmploymentType["FullTime"] = "Full-Time";
-    EmploymentType["PartTime"] = "Part-Time";
-    EmploymentType["SelfEmployed"] = "Self-Employed";
+    EmploymentType["FullTime"] = "FullTime";
+    EmploymentType["PartTime"] = "PartTime";
+    EmploymentType["SelfEmployed"] = "SelfEmployed";
     EmploymentType["Freelance"] = "Freelance";
     EmploymentType["Contract"] = "Contract";
     EmploymentType["Internship"] = "Internship";

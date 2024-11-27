@@ -5,6 +5,34 @@ export interface signUpBody
     extends Pick<userDoc, 'firstName' | 'lastName' | 'email' | 'password'> {
     passwordConfirm: string;
 }
+export interface signUpBodyStepTwoDTO
+    extends Pick<
+        userDoc,
+        | 'address'
+        | 'phone'
+        | 'skills'
+        | 'experience'
+        | 'dateOfBirth'
+        | 'education'
+        | 'languages'
+        | 'profilePicture'
+    > {}
+
+export interface updateMeBody
+    extends Pick<
+        userDoc,
+        | 'address'
+        | 'phone'
+        | 'skills'
+        | 'experience'
+        | 'dateOfBirth'
+        | 'education'
+        | 'languages'
+        | 'profilePicture'
+        | 'firstName'
+        | 'lastName'
+        | 'email'
+    > {}
 export interface activateEmailBody {
     code: string;
 }

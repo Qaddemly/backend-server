@@ -9,6 +9,8 @@ import {
     resetPasswordBody,
     resetPasswordParams,
     signUpBody,
+    signUpBodyStepTwoDTO,
+    updateMeBody,
     verifyResetCodeBody,
     verifyResetCodeParams,
 } from '../dtos/authDto';
@@ -27,6 +29,8 @@ import { hashingPassword, isCorrectPassword } from '../utils/password';
 import { createAccessToken, verifyToken } from '../utils/jwt';
 import { JwtPayload } from 'jsonwebtoken';
 import { mongoId, userDocument } from '../types/documentTypes';
+import { uploadSingleImage } from '../middlewares/uploadImage.middleWare';
+import sharp from 'sharp';
 
 export const createUserForSignUp = async (
     reqBody: signUpBody,
@@ -43,6 +47,64 @@ export const createUserForSignUp = async (
     });
     return newUser;
 };
+
+export const updateUserForSignUpStepTwo = async (
+    userId: mongoId,
+    reqBody: signUpBodyStepTwoDTO,
+) => {
+    const {
+        address,
+        phone,
+        education,
+        experience,
+        skills,
+        dateOfBirth,
+        languages,
+        profilePicture,
+    } = reqBody;
+
+    const user = await User.findByIdAndUpdate(
+        userId,
+        {
+            address: address,
+            phone: phone,
+            education: education,
+            experience: experience,
+            skills: skills,
+            dateOfBirth: dateOfBirth,
+            languages: languages,
+            profilePicture,
+        },
+        { new: true },
+    );
+    if (!user) {
+        throw new AppError('user not found', 404);
+    }
+    return user;
+};
+export const uploadUserImage = uploadSingleImage('profilePicture');
+export const resizeUserImage = catchAsync(
+    async (
+        req: Request<{}, {}, signUpBodyStepTwoDTO>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        if (req.file?.buffer) {
+            // console.log("req.files", req.files.imageCover[0]);
+            const userImageName = `user-${Math.round(
+                Math.random() * 1e9,
+            )}-${Date.now()}.jpeg`;
+            const imageDbUrl = `${process.env.BASE_URL}/uploads/users/${userImageName}`;
+            await sharp(req.file.buffer)
+                .resize(800, 600)
+                .toFormat('jpeg')
+                .jpeg({ quality: 90 })
+                .toFile(`src/uploads/users/${userImageName}`);
+            req.body.profilePicture = imageDbUrl;
+        }
+        next();
+    },
+);
 
 export const verifyActivationCode = async (
     code: string,
@@ -211,4 +273,43 @@ export const protect = catchAsync(
 export const createAccessTokenForGoogleAuth = (userId: mongoId) => {
     const accessToken = createAccessToken(userId);
     return accessToken;
+};
+
+export const updateMyInfo = async (reqBody: updateMeBody, userId: mongoId) => {
+    const {
+        address,
+        phone,
+        education,
+        experience,
+        skills,
+        dateOfBirth,
+        languages,
+        profilePicture,
+        firstName,
+        lastName,
+        email,
+    } = reqBody;
+    const user = await User.findOneAndUpdate(
+        { _id: userId },
+        {
+            address,
+            phone,
+            education,
+            experience,
+            skills,
+            dateOfBirth,
+            languages,
+            profilePicture,
+            firstName,
+            lastName,
+            email,
+        },
+        {
+            new: true,
+        },
+    );
+    if (!user) {
+        throw new AppError('user not found', 404);
+    }
+    return user;
 };

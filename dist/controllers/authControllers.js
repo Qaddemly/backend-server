@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.googleRedirection = exports.googleAuth = exports.logOut = exports.logIn = exports.resetPassword = exports.verifyPasswordResetCode = exports.resendPasswordResetCodeAgain = exports.forgetPassword = exports.resendActivationCode = exports.activateEmail = exports.signUp = void 0;
+exports.updateMe = exports.googleRedirection = exports.googleAuth = exports.logOut = exports.logIn = exports.resetPassword = exports.verifyPasswordResetCode = exports.resendPasswordResetCodeAgain = exports.forgetPassword = exports.resendActivationCode = exports.activateEmail = exports.SignUpStepTwo = exports.signUp = void 0;
 const passport_1 = __importDefault(require("passport"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const authServices_1 = require("../services/authServices");
@@ -28,6 +28,20 @@ exports.signUp = (0, express_async_handler_1.default)((req, res, next) => __awai
             success: true,
             message: 'User created successfully. Check your email for activation.',
             activationToken,
+        });
+    }
+    catch (err) {
+        return next(err);
+    }
+}));
+exports.SignUpStepTwo = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    try {
+        const user = yield (0, authServices_1.updateUserForSignUpStepTwo)((_a = req.user) === null || _a === void 0 ? void 0 : _a.id, req.body);
+        res.status(201).json({
+            success: true,
+            message: 'congrats you have complete your registration successfully',
+            user,
         });
     }
     catch (err) {
@@ -161,3 +175,16 @@ exports.googleRedirection = [
         });
     },
 ];
+exports.updateMe = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    try {
+        const user = yield (0, authServices_1.updateMyInfo)(req.body, (_a = req.user) === null || _a === void 0 ? void 0 : _a.id);
+        res.status(200).json({
+            success: true,
+            user,
+        });
+    }
+    catch (err) {
+        return next(err);
+    }
+}));

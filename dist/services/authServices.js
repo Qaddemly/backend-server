@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createAccessTokenForGoogleAuth = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.createUserForSignUp = void 0;
+exports.updateMyInfo = exports.createAccessTokenForGoogleAuth = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.resizeUserImage = exports.uploadUserImage = exports.updateUserForSignUpStepTwo = exports.createUserForSignUp = void 0;
 const userModel_1 = __importDefault(require("../models/userModel"));
 const appError_1 = __importDefault(require("../utils/appError"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
@@ -20,6 +20,8 @@ const email_1 = require("../utils/email");
 const codeUtils_1 = require("../utils/codeUtils");
 const password_1 = require("../utils/password");
 const jwt_1 = require("../utils/jwt");
+const uploadImage_middleWare_1 = require("../middlewares/uploadImage.middleWare");
+const sharp_1 = __importDefault(require("sharp"));
 const createUserForSignUp = (reqBody) => __awaiter(void 0, void 0, void 0, function* () {
     const { firstName, lastName, email, password } = reqBody;
     // hashing password before saving it in data base
@@ -34,6 +36,40 @@ const createUserForSignUp = (reqBody) => __awaiter(void 0, void 0, void 0, funct
     return newUser;
 });
 exports.createUserForSignUp = createUserForSignUp;
+const updateUserForSignUpStepTwo = (userId, reqBody) => __awaiter(void 0, void 0, void 0, function* () {
+    const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, } = reqBody;
+    const user = yield userModel_1.default.findByIdAndUpdate(userId, {
+        address: address,
+        phone: phone,
+        education: education,
+        experience: experience,
+        skills: skills,
+        dateOfBirth: dateOfBirth,
+        languages: languages,
+        profilePicture,
+    }, { new: true });
+    if (!user) {
+        throw new appError_1.default('user not found', 404);
+    }
+    return user;
+});
+exports.updateUserForSignUpStepTwo = updateUserForSignUpStepTwo;
+exports.uploadUserImage = (0, uploadImage_middleWare_1.uploadSingleImage)('profilePicture');
+exports.resizeUserImage = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    if ((_a = req.file) === null || _a === void 0 ? void 0 : _a.buffer) {
+        // console.log("req.files", req.files.imageCover[0]);
+        const userImageName = `user-${Math.round(Math.random() * 1e9)}-${Date.now()}.jpeg`;
+        const imageDbUrl = `${process.env.BASE_URL}/uploads/users/${userImageName}`;
+        yield (0, sharp_1.default)(req.file.buffer)
+            .resize(800, 600)
+            .toFormat('jpeg')
+            .jpeg({ quality: 90 })
+            .toFile(`src/uploads/users/${userImageName}`);
+        req.body.profilePicture = imageDbUrl;
+    }
+    next();
+}));
 const verifyActivationCode = (code, activationToken) => __awaiter(void 0, void 0, void 0, function* () {
     const hashActivationCode = (0, codeUtils_1.cryptoEncryption)(code);
     const user = yield userModel_1.default.findOne({
@@ -169,3 +205,26 @@ const createAccessTokenForGoogleAuth = (userId) => {
     return accessToken;
 };
 exports.createAccessTokenForGoogleAuth = createAccessTokenForGoogleAuth;
+const updateMyInfo = (reqBody, userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, firstName, lastName, email, } = reqBody;
+    const user = yield userModel_1.default.findOneAndUpdate({ _id: userId }, {
+        address,
+        phone,
+        education,
+        experience,
+        skills,
+        dateOfBirth,
+        languages,
+        profilePicture,
+        firstName,
+        lastName,
+        email,
+    }, {
+        new: true,
+    });
+    if (!user) {
+        throw new appError_1.default('user not found', 404);
+    }
+    return user;
+});
+exports.updateMyInfo = updateMyInfo;

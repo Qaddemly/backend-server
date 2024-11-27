@@ -1,3 +1,4 @@
+import path from 'path';
 import express, { Request, Response, NextFunction } from 'express';
 import './utils/googlePassportConfig';
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 //mount Routes
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 mountRoutes(app);
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
     res.status(404).json({
@@ -39,6 +41,7 @@ app.all('*', (req: Request, res: Response, next: NextFunction) => {
         message: `cant find ${req.url}`,
     });
 });
+
 app.use(globalErrorHandler);
 
 export default app;

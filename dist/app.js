@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const path_1 = __importDefault(require("path"));
 const express_1 = __importDefault(require("express"));
 require("./utils/googlePassportConfig");
 const express_session_1 = __importDefault(require("express-session"));
@@ -31,6 +32,7 @@ app.use(passport_1.default.session());
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 //mount Routes
+app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, 'uploads')));
 (0, routes_1.default)(app);
 app.all('*', (req, res, next) => {
     res.status(404).json({
