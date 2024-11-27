@@ -1,4 +1,9 @@
 import { body, ValidationChain } from 'express-validator';
+import { CountryCode } from '../../enums/countryCode';
+import { Country } from '../../enums/country';
+import { EmploymentType } from '../../enums/employmentType';
+import { LocationType } from '../../enums/locationType';
+import { Language } from '../../enums/language';
 
 export const userCreationValidatorStepOne: ValidationChain[] = [
     body('email')
@@ -32,4 +37,146 @@ export const userCreationValidatorStepOne: ValidationChain[] = [
     }),
 ];
 
-const userCreationValidatorStepTwo: ValidationChain[] = [];
+export const userCreationValidatorStepTwo: ValidationChain[] = [
+    body('phone').optional().isObject(),
+    body('phone.countryCode')
+        .if(body('phone').exists())
+        .notEmpty()
+        .withMessage('Country code cannot be empty')
+        .custom((value) => {
+            if (value in CountryCode) return value;
+            else throw new Error('Invalid country code');
+        }),
+    body('phone.number')
+        .if(body('phone').exists())
+        .notEmpty()
+        .withMessage('Phone number cannot be empty')
+        .isNumeric()
+        .withMessage('Phone number must be numeric'),
+    body('address').optional().isObject(),
+    body('address.country')
+        .if(body('address').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Country cannot be empty')
+        .custom((value) => {
+            if (value in Country) return value;
+            else
+                throw new Error(
+                    'Country Name is invalid (not in the country list)',
+                );
+        }),
+    body('address.city')
+        .if(body('address').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('City cannot be empty')
+        .isAlpha()
+        .withMessage('City must be a string of alphabets'),
+    body('dateOfBirth')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid date of birth'),
+    body('education').optional().isObject(),
+    body('education.university')
+        .if(body('education').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('University name cannot be empty'),
+    body('education.fieldOfStudy')
+        .if(body('education').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Field of study cannot be empty'),
+    body('education.gpa')
+        .if(body('education').exists())
+        .notEmpty()
+        .withMessage('GPA cannot be empty')
+        .isNumeric()
+        .withMessage('GPA must be a number')
+        .custom((value) => {
+            if (value >= 0 && value <= 4) return value;
+            else throw new Error('GPA must be between 0 and 4');
+        }),
+    body('education.startDate')
+        .if(body('education').exists())
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid start date'),
+    body('education.endDate')
+        .if(body('education').exists())
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid end date'),
+    body('experience').optional().isArray(),
+    body('experience.*')
+        .if(body('experience').exists())
+        .isObject()
+        .withMessage('Experience must be an object'),
+    body('experience.*.jobTitle')
+        .if(body('experience').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Job title cannot be empty'),
+    body('experience.*.employmentType')
+        .if(body('experience').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Employment type cannot be empty')
+        .custom((value) => {
+            if (value in EmploymentType) return value;
+            else throw new Error('Invalid employment type');
+        }),
+    body('experience.*.companyName')
+        .if(body('experience').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Company name cannot be empty'),
+    body('experience.*.location')
+        .if(body('experience').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Location cannot be empty'),
+    body('experience.*.locationType')
+        .if(body('experience').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Location type cannot be empty')
+        .custom((value) => {
+            if (value in LocationType) return value;
+            else throw new Error('Invalid location type');
+        }),
+    body('experience.*.stillWorking')
+        .if(body('experience').exists())
+        .isBoolean()
+        .withMessage('Still working must be a boolean'),
+    body('experience.*.startDate')
+        .if(body('experience').exists())
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid start date'),
+    // Optional Fix
+    body('experience.*.endDate')
+        .if(body('experience').exists())
+        .custom((value, { req, path, pathValues }) => {
+            const idx = Number(pathValues[1]);
+            console.log(req.body.experience[idx].stillWorking);
+            return req.body.experience[idx].stillWorking === false;
+        })
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid end date')
+        .optional(),
+    body('skills').optional().isArray(),
+    body('skills.*')
+        .if(body('skills').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Skill cannot be empty'),
+    body('languages').optional().isArray(),
+    body('languages.*')
+        .if(body('languages').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Language cannot be empty')
+        .custom((value) => {
+            if (value in Language) return value;
+            else throw new Error('Invalid language');
+        }),
+];
