@@ -1,7 +1,7 @@
 export enum EmploymentType {
-    FullTime = 'Full-Time',
-    PartTime = 'Part-Time',
-    SelfEmployed = 'Self-Employed',
+    FullTime = 'FullTime',
+    PartTime = 'PartTime',
+    SelfEmployed = 'SelfEmployed',
     Freelance = 'Freelance',
     Contract = 'Contract',
     Internship = 'Internship',
