@@ -30,7 +30,6 @@ import {
     updateMyInfo,
 } from '../services/authServices';
 import { generateAndEmailCode } from '../utils/codeUtils';
-import { uploadSingleImage } from '../middlewares/uploadImage.middleWare';
 
 export const signUp = catchAsync(
     async (
@@ -277,6 +276,19 @@ export const updateMe = catchAsync(
             res.status(200).json({
                 success: true,
                 user,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getMe = catchAsync(
+    async (req: Request<{}, {}, {}>, res: Response, next: NextFunction) => {
+        try {
+            res.status(200).json({
+                success: true,
+                user: req.user,
             });
         } catch (err) {
             return next(err);

@@ -16,6 +16,7 @@ export interface signUpBodyStepTwoDTO
         | 'education'
         | 'languages'
         | 'profilePicture'
+        | 'resume'
     > {}
 
 export interface updateMeBody
@@ -32,6 +33,7 @@ export interface updateMeBody
         | 'firstName'
         | 'lastName'
         | 'email'
+        | 'resume'
     > {}
 export interface activateEmailBody {
     code: string;

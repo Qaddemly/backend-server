@@ -31,3 +31,7 @@ export interface Experience {
     startDate: Date;
     endDate?: Date;
 }
+
+export type expressFiles = {
+    [index: string]: Express.Multer.File[];
+};

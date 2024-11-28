@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import User from '../models/userModel';
+import fs from 'fs';
+import path from 'path';
 import AppError from '../utils/appError';
 import {
     activateEmailBody,
@@ -29,8 +31,13 @@ import { hashingPassword, isCorrectPassword } from '../utils/password';
 import { createAccessToken, verifyToken } from '../utils/jwt';
 import { JwtPayload } from 'jsonwebtoken';
 import { mongoId, userDocument } from '../types/documentTypes';
-import { uploadSingleImage } from '../middlewares/uploadImage.middleWare';
+import {
+    uploadProfilePicAndResume,
+    uploadSingleImage,
+    uploadSingleResume,
+} from '../middlewares/upload.middleWare';
 import sharp from 'sharp';
+import { expressFiles } from '../types/types';
 
 export const createUserForSignUp = async (
     reqBody: signUpBody,
@@ -61,6 +68,7 @@ export const updateUserForSignUpStepTwo = async (
         dateOfBirth,
         languages,
         profilePicture,
+        resume,
     } = reqBody;
 
     const user = await User.findByIdAndUpdate(
@@ -74,6 +82,7 @@ export const updateUserForSignUpStepTwo = async (
             dateOfBirth: dateOfBirth,
             languages: languages,
             profilePicture,
+            resume: resume,
         },
         { new: true },
     );
@@ -82,25 +91,65 @@ export const updateUserForSignUpStepTwo = async (
     }
     return user;
 };
-export const uploadUserImage = uploadSingleImage('profilePicture');
+export const uploadUserPICAndResume = uploadProfilePicAndResume([
+    { name: 'profilePicture', maxCount: 1 },
+    { name: 'resume', maxCount: 1 },
+]);
+//export const uploadUserImage = uploadSingleImage('profilePicture');
 export const resizeUserImage = catchAsync(
     async (
         req: Request<{}, {}, signUpBodyStepTwoDTO>,
         res: Response,
         next: NextFunction,
     ) => {
-        if (req.file?.buffer) {
+        //console.log((req.files! as expressFiles).resume);
+        if ((req.files! as expressFiles).profilePicture) {
             // console.log("req.files", req.files.imageCover[0]);
             const userImageName = `user-${Math.round(
                 Math.random() * 1e9,
             )}-${Date.now()}.jpeg`;
             const imageDbUrl = `${process.env.BASE_URL}/uploads/users/${userImageName}`;
-            await sharp(req.file.buffer)
+            await sharp((req.files! as expressFiles).profilePicture[0].buffer)
                 .resize(800, 600)
                 .toFormat('jpeg')
                 .jpeg({ quality: 90 })
                 .toFile(`src/uploads/users/${userImageName}`);
             req.body.profilePicture = imageDbUrl;
+        }
+        next();
+    },
+);
+
+//export const uploadUserResume = uploadSingleResume('resume');
+export const savingResumeInDisk = catchAsync(
+    async (
+        req: Request<{}, {}, signUpBodyStepTwoDTO>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        if ((req.files! as expressFiles).resume) {
+            const originalFileName = (req.files! as expressFiles).resume[0]
+                .originalname;
+            const resumeExtension = originalFileName.substring(
+                originalFileName.lastIndexOf('.') + 1,
+            );
+            const resumeName = `resume-${Math.round(
+                Math.random() * 1e9,
+            )}-${Date.now()}.${resumeExtension}`;
+            const resumeDbUrl = `${process.env.BASE_URL}/uploads/resumes/${resumeName}`;
+            // Save the PDF to disk
+            const filePath = `src/uploads/resumes/${resumeName}`;
+
+            fs.writeFile(
+                filePath,
+                (req.files! as expressFiles).resume[0].buffer,
+                (err) => {
+                    if (err) {
+                        return next(new AppError('Error saving file to disk.'));
+                    }
+                },
+            );
+            req.body.resume = resumeDbUrl;
         }
         next();
     },
@@ -288,6 +337,7 @@ export const updateMyInfo = async (reqBody: updateMeBody, userId: mongoId) => {
         firstName,
         lastName,
         email,
+        resume,
     } = reqBody;
     const user = await User.findOneAndUpdate(
         { _id: userId },
@@ -303,6 +353,7 @@ export const updateMyInfo = async (reqBody: updateMeBody, userId: mongoId) => {
             firstName,
             lastName,
             email,
+            resume,
         },
         {
             new: true,

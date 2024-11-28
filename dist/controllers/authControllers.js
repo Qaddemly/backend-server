@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateMe = exports.googleRedirection = exports.googleAuth = exports.logOut = exports.logIn = exports.resetPassword = exports.verifyPasswordResetCode = exports.resendPasswordResetCodeAgain = exports.forgetPassword = exports.resendActivationCode = exports.activateEmail = exports.SignUpStepTwo = exports.signUp = void 0;
+exports.getMe = exports.updateMe = exports.googleRedirection = exports.googleAuth = exports.logOut = exports.logIn = exports.resetPassword = exports.verifyPasswordResetCode = exports.resendPasswordResetCodeAgain = exports.forgetPassword = exports.resendActivationCode = exports.activateEmail = exports.SignUpStepTwo = exports.signUp = void 0;
 const passport_1 = __importDefault(require("passport"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const authServices_1 = require("../services/authServices");
@@ -182,6 +182,17 @@ exports.updateMe = (0, express_async_handler_1.default)((req, res, next) => __aw
         res.status(200).json({
             success: true,
             user,
+        });
+    }
+    catch (err) {
+        return next(err);
+    }
+}));
+exports.getMe = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.status(200).json({
+            success: true,
+            user: req.user,
         });
     }
     catch (err) {

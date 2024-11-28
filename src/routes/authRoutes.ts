@@ -2,6 +2,7 @@ import express from 'express';
 import {
     activateEmail,
     forgetPassword,
+    getMe,
     googleAuth,
     googleRedirection,
     logIn,
@@ -17,7 +18,8 @@ import {
 import {
     protect,
     resizeUserImage,
-    uploadUserImage,
+    savingResumeInDisk,
+    uploadUserPICAndResume,
 } from '../services/authServices';
 import {
     resetPasswordValidator,
@@ -37,9 +39,12 @@ authRouter.post(
 authRouter.put(
     '/completeRegistration',
     protect,
-    uploadUserImage,
+    //uploadUserImage,
+    // uploadUserResume,
+    uploadUserPICAndResume,
     validateRequestMiddleware(userCreationValidatorStepTwo),
     resizeUserImage,
+    savingResumeInDisk,
     SignUpStepTwo,
 );
 authRouter.put('/activateEmail/:activationToken', activateEmail);
@@ -66,10 +71,13 @@ authRouter.get('/google/redirect', googleRedirection);
 authRouter.patch(
     '/updateMe',
     protect,
-    uploadUserImage,
+    uploadUserPICAndResume,
     validateRequestMiddleware(userUpdateValidator),
     resizeUserImage,
+    savingResumeInDisk,
     updateMe,
 );
+
+authRouter.get('/getMe', protect, getMe);
 
 export default authRouter;

@@ -12,15 +12,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateMyInfo = exports.createAccessTokenForGoogleAuth = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.resizeUserImage = exports.uploadUserImage = exports.updateUserForSignUpStepTwo = exports.createUserForSignUp = void 0;
+exports.updateMyInfo = exports.createAccessTokenForGoogleAuth = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.savingResumeInDisk = exports.resizeUserImage = exports.uploadUserPICAndResume = exports.updateUserForSignUpStepTwo = exports.createUserForSignUp = void 0;
 const userModel_1 = __importDefault(require("../models/userModel"));
+const fs_1 = __importDefault(require("fs"));
 const appError_1 = __importDefault(require("../utils/appError"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const email_1 = require("../utils/email");
 const codeUtils_1 = require("../utils/codeUtils");
 const password_1 = require("../utils/password");
 const jwt_1 = require("../utils/jwt");
-const uploadImage_middleWare_1 = require("../middlewares/uploadImage.middleWare");
+const upload_middleWare_1 = require("../middlewares/upload.middleWare");
 const sharp_1 = __importDefault(require("sharp"));
 const createUserForSignUp = (reqBody) => __awaiter(void 0, void 0, void 0, function* () {
     const { firstName, lastName, email, password } = reqBody;
@@ -37,7 +38,7 @@ const createUserForSignUp = (reqBody) => __awaiter(void 0, void 0, void 0, funct
 });
 exports.createUserForSignUp = createUserForSignUp;
 const updateUserForSignUpStepTwo = (userId, reqBody) => __awaiter(void 0, void 0, void 0, function* () {
-    const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, } = reqBody;
+    const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, resume, } = reqBody;
     const user = yield userModel_1.default.findByIdAndUpdate(userId, {
         address: address,
         phone: phone,
@@ -47,6 +48,7 @@ const updateUserForSignUpStepTwo = (userId, reqBody) => __awaiter(void 0, void 0
         dateOfBirth: dateOfBirth,
         languages: languages,
         profilePicture,
+        resume: resume,
     }, { new: true });
     if (!user) {
         throw new appError_1.default('user not found', 404);
@@ -54,19 +56,42 @@ const updateUserForSignUpStepTwo = (userId, reqBody) => __awaiter(void 0, void 0
     return user;
 });
 exports.updateUserForSignUpStepTwo = updateUserForSignUpStepTwo;
-exports.uploadUserImage = (0, uploadImage_middleWare_1.uploadSingleImage)('profilePicture');
+exports.uploadUserPICAndResume = (0, upload_middleWare_1.uploadProfilePicAndResume)([
+    { name: 'profilePicture', maxCount: 1 },
+    { name: 'resume', maxCount: 1 },
+]);
+//export const uploadUserImage = uploadSingleImage('profilePicture');
 exports.resizeUserImage = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    if ((_a = req.file) === null || _a === void 0 ? void 0 : _a.buffer) {
+    //console.log((req.files! as expressFiles).resume);
+    if (req.files.profilePicture) {
         // console.log("req.files", req.files.imageCover[0]);
         const userImageName = `user-${Math.round(Math.random() * 1e9)}-${Date.now()}.jpeg`;
         const imageDbUrl = `${process.env.BASE_URL}/uploads/users/${userImageName}`;
-        yield (0, sharp_1.default)(req.file.buffer)
+        yield (0, sharp_1.default)(req.files.profilePicture[0].buffer)
             .resize(800, 600)
             .toFormat('jpeg')
             .jpeg({ quality: 90 })
             .toFile(`src/uploads/users/${userImageName}`);
         req.body.profilePicture = imageDbUrl;
+    }
+    next();
+}));
+//export const uploadUserResume = uploadSingleResume('resume');
+exports.savingResumeInDisk = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.files.resume) {
+        const originalFileName = req.files.resume[0]
+            .originalname;
+        const resumeExtension = originalFileName.substring(originalFileName.lastIndexOf('.') + 1);
+        const resumeName = `resume-${Math.round(Math.random() * 1e9)}-${Date.now()}.${resumeExtension}`;
+        const resumeDbUrl = `${process.env.BASE_URL}/uploads/resumes/${resumeName}`;
+        // Save the PDF to disk
+        const filePath = `src/uploads/resumes/${resumeName}`;
+        fs_1.default.writeFile(filePath, req.files.resume[0].buffer, (err) => {
+            if (err) {
+                return next(new appError_1.default('Error saving file to disk.'));
+            }
+        });
+        req.body.resume = resumeDbUrl;
     }
     next();
 }));
@@ -206,7 +231,7 @@ const createAccessTokenForGoogleAuth = (userId) => {
 };
 exports.createAccessTokenForGoogleAuth = createAccessTokenForGoogleAuth;
 const updateMyInfo = (reqBody, userId) => __awaiter(void 0, void 0, void 0, function* () {
-    const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, firstName, lastName, email, } = reqBody;
+    const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, firstName, lastName, email, resume, } = reqBody;
     const user = yield userModel_1.default.findOneAndUpdate({ _id: userId }, {
         address,
         phone,
@@ -219,6 +244,7 @@ const updateMyInfo = (reqBody, userId) => __awaiter(void 0, void 0, void 0, func
         firstName,
         lastName,
         email,
+        resume,
     }, {
         new: true,
     });
