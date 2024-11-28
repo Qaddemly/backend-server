@@ -20,7 +20,6 @@ const employmentType_1 = require("../../enums/employmentType");
 const locationType_1 = require("../../enums/locationType");
 const language_1 = require("../../enums/language");
 const userModel_1 = __importDefault(require("../../models/userModel"));
-const validator_1 = require("../validator");
 exports.userCreationValidatorStepOne = [
     (0, express_validator_1.body)('email')
         .trim()
@@ -61,7 +60,6 @@ exports.userCreationValidatorStepOne = [
             return value;
         }
     }),
-    validator_1.validatorMiddleWare,
 ];
 exports.userCreationValidatorStepTwo = [
     (0, express_validator_1.body)('phone').optional().isObject(),
@@ -214,7 +212,6 @@ exports.userCreationValidatorStepTwo = [
         else
             throw new Error('Invalid language');
     }),
-    validator_1.validatorMiddleWare,
 ];
 exports.userUpdateValidator = [
     (0, express_validator_1.body)('email')
@@ -388,7 +385,6 @@ exports.userUpdateValidator = [
         else
             throw new Error('Invalid language');
     }),
-    validator_1.validatorMiddleWare,
 ];
 exports.resetPasswordValidator = [
     (0, express_validator_1.body)('newPassword')
@@ -402,7 +398,6 @@ exports.resetPasswordValidator = [
             return value;
         }
     }),
-    validator_1.validatorMiddleWare,
 ];
 exports.loginValidator = [
     (0, express_validator_1.body)('email')
@@ -413,5 +408,4 @@ exports.loginValidator = [
         .withMessage('Please provide a valid email address')
         .toLowerCase(),
     (0, express_validator_1.body)('password').notEmpty().withMessage('Password cannot be empty'),
-    validator_1.validatorMiddleWare,
 ];

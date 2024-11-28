@@ -1,7 +1,7 @@
 import { ContextRunner } from 'express-validator';
 import express from 'express';
 import AppError from '../utils/appError';
-/*
+
 function validateRequestMiddleware(validations: ContextRunner[]) {
     return async (
         req: express.Request,
@@ -20,19 +20,5 @@ function validateRequestMiddleware(validations: ContextRunner[]) {
         next();
     };
 }
-*/
 
-import { Request, Response, NextFunction, RequestHandler } from 'express';
-import { validationResult } from 'express-validator';
-import catchAsync from 'express-async-handler';
-
-export const validatorMiddleWare: RequestHandler = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return next(new AppError('validationErrors', 501, errors.array()));
-        }
-        next();
-    },
-);
-//export default validateRequestMiddleware;
+export default validateRequestMiddleware;

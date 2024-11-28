@@ -6,11 +6,8 @@ import { LocationType } from '../../enums/locationType';
 import { Language } from '../../enums/language';
 import User from '../../models/userModel';
 import { RequestHandler } from 'express';
-import { validatorMiddleWare } from '../validator';
 
-export const userCreationValidatorStepOne:
-    | ValidationChain[]
-    | RequestHandler[] = [
+export const userCreationValidatorStepOne: ValidationChain[] = [
     body('email')
         .trim()
         .notEmpty()
@@ -48,12 +45,9 @@ export const userCreationValidatorStepOne:
             return value;
         }
     }),
-    validatorMiddleWare,
 ];
 
-export const userCreationValidatorStepTwo:
-    | ValidationChain[]
-    | RequestHandler[] = [
+export const userCreationValidatorStepTwo: ValidationChain[] = [
     body('phone').optional().isObject(),
     body('phone.countryCode')
         .if(body('phone').exists())
@@ -195,10 +189,9 @@ export const userCreationValidatorStepTwo:
             if (value in Language) return value;
             else throw new Error('Invalid language');
         }),
-    validatorMiddleWare,
 ];
 
-export const userUpdateValidator: ValidationChain[] | RequestHandler[] = [
+export const userUpdateValidator: ValidationChain[] = [
     body('email')
         .optional()
         .trim()
@@ -361,10 +354,9 @@ export const userUpdateValidator: ValidationChain[] | RequestHandler[] = [
             if (value in Language) return value;
             else throw new Error('Invalid language');
         }),
-    validatorMiddleWare,
 ];
 
-export const resetPasswordValidator: ValidationChain[] | RequestHandler[] = [
+export const resetPasswordValidator: ValidationChain[] = [
     body('newPassword')
         .isLength({ min: 8 })
         .withMessage('Password must be at least 8 characters long'),
@@ -375,10 +367,9 @@ export const resetPasswordValidator: ValidationChain[] | RequestHandler[] = [
             return value;
         }
     }),
-    validatorMiddleWare,
 ];
 
-export const loginValidator: ValidationChain[] | RequestHandler[] = [
+export const loginValidator: ValidationChain[] = [
     body('email')
         .trim()
         .notEmpty()
@@ -387,5 +378,4 @@ export const loginValidator: ValidationChain[] | RequestHandler[] = [
         .withMessage('Please provide a valid email address')
         .toLowerCase(),
     body('password').notEmpty().withMessage('Password cannot be empty'),
-    validatorMiddleWare,
 ];

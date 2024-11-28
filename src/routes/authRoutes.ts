@@ -26,14 +26,19 @@ import {
     userCreationValidatorStepTwo,
     userUpdateValidator,
 } from '../middlewares/validators/userValidator';
+import validateRequestMiddleware from '../middlewares/validator';
 const authRouter = express.Router();
 
-authRouter.post('/signup', userCreationValidatorStepOne, signUp);
+authRouter.post(
+    '/signup',
+    validateRequestMiddleware(userCreationValidatorStepOne),
+    signUp,
+);
 authRouter.put(
     '/completeRegistration',
     protect,
     uploadUserImage,
-    userCreationValidatorStepTwo,
+    validateRequestMiddleware(userCreationValidatorStepTwo),
     resizeUserImage,
     SignUpStepTwo,
 );
@@ -50,10 +55,10 @@ authRouter.put(
 );
 authRouter.post(
     '/resetMyPassword/:passwordResetToken',
-    resetPasswordValidator,
+    validateRequestMiddleware(resetPasswordValidator),
     resetPassword,
 );
-authRouter.post('/logIn', loginValidator, logIn);
+authRouter.post('/logIn', validateRequestMiddleware(loginValidator), logIn);
 authRouter.post('/logout', protect, logOut);
 // render consent page
 authRouter.get('/googleAuth', googleAuth);
@@ -62,7 +67,7 @@ authRouter.patch(
     '/updateMe',
     protect,
     uploadUserImage,
-    userUpdateValidator,
+    validateRequestMiddleware(userUpdateValidator),
     resizeUserImage,
     updateMe,
 );

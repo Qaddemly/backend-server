@@ -12,15 +12,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validatorMiddleWare = void 0;
 const appError_1 = __importDefault(require("../utils/appError"));
-const express_validator_1 = require("express-validator");
-const express_async_handler_1 = __importDefault(require("express-async-handler"));
-exports.validatorMiddleWare = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const errors = (0, express_validator_1.validationResult)(req);
-    if (!errors.isEmpty()) {
-        return next(new appError_1.default('validationErrors', 501, errors.array()));
-    }
-    next();
-}));
-//export default validateRequestMiddleware;
+function validateRequestMiddleware(validations) {
+    return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        // sequential processing, stops running validations chain if one fails.
+        for (const validation of validations) {
+            const result = yield validation.run(req);
+            if (!result.isEmpty()) {
+                return next(new appError_1.default('validationErrors', 400, result.array()));
+            }
+        }
+        next();
+    });
+}
+exports.default = validateRequestMiddleware;
