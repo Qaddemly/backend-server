@@ -13,8 +13,12 @@ import mountRoutes from './routes';
 
 const app = express();
 
-app.use(cors());
-app.options('*', cors());
+const corsOptions = {
+    origin: true,
+    credentials: true, //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 app.use(
     expressSession({
         secret: process.env.SESSION_SECRET!,

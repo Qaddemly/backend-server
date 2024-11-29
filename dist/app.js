@@ -15,8 +15,12 @@ const cors_1 = __importDefault(require("cors"));
 const error_middleWare_1 = require("./middlewares/error.middleWare");
 const routes_1 = __importDefault(require("./routes"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
-app.options('*', (0, cors_1.default)());
+const corsOptions = {
+    origin: true,
+    credentials: true, //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+};
+app.use((0, cors_1.default)(corsOptions));
 app.use((0, express_session_1.default)({
     secret: process.env.SESSION_SECRET,
     cookie: { maxAge: 24 * 60 * 60 * 1000 },
