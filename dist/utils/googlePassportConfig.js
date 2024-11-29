@@ -36,7 +36,7 @@ passport_1.default.use(new passport_google_oauth20_1.default.Strategy({
         done(null, user);
     }
     else {
-        console.log(profile);
+        //console.log(profile);
         user = new userModel_1.default({
             firstName: profile._json.given_name,
             lastName: profile._json.family_name,

@@ -31,7 +31,7 @@ passport.use(
                 //console.log("user found");
                 done(null, user);
             } else {
-                console.log(profile);
+                //console.log(profile);
                 user = new User({
                     firstName: profile._json.given_name,
                     lastName: profile._json.family_name,

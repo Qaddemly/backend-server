@@ -259,6 +259,9 @@ export const logInService = async (email: string, password: string) => {
     if (!user) {
         throw new AppError('email or password is incorrect', 400);
     }
+    if (!user.password) {
+        throw new AppError('email or password is incorrect', 400);
+    }
     //2- checking password correction
     const isPassCorrect = await isCorrectPassword(password, user.password);
     if (!isPassCorrect) {

@@ -181,6 +181,9 @@ const logInService = (email, password) => __awaiter(void 0, void 0, void 0, func
     if (!user) {
         throw new appError_1.default('email or password is incorrect', 400);
     }
+    if (!user.password) {
+        throw new appError_1.default('email or password is incorrect', 400);
+    }
     //2- checking password correction
     const isPassCorrect = yield (0, password_1.isCorrectPassword)(password, user.password);
     if (!isPassCorrect) {
