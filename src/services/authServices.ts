@@ -332,7 +332,10 @@ export const createAccessTokenForGoogleAuth = (userId: mongoId) => {
     return accessToken;
 };
 
-export const updateMyInfo = async (reqBody: updateMeBody, userId: mongoId) => {
+export const updateMyInfo = async (
+    req: Request<{}, {}, updateMeBody>,
+    userId: mongoId,
+) => {
     const {
         address,
         phone,
@@ -346,7 +349,7 @@ export const updateMyInfo = async (reqBody: updateMeBody, userId: mongoId) => {
         lastName,
         email,
         resume,
-    } = reqBody;
+    } = req.body;
     const user = await User.findOneAndUpdate(
         { _id: userId },
         {
@@ -370,6 +373,7 @@ export const updateMyInfo = async (reqBody: updateMeBody, userId: mongoId) => {
     if (!user) {
         throw new AppError('user not found', 404);
     }
+    req.user = user;
     return user;
 };
 

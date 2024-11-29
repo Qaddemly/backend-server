@@ -274,7 +274,7 @@ export const updateMe = catchAsync(
         next: NextFunction,
     ) => {
         try {
-            const user = await updateMyInfo(req.body, req.user?.id);
+            const user = await updateMyInfo(req, req.user?.id);
             res.status(200).json({
                 success: true,
                 user,

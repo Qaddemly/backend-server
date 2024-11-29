@@ -5,7 +5,6 @@ import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
 import { Language } from '../../enums/language';
 import User from '../../models/userModel';
-import { RequestHandler } from 'express';
 
 export const userCreationValidatorStepOne: ValidationChain[] = [
     body('email')
