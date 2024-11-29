@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginValidator = exports.changePasswordValidator = exports.resetPasswordValidator = exports.userUpdateValidator = exports.userCreationValidatorStepTwo = exports.userCreationValidatorStepOne = void 0;
+exports.forgetPasswordValidator = exports.loginValidator = exports.changePasswordValidator = exports.resetPasswordValidator = exports.userUpdateValidator = exports.userCreationValidatorStepTwo = exports.userCreationValidatorStepOne = void 0;
 const express_validator_1 = require("express-validator");
 const countryCode_1 = require("../../enums/countryCode");
 const country_1 = require("../../enums/country");
@@ -432,4 +432,13 @@ exports.loginValidator = [
         .withMessage('Please provide a valid email address')
         .toLowerCase(),
     (0, express_validator_1.body)('password').notEmpty().withMessage('Password cannot be empty'),
+];
+exports.forgetPasswordValidator = [
+    (0, express_validator_1.body)('email')
+        .trim()
+        .notEmpty()
+        .withMessage('Email cannot be empty')
+        .isEmail()
+        .withMessage('Please provide a valid email address')
+        .toLowerCase(),
 ];

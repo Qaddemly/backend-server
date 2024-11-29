@@ -29,6 +29,7 @@ import {
     userCreationValidatorStepTwo,
     userUpdateValidator,
     changePasswordValidator,
+    forgetPasswordValidator,
 } from '../middlewares/validators/userValidator';
 import validateRequestMiddleware from '../middlewares/validator';
 const authRouter = express.Router();
@@ -51,7 +52,11 @@ authRouter.put(
 );
 authRouter.put('/activateEmail/:activationToken', activateEmail);
 authRouter.put('/resendActivateCode/:activationToken', resendActivationCode);
-authRouter.post('/forgetMyPassword', forgetPassword);
+authRouter.post(
+    '/forgetMyPassword',
+    validateRequestMiddleware(forgetPasswordValidator),
+    forgetPassword,
+);
 authRouter.put(
     '/resendForgetPassCode/:resetActivationToken',
     resendPasswordResetCodeAgain,

@@ -16,7 +16,7 @@ authRouter.put('/completeRegistration', authServices_1.protect,
 authServices_1.uploadUserPICAndResume, (0, validator_1.default)(userValidator_1.userCreationValidatorStepTwo), authServices_1.resizeUserImage, authServices_1.savingResumeInDisk, authControllers_1.SignUpStepTwo);
 authRouter.put('/activateEmail/:activationToken', authControllers_1.activateEmail);
 authRouter.put('/resendActivateCode/:activationToken', authControllers_1.resendActivationCode);
-authRouter.post('/forgetMyPassword', authControllers_1.forgetPassword);
+authRouter.post('/forgetMyPassword', (0, validator_1.default)(userValidator_1.forgetPasswordValidator), authControllers_1.forgetPassword);
 authRouter.put('/resendForgetPassCode/:resetActivationToken', authControllers_1.resendPasswordResetCodeAgain);
 authRouter.put('/verifyForgetPassCode/:resetActivationToken', authControllers_1.verifyPasswordResetCode);
 authRouter.post('/resetMyPassword/:passwordResetToken', (0, validator_1.default)(userValidator_1.resetPasswordValidator), authControllers_1.resetPassword);
