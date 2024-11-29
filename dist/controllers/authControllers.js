@@ -37,7 +37,7 @@ exports.signUp = (0, express_async_handler_1.default)((req, res, next) => __awai
 exports.SignUpStepTwo = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
-        const user = yield (0, authServices_1.updateUserForSignUpStepTwo)((_a = req.user) === null || _a === void 0 ? void 0 : _a.id, req.body);
+        const user = yield (0, authServices_1.updateUserForSignUpStepTwo)((_a = req.user) === null || _a === void 0 ? void 0 : _a.id, req);
         res.status(201).json({
             success: true,
             message: 'congrats you have complete your registration successfully',
@@ -178,7 +178,7 @@ exports.googleRedirection = [
 exports.updateMe = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
-        const user = yield (0, authServices_1.updateMyInfo)(req.body, (_a = req.user) === null || _a === void 0 ? void 0 : _a.id);
+        const user = yield (0, authServices_1.updateMyInfo)(req, (_a = req.user) === null || _a === void 0 ? void 0 : _a.id);
         res.status(200).json({
             success: true,
             user,
@@ -202,6 +202,7 @@ exports.getMe = (0, express_async_handler_1.default)((req, res, next) => __await
 exports.changeMyPassword = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield (0, authServices_1.changeCurrentPassword)(req);
+        res.clearCookie('accessToken');
         res.status(200).json({
             success: true,
             message: 'Your password has been changed , please login again',

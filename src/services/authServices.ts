@@ -1,21 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import User from '../models/userModel';
 import fs from 'fs';
-import path from 'path';
 import AppError from '../utils/appError';
 import {
-    activateEmailBody,
-    activateEmailParams,
     changeMyPasswordBody,
-    forgetPasswordBody,
-    logInBody,
-    resetPasswordBody,
-    resetPasswordParams,
     signUpBody,
     signUpBodyStepTwoDTO,
     updateMeBody,
-    verifyResetCodeBody,
-    verifyResetCodeParams,
 } from '../dtos/authDto';
 import catchAsync from 'express-async-handler';
 import { sendingCodeToEmail } from '../utils/email';
@@ -58,7 +49,7 @@ export const createUserForSignUp = async (
 
 export const updateUserForSignUpStepTwo = async (
     userId: mongoId,
-    reqBody: signUpBodyStepTwoDTO,
+    req: Request<{}, {}, signUpBodyStepTwoDTO>,
 ) => {
     const {
         address,
@@ -70,7 +61,7 @@ export const updateUserForSignUpStepTwo = async (
         languages,
         profilePicture,
         resume,
-    } = reqBody;
+    } = req.body;
 
     const user = await User.findByIdAndUpdate(
         userId,

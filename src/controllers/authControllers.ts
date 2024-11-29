@@ -65,10 +65,7 @@ export const SignUpStepTwo = catchAsync(
         next: NextFunction,
     ) => {
         try {
-            const user = await updateUserForSignUpStepTwo(
-                req.user?.id,
-                req.body,
-            );
+            const user = await updateUserForSignUpStepTwo(req.user?.id, req);
 
             res.status(201).json({
                 success: true,
@@ -306,6 +303,7 @@ export const changeMyPassword = catchAsync(
     ) => {
         try {
             await changeCurrentPassword(req);
+            res.clearCookie('accessToken');
             res.status(200).json({
                 success: true,
                 message: 'Your password has been changed , please login again',

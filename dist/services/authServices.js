@@ -37,8 +37,8 @@ const createUserForSignUp = (reqBody) => __awaiter(void 0, void 0, void 0, funct
     return newUser;
 });
 exports.createUserForSignUp = createUserForSignUp;
-const updateUserForSignUpStepTwo = (userId, reqBody) => __awaiter(void 0, void 0, void 0, function* () {
-    const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, resume, } = reqBody;
+const updateUserForSignUpStepTwo = (userId, req) => __awaiter(void 0, void 0, void 0, function* () {
+    const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, resume, } = req.body;
     const user = yield userModel_1.default.findByIdAndUpdate(userId, {
         address: address,
         phone: phone,
@@ -236,8 +236,8 @@ const createAccessTokenForGoogleAuth = (userId) => {
     return accessToken;
 };
 exports.createAccessTokenForGoogleAuth = createAccessTokenForGoogleAuth;
-const updateMyInfo = (reqBody, userId) => __awaiter(void 0, void 0, void 0, function* () {
-    const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, firstName, lastName, email, resume, } = reqBody;
+const updateMyInfo = (req, userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, firstName, lastName, email, resume, } = req.body;
     const user = yield userModel_1.default.findOneAndUpdate({ _id: userId }, {
         address,
         phone,
@@ -257,6 +257,7 @@ const updateMyInfo = (reqBody, userId) => __awaiter(void 0, void 0, void 0, func
     if (!user) {
         throw new appError_1.default('user not found', 404);
     }
+    req.user = user;
     return user;
 });
 exports.updateMyInfo = updateMyInfo;
