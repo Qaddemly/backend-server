@@ -32,6 +32,7 @@ import {
     forgetPasswordValidator,
 } from '../middlewares/validators/userValidator';
 import validateRequestMiddleware from '../middlewares/validator';
+import { loginRateLimiter } from '../middlewares/rateLimitMiddleWares';
 const authRouter = express.Router();
 
 authRouter.post(
@@ -70,7 +71,12 @@ authRouter.post(
     validateRequestMiddleware(resetPasswordValidator),
     resetPassword,
 );
-authRouter.post('/logIn', validateRequestMiddleware(loginValidator), logIn);
+authRouter.post(
+    '/logIn',
+    loginRateLimiter,
+    validateRequestMiddleware(loginValidator),
+    logIn,
+);
 authRouter.post('/logout', protect, logOut);
 // render consent page
 authRouter.get('/googleAuth', googleAuth);

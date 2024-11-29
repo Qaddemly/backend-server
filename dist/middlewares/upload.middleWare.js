@@ -76,6 +76,7 @@ const upload = (0, multer_1.default)({
             cb(new appError_1.default('Error: Unknown field!'));
         }
     },
+    limits: { fieldSize: 5000000 }, //5MB limit
 });
 const uploadProfilePicAndResume = (fields) => upload.fields(fields);
 exports.uploadProfilePicAndResume = uploadProfilePicAndResume;

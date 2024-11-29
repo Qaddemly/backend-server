@@ -8,6 +8,7 @@ const authControllers_1 = require("../controllers/authControllers");
 const authServices_1 = require("../services/authServices");
 const userValidator_1 = require("../middlewares/validators/userValidator");
 const validator_1 = __importDefault(require("../middlewares/validator"));
+const rateLimitMiddleWares_1 = require("../middlewares/rateLimitMiddleWares");
 const authRouter = express_1.default.Router();
 authRouter.post('/signup', (0, validator_1.default)(userValidator_1.userCreationValidatorStepOne), authControllers_1.signUp);
 authRouter.put('/completeRegistration', authServices_1.protect, 
@@ -20,7 +21,7 @@ authRouter.post('/forgetMyPassword', (0, validator_1.default)(userValidator_1.fo
 authRouter.put('/resendForgetPassCode/:resetActivationToken', authControllers_1.resendPasswordResetCodeAgain);
 authRouter.put('/verifyForgetPassCode/:resetActivationToken', authControllers_1.verifyPasswordResetCode);
 authRouter.post('/resetMyPassword/:passwordResetToken', (0, validator_1.default)(userValidator_1.resetPasswordValidator), authControllers_1.resetPassword);
-authRouter.post('/logIn', (0, validator_1.default)(userValidator_1.loginValidator), authControllers_1.logIn);
+authRouter.post('/logIn', rateLimitMiddleWares_1.loginRateLimiter, (0, validator_1.default)(userValidator_1.loginValidator), authControllers_1.logIn);
 authRouter.post('/logout', authServices_1.protect, authControllers_1.logOut);
 // render consent page
 authRouter.get('/googleAuth', authControllers_1.googleAuth);
