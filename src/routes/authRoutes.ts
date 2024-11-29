@@ -1,6 +1,7 @@
 import express from 'express';
 import {
     activateEmail,
+    changeMyPassword,
     forgetPassword,
     getMe,
     googleAuth,
@@ -27,6 +28,7 @@ import {
     userCreationValidatorStepOne,
     userCreationValidatorStepTwo,
     userUpdateValidator,
+    changePasswordValidator,
 } from '../middlewares/validators/userValidator';
 import validateRequestMiddleware from '../middlewares/validator';
 const authRouter = express.Router();
@@ -79,5 +81,11 @@ authRouter.patch(
 );
 
 authRouter.get('/getMe', protect, getMe);
+authRouter.put(
+    '/changeMyPassword',
+    protect,
+    validateRequestMiddleware(changePasswordValidator),
+    changeMyPassword,
+);
 
 export default authRouter;

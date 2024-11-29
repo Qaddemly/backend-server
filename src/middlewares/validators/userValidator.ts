@@ -369,6 +369,29 @@ export const resetPasswordValidator: ValidationChain[] = [
     }),
 ];
 
+export const changePasswordValidator: ValidationChain[] = [
+    body('currentPassword').custom((val, { req }) => {
+        if (req.user.password) {
+            if (!val) {
+                throw new Error('currentPassword cannot be empty');
+            } else {
+                return true;
+            }
+        }
+        return true;
+    }),
+    body('newPassword')
+        .isLength({ min: 8 })
+        .withMessage('Password must be at least 8 characters long'),
+    body('newPasswordConfirm').custom((value, { req }) => {
+        if (value !== req.body.newPassword) {
+            throw new Error('Passwords do not match');
+        } else {
+            return value;
+        }
+    }),
+];
+
 export const loginValidator: ValidationChain[] = [
     body('email')
         .trim()

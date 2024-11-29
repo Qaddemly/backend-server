@@ -55,3 +55,9 @@ export interface resetPasswordBody {
 
 export interface logInBody extends Pick<userDoc, 'email' | 'password'> {}
 export interface forgetPasswordBody extends Pick<userDoc, 'email'> {}
+
+export interface changeMyPasswordBody {
+    currentPassword: string;
+    newPassword: string;
+    newPasswordConfirm: string;
+}

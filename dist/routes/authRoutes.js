@@ -27,4 +27,5 @@ authRouter.get('/googleAuth', authControllers_1.googleAuth);
 authRouter.get('/google/redirect', authControllers_1.googleRedirection);
 authRouter.patch('/updateMe', authServices_1.protect, authServices_1.uploadUserPICAndResume, (0, validator_1.default)(userValidator_1.userUpdateValidator), authServices_1.resizeUserImage, authServices_1.savingResumeInDisk, authControllers_1.updateMe);
 authRouter.get('/getMe', authServices_1.protect, authControllers_1.getMe);
+authRouter.put('/changeMyPassword', authServices_1.protect, (0, validator_1.default)(userValidator_1.changePasswordValidator), authControllers_1.changeMyPassword);
 exports.default = authRouter;

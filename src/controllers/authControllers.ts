@@ -5,6 +5,7 @@ import passport from 'passport';
 import {
     activateEmailBody,
     activateEmailParams,
+    changeMyPasswordBody,
     forgetPasswordBody,
     logInBody,
     resetPasswordBody,
@@ -28,6 +29,7 @@ import {
     createAccessTokenForGoogleAuth,
     updateUserForSignUpStepTwo,
     updateMyInfo,
+    changeCurrentPassword,
 } from '../services/authServices';
 import { generateAndEmailCode } from '../utils/codeUtils';
 
@@ -289,6 +291,24 @@ export const getMe = catchAsync(
             res.status(200).json({
                 success: true,
                 user: req.user,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const changeMyPassword = catchAsync(
+    async (
+        req: Request<{}, {}, changeMyPasswordBody>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        try {
+            await changeCurrentPassword(req);
+            res.status(200).json({
+                success: true,
+                message: 'Your password has been changed , please login again',
             });
         } catch (err) {
             return next(err);

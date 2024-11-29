@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginValidator = exports.resetPasswordValidator = exports.userUpdateValidator = exports.userCreationValidatorStepTwo = exports.userCreationValidatorStepOne = void 0;
+exports.loginValidator = exports.changePasswordValidator = exports.resetPasswordValidator = exports.userUpdateValidator = exports.userCreationValidatorStepTwo = exports.userCreationValidatorStepOne = void 0;
 const express_validator_1 = require("express-validator");
 const countryCode_1 = require("../../enums/countryCode");
 const country_1 = require("../../enums/country");
@@ -387,6 +387,30 @@ exports.userUpdateValidator = [
     }),
 ];
 exports.resetPasswordValidator = [
+    (0, express_validator_1.body)('newPassword')
+        .isLength({ min: 8 })
+        .withMessage('Password must be at least 8 characters long'),
+    (0, express_validator_1.body)('newPasswordConfirm').custom((value, { req }) => {
+        if (value !== req.body.newPassword) {
+            throw new Error('Passwords do not match');
+        }
+        else {
+            return value;
+        }
+    }),
+];
+exports.changePasswordValidator = [
+    (0, express_validator_1.body)('currentPassword').custom((val, { req }) => {
+        if (req.user.password) {
+            if (!val) {
+                throw new Error('currentPassword cannot be empty');
+            }
+            else {
+                return true;
+            }
+        }
+        return true;
+    }),
     (0, express_validator_1.body)('newPassword')
         .isLength({ min: 8 })
         .withMessage('Password must be at least 8 characters long'),

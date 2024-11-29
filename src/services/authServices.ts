@@ -6,6 +6,7 @@ import AppError from '../utils/appError';
 import {
     activateEmailBody,
     activateEmailParams,
+    changeMyPasswordBody,
     forgetPasswordBody,
     logInBody,
     resetPasswordBody,
@@ -363,4 +364,31 @@ export const updateMyInfo = async (reqBody: updateMeBody, userId: mongoId) => {
         throw new AppError('user not found', 404);
     }
     return user;
+};
+
+export const changeCurrentPassword = async (
+    req: Request<{}, {}, changeMyPasswordBody>,
+) => {
+    const { currentPassword, newPassword } = req.body;
+    if ((req.user! as userDocument).password) {
+        const userPass = (req.user! as userDocument).password;
+        const isCorrectCurrentPassword = isCorrectPassword(
+            currentPassword,
+            userPass,
+        );
+        if (!isCorrectCurrentPassword) {
+            throw new AppError('password is incorrect', 400);
+        }
+        const hashedNewPassword = await hashingPassword(newPassword);
+        const currentUser = await User.findByIdAndUpdate(req.user?.id, {
+            password: hashedNewPassword,
+            passwordChangedAt: new Date(Date.now()),
+        });
+    } else {
+        const hashedNewPassword = await hashingPassword(newPassword);
+        const currentUser = await User.findByIdAndUpdate(req.user?.id, {
+            password: hashedNewPassword,
+            passwordChangedAt: new Date(Date.now()),
+        });
+    }
 };

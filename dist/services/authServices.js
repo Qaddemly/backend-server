@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateMyInfo = exports.createAccessTokenForGoogleAuth = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.savingResumeInDisk = exports.resizeUserImage = exports.uploadUserPICAndResume = exports.updateUserForSignUpStepTwo = exports.createUserForSignUp = void 0;
+exports.changeCurrentPassword = exports.updateMyInfo = exports.createAccessTokenForGoogleAuth = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.savingResumeInDisk = exports.resizeUserImage = exports.uploadUserPICAndResume = exports.updateUserForSignUpStepTwo = exports.createUserForSignUp = void 0;
 const userModel_1 = __importDefault(require("../models/userModel"));
 const fs_1 = __importDefault(require("fs"));
 const appError_1 = __importDefault(require("../utils/appError"));
@@ -254,3 +254,27 @@ const updateMyInfo = (reqBody, userId) => __awaiter(void 0, void 0, void 0, func
     return user;
 });
 exports.updateMyInfo = updateMyInfo;
+const changeCurrentPassword = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b;
+    const { currentPassword, newPassword } = req.body;
+    if (req.user.password) {
+        const userPass = req.user.password;
+        const isCorrectCurrentPassword = (0, password_1.isCorrectPassword)(currentPassword, userPass);
+        if (!isCorrectCurrentPassword) {
+            throw new appError_1.default('password is incorrect', 400);
+        }
+        const hashedNewPassword = yield (0, password_1.hashingPassword)(newPassword);
+        const currentUser = yield userModel_1.default.findByIdAndUpdate((_a = req.user) === null || _a === void 0 ? void 0 : _a.id, {
+            password: hashedNewPassword,
+            passwordChangedAt: new Date(Date.now()),
+        });
+    }
+    else {
+        const hashedNewPassword = yield (0, password_1.hashingPassword)(newPassword);
+        const currentUser = yield userModel_1.default.findByIdAndUpdate((_b = req.user) === null || _b === void 0 ? void 0 : _b.id, {
+            password: hashedNewPassword,
+            passwordChangedAt: new Date(Date.now()),
+        });
+    }
+});
+exports.changeCurrentPassword = changeCurrentPassword;
