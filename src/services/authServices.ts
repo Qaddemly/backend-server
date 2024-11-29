@@ -315,6 +315,10 @@ export const protect = catchAsync(
                 );
             }
         }
+
+        if (user.passwordResetVerificationToken || user.activationToken) {
+            await resettingUserCodeFields(user);
+        }
         req.user = user; // for letting user to use protected routes
         next();
     },

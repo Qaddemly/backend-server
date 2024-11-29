@@ -222,6 +222,9 @@ exports.protect = (0, express_async_handler_1.default)((req, res, next) => __awa
             return next(new appError_1.default('password is changed please login again', 401));
         }
     }
+    if (user.passwordResetVerificationToken || user.activationToken) {
+        yield (0, codeUtils_1.resettingUserCodeFields)(user);
+    }
     req.user = user; // for letting user to use protected routes
     next();
 }));
