@@ -174,7 +174,7 @@ const createNewPassword = (passwordResetToken, newPassword) => __awaiter(void 0,
     yield (0, codeUtils_1.resettingUserCodeFields)(user);
 });
 exports.createNewPassword = createNewPassword;
-const logInService = (email, password) => __awaiter(void 0, void 0, void 0, function* () {
+const logInService = (req, res, email, password) => __awaiter(void 0, void 0, void 0, function* () {
     //console.log(typeof req.query.limit, typeof req.query.page);
     //1- find user by email
     const user = yield userModel_1.default.findOne({ email });
@@ -192,45 +192,137 @@ const logInService = (email, password) => __awaiter(void 0, void 0, void 0, func
     // checking is email active
     if (!user.isActivated) {
         const activationToken = yield (0, codeUtils_1.generateAndEmailCode)(user);
-        return [false, activationToken, null];
+        return [false, activationToken, null, null];
     }
     else {
-        //3- create access token
+        //login success
         const accessToken = (0, jwt_1.createAccessToken)(user.id);
-        return [true, accessToken, user];
+        const refreshToken = (0, jwt_1.createRefreshToken)(user.email);
+        //try to login and he already logged in
+        const cookies = req.cookies;
+        let newRefreshTokens = !(cookies === null || cookies === void 0 ? void 0 : cookies.refreshToken)
+            ? user.refreshTokens
+            : user.refreshTokens.filter((rt) => rt !== cookies.refreshToken);
+        user.refreshTokens = [...newRefreshTokens, refreshToken];
+        yield user.save();
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 10 * 24 * 60 * 60 * 1000,
+        });
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 10 * 24 * 60 * 60 * 1000,
+        });
+        user.refreshTokens = [];
+        return [true, accessToken, refreshToken, user];
     }
 });
 exports.logInService = logInService;
 exports.protect = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    let token;
-    if (req.headers.authorization &&
-        req.headers.authorization.startsWith('Bearer')) {
-        token = req.headers.authorization.split(' ')[0];
-    }
-    else {
-        token = req.cookies.accessToken;
-    }
-    if (!token) {
-        return next(new appError_1.default('you are not logged in please login to access this route', 401));
-    }
-    let decoded;
-    decoded = (0, jwt_1.verifyToken)(token);
-    const user = yield userModel_1.default.findById(decoded.userId);
-    if (!user) {
-        return next(new appError_1.default('user belong to that token does not exist', 401));
-    }
-    if (user.passwordChangedAt) {
-        const passChangedAtTimeStamp = parseInt(`${user.passwordChangedAt.getTime() / 1000}`, 10);
-        if (passChangedAtTimeStamp > decoded.iat) {
-            return next(new appError_1.default('password is changed please login again', 401));
+    let user;
+    try {
+        const [refreshTokenDecodedEmail, foundedUser] = yield refreshTokenHandler(req);
+        let token;
+        if (req.headers.authorization &&
+            req.headers.authorization.startsWith('Bearer')) {
+            token = req.headers.authorization.split(' ')[0];
         }
+        else {
+            token = req.cookies.accessToken;
+        }
+        if (!token) {
+            throw new appError_1.default('you are not logged in please login to access this route', 401);
+        }
+        user = foundedUser;
+        const decoded = (yield (0, jwt_1.verifyTokenAsync)(token, 'access'));
+        user = yield userModel_1.default.findById(decoded.userId);
+        if (!user) {
+            throw new appError_1.default('user belong to that token does not exist', 401);
+        }
+        if (user.email !== refreshTokenDecodedEmail) {
+            throw new appError_1.default('malicious,not authorized to access this route', 403);
+        }
+        if (user.passwordChangedAt) {
+            const passChangedAtTimeStamp = parseInt(`${user.passwordChangedAt.getTime() / 1000}`, 10);
+            if (passChangedAtTimeStamp > decoded.iat) {
+                throw new appError_1.default('password is changed please login again', 401);
+            }
+        }
+        if (user.passwordResetVerificationToken || user.activationToken) {
+            yield (0, codeUtils_1.resettingUserCodeFields)(user);
+        }
+        req.user = user; // for letting user to use protected routes
+        next();
     }
-    if (user.passwordResetVerificationToken || user.activationToken) {
-        yield (0, codeUtils_1.resettingUserCodeFields)(user);
+    catch (err) {
+        if (err.message === 'jwt expired') {
+            // from access expiration
+            const accessToken = (0, jwt_1.createAccessToken)(user === null || user === void 0 ? void 0 : user.id);
+            const refreshToken = (0, jwt_1.createRefreshToken)(user === null || user === void 0 ? void 0 : user.email);
+            const newRefreshTokens = user.refreshTokens;
+            const rftl = [];
+            for (const rt of newRefreshTokens) {
+                if (rt !== req.cookies.refreshToken)
+                    rftl.push(rt);
+            }
+            user.refreshTokens = [...rftl, refreshToken];
+            yield user.save();
+            res.cookie('refreshToken', refreshToken, {
+                httpOnly: true,
+                secure: true,
+                maxAge: 10 * 24 * 60 * 60 * 1000,
+            });
+            res.cookie('accessToken', accessToken, {
+                httpOnly: true,
+                secure: true,
+                maxAge: 10 * 24 * 60 * 60 * 1000,
+            });
+            req.user = user;
+            next();
+        }
+        else
+            return next(err);
     }
-    req.user = user; // for letting user to use protected routes
-    next();
 }));
+const refreshTokenHandler = (req) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let refreshToken;
+        if (req.cookies.refreshToken) {
+            refreshToken = req.cookies.refreshToken;
+        }
+        else {
+            throw new appError_1.default('not authorized to access this route', 403);
+        }
+        const foundUser = yield userModel_1.default.findOne({ refreshTokens: refreshToken });
+        // detect reuse of refreshToken
+        if (!foundUser) {
+            const decoded = yield (0, jwt_1.verifyTokenAsync)(refreshToken, 'refresh');
+            const hackedUser = yield userModel_1.default.findOne({
+                email: decoded.email,
+            });
+            if (hackedUser) {
+                //signout all users
+                hackedUser.refreshTokens = [];
+                yield hackedUser.save();
+            }
+            throw new appError_1.default('not authorized to access this route,login again', 403);
+        }
+        const decoded = yield (0, jwt_1.verifyTokenAsync)(refreshToken, 'refresh');
+        return [decoded.email, foundUser];
+    }
+    catch (err) {
+        if (err.message === 'jwt expired') {
+            throw new appError_1.default('Expired refresh token', 403);
+        }
+        else if (err.message === 'invalid signature') {
+            throw new appError_1.default('Invalid refresh token', 403);
+        }
+        else
+            throw err;
+    }
+});
 const createAccessTokenForGoogleAuth = (userId) => {
     const accessToken = (0, jwt_1.createAccessToken)(userId);
     return accessToken;

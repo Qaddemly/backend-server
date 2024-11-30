@@ -1,9 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import User from '../models/userModel';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import fs from 'fs';
+import { promisify } from 'util';
 import AppError from '../utils/appError';
 import {
     changeMyPasswordBody,
+    logInBody,
     signUpBody,
     signUpBodyStepTwoDTO,
     updateMeBody,
@@ -20,8 +23,12 @@ import {
     generateAndEmailCode,
 } from '../utils/codeUtils';
 import { hashingPassword, isCorrectPassword } from '../utils/password';
-import { createAccessToken, verifyToken } from '../utils/jwt';
-import { JwtPayload } from 'jsonwebtoken';
+import {
+    createAccessToken,
+    createRefreshToken,
+    verifyToken,
+    verifyTokenAsync,
+} from '../utils/jwt';
 import { mongoId, userDocument } from '../types/documentTypes';
 import {
     uploadProfilePicAndResume,
@@ -243,7 +250,12 @@ export const createNewPassword = async (
     await resettingUserCodeFields(user);
 };
 
-export const logInService = async (email: string, password: string) => {
+export const logInService = async (
+    req: Request<{}, {}, logInBody>,
+    res: Response,
+    email: string,
+    password: string,
+) => {
     //console.log(typeof req.query.limit, typeof req.query.page);
     //1- find user by email
     const user = await User.findOne({ email });
@@ -261,62 +273,160 @@ export const logInService = async (email: string, password: string) => {
     // checking is email active
     if (!user.isActivated) {
         const activationToken = await generateAndEmailCode(user);
-        return [false, activationToken, null];
+        return [false, activationToken, null, null];
     } else {
-        //3- create access token
+        //login success
         const accessToken = createAccessToken(user.id);
-        return [true, accessToken, user];
+        const refreshToken = createRefreshToken(user.email);
+        //try to login and he already logged in
+        const cookies = req.cookies;
+        let newRefreshTokens = !cookies?.refreshToken
+            ? user.refreshTokens
+            : user.refreshTokens.filter((rt) => rt !== cookies.refreshToken);
+
+        user.refreshTokens = [...newRefreshTokens, refreshToken as string];
+
+        await user.save();
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 10 * 24 * 60 * 60 * 1000,
+        });
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 10 * 24 * 60 * 60 * 1000,
+        });
+        user.refreshTokens = [];
+
+        return [true, accessToken, refreshToken, user];
     }
 };
 
 export const protect = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-        let token: string;
-        if (
-            req.headers.authorization &&
-            req.headers.authorization.startsWith('Bearer')
-        ) {
-            token = req.headers.authorization.split(' ')[0];
-        } else {
-            token = req.cookies.accessToken;
-        }
-        if (!token) {
-            return next(
-                new AppError(
+        let user: any;
+        try {
+            const [refreshTokenDecodedEmail, foundedUser] =
+                await refreshTokenHandler(req);
+            let token: string;
+            if (
+                req.headers.authorization &&
+                req.headers.authorization.startsWith('Bearer')
+            ) {
+                token = req.headers.authorization.split(' ')[0];
+            } else {
+                token = req.cookies.accessToken;
+            }
+            if (!token) {
+                throw new AppError(
                     'you are not logged in please login to access this route',
                     401,
-                ),
-            );
-        }
-        let decoded: JwtPayload;
-        decoded = verifyToken(token);
-        const user = await User.findById(decoded!.userId);
-        if (!user) {
-            return next(
-                new AppError('user belong to that token does not exist', 401),
-            );
-        }
-
-        if (user.passwordChangedAt) {
-            const passChangedAtTimeStamp = parseInt(
-                `${user.passwordChangedAt.getTime() / 1000}`,
-                10,
-            );
-
-            if (passChangedAtTimeStamp > decoded!.iat!) {
-                return next(
-                    new AppError('password is changed please login again', 401),
                 );
             }
-        }
+            user = foundedUser;
+            const decoded = (await verifyTokenAsync(
+                token,
+                'access',
+            )) as JwtPayload;
+            user = await User.findById(decoded!.userId);
+            if (!user) {
+                throw new AppError(
+                    'user belong to that token does not exist',
+                    401,
+                );
+            }
+            if (user.email !== refreshTokenDecodedEmail) {
+                throw new AppError(
+                    'malicious,not authorized to access this route',
+                    403,
+                );
+            }
+            if (user.passwordChangedAt) {
+                const passChangedAtTimeStamp = parseInt(
+                    `${user.passwordChangedAt.getTime() / 1000}`,
+                    10,
+                );
 
-        if (user.passwordResetVerificationToken || user.activationToken) {
-            await resettingUserCodeFields(user);
+                if (passChangedAtTimeStamp > decoded!.iat!) {
+                    throw new AppError(
+                        'password is changed please login again',
+                        401,
+                    );
+                }
+            }
+
+            if (user.passwordResetVerificationToken || user.activationToken) {
+                await resettingUserCodeFields(user);
+            }
+            req.user = user; // for letting user to use protected routes
+            next();
+        } catch (err) {
+            if ((err as Error).message === 'jwt expired') {
+                // from access expiration
+                const accessToken = createAccessToken(user?.id);
+                const refreshToken = createRefreshToken(user?.email);
+                const newRefreshTokens = user.refreshTokens;
+                const rftl: any[] = [];
+                for (const rt of newRefreshTokens) {
+                    if (rt !== req.cookies.refreshToken) rftl.push(rt);
+                }
+                user.refreshTokens = [...rftl, refreshToken as string];
+                await user.save();
+
+                res.cookie('refreshToken', refreshToken, {
+                    httpOnly: true,
+                    secure: true,
+                    maxAge: 10 * 24 * 60 * 60 * 1000,
+                });
+                res.cookie('accessToken', accessToken, {
+                    httpOnly: true,
+                    secure: true,
+                    maxAge: 10 * 24 * 60 * 60 * 1000,
+                });
+                req.user = user;
+                next();
+            } else return next(err);
         }
-        req.user = user; // for letting user to use protected routes
-        next();
     },
 );
+const refreshTokenHandler = async (req: Request) => {
+    try {
+        let refreshToken: string;
+        if (req.cookies.refreshToken) {
+            refreshToken = req.cookies.refreshToken;
+        } else {
+            throw new AppError('not authorized to access this route', 403);
+        }
+        const foundUser = await User.findOne({ refreshTokens: refreshToken });
+
+        // detect reuse of refreshToken
+        if (!foundUser) {
+            const decoded = await verifyTokenAsync(refreshToken, 'refresh');
+            const hackedUser = await User.findOne({
+                email: (decoded as JwtPayload).email,
+            });
+            if (hackedUser) {
+                //signout all users
+                hackedUser.refreshTokens = [];
+                await hackedUser.save();
+            }
+            throw new AppError(
+                'not authorized to access this route,login again',
+                403,
+            );
+        }
+
+        const decoded = await verifyTokenAsync(refreshToken, 'refresh');
+        return [(decoded as JwtPayload).email, foundUser];
+    } catch (err) {
+        if ((err as Error).message === 'jwt expired') {
+            throw new AppError('Expired refresh token', 403);
+        } else if ((err as Error).message === 'invalid signature') {
+            throw new AppError('Invalid refresh token', 403);
+        } else throw err;
+    }
+};
 
 export const createAccessTokenForGoogleAuth = (userId: mongoId) => {
     const accessToken = createAccessToken(userId);

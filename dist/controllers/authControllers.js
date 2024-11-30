@@ -17,6 +17,7 @@ const passport_1 = __importDefault(require("passport"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const authServices_1 = require("../services/authServices");
 const codeUtils_1 = require("../utils/codeUtils");
+const userModel_1 = __importDefault(require("../models/userModel"));
 exports.signUp = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const userData = req.body;
@@ -124,16 +125,13 @@ exports.resetPassword = (0, express_async_handler_1.default)((req, res, next) =>
 }));
 exports.logIn = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const [isActivated, token, user] = yield (0, authServices_1.logInService)(req.body.email, req.body.password);
+        const [isActivated, token, refreshToken, user] = yield (0, authServices_1.logInService)(req, res, req.body.email, req.body.password);
         if (isActivated) {
-            res.cookie('accessToken', token, {
-                httpOnly: true,
-                maxAge: 30 * 24 * 60 * 60 * 1000, //30 day
-            });
             res.status(200).json({
                 success: true,
                 user,
                 accessToken: token,
+                refreshToken,
             });
         }
         else {
@@ -149,7 +147,15 @@ exports.logIn = (0, express_async_handler_1.default)((req, res, next) => __await
     }
 }));
 exports.logOut = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const refreshToken = req.cookies.refreshToken;
+    const user = yield userModel_1.default.findById((_a = req.user) === null || _a === void 0 ? void 0 : _a.id);
+    if (user) {
+        user.refreshTokens = user.refreshTokens.filter((rt) => rt !== refreshToken);
+        yield user.save();
+    }
     res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
     res.status(200).json({
         success: true,
         message: 'logged out successfully',

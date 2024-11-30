@@ -34,6 +34,7 @@ export interface userDoc extends mongoose.Document {
     active?: boolean;
     expireAt?: boolean;
     isActivated?: boolean;
+    refreshTokens: string[];
 }
 
 const phoneSchema = new mongoose.Schema<Phone>({
@@ -200,6 +201,7 @@ const userSchema = new mongoose.Schema<userDoc>(
             type: Boolean,
             default: false,
         },
+        refreshTokens: [String],
         activationCode: String,
         activationCodeExpiresIn: Date,
         activationToken: String,

@@ -1,15 +1,43 @@
-import jwt, { JwtPayload } from "jsonwebtoken";
-import { mongoId } from "../types/documentTypes";
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import { mongoId } from '../types/documentTypes';
 
 export const createAccessToken = (payload: mongoId) => {
-  return jwt.sign({ userId: payload }, process.env.JWT_SECRET!, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
-  });
+    return jwt.sign({ userId: payload }, process.env.JWT_ACCESS_TOKEN_SECRET!, {
+        expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRES_IN,
+    });
 };
 
-export const verifyToken = (token: string) => {
-  let decoded: string | jwt.JwtPayload;
+export const createRefreshToken = (payload: string) => {
+    return jwt.sign({ email: payload }, process.env.JWT_REFRESH_TOKEN_SECRET!, {
+        expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRES_IN!,
+    });
+};
 
-  decoded = jwt.verify(token, process.env.JWT_SECRET!);
-  return decoded as JwtPayload;
+export const verifyToken = (token: string, tokenType: 'access' | 'refresh') => {
+    let decoded: string | jwt.JwtPayload;
+    if (tokenType == 'access') {
+        decoded = jwt.verify(token, process.env.JWT_ACCESS_TOKEN_SECRET!);
+    } else {
+        decoded = jwt.verify(token, process.env.JWT_REFRESH_TOKEN_SECRET!);
+    }
+    return decoded as JwtPayload;
+};
+
+export const verifyTokenAsync = async (
+    token: string,
+    tokenType: 'access' | 'refresh',
+) => {
+    const secret =
+        tokenType == 'access'
+            ? process.env.JWT_ACCESS_TOKEN_SECRET!
+            : process.env.JWT_REFRESH_TOKEN_SECRET!;
+    return await new Promise((resolve, reject) => {
+        jwt.verify(token, secret, (err, decoded) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(decoded);
+            }
+        });
+    });
 };

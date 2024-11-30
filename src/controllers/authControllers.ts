@@ -32,6 +32,8 @@ import {
     changeCurrentPassword,
 } from '../services/authServices';
 import { generateAndEmailCode } from '../utils/codeUtils';
+import { userCreationValidatorStepOne } from '../middlewares/validators/userValidator';
+import User from '../models/userModel';
 
 export const signUp = catchAsync(
     async (
@@ -206,19 +208,18 @@ export const logIn = catchAsync(
         next: NextFunction,
     ) => {
         try {
-            const [isActivated, token, user] = await logInService(
+            const [isActivated, token, refreshToken, user] = await logInService(
+                req,
+                res,
                 req.body.email,
                 req.body.password,
             );
             if (isActivated) {
-                res.cookie('accessToken', token, {
-                    httpOnly: true,
-                    maxAge: 30 * 24 * 60 * 60 * 1000, //30 day
-                });
                 res.status(200).json({
                     success: true,
                     user,
                     accessToken: token,
+                    refreshToken,
                 });
             } else {
                 res.status(200).json({
@@ -235,7 +236,17 @@ export const logIn = catchAsync(
 
 export const logOut = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
+        const refreshToken = req.cookies.refreshToken;
+        const user = await User.findById(req.user?.id);
+        if (user) {
+            user.refreshTokens = user.refreshTokens.filter(
+                (rt) => rt !== refreshToken,
+            );
+            await user.save();
+        }
+
         res.clearCookie('accessToken');
+        res.clearCookie('refreshToken');
         res.status(200).json({
             success: true,
             message: 'logged out successfully',

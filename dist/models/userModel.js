@@ -188,6 +188,7 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    refreshTokens: [String],
     activationCode: String,
     activationCodeExpiresIn: Date,
     activationToken: String,
