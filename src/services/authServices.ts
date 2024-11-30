@@ -367,11 +367,15 @@ export const protect = catchAsync(
                 const accessToken = createAccessToken(user?.id);
                 const refreshToken = createRefreshToken(user?.email);
                 const newRefreshTokens = user.refreshTokens;
-                const rftl: any[] = [];
+                const refreshTokenList: any[] = [];
                 for (const rt of newRefreshTokens) {
-                    if (rt !== req.cookies.refreshToken) rftl.push(rt);
+                    if (rt !== req.cookies.refreshToken)
+                        refreshTokenList.push(rt);
                 }
-                user.refreshTokens = [...rftl, refreshToken as string];
+                user.refreshTokens = [
+                    ...refreshTokenList,
+                    refreshToken as string,
+                ];
                 await user.save();
 
                 res.cookie('refreshToken', refreshToken, {
@@ -386,7 +390,14 @@ export const protect = catchAsync(
                 });
                 req.user = user;
                 next();
-            } else return next(err);
+            } else {
+                let customError = new AppError( //any error is caught except 'jwt expired' it will display the same message in order to prevent attacker from knowing any thing about the error
+                    'you are not logged in please login to access this route',
+                    401,
+                );
+                customError.stack = (err as Error).stack; //to know from where the error is occurred
+                return next(customError);
+            }
         }
     },
 );
@@ -480,8 +491,11 @@ export const updateMyInfo = async (
 
 export const changeCurrentPassword = async (
     req: Request<{}, {}, changeMyPasswordBody>,
+    res: Response,
 ) => {
     const { currentPassword, newPassword } = req.body;
+    const refreshToken = req.cookies.refreshToken;
+    const currentUser = await User.findById(req.user?.id);
     if ((req.user! as userDocument).password) {
         const userPass = (req.user! as userDocument).password;
         const isCorrectCurrentPassword = isCorrectPassword(
@@ -492,15 +506,25 @@ export const changeCurrentPassword = async (
             throw new AppError('password is incorrect', 400);
         }
         const hashedNewPassword = await hashingPassword(newPassword);
-        const currentUser = await User.findByIdAndUpdate(req.user?.id, {
-            password: hashedNewPassword,
-            passwordChangedAt: new Date(Date.now()),
-        });
+        // const currentUser = await User.findByIdAndUpdate(req.user?.id, {
+        //     password: hashedNewPassword,
+        //     passwordChangedAt: new Date(Date.now()),
+        // });
+        currentUser!.password = hashedNewPassword;
+        currentUser!.passwordChangedAt = new Date(Date.now());
     } else {
         const hashedNewPassword = await hashingPassword(newPassword);
-        const currentUser = await User.findByIdAndUpdate(req.user?.id, {
-            password: hashedNewPassword,
-            passwordChangedAt: new Date(Date.now()),
-        });
+        // const currentUser = await User.findByIdAndUpdate(req.user?.id, {
+        //     password: hashedNewPassword,
+        //     passwordChangedAt: new Date(Date.now()),
+        // });
+        currentUser!.password = hashedNewPassword;
+        currentUser!.passwordChangedAt = new Date(Date.now());
     }
+    currentUser!.refreshTokens = currentUser!.refreshTokens.filter(
+        (rt) => rt !== refreshToken,
+    );
+    await currentUser!.save();
+    res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
 };

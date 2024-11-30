@@ -262,12 +262,15 @@ exports.protect = (0, express_async_handler_1.default)((req, res, next) => __awa
             const accessToken = (0, jwt_1.createAccessToken)(user === null || user === void 0 ? void 0 : user.id);
             const refreshToken = (0, jwt_1.createRefreshToken)(user === null || user === void 0 ? void 0 : user.email);
             const newRefreshTokens = user.refreshTokens;
-            const rftl = [];
+            const refreshTokenList = [];
             for (const rt of newRefreshTokens) {
                 if (rt !== req.cookies.refreshToken)
-                    rftl.push(rt);
+                    refreshTokenList.push(rt);
             }
-            user.refreshTokens = [...rftl, refreshToken];
+            user.refreshTokens = [
+                ...refreshTokenList,
+                refreshToken,
+            ];
             yield user.save();
             res.cookie('refreshToken', refreshToken, {
                 httpOnly: true,
@@ -282,8 +285,12 @@ exports.protect = (0, express_async_handler_1.default)((req, res, next) => __awa
             req.user = user;
             next();
         }
-        else
-            return next(err);
+        else {
+            let customError = new appError_1.default(//any error is caught except 'jwt expired' it will display the same message in order to prevent attacker from knowing any thing about the error
+            'you are not logged in please login to access this route', 401);
+            customError.stack = err.stack; //to know from where the error is occurred
+            return next(customError);
+        }
     }
 }));
 const refreshTokenHandler = (req) => __awaiter(void 0, void 0, void 0, function* () {
@@ -353,9 +360,11 @@ const updateMyInfo = (req, userId) => __awaiter(void 0, void 0, void 0, function
     return user;
 });
 exports.updateMyInfo = updateMyInfo;
-const changeCurrentPassword = (req) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b;
+const changeCurrentPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const { currentPassword, newPassword } = req.body;
+    const refreshToken = req.cookies.refreshToken;
+    const currentUser = yield userModel_1.default.findById((_a = req.user) === null || _a === void 0 ? void 0 : _a.id);
     if (req.user.password) {
         const userPass = req.user.password;
         const isCorrectCurrentPassword = (0, password_1.isCorrectPassword)(currentPassword, userPass);
@@ -363,17 +372,25 @@ const changeCurrentPassword = (req) => __awaiter(void 0, void 0, void 0, functio
             throw new appError_1.default('password is incorrect', 400);
         }
         const hashedNewPassword = yield (0, password_1.hashingPassword)(newPassword);
-        const currentUser = yield userModel_1.default.findByIdAndUpdate((_a = req.user) === null || _a === void 0 ? void 0 : _a.id, {
-            password: hashedNewPassword,
-            passwordChangedAt: new Date(Date.now()),
-        });
+        // const currentUser = await User.findByIdAndUpdate(req.user?.id, {
+        //     password: hashedNewPassword,
+        //     passwordChangedAt: new Date(Date.now()),
+        // });
+        currentUser.password = hashedNewPassword;
+        currentUser.passwordChangedAt = new Date(Date.now());
     }
     else {
         const hashedNewPassword = yield (0, password_1.hashingPassword)(newPassword);
-        const currentUser = yield userModel_1.default.findByIdAndUpdate((_b = req.user) === null || _b === void 0 ? void 0 : _b.id, {
-            password: hashedNewPassword,
-            passwordChangedAt: new Date(Date.now()),
-        });
+        // const currentUser = await User.findByIdAndUpdate(req.user?.id, {
+        //     password: hashedNewPassword,
+        //     passwordChangedAt: new Date(Date.now()),
+        // });
+        currentUser.password = hashedNewPassword;
+        currentUser.passwordChangedAt = new Date(Date.now());
     }
+    currentUser.refreshTokens = currentUser.refreshTokens.filter((rt) => rt !== refreshToken);
+    yield currentUser.save();
+    res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
 });
 exports.changeCurrentPassword = changeCurrentPassword;

@@ -207,8 +207,7 @@ exports.getMe = (0, express_async_handler_1.default)((req, res, next) => __await
 }));
 exports.changeMyPassword = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield (0, authServices_1.changeCurrentPassword)(req);
-        res.clearCookie('accessToken');
+        yield (0, authServices_1.changeCurrentPassword)(req, res);
         res.status(200).json({
             success: true,
             message: 'Your password has been changed , please login again',

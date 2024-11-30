@@ -313,8 +313,7 @@ export const changeMyPassword = catchAsync(
         next: NextFunction,
     ) => {
         try {
-            await changeCurrentPassword(req);
-            res.clearCookie('accessToken');
+            await changeCurrentPassword(req, res);
             res.status(200).json({
                 success: true,
                 message: 'Your password has been changed , please login again',
