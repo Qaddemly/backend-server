@@ -167,19 +167,15 @@ exports.googleAuth = passport_1.default.authenticate('google', {
 //exchange code with profile info
 exports.googleRedirection = [
     passport_1.default.authenticate('google'),
-    (req, res) => {
-        var _a;
-        const accessToken = (0, authServices_1.createAccessTokenForGoogleAuth)((_a = req.user) === null || _a === void 0 ? void 0 : _a.id);
-        res.cookie('accessToken', accessToken, {
-            httpOnly: true,
-            maxAge: 30 * 24 * 60 * 60 * 1000, //30 day
-        });
+    (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const [accessToken, refreshToken, user] = yield (0, authServices_1.signInGoogleRedirection)(req, res);
         res.status(200).json({
             success: true,
-            user: req.user,
+            user,
             accessToken,
+            refreshToken,
         });
-    },
+    }),
 ];
 exports.updateMe = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;

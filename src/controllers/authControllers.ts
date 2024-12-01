@@ -26,13 +26,12 @@ import {
     PasswordResetCodeVerification,
     createNewPassword,
     logInService,
-    createAccessTokenForGoogleAuth,
     updateUserForSignUpStepTwo,
     updateMyInfo,
     changeCurrentPassword,
+    signInGoogleRedirection,
 } from '../services/authServices';
 import { generateAndEmailCode } from '../utils/codeUtils';
-import { userCreationValidatorStepOne } from '../middlewares/validators/userValidator';
 import User from '../models/userModel';
 
 export const signUp = catchAsync(
@@ -261,16 +260,17 @@ export const googleAuth = passport.authenticate('google', {
 //exchange code with profile info
 export const googleRedirection = [
     passport.authenticate('google'),
-    (req: Request, res: Response) => {
-        const accessToken = createAccessTokenForGoogleAuth(req.user?.id);
-        res.cookie('accessToken', accessToken, {
-            httpOnly: true,
-            maxAge: 30 * 24 * 60 * 60 * 1000, //30 day
-        });
+    async (req: Request, res: Response) => {
+        const [accessToken, refreshToken, user] = await signInGoogleRedirection(
+            req,
+            res,
+        );
+
         res.status(200).json({
             success: true,
-            user: req.user,
+            user,
             accessToken,
+            refreshToken,
         });
     },
 ];

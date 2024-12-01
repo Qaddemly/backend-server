@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import User from '../models/userModel';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import { JwtPayload } from 'jsonwebtoken';
 import fs from 'fs';
-import { promisify } from 'util';
 import AppError from '../utils/appError';
 import {
     changeMyPasswordBody,
@@ -26,7 +25,6 @@ import { hashingPassword, isCorrectPassword } from '../utils/password';
 import {
     createAccessToken,
     createRefreshToken,
-    verifyToken,
     verifyTokenAsync,
 } from '../utils/jwt';
 import { mongoId, userDocument } from '../types/documentTypes';
@@ -276,30 +274,10 @@ export const logInService = async (
         return [false, activationToken, null, null];
     } else {
         //login success
-        const accessToken = createAccessToken(user.id);
-        const refreshToken = createRefreshToken(user.email);
-        //try to login and he already logged in
-        const cookies = req.cookies;
-        let newRefreshTokens = !cookies?.refreshToken
-            ? user.refreshTokens
-            : user.refreshTokens.filter((rt) => rt !== cookies.refreshToken);
+        const [accessToken, refreshToken, updatedUser] =
+            await createTokensForLoggedInUser(user, req, res);
 
-        user.refreshTokens = [...newRefreshTokens, refreshToken as string];
-
-        await user.save();
-        res.cookie('refreshToken', refreshToken, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 10 * 24 * 60 * 60 * 1000,
-        });
-        res.cookie('accessToken', accessToken, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 10 * 24 * 60 * 60 * 1000,
-        });
-        user.refreshTokens = [];
-
-        return [true, accessToken, refreshToken, user];
+        return [true, accessToken, refreshToken, updatedUser];
     }
 };
 
@@ -439,9 +417,45 @@ const refreshTokenHandler = async (req: Request) => {
     }
 };
 
-export const createAccessTokenForGoogleAuth = (userId: mongoId) => {
-    const accessToken = createAccessToken(userId);
-    return accessToken;
+const createTokensForLoggedInUser = async (
+    user: userDocument,
+    req: Request,
+    res: Response,
+) => {
+    const accessToken = createAccessToken(user.id);
+    const refreshToken = createRefreshToken(user.email);
+    //try to login and he already logged in
+    const cookies = req.cookies;
+    let newRefreshTokens = !cookies?.refreshToken
+        ? user.refreshTokens
+        : user.refreshTokens.filter((rt) => rt !== cookies.refreshToken);
+
+    user.refreshTokens = [...newRefreshTokens, refreshToken as string];
+    if (user.password) {
+        await user.save();
+    } else {
+        await user.save({ validateBeforeSave: false }); // for login with google
+    }
+    res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 10 * 24 * 60 * 60 * 1000,
+    });
+    res.cookie('accessToken', accessToken, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 10 * 24 * 60 * 60 * 1000,
+    });
+    user.refreshTokens = [];
+    return [accessToken, refreshToken, user];
+};
+
+export const signInGoogleRedirection = async (req: Request, res: Response) => {
+    const user = await User.findById(req.user?.id);
+    const [accessToken, refreshToken, updatedUser] =
+        await createTokensForLoggedInUser(user!, req, res);
+
+    return [accessToken, refreshToken, updatedUser];
 };
 
 export const updateMyInfo = async (

@@ -29,14 +29,13 @@ passport_1.default.use(new passport_google_oauth20_1.default.Strategy({
 }, 
 // call back function
 (accessToken, RefreshToken, profile, done) => __awaiter(void 0, void 0, void 0, function* () {
-    //console.log(profile);
+    //console.log(profile, 'a7aaaaaaaaaaaaa');
     let user = yield userModel_1.default.findOne({ googleId: profile.id });
     if (user) {
         //console.log("user found");
         done(null, user);
     }
     else {
-        //console.log(profile);
         user = new userModel_1.default({
             firstName: profile._json.given_name,
             lastName: profile._json.family_name,

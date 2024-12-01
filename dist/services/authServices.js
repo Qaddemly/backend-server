@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.changeCurrentPassword = exports.updateMyInfo = exports.createAccessTokenForGoogleAuth = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.savingResumeInDisk = exports.resizeUserImage = exports.uploadUserPICAndResume = exports.updateUserForSignUpStepTwo = exports.createUserForSignUp = void 0;
+exports.changeCurrentPassword = exports.updateMyInfo = exports.signInGoogleRedirection = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.savingResumeInDisk = exports.resizeUserImage = exports.uploadUserPICAndResume = exports.updateUserForSignUpStepTwo = exports.createUserForSignUp = void 0;
 const userModel_1 = __importDefault(require("../models/userModel"));
 const fs_1 = __importDefault(require("fs"));
 const appError_1 = __importDefault(require("../utils/appError"));
@@ -196,27 +196,8 @@ const logInService = (req, res, email, password) => __awaiter(void 0, void 0, vo
     }
     else {
         //login success
-        const accessToken = (0, jwt_1.createAccessToken)(user.id);
-        const refreshToken = (0, jwt_1.createRefreshToken)(user.email);
-        //try to login and he already logged in
-        const cookies = req.cookies;
-        let newRefreshTokens = !(cookies === null || cookies === void 0 ? void 0 : cookies.refreshToken)
-            ? user.refreshTokens
-            : user.refreshTokens.filter((rt) => rt !== cookies.refreshToken);
-        user.refreshTokens = [...newRefreshTokens, refreshToken];
-        yield user.save();
-        res.cookie('refreshToken', refreshToken, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 10 * 24 * 60 * 60 * 1000,
-        });
-        res.cookie('accessToken', accessToken, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 10 * 24 * 60 * 60 * 1000,
-        });
-        user.refreshTokens = [];
-        return [true, accessToken, refreshToken, user];
+        const [accessToken, refreshToken, updatedUser] = yield createTokensForLoggedInUser(user, req, res);
+        return [true, accessToken, refreshToken, updatedUser];
     }
 });
 exports.logInService = logInService;
@@ -330,11 +311,41 @@ const refreshTokenHandler = (req) => __awaiter(void 0, void 0, void 0, function*
             throw err;
     }
 });
-const createAccessTokenForGoogleAuth = (userId) => {
-    const accessToken = (0, jwt_1.createAccessToken)(userId);
-    return accessToken;
-};
-exports.createAccessTokenForGoogleAuth = createAccessTokenForGoogleAuth;
+const createTokensForLoggedInUser = (user, req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const accessToken = (0, jwt_1.createAccessToken)(user.id);
+    const refreshToken = (0, jwt_1.createRefreshToken)(user.email);
+    //try to login and he already logged in
+    const cookies = req.cookies;
+    let newRefreshTokens = !(cookies === null || cookies === void 0 ? void 0 : cookies.refreshToken)
+        ? user.refreshTokens
+        : user.refreshTokens.filter((rt) => rt !== cookies.refreshToken);
+    user.refreshTokens = [...newRefreshTokens, refreshToken];
+    if (user.password) {
+        yield user.save();
+    }
+    else {
+        yield user.save({ validateBeforeSave: false }); // for login with google
+    }
+    res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 10 * 24 * 60 * 60 * 1000,
+    });
+    res.cookie('accessToken', accessToken, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 10 * 24 * 60 * 60 * 1000,
+    });
+    user.refreshTokens = [];
+    return [accessToken, refreshToken, user];
+});
+const signInGoogleRedirection = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const user = yield userModel_1.default.findById((_a = req.user) === null || _a === void 0 ? void 0 : _a.id);
+    const [accessToken, refreshToken, updatedUser] = yield createTokensForLoggedInUser(user, req, res);
+    return [accessToken, refreshToken, updatedUser];
+});
+exports.signInGoogleRedirection = signInGoogleRedirection;
 const updateMyInfo = (req, userId) => __awaiter(void 0, void 0, void 0, function* () {
     const { address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, firstName, lastName, email, resume, } = req.body;
     const user = yield userModel_1.default.findOneAndUpdate({ _id: userId }, {

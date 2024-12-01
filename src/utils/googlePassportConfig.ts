@@ -25,13 +25,12 @@ passport.use(
         },
         // call back function
         async (accessToken, RefreshToken, profile, done) => {
-            //console.log(profile);
+            //console.log(profile, 'a7aaaaaaaaaaaaa');
             let user = await User.findOne({ googleId: profile.id });
             if (user) {
                 //console.log("user found");
                 done(null, user);
             } else {
-                //console.log(profile);
                 user = new User({
                     firstName: profile._json.given_name,
                     lastName: profile._json.family_name,
