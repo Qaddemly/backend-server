@@ -260,6 +260,7 @@ export const logInService = async (
     if (!user) {
         throw new AppError('email or password is incorrect', 400);
     }
+    // when user not set password after login with google
     if (!user.password) {
         throw new AppError('email or password is incorrect', 400);
     }
@@ -286,7 +287,7 @@ export const protect = catchAsync(
         let user: any;
         try {
             const [refreshTokenDecodedEmail, foundedUser] =
-                await refreshTokenHandler(req);
+                await refreshTokenHandler(req, res);
             let token: string;
             if (
                 req.headers.authorization &&
@@ -297,12 +298,9 @@ export const protect = catchAsync(
                 token = req.cookies.accessToken;
             }
             if (!token) {
-                throw new AppError(
-                    'you are not logged in please login to access this route',
-                    401,
-                );
+                throw new AppError('there is no access token', 401);
             }
-            user = foundedUser;
+            user = foundedUser; // this line because when access token expired it will not got to the line after decoded
             const decoded = (await verifyTokenAsync(
                 token,
                 'access',
@@ -316,7 +314,7 @@ export const protect = catchAsync(
             }
             if (user.email !== refreshTokenDecodedEmail) {
                 throw new AppError(
-                    'malicious,not authorized to access this route',
+                    'malicious, refresh token does not match with access token',
                     403,
                 );
             }
@@ -379,13 +377,13 @@ export const protect = catchAsync(
         }
     },
 );
-const refreshTokenHandler = async (req: Request) => {
+const refreshTokenHandler = async (req: Request, res: Response) => {
     try {
         let refreshToken: string;
         if (req.cookies.refreshToken) {
             refreshToken = req.cookies.refreshToken;
         } else {
-            throw new AppError('not authorized to access this route', 403);
+            throw new AppError('there is no refresh token', 403);
         }
         const foundUser = await User.findOne({ refreshTokens: refreshToken });
 
@@ -400,8 +398,9 @@ const refreshTokenHandler = async (req: Request) => {
                 hackedUser.refreshTokens = [];
                 await hackedUser.save();
             }
+            clearCookies(res);
             throw new AppError(
-                'not authorized to access this route,login again',
+                'detect reuse of refresh token, illegitimate user',
                 403,
             );
         }
@@ -410,6 +409,7 @@ const refreshTokenHandler = async (req: Request) => {
         return [(decoded as JwtPayload).email, foundUser];
     } catch (err) {
         if ((err as Error).message === 'jwt expired') {
+            clearCookies(res);
             throw new AppError('Expired refresh token', 403);
         } else if ((err as Error).message === 'invalid signature') {
             throw new AppError('Invalid refresh token', 403);
@@ -539,6 +539,10 @@ export const changeCurrentPassword = async (
         (rt) => rt !== refreshToken,
     );
     await currentUser!.save();
+    clearCookies(res);
+};
+
+export const clearCookies = (res: Response) => {
     res.clearCookie('accessToken');
     res.clearCookie('refreshToken');
 };

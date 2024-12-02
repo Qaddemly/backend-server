@@ -30,6 +30,7 @@ import {
     updateMyInfo,
     changeCurrentPassword,
     signInGoogleRedirection,
+    clearCookies,
 } from '../services/authServices';
 import { generateAndEmailCode } from '../utils/codeUtils';
 import User from '../models/userModel';
@@ -244,8 +245,7 @@ export const logOut = catchAsync(
             await user.save();
         }
 
-        res.clearCookie('accessToken');
-        res.clearCookie('refreshToken');
+        clearCookies(res);
         res.status(200).json({
             success: true,
             message: 'logged out successfully',

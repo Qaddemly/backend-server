@@ -154,8 +154,7 @@ exports.logOut = (0, express_async_handler_1.default)((req, res, next) => __awai
         user.refreshTokens = user.refreshTokens.filter((rt) => rt !== refreshToken);
         yield user.save();
     }
-    res.clearCookie('accessToken');
-    res.clearCookie('refreshToken');
+    (0, authServices_1.clearCookies)(res);
     res.status(200).json({
         success: true,
         message: 'logged out successfully',

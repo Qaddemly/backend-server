@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.changeCurrentPassword = exports.updateMyInfo = exports.signInGoogleRedirection = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.savingResumeInDisk = exports.resizeUserImage = exports.uploadUserPICAndResume = exports.updateUserForSignUpStepTwo = exports.createUserForSignUp = void 0;
+exports.clearCookies = exports.changeCurrentPassword = exports.updateMyInfo = exports.signInGoogleRedirection = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.savingResumeInDisk = exports.resizeUserImage = exports.uploadUserPICAndResume = exports.updateUserForSignUpStepTwo = exports.createUserForSignUp = void 0;
 const userModel_1 = __importDefault(require("../models/userModel"));
 const fs_1 = __importDefault(require("fs"));
 const appError_1 = __importDefault(require("../utils/appError"));
@@ -181,6 +181,7 @@ const logInService = (req, res, email, password) => __awaiter(void 0, void 0, vo
     if (!user) {
         throw new appError_1.default('email or password is incorrect', 400);
     }
+    // when user not set password after login with google
     if (!user.password) {
         throw new appError_1.default('email or password is incorrect', 400);
     }
@@ -204,7 +205,7 @@ exports.logInService = logInService;
 exports.protect = (0, express_async_handler_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let user;
     try {
-        const [refreshTokenDecodedEmail, foundedUser] = yield refreshTokenHandler(req);
+        const [refreshTokenDecodedEmail, foundedUser] = yield refreshTokenHandler(req, res);
         let token;
         if (req.headers.authorization &&
             req.headers.authorization.startsWith('Bearer')) {
@@ -214,16 +215,16 @@ exports.protect = (0, express_async_handler_1.default)((req, res, next) => __awa
             token = req.cookies.accessToken;
         }
         if (!token) {
-            throw new appError_1.default('you are not logged in please login to access this route', 401);
+            throw new appError_1.default('there is no access token', 401);
         }
-        user = foundedUser;
+        user = foundedUser; // this line because when access token expired it will not got to the line after decoded
         const decoded = (yield (0, jwt_1.verifyTokenAsync)(token, 'access'));
         user = yield userModel_1.default.findById(decoded.userId);
         if (!user) {
             throw new appError_1.default('user belong to that token does not exist', 401);
         }
         if (user.email !== refreshTokenDecodedEmail) {
-            throw new appError_1.default('malicious,not authorized to access this route', 403);
+            throw new appError_1.default('malicious, refresh token does not match with access token', 403);
         }
         if (user.passwordChangedAt) {
             const passChangedAtTimeStamp = parseInt(`${user.passwordChangedAt.getTime() / 1000}`, 10);
@@ -274,14 +275,14 @@ exports.protect = (0, express_async_handler_1.default)((req, res, next) => __awa
         }
     }
 }));
-const refreshTokenHandler = (req) => __awaiter(void 0, void 0, void 0, function* () {
+const refreshTokenHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let refreshToken;
         if (req.cookies.refreshToken) {
             refreshToken = req.cookies.refreshToken;
         }
         else {
-            throw new appError_1.default('not authorized to access this route', 403);
+            throw new appError_1.default('there is no refresh token', 403);
         }
         const foundUser = yield userModel_1.default.findOne({ refreshTokens: refreshToken });
         // detect reuse of refreshToken
@@ -295,13 +296,15 @@ const refreshTokenHandler = (req) => __awaiter(void 0, void 0, void 0, function*
                 hackedUser.refreshTokens = [];
                 yield hackedUser.save();
             }
-            throw new appError_1.default('not authorized to access this route,login again', 403);
+            (0, exports.clearCookies)(res);
+            throw new appError_1.default('detect reuse of refresh token, illegitimate user', 403);
         }
         const decoded = yield (0, jwt_1.verifyTokenAsync)(refreshToken, 'refresh');
         return [decoded.email, foundUser];
     }
     catch (err) {
         if (err.message === 'jwt expired') {
+            (0, exports.clearCookies)(res);
             throw new appError_1.default('Expired refresh token', 403);
         }
         else if (err.message === 'invalid signature') {
@@ -401,7 +404,11 @@ const changeCurrentPassword = (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
     currentUser.refreshTokens = currentUser.refreshTokens.filter((rt) => rt !== refreshToken);
     yield currentUser.save();
-    res.clearCookie('accessToken');
-    res.clearCookie('refreshToken');
+    (0, exports.clearCookies)(res);
 });
 exports.changeCurrentPassword = changeCurrentPassword;
+const clearCookies = (res) => {
+    res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
+};
+exports.clearCookies = clearCookies;
