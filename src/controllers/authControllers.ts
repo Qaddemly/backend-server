@@ -34,6 +34,7 @@ import {
 } from '../services/authServices';
 import { generateAndEmailCode } from '../utils/codeUtils';
 import User from '../models/userModel';
+import { userDocument } from '../types/documentTypes';
 
 export const signUp = catchAsync(
     async (
@@ -265,7 +266,8 @@ export const googleRedirection = [
             req,
             res,
         );
-        res.redirect(process.env.FRONTEND_URL!); //redirect to home page of frontend
+        const frontRedirectionUrl = `${process.env.FRONTEND_URL}?googleAuthSuccess=true`;
+        res.redirect(frontRedirectionUrl); //redirect to home page of frontend
         // res.status(200).json({
         //     success: true,
         //     user,

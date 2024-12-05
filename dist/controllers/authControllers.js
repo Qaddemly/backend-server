@@ -168,7 +168,8 @@ exports.googleRedirection = [
     passport_1.default.authenticate('google'),
     (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const [accessToken, refreshToken, user] = yield (0, authServices_1.signInGoogleRedirection)(req, res);
-        res.redirect(process.env.FRONTEND_URL); //redirect to home page of frontend
+        const frontRedirectionUrl = `${process.env.FRONTEND_URL}?googleAuthSuccess=true`;
+        res.redirect(frontRedirectionUrl); //redirect to home page of frontend
         // res.status(200).json({
         //     success: true,
         //     user,
