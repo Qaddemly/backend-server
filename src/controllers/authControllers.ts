@@ -265,13 +265,13 @@ export const googleRedirection = [
             req,
             res,
         );
-
-        res.status(200).json({
-            success: true,
-            user,
-            accessToken,
-            refreshToken,
-        });
+        res.redirect(process.env.FRONTEND_URL!); //redirect to home page of frontend
+        // res.status(200).json({
+        //     success: true,
+        //     user,
+        //     accessToken,
+        //     refreshToken,
+        // });
     },
 ];
 

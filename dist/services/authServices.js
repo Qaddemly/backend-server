@@ -47,7 +47,7 @@ const updateUserForSignUpStepTwo = (userId, req) => __awaiter(void 0, void 0, vo
         skills: skills,
         dateOfBirth: dateOfBirth,
         languages: languages,
-        profilePicture,
+        profilePicture: profilePicture,
         resume: resume,
     }, { new: true });
     if (!user) {

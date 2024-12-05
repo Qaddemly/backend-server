@@ -78,7 +78,7 @@ export const updateUserForSignUpStepTwo = async (
             skills: skills,
             dateOfBirth: dateOfBirth,
             languages: languages,
-            profilePicture,
+            profilePicture: profilePicture,
             resume: resume,
         },
         { new: true },
