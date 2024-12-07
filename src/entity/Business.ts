@@ -1,5 +1,17 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    ManyToMany,
+    OneToMany,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Speciality } from './Specialitie';
+import { Review } from './Review';
+import { Account } from './Account';
+import { JoinTable } from 'typeorm/browser';
 import { LocationType } from '../enums/locationType';
+import { HrEmployee } from './HrEmployee';
+import { FollowBusiness } from './FollowBusiness';
 
 @Entity()
 export class Business {
@@ -7,7 +19,7 @@ export class Business {
     id: number;
 
     @Column('text')
-    companyName: string;
+    company_name: string;
 
     @Column('text')
     location: string;
@@ -17,13 +29,13 @@ export class Business {
         enum: LocationType,
         default: LocationType.Onsite,
     })
-    locationType: LocationType;
+    location_type: LocationType;
 
     @Column('text')
     description: string;
 
     @Column('integer')
-    companySize: number;
+    company_size: number;
 
     @Column('text')
     industry: string;
@@ -34,9 +46,10 @@ export class Business {
     @Column('text')
     headquarter: string;
 
-    // OneToMany (Later)
-    @Column('text')
-    specialities: string;
+    @OneToMany(() => Speciality, (speciality) => speciality.id, {
+        cascade: true,
+    })
+    specialities: Speciality[];
 
     @Column('text')
     email: string;
@@ -44,15 +57,18 @@ export class Business {
     @Column('text')
     phone: string;
 
-    // OneToMany (Later)
-    @Column('text')
-    reviews: string;
+    @OneToMany(() => Review, (review) => review.business, { cascade: true })
+    reviews: Review[];
 
-    // OneToMany (Later)
-    @Column('text')
-    followers: string;
+    @OneToMany(
+        () => FollowBusiness,
+        (followBusiness) => followBusiness.business,
+        { cascade: true },
+    )
+    followers: FollowBusiness[];
 
-    // OneToMany (Later)
-    @Column('text')
-    hrEmployees: string;
+    @OneToMany(() => HrEmployee, (hr_employee) => hr_employee.business, {
+        cascade: true,
+    })
+    hr_employees: HrEmployee[];
 }
