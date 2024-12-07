@@ -19,7 +19,7 @@ export interface userDoc extends mongoose.Document {
     education?: Education;
     experience?: Experience[];
     skills?: string[];
-    languages?: Language;
+    languages?: Language[];
     resume?: string;
     activationCode?: string;
     activationCodeExpiresIn?: Date;
@@ -171,10 +171,9 @@ const userSchema = new mongoose.Schema<userDoc>(
         skills: {
             type: [String],
         },
-        languages: {
-            type: [String],
-            enum: Object.values(Language),
-        },
+        // languages: {
+        //     type: [Language],
+        // },
         resume: {
             type: String,
         },
@@ -193,10 +192,7 @@ const userSchema = new mongoose.Schema<userDoc>(
             type: Boolean,
             default: true,
         },
-        expireAt: {
-            type: Date,
-            index: { expireAfterSeconds: 10 },
-        },
+
         isActivated: {
             type: Boolean,
             default: false,

@@ -1,3 +1,7 @@
-node_modules
-test.js
-index.html
+
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
