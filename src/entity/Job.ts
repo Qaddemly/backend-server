@@ -3,11 +3,13 @@ import {
     Entity,
     JoinColumn,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { LocationType } from '../enums/locationType';
 import { EmploymentType } from '../enums/employmentType';
 import { Business } from './Business';
+import { JobApplication } from './JobApplication';
 
 @Entity()
 export class Job {
@@ -59,4 +61,9 @@ export class Job {
         foreignKeyConstraintName: 'FK_JOB_BUSINESS',
     })
     business: Business;
+
+    @OneToMany(() => JobApplication, (job_application) => job_application.job, {
+        cascade: true,
+    })
+    job_applications: JobApplication[];
 }

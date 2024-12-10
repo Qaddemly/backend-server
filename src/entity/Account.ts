@@ -1,14 +1,23 @@
-import { Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Business } from './Business';
-import { JoinTable } from 'typeorm/browser';
+import {
+    Entity,
+    JoinTable,
+    ManyToMany,
+    OneToMany,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Review } from './Review';
 import { HrEmployee } from './HrEmployee';
 import { FollowBusiness } from './FollowBusiness';
+import { JobApplication } from './JobApplication';
 
 @Entity()
 export class Account {
     @PrimaryGeneratedColumn()
     id: number;
+
+    @ManyToMany(() => JobApplication)
+    @JoinTable({ name: 'account_job_applications' })
+    job_applications: JobApplication[];
 
     @OneToMany(
         () => FollowBusiness,
