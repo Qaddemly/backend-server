@@ -35,3 +35,7 @@ export interface Experience {
 export type expressFiles = {
     [index: string]: Express.Multer.File[];
 };
+
+export interface getBusinessQueryParams {
+    prefix: string;
+}

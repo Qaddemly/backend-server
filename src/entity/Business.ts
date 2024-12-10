@@ -1,5 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Review } from './Review';
 import { LocationType } from '../enums/locationType';
+import { HrEmployee } from './HrEmployee';
+import { FollowBusiness } from './FollowBusiness';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { Job } from './Job';
 
 @Entity()
 export class Business {
@@ -7,7 +12,7 @@ export class Business {
     id: number;
 
     @Column('text')
-    companyName: string;
+    company_name: string;
 
     @Column('text')
     location: string;
@@ -17,42 +22,60 @@ export class Business {
         enum: LocationType,
         default: LocationType.Onsite,
     })
-    locationType: LocationType;
+    location_type: LocationType;
 
     @Column('text')
     description: string;
 
     @Column('integer')
-    companySize: number;
+    company_size: number;
 
     @Column('text')
     industry: string;
 
+    @IsNotEmpty({ message: 'Website is required' })
+    @IsString({ message: 'Website must be a string' })
     @Column('text')
     website: string;
 
+    @IsNotEmpty({ message: 'Headquarter is required' })
+    @IsString({ message: 'Headquarter must be a string' })
     @Column('text')
     headquarter: string;
 
-    // OneToMany (Later)
-    @Column('text')
-    specialities: string;
+    // @OneToMany(() => Speciality, (speciality) => speciality.id, {
+    //     cascade: true,
+    // })
+    // specialities: Speciality[];
 
+    @Column('text', { array: true })
+    specialities: string[];
+
+    @IsNotEmpty({ message: 'Email is required' })
+    @IsEmail({}, { message: 'Invalid email' })
     @Column('text')
     email: string;
 
+    @IsNotEmpty({ message: 'Phone is required' })
+    @IsString({ message: 'Phone must be a string' })
     @Column('text')
     phone: string;
 
-    // OneToMany (Later)
-    @Column('text')
-    reviews: string;
+    @OneToMany(() => Review, (review) => review.business, { cascade: true })
+    reviews: Review[];
 
-    // OneToMany (Later)
-    @Column('text')
-    followers: string;
+    @OneToMany(
+        () => FollowBusiness,
+        (followBusiness) => followBusiness.business,
+        { cascade: true },
+    )
+    followers: FollowBusiness[];
 
-    // OneToMany (Later)
-    @Column('text')
-    hrEmployees: string;
+    @OneToMany(() => HrEmployee, (hr_employee) => hr_employee.business, {
+        cascade: true,
+    })
+    hr_employees: HrEmployee[];
+
+    @OneToMany(() => Job, (job) => job.business, { cascade: true })
+    jobs: Job[];
 }
