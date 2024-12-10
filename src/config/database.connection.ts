@@ -8,7 +8,7 @@ function databaseConnect() {
     mongoose
         .connect(dbConnectionString)
         .then(() => {
-            console.log(`Database connected successfully`);
+            console.log(`MongoDB Database connected successfully`);
         })
         .catch((e) => {
             console.log(`Database connection failed`);

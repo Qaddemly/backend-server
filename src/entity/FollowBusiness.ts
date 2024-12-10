@@ -1,11 +1,4 @@
-import {
-    Entity,
-    ManyToMany,
-    ManyToOne,
-    OneToMany,
-    PrimaryColumn,
-    PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Business } from './Business';
 import { Account } from './Account';
 
@@ -15,8 +8,16 @@ export class FollowBusiness {
     id: number;
 
     @ManyToOne(() => Business)
+    @JoinColumn({
+        name: 'business_id',
+        foreignKeyConstraintName: 'FK_FOLLOW_BUSINESS_BUSINESS',
+    })
     business: Business;
 
     @ManyToOne(() => Account)
+    @JoinColumn({
+        name: 'account_id',
+        foreignKeyConstraintName: 'FK_FOLLOW_BUSINESS_ACCOUNT',
+    })
     account: Account;
 }

@@ -10,6 +10,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { globalErrorHandler } from './middlewares/error.middleWare';
 import mountRoutes from './routes';
+import { businessRoute } from './routes/businessRoutes';
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use(express.json());
 
 //mount Routes
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/v1/business', businessRoute);
 mountRoutes(app);
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
     res.status(404).json({

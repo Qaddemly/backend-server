@@ -1,5 +1,4 @@
 import { LocationType } from '../enums/locationType';
-import { Speciality } from '../entity/Specialitie';
 import { Account } from '../entity/Account';
 
 export interface CreateBusinessDto {
@@ -11,7 +10,7 @@ export interface CreateBusinessDto {
     industry: string;
     website: string;
     headquarter: string;
-    specialities: Speciality[];
+    specialities: string[];
     email: string;
     phone: string;
     hr_employees?: Account[];

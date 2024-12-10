@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Business } from './Business';
 import { Account } from './Account';
 
@@ -16,8 +22,18 @@ export class Review {
     @ManyToOne(() => Business, (business) => business.reviews, {
         onDelete: 'CASCADE',
     })
+    @JoinColumn({
+        name: 'business_id',
+        foreignKeyConstraintName: 'FK_REVIEW_BUSINESS',
+    })
     business: Business;
 
-    @ManyToOne(() => Account, (account) => account.id, { onDelete: 'CASCADE' })
+    @ManyToOne(() => Account, (account) => account.reviews, {
+        onDelete: 'CASCADE',
+    })
+    @JoinColumn({
+        name: 'account_id',
+        foreignKeyConstraintName: 'FK_REVIEW_ACCOUNT',
+    })
     account: Account;
 }
