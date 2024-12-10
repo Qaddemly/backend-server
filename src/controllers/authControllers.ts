@@ -36,6 +36,7 @@ import { generateAndEmailCode } from '../utils/codeUtils';
 import User from '../models/userModel';
 import { userDocument } from '../types/documentTypes';
 import { AccountRepo } from '../Repository/accountRepo';
+import AccountTempData from '../models/accountModel';
 
 export const signUp = catchAsync(
     async (
@@ -47,8 +48,14 @@ export const signUp = catchAsync(
             const userData = req.body;
             //1-create a new user
             const newUser = await createUserForSignUp(userData);
+            const userTempData = await AccountTempData.findOne({
+                accountId: newUser.id,
+            });
             //2-sending email containing activation code for user mail
-            const activationToken = await generateAndEmailCode(newUser);
+            const activationToken = await generateAndEmailCode(
+                userData,
+                newUser.email,
+            );
 
             res.status(201).json({
                 success: true,

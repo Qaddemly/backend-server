@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 import { mailOptions, nodemailerMailOptions } from '../types/email';
-import { userDocument } from '../types/documentTypes';
+import { userDocument, UserType } from '../types/documentTypes';
 import { NextFunction } from 'express';
 import AppError from './appError';
 import { resettingUserCodeFields } from './codeUtils';
@@ -26,12 +26,12 @@ export const sendMail = async (options: mailOptions) => {
 };
 
 export const sendingCodeToEmail = async (
-    user: userDocument,
+    email: string,
     subject: string,
     message: string,
 ) => {
     await sendMail({
-        email: user.email,
+        email: email,
         subject: subject,
         message: message,
     });
