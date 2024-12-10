@@ -1,7 +1,6 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { mongoId } from '../types/documentTypes';
 
-export const createAccessToken = (payload: mongoId) => {
+export const createAccessToken = (payload: number) => {
     return jwt.sign({ userId: payload }, process.env.JWT_ACCESS_TOKEN_SECRET!, {
         expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRES_IN,
     });

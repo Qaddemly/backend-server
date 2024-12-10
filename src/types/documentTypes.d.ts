@@ -3,7 +3,7 @@ import { userDoc } from '../models/userModel';
 export type mongoId = Types.ObjectId;
 
 export type userDocument = userDoc & Document;
-
+export type UserType = { [key: string]: any };
 export type mongooseQuery = Query<Document[], Document>;
 export type mongooseModel = Model<Document>;
 export interface IMongoInterface {

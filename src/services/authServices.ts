@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import User from '../models/userModel';
 import { JwtPayload } from 'jsonwebtoken';
 import fs from 'fs';
 import AppError from '../utils/appError';
@@ -27,7 +26,7 @@ import {
     createRefreshToken,
     verifyTokenAsync,
 } from '../utils/jwt';
-import { mongoId, userDocument } from '../types/documentTypes';
+import { mongoId, userDocument, UserType } from '../types/documentTypes';
 import {
     uploadProfilePicAndResume,
     uploadSingleImage,
@@ -35,7 +34,9 @@ import {
 } from '../middlewares/upload.middleWare';
 import sharp from 'sharp';
 import { expressFiles } from '../types/types';
-
+import { AccountRepo } from '../Repository/accountRepo';
+import AccountTempData from '../models/accountModel';
+import User from '../models/userModel';
 export const createUserForSignUp = async (
     reqBody: signUpBody,
 ): Promise<userDocument> => {
@@ -256,27 +257,31 @@ export const logInService = async (
 ) => {
     //console.log(typeof req.query.limit, typeof req.query.page);
     //1- find user by email
-    const user = await User.findOne({ email });
-    if (!user) {
+    //const user = await User.findOne({ email });
+    const account = await AccountRepo.findOneBy({ email: email });
+    if (!account) {
         throw new AppError('email or password is incorrect', 400);
     }
-    // when user not set password after login with google
-    if (!user.password) {
+    // when account not set password after login with google
+    if (!account.password) {
         throw new AppError('email or password is incorrect', 400);
     }
     //2- checking password correction
-    const isPassCorrect = await isCorrectPassword(password, user.password);
+    const isPassCorrect = await isCorrectPassword(password, account.password);
     if (!isPassCorrect) {
         throw new AppError('email or password is incorrect', 400);
     }
     // checking is email active
-    if (!user.isActivated) {
-        const activationToken = await generateAndEmailCode(user);
+    if (!account.isActivated) {
+        const activationToken = await generateAndEmailCode(
+            account as userDocument,
+        );
         return [false, activationToken, null, null];
     } else {
         //login success
+
         const [accessToken, refreshToken, updatedUser] =
-            await createTokensForLoggedInUser(user, req, res);
+            await createTokensForLoggedInUser(account, req, res);
 
         return [true, accessToken, refreshToken, updatedUser];
     }
@@ -284,10 +289,13 @@ export const logInService = async (
 
 export const protect = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-        let user: any;
+        let user: any; // user from postgres
+        let userTempData: any; // user temp data from mongo like (refresh token ,password reset token, ...)
+
         try {
-            const [refreshTokenDecodedEmail, foundedUser] =
+            const [refreshTokenDecodedEmail, foundedUser, foundUserTempData] =
                 await refreshTokenHandler(req, res);
+            userTempData = foundUserTempData;
             let token: string;
             if (
                 req.headers.authorization &&
@@ -305,7 +313,7 @@ export const protect = catchAsync(
                 token,
                 'access',
             )) as JwtPayload;
-            user = await User.findById(decoded!.userId);
+            user = await AccountRepo.findOneBy({ id: decoded!.userId });
             if (!user) {
                 throw new AppError(
                     'user belong to that token does not exist',
@@ -332,9 +340,9 @@ export const protect = catchAsync(
                 }
             }
 
-            if (user.passwordResetVerificationToken || user.activationToken) {
-                await resettingUserCodeFields(user);
-            }
+            // if (user.passwordResetVerificationToken || user.activationToken) {
+            //     await resettingUserCodeFields(user);
+            // }
             req.user = user; // for letting user to use protected routes
             next();
         } catch (err) {
@@ -342,17 +350,17 @@ export const protect = catchAsync(
                 // from access expiration
                 const accessToken = createAccessToken(user?.id);
                 const refreshToken = createRefreshToken(user?.email);
-                const newRefreshTokens = user.refreshTokens;
+                const newRefreshTokens = userTempData.refreshTokens;
                 const refreshTokenList: any[] = [];
                 for (const rt of newRefreshTokens) {
                     if (rt !== req.cookies.refreshToken)
                         refreshTokenList.push(rt);
                 }
-                user.refreshTokens = [
+                userTempData.refreshTokens = [
                     ...refreshTokenList,
                     refreshToken as string,
                 ];
-                await user.save();
+                await userTempData.save();
 
                 res.cookie('refreshToken', refreshToken, {
                     httpOnly: true,
@@ -385,18 +393,24 @@ const refreshTokenHandler = async (req: Request, res: Response) => {
         } else {
             throw new AppError('there is no refresh token', 403);
         }
-        const foundUser = await User.findOne({ refreshTokens: refreshToken });
+        const userTempData = await AccountTempData.findOne({
+            refreshTokens: refreshToken,
+        });
 
         // detect reuse of refreshToken
-        if (!foundUser) {
+        if (!userTempData) {
             const decoded = await verifyTokenAsync(refreshToken, 'refresh');
-            const hackedUser = await User.findOne({
+            const hackedUser = await AccountRepo.findOneBy({
                 email: (decoded as JwtPayload).email,
             });
             if (hackedUser) {
+                const hackedUserTempData = await AccountTempData.findOne({
+                    accountId: hackedUser.id,
+                });
+
                 //signout all users
-                hackedUser.refreshTokens = [];
-                await hackedUser.save();
+                hackedUserTempData.refreshTokens = [];
+                await hackedUserTempData.save();
             }
             clearCookies(res);
             throw new AppError(
@@ -406,7 +420,10 @@ const refreshTokenHandler = async (req: Request, res: Response) => {
         }
 
         const decoded = await verifyTokenAsync(refreshToken, 'refresh');
-        return [(decoded as JwtPayload).email, foundUser];
+        const foundUser = await AccountRepo.findOneBy({
+            email: (decoded as JwtPayload).email,
+        });
+        return [(decoded as JwtPayload).email, foundUser, userTempData];
     } catch (err) {
         if ((err as Error).message === 'jwt expired') {
             clearCookies(res);
@@ -418,21 +435,24 @@ const refreshTokenHandler = async (req: Request, res: Response) => {
 };
 
 const createTokensForLoggedInUser = async (
-    user: userDocument,
+    user: UserType,
     req: Request,
     res: Response,
 ) => {
+    const userTempData = await AccountTempData.findOne({ accountId: user.id });
     const accessToken = createAccessToken(user.id);
     const refreshToken = createRefreshToken(user.email);
     //try to login and he already logged in
     const cookies = req.cookies;
     let newRefreshTokens = !cookies?.refreshToken
-        ? user.refreshTokens
-        : user.refreshTokens.filter((rt) => rt !== cookies.refreshToken);
+        ? userTempData.refreshTokens
+        : userTempData.refreshTokens.filter(
+              (rt) => rt !== cookies.refreshToken,
+          );
 
-    user.refreshTokens = [...newRefreshTokens, refreshToken as string];
+    userTempData.refreshTokens = [...newRefreshTokens, refreshToken as string];
     if (user.password) {
-        await user.save();
+        await userTempData.save();
     } else {
         await user.save({ validateBeforeSave: false }); // for login with google
     }
@@ -446,8 +466,11 @@ const createTokensForLoggedInUser = async (
         secure: true,
         maxAge: 10 * 24 * 60 * 60 * 1000,
     });
-    user.refreshTokens = [];
-    return [accessToken, refreshToken, user];
+    return [
+        accessToken,
+        refreshToken,
+        { ...user, googleId: userTempData.googleId },
+    ];
 };
 
 export const signInGoogleRedirection = async (req: Request, res: Response) => {

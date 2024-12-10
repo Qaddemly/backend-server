@@ -37,7 +37,7 @@ export enum Country {
     Chad = 'Chad',
     Chile = 'Chile',
     China = 'Republic of China',
-    RepublicOfChina = 'Republic of China',
+    //RepublicOfChina = 'Republic of China',
     Colombia = 'Colombia',
     Comoros = 'Comoros',
     DemocraticRepublicOfTheCongo = 'Democratic Republic of the Congo',
