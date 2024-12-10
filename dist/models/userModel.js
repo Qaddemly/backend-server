@@ -23,13 +23,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose = __importStar(require("mongoose"));
-const language_1 = require("../enums/language");
-const country_1 = require("../enums/country");
-const locationType_1 = require("../enums/locationType");
-const employmentType_1 = require("../enums/employmentType");
-const countryCode_1 = require("../enums/countryCode");
-const phoneSchema = new mongoose.Schema({
+var mongoose = __importStar(require("mongoose"));
+var country_1 = require("../enums/country");
+var locationType_1 = require("../enums/locationType");
+var employmentType_1 = require("../enums/employmentType");
+var countryCode_1 = require("../enums/countryCode");
+var phoneSchema = new mongoose.Schema({
     countryCode: {
         type: Number,
         enum: countryCode_1.CountryCode,
@@ -40,7 +39,7 @@ const phoneSchema = new mongoose.Schema({
         required: true,
     },
 });
-const addressSchema = new mongoose.Schema({
+var addressSchema = new mongoose.Schema({
     country: {
         type: String,
         enum: country_1.Country,
@@ -51,7 +50,7 @@ const addressSchema = new mongoose.Schema({
         required: true,
     },
 });
-const educationSchema = new mongoose.Schema({
+var educationSchema = new mongoose.Schema({
     university: {
         type: String,
         required: true,
@@ -75,7 +74,7 @@ const educationSchema = new mongoose.Schema({
         required: true,
     },
 });
-const experienceSchema = new mongoose.Schema({
+var experienceSchema = new mongoose.Schema({
     jobTitle: {
         type: String,
         required: true,
@@ -111,7 +110,7 @@ const experienceSchema = new mongoose.Schema({
         required: false,
     },
 });
-const userSchema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
     email: {
         type: String,
         index: true,
@@ -158,10 +157,9 @@ const userSchema = new mongoose.Schema({
     skills: {
         type: [String],
     },
-    languages: {
-        type: [String],
-        enum: Object.values(language_1.Language),
-    },
+    // languages: {
+    //     type: [Language],
+    // },
     resume: {
         type: String,
     },
@@ -180,10 +178,6 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
     },
-    expireAt: {
-        type: Date,
-        index: { expireAfterSeconds: 10 },
-    },
     isActivated: {
         type: Boolean,
         default: false,
@@ -196,7 +190,8 @@ const userSchema = new mongoose.Schema({
     timestamps: true,
 });
 userSchema.virtual('fullName').get(function () {
-    return `${this.firstName} ${this.lastName}`;
+    return "".concat(this.firstName, " ").concat(this.lastName);
 });
-const User = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
 exports.default = User;
+//# sourceMappingURL=userModel.js.map

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import AccountTempData from '../models/accountModel';
 
 function databaseConnect() {
     const dbConnectionString = process.env.DATABASE_URL!.replace(
@@ -11,7 +12,7 @@ function databaseConnect() {
             console.log(`MongoDB Database connected successfully`);
         })
         .catch((e) => {
-            console.log(`Database connection failed`);
+            console.log(`MongoDB Database connection failed`);
         });
 }
 

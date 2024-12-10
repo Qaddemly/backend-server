@@ -174,3 +174,4 @@ var Country;
     Country["Syria"] = "Syria";
     Country["Thailand"] = "Thailand";
 })(Country || (exports.Country = Country = {}));
+//# sourceMappingURL=country.js.map

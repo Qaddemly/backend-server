@@ -12,3 +12,4 @@ var EmploymentType;
     EmploymentType["Apprenticeship"] = "Apprenticeship";
     EmploymentType["Seasonal"] = "Seasonal";
 })(EmploymentType || (exports.EmploymentType = EmploymentType = {}));
+//# sourceMappingURL=employmentType.js.map

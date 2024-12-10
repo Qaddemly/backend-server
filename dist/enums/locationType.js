@@ -7,3 +7,4 @@ var LocationType;
     LocationType["Onsite"] = "Onsite";
     LocationType["Hybrid"] = "Hybrid";
 })(LocationType || (exports.LocationType = LocationType = {}));
+//# sourceMappingURL=locationType.js.map

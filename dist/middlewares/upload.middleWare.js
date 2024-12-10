@@ -4,12 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.uploadProfilePicAndResume = exports.uploadSingleResume = exports.uploadSingleImage = void 0;
-const multer_1 = __importDefault(require("multer"));
-const path_1 = __importDefault(require("path"));
-const appError_1 = __importDefault(require("../utils/appError"));
-const storage = multer_1.default.memoryStorage();
-const imageMulterOption = () => {
-    const fileFilter = (req, file, cb) => {
+var multer_1 = __importDefault(require("multer"));
+var path_1 = __importDefault(require("path"));
+var appError_1 = __importDefault(require("../utils/appError"));
+var storage = multer_1.default.memoryStorage();
+var imageMulterOption = function () {
+    var fileFilter = function (req, file, cb) {
         console.log(file);
         if (file.mimetype.split('/')[0] === 'image') {
             cb(null, true);
@@ -17,32 +17,32 @@ const imageMulterOption = () => {
         else
             cb(new appError_1.default('only images is allowed'));
     };
-    const upload = (0, multer_1.default)({ storage: storage, fileFilter: fileFilter });
+    var upload = (0, multer_1.default)({ storage: storage, fileFilter: fileFilter });
     return upload;
 };
-const resumeMulterOption = () => {
-    const fileFilter = (req, file, cb) => {
+var resumeMulterOption = function () {
+    var fileFilter = function (req, file, cb) {
         console.log(file.mimetype);
         cb(null, true);
         // if (file.mimetype.split('/')[0] === 'image') {
         // } else cb(new AppError('only images is allowed'));
     };
-    const upload = (0, multer_1.default)({ storage: storage, fileFilter: fileFilter });
+    var upload = (0, multer_1.default)({ storage: storage, fileFilter: fileFilter });
     return upload;
 };
-const uploadSingleImage = (fieldName) => {
+var uploadSingleImage = function (fieldName) {
     return imageMulterOption().single(fieldName);
 };
 exports.uploadSingleImage = uploadSingleImage;
-const uploadSingleResume = (fieldName) => {
+var uploadSingleResume = function (fieldName) {
     return resumeMulterOption().single(fieldName);
 };
 exports.uploadSingleResume = uploadSingleResume;
 // File filter for photos
-const photoFileFilter = (req, file, cb) => {
-    const filetypes = /jpeg|jpg|png/;
-    const extname = filetypes.test(path_1.default.extname(file.originalname).toLowerCase());
-    const mimetype = filetypes.test(file.mimetype);
+var photoFileFilter = function (req, file, cb) {
+    var filetypes = /jpeg|jpg|png/;
+    var extname = filetypes.test(path_1.default.extname(file.originalname).toLowerCase());
+    var mimetype = filetypes.test(file.mimetype);
     if (mimetype && extname) {
         return cb(null, true);
     }
@@ -51,10 +51,10 @@ const photoFileFilter = (req, file, cb) => {
     }
 };
 // File filter for resumes
-const resumeFileFilter = (req, file, cb) => {
-    const filetypes = /pdf|doc|docx/;
-    const extname = filetypes.test(path_1.default.extname(file.originalname).toLowerCase());
-    const mimetype = filetypes.test(file.mimetype);
+var resumeFileFilter = function (req, file, cb) {
+    var filetypes = /pdf|doc|docx/;
+    var extname = filetypes.test(path_1.default.extname(file.originalname).toLowerCase());
+    var mimetype = filetypes.test(file.mimetype);
     if (mimetype && extname) {
         return cb(null, true);
     }
@@ -63,7 +63,7 @@ const resumeFileFilter = (req, file, cb) => {
     }
 };
 // Initialize upload
-const upload = (0, multer_1.default)({
+var upload = (0, multer_1.default)({
     storage: storage,
     fileFilter: function (req, file, cb) {
         if (file.fieldname === 'profilePicture') {
@@ -78,5 +78,8 @@ const upload = (0, multer_1.default)({
     },
     limits: { fieldSize: 5000000 }, //5MB limit
 });
-const uploadProfilePicAndResume = (fields) => upload.fields(fields);
+var uploadProfilePicAndResume = function (fields) {
+    return upload.fields(fields);
+};
 exports.uploadProfilePicAndResume = uploadProfilePicAndResume;
+//# sourceMappingURL=upload.middleWare.js.map

@@ -3,13 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const authControllers_1 = require("../controllers/authControllers");
-const authServices_1 = require("../services/authServices");
-const userValidator_1 = require("../middlewares/validators/userValidator");
-const validator_1 = __importDefault(require("../middlewares/validator"));
-const rateLimitMiddleWares_1 = require("../middlewares/rateLimitMiddleWares");
-const authRouter = express_1.default.Router();
+var express_1 = __importDefault(require("express"));
+var authControllers_1 = require("../controllers/authControllers");
+var authServices_1 = require("../services/authServices");
+var userValidator_1 = require("../middlewares/validators/userValidator");
+var validator_1 = __importDefault(require("../middlewares/validator"));
+var rateLimitMiddleWares_1 = require("../middlewares/rateLimitMiddleWares");
+var authRouter = express_1.default.Router();
 authRouter.post('/signup', (0, validator_1.default)(userValidator_1.userCreationValidatorStepOne), authControllers_1.signUp);
 authRouter.put('/completeRegistration', authServices_1.protect, 
 //uploadUserImage,
@@ -30,3 +30,4 @@ authRouter.patch('/updateMe', authServices_1.protect, authServices_1.uploadUserP
 authRouter.get('/getMe', authServices_1.protect, authControllers_1.getMe);
 authRouter.put('/changeMyPassword', authServices_1.protect, (0, validator_1.default)(userValidator_1.changePasswordValidator), authControllers_1.changeMyPassword);
 exports.default = authRouter;
+//# sourceMappingURL=authRoutes.js.map

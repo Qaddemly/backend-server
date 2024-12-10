@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.globalErrorHandler = void 0;
-const devError = (err, res) => {
+var devError = function (err, res) {
     res.status(err.statusCode).json({
         status: err.status,
         name: err.name,
@@ -9,7 +9,7 @@ const devError = (err, res) => {
         details: err.stack,
     });
 };
-const sendValidationError = (err, res) => {
+var sendValidationError = function (err, res) {
     res.status(err.statusCode).json({
         status: err.status,
         name: err.name,
@@ -17,14 +17,14 @@ const sendValidationError = (err, res) => {
         details: err.validatorErrors,
     });
 };
-const sendErrorProduction = (err, res) => {
+var sendErrorProduction = function (err, res) {
     res.status(err.statusCode).json({
         status: err.status,
         name: err.name,
         message: err.message,
     });
 };
-const globalErrorHandler = (err, req, res, next) => {
+var globalErrorHandler = function (err, req, res, next) {
     err.statusCode = err.statusCode || 500;
     if (err.message === 'validationErrors') {
         sendValidationError(err, res);
@@ -37,3 +37,4 @@ const globalErrorHandler = (err, req, res, next) => {
     }
 };
 exports.globalErrorHandler = globalErrorHandler;
+//# sourceMappingURL=error.middleWare.js.map

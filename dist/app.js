@@ -3,19 +3,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path_1 = __importDefault(require("path"));
-const express_1 = __importDefault(require("express"));
+var path_1 = __importDefault(require("path"));
+var express_1 = __importDefault(require("express"));
 require("./utils/googlePassportConfig");
-const express_session_1 = __importDefault(require("express-session"));
-const connect_mongodb_session_1 = __importDefault(require("connect-mongodb-session"));
-const mongoStore = (0, connect_mongodb_session_1.default)(express_session_1.default);
-const passport_1 = __importDefault(require("passport"));
-const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const cors_1 = __importDefault(require("cors"));
-const error_middleWare_1 = require("./middlewares/error.middleWare");
-const routes_1 = __importDefault(require("./routes"));
-const app = (0, express_1.default)();
-const corsOptions = {
+var express_session_1 = __importDefault(require("express-session"));
+var connect_mongodb_session_1 = __importDefault(require("connect-mongodb-session"));
+var mongoStore = (0, connect_mongodb_session_1.default)(express_session_1.default);
+var passport_1 = __importDefault(require("passport"));
+var cookie_parser_1 = __importDefault(require("cookie-parser"));
+var cors_1 = __importDefault(require("cors"));
+var error_middleWare_1 = require("./middlewares/error.middleWare");
+var routes_1 = __importDefault(require("./routes"));
+var app = (0, express_1.default)();
+var corsOptions = {
     origin: true,
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
@@ -38,11 +38,12 @@ app.use(express_1.default.json());
 //mount Routes
 app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, 'uploads')));
 (0, routes_1.default)(app);
-app.all('*', (req, res, next) => {
+app.all('*', function (req, res, next) {
     res.status(404).json({
         success: false,
-        message: `cant find ${req.url}`,
+        message: "cant find ".concat(req.url),
     });
 });
 app.use(error_middleWare_1.globalErrorHandler);
 exports.default = app;
+//# sourceMappingURL=app.js.map
