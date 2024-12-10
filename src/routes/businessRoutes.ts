@@ -1,9 +1,10 @@
 import express from 'express';
 import * as businessController from '../controllers/businessController';
+import { protect } from '../services/authServices';
 
 export const businessRoute = express.Router();
 
-businessRoute.post('/', businessController.createBusiness);
+businessRoute.post('/', protect, businessController.createBusiness);
 businessRoute.get('/', businessController.getBusinesses);
 businessRoute.get('/:id', businessController.getBusinessById);
 businessRoute.put('/:id', businessController.updateBusiness);

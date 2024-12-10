@@ -176,22 +176,30 @@ export const verifyActivationCode = async (
 };
 
 export const createAnotherCodeAndResend = async (activationToken: string) => {
-    const user = await User.findOne({ activationToken: activationToken });
+    // const user = await User.findOne({ activationToken: activationToken });
+    const user = await AccountTempData.findOne({
+        activationToken: activationToken,
+    });
+    const foundUser = await AccountRepo.findOneBy({ id: user.accountId });
     if (!user) {
         throw new AppError('user belong to that token does not exist', 400);
     }
     const code = await generateAnotherActivationCode(user);
     const subject = 'email activation';
     const message = `your activation code is ${code}`;
-    await sendingCodeToEmail(user, subject, message);
+    await sendingCodeToEmail(foundUser.email, subject, message);
 };
 
 export const generateForgetPasswordCodeAndEmail = async (email: string) => {
-    const user = await User.findOne({ email: email });
+    const user = await AccountRepo.findOneBy({ email: email });
     if (!user) {
         throw new AppError('no user found with this email', 404);
     }
-    const resetVerificationToken = await generateAndEmailPassResetCode(user);
+    const userTempData = await AccountTempData.findOne({ accountId: user.id });
+    const resetVerificationToken = await generateAndEmailPassResetCode(
+        userTempData,
+        user.email,
+    );
 
     return resetVerificationToken;
 };
@@ -205,11 +213,12 @@ export const createAnotherResetPasswordCodeAndResend = async (
     if (!user) {
         throw new AppError('user belong to that token does not exist', 400);
     }
-    const code = await generateAnotherPassResetCode(user);
+    const userTempData = await AccountTempData.findOne({ accountId: user.id });
+    const code = await generateAnotherPassResetCode(userTempData);
     const subject = 'password reset code';
     const message = `your password reset code is valid for (10 min) \n
       ${code}\n`;
-    await sendingCodeToEmail(user, subject, message);
+    await sendingCodeToEmail(user.email, subject, message);
 };
 
 export const PasswordResetCodeVerification = async (
@@ -273,8 +282,12 @@ export const logInService = async (
     }
     // checking is email active
     if (!account.isActivated) {
+        const userTempData = await AccountTempData.findOne({
+            accountId: account.id,
+        });
         const activationToken = await generateAndEmailCode(
-            account as userDocument,
+            userTempData as UserType,
+            account.email,
         );
         return [false, activationToken, null, null];
     } else {

@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { userDocument } from '../types/documentTypes';
+import { userDocument, UserType } from '../types/documentTypes';
 import { NextFunction, Response } from 'express';
 import { sendingCodeToEmail } from './email';
 // create general code for activation or resetting password
@@ -13,12 +13,15 @@ export const cryptoEncryption = (objective: string) => {
 };
 
 //used for generating activation code and adn activationToken
-const generateActivationTokenAndCode = async (user: userDocument) => {
+const generateActivationTokenAndCode = async (
+    user: UserType,
+    email: string,
+) => {
     //1- generate code
     const code = createCode();
     const hashedCode = cryptoEncryption(code);
     //3- generate activation Token
-    const activationToken = `${user.email + code}`;
+    const activationToken = `${email + code}`;
     const hashedActivationToken = cryptoEncryption(activationToken);
     //5 save token and code to user
     user.activationCode = hashedCode;
@@ -40,7 +43,7 @@ export const resettingUserCodeFields = async (user: userDocument) => {
     await user.save();
 };
 
-export const generateAnotherActivationCode = async (user: userDocument) => {
+export const generateAnotherActivationCode = async (user: UserType) => {
     const code = createCode();
     const hashedCode = cryptoEncryption(code);
 
@@ -51,24 +54,25 @@ export const generateAnotherActivationCode = async (user: userDocument) => {
 };
 
 export const generateAndEmailCode = async (
-    user: userDocument,
+    user: UserType,
+    email: string,
 ): Promise<string> => {
     const [activationToken, code]: string[] =
-        await generateActivationTokenAndCode(user);
+        await generateActivationTokenAndCode(user, email);
     //3- send email to user
     const subject = 'email activation';
     const message = `your activation code is ${code}`;
-    await sendingCodeToEmail(user, subject, message);
+    await sendingCodeToEmail(email, subject, message);
     return activationToken;
 };
 
 //used for generating activation code and adn activationToken
-const generatePassResetTokenAndCode = async (user: userDocument) => {
+const generatePassResetTokenAndCode = async (user: UserType, email: string) => {
     //1- generate code
     const code = createCode();
     const hashedCode = cryptoEncryption(code);
     //3- generate activation Token
-    const activationToken = `${user.email + code}`;
+    const activationToken = `${email + code}`;
     const hashedActivationToken = cryptoEncryption(activationToken);
     //5 save token and code to user
     user.passwordResetCode = hashedCode;
@@ -78,18 +82,21 @@ const generatePassResetTokenAndCode = async (user: userDocument) => {
     return [hashedActivationToken, code];
 };
 
-export const generateAndEmailPassResetCode = async (user: userDocument) => {
+export const generateAndEmailPassResetCode = async (
+    user: UserType,
+    email: string,
+) => {
     const [hashedActivationToken, code]: string[] =
-        await generatePassResetTokenAndCode(user);
+        await generatePassResetTokenAndCode(user, email);
     //3- send email to user
     const subject = 'password reset code';
     const message = `your password reset code is valid for (10 min) \n
   ${code}\n`;
-    await sendingCodeToEmail(user, subject, message);
+    await sendingCodeToEmail(email, subject, message);
     return hashedActivationToken;
 };
 
-export const generateAnotherPassResetCode = async (user: userDocument) => {
+export const generateAnotherPassResetCode = async (user: UserType) => {
     const code = createCode();
     const hashedCode = cryptoEncryption(code);
 
