@@ -5,6 +5,15 @@ import { HrEmployee } from './HrEmployee';
 import { FollowBusiness } from './FollowBusiness';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { Job } from './Job';
+import { Address } from './Address';
+
+/**
+ * TODO: add fields of CEO, FOUNDER, FOUNDED
+ * TODO: remove specialities and add tags
+ * TODO: phone number optional
+ * TODO: email optional
+ * TODO: website optional
+ * */
 
 @Entity()
 export class Business {
@@ -12,10 +21,22 @@ export class Business {
     id: number;
 
     @Column('text')
-    company_name: string;
+    name: string;
 
     @Column('text')
-    location: string;
+    logo: string;
+
+    @Column('text')
+    CEO: string;
+
+    @Column('text')
+    founder: string;
+
+    @Column('date')
+    founded: Date;
+
+    @Column(() => Address)
+    address: Address;
 
     @Column({
         type: 'enum',
@@ -30,35 +51,22 @@ export class Business {
     @Column('integer')
     company_size: number;
 
+    /**
+     * TODO: Convert this to enum
+     * */
     @Column('text')
     industry: string;
 
-    @IsNotEmpty({ message: 'Website is required' })
-    @IsString({ message: 'Website must be a string' })
-    @Column('text')
+    @Column('text', { nullable: true })
     website: string;
 
-    @IsNotEmpty({ message: 'Headquarter is required' })
-    @IsString({ message: 'Headquarter must be a string' })
     @Column('text')
     headquarter: string;
 
-    // @OneToMany(() => Speciality, (speciality) => speciality.id, {
-    //     cascade: true,
-    // })
-    // specialities: Speciality[];
-
-    @Column('text', { array: true })
-    specialities: string[];
-
-    @IsNotEmpty({ message: 'Email is required' })
-    @IsEmail({}, { message: 'Invalid email' })
-    @Column('text')
+    @Column('text', { nullable: true })
     email: string;
 
-    @IsNotEmpty({ message: 'Phone is required' })
-    @IsString({ message: 'Phone must be a string' })
-    @Column('text')
+    @Column('text', { nullable: true })
     phone: string;
 
     @OneToMany(() => Review, (review) => review.business, { cascade: true })

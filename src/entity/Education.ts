@@ -1,17 +1,27 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
+import { Account } from './Account';
 
 @Entity()
 export class Education {
-  @PrimaryGeneratedColumn()
-  id: number;
-  @Column("text")
-  university: string;
-  @Column("text")
-  fieldOfStudy: string;
-  @Column("float")
-  gpa: number;
-  @Column("date")
-  startDate: Date;
-  @Column("date")
-  endDate: Date;
+    // Account has only 1 education
+    // Account has education, not education has an account
+    // So Foreign key must be in the education side
+    @OneToOne(() => Account, (account) => account.id)
+    @PrimaryColumn({ type: 'integer' })
+    account_id: number;
+
+    @Column('text')
+    university: string;
+
+    @Column('text')
+    field_of_study: string;
+
+    @Column('float')
+    gpa: number;
+
+    @Column('date')
+    start_date: Date;
+
+    @Column('date')
+    end_date: Date;
 }

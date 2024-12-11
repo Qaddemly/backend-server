@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 import fs from 'fs';
 import AppError from '../utils/appError';
@@ -12,13 +12,13 @@ import {
 import catchAsync from 'express-async-handler';
 import { sendingCodeToEmail } from '../utils/email';
 import {
-    resettingUserCodeFields,
     cryptoEncryption,
-    generateAnotherActivationCode,
+    generateAndEmailCode,
     generateAndEmailPassResetCode,
+    generateAnotherActivationCode,
     generateAnotherPassResetCode,
     resetCodeVerified,
-    generateAndEmailCode,
+    resettingUserCodeFields,
 } from '../utils/codeUtils';
 import { hashingPassword, isCorrectPassword } from '../utils/password';
 import {
@@ -27,16 +27,13 @@ import {
     verifyTokenAsync,
 } from '../utils/jwt';
 import { mongoId, userDocument, UserType } from '../types/documentTypes';
-import {
-    uploadProfilePicAndResume,
-    uploadSingleImage,
-    uploadSingleResume,
-} from '../middlewares/upload.middleWare';
+import { uploadProfilePicAndResume } from '../middlewares/upload.middleWare';
 import sharp from 'sharp';
 import { expressFiles } from '../types/types';
 import { AccountRepo } from '../Repository/accountRepo';
 import AccountTempData from '../models/accountModel';
 import User from '../models/userModel';
+
 export const createUserForSignUp = async (
     reqBody: signUpBody,
 ): Promise<userDocument> => {
@@ -281,7 +278,7 @@ export const logInService = async (
         throw new AppError('email or password is incorrect', 400);
     }
     // checking is email active
-    if (!account.isActivated) {
+    if (!account.is_activated) {
         const userTempData = await AccountTempData.findOne({
             accountId: account.id,
         });

@@ -1,25 +1,51 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { EmploymentType } from "../enums/employmentType";
-import { LocationType } from "../enums/locationType";
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToMany,
+    ManyToOne,
+    PrimaryColumn,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
+import { EmploymentType } from '../enums/employmentType';
+import { LocationType } from '../enums/locationType';
+import { Account } from './Account';
 
 @Entity()
 export class Experience {
-  @PrimaryGeneratedColumn()
-  id: number;
-  @Column("text")
-  jobTitle: string;
-  @Column({ type: "enum", enum: EmploymentType })
-  employmentType: EmploymentType;
-  @Column("text")
-  companyName: string;
-  @Column("text")
-  location: string;
-  @Column({ type: "enum", enum: LocationType })
-  locationType: LocationType;
-  @Column("bool")
-  stillWorking: boolean;
-  @Column("date")
-  startDate: Date;
-  @Column("date")
-  endDate: Date;
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @ManyToOne(() => Account, (account) => account.experiences, {
+        onDelete: 'CASCADE',
+    })
+    @JoinColumn({
+        name: 'account_id',
+        foreignKeyConstraintName: 'FK_EXPERIENCE_ACCOUNT',
+    })
+    account: Account;
+
+    @Column('text')
+    job_title: string;
+
+    @Column({ type: 'enum', enum: EmploymentType })
+    employment_type: EmploymentType;
+
+    @Column('text')
+    company_name: string;
+
+    @Column('text')
+    location: string;
+
+    @Column({ type: 'enum', enum: LocationType })
+    location_type: LocationType;
+
+    @Column('bool')
+    still_working: boolean;
+
+    @Column('date')
+    start_date: Date;
+
+    @Column('date')
+    end_date: Date;
 }
