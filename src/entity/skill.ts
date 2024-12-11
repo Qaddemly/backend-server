@@ -1,9 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Skill {
-  @PrimaryGeneratedColumn()
-  id: number;
-  @Column("text")
-  name: string;
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column('text')
+    name: string;
 }

@@ -6,6 +6,14 @@ import { FollowBusiness } from './FollowBusiness';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { Job } from './Job';
 
+/**
+ * TODO: add fields of CEO, FOUNDER, FOUNDED
+ * TODO: remove specialities and add tags
+ * TODO: phone number optional
+ * TODO: email optional
+ * TODO: website optional
+ * */
+
 @Entity()
 export class Business {
     @PrimaryGeneratedColumn()
@@ -17,6 +25,10 @@ export class Business {
     @Column('text')
     logo: string;
 
+    /**
+     * TODO: location can be international
+     * TODO: make location (country + city)
+     * */
     @Column('text')
     location: string;
 
@@ -33,6 +45,9 @@ export class Business {
     @Column('integer')
     company_size: number;
 
+    /**
+     * TODO: Convert this to enum
+     * */
     @Column('text')
     industry: string;
 
