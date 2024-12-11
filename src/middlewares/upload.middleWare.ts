@@ -108,7 +108,7 @@ export const resizeBusinessLogo = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         if (!req.file) return next();
         const outputFileName = `business-logo-${req.body.name}-${Date.now()}.jpeg`;
-        const outputFilePath = `uploads/businesses/${outputFileName}`;
+        const outputFilePath = `src/uploads/businesses/${outputFileName}`;
 
         // Ensure the directory exists
         if (!fs.existsSync(path.dirname(outputFilePath))) {
