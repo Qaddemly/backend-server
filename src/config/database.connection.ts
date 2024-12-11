@@ -9,6 +9,9 @@ function databaseConnect() {
     mongoose
         .connect(dbConnectionString)
         .then(() => {
+            // AccountTempData.create({
+            //     accountId: 2,
+            // }).then(() => {});
             console.log(`MongoDB Database connected successfully`);
         })
         .catch((e) => {
