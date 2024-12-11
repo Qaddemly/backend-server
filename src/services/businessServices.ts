@@ -7,11 +7,14 @@ import { HrRole } from '../enums/HrRole';
 import { HrEmployeeRepo } from '../Repository/hrEmployeeRepo';
 import { Address } from '../entity/Address';
 import AppError from '../utils/appError';
+import { container, Logging } from '../utils/logger';
 
 /**
  * TODO: mark the Account that created the business as the owner.
  * TODO: make it possible for user to add hr_employees with their roles at Creation.
  * */
+
+const logger = container.get(Logging);
 
 export const createBusiness = async (
     createBusinessDto: CreateBusinessDto,
@@ -21,6 +24,7 @@ export const createBusiness = async (
     const account = await AccountRepo.findOneBy({ id: accountId });
 
     if (!account) {
+        logger.logError('Account with ${accountId} do not exist in database');
         throw new AppError(
             `Account with ${accountId} do not exist in database`,
             500,
