@@ -1,15 +1,22 @@
 import {
     Column,
     Entity,
+    JoinColumn,
     JoinTable,
     ManyToMany,
     OneToMany,
+    OneToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Review } from './Review';
 import { HrEmployee } from './HrEmployee';
 import { FollowBusiness } from './FollowBusiness';
 import { JobApplication } from './JobApplication';
+import { Address } from './Address';
+import { Education } from './Education';
+import { Experience } from './Experience';
+import { Language } from './Language';
+import { Skill } from './skill';
 
 @Entity()
 export class Account {
@@ -45,6 +52,19 @@ export class Account {
 
     @Column('bool', { default: true })
     is_activated: boolean;
+
+    @OneToMany(() => Experience, (experience) => experience.account, {
+        cascade: true,
+    })
+    experiences: Experience[];
+
+    @OneToMany(() => Language, (language) => language.account, {
+        cascade: true,
+    })
+    languages: Language[];
+
+    @OneToMany(() => Skill, (skill) => skill.account, { cascade: true })
+    skills: Skill[];
 
     @ManyToMany(() => JobApplication)
     @JoinTable({ name: 'account_job_applications' })

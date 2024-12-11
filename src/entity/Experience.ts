@@ -1,11 +1,29 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToMany,
+    ManyToOne,
+    PrimaryColumn,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
 import { EmploymentType } from '../enums/employmentType';
 import { LocationType } from '../enums/locationType';
+import { Account } from './Account';
 
 @Entity()
 export class Experience {
     @PrimaryGeneratedColumn()
     id: number;
+
+    @ManyToOne(() => Account, (account) => account.experiences, {
+        onDelete: 'CASCADE',
+    })
+    @JoinColumn({
+        name: 'account_id',
+        foreignKeyConstraintName: 'FK_EXPERIENCE_ACCOUNT',
+    })
+    account: Account;
 
     @Column('text')
     job_title: string;

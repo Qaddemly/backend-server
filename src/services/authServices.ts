@@ -278,7 +278,7 @@ export const logInService = async (
         throw new AppError('email or password is incorrect', 400);
     }
     // checking is email active
-    if (!account.isActivated) {
+    if (!account.is_activated) {
         const userTempData = await AccountTempData.findOne({
             accountId: account.id,
         });
