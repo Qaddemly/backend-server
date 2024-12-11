@@ -17,7 +17,10 @@ import { getBusinessQueryParams } from '../types/types';
  * */
 export const createBusiness = catchAsync(
     async (req: Request<{}, {}, CreateBusinessDto>, res: Response) => {
-        const business = await businessServices.createBusiness(req.body, 0);
+        const business = await businessServices.createBusiness(
+            req.body,
+            req.user.id,
+        );
         res.status(201).json({
             status: 'success',
             message: 'Business created successfully',

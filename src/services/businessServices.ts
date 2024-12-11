@@ -1,6 +1,10 @@
 import { Business } from '../entity/Business';
 import { CreateBusinessDto } from '../dtos/businessDto';
 import { businessRepo } from '../Repository/businessRepo';
+import { AccountRepo } from '../Repository/accountRepo';
+import { HrEmployee } from '../entity/HrEmployee';
+import { HrRole } from '../enums/HrRole';
+import { HrEmployeeRepo } from '../Repository/hrEmployeeRepo';
 
 /**
  * TODO: mark the Account that created the business as the owner.
@@ -9,10 +13,14 @@ import { businessRepo } from '../Repository/businessRepo';
 
 export const createBusiness = async (
     createBusinessDto: CreateBusinessDto,
-    userId: number,
+    accountId: number,
 ): Promise<Business> => {
+    // Get the current authenticated user
+    const account = await AccountRepo.findOneBy({ id: accountId });
+
     const business = new Business();
-    business.company_name = createBusinessDto.company_name;
+    business.logo = createBusinessDto.logo;
+    business.name = createBusinessDto.name;
     business.location = createBusinessDto.location;
     business.location_type = createBusinessDto.location_type;
     business.description = createBusinessDto.description;
@@ -23,9 +31,16 @@ export const createBusiness = async (
     business.email = createBusinessDto.email;
     business.phone = createBusinessDto.phone;
     business.specialities = createBusinessDto.specialities;
-    // We Have To Save Business first before adding specialities
 
     // business.hr_employees = createBusinessDto.hr_employees;
 
-    return await businessRepo.save(business);
+    const hrEmployee = new HrEmployee();
+    hrEmployee.business = business;
+    hrEmployee.account = account;
+    hrEmployee.role = HrRole.OWNER;
+
+    const saved_business = await businessRepo.save(business);
+    await HrEmployeeRepo.save(hrEmployee);
+
+    return saved_business;
 };

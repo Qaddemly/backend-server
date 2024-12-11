@@ -12,7 +12,10 @@ export class Business {
     id: number;
 
     @Column('text')
-    company_name: string;
+    name: string;
+
+    @Column('text')
+    logo: string;
 
     @Column('text')
     location: string;
@@ -42,11 +45,6 @@ export class Business {
     @IsString({ message: 'Headquarter must be a string' })
     @Column('text')
     headquarter: string;
-
-    // @OneToMany(() => Speciality, (speciality) => speciality.id, {
-    //     cascade: true,
-    // })
-    // specialities: Speciality[];
 
     @Column('text', { array: true })
     specialities: string[];

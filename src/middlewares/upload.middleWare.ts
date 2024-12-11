@@ -1,7 +1,11 @@
 import multer, { FileFilterCallback } from 'multer';
 import path from 'path';
-import { Request } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import AppError from '../utils/appError';
+import exp from 'node:constants';
+import catchAsync from 'express-async-handler';
+import fs from 'fs';
+import sharp from 'sharp';
 const storage = multer.memoryStorage();
 const imageMulterOption = () => {
     const fileFilter = (
@@ -9,13 +13,12 @@ const imageMulterOption = () => {
         file: Express.Multer.File,
         cb: FileFilterCallback,
     ) => {
-        console.log(file);
+        // console.log(file);
         if (file.mimetype.split('/')[0] === 'image') {
             cb(null, true);
         } else cb(new AppError('only images is allowed'));
     };
-    const upload = multer({ storage: storage, fileFilter: fileFilter });
-    return upload;
+    return multer({ storage: storage, fileFilter: fileFilter });
 };
 
 const resumeMulterOption = () => {
@@ -30,8 +33,7 @@ const resumeMulterOption = () => {
         // if (file.mimetype.split('/')[0] === 'image') {
         // } else cb(new AppError('only images is allowed'));
     };
-    const upload = multer({ storage: storage, fileFilter: fileFilter });
-    return upload;
+    return multer({ storage: storage, fileFilter: fileFilter });
 };
 
 export const uploadSingleImage = (fieldName: string) => {
@@ -101,3 +103,25 @@ const upload = multer({
 
 export const uploadProfilePicAndResume = (fields?: multer.Field[]) =>
     upload.fields(fields!);
+
+export const resizeBusinessLogo = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        if (!req.file) return next();
+        const outputFileName = `business-logo-${req.body.name}-${Date.now()}.jpeg`;
+        const outputFilePath = `uploads/businesses/${outputFileName}`;
+
+        // Ensure the directory exists
+        if (!fs.existsSync(path.dirname(outputFilePath))) {
+            fs.mkdirSync(path.dirname(outputFilePath), { recursive: true });
+        }
+
+        await sharp(req.file.buffer)
+            .resize(300, 300)
+            .toFormat('jpeg')
+            .jpeg({ quality: 90 })
+            .toFile(outputFilePath);
+        req.body.logo = outputFileName;
+
+        next();
+    },
+);
