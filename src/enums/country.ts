@@ -169,4 +169,5 @@ export enum Country {
     Switzerland = 'Switzerland',
     Syria = 'Syria',
     Thailand = 'Thailand',
+    International = 'International',
 }

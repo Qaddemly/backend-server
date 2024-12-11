@@ -17,6 +17,7 @@ import { Education } from './Education';
 import { Experience } from './Experience';
 import { Language } from './Language';
 import { Skill } from './skill';
+import { Job } from './Job';
 
 @Entity()
 export class Account {
@@ -40,6 +41,9 @@ export class Account {
 
     @Column('text', { nullable: true })
     profile_picture: string;
+
+    @Column(() => Address, { prefix: false })
+    address: Address;
 
     @Column('text', { nullable: true })
     resume: string;
@@ -67,8 +71,23 @@ export class Account {
     skills: Skill[];
 
     @ManyToMany(() => JobApplication)
-    @JoinTable({ name: 'account_job_applications' })
+    @JoinTable({
+        name: 'account_job_applications',
+        joinColumn: { name: 'account_id', referencedColumnName: 'id' },
+        inverseJoinColumn: {
+            name: 'job_application_id',
+            referencedColumnName: 'id',
+        },
+    })
     job_applications: JobApplication[];
+
+    @ManyToMany(() => Job)
+    @JoinTable({
+        name: 'account_saved_jobs',
+        joinColumn: { name: 'account_id', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'job_id', referencedColumnName: 'id' },
+    })
+    saved_jobs: Job[];
 
     @OneToMany(
         () => FollowBusiness,

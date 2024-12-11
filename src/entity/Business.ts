@@ -5,6 +5,7 @@ import { HrEmployee } from './HrEmployee';
 import { FollowBusiness } from './FollowBusiness';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { Job } from './Job';
+import { Address } from './Address';
 
 /**
  * TODO: add fields of CEO, FOUNDER, FOUNDED
@@ -25,12 +26,17 @@ export class Business {
     @Column('text')
     logo: string;
 
-    /**
-     * TODO: location can be international
-     * TODO: make location (country + city)
-     * */
     @Column('text')
-    location: string;
+    CEO: string;
+
+    @Column('text')
+    founder: string;
+
+    @Column('date')
+    founded: Date;
+
+    @Column(() => Address)
+    address: Address;
 
     @Column({
         type: 'enum',
@@ -51,27 +57,16 @@ export class Business {
     @Column('text')
     industry: string;
 
-    @IsNotEmpty({ message: 'Website is required' })
-    @IsString({ message: 'Website must be a string' })
-    @Column('text')
+    @Column('text', { nullable: true })
     website: string;
 
-    @IsNotEmpty({ message: 'Headquarter is required' })
-    @IsString({ message: 'Headquarter must be a string' })
     @Column('text')
     headquarter: string;
 
-    @Column('text', { array: true })
-    specialities: string[];
-
-    @IsNotEmpty({ message: 'Email is required' })
-    @IsEmail({}, { message: 'Invalid email' })
-    @Column('text')
+    @Column('text', { nullable: true })
     email: string;
 
-    @IsNotEmpty({ message: 'Phone is required' })
-    @IsString({ message: 'Phone must be a string' })
-    @Column('text')
+    @Column('text', { nullable: true })
     phone: string;
 
     @OneToMany(() => Review, (review) => review.business, { cascade: true })

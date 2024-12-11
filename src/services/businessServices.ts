@@ -19,9 +19,13 @@ export const createBusiness = async (
     const account = await AccountRepo.findOneBy({ id: accountId });
 
     const business = new Business();
-    business.logo = createBusinessDto.logo;
     business.name = createBusinessDto.name;
-    business.location = createBusinessDto.location;
+    business.logo = createBusinessDto.logo;
+    business.CEO = createBusinessDto.CEO;
+    business.founder = createBusinessDto.founder;
+    business.founded = createBusinessDto.founded;
+    business.address.country = createBusinessDto.address.country;
+    business.address.city = createBusinessDto.address.city;
     business.location_type = createBusinessDto.location_type;
     business.description = createBusinessDto.description;
     business.company_size = createBusinessDto.company_size;
@@ -30,7 +34,6 @@ export const createBusiness = async (
     business.headquarter = createBusinessDto.headquarter;
     business.email = createBusinessDto.email;
     business.phone = createBusinessDto.phone;
-    business.specialities = createBusinessDto.specialities;
 
     // business.hr_employees = createBusinessDto.hr_employees;
 
