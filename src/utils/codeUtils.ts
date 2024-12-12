@@ -2,6 +2,7 @@ import crypto from 'crypto';
 import { userDocument, UserType } from '../types/documentTypes';
 import { NextFunction, Response } from 'express';
 import { sendingCodeToEmail } from './email';
+import { AccountRepository } from '../Repository/accountRepository';
 // create general code for activation or resetting password
 const createCode = (): string => {
     const code = Math.floor(100000 + Math.random() * 900000).toString();
@@ -14,7 +15,7 @@ export const cryptoEncryption = (objective: string) => {
 
 //used for generating activation code and adn activationToken
 const generateActivationTokenAndCode = async (
-    user: UserType,
+    userTempData: UserType,
     email: string,
 ) => {
     //1- generate code
@@ -23,42 +24,46 @@ const generateActivationTokenAndCode = async (
     //3- generate activation Token
     const activationToken = `${email + code}`;
     const hashedActivationToken = cryptoEncryption(activationToken);
-    //5 save token and code to user
-    user.activationCode = hashedCode;
-    user.activationCodeExpiresIn = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-    user.activationToken = hashedActivationToken;
-    await user.save();
+    //5 save token and code to userTempData
+    userTempData.activationCode = hashedCode;
+    userTempData.activationCodeExpiresIn = new Date(
+        Date.now() + 10 * 60 * 1000,
+    ); // 10 minutes
+    userTempData.activationToken = hashedActivationToken;
+    await userTempData.save();
     return [hashedActivationToken, code];
 };
 
-export const resettingUserCodeFields = async (user: userDocument) => {
-    user.activationCode = undefined;
-    user.activationCodeExpiresIn = undefined;
-    user.activationToken = undefined;
-    user.passwordResetCode = undefined;
-    user.passwordResetCodeExpires = undefined;
-    user.passwordResetVerificationToken = undefined;
-    user.passwordResetToken = undefined;
-    user.activationCode = undefined;
-    await user.save();
+export const resettingUserCodeFields = async (userTempData: UserType) => {
+    userTempData.activationCode = undefined;
+    userTempData.activationCodeExpiresIn = undefined;
+    userTempData.activationToken = undefined;
+    userTempData.passwordResetCode = undefined;
+    userTempData.passwordResetCodeExpires = undefined;
+    userTempData.passwordResetVerificationToken = undefined;
+    userTempData.passwordResetToken = undefined;
+    userTempData.activationCode = undefined;
+    await userTempData.save();
 };
 
-export const generateAnotherActivationCode = async (user: UserType) => {
+export const generateAnotherActivationCode = async (userTempData: UserType) => {
     const code = createCode();
     const hashedCode = cryptoEncryption(code);
 
-    user.activationCode = hashedCode;
-    user.activationCodeExpiresIn = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-    await user.save();
+    userTempData.activationCode = hashedCode;
+    userTempData.activationCodeExpiresIn = new Date(
+        Date.now() + 10 * 60 * 1000,
+    ); // 10 minutes
+    await userTempData.save();
     return code;
 };
 
 export const generateAndEmailCode = async (
-    user: UserType,
+    userTempData: UserType,
     email: string,
 ): Promise<string> => {
     const [activationToken, code]: string[] =
-        await generateActivationTokenAndCode(user, email);
+        await generateActivationTokenAndCode(userTempData, email);
     //3- send email to user
     const subject = 'email activation';
     const message = `your activation code is ${code}`;
@@ -67,27 +72,32 @@ export const generateAndEmailCode = async (
 };
 
 //used for generating activation code and adn activationToken
-const generatePassResetTokenAndCode = async (user: UserType, email: string) => {
+const generatePassResetTokenAndCode = async (
+    userTempData: UserType,
+    email: string,
+) => {
     //1- generate code
     const code = createCode();
     const hashedCode = cryptoEncryption(code);
     //3- generate activation Token
     const activationToken = `${email + code}`;
     const hashedActivationToken = cryptoEncryption(activationToken);
-    //5 save token and code to user
-    user.passwordResetCode = hashedCode;
-    user.passwordResetCodeExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-    user.passwordResetVerificationToken = hashedActivationToken;
-    await user.save();
+    //5 save token and code to userTempData
+    userTempData.passwordResetCode = hashedCode;
+    userTempData.passwordResetCodeExpires = new Date(
+        Date.now() + 10 * 60 * 1000,
+    ); // 10 minutes
+    userTempData.passwordResetVerificationToken = hashedActivationToken;
+    await userTempData.save();
     return [hashedActivationToken, code];
 };
 
 export const generateAndEmailPassResetCode = async (
-    user: UserType,
+    userTempData: UserType,
     email: string,
 ) => {
     const [hashedActivationToken, code]: string[] =
-        await generatePassResetTokenAndCode(user, email);
+        await generatePassResetTokenAndCode(userTempData, email);
     //3- send email to user
     const subject = 'password reset code';
     const message = `your password reset code is valid for (10 min) \n
@@ -96,29 +106,35 @@ export const generateAndEmailPassResetCode = async (
     return hashedActivationToken;
 };
 
-export const generateAnotherPassResetCode = async (user: UserType) => {
+export const generateAnotherPassResetCode = async (userTempData: UserType) => {
     const code = createCode();
     const hashedCode = cryptoEncryption(code);
 
-    user.passwordResetCode = hashedCode;
-    user.passwordResetCodeExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-    await user.save();
+    userTempData.passwordResetCode = hashedCode;
+    userTempData.passwordResetCodeExpires = new Date(
+        Date.now() + 10 * 60 * 1000,
+    ); // 10 minutes
+    await userTempData.save();
     return code;
 };
 
-export const resetCodeVerified = async (user: userDocument) => {
+export const resetCodeVerified = async (
+    userTempData: UserType, // User temporary data
+    user: UserType, // account user
+) => {
     if (!user.isActivated) {
         user.isActivated = true;
-        user.activationCode = undefined;
-        user.activationCodeExpiresIn = undefined;
-        user.activationToken = undefined;
+        userTempData.activationCode = undefined;
+        userTempData.activationCodeExpiresIn = undefined;
+        userTempData.activationToken = undefined;
     }
-    const resetToken = `${user.email}+${user.passwordResetVerificationToken}`;
+    const resetToken = `${user.email}+${userTempData.passwordResetVerificationToken}`;
     const passwordResetToken = cryptoEncryption(resetToken);
-    user.passwordResetToken = passwordResetToken;
-    user.passwordResetCode = undefined;
-    user.passwordResetCodeExpires = undefined;
-    user.passwordResetVerificationToken = undefined;
-    await user.save();
+    userTempData.passwordResetToken = passwordResetToken;
+    userTempData.passwordResetCode = undefined;
+    userTempData.passwordResetCodeExpires = undefined;
+    userTempData.passwordResetVerificationToken = undefined;
+    await userTempData.save();
+    await AccountRepository.save(user);
     return passwordResetToken;
 };
