@@ -30,7 +30,7 @@ import { mongoId, userDocument, UserType } from '../types/documentTypes';
 import { uploadProfilePicAndResume } from '../middlewares/upload.middleWare';
 import sharp from 'sharp';
 import { expressFiles } from '../types/types';
-import { AccountRepo } from '../Repository/accountRepo';
+import { AccountRepository } from '../Repository/accountRepository';
 import AccountTempData from '../models/accountModel';
 import User from '../models/userModel';
 
@@ -177,7 +177,7 @@ export const createAnotherCodeAndResend = async (activationToken: string) => {
     const user = await AccountTempData.findOne({
         activationToken: activationToken,
     });
-    const foundUser = await AccountRepo.findOneBy({ id: user.accountId });
+    const foundUser = await AccountRepository.findOneBy({ id: user.accountId });
     if (!user) {
         throw new AppError('user belong to that token does not exist', 400);
     }
@@ -188,7 +188,7 @@ export const createAnotherCodeAndResend = async (activationToken: string) => {
 };
 
 export const generateForgetPasswordCodeAndEmail = async (email: string) => {
-    const user = await AccountRepo.findOneBy({ email: email });
+    const user = await AccountRepository.findOneBy({ email: email });
     if (!user) {
         throw new AppError('no user found with this email', 404);
     }
@@ -264,7 +264,7 @@ export const logInService = async (
     //console.log(typeof req.query.limit, typeof req.query.page);
     //1- find user by email
     //const user = await User.findOne({ email });
-    const account = await AccountRepo.findOneBy({ email: email });
+    const account = await AccountRepository.findOneBy({ email: email });
     if (!account) {
         throw new AppError('email or password is incorrect', 400);
     }
@@ -323,7 +323,7 @@ export const protect = catchAsync(
                 token,
                 'access',
             )) as JwtPayload;
-            user = await AccountRepo.findOneBy({ id: decoded!.userId });
+            user = await AccountRepository.findOneBy({ id: decoded!.userId });
             if (!user) {
                 throw new AppError(
                     'user belong to that token does not exist',
@@ -410,7 +410,7 @@ const refreshTokenHandler = async (req: Request, res: Response) => {
         // detect reuse of refreshToken
         if (!userTempData) {
             const decoded = await verifyTokenAsync(refreshToken, 'refresh');
-            const hackedUser = await AccountRepo.findOneBy({
+            const hackedUser = await AccountRepository.findOneBy({
                 email: (decoded as JwtPayload).email,
             });
             if (hackedUser) {
@@ -430,7 +430,7 @@ const refreshTokenHandler = async (req: Request, res: Response) => {
         }
 
         const decoded = await verifyTokenAsync(refreshToken, 'refresh');
-        const foundUser = await AccountRepo.findOneBy({
+        const foundUser = await AccountRepository.findOneBy({
             email: (decoded as JwtPayload).email,
         });
         return [(decoded as JwtPayload).email, foundUser, userTempData];
