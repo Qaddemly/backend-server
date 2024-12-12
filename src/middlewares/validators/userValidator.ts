@@ -5,6 +5,7 @@ import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
 import { Language } from '../../enums/language';
 import User from '../../models/userModel';
+import { AccountRepository } from '../../Repository/accountRepository';
 
 export const userCreationValidatorStepOne: ValidationChain[] = [
     body('email')
@@ -15,7 +16,7 @@ export const userCreationValidatorStepOne: ValidationChain[] = [
         .withMessage('Please provide a valid email address')
         .toLowerCase()
         .custom(async (val) => {
-            const user = await User.findOne({ email: val });
+            const user = await AccountRepository.findOneBy({ email: val });
             if (!user) {
                 return true;
             } else {

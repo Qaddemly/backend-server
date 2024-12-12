@@ -1,6 +1,8 @@
 import passport from 'passport';
 import GoogleStrategy from 'passport-google-oauth20';
-import User from '../models/userModel';
+import AccountTempData from '../models/accountModel';
+import { AccountRepository } from '../Repository/accountRepository';
+import { Account } from '../entity/Account';
 declare global {
     namespace Express {
         interface User {
@@ -13,7 +15,8 @@ passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 passport.deserializeUser(async (id, done) => {
-    const user = await User.findById(id);
+    console.log('a7aaaaaaaaaaaaaaaaaaaaa');
+    const user = await AccountRepository.findOneBy({ id: id as never });
     done(null, user);
 });
 passport.use(
@@ -26,20 +29,27 @@ passport.use(
         // call back function
         async (accessToken, RefreshToken, profile, done) => {
             //console.log(profile, 'a7aaaaaaaaaaaaa');
-            let user = await User.findOne({ googleId: profile.id });
-            if (user) {
-                //console.log("user found");
+            let userTempData = await AccountTempData.findOne({
+                googleId: profile.id,
+            });
+            if (userTempData) {
+                console.log('user found');
+                const user = await AccountRepository.findOneBy({
+                    id: userTempData.accountId,
+                });
                 done(null, user);
             } else {
-                user = new User({
-                    firstName: profile._json.given_name,
-                    lastName: profile._json.family_name,
-                    email: profile.emails![0].value,
+                const user = new Account();
+                user.first_name = profile._json.given_name;
+                user.last_name = profile._json.family_name;
+                user.email = profile.emails![0].value;
+                user.profile_picture = profile._json.picture;
+                user.is_activated = true;
+                const returnedUser = await AccountRepository.save(user);
+                userTempData = await AccountTempData.create({
+                    accountId: returnedUser.id,
                     googleId: profile.id,
-                    profilePicture: profile._json.picture,
-                    isActivated: true,
                 });
-                await user.save({ validateBeforeSave: false });
                 done(null, user);
             }
         },

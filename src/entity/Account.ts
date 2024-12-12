@@ -18,6 +18,7 @@ import { Experience } from './Experience';
 import { Language } from './Language';
 import { Skill } from './skill';
 import { Job } from './Job';
+import { Phone } from './Phone';
 
 @Entity()
 export class Account {
@@ -33,7 +34,7 @@ export class Account {
     @Column({ type: 'text', unique: true })
     email: string;
 
-    @Column({ type: 'text' })
+    @Column({ type: 'text', nullable: true })
     password: string;
 
     @Column('date', { nullable: true })
@@ -44,7 +45,8 @@ export class Account {
 
     @Column(() => Address, { prefix: false })
     address: Address;
-
+    @Column(() => Phone, { prefix: false })
+    phone: Phone;
     @Column('text', { nullable: true })
     resume: string;
 
@@ -54,7 +56,7 @@ export class Account {
     })
     password_changed_at: Date;
 
-    @Column('bool', { default: true })
+    @Column('bool', { default: false })
     is_activated: boolean;
 
     @OneToMany(() => Experience, (experience) => experience.account, {
