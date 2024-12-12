@@ -1,0 +1,20 @@
+2024-12-12 23:00:07:07 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-12 23:00:07:07 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-12 23:00:09:09 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-12 23:01:50:150 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-12 23:01:51:151 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-12 23:01:52:152 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-12 23:02:20:220 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-12 23:02:38:238 [31merror[39m: [31mvalidationErrors[39m
+2024-12-12 23:08:47:847 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-12 23:08:48:848 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-12 23:08:49:849 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-12 23:08:51:851 [31merror[39m: [31memail or password is incorrect[39m
+2024-12-12 23:08:51:851 [35mhttp[39m: [35mPOST /api/v1/auth/login 400 831 - 235.498 ms[39m
+[35m[39m
+2024-12-12 23:09:07:97 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-12 23:09:07:97 [35mhttp[39m: [35mPOST /api/v1/business 401 1312 - 174.155 ms[39m
+[35m[39m
+2024-12-12 23:09:11:911 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-12 23:09:11:911 [35mhttp[39m: [35mPOST /api/v1/business 401 1312 - 181.063 ms[39m
+[35m[39m

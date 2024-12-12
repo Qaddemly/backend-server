@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import AppError from '../utils/appError';
-import { container, Logging } from '../utils/logger';
-
-const logger = container.get(Logging);
+import { Logger } from '../utils/logger';
 
 const devError = (err: AppError, res: Response) => {
     res.status(err.statusCode!).json({
@@ -41,5 +39,5 @@ export const globalErrorHandler = (
     } else {
         sendErrorProduction(err, res);
     }
-    logger.logError(err.message, { stack: err.stack });
+    Logger.error(err.message, { stack: err.stack });
 };

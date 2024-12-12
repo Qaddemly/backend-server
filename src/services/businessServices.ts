@@ -6,15 +6,12 @@ import { HrEmployee } from '../entity/HrEmployee';
 import { HrRole } from '../enums/HrRole';
 import { Address } from '../entity/Address';
 import AppError from '../utils/appError';
-import { container, Logging } from '../utils/logger';
 import { HrEmployeeRepository } from '../Repository/hrEmployeeRepository';
-
+import { Logger } from '../utils/logger';
 /**
  * TODO: mark the Account that created the business as the owner.
  * TODO: make it possible for user to add hr_employees with their roles at Creation.
  * */
-
-const logger = container.get(Logging);
 
 export const createBusiness = async (
     createBusinessDto: CreateBusinessDto,
@@ -24,7 +21,7 @@ export const createBusiness = async (
     const account = await AccountRepository.findOneBy({ id: accountId });
 
     if (!account) {
-        logger.logError('Account with ${accountId} do not exist in database');
+        Logger.error('Account with ${accountId} do not exist in database');
         throw new AppError(
             `Account with ${accountId} do not exist in database`,
             500,
@@ -61,7 +58,7 @@ export const createBusiness = async (
 
     const saved_business = await BusinessRepository.save(business);
     await HrEmployeeRepository.save(hrEmployee);
-
+    Logger.info(`Business ${saved_business.id} created successfully`);
     return saved_business;
 };
 
@@ -78,16 +75,18 @@ export const updateBusiness = async (
     );
 
     if (!permissionToUpdate) {
-        logger.logError('User does not have permission to update business');
+        Logger.error('User does not have permission to update business');
         throw new AppError(
             'User does not have permission to update business',
             403,
         );
     }
-    return await BusinessRepository.updateBusiness(
+    const business = await BusinessRepository.updateBusiness(
         updateBusinessDTO,
         businessId,
     );
+    Logger.info(`Business ${businessId} updated successfully`);
+    return business;
 };
 
 export const getUserBusinesses = async (accountId: number) => {
