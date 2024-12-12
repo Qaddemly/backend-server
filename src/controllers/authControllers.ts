@@ -31,11 +31,12 @@ import {
     changeCurrentPassword,
     signInGoogleRedirection,
     clearCookies,
+    signUpService,
 } from '../services/authServices';
 import { generateAndEmailCode } from '../utils/codeUtils';
 import User from '../models/userModel';
 import { userDocument } from '../types/documentTypes';
-import { AccountRepo } from '../Repository/accountRepo';
+import { AccountRepository } from '../Repository/accountRepository';
 import AccountTempData from '../models/accountModel';
 
 export const signUp = catchAsync(
@@ -45,17 +46,7 @@ export const signUp = catchAsync(
         next: NextFunction,
     ) => {
         try {
-            const userData = req.body;
-            //1-create a new user
-            const newUser = await createUserForSignUp(userData);
-            const userTempData = await AccountTempData.findOne({
-                accountId: newUser.id,
-            });
-            //2-sending email containing activation code for user mail
-            const activationToken = await generateAndEmailCode(
-                userData,
-                newUser.email,
-            );
+            const activationToken = await signUpService(req.body);
 
             res.status(201).json({
                 success: true,
@@ -246,12 +237,17 @@ export const logIn = catchAsync(
 export const logOut = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         const refreshToken = req.cookies.refreshToken;
-        const user = await User.findById(req.user?.id);
-        if (user) {
-            user.refreshTokens = user.refreshTokens.filter(
+        const currentUser = await AccountRepository.findOneBy({
+            id: req.user?.id,
+        });
+        const userTempData = await AccountTempData.findOne({
+            accountId: currentUser.id,
+        });
+        if (currentUser) {
+            userTempData.refreshTokens = userTempData.refreshTokens.filter(
                 (rt) => rt !== refreshToken,
             );
-            await user.save();
+            await userTempData.save();
         }
 
         clearCookies(res);

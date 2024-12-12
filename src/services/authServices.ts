@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 import fs from 'fs';
 import AppError from '../utils/appError';
@@ -12,13 +12,13 @@ import {
 import catchAsync from 'express-async-handler';
 import { sendingCodeToEmail } from '../utils/email';
 import {
-    resettingUserCodeFields,
     cryptoEncryption,
-    generateAnotherActivationCode,
+    generateAndEmailCode,
     generateAndEmailPassResetCode,
+    generateAnotherActivationCode,
     generateAnotherPassResetCode,
     resetCodeVerified,
-    generateAndEmailCode,
+    resettingUserCodeFields,
 } from '../utils/codeUtils';
 import { hashingPassword, isCorrectPassword } from '../utils/password';
 import {
@@ -27,34 +27,42 @@ import {
     verifyTokenAsync,
 } from '../utils/jwt';
 import { mongoId, userDocument, UserType } from '../types/documentTypes';
-import {
-    uploadProfilePicAndResume,
-    uploadSingleImage,
-    uploadSingleResume,
-} from '../middlewares/upload.middleWare';
+import { uploadProfilePicAndResume } from '../middlewares/upload.middleWare';
 import sharp from 'sharp';
 import { expressFiles } from '../types/types';
-import { AccountRepo } from '../Repository/accountRepo';
+import { AccountRepository } from '../Repository/accountRepository';
 import AccountTempData from '../models/accountModel';
 import User from '../models/userModel';
-export const createUserForSignUp = async (
-    reqBody: signUpBody,
-): Promise<userDocument> => {
+import { Account } from '../entity/Account';
+
+export const createUserForSignUp = async (reqBody: signUpBody) => {
     const { firstName, lastName, email, password } = reqBody;
     // hashing password before saving it in data base
     const hashedPassword = await hashingPassword(password);
     //1- create user
-    const newUser = await User.create({
-        firstName,
-        lastName,
-        email,
-        password: hashedPassword,
-    });
+    const newUser = new Account();
+    newUser.first_name = firstName;
+    newUser.last_name = lastName;
+    newUser.email = email;
+    newUser.password = hashedPassword;
+    await AccountRepository.save(newUser);
     return newUser;
+};
+export const signUpService = async (userData: signUpBody) => {
+    const newUser = await createUserForSignUp(userData);
+    const userTempData = await AccountTempData.create({
+        accountId: newUser.id,
+    });
+    //2-sending email containing activation code for user mail
+    const activationToken = await generateAndEmailCode(
+        userTempData,
+        newUser.email,
+    );
+    return activationToken;
 };
 
 export const updateUserForSignUpStepTwo = async (
-    userId: mongoId,
+    userId: number,
     req: Request<{}, {}, signUpBodyStepTwoDTO>,
 ) => {
     const {
@@ -69,20 +77,19 @@ export const updateUserForSignUpStepTwo = async (
         resume,
     } = req.body;
 
-    const user = await User.findByIdAndUpdate(
-        userId,
+    const user = await AccountRepository.update(
+        { id: userId },
         {
             address: address,
             phone: phone,
-            education: education,
-            experience: experience,
-            skills: skills,
-            dateOfBirth: dateOfBirth,
-            languages: languages,
-            profilePicture: profilePicture,
+            // education: education,
+            // experience: experience,
+            // skill: skills,
+            date_of_birth: dateOfBirth,
+            // language: languages,
+            profile_picture: profilePicture,
             resume: resume,
         },
-        { new: true },
     );
     if (!user) {
         throw new AppError('user not found', 404);
@@ -158,40 +165,47 @@ export const verifyActivationCode = async (
     activationToken: string,
 ) => {
     const hashActivationCode = cryptoEncryption(code);
-    const user = await User.findOne({
+    const userTempData = await AccountTempData.findOne({
         activationToken: activationToken,
     });
-    if (!user) {
+    if (!userTempData) {
         throw new AppError('user not found or token expired', 404);
     }
 
     if (
-        user.activationCode != hashActivationCode ||
-        user.activationCodeExpiresIn!.getTime() < Date.now()
+        userTempData.activationCode != hashActivationCode ||
+        userTempData.activationCodeExpiresIn!.getTime() < Date.now()
     ) {
         throw new AppError('code is incorrect or expired', 400);
     }
-    user.isActivated = true;
-    await resettingUserCodeFields(user);
+    const user = await AccountRepository.update(
+        {
+            id: userTempData.accountId,
+        },
+        { is_activated: true },
+    );
+    await resettingUserCodeFields(userTempData);
 };
 
 export const createAnotherCodeAndResend = async (activationToken: string) => {
     // const user = await User.findOne({ activationToken: activationToken });
-    const user = await AccountTempData.findOne({
+    const userTempData = await AccountTempData.findOne({
         activationToken: activationToken,
     });
-    const foundUser = await AccountRepo.findOneBy({ id: user.accountId });
-    if (!user) {
+    const foundUser = await AccountRepository.findOneBy({
+        id: userTempData.accountId,
+    });
+    if (!userTempData) {
         throw new AppError('user belong to that token does not exist', 400);
     }
-    const code = await generateAnotherActivationCode(user);
+    const code = await generateAnotherActivationCode(userTempData);
     const subject = 'email activation';
     const message = `your activation code is ${code}`;
     await sendingCodeToEmail(foundUser.email, subject, message);
 };
 
 export const generateForgetPasswordCodeAndEmail = async (email: string) => {
-    const user = await AccountRepo.findOneBy({ email: email });
+    const user = await AccountRepository.findOneBy({ email: email });
     if (!user) {
         throw new AppError('no user found with this email', 404);
     }
@@ -207,38 +221,46 @@ export const generateForgetPasswordCodeAndEmail = async (email: string) => {
 export const createAnotherResetPasswordCodeAndResend = async (
     resetActivationToken: string,
 ) => {
-    const user = await User.findOne({
+    const userTempData = await AccountTempData.findOne({
         passwordResetVerificationToken: resetActivationToken,
     });
-    if (!user) {
-        throw new AppError('user belong to that token does not exist', 400);
+    if (!userTempData) {
+        throw new AppError(
+            'userTempData belong to that token does not exist',
+            400,
+        );
     }
-    const userTempData = await AccountTempData.findOne({ accountId: user.id });
+    const userFound = await AccountRepository.findOneBy({
+        id: userTempData.accountId,
+    });
     const code = await generateAnotherPassResetCode(userTempData);
     const subject = 'password reset code';
     const message = `your password reset code is valid for (10 min) \n
       ${code}\n`;
-    await sendingCodeToEmail(user.email, subject, message);
+    await sendingCodeToEmail(userFound.email, subject, message);
 };
 
 export const PasswordResetCodeVerification = async (
     code: string,
     resetActivationToken: string,
 ) => {
-    const user = await User.findOne({
+    const userTempData = await AccountTempData.findOne({
         passwordResetVerificationToken: resetActivationToken,
     });
-    if (!user) {
+    if (!userTempData) {
         throw new AppError('no user founded with reset token', 404);
     }
     const hashedCode = cryptoEncryption(code);
     if (
-        user.passwordResetCode != hashedCode ||
-        user.passwordResetCodeExpires!.getTime() < Date.now()
+        userTempData.passwordResetCode != hashedCode ||
+        userTempData.passwordResetCodeExpires!.getTime() < Date.now()
     ) {
         throw new AppError('invalid or expired code', 400);
     }
-    const passwordResetToken = await resetCodeVerified(user);
+    const userFound = await AccountRepository.findOneBy({
+        id: userTempData.accountId,
+    });
+    const passwordResetToken = await resetCodeVerified(userTempData, userFound);
     return passwordResetToken;
 };
 
@@ -246,16 +268,22 @@ export const createNewPassword = async (
     passwordResetToken: string,
     newPassword: string,
 ) => {
-    const user = await User.findOne({
+    const userTempData = await AccountTempData.findOne({
         passwordResetToken,
     });
-    if (!user) {
-        throw new AppError('no user founded with that token', 404);
+    if (!userTempData) {
+        throw new AppError('no userTempData founded with that token', 404);
     }
+
     const hashedPassword = await hashingPassword(newPassword);
-    user.password = hashedPassword;
-    user.passwordChangedAt = new Date(Date.now());
-    await resettingUserCodeFields(user);
+    const userFound = await AccountRepository.update(
+        {
+            id: userTempData.accountId,
+        },
+        { password: hashedPassword, password_changed_at: new Date(Date.now()) },
+    );
+
+    await resettingUserCodeFields(userTempData);
 };
 
 export const logInService = async (
@@ -267,7 +295,7 @@ export const logInService = async (
     //console.log(typeof req.query.limit, typeof req.query.page);
     //1- find user by email
     //const user = await User.findOne({ email });
-    const account = await AccountRepo.findOneBy({ email: email });
+    const account = await AccountRepository.findOneBy({ email: email });
     if (!account) {
         throw new AppError('email or password is incorrect', 400);
     }
@@ -281,7 +309,7 @@ export const logInService = async (
         throw new AppError('email or password is incorrect', 400);
     }
     // checking is email active
-    if (!account.isActivated) {
+    if (!account.is_activated) {
         const userTempData = await AccountTempData.findOne({
             accountId: account.id,
         });
@@ -326,7 +354,7 @@ export const protect = catchAsync(
                 token,
                 'access',
             )) as JwtPayload;
-            user = await AccountRepo.findOneBy({ id: decoded!.userId });
+            user = await AccountRepository.findOneBy({ id: decoded!.userId });
             if (!user) {
                 throw new AppError(
                     'user belong to that token does not exist',
@@ -339,12 +367,15 @@ export const protect = catchAsync(
                     403,
                 );
             }
-            if (user.passwordChangedAt) {
+            if (user.password_changed_at) {
                 const passChangedAtTimeStamp = parseInt(
-                    `${user.passwordChangedAt.getTime() / 1000}`,
+                    `${user.password_changed_at.getTime() / 1000}`,
                     10,
                 );
-
+                console.log(
+                    passChangedAtTimeStamp > decoded!.iat,
+                    decoded!.iat,
+                );
                 if (passChangedAtTimeStamp > decoded!.iat!) {
                     throw new AppError(
                         'password is changed please login again',
@@ -413,7 +444,7 @@ const refreshTokenHandler = async (req: Request, res: Response) => {
         // detect reuse of refreshToken
         if (!userTempData) {
             const decoded = await verifyTokenAsync(refreshToken, 'refresh');
-            const hackedUser = await AccountRepo.findOneBy({
+            const hackedUser = await AccountRepository.findOneBy({
                 email: (decoded as JwtPayload).email,
             });
             if (hackedUser) {
@@ -433,7 +464,7 @@ const refreshTokenHandler = async (req: Request, res: Response) => {
         }
 
         const decoded = await verifyTokenAsync(refreshToken, 'refresh');
-        const foundUser = await AccountRepo.findOneBy({
+        const foundUser = await AccountRepository.findOneBy({
             email: (decoded as JwtPayload).email,
         });
         return [(decoded as JwtPayload).email, foundUser, userTempData];
@@ -464,11 +495,7 @@ const createTokensForLoggedInUser = async (
           );
 
     userTempData.refreshTokens = [...newRefreshTokens, refreshToken as string];
-    if (user.password) {
-        await userTempData.save();
-    } else {
-        await user.save({ validateBeforeSave: false }); // for login with google
-    }
+    await userTempData.save();
     res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
         secure: true,
@@ -487,7 +514,7 @@ const createTokensForLoggedInUser = async (
 };
 
 export const signInGoogleRedirection = async (req: Request, res: Response) => {
-    const user = await User.findById(req.user?.id);
+    const user = await AccountRepository.findOneBy({ id: req.user.id });
     const [accessToken, refreshToken, updatedUser] =
         await createTokensForLoggedInUser(user!, req, res);
 
@@ -545,9 +572,9 @@ export const changeCurrentPassword = async (
 ) => {
     const { currentPassword, newPassword } = req.body;
     const refreshToken = req.cookies.refreshToken;
-    const currentUser = await User.findById(req.user?.id);
-    if ((req.user! as userDocument).password) {
-        const userPass = (req.user! as userDocument).password;
+    const currentUser = await AccountRepository.findOneBy({ id: req.user?.id });
+    if ((req.user! as UserType).password) {
+        const userPass = (req.user! as UserType).password;
         const isCorrectCurrentPassword = isCorrectPassword(
             currentPassword,
             userPass,
@@ -556,25 +583,23 @@ export const changeCurrentPassword = async (
             throw new AppError('password is incorrect', 400);
         }
         const hashedNewPassword = await hashingPassword(newPassword);
-        // const currentUser = await User.findByIdAndUpdate(req.user?.id, {
-        //     password: hashedNewPassword,
-        //     passwordChangedAt: new Date(Date.now()),
-        // });
+
         currentUser!.password = hashedNewPassword;
-        currentUser!.passwordChangedAt = new Date(Date.now());
+        currentUser!.password_changed_at = new Date(Date.now());
     } else {
         const hashedNewPassword = await hashingPassword(newPassword);
-        // const currentUser = await User.findByIdAndUpdate(req.user?.id, {
-        //     password: hashedNewPassword,
-        //     passwordChangedAt: new Date(Date.now()),
-        // });
+
         currentUser!.password = hashedNewPassword;
-        currentUser!.passwordChangedAt = new Date(Date.now());
+        currentUser!.password_changed_at = new Date(Date.now());
     }
-    currentUser!.refreshTokens = currentUser!.refreshTokens.filter(
+    const userTempData = await AccountTempData.findOne({
+        accountId: currentUser.id,
+    });
+    userTempData!.refreshTokens = userTempData!.refreshTokens.filter(
         (rt) => rt !== refreshToken,
     );
-    await currentUser!.save();
+    await userTempData!.save();
+    await AccountRepository.save(currentUser);
     clearCookies(res);
 };
 

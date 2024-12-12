@@ -1,9 +1,26 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Account } from './Account';
 
 @Entity()
 export class Skill {
-  @PrimaryGeneratedColumn()
-  id: number;
-  @Column("text")
-  name: string;
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @ManyToOne(() => Account, (account) => account.skills, {
+        onDelete: 'CASCADE',
+    })
+    @JoinColumn({
+        name: 'account_id',
+        foreignKeyConstraintName: 'FK_SKILL_ACCOUNT',
+    })
+    account: Account;
+
+    @Column('text')
+    name: string;
 }

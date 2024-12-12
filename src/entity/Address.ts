@@ -1,12 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { Country } from "../enums/country";
+import { Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
+import { Country } from '../enums/country';
 
-@Entity()
 export class Address {
-  @PrimaryGeneratedColumn()
-  id: number;
-  @Column({ type: "enum", enum: Country })
-  country: Country;
-  @Column({ type: "text" })
-  city: string;
+    // Account has only 1 one address
+    // And Account has Address, not address has an account
+
+    @Column({ type: 'enum', enum: Country, nullable: true })
+    country: string;
+
+    @Column({ type: 'text', nullable: true })
+    city: string;
 }
