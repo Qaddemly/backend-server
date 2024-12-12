@@ -18,3 +18,27 @@
 2024-12-12 23:09:11:911 [31merror[39m: [31myou are not logged in please login to access this route[39m
 2024-12-12 23:09:11:911 [35mhttp[39m: [35mPOST /api/v1/business 401 1312 - 181.063 ms[39m
 [35m[39m
+2024-12-12 23:51:10:5110 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-12 23:51:11:5111 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-12 23:51:12:5112 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-12 23:51:18:5118 [31merror[39m: [31mvalidationErrors[39m
+2024-12-12 23:51:18:5118 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 164 - 225.461 ms[39m
+[35m[39m
+2024-12-12 23:51:28:5128 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2412.276 ms[39m
+[35m[39m
+2024-12-12 23:51:32:5132 [31merror[39m: [31mvalidationErrors[39m
+2024-12-12 23:51:32:5132 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 183 - 184.140 ms[39m
+[35m[39m
+2024-12-12 23:53:06:536 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 162 - 2893.877 ms[39m
+[35m[39m
+2024-12-12 23:54:05:545 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 162 - 2437.799 ms[39m
+[35m[39m
+2024-12-12 23:54:32:5432 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 162 - 2352.909 ms[39m
+[35m[39m
+2024-12-12 23:55:19:5519 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 735 - 1127.469 ms[39m
+[35m[39m
+2024-12-12 23:55:26:5526 [32minfo[39m: [32mBusiness 1 created successfully[39m
+2024-12-12 23:55:26:5526 [35mhttp[39m: [35mPOST /api/v1/business 201 477 - 566.400 ms[39m
+[35m[39m
+2024-12-12 23:55:42:5542 [35mhttp[39m: [35mGET /api/v1/business/userBusinesses 200 138 - 525.256 ms[39m
+[35m[39m
