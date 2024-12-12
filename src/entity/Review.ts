@@ -1,9 +1,11 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 import { Business } from './Business';
 import { Account } from './Account';
@@ -36,4 +38,10 @@ export class Review {
         foreignKeyConstraintName: 'FK_REVIEW_ACCOUNT',
     })
     account: Account;
+
+    @CreateDateColumn({ type: 'timestamptz' })
+    created_at: Date;
+
+    @UpdateDateColumn({ type: 'timestamptz' })
+    updated_at: Date;
 }
