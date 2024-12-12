@@ -47,6 +47,7 @@ export class Account {
 
     @Column(() => Address, { prefix: false })
     address: Address;
+
     @Column(() => Phone, { prefix: false })
     phone: Phone;
     @Column('text', { nullable: true })

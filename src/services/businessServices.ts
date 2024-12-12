@@ -108,5 +108,5 @@ export const getFiveReviewsOfBusiness = async (businessId: number) => {
         Logger.error('Business not found');
         throw new AppError('Business not found', 404);
     }
-    return await ReviewRepository.getFiveReviewsOfBusiness(businessId);
+    return await BusinessRepository.getFiveReviewsOfBusiness(businessId);
 };

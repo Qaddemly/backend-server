@@ -7,3 +7,10 @@
 2024-12-12 23:51:32:5132 [31merror[39m: [31mvalidationErrors[39m
 2024-12-13 00:12:18:1218 [31merror[39m: [31myou are not logged in please login to access this route[39m
 2024-12-13 00:16:24:1624 [31merror[39m: [31mRelation with property path business in entity was not found.[39m
+2024-12-13 00:26:36:2636 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 00:26:48:2648 [31merror[39m: [31mRelation with property path business in entity was not found.[39m
+2024-12-13 00:30:54:3054 [31merror[39m: [31msyntax error at end of input[39m
+2024-12-13 00:33:06:336 [31merror[39m: [31msyntax error at or near "WHERE"[39m
+2024-12-13 00:35:17:3517 [31merror[39m: [31m"business" alias was not found. Maybe you forgot to join it?[39m
+2024-12-13 00:52:14:5214 [31merror[39m: [31msyntax error at or near "."[39m
+2024-12-13 00:53:08:538 [31merror[39m: [31mcolumn r.changed_at does not exist[39m

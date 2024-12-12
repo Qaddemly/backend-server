@@ -42,7 +42,7 @@ export class Business {
     @Column('date')
     founded: Date;
 
-    @Column(() => Address)
+    @Column(() => Address, { prefix: false })
     address: Address;
 
     @Column({
