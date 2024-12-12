@@ -2,6 +2,7 @@ import { Repository } from 'typeorm';
 import { Business } from '../entity/Business';
 import { AppDataSource } from '../data-source';
 import { UpdateBusinessDTO } from '../dtos/businessDto';
+import { HrEmployee } from '../entity/HrEmployee';
 
 class BusinessRepositoryClass extends Repository<Business> {
     async updateBusiness(
@@ -16,6 +17,13 @@ class BusinessRepositoryClass extends Repository<Business> {
             .execute();
 
         return query.raw[0];
+    }
+
+    async getBusinessOfAccount(accountId: number): Promise<Business[]> {
+        return await this.query(
+            'SELECT b.id, b.name, b.logo, hr.role FROM business AS b JOIN hr_employee AS hr ON b.id = hr.business_id WHERE hr.account_id = $1',
+            [accountId],
+        );
     }
 }
 

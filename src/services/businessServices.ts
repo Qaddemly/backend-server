@@ -1,13 +1,13 @@
 import { Business } from '../entity/Business';
 import { CreateBusinessDto, UpdateBusinessDTO } from '../dtos/businessDto';
-import { BusinessRepository } from '../Repository/businessRepo';
+import { BusinessRepository } from '../Repository/businessRepository';
 import { AccountRepository } from '../Repository/accountRepository';
 import { HrEmployee } from '../entity/HrEmployee';
 import { HrRole } from '../enums/HrRole';
 import { Address } from '../entity/Address';
 import AppError from '../utils/appError';
 import { container, Logging } from '../utils/logger';
-import { HrEmployeeRepository } from '../Repository/hrEmployeeRepo';
+import { HrEmployeeRepository } from '../Repository/hrEmployeeRepository';
 
 /**
  * TODO: mark the Account that created the business as the owner.
@@ -88,4 +88,8 @@ export const updateBusiness = async (
         updateBusinessDTO,
         businessId,
     );
+};
+
+export const getUserBusinesses = async (accountId: number) => {
+    return await BusinessRepository.getBusinessOfAccount(accountId);
 };

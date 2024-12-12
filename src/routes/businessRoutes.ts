@@ -15,6 +15,11 @@ businessRoute.post(
     resizeBusinessLogo,
     businessController.createBusiness,
 );
+businessRoute.get(
+    '/userBusinesses',
+    protect,
+    businessController.getUserBusinesses,
+);
 businessRoute.get('/', protect, businessController.searchBusinessByName);
 businessRoute.get('/:id', protect, businessController.getBusinessById);
 businessRoute.put(

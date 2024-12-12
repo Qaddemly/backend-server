@@ -67,6 +67,19 @@ export const updateBusiness = catchAsync(
         });
     },
 );
+
+export const getUserBusinesses = catchAsync(
+    async (req: Request, res: Response) => {
+        const businesses = await businessServices.getUserBusinesses(
+            req.user.id,
+        );
+        res.status(200).json({
+            status: 'success',
+            businesses,
+        });
+    },
+);
+
 export const deleteBusiness = catchAsync(
     async (req: Request, res: Response) => {},
 );
