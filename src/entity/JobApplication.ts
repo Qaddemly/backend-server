@@ -1,4 +1,11 @@
-import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 import { Job } from './Job';
 
 @Entity()
@@ -14,4 +21,10 @@ export class JobApplication {
         foreignKeyConstraintName: 'FK_JOB_APPLICATION_JOB',
     })
     job: Job;
+
+    @CreateDateColumn({ type: 'timestamptz' })
+    created_at: Date;
+
+    @UpdateDateColumn({ type: 'timestamptz' })
+    updated_at: Date;
 }

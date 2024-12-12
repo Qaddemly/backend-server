@@ -1,4 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 import { Review } from './Review';
 import { LocationType } from '../enums/locationType';
 import { HrEmployee } from './HrEmployee';
@@ -35,7 +42,7 @@ export class Business {
     @Column('date')
     founded: Date;
 
-    @Column(() => Address)
+    @Column(() => Address, { prefix: false })
     address: Address;
 
     @Column({
@@ -86,4 +93,10 @@ export class Business {
 
     @OneToMany(() => Job, (job) => job.business, { cascade: true })
     jobs: Job[];
+
+    @CreateDateColumn({ type: 'timestamptz' })
+    created_at: Date;
+
+    @UpdateDateColumn({ type: 'timestamptz' })
+    updated_at: Date;
 }

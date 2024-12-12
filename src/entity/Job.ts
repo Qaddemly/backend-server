@@ -1,10 +1,12 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     JoinColumn,
     ManyToOne,
     OneToMany,
     PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 import { LocationType } from '../enums/locationType';
 import { EmploymentType } from '../enums/employmentType';
@@ -66,4 +68,10 @@ export class Job {
         cascade: true,
     })
     job_applications: JobApplication[];
+
+    @CreateDateColumn({ type: 'timestamptz' })
+    created_at: Date;
+
+    @UpdateDateColumn({ type: 'timestamptz' })
+    updated_at: Date;
 }

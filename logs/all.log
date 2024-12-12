@@ -1,0 +1,176 @@
+2024-12-12 23:00:07:07 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-12 23:00:07:07 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-12 23:00:09:09 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-12 23:01:50:150 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-12 23:01:51:151 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-12 23:01:52:152 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-12 23:02:20:220 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-12 23:02:38:238 [31merror[39m: [31mvalidationErrors[39m
+2024-12-12 23:08:47:847 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-12 23:08:48:848 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-12 23:08:49:849 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-12 23:08:51:851 [31merror[39m: [31memail or password is incorrect[39m
+2024-12-12 23:08:51:851 [35mhttp[39m: [35mPOST /api/v1/auth/login 400 831 - 235.498 ms[39m
+[35m[39m
+2024-12-12 23:09:07:97 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-12 23:09:07:97 [35mhttp[39m: [35mPOST /api/v1/business 401 1312 - 174.155 ms[39m
+[35m[39m
+2024-12-12 23:09:11:911 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-12 23:09:11:911 [35mhttp[39m: [35mPOST /api/v1/business 401 1312 - 181.063 ms[39m
+[35m[39m
+2024-12-12 23:51:10:5110 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-12 23:51:11:5111 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-12 23:51:12:5112 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-12 23:51:18:5118 [31merror[39m: [31mvalidationErrors[39m
+2024-12-12 23:51:18:5118 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 164 - 225.461 ms[39m
+[35m[39m
+2024-12-12 23:51:28:5128 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2412.276 ms[39m
+[35m[39m
+2024-12-12 23:51:32:5132 [31merror[39m: [31mvalidationErrors[39m
+2024-12-12 23:51:32:5132 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 183 - 184.140 ms[39m
+[35m[39m
+2024-12-12 23:53:06:536 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 162 - 2893.877 ms[39m
+[35m[39m
+2024-12-12 23:54:05:545 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 162 - 2437.799 ms[39m
+[35m[39m
+2024-12-12 23:54:32:5432 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 162 - 2352.909 ms[39m
+[35m[39m
+2024-12-12 23:55:19:5519 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 735 - 1127.469 ms[39m
+[35m[39m
+2024-12-12 23:55:26:5526 [32minfo[39m: [32mBusiness 1 created successfully[39m
+2024-12-12 23:55:26:5526 [35mhttp[39m: [35mPOST /api/v1/business 201 477 - 566.400 ms[39m
+[35m[39m
+2024-12-12 23:55:42:5542 [35mhttp[39m: [35mGET /api/v1/business/userBusinesses 200 138 - 525.256 ms[39m
+[35m[39m
+2024-12-12 23:57:45:5745 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-12 23:57:45:5745 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-12 23:57:47:5747 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-12 23:59:20:5920 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-12 23:59:20:5920 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-12 23:59:21:5921 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-12 23:59:45:5945 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 433 - 450.899 ms[39m
+[35m[39m
+2024-12-13 00:03:21:321 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:03:22:322 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:03:23:323 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:06:19:619 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:06:20:620 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:06:21:621 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:11:39:1139 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:11:39:1139 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:11:41:1141 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:11:48:1148 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 - - - - ms[39m
+[35m[39m
+2024-12-13 00:12:14:1214 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:12:14:1214 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:12:16:1216 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:12:18:1218 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 00:12:18:1218 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 401 874 - 747.619 ms[39m
+[35m[39m
+2024-12-13 00:12:23:1223 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 735 - 1033.473 ms[39m
+[35m[39m
+2024-12-13 00:12:28:1228 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 1872 - 360.610 ms[39m
+[35m[39m
+2024-12-13 00:16:19:1619 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:16:19:1619 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:16:21:1621 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:16:24:1624 [31merror[39m: [31mRelation with property path business in entity was not found.[39m
+2024-12-13 00:16:24:1624 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 500 1644 - 408.079 ms[39m
+[35m[39m
+2024-12-13 00:17:35:1735 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:17:36:1736 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:17:37:1737 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:18:26:1826 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:18:26:1826 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:18:27:1827 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:20:28:2028 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:20:28:2028 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:20:30:2030 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:21:15:2115 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:21:16:2116 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:21:17:2117 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:21:42:2142 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:21:42:2142 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:21:44:2144 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:23:11:2311 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:23:11:2311 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:23:13:2313 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:24:46:2446 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:24:46:2446 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:24:48:2448 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:26:31:2631 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:26:32:2632 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:26:33:2633 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:26:36:2636 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 00:26:36:2636 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 183 - 203.188 ms[39m
+[35m[39m
+2024-12-13 00:26:48:2648 [31merror[39m: [31mRelation with property path business in entity was not found.[39m
+2024-12-13 00:26:48:2648 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 500 1644 - 738.784 ms[39m
+[35m[39m
+2024-12-13 00:29:36:2936 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:29:37:2937 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:29:38:2938 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:30:49:3049 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:30:50:3050 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:30:51:3051 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:30:54:3054 [31merror[39m: [31msyntax error at end of input[39m
+2024-12-13 00:30:54:3054 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 500 1146 - 436.934 ms[39m
+[35m[39m
+2024-12-13 00:31:32:3132 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:31:33:3133 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:31:34:3134 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:33:00:330 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:33:01:331 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:33:02:332 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:33:06:336 [31merror[39m: [31msyntax error at or near "WHERE"[39m
+2024-12-13 00:33:06:336 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 500 1156 - 441.402 ms[39m
+[35m[39m
+2024-12-13 00:35:10:3510 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:35:10:3510 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:35:12:3512 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:35:17:3517 [31merror[39m: [31m"business" alias was not found. Maybe you forgot to join it?[39m
+2024-12-13 00:35:17:3517 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 500 1853 - 406.401 ms[39m
+[35m[39m
+2024-12-13 00:38:13:3813 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:38:14:3814 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:38:16:3816 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:38:26:3826 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 1004 - 751.516 ms[39m
+[35m[39m
+2024-12-13 00:47:55:4755 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:47:55:4755 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:47:57:4757 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:47:59:4759 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 3992 - 452.361 ms[39m
+[35m[39m
+2024-12-13 00:48:50:4850 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:48:50:4850 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:48:52:4852 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:48:56:4856 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 2462 - 572.706 ms[39m
+[35m[39m
+2024-12-13 00:50:11:5011 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:50:11:5011 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:50:13:5013 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:50:24:5024 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:50:25:5025 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:50:26:5026 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:50:29:5029 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 677 - 402.000 ms[39m
+[35m[39m
+2024-12-13 00:52:11:5211 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:52:11:5211 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:52:13:5213 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:52:14:5214 [31merror[39m: [31msyntax error at or near "."[39m
+2024-12-13 00:52:14:5214 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 500 549 - 379.890 ms[39m
+[35m[39m
+2024-12-13 00:53:04:534 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:53:04:534 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:53:06:536 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:53:08:538 [31merror[39m: [31mcolumn r.changed_at does not exist[39m
+2024-12-13 00:53:08:538 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 500 559 - 413.066 ms[39m
+[35m[39m
+2024-12-13 00:53:33:5333 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:53:34:5334 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:53:35:5335 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 00:53:43:5343 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 1077 - 380.129 ms[39m
+[35m[39m
+2024-12-13 00:55:05:555 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 00:55:05:555 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 00:55:07:557 [32minfo[39m: [32mMongoDB Database connected successfully[39m

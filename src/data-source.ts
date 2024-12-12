@@ -4,10 +4,10 @@ import { DataSource } from 'typeorm';
 export const AppDataSource = new DataSource({
     type: 'postgres',
     host: 'localhost',
-    port: 5433,
+    port: 5432,
     username: 'postgres',
-    password: 'ESl33665599',
-    database: 'typeorm learning',
+    password: '171721',
+    database: 'graduation_project',
     synchronize: true,
     logging: false,
     entities: [__dirname + '/entity/*{.js,.ts}'],

@@ -11,6 +11,7 @@ import cors from 'cors';
 import { globalErrorHandler } from './middlewares/error.middleWare';
 import mountRoutes from './routes';
 import { businessRoute } from './routes/businessRoutes';
+import { morganMiddleware } from './utils/logger';
 
 const app = express();
 
@@ -20,6 +21,7 @@ const corsOptions = {
     optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+app.use(morganMiddleware);
 app.use(
     expressSession({
         secret: process.env.SESSION_SECRET!,

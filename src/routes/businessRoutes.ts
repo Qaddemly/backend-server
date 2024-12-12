@@ -15,13 +15,27 @@ businessRoute.post(
     resizeBusinessLogo,
     businessController.createBusiness,
 );
+businessRoute.get(
+    '/userBusinesses',
+    protect,
+    businessController.getUserBusinesses,
+);
 businessRoute.get('/', protect, businessController.searchBusinessByName);
-businessRoute.get('/:id', protect, businessController.getBusinessById);
+businessRoute.get(
+    '/profile/:businessId',
+    protect,
+    businessController.getBusinessById,
+);
 businessRoute.put(
     '/:businessId',
     protect,
     uploadSingleImage('logo'),
     resizeBusinessLogo,
     businessController.updateBusiness,
+);
+businessRoute.get(
+    '/profile/reviewsFive/:businessId',
+    protect,
+    businessController.getFiveReviewsOfBusiness,
 );
 businessRoute.delete('/:id', protect, businessController.deleteBusiness);

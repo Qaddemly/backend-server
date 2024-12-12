@@ -1,9 +1,11 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 import { Business } from './Business';
 import { Account } from './Account';
@@ -38,4 +40,10 @@ export class HrEmployee {
         default: HrRole.HR,
     })
     role: HrRole;
+
+    @CreateDateColumn({ type: 'timestamptz' })
+    created_at: Date;
+
+    @UpdateDateColumn({ type: 'timestamptz' })
+    updated_at: Date;
 }

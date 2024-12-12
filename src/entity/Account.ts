@@ -1,5 +1,6 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     JoinColumn,
     JoinTable,
@@ -7,6 +8,7 @@ import {
     OneToMany,
     OneToOne,
     PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 import { Review } from './Review';
 import { HrEmployee } from './HrEmployee';
@@ -45,6 +47,7 @@ export class Account {
 
     @Column(() => Address, { prefix: false })
     address: Address;
+
     @Column(() => Phone, { prefix: false })
     phone: Phone;
     @Column('text', { nullable: true })
@@ -105,4 +108,10 @@ export class Account {
         cascade: true,
     })
     business_roles: HrEmployee[];
+
+    @CreateDateColumn({ type: 'timestamptz' })
+    created_at: Date;
+
+    @UpdateDateColumn({ type: 'timestamptz' })
+    updated_at: Date;
 }

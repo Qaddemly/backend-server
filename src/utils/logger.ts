@@ -1,105 +1,69 @@
-import { Container, injectable } from 'inversify'; // For dependency injection
-import winston, { format } from 'winston';
-import DailyRotateFile from 'winston-daily-rotate-file';
+import winston from 'winston';
 
-export type LogMessage = string;
+const levels = {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    debug: 4,
+};
 
-export type LogContext = object;
+const level = () => {
+    const env = process.env.NODE_ENV || 'development';
+    const isDevelopment = env === 'development';
+    return isDevelopment ? 'debug' : 'warn';
+};
 
-export enum LogLevel {
-    DEBUG = 'debug',
-    INFO = 'info',
-    WARN = 'warn',
-    ERROR = 'error',
-}
+const colors = {
+    error: 'red',
+    warn: 'yellow',
+    info: 'green',
+    http: 'magenta',
+    debug: 'white',
+};
 
-@injectable() // Coming from inversify
-export class Logging {
-    private static _appName = 'ApplicationName';
-    private _logger: winston.Logger;
+winston.addColors(colors);
 
-    constructor() {
-        this._logger = this._initializeWinston();
-    }
+const format = winston.format.combine(
+    winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
+    winston.format.colorize({ all: true }),
+    winston.format.printf(
+        (info) => `${info.timestamp} ${info.level}: ${info.message}`,
+    ),
+);
 
-    private static _getTransports() {
-        const transports: Array<any> = [
-            new winston.transports.Console({
-                format: this._getFormatForConsole(),
-            }),
-        ];
+const transports = [
+    new winston.transports.Console(),
+    new winston.transports.File({
+        filename: 'logs/error.log',
+        level: 'error',
+    }),
+    new winston.transports.File({ filename: 'logs/all.log' }),
+];
 
-        if (process.env.NODE_ENV === 'production') {
-            transports.push(this._getFileTransport()); // Also log file in production
-        }
+export const Logger = winston.createLogger({
+    level: level(),
+    levels,
+    format,
+    transports,
+});
 
-        return transports;
-    }
+import morgan, { StreamOptions } from 'morgan';
 
-    private static _getFormatForConsole() {
-        return format.combine(
-            format.timestamp(),
-            format.printf(
-                (info) =>
-                    `[${info.timestamp}] [${info.level.toUpperCase()}]: ${
-                        info.message
-                    } [CONTEXT] -> ${
-                        info.context
-                            ? '\n' + JSON.stringify(info.context, null, 2)
-                            : '{}' // Including the context
-                    }`,
-            ),
-            format.colorize({ all: true }),
-        );
-    }
+const stream: StreamOptions = {
+    // Use the http severity
+    write: (message) => Logger.http(message),
+};
 
-    private static _getFileTransport() {
-        return new DailyRotateFile({
-            filename: `${Logging._appName}-%DATE%.log`,
-            zippedArchive: true, // Compress gzip
-            maxSize: '10m', // Rotate after 10MB
-            maxFiles: '14d', // Only keep last 14 days
-            format: format.combine(
-                format.timestamp(),
-                format((info) => {
-                    console.log(info);
-                    info.app = this._appName;
-                    return info;
-                })(),
-                format.json(),
-            ),
-        });
-    }
+const skip = () => {
+    const env = process.env.NODE_ENV || 'development';
+    return env !== 'development';
+};
 
-    public logInfo(msg: LogMessage, context?: LogContext) {
-        this._log(msg, LogLevel.INFO, context);
-    }
-
-    public logWarn(msg: LogMessage, context?: LogContext) {
-        this._log(msg, LogLevel.WARN, context);
-    }
-
-    public logError(msg: LogMessage, context?: LogContext) {
-        this._log(msg, LogLevel.ERROR, context);
-    }
-
-    public logDebug(msg: LogMessage, context?: LogContext) {
-        if (process.env.NODE_ENV !== 'production') {
-            this._log(msg, LogLevel.DEBUG, context); // Don't log debug in production
-        }
-    }
-
-    private _log(msg: LogMessage, level: LogLevel, context?: LogContext) {
-        this._logger.log(level, msg, { context: context });
-    }
-
-    private _initializeWinston() {
-        const logger = winston.createLogger({
-            transports: Logging._getTransports(),
-        });
-        return logger;
-    }
-}
-const container = new Container();
-container.bind<Logging>(Logging).toSelf();
-export { container };
+// Build the morgan middleware
+export const morganMiddleware = morgan(
+    ':method :url :status :res[content-length] - :response-time ms',
+    // Options: in this case, I overwrote the stream and the skip logic.
+    // See the methods above.
+    { stream, skip },
+);

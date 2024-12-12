@@ -1,8 +1,5 @@
 import mongoose from 'mongoose';
-import AccountTempData from '../models/accountModel';
-import { container, Logging } from '../utils/logger';
-
-const logger = container.get(Logging);
+import { Logger } from '../utils/logger';
 
 function databaseConnect() {
     const dbConnectionString = process.env.DATABASE_URL!.replace(
@@ -15,10 +12,10 @@ function databaseConnect() {
             // AccountTempData.create({
             //     accountId: 2,
             // }).then(() => {});
-            logger.logInfo(`MongoDB Database connected successfully`);
+            Logger.info(`MongoDB Database connected successfully`);
         })
         .catch((e) => {
-            logger.logError(`MongoDB Database connection failed`, e);
+            Logger.info(`MongoDB Database connection failed`, e);
         });
 }
 

@@ -4,9 +4,7 @@ dotenv.config();
 import app from './app';
 import databaseConnect from './config/database.connection';
 import { AppDataSource } from './data-source';
-import { container, Logging } from './utils/logger';
-
-const logger = container.get(Logging);
+import { Logger } from './utils/logger';
 
 const port = process.env.PORT || 3000;
 
@@ -14,7 +12,7 @@ databaseConnect();
 
 AppDataSource.initialize()
     .then(async () => {
-        logger.logInfo('Postgres Database connected successfully');
+        Logger.info('Postgres Database connected successfully');
         // const password = await hashingPassword('12345678');
         // const account = new Account();
         // account.first_name = 'abdo';
@@ -29,13 +27,14 @@ AppDataSource.initialize()
         // address.city = 'Cairo';
         //
         // account.address = address;
+
         // account.resume = 'https://www.google.com';
         // await AccountRepo.save(account);
     })
     .catch((error) => {
-        logger.logError('Postgres Database connection failed', error);
+        Logger.error('Postgres Database connection failed', error);
     });
 
 app.listen(port, () => {
-    logger.logInfo(`Server is running on port ${port}`);
+    Logger.info(`Server is running on port ${port}`);
 });
