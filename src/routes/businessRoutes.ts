@@ -15,7 +15,13 @@ businessRoute.post(
     resizeBusinessLogo,
     businessController.createBusiness,
 );
-businessRoute.get('/', businessController.searchBusinessByName);
-businessRoute.get('/:id', businessController.getBusinessById);
-businessRoute.put('/:id', businessController.updateBusiness);
-businessRoute.delete('/:id', businessController.deleteBusiness);
+businessRoute.get('/', protect, businessController.searchBusinessByName);
+businessRoute.get('/:id', protect, businessController.getBusinessById);
+businessRoute.put(
+    '/:businessId',
+    protect,
+    uploadSingleImage('logo'),
+    resizeBusinessLogo,
+    businessController.updateBusiness,
+);
+businessRoute.delete('/:id', protect, businessController.deleteBusiness);

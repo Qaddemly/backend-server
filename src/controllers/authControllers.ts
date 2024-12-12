@@ -35,7 +35,7 @@ import {
 import { generateAndEmailCode } from '../utils/codeUtils';
 import User from '../models/userModel';
 import { userDocument } from '../types/documentTypes';
-import { AccountRepo } from '../Repository/accountRepo';
+import { AccountRepository } from '../Repository/accountRepository';
 import AccountTempData from '../models/accountModel';
 
 export const signUp = catchAsync(

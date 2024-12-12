@@ -7,7 +7,7 @@ export class Address {
     // And Account has Address, not address has an account
 
     @Column({ type: 'enum', enum: Country })
-    country: Country;
+    country: string;
 
     @Column({ type: 'text' })
     city: string;

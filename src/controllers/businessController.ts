@@ -1,6 +1,6 @@
-import { Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import catchAsync from 'express-async-handler';
-import { CreateBusinessDto } from '../dtos/businessDto';
+import { CreateBusinessDto, UpdateBusinessDTO } from '../dtos/businessDto';
 
 import * as businessServices from './../services/businessServices';
 import { getBusinessQueryParams } from '../types/types';
@@ -40,10 +40,7 @@ export const createBusiness = catchAsync(
  *
  * */
 export const searchBusinessByName = catchAsync(
-    async (
-        req: Request<{}, {}, {}, getBusinessQueryParams>,
-        res: Response,
-    ) => {},
+    async (req: Request, res: Response) => {},
 );
 
 /**
@@ -54,7 +51,21 @@ export const getBusinessById = catchAsync(
     async (req: Request, res: Response) => {},
 );
 export const updateBusiness = catchAsync(
-    async (req: Request, res: Response) => {},
+    async (
+        req: Request<{ businessId: string }, {}, UpdateBusinessDTO>,
+        res: Response,
+    ) => {
+        const business = await businessServices.updateBusiness(
+            req.body,
+            req.user.id,
+            Number(req.params.businessId),
+        );
+        res.status(200).json({
+            status: 'success',
+            message: 'Business updated successfully',
+            business,
+        });
+    },
 );
 export const deleteBusiness = catchAsync(
     async (req: Request, res: Response) => {},
