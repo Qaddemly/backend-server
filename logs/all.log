@@ -333,3 +333,11 @@
 2024-12-13 13:51:22:5122 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2024-12-13 13:51:32:5132 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 1447 - 452.792 ms[39m
 [35m[39m
+2024-12-13 14:02:48:248 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 14:02:48:248 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 14:02:50:250 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 14:03:49:349 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2024-12-13 14:03:49:349 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews 500 1181 - 701.113 ms[39m
+[35m[39m
+2024-12-13 14:03:58:358 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 200 2013 - 415.570 ms[39m
+[35m[39m

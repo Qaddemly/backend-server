@@ -39,6 +39,11 @@ businessRoute.get(
     businessController.getFiveReviewsOfBusiness,
 );
 businessRoute.get(
+    '/profile/reviews/:businessId',
+    protect,
+    businessController.getAllReviewsOfBusiness,
+);
+businessRoute.get(
     '/profile/jobsSix/:businessId',
     protect,
     businessController.getSixJobsOfBusiness,

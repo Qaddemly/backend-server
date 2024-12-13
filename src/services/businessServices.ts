@@ -108,7 +108,7 @@ export const getFiveReviewsOfBusiness = async (businessId: number) => {
         Logger.error('Business not found');
         throw new AppError('Business not found', 404);
     }
-    return await BusinessRepository.getFiveReviewsOfBusiness(businessId);
+    return await ReviewRepository.getFiveReviewsOfBusiness(businessId);
 };
 export const getSixJobsOfBusiness = async (businessId: number) => {
     const business = await BusinessRepository.findOneBy({ id: businessId });
@@ -117,4 +117,12 @@ export const getSixJobsOfBusiness = async (businessId: number) => {
         throw new AppError('Business not found', 404);
     }
     return await BusinessRepository.getSixJobsOfBusiness(businessId);
+};
+export const getAllReviewsOfBusiness = async (businessId: number) => {
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        Logger.error('Business not found');
+        throw new AppError('Business not found', 404);
+    }
+    return await ReviewRepository.getAllReviewsOfBusiness(businessId);
 };
