@@ -341,3 +341,23 @@
 [35m[39m
 2024-12-13 14:03:58:358 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 200 2013 - 415.570 ms[39m
 [35m[39m
+2024-12-13 14:10:59:1059 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 14:10:59:1059 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 14:11:01:111 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 14:11:10:1110 [31merror[39m: [31msyntax error at or near "FORM"[39m
+2024-12-13 14:11:10:1110 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 500 555 - 474.747 ms[39m
+[35m[39m
+2024-12-13 14:11:58:1158 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 14:11:58:1158 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 14:12:00:120 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 14:12:02:122 [31merror[39m: [31msyntax error at or near "FORM"[39m
+2024-12-13 14:12:02:122 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 500 555 - 394.847 ms[39m
+[35m[39m
+2024-12-13 14:12:30:1230 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 14:12:30:1230 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 14:12:31:1231 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 14:12:44:1244 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 14:12:44:1244 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 14:12:46:1246 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 14:12:49:1249 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 200 7179 - 405.588 ms[39m
+[35m[39m

@@ -48,4 +48,9 @@ businessRoute.get(
     protect,
     businessController.getSixJobsOfBusiness,
 );
+businessRoute.get(
+    '/profile/jobs/:businessId',
+    protect,
+    businessController.getAllJobsOfBusiness,
+);
 businessRoute.delete('/:id', protect, businessController.deleteBusiness);

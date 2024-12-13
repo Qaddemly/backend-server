@@ -9,6 +9,7 @@ import AppError from '../utils/appError';
 import { HrEmployeeRepository } from '../Repository/hrEmployeeRepository';
 import { Logger } from '../utils/logger';
 import { ReviewRepository } from '../Repository/reviewRepository';
+import { JobRepository } from '../Repository/jobRepository';
 /**
  * TODO: mark the Account that created the business as the owner.
  * TODO: make it possible for user to add hr_employees with their roles at Creation.
@@ -116,7 +117,7 @@ export const getSixJobsOfBusiness = async (businessId: number) => {
         Logger.error('Business not found');
         throw new AppError('Business not found', 404);
     }
-    return await BusinessRepository.getSixJobsOfBusiness(businessId);
+    return await JobRepository.getSixJobsOfBusiness(businessId);
 };
 export const getAllReviewsOfBusiness = async (businessId: number) => {
     const business = await BusinessRepository.findOneBy({ id: businessId });
@@ -125,4 +126,12 @@ export const getAllReviewsOfBusiness = async (businessId: number) => {
         throw new AppError('Business not found', 404);
     }
     return await ReviewRepository.getAllReviewsOfBusiness(businessId);
+};
+export const getAllJobsOfBusiness = async (businessId: number) => {
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        Logger.error('Business not found');
+        throw new AppError('Business not found', 404);
+    }
+    return await JobRepository.getAllJobsOfBusiness(businessId);
 };

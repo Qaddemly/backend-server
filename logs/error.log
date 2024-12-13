@@ -24,3 +24,5 @@
 2024-12-13 13:44:17:4417 [31merror[39m: [31msyntax error at or near "j"[39m
 2024-12-13 13:46:27:4627 [31merror[39m: [31msyntax error at or near "FROM"[39m
 2024-12-13 14:03:49:349 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2024-12-13 14:11:10:1110 [31merror[39m: [31msyntax error at or near "FORM"[39m
+2024-12-13 14:12:02:122 [31merror[39m: [31msyntax error at or near "FORM"[39m
