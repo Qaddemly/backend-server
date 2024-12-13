@@ -110,3 +110,11 @@ export const getFiveReviewsOfBusiness = async (businessId: number) => {
     }
     return await BusinessRepository.getFiveReviewsOfBusiness(businessId);
 };
+export const getSixJobsOfBusiness = async (businessId: number) => {
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        Logger.error('Business not found');
+        throw new AppError('Business not found', 404);
+    }
+    return await BusinessRepository.getSixJobsOfBusiness(businessId);
+};

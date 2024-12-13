@@ -100,6 +100,18 @@ export const getFiveReviewsOfBusiness = catchAsync(
     },
 );
 
+export const getSixJobsOfBusiness = catchAsync(
+    async (req: Request<{ businessId: string }>, res: Response) => {
+        const jobs = await businessServices.getSixJobsOfBusiness(
+            Number(req.params.businessId),
+        );
+        res.status(200).json({
+            status: 'success',
+            jobs,
+        });
+    },
+);
+
 export const deleteBusiness = catchAsync(
     async (req: Request, res: Response) => {},
 );
