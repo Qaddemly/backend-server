@@ -1,4 +1,10 @@
-import { Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    OneToOne,
+    PrimaryColumn,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Account } from './Account';
 
 @Entity()
@@ -6,9 +12,9 @@ export class Education {
     // Account has only 1 education
     // Account has education, not education has an account
     // So Foreign key must be in the education side
-    @OneToOne(() => Account, (account) => account.id)
-    @PrimaryColumn({ type: 'integer' })
-    account_id: number;
+    //@OneToOne(() => Account, (account) => account.id)
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column('text')
     university: string;

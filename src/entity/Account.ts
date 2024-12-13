@@ -45,11 +45,12 @@ export class Account {
     @Column('text', { nullable: true })
     profile_picture: string;
 
-    @Column(() => Address, { prefix: false })
+    @OneToOne(() => Address)
+    @JoinColumn()
     address: Address;
 
-    @Column(() => Phone, { prefix: false })
-    phone: Phone;
+    // @Column(() => Phone, { prefix: false })
+    // phone: Phone;
     @Column('text', { nullable: true })
     resume: string;
 

@@ -174,3 +174,375 @@
 2024-12-13 00:55:05:555 [32minfo[39m: [32mServer is running on port 8000[39m
 2024-12-13 00:55:05:555 [32minfo[39m: [32mPostgres Database connected successfully[39m
 2024-12-13 00:55:07:557 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:23:37:2337 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:23:37:2337 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:23:38:2338 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:27:22:2722 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:27:22:2722 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:27:24:2724 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:28:29:2829 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:28:29:2829 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:28:30:2830 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:30:01:301 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:30:01:301 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:30:03:303 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:34:34:3434 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:34:34:3434 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:34:35:3435 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:34:59:3459 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:34:59:3459 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:35:00:350 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:37:13:3713 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:37:13:3713 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:37:15:3715 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:41:55:4155 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:41:55:4155 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:41:59:4159 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:42:43:4243 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:42:43:4243 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:42:45:4245 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:43:14:4314 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:43:14:4314 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:43:16:4316 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:47:28:4728 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:47:28:4728 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:47:30:4730 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:48:40:4840 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:48:41:4841 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:48:42:4842 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:49:15:4915 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:49:15:4915 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:49:16:4916 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:51:26:5126 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:51:26:5126 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:51:28:5128 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:53:54:5354 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:53:54:5354 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:53:55:5355 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:54:27:5427 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:54:27:5427 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:54:28:5428 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:54:51:5451 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:54:51:5451 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:54:53:5453 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:57:09:579 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:57:09:579 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:57:11:5711 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:57:20:5720 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:57:20:5720 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:57:22:5722 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:57:53:5753 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 01:57:53:5753 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 01:57:54:5754 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 01:58:02:582 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 01:58:02:582 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 401 729 - 185.688 ms[39m
+[35m[39m
+2024-12-13 01:58:08:588 [31merror[39m: [31memail or password is incorrect[39m
+2024-12-13 01:58:08:588 [35mhttp[39m: [35mPOST /api/v1/auth/login 400 686 - 349.238 ms[39m
+[35m[39m
+2024-12-13 01:58:18:5818 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 1 }[39m
+2024-12-13 01:58:18:5818 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 500 1006 - 700.500 ms[39m
+[35m[39m
+2024-12-13 01:59:04:594 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 01:59:04:594 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 184 - 182.180 ms[39m
+[35m[39m
+2024-12-13 01:59:20:5920 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2190.276 ms[39m
+[35m[39m
+2024-12-13 02:00:00:00 [31merror[39m: [31memail or password is incorrect[39m
+2024-12-13 02:00:00:00 [35mhttp[39m: [35mPOST /api/v1/auth/login 400 610 - 465.227 ms[39m
+[35m[39m
+2024-12-13 02:00:08:08 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 815 - 744.407 ms[39m
+[35m[39m
+2024-12-13 02:00:23:023 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:00:23:023 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1029 - 524.186 ms[39m
+[35m[39m
+2024-12-13 02:01:49:149 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:01:49:149 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:01:51:151 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:01:53:153 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:01:53:153 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1029 - 370.915 ms[39m
+[35m[39m
+2024-12-13 02:03:42:342 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:03:42:342 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:03:44:344 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:03:46:346 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:03:46:346 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1029 - 368.188 ms[39m
+[35m[39m
+2024-12-13 02:04:13:413 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:04:13:413 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:04:14:414 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:06:33:633 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:06:33:633 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:06:34:634 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:06:44:644 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:06:44:644 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1029 - 418.879 ms[39m
+[35m[39m
+2024-12-13 02:07:19:719 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:07:19:719 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:07:20:720 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:07:47:747 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:07:47:747 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:07:49:749 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:07:57:757 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:07:57:757 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:07:59:759 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:08:06:86 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:08:06:86 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1029 - 391.324 ms[39m
+[35m[39m
+2024-12-13 02:09:37:937 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:09:37:937 [31merror[39m: [31mPostgres Database connection failed cannot drop constraint PK_0bd850da8dafab992e2e9b058e5 on table business because other objects depend on it[39m
+2024-12-13 02:09:39:939 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:09:45:945 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 02:09:45:945 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 401 1609 - 423.534 ms[39m
+[35m[39m
+2024-12-13 02:09:52:952 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 02:09:52:952 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 401 1609 - 297.629 ms[39m
+[35m[39m
+2024-12-13 02:10:18:1018 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:10:18:1018 [31merror[39m: [31mPostgres Database connection failed cannot drop constraint PK_0bd850da8dafab992e2e9b058e5 on table business because other objects depend on it[39m
+2024-12-13 02:10:19:1019 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:11:54:1154 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:11:55:1155 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 02:11:56:1156 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:12:17:1217 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 02:12:17:1217 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 401 1609 - 351.471 ms[39m
+[35m[39m
+2024-12-13 02:12:38:1238 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:12:40:1240 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:12:41:1241 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:13:07:137 [31merror[39m: [31muser not found[39m
+2024-12-13 02:13:07:137 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 404 653 - 576.250 ms[39m
+[35m[39m
+2024-12-13 02:13:17:1317 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 1 }[39m
+2024-12-13 02:13:17:1317 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 500 1006 - 696.600 ms[39m
+[35m[39m
+2024-12-13 02:13:59:1359 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:13:59:1359 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 183 - 202.459 ms[39m
+[35m[39m
+2024-12-13 02:15:47:1547 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:15:48:1548 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:15:48:1548 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:16:10:1610 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2423.911 ms[39m
+[35m[39m
+2024-12-13 02:17:15:1715 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 815 - 812.083 ms[39m
+[35m[39m
+2024-12-13 02:17:20:1720 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:17:20:1720 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1029 - 345.031 ms[39m
+[35m[39m
+2024-12-13 02:18:11:1811 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:18:11:1811 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:18:13:1813 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:18:16:1816 [31merror[39m: [31mNo metadata for "Phone" was found.[39m
+2024-12-13 02:18:16:1816 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1026 - 365.198 ms[39m
+[35m[39m
+2024-12-13 02:18:47:1847 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:18:48:1848 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:18:49:1849 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:20:08:208 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:20:08:208 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 229 - 407.165 ms[39m
+[35m[39m
+2024-12-13 02:20:57:2057 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:20:57:2057 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 184 - 362.377 ms[39m
+[35m[39m
+2024-12-13 02:21:12:2112 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:21:12:2112 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 229 - 371.016 ms[39m
+[35m[39m
+2024-12-13 02:23:06:236 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:23:06:236 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 229 - 364.374 ms[39m
+[35m[39m
+2024-12-13 02:23:52:2352 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:23:52:2352 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:23:54:2354 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:24:25:2425 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:24:25:2425 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:24:26:2426 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:24:38:2438 [31merror[39m: [31mConverting circular structure to JSON[39m
+[31m    --> starting at object with constructor 'Account'[39m
+[31m    |     property 'experiences' -> object with constructor 'Array'[39m
+[31m    |     index 0 -> object with constructor 'Experience'[39m
+[31m    --- property 'account' closes the circle[39m
+2024-12-13 02:24:38:2438 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1347 - 542.154 ms[39m
+[35m[39m
+2024-12-13 02:25:59:2559 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:26:00:260 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:26:01:261 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:26:36:2636 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:26:36:2636 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:26:37:2637 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:26:40:2640 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:26:40:2640 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1380 - 528.626 ms[39m
+[35m[39m
+2024-12-13 02:28:55:2855 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:28:55:2855 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:28:58:2858 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:29:01:291 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:29:01:291 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1380 - 571.676 ms[39m
+[35m[39m
+2024-12-13 02:29:34:2934 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:29:34:2934 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:29:36:2936 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:29:41:2941 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:29:41:2941 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1380 - 367.386 ms[39m
+[35m[39m
+2024-12-13 02:32:42:3242 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:32:42:3242 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:32:44:3244 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:32:49:3249 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:32:49:3249 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1380 - 388.835 ms[39m
+[35m[39m
+2024-12-13 02:33:27:3327 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:33:27:3327 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:33:28:3328 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:33:35:3335 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:33:35:3335 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1380 - 404.512 ms[39m
+[35m[39m
+2024-12-13 02:34:12:3412 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:34:13:3413 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:34:21:3421 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:34:21:3421 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:34:22:3422 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:34:37:3437 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:34:37:3437 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1380 - 486.087 ms[39m
+[35m[39m
+2024-12-13 02:35:03:353 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:35:03:353 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:35:04:354 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:35:32:3532 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:35:32:3532 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:35:33:3533 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:35:38:3538 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:35:38:3538 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1380 - 396.004 ms[39m
+[35m[39m
+2024-12-13 02:36:06:366 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:36:06:366 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:36:08:368 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:37:49:3749 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:37:49:3749 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:37:51:3751 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:37:54:3754 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:37:54:3754 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1380 - 513.040 ms[39m
+[35m[39m
+2024-12-13 02:38:30:3830 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:38:31:3831 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:38:32:3832 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:38:36:3836 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:38:36:3836 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1380 - 492.835 ms[39m
+[35m[39m
+2024-12-13 02:39:20:3920 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:39:20:3920 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:39:22:3922 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:40:10:4010 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:40:10:4010 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:40:12:4012 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:40:15:4015 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:40:15:4015 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1380 - 632.880 ms[39m
+[35m[39m
+2024-12-13 02:40:49:4049 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:40:49:4049 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:40:51:4051 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:41:04:414 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:41:04:414 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:41:06:416 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:41:09:419 [31merror[39m: [31mConverting circular structure to JSON[39m
+[31m    --> starting at object with constructor 'Account'[39m
+[31m    |     property 'experiences' -> object with constructor 'Array'[39m
+[31m    |     index 0 -> object with constructor 'Experience'[39m
+[31m    --- property 'account' closes the circle[39m
+2024-12-13 02:41:09:419 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1347 - 488.426 ms[39m
+[35m[39m
+2024-12-13 02:41:55:4155 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:41:55:4155 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:41:57:4157 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:42:03:423 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:42:03:423 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1029 - 368.079 ms[39m
+[35m[39m
+2024-12-13 02:43:30:4330 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:43:30:4330 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:43:31:4331 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:44:37:4437 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:44:38:4438 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:44:39:4439 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 02:44:53:4453 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 02:44:53:4453 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 02:44:55:4455 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:22:15:2215 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:22:24:2224 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:22:25:2225 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 16:22:26:2226 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:22:58:2258 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 16:22:58:2258 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 401 729 - 901.125 ms[39m
+[35m[39m
+2024-12-13 16:23:32:2332 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 834 - 1192.429 ms[39m
+[35m[39m
+2024-12-13 16:23:41:2341 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 16:23:41:2341 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 500 1029 - 488.481 ms[39m
+[35m[39m
+2024-12-13 16:25:55:2555 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:25:55:2555 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:25:57:2557 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:26:16:2616 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:26:16:2616 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:26:18:2618 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:26:45:2645 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:26:45:2645 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:26:47:2647 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:27:55:2755 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:27:55:2755 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:27:56:2756 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:29:17:2917 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:29:17:2917 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:29:19:2919 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:31:42:3142 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:31:42:3142 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:31:43:3143 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:35:19:3519 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:35:19:3519 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:35:20:3520 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:36:36:3636 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:36:36:3636 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:36:37:3637 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:37:07:377 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:37:08:378 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:37:09:379 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:40:30:4030 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:40:30:4030 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:40:32:4032 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:40:49:4049 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:40:49:4049 [31merror[39m: [31mPostgres Database connection failed Entity "Address" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.[39m
+2024-12-13 16:40:50:4050 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:41:07:417 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:41:08:418 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:41:09:419 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:43:39:4339 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:43:39:4339 [31merror[39m: [31mPostgres Database connection failed Entity "Phone" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.[39m
+2024-12-13 16:43:41:4341 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:44:07:447 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:44:07:447 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:44:08:448 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:45:08:458 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:45:08:458 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:45:09:459 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:45:42:4542 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:45:43:4543 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:45:43:4543 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:47:00:470 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:47:00:470 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:47:01:471 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:48:37:4837 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:48:37:4837 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:48:38:4838 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:49:06:496 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:49:07:497 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:49:08:498 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:50:57:5057 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:50:58:5058 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:50:59:5059 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:52:20:5220 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:52:20:5220 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:52:21:5221 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:52:48:5248 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:52:48:5248 [31merror[39m: [31mPostgres Database connection failed Entity "Experience" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.[39m
+2024-12-13 16:52:49:5249 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 16:53:00:530 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 16:53:01:531 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:53:02:532 [32minfo[39m: [32mMongoDB Database connected successfully[39m

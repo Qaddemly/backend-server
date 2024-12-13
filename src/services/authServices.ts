@@ -34,6 +34,13 @@ import { AccountRepository } from '../Repository/accountRepository';
 import AccountTempData from '../models/accountModel';
 import User from '../models/userModel';
 import { Account } from '../entity/Account';
+import { Address } from '../entity/Address';
+import { AppDataSource } from '../data-source';
+import { Experience } from '../entity/Experience';
+import { Skill } from '../entity/skill';
+import { Language } from '../entity/Language';
+import { Phone } from '../entity/Phone';
+import { Education } from '../entity/Education';
 
 export const createUserForSignUp = async (reqBody: signUpBody) => {
     const { firstName, lastName, email, password } = reqBody;
@@ -76,24 +83,82 @@ export const updateUserForSignUpStepTwo = async (
         profilePicture,
         resume,
     } = req.body;
-
-    const user = await AccountRepository.update(
-        { id: userId },
-        {
-            address: address,
-            phone: phone,
-            // education: education,
-            // experience: experience,
-            // skill: skills,
-            date_of_birth: dateOfBirth,
-            // language: languages,
-            profile_picture: profilePicture,
-            resume: resume,
-        },
-    );
+    const user = await AccountRepository.findOneBy({ id: userId });
     if (!user) {
         throw new AppError('user not found', 404);
     }
+
+    if (address) {
+        // const address_ = new Address();
+        // address_.country = address.country;
+        // address_.city = address.city;
+        // const returnedAddress =
+        //     await AppDataSource.getRepository(Address).save(address_);
+        // user.address = returnedAddress;
+    }
+    // if (experience) {
+    //     const experiencePromises = experience.map(async (exp) => {
+    //         const exp_ = new Experience();
+    //         exp_.account = user;
+    //         exp_.company_name = exp.companyName;
+    //         exp_.location = exp.location;
+    //         exp_.location_type = exp.locationType;
+    //         exp_.job_title = exp.jobTitle;
+    //         exp_.employment_type = exp.employmentType;
+    //         exp_.still_working = exp.stillWorking;
+    //         exp_.start_date = exp.startDate;
+    //         exp_.end_date = exp.endDate;
+    //         return await AppDataSource.getRepository(Experience).save(exp_);
+    //     });
+    //     const experienceArray = await Promise.all(experiencePromises);
+    //     user.experiences = experienceArray;
+    // }
+    // if (skills) {
+    //     const skillsPromises = skills.map(async (sk) => {
+    //         const skill_ = new Skill();
+    //         skill_.account = user;
+    //         skill_.name = sk;
+
+    //         return await AppDataSource.getRepository(Skill).save(skill_);
+    //     });
+    //     const skillsArray = await Promise.all(skillsPromises);
+    //     user.skills = skillsArray;
+    // }
+
+    // user.date_of_birth = dateOfBirth;
+    // user.resume = resume;
+    // user.profile_picture = profilePicture;
+    // if (languages) {
+    //     const languagePromises = languages.map(async (language) => {
+    //         const language_ = new Language();
+    //         language_.account = user;
+    //         language_.name = language;
+    //         return await AppDataSource.getRepository(Language).save(language_);
+    //     });
+    //     const languageArray = await Promise.all(languagePromises);
+    //     user.languages = languageArray;
+    // }
+    // if (phone) {
+    //     const phone_ = new Phone();
+    //     phone_.country_code = phone.countryCode;
+    //     phone_.number = phone.number;
+    //     const returnedPhone =
+    //         await AppDataSource.getRepository(Phone).save(phone_);
+    //     user.phone = returnedPhone;
+    // }
+    // if (education) {
+    //     const education_ = new Education();
+    //     education_.account_id = user.id;
+    //     education_.gpa = education.gpa;
+    //     education_.university = education.university;
+    //     education_.start_date = education.startDate;
+    //     education_.end_date = education.endDate;
+    //     education_.field_of_study = education.fieldOfStudy;
+    //     const returnedEducation =
+    //         await AppDataSource.getRepository(Education).save(education_);
+    // }
+    await AccountRepository.save(user);
+
     return user;
 };
 export const uploadUserPICAndResume = uploadProfilePicAndResume([

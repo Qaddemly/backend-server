@@ -14,3 +14,74 @@
 2024-12-13 00:35:17:3517 [31merror[39m: [31m"business" alias was not found. Maybe you forgot to join it?[39m
 2024-12-13 00:52:14:5214 [31merror[39m: [31msyntax error at or near "."[39m
 2024-12-13 00:53:08:538 [31merror[39m: [31mcolumn r.changed_at does not exist[39m
+2024-12-13 01:58:02:582 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 01:58:08:588 [31merror[39m: [31memail or password is incorrect[39m
+2024-12-13 01:58:18:5818 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 1 }[39m
+2024-12-13 01:59:04:594 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:00:00:00 [31merror[39m: [31memail or password is incorrect[39m
+2024-12-13 02:00:23:023 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:01:53:153 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:03:46:346 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:06:44:644 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:08:06:86 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:09:37:937 [31merror[39m: [31mPostgres Database connection failed cannot drop constraint PK_0bd850da8dafab992e2e9b058e5 on table business because other objects depend on it[39m
+2024-12-13 02:09:45:945 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 02:09:52:952 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 02:10:18:1018 [31merror[39m: [31mPostgres Database connection failed cannot drop constraint PK_0bd850da8dafab992e2e9b058e5 on table business because other objects depend on it[39m
+2024-12-13 02:11:55:1155 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 02:12:17:1217 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 02:13:07:137 [31merror[39m: [31muser not found[39m
+2024-12-13 02:13:17:1317 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 1 }[39m
+2024-12-13 02:13:59:1359 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:17:20:1720 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 02:18:16:1816 [31merror[39m: [31mNo metadata for "Phone" was found.[39m
+2024-12-13 02:20:08:208 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:20:57:2057 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:21:12:2112 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:23:06:236 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 02:24:38:2438 [31merror[39m: [31mConverting circular structure to JSON[39m
+[31m    --> starting at object with constructor 'Account'[39m
+[31m    |     property 'experiences' -> object with constructor 'Array'[39m
+[31m    |     index 0 -> object with constructor 'Experience'[39m
+[31m    --- property 'account' closes the circle[39m
+2024-12-13 02:26:40:2640 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:29:01:291 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:29:41:2941 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:32:49:3249 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:33:35:3335 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:34:37:3437 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:35:38:3538 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:37:54:3754 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:38:36:3836 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:40:15:4015 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-13 02:41:09:419 [31merror[39m: [31mConverting circular structure to JSON[39m
+[31m    --> starting at object with constructor 'Account'[39m
+[31m    |     property 'experiences' -> object with constructor 'Array'[39m
+[31m    |     index 0 -> object with constructor 'Experience'[39m
+[31m    --- property 'account' closes the circle[39m
+2024-12-13 02:42:03:423 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 16:22:58:2258 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 16:23:41:2341 [31merror[39m: [31mNo metadata for "Address" was found.[39m
+2024-12-13 16:25:55:2555 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:26:16:2616 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:26:45:2645 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:27:55:2755 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:29:17:2917 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:31:42:3142 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:35:19:3519 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#address was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-13 16:36:36:3636 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:37:08:378 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:40:30:4030 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:40:49:4049 [31merror[39m: [31mPostgres Database connection failed Entity "Address" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.[39m
+2024-12-13 16:41:08:418 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:43:39:4339 [31merror[39m: [31mPostgres Database connection failed Entity "Phone" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.[39m
+2024-12-13 16:44:07:447 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:45:08:458 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:45:43:4543 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:47:00:470 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:48:37:4837 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:49:07:497 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:50:58:5058 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:52:20:5220 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m
+2024-12-13 16:52:48:5248 [31merror[39m: [31mPostgres Database connection failed Entity "Experience" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.[39m
+2024-12-13 16:53:01:531 [31merror[39m: [31mPostgres Database connection failed column "id" appears twice in primary key constraint[39m

@@ -332,6 +332,7 @@ export const userUpdateValidator: ValidationChain[] = [
         .optional()
         .custom((value, { req, path, pathValues }) => {
             const idx = Number(pathValues[1]);
+            console.log(pathValues, path);
             console.log(req.body.experience[idx].stillWorking);
             return req.body.experience[idx].stillWorking === false;
         })
