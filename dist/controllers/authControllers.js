@@ -43,31 +43,27 @@ exports.changeMyPassword = exports.getMe = exports.updateMe = exports.googleRedi
 var passport_1 = __importDefault(require("passport"));
 var express_async_handler_1 = __importDefault(require("express-async-handler"));
 var authServices_1 = require("../services/authServices");
-var codeUtils_1 = require("../utils/codeUtils");
-var userModel_1 = __importDefault(require("../models/userModel"));
+var accountRepository_1 = require("../Repository/accountRepository");
+var accountModel_1 = __importDefault(require("../models/accountModel"));
 exports.signUp = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var userData, newUser, activationToken, err_1;
+    var activationToken, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 3, , 4]);
-                userData = req.body;
-                return [4 /*yield*/, (0, authServices_1.createUserForSignUp)(userData)];
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, (0, authServices_1.signUpService)(req.body)];
             case 1:
-                newUser = _a.sent();
-                return [4 /*yield*/, (0, codeUtils_1.generateAndEmailCode)(newUser)];
-            case 2:
                 activationToken = _a.sent();
                 res.status(201).json({
                     success: true,
                     message: 'User created successfully. Check your email for activation.',
                     activationToken: activationToken,
                 });
-                return [3 /*break*/, 4];
-            case 3:
+                return [3 /*break*/, 3];
+            case 2:
                 err_1 = _a.sent();
                 return [2 /*return*/, next(err_1)];
-            case 4: return [2 /*return*/];
+            case 3: return [2 /*return*/];
         }
     });
 }); });
@@ -255,22 +251,29 @@ exports.logIn = (0, express_async_handler_1.default)(function (req, res, next) {
     });
 }); });
 exports.logOut = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var refreshToken, user;
+    var refreshToken, currentUser, userTempData;
     var _a;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 refreshToken = req.cookies.refreshToken;
-                return [4 /*yield*/, userModel_1.default.findById((_a = req.user) === null || _a === void 0 ? void 0 : _a.id)];
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({
+                        id: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id,
+                    })];
             case 1:
-                user = _b.sent();
-                if (!user) return [3 /*break*/, 3];
-                user.refreshTokens = user.refreshTokens.filter(function (rt) { return rt !== refreshToken; });
-                return [4 /*yield*/, user.save()];
+                currentUser = _b.sent();
+                return [4 /*yield*/, accountModel_1.default.findOne({
+                        accountId: currentUser.id,
+                    })];
             case 2:
-                _b.sent();
-                _b.label = 3;
+                userTempData = _b.sent();
+                if (!currentUser) return [3 /*break*/, 4];
+                userTempData.refreshTokens = userTempData.refreshTokens.filter(function (rt) { return rt !== refreshToken; });
+                return [4 /*yield*/, userTempData.save()];
             case 3:
+                _b.sent();
+                _b.label = 4;
+            case 4:
                 (0, authServices_1.clearCookies)(res);
                 res.status(200).json({
                     success: true,
@@ -323,21 +326,28 @@ exports.updateMe = (0, express_async_handler_1.default)(function (req, res, next
     });
 }); });
 exports.getMe = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var user, err_11;
     return __generator(this, function (_a) {
-        try {
-            res.status(200).json({
-                success: true,
-                user: req.user,
-            });
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, (0, authServices_1.getMeService)(req)];
+            case 1:
+                user = _a.sent();
+                res.status(200).json({
+                    success: true,
+                    user: user,
+                });
+                return [3 /*break*/, 3];
+            case 2:
+                err_11 = _a.sent();
+                return [2 /*return*/, next(err_11)];
+            case 3: return [2 /*return*/];
         }
-        catch (err) {
-            return [2 /*return*/, next(err)];
-        }
-        return [2 /*return*/];
     });
 }); });
 exports.changeMyPassword = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var err_11;
+    var err_12;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -351,8 +361,8 @@ exports.changeMyPassword = (0, express_async_handler_1.default)(function (req, r
                 });
                 return [3 /*break*/, 3];
             case 2:
-                err_11 = _a.sent();
-                return [2 /*return*/, next(err_11)];
+                err_12 = _a.sent();
+                return [2 /*return*/, next(err_12)];
             case 3: return [2 /*return*/];
         }
     });

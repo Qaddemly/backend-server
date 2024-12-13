@@ -44,20 +44,20 @@ dotenv_1.default.config();
 var app_1 = __importDefault(require("./app"));
 var database_connection_1 = __importDefault(require("./config/database.connection"));
 var data_source_1 = require("./data-source");
-// database connection
+var logger_1 = require("./utils/logger");
 var port = process.env.PORT || 3000;
 (0, database_connection_1.default)();
 data_source_1.AppDataSource.initialize()
     .then(function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        console.log('Postgres Database connected successfully');
+        logger_1.Logger.info('Postgres Database connected successfully');
         return [2 /*return*/];
     });
 }); })
     .catch(function (error) {
-    return console.log('Postgres Database connection failed', error);
+    logger_1.Logger.error('Postgres Database connection failed', error);
 });
 app_1.default.listen(port, function () {
-    console.log("Server is running on port ".concat(port));
+    logger_1.Logger.info("Server is running on port ".concat(port));
 });
 //# sourceMappingURL=server.js.map

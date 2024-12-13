@@ -41,7 +41,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var passport_1 = __importDefault(require("passport"));
 var passport_google_oauth20_1 = __importDefault(require("passport-google-oauth20"));
-var userModel_1 = __importDefault(require("../models/userModel"));
+var accountModel_1 = __importDefault(require("../models/accountModel"));
+var accountRepository_1 = require("../Repository/accountRepository");
+var Account_1 = require("../entity/Account");
 passport_1.default.serializeUser(function (user, done) {
     done(null, user.id);
 });
@@ -49,7 +51,9 @@ passport_1.default.deserializeUser(function (id, done) { return __awaiter(void 0
     var user;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, userModel_1.default.findById(id)];
+            case 0:
+                console.log('a7aaaaaaaaaaaaaaaaaaaaa');
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({ id: id })];
             case 1:
                 user = _a.sent();
                 done(null, user);
@@ -64,31 +68,42 @@ passport_1.default.use(new passport_google_oauth20_1.default.Strategy({
 }, 
 // call back function
 function (accessToken, RefreshToken, profile, done) { return __awaiter(void 0, void 0, void 0, function () {
-    var user;
+    var userTempData, user, user, returnedUser;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, userModel_1.default.findOne({ googleId: profile.id })];
-            case 1:
-                user = _a.sent();
-                if (!user) return [3 /*break*/, 2];
-                //console.log("user found");
-                done(null, user);
-                return [3 /*break*/, 4];
-            case 2:
-                user = new userModel_1.default({
-                    firstName: profile._json.given_name,
-                    lastName: profile._json.family_name,
-                    email: profile.emails[0].value,
+            case 0: return [4 /*yield*/, accountModel_1.default.findOne({
                     googleId: profile.id,
-                    profilePicture: profile._json.picture,
-                    isActivated: true,
-                });
-                return [4 /*yield*/, user.save({ validateBeforeSave: false })];
-            case 3:
-                _a.sent();
+                })];
+            case 1:
+                userTempData = _a.sent();
+                if (!userTempData) return [3 /*break*/, 3];
+                console.log('user found');
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({
+                        id: userTempData.accountId,
+                    })];
+            case 2:
+                user = _a.sent();
                 done(null, user);
-                _a.label = 4;
-            case 4: return [2 /*return*/];
+                return [3 /*break*/, 6];
+            case 3:
+                user = new Account_1.Account();
+                user.first_name = profile._json.given_name;
+                user.last_name = profile._json.family_name;
+                user.email = profile.emails[0].value;
+                user.profile_picture = profile._json.picture;
+                user.is_activated = true;
+                return [4 /*yield*/, accountRepository_1.AccountRepository.save(user)];
+            case 4:
+                returnedUser = _a.sent();
+                return [4 /*yield*/, accountModel_1.default.create({
+                        accountId: returnedUser.id,
+                        googleId: profile.id,
+                    })];
+            case 5:
+                userTempData = _a.sent();
+                done(null, user);
+                _a.label = 6;
+            case 6: return [2 /*return*/];
         }
     });
 }); }));

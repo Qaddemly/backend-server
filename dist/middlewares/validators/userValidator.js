@@ -35,9 +35,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.forgetPasswordValidator = exports.loginValidator = exports.changePasswordValidator = exports.resetPasswordValidator = exports.userUpdateValidator = exports.userCreationValidatorStepTwo = exports.userCreationValidatorStepOne = void 0;
 var express_validator_1 = require("express-validator");
@@ -46,7 +43,7 @@ var country_1 = require("../../enums/country");
 var employmentType_1 = require("../../enums/employmentType");
 var locationType_1 = require("../../enums/locationType");
 var language_1 = require("../../enums/language");
-var userModel_1 = __importDefault(require("../../models/userModel"));
+var accountRepository_1 = require("../../Repository/accountRepository");
 exports.userCreationValidatorStepOne = [
     (0, express_validator_1.body)('email')
         .trim()
@@ -59,7 +56,7 @@ exports.userCreationValidatorStepOne = [
         var user;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, userModel_1.default.findOne({ email: val })];
+                case 0: return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({ email: val })];
                 case 1:
                     user = _a.sent();
                     if (!user) {
@@ -220,17 +217,20 @@ exports.userCreationValidatorStepTwo = [
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid start date'),
     // Optional Fix
-    (0, express_validator_1.body)('experience.*.endDate')
-        .if((0, express_validator_1.body)('experience').exists())
-        .custom(function (value, _a) {
-        var req = _a.req, path = _a.path, pathValues = _a.pathValues;
-        var idx = Number(pathValues[1]);
-        console.log(req.body.experience[idx].stillWorking);
-        return req.body.experience[idx].stillWorking === false;
-    })
-        .isDate({ format: 'YYYY-MM-DD' })
-        .withMessage('Invalid end date')
-        .optional(),
+    // body('experience.*.endDate')
+    //     .if(body('experience').exists())
+    //     .custom((value, { req, path, pathValues }) => {
+    //         const idx = Number(pathValues[1]);
+    //         console.log(
+    //             req.body.experience[idx].stillWorking,
+    //             path,
+    //             pathValues,
+    //         );
+    //         return req.body.experience[idx].stillWorking === false;
+    //     })
+    //     .isDate({ format: 'YYYY-MM-DD' })
+    //     .withMessage('Invalid end date')
+    //     .optional(),
     (0, express_validator_1.body)('skills').optional().isArray(),
     (0, express_validator_1.body)('skills.*')
         .if((0, express_validator_1.body)('skills').exists())
@@ -394,17 +394,17 @@ exports.userUpdateValidator = [
         .optional()
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid start date'),
-    (0, express_validator_1.body)('experience.*.endDate')
-        .optional()
-        .custom(function (value, _a) {
-        var req = _a.req, path = _a.path, pathValues = _a.pathValues;
-        var idx = Number(pathValues[1]);
-        console.log(req.body.experience[idx].stillWorking);
-        return req.body.experience[idx].stillWorking === false;
-    })
-        .isDate({ format: 'YYYY-MM-DD' })
-        .withMessage('Invalid end date')
-        .optional(),
+    // body('experience.*.endDate')
+    //     .optional()
+    //     .custom((value, { req, path, pathValues }) => {
+    //         const idx = Number(pathValues[1]);
+    //         console.log(pathValues, path);
+    //         console.log(req.body.experience[idx].stillWorking);
+    //         return req.body.experience[idx].stillWorking === false;
+    //     })
+    //     .isDate({ format: 'YYYY-MM-DD' })
+    //     .withMessage('Invalid end date')
+    //     .optional(),
     (0, express_validator_1.body)('skills').optional().isArray(),
     (0, express_validator_1.body)('skills.*')
         .optional()

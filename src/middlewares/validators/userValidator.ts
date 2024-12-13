@@ -163,16 +163,20 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid start date'),
     // Optional Fix
-    body('experience.*.endDate')
-        .if(body('experience').exists())
-        .custom((value, { req, path, pathValues }) => {
-            const idx = Number(pathValues[1]);
-            console.log(req.body.experience[idx].stillWorking);
-            return req.body.experience[idx].stillWorking === false;
-        })
-        .isDate({ format: 'YYYY-MM-DD' })
-        .withMessage('Invalid end date')
-        .optional(),
+    // body('experience.*.endDate')
+    //     .if(body('experience').exists())
+    //     .custom((value, { req, path, pathValues }) => {
+    //         const idx = Number(pathValues[1]);
+    //         console.log(
+    //             req.body.experience[idx].stillWorking,
+    //             path,
+    //             pathValues,
+    //         );
+    //         return req.body.experience[idx].stillWorking === false;
+    //     })
+    //     .isDate({ format: 'YYYY-MM-DD' })
+    //     .withMessage('Invalid end date')
+    //     .optional(),
     body('skills').optional().isArray(),
     body('skills.*')
         .if(body('skills').exists())
@@ -328,16 +332,17 @@ export const userUpdateValidator: ValidationChain[] = [
         .optional()
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid start date'),
-    body('experience.*.endDate')
-        .optional()
-        .custom((value, { req, path, pathValues }) => {
-            const idx = Number(pathValues[1]);
-            console.log(req.body.experience[idx].stillWorking);
-            return req.body.experience[idx].stillWorking === false;
-        })
-        .isDate({ format: 'YYYY-MM-DD' })
-        .withMessage('Invalid end date')
-        .optional(),
+    // body('experience.*.endDate')
+    //     .optional()
+    //     .custom((value, { req, path, pathValues }) => {
+    //         const idx = Number(pathValues[1]);
+    //         console.log(pathValues, path);
+    //         console.log(req.body.experience[idx].stillWorking);
+    //         return req.body.experience[idx].stillWorking === false;
+    //     })
+    //     .isDate({ format: 'YYYY-MM-DD' })
+    //     .withMessage('Invalid end date')
+    //     .optional(),
     body('skills').optional().isArray(),
     body('skills.*')
         .optional()
