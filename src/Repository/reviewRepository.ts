@@ -23,11 +23,10 @@ class ReviewRepositoryClass extends Repository<Review> {
     }
     async getAllReviewsOfBusiness(businessId: number) {
         return await this.query(
-            'SELECT a.id as account_id, ' +
-                ' a.first_name as account_first_name,' +
+            'SELECT a.first_name as account_first_name,' +
                 ' a.last_name as account_last_name,' +
                 ' a.profile_picture as account_profile_picture,' +
-                ' r.description as description,' +
+                ' r.description as review_description,' +
                 ' r.rating as review_rating,' +
                 ' r.business_id as review_business_id,' +
                 ' r.account_id as review_account_id,' +

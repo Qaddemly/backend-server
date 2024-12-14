@@ -37,3 +37,7 @@
 2024-12-13 23:18:33:1833 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
 2024-12-13 23:22:21:2221 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 4 }[39m
 2024-12-14 00:15:06:156 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-14 19:25:37:2537 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 1 }[39m
+2024-12-14 19:25:47:2547 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 2 }[39m
+2024-12-14 19:26:13:2613 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 3 }[39m
+2024-12-14 19:26:17:2617 [31merror[39m: [31mvalidationErrors[39m

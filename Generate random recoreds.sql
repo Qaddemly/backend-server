@@ -38,3 +38,11 @@ SELECT
 FROM generate_series(1, 50000) g;
 
 explain analyse select * from business where id = 1;
+
+select * from account;
+
+insert into review (business_id, account_id,rating,description, created_at, updated_at) values (1, 1, 6,'Great business', now(), now());
+
+select * from review;
+
+select * from business;

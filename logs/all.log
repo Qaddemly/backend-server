@@ -608,3 +608,28 @@
 2024-12-14 00:15:42:1542 [32minfo[39m: [32mServer is running on port 8000[39m
 2024-12-14 00:15:43:1543 [32minfo[39m: [32mPostgres Database connected successfully[39m
 2024-12-14 00:15:44:1544 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-14 19:25:30:2530 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 19:25:30:2530 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 19:25:31:2531 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-14 19:25:37:2537 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 1 }[39m
+2024-12-14 19:25:37:2537 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 500 1122 - 1144.997 ms[39m
+[35m[39m
+2024-12-14 19:25:47:2547 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 2 }[39m
+2024-12-14 19:25:47:2547 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 500 1122 - 845.208 ms[39m
+[35m[39m
+2024-12-14 19:26:13:2613 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 3 }[39m
+2024-12-14 19:26:13:2613 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 500 1122 - 1054.413 ms[39m
+[35m[39m
+2024-12-14 19:26:17:2617 [31merror[39m: [31mvalidationErrors[39m
+2024-12-14 19:26:17:2617 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 184 - 140.140 ms[39m
+[35m[39m
+2024-12-14 19:27:21:2721 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 1497 - 717.546 ms[39m
+[35m[39m
+2024-12-14 19:28:37:2837 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 200 43950032 - 2985.363 ms[39m
+[35m[39m
+2024-12-14 19:29:56:2956 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 200 43950032 - 2964.785 ms[39m
+[35m[39m
+2024-12-14 22:41:59:4159 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 22:42:00:420 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 22:43:10:4310 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 22:43:10:4310 [32minfo[39m: [32mPostgres Database connected successfully[39m
