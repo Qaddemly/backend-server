@@ -32,6 +32,7 @@ import {
     signInGoogleRedirection,
     clearCookies,
     signUpService,
+    getMeService,
 } from '../services/authServices';
 import { generateAndEmailCode } from '../utils/codeUtils';
 import User from '../models/userModel';
@@ -302,9 +303,10 @@ export const updateMe = catchAsync(
 export const getMe = catchAsync(
     async (req: Request<{}, {}, {}>, res: Response, next: NextFunction) => {
         try {
+            const user = await getMeService(req);
             res.status(200).json({
                 success: true,
-                user: req.user,
+                user,
             });
         } catch (err) {
             return next(err);

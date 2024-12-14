@@ -59,7 +59,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.clearCookies = exports.changeCurrentPassword = exports.updateMyInfo = exports.signInGoogleRedirection = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.savingResumeInDisk = exports.resizeUserImage = exports.uploadUserPICAndResume = exports.updateUserForSignUpStepTwo = exports.createUserForSignUp = void 0;
+exports.getMeService = exports.returnUserInFormOfMongoDBObject = exports.updateAllAccountData = exports.updateUserAfterCompleteData = exports.clearCookies = exports.changeCurrentPassword = exports.updateMyInfo = exports.signInGoogleRedirection = exports.protect = exports.logInService = exports.createNewPassword = exports.PasswordResetCodeVerification = exports.createAnotherResetPasswordCodeAndResend = exports.generateForgetPasswordCodeAndEmail = exports.createAnotherCodeAndResend = exports.verifyActivationCode = exports.savingResumeInDisk = exports.resizeUserImage = exports.uploadUserPICAndResume = exports.updateUserForSignUpStepTwo = exports.signUpService = exports.createUserForSignUp = void 0;
 var fs_1 = __importDefault(require("fs"));
 var appError_1 = __importDefault(require("../utils/appError"));
 var express_async_handler_1 = __importDefault(require("express-async-handler"));
@@ -69,9 +69,18 @@ var password_1 = require("../utils/password");
 var jwt_1 = require("../utils/jwt");
 var upload_middleWare_1 = require("../middlewares/upload.middleWare");
 var sharp_1 = __importDefault(require("sharp"));
-var accountRepo_1 = require("../Repository/accountRepo");
+var accountRepository_1 = require("../Repository/accountRepository");
 var accountModel_1 = __importDefault(require("../models/accountModel"));
-var userModel_1 = __importDefault(require("../models/userModel"));
+var Account_1 = require("../entity/Account");
+var educationRepository_1 = require("../Repository/educationRepository");
+var Education_1 = require("../entity/Education");
+var Skill_1 = require("../entity/Skill");
+var skillRepository_1 = require("../Repository/skillRepository");
+var Experience_1 = require("../entity/Experience");
+var experineceRepository_1 = require("../Repository/experineceRepository");
+var returningFieldAsInMongoDb_1 = require("../utils/returningFieldAsInMongoDb");
+var Language_1 = require("../entity/Language");
+var languageRepository_1 = require("../Repository/languageRepository");
 var createUserForSignUp = function (reqBody) { return __awaiter(void 0, void 0, void 0, function () {
     var firstName, lastName, email, password, hashedPassword, newUser;
     return __generator(this, function (_a) {
@@ -81,42 +90,55 @@ var createUserForSignUp = function (reqBody) { return __awaiter(void 0, void 0, 
                 return [4 /*yield*/, (0, password_1.hashingPassword)(password)];
             case 1:
                 hashedPassword = _a.sent();
-                return [4 /*yield*/, userModel_1.default.create({
-                        firstName: firstName,
-                        lastName: lastName,
-                        email: email,
-                        password: hashedPassword,
-                    })];
+                newUser = new Account_1.Account();
+                newUser.first_name = firstName;
+                newUser.last_name = lastName;
+                newUser.email = email;
+                newUser.password = hashedPassword;
+                return [4 /*yield*/, accountRepository_1.AccountRepository.save(newUser)];
             case 2:
-                newUser = _a.sent();
+                _a.sent();
                 return [2 /*return*/, newUser];
         }
     });
 }); };
 exports.createUserForSignUp = createUserForSignUp;
-var updateUserForSignUpStepTwo = function (userId, req) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, resume, user;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _a = req.body, address = _a.address, phone = _a.phone, education = _a.education, experience = _a.experience, skills = _a.skills, dateOfBirth = _a.dateOfBirth, languages = _a.languages, profilePicture = _a.profilePicture, resume = _a.resume;
-                return [4 /*yield*/, userModel_1.default.findByIdAndUpdate(userId, {
-                        address: address,
-                        phone: phone,
-                        education: education,
-                        experience: experience,
-                        skills: skills,
-                        dateOfBirth: dateOfBirth,
-                        languages: languages,
-                        profilePicture: profilePicture,
-                        resume: resume,
-                    }, { new: true })];
+var signUpService = function (userData) { return __awaiter(void 0, void 0, void 0, function () {
+    var newUser, userTempData, activationToken;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, (0, exports.createUserForSignUp)(userData)];
             case 1:
-                user = _b.sent();
+                newUser = _a.sent();
+                return [4 /*yield*/, accountModel_1.default.create({
+                        accountId: newUser.id,
+                    })];
+            case 2:
+                userTempData = _a.sent();
+                return [4 /*yield*/, (0, codeUtils_1.generateAndEmailCode)(userTempData, newUser.email)];
+            case 3:
+                activationToken = _a.sent();
+                return [2 /*return*/, activationToken];
+        }
+    });
+}); };
+exports.signUpService = signUpService;
+var updateUserForSignUpStepTwo = function (userId, req) { return __awaiter(void 0, void 0, void 0, function () {
+    var user, userJson;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({
+                    id: userId,
+                })];
+            case 1:
+                user = _a.sent();
                 if (!user) {
                     throw new appError_1.default('user not found', 404);
                 }
-                return [2 /*return*/, user];
+                return [4 /*yield*/, (0, exports.updateUserAfterCompleteData)(user, req)];
+            case 2:
+                userJson = _a.sent();
+                return [2 /*return*/, userJson];
         }
     });
 }); };
@@ -172,26 +194,30 @@ exports.savingResumeInDisk = (0, express_async_handler_1.default)(function (req,
     });
 }); });
 var verifyActivationCode = function (code, activationToken) { return __awaiter(void 0, void 0, void 0, function () {
-    var hashActivationCode, user;
+    var hashActivationCode, userTempData, user;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 hashActivationCode = (0, codeUtils_1.cryptoEncryption)(code);
-                return [4 /*yield*/, userModel_1.default.findOne({
+                return [4 /*yield*/, accountModel_1.default.findOne({
                         activationToken: activationToken,
                     })];
             case 1:
-                user = _a.sent();
-                if (!user) {
+                userTempData = _a.sent();
+                if (!userTempData) {
                     throw new appError_1.default('user not found or token expired', 404);
                 }
-                if (user.activationCode != hashActivationCode ||
-                    user.activationCodeExpiresIn.getTime() < Date.now()) {
+                if (userTempData.activationCode != hashActivationCode ||
+                    userTempData.activationCodeExpiresIn.getTime() < Date.now()) {
                     throw new appError_1.default('code is incorrect or expired', 400);
                 }
-                user.isActivated = true;
-                return [4 /*yield*/, (0, codeUtils_1.resettingUserCodeFields)(user)];
+                return [4 /*yield*/, accountRepository_1.AccountRepository.update({
+                        id: userTempData.accountId,
+                    }, { is_activated: true })];
             case 2:
+                user = _a.sent();
+                return [4 /*yield*/, (0, codeUtils_1.resettingUserCodeFields)(userTempData)];
+            case 3:
                 _a.sent();
                 return [2 /*return*/];
         }
@@ -199,22 +225,29 @@ var verifyActivationCode = function (code, activationToken) { return __awaiter(v
 }); };
 exports.verifyActivationCode = verifyActivationCode;
 var createAnotherCodeAndResend = function (activationToken) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, code, subject, message;
+    var userTempData, foundUser, code, subject, message;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, userModel_1.default.findOne({ activationToken: activationToken })];
+            case 0: return [4 /*yield*/, accountModel_1.default.findOne({
+                    activationToken: activationToken,
+                })];
             case 1:
-                user = _a.sent();
-                if (!user) {
+                userTempData = _a.sent();
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({
+                        id: userTempData.accountId,
+                    })];
+            case 2:
+                foundUser = _a.sent();
+                if (!userTempData) {
                     throw new appError_1.default('user belong to that token does not exist', 400);
                 }
-                return [4 /*yield*/, (0, codeUtils_1.generateAnotherActivationCode)(user)];
-            case 2:
+                return [4 /*yield*/, (0, codeUtils_1.generateAnotherActivationCode)(userTempData)];
+            case 3:
                 code = _a.sent();
                 subject = 'email activation';
                 message = "your activation code is ".concat(code);
-                return [4 /*yield*/, (0, email_1.sendingCodeToEmail)(user, subject, message)];
-            case 3:
+                return [4 /*yield*/, (0, email_1.sendingCodeToEmail)(foundUser.email, subject, message)];
+            case 4:
                 _a.sent();
                 return [2 /*return*/];
         }
@@ -222,17 +255,20 @@ var createAnotherCodeAndResend = function (activationToken) { return __awaiter(v
 }); };
 exports.createAnotherCodeAndResend = createAnotherCodeAndResend;
 var generateForgetPasswordCodeAndEmail = function (email) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, resetVerificationToken;
+    var user, userTempData, resetVerificationToken;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, userModel_1.default.findOne({ email: email })];
+            case 0: return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({ email: email })];
             case 1:
                 user = _a.sent();
                 if (!user) {
                     throw new appError_1.default('no user found with this email', 404);
                 }
-                return [4 /*yield*/, (0, codeUtils_1.generateAndEmailPassResetCode)(user)];
+                return [4 /*yield*/, accountModel_1.default.findOne({ accountId: user.id })];
             case 2:
+                userTempData = _a.sent();
+                return [4 /*yield*/, (0, codeUtils_1.generateAndEmailPassResetCode)(userTempData, user.email)];
+            case 3:
                 resetVerificationToken = _a.sent();
                 return [2 /*return*/, resetVerificationToken];
         }
@@ -240,24 +276,29 @@ var generateForgetPasswordCodeAndEmail = function (email) { return __awaiter(voi
 }); };
 exports.generateForgetPasswordCodeAndEmail = generateForgetPasswordCodeAndEmail;
 var createAnotherResetPasswordCodeAndResend = function (resetActivationToken) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, code, subject, message;
+    var userTempData, userFound, code, subject, message;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, userModel_1.default.findOne({
+            case 0: return [4 /*yield*/, accountModel_1.default.findOne({
                     passwordResetVerificationToken: resetActivationToken,
                 })];
             case 1:
-                user = _a.sent();
-                if (!user) {
-                    throw new appError_1.default('user belong to that token does not exist', 400);
+                userTempData = _a.sent();
+                if (!userTempData) {
+                    throw new appError_1.default('userTempData belong to that token does not exist', 400);
                 }
-                return [4 /*yield*/, (0, codeUtils_1.generateAnotherPassResetCode)(user)];
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({
+                        id: userTempData.accountId,
+                    })];
             case 2:
+                userFound = _a.sent();
+                return [4 /*yield*/, (0, codeUtils_1.generateAnotherPassResetCode)(userTempData)];
+            case 3:
                 code = _a.sent();
                 subject = 'password reset code';
                 message = "your password reset code is valid for (10 min) \n\n      ".concat(code, "\n");
-                return [4 /*yield*/, (0, email_1.sendingCodeToEmail)(user, subject, message)];
-            case 3:
+                return [4 /*yield*/, (0, email_1.sendingCodeToEmail)(userFound.email, subject, message)];
+            case 4:
                 _a.sent();
                 return [2 /*return*/];
         }
@@ -265,24 +306,29 @@ var createAnotherResetPasswordCodeAndResend = function (resetActivationToken) { 
 }); };
 exports.createAnotherResetPasswordCodeAndResend = createAnotherResetPasswordCodeAndResend;
 var PasswordResetCodeVerification = function (code, resetActivationToken) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, hashedCode, passwordResetToken;
+    var userTempData, hashedCode, userFound, passwordResetToken;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, userModel_1.default.findOne({
+            case 0: return [4 /*yield*/, accountModel_1.default.findOne({
                     passwordResetVerificationToken: resetActivationToken,
                 })];
             case 1:
-                user = _a.sent();
-                if (!user) {
+                userTempData = _a.sent();
+                if (!userTempData) {
                     throw new appError_1.default('no user founded with reset token', 404);
                 }
                 hashedCode = (0, codeUtils_1.cryptoEncryption)(code);
-                if (user.passwordResetCode != hashedCode ||
-                    user.passwordResetCodeExpires.getTime() < Date.now()) {
+                if (userTempData.passwordResetCode != hashedCode ||
+                    userTempData.passwordResetCodeExpires.getTime() < Date.now()) {
                     throw new appError_1.default('invalid or expired code', 400);
                 }
-                return [4 /*yield*/, (0, codeUtils_1.resetCodeVerified)(user)];
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({
+                        id: userTempData.accountId,
+                    })];
             case 2:
+                userFound = _a.sent();
+                return [4 /*yield*/, (0, codeUtils_1.resetCodeVerified)(userTempData, userFound)];
+            case 3:
                 passwordResetToken = _a.sent();
                 return [2 /*return*/, passwordResetToken];
         }
@@ -290,24 +336,27 @@ var PasswordResetCodeVerification = function (code, resetActivationToken) { retu
 }); };
 exports.PasswordResetCodeVerification = PasswordResetCodeVerification;
 var createNewPassword = function (passwordResetToken, newPassword) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, hashedPassword;
+    var userTempData, hashedPassword, userFound;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, userModel_1.default.findOne({
+            case 0: return [4 /*yield*/, accountModel_1.default.findOne({
                     passwordResetToken: passwordResetToken,
                 })];
             case 1:
-                user = _a.sent();
-                if (!user) {
-                    throw new appError_1.default('no user founded with that token', 404);
+                userTempData = _a.sent();
+                if (!userTempData) {
+                    throw new appError_1.default('no userTempData founded with that token', 404);
                 }
                 return [4 /*yield*/, (0, password_1.hashingPassword)(newPassword)];
             case 2:
                 hashedPassword = _a.sent();
-                user.password = hashedPassword;
-                user.passwordChangedAt = new Date(Date.now());
-                return [4 /*yield*/, (0, codeUtils_1.resettingUserCodeFields)(user)];
+                return [4 /*yield*/, accountRepository_1.AccountRepository.update({
+                        id: userTempData.accountId,
+                    }, { password: hashedPassword, password_changed_at: new Date(Date.now()) })];
             case 3:
+                userFound = _a.sent();
+                return [4 /*yield*/, (0, codeUtils_1.resettingUserCodeFields)(userTempData)];
+            case 4:
                 _a.sent();
                 return [2 /*return*/];
         }
@@ -315,10 +364,10 @@ var createNewPassword = function (passwordResetToken, newPassword) { return __aw
 }); };
 exports.createNewPassword = createNewPassword;
 var logInService = function (req, res, email, password) { return __awaiter(void 0, void 0, void 0, function () {
-    var account, isPassCorrect, activationToken, _a, accessToken, refreshToken, updatedUser;
+    var account, isPassCorrect, userTempData, activationToken, _a, accessToken, refreshToken, updatedUser, returnedUser;
     return __generator(this, function (_b) {
         switch (_b.label) {
-            case 0: return [4 /*yield*/, accountRepo_1.AccountRepo.findOneBy({ email: email })];
+            case 0: return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({ email: email })];
             case 1:
                 account = _b.sent();
                 if (!account) {
@@ -334,15 +383,23 @@ var logInService = function (req, res, email, password) { return __awaiter(void 
                 if (!isPassCorrect) {
                     throw new appError_1.default('email or password is incorrect', 400);
                 }
-                if (!!account.isActivated) return [3 /*break*/, 4];
-                return [4 /*yield*/, (0, codeUtils_1.generateAndEmailCode)(account)];
+                if (!!account.is_activated) return [3 /*break*/, 5];
+                return [4 /*yield*/, accountModel_1.default.findOne({
+                        accountId: account.id,
+                    })];
             case 3:
+                userTempData = _b.sent();
+                return [4 /*yield*/, (0, codeUtils_1.generateAndEmailCode)(userTempData, account.email)];
+            case 4:
                 activationToken = _b.sent();
                 return [2 /*return*/, [false, activationToken, null, null]];
-            case 4: return [4 /*yield*/, createTokensForLoggedInUser(account, req, res)];
-            case 5:
+            case 5: return [4 /*yield*/, createTokensForLoggedInUser(account, req, res)];
+            case 6:
                 _a = _b.sent(), accessToken = _a[0], refreshToken = _a[1], updatedUser = _a[2];
-                return [2 /*return*/, [true, accessToken, refreshToken, updatedUser]];
+                return [4 /*yield*/, (0, exports.returnUserInFormOfMongoDBObject)(account)];
+            case 7:
+                returnedUser = _b.sent();
+                return [2 /*return*/, [true, accessToken, refreshToken, returnedUser]];
         }
     });
 }); };
@@ -372,7 +429,7 @@ exports.protect = (0, express_async_handler_1.default)(function (req, res, next)
                 return [4 /*yield*/, (0, jwt_1.verifyTokenAsync)(token, 'access')];
             case 2:
                 decoded = (_b.sent());
-                return [4 /*yield*/, accountRepo_1.AccountRepo.findOneBy({ id: decoded.userId })];
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({ id: decoded.userId })];
             case 3:
                 user = _b.sent();
                 if (!user) {
@@ -381,8 +438,9 @@ exports.protect = (0, express_async_handler_1.default)(function (req, res, next)
                 if (user.email !== refreshTokenDecodedEmail) {
                     throw new appError_1.default('malicious, refresh token does not match with access token', 403);
                 }
-                if (user.passwordChangedAt) {
-                    passChangedAtTimeStamp = parseInt("".concat(user.passwordChangedAt.getTime() / 1000), 10);
+                if (user.password_changed_at) {
+                    passChangedAtTimeStamp = parseInt("".concat(user.password_changed_at.getTime() / 1000), 10);
+                    console.log(passChangedAtTimeStamp > decoded.iat, decoded.iat);
                     if (passChangedAtTimeStamp > decoded.iat) {
                         throw new appError_1.default('password is changed please login again', 401);
                     }
@@ -391,6 +449,7 @@ exports.protect = (0, express_async_handler_1.default)(function (req, res, next)
                 //     await resettingUserCodeFields(user);
                 // }
                 req.user = user; // for letting user to use protected routes
+                req.user.googleId = userTempData.googleId;
                 next();
                 return [3 /*break*/, 8];
             case 4:
@@ -422,6 +481,7 @@ exports.protect = (0, express_async_handler_1.default)(function (req, res, next)
                     maxAge: 10 * 24 * 60 * 60 * 1000,
                 });
                 req.user = user;
+                req.user.googleId = userTempData.googleId;
                 next();
                 return [3 /*break*/, 7];
             case 6:
@@ -456,7 +516,7 @@ var refreshTokenHandler = function (req, res) { return __awaiter(void 0, void 0,
                 return [4 /*yield*/, (0, jwt_1.verifyTokenAsync)(refreshToken, 'refresh')];
             case 2:
                 decoded_1 = _a.sent();
-                return [4 /*yield*/, accountRepo_1.AccountRepo.findOneBy({
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({
                         email: decoded_1.email,
                     })];
             case 3:
@@ -479,7 +539,7 @@ var refreshTokenHandler = function (req, res) { return __awaiter(void 0, void 0,
             case 7: return [4 /*yield*/, (0, jwt_1.verifyTokenAsync)(refreshToken, 'refresh')];
             case 8:
                 decoded = _a.sent();
-                return [4 /*yield*/, accountRepo_1.AccountRepo.findOneBy({
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({
                         email: decoded.email,
                     })];
             case 9:
@@ -515,16 +575,9 @@ var createTokensForLoggedInUser = function (user, req, res) { return __awaiter(v
                     ? userTempData.refreshTokens
                     : userTempData.refreshTokens.filter(function (rt) { return rt !== cookies.refreshToken; });
                 userTempData.refreshTokens = __spreadArray(__spreadArray([], newRefreshTokens, true), [refreshToken], false);
-                if (!user.password) return [3 /*break*/, 3];
                 return [4 /*yield*/, userTempData.save()];
             case 2:
                 _a.sent();
-                return [3 /*break*/, 5];
-            case 3: return [4 /*yield*/, user.save({ validateBeforeSave: false })];
-            case 4:
-                _a.sent(); // for login with google
-                _a.label = 5;
-            case 5:
                 res.cookie('refreshToken', refreshToken, {
                     httpOnly: true,
                     secure: true,
@@ -545,62 +598,48 @@ var createTokensForLoggedInUser = function (user, req, res) { return __awaiter(v
 }); };
 var signInGoogleRedirection = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var user, _a, accessToken, refreshToken, updatedUser;
-    var _b;
-    return __generator(this, function (_c) {
-        switch (_c.label) {
-            case 0: return [4 /*yield*/, userModel_1.default.findById((_b = req.user) === null || _b === void 0 ? void 0 : _b.id)];
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0: return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({ id: req.user.id })];
             case 1:
-                user = _c.sent();
+                user = _b.sent();
                 return [4 /*yield*/, createTokensForLoggedInUser(user, req, res)];
             case 2:
-                _a = _c.sent(), accessToken = _a[0], refreshToken = _a[1], updatedUser = _a[2];
+                _a = _b.sent(), accessToken = _a[0], refreshToken = _a[1], updatedUser = _a[2];
                 return [2 /*return*/, [accessToken, refreshToken, updatedUser]];
         }
     });
 }); };
 exports.signInGoogleRedirection = signInGoogleRedirection;
 var updateMyInfo = function (req, userId) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, firstName, lastName, email, resume, user;
+    var _a, address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, firstName, lastName, email, resume, user, userJson;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _a = req.body, address = _a.address, phone = _a.phone, education = _a.education, experience = _a.experience, skills = _a.skills, dateOfBirth = _a.dateOfBirth, languages = _a.languages, profilePicture = _a.profilePicture, firstName = _a.firstName, lastName = _a.lastName, email = _a.email, resume = _a.resume;
-                return [4 /*yield*/, userModel_1.default.findOneAndUpdate({ _id: userId }, {
-                        address: address,
-                        phone: phone,
-                        education: education,
-                        experience: experience,
-                        skills: skills,
-                        dateOfBirth: dateOfBirth,
-                        languages: languages,
-                        profilePicture: profilePicture,
-                        firstName: firstName,
-                        lastName: lastName,
-                        email: email,
-                        resume: resume,
-                    }, {
-                        new: true,
-                    })];
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findAllAccountData(userId)];
             case 1:
                 user = _b.sent();
                 if (!user) {
                     throw new appError_1.default('user not found', 404);
                 }
-                req.user = user;
-                return [2 /*return*/, user];
+                return [4 /*yield*/, (0, exports.updateAllAccountData)(user, req)];
+            case 2:
+                userJson = _b.sent();
+                return [2 /*return*/, userJson];
         }
     });
 }); };
 exports.updateMyInfo = updateMyInfo;
 var changeCurrentPassword = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, currentPassword, newPassword, refreshToken, currentUser, userPass, isCorrectCurrentPassword, hashedNewPassword, hashedNewPassword;
+    var _a, currentPassword, newPassword, refreshToken, currentUser, userPass, isCorrectCurrentPassword, hashedNewPassword, hashedNewPassword, userTempData;
     var _b;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
                 _a = req.body, currentPassword = _a.currentPassword, newPassword = _a.newPassword;
                 refreshToken = req.cookies.refreshToken;
-                return [4 /*yield*/, userModel_1.default.findById((_b = req.user) === null || _b === void 0 ? void 0 : _b.id)];
+                return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({ id: (_b = req.user) === null || _b === void 0 ? void 0 : _b.id })];
             case 1:
                 currentUser = _c.sent();
                 if (!req.user.password) return [3 /*break*/, 3];
@@ -612,27 +651,26 @@ var changeCurrentPassword = function (req, res) { return __awaiter(void 0, void 
                 return [4 /*yield*/, (0, password_1.hashingPassword)(newPassword)];
             case 2:
                 hashedNewPassword = _c.sent();
-                // const currentUser = await User.findByIdAndUpdate(req.user?.id, {
-                //     password: hashedNewPassword,
-                //     passwordChangedAt: new Date(Date.now()),
-                // });
                 currentUser.password = hashedNewPassword;
-                currentUser.passwordChangedAt = new Date(Date.now());
+                currentUser.password_changed_at = new Date(Date.now());
                 return [3 /*break*/, 5];
             case 3: return [4 /*yield*/, (0, password_1.hashingPassword)(newPassword)];
             case 4:
                 hashedNewPassword = _c.sent();
-                // const currentUser = await User.findByIdAndUpdate(req.user?.id, {
-                //     password: hashedNewPassword,
-                //     passwordChangedAt: new Date(Date.now()),
-                // });
                 currentUser.password = hashedNewPassword;
-                currentUser.passwordChangedAt = new Date(Date.now());
+                currentUser.password_changed_at = new Date(Date.now());
                 _c.label = 5;
-            case 5:
-                currentUser.refreshTokens = currentUser.refreshTokens.filter(function (rt) { return rt !== refreshToken; });
-                return [4 /*yield*/, currentUser.save()];
+            case 5: return [4 /*yield*/, accountModel_1.default.findOne({
+                    accountId: currentUser.id,
+                })];
             case 6:
+                userTempData = _c.sent();
+                userTempData.refreshTokens = userTempData.refreshTokens.filter(function (rt) { return rt !== refreshToken; });
+                return [4 /*yield*/, userTempData.save()];
+            case 7:
+                _c.sent();
+                return [4 /*yield*/, accountRepository_1.AccountRepository.save(currentUser)];
+            case 8:
                 _c.sent();
                 (0, exports.clearCookies)(res);
                 return [2 /*return*/];
@@ -645,4 +683,365 @@ var clearCookies = function (res) {
     res.clearCookie('refreshToken');
 };
 exports.clearCookies = clearCookies;
+var updateUserAfterCompleteData = function (user, req) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, resume, userId, userJson, foundedEducation, eduObj, savedEducation, returnedEducation, education_, savedEducation, returnedEducation, arraySkills_1, newSkills, savedSkills, arrayExperience_1, newExperience, savedExperience, arrayLanguage_1, newLanguage, savedLanguage;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.body, address = _a.address, phone = _a.phone, education = _a.education, experience = _a.experience, skills = _a.skills, dateOfBirth = _a.dateOfBirth, languages = _a.languages, profilePicture = _a.profilePicture, resume = _a.resume;
+                userId = req.user.id;
+                user.address = address;
+                user.phone.country_code = phone.countryCode;
+                user.phone.number = Number(phone.number);
+                user.resume = resume;
+                user.profile_picture = profilePicture;
+                user.date_of_birth = dateOfBirth;
+                userJson = __assign({}, user);
+                delete userJson.first_name;
+                delete userJson.last_name;
+                delete userJson.date_of_birth;
+                userJson.firstName = user.first_name;
+                userJson.lastName = user.last_name;
+                userJson.dateOfBirth = user.date_of_birth;
+                userJson.phone = (0, returningFieldAsInMongoDb_1.returningPhone)(user.phone);
+                if (!education) return [3 /*break*/, 5];
+                return [4 /*yield*/, educationRepository_1.EducationRepository.findOneBy({
+                        account_id: user.id,
+                    })];
+            case 1:
+                foundedEducation = _b.sent();
+                console.log(foundedEducation);
+                if (!foundedEducation) return [3 /*break*/, 3];
+                eduObj = {};
+                eduObj.university = education.university;
+                eduObj.field_of_study = education.fieldOfStudy;
+                eduObj.gpa = education.gpa;
+                eduObj.start_date = education.startDate;
+                eduObj.end_date = education.endDate;
+                return [4 /*yield*/, educationRepository_1.EducationRepository.updateEducation(eduObj, userId)];
+            case 2:
+                savedEducation = _b.sent();
+                returnedEducation = (0, returningFieldAsInMongoDb_1.returningEducation)(savedEducation);
+                userJson.education = returnedEducation;
+                return [3 /*break*/, 5];
+            case 3:
+                education_ = new Education_1.Education();
+                education_.account_id = userId; // Associate with the user's ID
+                education_.university = education.university;
+                education_.field_of_study = education.fieldOfStudy;
+                education_.gpa = education.gpa;
+                education_.start_date = education.startDate;
+                education_.end_date = education.endDate;
+                return [4 /*yield*/, educationRepository_1.EducationRepository.save(education_)];
+            case 4:
+                savedEducation = _b.sent();
+                returnedEducation = (0, returningFieldAsInMongoDb_1.returningEducation)(savedEducation);
+                userJson.education = returnedEducation;
+                _b.label = 5;
+            case 5:
+                if (!skills) return [3 /*break*/, 8];
+                // Create and link new skills
+                return [4 /*yield*/, skillRepository_1.SkillRepository.deleteAllSkills(user.id)];
+            case 6:
+                // Create and link new skills
+                _b.sent();
+                arraySkills_1 = [];
+                newSkills = skills.map(function (skillData) {
+                    var skill = new Skill_1.Skill();
+                    skill.name = skillData;
+                    arraySkills_1.push(skill.name);
+                    skill.account = user; // Link the skill to the account
+                    return skill;
+                });
+                return [4 /*yield*/, skillRepository_1.SkillRepository.save(newSkills)];
+            case 7:
+                savedSkills = _b.sent();
+                userJson.skills = arraySkills_1;
+                _b.label = 8;
+            case 8:
+                if (!experience) return [3 /*break*/, 11];
+                arrayExperience_1 = [];
+                return [4 /*yield*/, experineceRepository_1.ExperienceRepository.deleteAllExperience(user.id)];
+            case 9:
+                _b.sent();
+                newExperience = experience.map(function (experience) {
+                    var experience_ = new Experience_1.Experience();
+                    //experience_.account = user;
+                    experience_.job_title = experience.jobTitle;
+                    experience_.employment_type = experience.employmentType;
+                    experience_.company_name = experience.companyName;
+                    experience_.location = experience.location;
+                    experience_.location_type = experience.locationType;
+                    experience_.still_working = experience.stillWorking;
+                    experience_.start_date = experience.startDate;
+                    experience_.end_date = experience.endDate;
+                    arrayExperience_1.push((0, returningFieldAsInMongoDb_1.returningExperiences)(experience_));
+                    experience_.account = user; // Link the experience_ to the account
+                    return experience_;
+                });
+                return [4 /*yield*/, experineceRepository_1.ExperienceRepository.save(newExperience)];
+            case 10:
+                savedExperience = _b.sent();
+                userJson.experience = arrayExperience_1;
+                _b.label = 11;
+            case 11:
+                if (!languages) return [3 /*break*/, 14];
+                arrayLanguage_1 = [];
+                return [4 /*yield*/, languageRepository_1.LanguageRepository.deleteAllLanguages(user.id)];
+            case 12:
+                _b.sent();
+                newLanguage = languages.map(function (lang) {
+                    var language_ = new Language_1.Language();
+                    language_.account = user;
+                    language_.name = lang;
+                    arrayLanguage_1.push((0, returningFieldAsInMongoDb_1.returningLanguage)(language_));
+                    language_.account = user; // Link the language_ to the account
+                    return language_;
+                });
+                return [4 /*yield*/, languageRepository_1.LanguageRepository.save(newLanguage)];
+            case 13:
+                savedLanguage = _b.sent();
+                userJson.languages = arrayLanguage_1;
+                _b.label = 14;
+            case 14:
+                delete userJson.first_name;
+                delete userJson.last_name;
+                delete userJson.date_of_birth;
+                userJson.firstName = user.first_name;
+                userJson.lastName = user.last_name;
+                userJson.dateOfBirth = user.date_of_birth;
+                userJson.phone = (0, returningFieldAsInMongoDb_1.returningPhone)(user.phone);
+                return [4 /*yield*/, accountRepository_1.AccountRepository.save(user)];
+            case 15:
+                _b.sent();
+                return [2 /*return*/, userJson];
+        }
+    });
+}); };
+exports.updateUserAfterCompleteData = updateUserAfterCompleteData;
+var updateAllAccountData = function (user, req) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, address, phone, education, experience, skills, dateOfBirth, languages, profilePicture, resume, userId, address_, phone_, resume_, profilePicture_, dateOfBirth_, userJson, foundedEducation, education_, savedEducation, returnedEducation, eduObj, savedEducation, returnedEducation, foundedEducation, returnedEducation, arraySkills_2, newSkills, savedSkills, arrayExperience_2, newExperience, savedExperience, arrayLanguage_2, newLanguage, savedLanguage;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.body, address = _a.address, phone = _a.phone, education = _a.education, experience = _a.experience, skills = _a.skills, dateOfBirth = _a.dateOfBirth, languages = _a.languages, profilePicture = _a.profilePicture, resume = _a.resume;
+                userId = req.user.id;
+                address_ = address ? address : user.address;
+                user.address = address_;
+                phone_ = phone ? phone : user.phone;
+                user.phone.country_code = phone_.countryCode;
+                user.phone.number = Number(phone_.number);
+                resume_ = resume ? resume : user.resume;
+                user.resume = resume_;
+                profilePicture_ = profilePicture
+                    ? profilePicture
+                    : user.profile_picture;
+                user.profile_picture = profilePicture_;
+                dateOfBirth_ = dateOfBirth ? dateOfBirth : user.date_of_birth;
+                user.date_of_birth = dateOfBirth_;
+                userJson = __assign({}, user);
+                delete userJson.first_name;
+                delete userJson.last_name;
+                delete userJson.date_of_birth;
+                userJson.firstName = user.first_name;
+                userJson.lastName = user.last_name;
+                userJson.dateOfBirth = user.date_of_birth;
+                userJson.phone = (0, returningFieldAsInMongoDb_1.returningPhone)(user.phone);
+                if (!education) return [3 /*break*/, 6];
+                return [4 /*yield*/, educationRepository_1.EducationRepository.findOneBy({
+                        account_id: user.id,
+                    })];
+            case 1:
+                foundedEducation = _b.sent();
+                if (!!foundedEducation) return [3 /*break*/, 3];
+                education_ = new Education_1.Education();
+                education_.account_id = userId; // Associate with the user's ID
+                education_.university = education.university;
+                education_.field_of_study = education.fieldOfStudy;
+                education_.gpa = education.gpa;
+                education_.start_date = education.startDate;
+                education_.end_date = education.endDate;
+                return [4 /*yield*/, educationRepository_1.EducationRepository.save(education_)];
+            case 2:
+                savedEducation = _b.sent();
+                returnedEducation = (0, returningFieldAsInMongoDb_1.returningEducation)(savedEducation);
+                userJson.education = returnedEducation;
+                return [3 /*break*/, 5];
+            case 3:
+                eduObj = {};
+                eduObj.university = education.university;
+                eduObj.field_of_study = education.fieldOfStudy;
+                eduObj.gpa = education.gpa;
+                eduObj.start_date = education.startDate;
+                eduObj.end_date = education.endDate;
+                return [4 /*yield*/, educationRepository_1.EducationRepository.updateEducation(eduObj, userId)];
+            case 4:
+                savedEducation = _b.sent();
+                returnedEducation = (0, returningFieldAsInMongoDb_1.returningEducation)(savedEducation);
+                userJson.education = returnedEducation;
+                _b.label = 5;
+            case 5: return [3 /*break*/, 8];
+            case 6: return [4 /*yield*/, educationRepository_1.EducationRepository.findOneBy({
+                    account_id: user.id,
+                })];
+            case 7:
+                foundedEducation = _b.sent();
+                returnedEducation = (0, returningFieldAsInMongoDb_1.returningEducation)(foundedEducation);
+                userJson.education = returnedEducation;
+                _b.label = 8;
+            case 8:
+                if (!skills) return [3 /*break*/, 11];
+                // Create and link new skills
+                return [4 /*yield*/, skillRepository_1.SkillRepository.deleteAllSkills(user.id)];
+            case 9:
+                // Create and link new skills
+                _b.sent();
+                arraySkills_2 = [];
+                newSkills = skills.map(function (skillData) {
+                    var skill = new Skill_1.Skill();
+                    skill.name = skillData;
+                    arraySkills_2.push(skill.name);
+                    skill.account = user; // Link the skill to the account
+                    return skill;
+                });
+                return [4 /*yield*/, skillRepository_1.SkillRepository.save(newSkills)];
+            case 10:
+                savedSkills = _b.sent();
+                userJson.skills = arraySkills_2;
+                return [3 /*break*/, 12];
+            case 11:
+                userJson.skills = [];
+                user.skills.map(function (skill) {
+                    userJson.skills.push(skill.name);
+                });
+                _b.label = 12;
+            case 12:
+                if (!experience) return [3 /*break*/, 15];
+                arrayExperience_2 = [];
+                return [4 /*yield*/, experineceRepository_1.ExperienceRepository.deleteAllExperience(user.id)];
+            case 13:
+                _b.sent();
+                newExperience = experience.map(function (experience) {
+                    var experience_ = new Experience_1.Experience();
+                    //experience_.account = user;
+                    experience_.job_title = experience.jobTitle;
+                    experience_.employment_type = experience.employmentType;
+                    experience_.company_name = experience.companyName;
+                    experience_.location = experience.location;
+                    experience_.location_type = experience.locationType;
+                    experience_.still_working = experience.stillWorking;
+                    experience_.start_date = experience.startDate;
+                    experience_.end_date = experience.endDate;
+                    arrayExperience_2.push((0, returningFieldAsInMongoDb_1.returningExperiences)(experience_));
+                    experience_.account = user; // Link the experience_ to the account
+                    return experience_;
+                });
+                return [4 /*yield*/, experineceRepository_1.ExperienceRepository.save(newExperience)];
+            case 14:
+                savedExperience = _b.sent();
+                userJson.experience = arrayExperience_2;
+                return [3 /*break*/, 16];
+            case 15:
+                userJson.experiences = [];
+                user.experiences.map(function (exp) {
+                    userJson.experiences.push((0, returningFieldAsInMongoDb_1.returningExperiences)(exp));
+                });
+                _b.label = 16;
+            case 16:
+                if (!languages) return [3 /*break*/, 19];
+                arrayLanguage_2 = [];
+                return [4 /*yield*/, languageRepository_1.LanguageRepository.deleteAllLanguages(user.id)];
+            case 17:
+                _b.sent();
+                newLanguage = languages.map(function (lang) {
+                    var language_ = new Language_1.Language();
+                    language_.account = user;
+                    language_.name = lang;
+                    arrayLanguage_2.push((0, returningFieldAsInMongoDb_1.returningLanguage)(language_));
+                    language_.account = user; // Link the language_ to the account
+                    return language_;
+                });
+                return [4 /*yield*/, languageRepository_1.LanguageRepository.save(newLanguage)];
+            case 18:
+                savedLanguage = _b.sent();
+                userJson.languages = arrayLanguage_2;
+                return [3 /*break*/, 20];
+            case 19:
+                userJson.languages = [];
+                user.languages.map(function (language) {
+                    userJson.languages.push(language.name);
+                });
+                _b.label = 20;
+            case 20:
+                delete userJson.first_name;
+                delete userJson.last_name;
+                delete userJson.date_of_birth;
+                userJson.firstName = user.first_name;
+                userJson.lastName = user.last_name;
+                userJson.dateOfBirth = user.date_of_birth;
+                userJson.phone = (0, returningFieldAsInMongoDb_1.returningPhone)(user.phone);
+                return [4 /*yield*/, accountRepository_1.AccountRepository.save(user)];
+            case 21:
+                _b.sent();
+                return [2 /*return*/, userJson];
+        }
+    });
+}); };
+exports.updateAllAccountData = updateAllAccountData;
+var returnUserInFormOfMongoDBObject = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+    var userJson, education, skills, experiences, languages;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                userJson = __assign({}, user);
+                delete userJson.first_name;
+                delete userJson.last_name;
+                delete userJson.date_of_birth;
+                userJson.firstName = user.first_name;
+                userJson.lastName = user.last_name;
+                userJson.dateOfBirth = user.date_of_birth;
+                userJson.phone = (0, returningFieldAsInMongoDb_1.returningPhone)(user.phone);
+                return [4 /*yield*/, educationRepository_1.EducationRepository.findOneBy({
+                        account_id: user.id,
+                    })];
+            case 1:
+                education = _a.sent();
+                if (education)
+                    userJson.education = (0, returningFieldAsInMongoDb_1.returningEducation)(education);
+                return [4 /*yield*/, skillRepository_1.SkillRepository.find({
+                        where: { account: { id: user.id } },
+                        relations: ['account'],
+                    })];
+            case 2:
+                skills = _a.sent();
+                if (skills)
+                    userJson.skills = skills.map(function (skill) { return skill.name; });
+                return [4 /*yield*/, experineceRepository_1.ExperienceRepository.find({
+                        where: { account: { id: user.id } },
+                        relations: ['account'],
+                    })];
+            case 3:
+                experiences = _a.sent();
+                if (experiences)
+                    userJson.experiences = experiences.map(function (experience) {
+                        return (0, returningFieldAsInMongoDb_1.returningExperiences)(experience);
+                    });
+                return [4 /*yield*/, languageRepository_1.LanguageRepository.find({
+                        where: { account: { id: user.id } },
+                        relations: ['account'],
+                    })];
+            case 4:
+                languages = _a.sent();
+                if (languages)
+                    userJson.languages = languages.map(function (language) { return language.name; });
+                return [2 /*return*/, userJson];
+        }
+    });
+}); };
+exports.returnUserInFormOfMongoDBObject = returnUserInFormOfMongoDBObject;
+var getMeService = function (req) {
+    var user = req.user;
+    return (0, exports.returnUserInFormOfMongoDBObject)(user);
+};
+exports.getMeService = getMeService;
 //# sourceMappingURL=authServices.js.map

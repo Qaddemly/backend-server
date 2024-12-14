@@ -35,16 +35,132 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createBusiness = void 0;
-var businessRepo_1 = require("../Repository/businessRepo");
-var createBusiness = function (business) { return __awaiter(void 0, void 0, void 0, function () {
+exports.getFiveReviewsOfBusiness = exports.getBusinessById = exports.getUserBusinesses = exports.updateBusiness = exports.createBusiness = void 0;
+var Business_1 = require("../entity/Business");
+var businessRepository_1 = require("../Repository/businessRepository");
+var accountRepository_1 = require("../Repository/accountRepository");
+var HrEmployee_1 = require("../entity/HrEmployee");
+var HrRole_1 = require("../enums/HrRole");
+var Address_1 = require("../entity/Address");
+var appError_1 = __importDefault(require("../utils/appError"));
+var hrEmployeeRepository_1 = require("../Repository/hrEmployeeRepository");
+var logger_1 = require("../utils/logger");
+/**
+ * TODO: mark the Account that created the business as the owner.
+ * TODO: make it possible for user to add hr_employees with their roles at Creation.
+ * */
+var createBusiness = function (createBusinessDto, accountId) { return __awaiter(void 0, void 0, void 0, function () {
+    var account, business, address, hrEmployee, saved_business;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, businessRepo_1.businessRepo.save(business)];
-            case 1: return [2 /*return*/, _a.sent()];
+            case 0: return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({ id: accountId })];
+            case 1:
+                account = _a.sent();
+                if (!account) {
+                    logger_1.Logger.error('Account with ${accountId} do not exist in database');
+                    throw new appError_1.default("Account with ".concat(accountId, " do not exist in database"), 500);
+                }
+                business = new Business_1.Business();
+                business.name = createBusinessDto.name;
+                business.logo = createBusinessDto.logo;
+                business.CEO = createBusinessDto.CEO;
+                business.founder = createBusinessDto.founder;
+                business.founded = createBusinessDto.founded;
+                address = new Address_1.Address();
+                address.country = createBusinessDto.address.country;
+                address.city = createBusinessDto.address.city;
+                business.address = address;
+                business.location_type = createBusinessDto.location_type;
+                business.description = createBusinessDto.description;
+                business.company_size = createBusinessDto.company_size;
+                business.industry = createBusinessDto.industry;
+                business.website = createBusinessDto.website;
+                business.headquarter = createBusinessDto.headquarter;
+                business.email = createBusinessDto.email;
+                business.phone = createBusinessDto.phone;
+                hrEmployee = new HrEmployee_1.HrEmployee();
+                hrEmployee.business = business;
+                hrEmployee.account = account;
+                hrEmployee.role = HrRole_1.HrRole.OWNER;
+                return [4 /*yield*/, businessRepository_1.BusinessRepository.save(business)];
+            case 2:
+                saved_business = _a.sent();
+                return [4 /*yield*/, hrEmployeeRepository_1.HrEmployeeRepository.save(hrEmployee)];
+            case 3:
+                _a.sent();
+                logger_1.Logger.info("Business ".concat(saved_business.id, " created successfully"));
+                return [2 /*return*/, saved_business];
         }
     });
 }); };
 exports.createBusiness = createBusiness;
+var updateBusiness = function (updateBusinessDTO, accountId, businessId) { return __awaiter(void 0, void 0, void 0, function () {
+    var account, permissionToUpdate, business;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, accountRepository_1.AccountRepository.findOneBy({ id: accountId })];
+            case 1:
+                account = _a.sent();
+                return [4 /*yield*/, hrEmployeeRepository_1.HrEmployeeRepository.checkPermission(accountId, businessId)];
+            case 2:
+                permissionToUpdate = _a.sent();
+                if (!permissionToUpdate) {
+                    logger_1.Logger.error('User does not have permission to update business');
+                    throw new appError_1.default('User does not have permission to update business', 403);
+                }
+                return [4 /*yield*/, businessRepository_1.BusinessRepository.updateBusiness(updateBusinessDTO, businessId)];
+            case 3:
+                business = _a.sent();
+                logger_1.Logger.info("Business ".concat(businessId, " updated successfully"));
+                return [2 /*return*/, business];
+        }
+    });
+}); };
+exports.updateBusiness = updateBusiness;
+var getUserBusinesses = function (accountId) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, businessRepository_1.BusinessRepository.getBusinessOfAccount(accountId)];
+            case 1: return [2 /*return*/, _a.sent()];
+        }
+    });
+}); };
+exports.getUserBusinesses = getUserBusinesses;
+var getBusinessById = function (businessId) { return __awaiter(void 0, void 0, void 0, function () {
+    var business;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, businessRepository_1.BusinessRepository.findOneBy({ id: businessId })];
+            case 1:
+                business = _a.sent();
+                if (!business) {
+                    logger_1.Logger.error('Business not found');
+                    throw new appError_1.default('Business not found', 404);
+                }
+                return [2 /*return*/, business];
+        }
+    });
+}); };
+exports.getBusinessById = getBusinessById;
+var getFiveReviewsOfBusiness = function (businessId) { return __awaiter(void 0, void 0, void 0, function () {
+    var business;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, businessRepository_1.BusinessRepository.findOneBy({ id: businessId })];
+            case 1:
+                business = _a.sent();
+                if (!business) {
+                    logger_1.Logger.error('Business not found');
+                    throw new appError_1.default('Business not found', 404);
+                }
+                return [4 /*yield*/, businessRepository_1.BusinessRepository.getFiveReviewsOfBusiness(businessId)];
+            case 2: return [2 /*return*/, _a.sent()];
+        }
+    });
+}); };
+exports.getFiveReviewsOfBusiness = getFiveReviewsOfBusiness;
 //# sourceMappingURL=businessServices.js.map

@@ -18,7 +18,7 @@ import { Address } from './Address';
 import { Education } from './Education';
 import { Experience } from './Experience';
 import { Language } from './Language';
-import { Skill } from './skill';
+import { Skill } from './Skill';
 import { Job } from './Job';
 import { Phone } from './Phone';
 

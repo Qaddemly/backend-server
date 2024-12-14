@@ -41,7 +41,7 @@ var Country;
     Country["Chad"] = "Chad";
     Country["Chile"] = "Chile";
     Country["China"] = "Republic of China";
-    Country["RepublicOfChina"] = "Republic of China";
+    //RepublicOfChina = 'Republic of China',
     Country["Colombia"] = "Colombia";
     Country["Comoros"] = "Comoros";
     Country["DemocraticRepublicOfTheCongo"] = "Democratic Republic of the Congo";
@@ -173,5 +173,6 @@ var Country;
     Country["Switzerland"] = "Switzerland";
     Country["Syria"] = "Syria";
     Country["Thailand"] = "Thailand";
+    Country["International"] = "International";
 })(Country || (exports.Country = Country = {}));
 //# sourceMappingURL=country.js.map

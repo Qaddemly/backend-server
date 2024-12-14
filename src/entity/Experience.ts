@@ -46,6 +46,6 @@ export class Experience {
     @Column('date')
     start_date: Date;
 
-    @Column('date')
+    @Column('date', { nullable: true })
     end_date: Date;
 }

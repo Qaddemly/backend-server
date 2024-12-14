@@ -70,11 +70,11 @@ var sendMail = function (options) { return __awaiter(void 0, void 0, void 0, fun
     });
 }); };
 exports.sendMail = sendMail;
-var sendingCodeToEmail = function (user, subject, message) { return __awaiter(void 0, void 0, void 0, function () {
+var sendingCodeToEmail = function (email, subject, message) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, (0, exports.sendMail)({
-                    email: user.email,
+                    email: email,
                     subject: subject,
                     message: message,
                 })];
