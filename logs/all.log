@@ -984,3 +984,25 @@
 [35m[39m
 2024-12-14 00:35:19:3519 [35mhttp[39m: [35mPATCH /api/v1/auth/updateMe 200 841 - 605.385 ms[39m
 [35m[39m
+2024-12-14 01:43:31:4331 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 01:43:31:4331 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 01:43:32:4332 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-14 01:44:07:447 [35mhttp[39m: [35mGET /api/v1/business/userBusinesses 200 36 - 509.622 ms[39m
+[35m[39m
+2024-12-14 01:44:20:4420 [35mhttp[39m: [35mPUT /api/v1/business 404 56 - 115.392 ms[39m
+[35m[39m
+2024-12-14 01:46:34:4634 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 01:46:34:4634 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 01:46:36:4636 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-14 01:46:53:4653 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 01:46:54:4654 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 01:46:55:4655 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-14 01:48:19:4819 [31merror[39m: [31mnull value in column "logo" of relation "business" violates not-null constraint[39m
+2024-12-14 01:48:19:4819 [35mhttp[39m: [35mPOST /api/v1/business 500 1072 - 490.680 ms[39m
+[35m[39m
+2024-12-14 01:48:45:4845 [32minfo[39m: [32mBusiness 2 created successfully[39m
+2024-12-14 01:48:45:4845 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 758.716 ms[39m
+[35m[39m
+2024-12-14 02:23:18:2318 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 02:23:19:2319 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 02:23:20:2320 [32minfo[39m: [32mMongoDB Database connected successfully[39m
