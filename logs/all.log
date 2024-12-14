@@ -1006,3 +1006,26 @@
 2024-12-14 02:23:18:2318 [32minfo[39m: [32mServer is running on port 8000[39m
 2024-12-14 02:23:19:2319 [32minfo[39m: [32mPostgres Database connected successfully[39m
 2024-12-14 02:23:20:2320 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 00:41:10:4110 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 00:41:12:4112 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 00:41:12:4112 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 00:43:07:437 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 00:43:08:438 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 00:43:09:439 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 00:43:29:4329 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 00:43:29:4329 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 00:43:30:4330 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 00:46:32:4632 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 00:46:33:4633 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 00:46:34:4634 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 00:52:09:529 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 201 967 - 1160.039 ms[39m
+[35m[39m
+2024-12-15 00:53:41:5341 [32minfo[39m: [32mBusiness 3 created successfully[39m
+2024-12-15 00:53:41:5341 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 819.305 ms[39m
+[35m[39m
+2024-12-15 00:53:51:5351 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 404 71 - 113.966 ms[39m
+[35m[39m
+2024-12-15 00:53:59:5359 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 404 74 - 114.643 ms[39m
+[35m[39m
+2024-12-15 00:54:06:546 [35mhttp[39m: [35mGET /api/v1/business/profile/jobsSix/1 404 74 - 112.351 ms[39m
+[35m[39m
