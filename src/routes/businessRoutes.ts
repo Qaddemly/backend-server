@@ -53,4 +53,10 @@ businessRoute.get(
     protect,
     businessController.getAllJobsOfBusiness,
 );
-businessRoute.delete('/:id', protect, businessController.deleteBusiness);
+
+// Admin
+businessRoute.post(
+    '/myBusiness/:businessId/hr',
+    protect,
+    businessController.addHrToBusiness,
+);

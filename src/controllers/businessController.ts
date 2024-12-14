@@ -4,6 +4,7 @@ import { CreateBusinessDto, UpdateBusinessDTO } from '../dtos/businessDto';
 
 import * as businessServices from './../services/businessServices';
 import { getBusinessQueryParams } from '../types/types';
+import { HrRole } from '../enums/HrRole';
 
 /**
  *
@@ -135,6 +136,24 @@ export const getAllJobsOfBusiness = catchAsync(
     },
 );
 
-export const deleteBusiness = catchAsync(
-    async (req: Request, res: Response) => {},
+export const addHrToBusiness = catchAsync(
+    async (
+        req: Request<
+            { businessId: string },
+            {},
+            { account_email: string; role: HrRole }
+        >,
+        res: Response,
+    ) => {
+        await businessServices.addHrToBusiness(
+            req.user.id,
+            Number(req.params.businessId),
+            req.body.account_email,
+            req.body.role,
+        );
+        res.status(201).json({
+            status: 'success',
+            message: 'HR added successfully',
+        });
+    },
 );

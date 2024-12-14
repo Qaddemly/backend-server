@@ -361,3 +361,250 @@
 2024-12-13 14:12:46:1246 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2024-12-13 14:12:49:1249 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 200 7179 - 405.588 ms[39m
 [35m[39m
+2024-12-13 14:15:45:1545 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 14:15:46:1546 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 14:15:47:1547 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 14:16:01:161 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 200 4926 - 774.415 ms[39m
+[35m[39m
+2024-12-13 14:18:35:1835 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 14:18:35:1835 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 14:18:37:1837 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 15:52:49:5249 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2998.529 ms[39m
+[35m[39m
+2024-12-13 16:28:02:282 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 16:28:02:282 [35mhttp[39m: [35mPOST /api/v1/business 401 874 - 964.676 ms[39m
+[35m[39m
+2024-12-13 16:28:08:288 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 815 - 1130.337 ms[39m
+[35m[39m
+2024-12-13 16:28:12:2812 [31merror[39m: [31mnull value in column "logo" of relation "business" violates not-null constraint[39m
+2024-12-13 16:28:12:2812 [35mhttp[39m: [35mPOST /api/v1/business 500 1217 - 582.201 ms[39m
+[35m[39m
+2024-12-13 16:28:24:2824 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 507 - 552.650 ms[39m
+[35m[39m
+2024-12-13 16:28:34:2834 [35mhttp[39m: [35mGET /api/v1/business/profile/jobsSix/1 200 2699 - 598.107 ms[39m
+[35m[39m
+2024-12-13 16:28:50:2850 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 16:28:50:2850 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 183 - 343.014 ms[39m
+[35m[39m
+2024-12-13 16:28:59:2859 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 3 }[39m
+2024-12-13 16:28:59:2859 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 500 1122 - 858.249 ms[39m
+[35m[39m
+2024-12-13 17:05:43:543 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2024-12-13 17:05:43:543 [35mhttp[39m: [35mPOST /api/v1/auth/login 500 751 - 860.973 ms[39m
+[35m[39m
+2024-12-13 17:05:55:555 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2024-12-13 17:05:55:555 [35mhttp[39m: [35mPOST /api/v1/auth/login 500 751 - 935.680 ms[39m
+[35m[39m
+2024-12-13 17:06:27:627 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 17:06:27:627 [35mhttp[39m: [35mGET /api/v1/business/profile/1 401 761 - 615.410 ms[39m
+[35m[39m
+2024-12-13 23:06:41:641 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 23:06:41:641 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 23:06:43:643 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 23:11:17:1117 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 23:11:17:1117 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 23:11:19:1119 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 23:13:08:138 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 23:13:08:138 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 23:13:10:1310 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 23:17:23:1723 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 23:17:24:1724 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 23:17:25:1725 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 23:18:16:1816 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 23:18:16:1816 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 181 - 351.131 ms[39m
+[35m[39m
+2024-12-13 23:18:28:1828 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2399.137 ms[39m
+[35m[39m
+2024-12-13 23:18:33:1833 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2024-12-13 23:18:33:1833 [35mhttp[39m: [35mPOST /api/v1/auth/login 500 751 - 747.849 ms[39m
+[35m[39m
+2024-12-13 23:19:53:1953 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 23:19:54:1954 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 23:19:55:1955 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 23:20:49:2049 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2354.159 ms[39m
+[35m[39m
+2024-12-13 23:21:22:2122 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 806 - 1079.798 ms[39m
+[35m[39m
+2024-12-13 23:21:50:2150 [32minfo[39m: [32mBusiness 1 created successfully[39m
+2024-12-13 23:21:50:2150 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 665.193 ms[39m
+[35m[39m
+2024-12-13 23:22:10:2210 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2411.474 ms[39m
+[35m[39m
+2024-12-13 23:22:16:2216 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2094.170 ms[39m
+[35m[39m
+2024-12-13 23:22:21:2221 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 4 }[39m
+2024-12-13 23:22:21:2221 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 500 1122 - 802.704 ms[39m
+[35m[39m
+2024-12-13 23:22:31:2231 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2222.170 ms[39m
+[35m[39m
+2024-12-13 23:23:02:232 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 460.486 ms[39m
+[35m[39m
+2024-12-13 23:23:39:2339 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 23:23:40:2340 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 23:23:43:2343 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 23:23:46:2346 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 330.164 ms[39m
+[35m[39m
+2024-12-13 23:23:49:2349 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 290.513 ms[39m
+[35m[39m
+2024-12-13 23:23:51:2351 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 293.411 ms[39m
+[35m[39m
+2024-12-13 23:23:53:2353 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 291.784 ms[39m
+[35m[39m
+2024-12-13 23:25:53:2553 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 23:25:53:2553 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 23:25:56:2556 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 23:26:33:2633 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 641.348 ms[39m
+[35m[39m
+2024-12-13 23:27:23:2723 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 23:27:23:2723 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 23:27:25:2725 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 23:27:38:2738 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 499.030 ms[39m
+[35m[39m
+2024-12-13 23:27:39:2739 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 331.400 ms[39m
+[35m[39m
+2024-12-13 23:27:41:2741 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 459.664 ms[39m
+[35m[39m
+2024-12-13 23:27:42:2742 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 385.102 ms[39m
+[35m[39m
+2024-12-13 23:32:35:3235 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-13 23:32:35:3235 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-13 23:32:36:3236 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-13 23:32:43:3243 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 501.257 ms[39m
+[35m[39m
+2024-12-13 23:32:44:3244 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 317.273 ms[39m
+[35m[39m
+2024-12-13 23:32:45:3245 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 307.892 ms[39m
+[35m[39m
+2024-12-13 23:32:47:3247 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 304.705 ms[39m
+[35m[39m
+2024-12-13 23:34:22:3422 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 513 - 556.890 ms[39m
+[35m[39m
+2024-12-13 23:36:13:3613 [32minfo[39m: [32mBusiness 2 created successfully[39m
+2024-12-13 23:36:13:3613 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 636.605 ms[39m
+[35m[39m
+2024-12-13 23:36:14:3614 [32minfo[39m: [32mBusiness 3 created successfully[39m
+2024-12-13 23:36:14:3614 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 467.615 ms[39m
+[35m[39m
+2024-12-13 23:36:16:3616 [32minfo[39m: [32mBusiness 4 created successfully[39m
+2024-12-13 23:36:16:3616 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 433.070 ms[39m
+[35m[39m
+2024-12-13 23:36:17:3617 [32minfo[39m: [32mBusiness 5 created successfully[39m
+2024-12-13 23:36:17:3617 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 461.361 ms[39m
+[35m[39m
+2024-12-13 23:36:18:3618 [32minfo[39m: [32mBusiness 6 created successfully[39m
+2024-12-13 23:36:18:3618 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 427.138 ms[39m
+[35m[39m
+2024-12-13 23:36:20:3620 [32minfo[39m: [32mBusiness 7 created successfully[39m
+2024-12-13 23:36:20:3620 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 406.948 ms[39m
+[35m[39m
+2024-12-13 23:36:33:3633 [32minfo[39m: [32mBusiness 8 created successfully[39m
+2024-12-13 23:36:33:3633 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 673.027 ms[39m
+[35m[39m
+2024-12-13 23:37:00:370 [32minfo[39m: [32mBusiness 9 created successfully[39m
+2024-12-13 23:37:00:370 [35mhttp[39m: [35mPOST /api/v1/business 201 557 - 552.499 ms[39m
+[35m[39m
+2024-12-13 23:37:01:371 [32minfo[39m: [32mBusiness 10 created successfully[39m
+2024-12-13 23:37:01:371 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 469.111 ms[39m
+[35m[39m
+2024-12-13 23:37:03:373 [32minfo[39m: [32mBusiness 11 created successfully[39m
+2024-12-13 23:37:03:373 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 401.405 ms[39m
+[35m[39m
+2024-12-13 23:37:04:374 [32minfo[39m: [32mBusiness 12 created successfully[39m
+2024-12-13 23:37:04:374 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 413.833 ms[39m
+[35m[39m
+2024-12-13 23:37:05:375 [32minfo[39m: [32mBusiness 13 created successfully[39m
+2024-12-13 23:37:05:375 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 421.542 ms[39m
+[35m[39m
+2024-12-13 23:37:07:377 [32minfo[39m: [32mBusiness 14 created successfully[39m
+2024-12-13 23:37:07:377 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 426.211 ms[39m
+[35m[39m
+2024-12-13 23:37:08:378 [32minfo[39m: [32mBusiness 15 created successfully[39m
+2024-12-13 23:37:08:378 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 397.814 ms[39m
+[35m[39m
+2024-12-13 23:37:10:3710 [32minfo[39m: [32mBusiness 16 created successfully[39m
+2024-12-13 23:37:10:3710 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 427.973 ms[39m
+[35m[39m
+2024-12-13 23:37:11:3711 [32minfo[39m: [32mBusiness 17 created successfully[39m
+2024-12-13 23:37:11:3711 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 425.486 ms[39m
+[35m[39m
+2024-12-13 23:37:12:3712 [32minfo[39m: [32mBusiness 18 created successfully[39m
+2024-12-13 23:37:12:3712 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 420.262 ms[39m
+[35m[39m
+2024-12-13 23:37:14:3714 [32minfo[39m: [32mBusiness 19 created successfully[39m
+2024-12-13 23:37:14:3714 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 566.209 ms[39m
+[35m[39m
+2024-12-13 23:37:15:3715 [32minfo[39m: [32mBusiness 20 created successfully[39m
+2024-12-13 23:37:15:3715 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 419.935 ms[39m
+[35m[39m
+2024-12-13 23:37:16:3716 [32minfo[39m: [32mBusiness 21 created successfully[39m
+2024-12-13 23:37:16:3716 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 444.351 ms[39m
+[35m[39m
+2024-12-13 23:37:18:3718 [32minfo[39m: [32mBusiness 22 created successfully[39m
+2024-12-13 23:37:18:3718 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 394.921 ms[39m
+[35m[39m
+2024-12-13 23:37:19:3719 [32minfo[39m: [32mBusiness 23 created successfully[39m
+2024-12-13 23:37:19:3719 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 414.507 ms[39m
+[35m[39m
+2024-12-13 23:37:20:3720 [32minfo[39m: [32mBusiness 24 created successfully[39m
+2024-12-13 23:37:20:3720 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 404.340 ms[39m
+[35m[39m
+2024-12-13 23:37:21:3721 [32minfo[39m: [32mBusiness 25 created successfully[39m
+2024-12-13 23:37:21:3721 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 439.197 ms[39m
+[35m[39m
+2024-12-13 23:37:22:3722 [32minfo[39m: [32mBusiness 26 created successfully[39m
+2024-12-13 23:37:22:3722 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 402.610 ms[39m
+[35m[39m
+2024-12-13 23:37:23:3723 [32minfo[39m: [32mBusiness 27 created successfully[39m
+2024-12-13 23:37:23:3723 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 413.995 ms[39m
+[35m[39m
+2024-12-13 23:37:25:3725 [32minfo[39m: [32mBusiness 28 created successfully[39m
+2024-12-13 23:37:25:3725 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 398.326 ms[39m
+[35m[39m
+2024-12-13 23:37:28:3728 [32minfo[39m: [32mBusiness 29 created successfully[39m
+2024-12-13 23:37:28:3728 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 409.609 ms[39m
+[35m[39m
+2024-12-13 23:37:30:3730 [32minfo[39m: [32mBusiness 30 created successfully[39m
+2024-12-13 23:37:30:3730 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 429.173 ms[39m
+[35m[39m
+2024-12-13 23:37:31:3731 [32minfo[39m: [32mBusiness 31 created successfully[39m
+2024-12-13 23:37:31:3731 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 413.738 ms[39m
+[35m[39m
+2024-12-13 23:37:33:3733 [32minfo[39m: [32mBusiness 32 created successfully[39m
+2024-12-13 23:37:33:3733 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 402.758 ms[39m
+[35m[39m
+2024-12-13 23:37:35:3735 [32minfo[39m: [32mBusiness 33 created successfully[39m
+2024-12-13 23:37:35:3735 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 418.043 ms[39m
+[35m[39m
+2024-12-13 23:37:36:3736 [32minfo[39m: [32mBusiness 34 created successfully[39m
+2024-12-13 23:37:36:3736 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 463.527 ms[39m
+[35m[39m
+2024-12-13 23:37:38:3738 [32minfo[39m: [32mBusiness 35 created successfully[39m
+2024-12-13 23:37:38:3738 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 438.585 ms[39m
+[35m[39m
+2024-12-13 23:37:40:3740 [32minfo[39m: [32mBusiness 36 created successfully[39m
+2024-12-13 23:37:40:3740 [35mhttp[39m: [35mPOST /api/v1/business 201 558 - 449.081 ms[39m
+[35m[39m
+2024-12-13 23:54:04:544 [35mhttp[39m: [35mGET /api/v1/business/profile/512 200 538 - 622.368 ms[39m
+[35m[39m
+2024-12-13 23:54:11:5411 [35mhttp[39m: [35mGET /api/v1/business/profile/465354 200 570 - 281.263 ms[39m
+[35m[39m
+2024-12-14 00:05:47:547 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 00:05:47:547 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 00:05:48:548 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-14 00:07:10:710 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 00:07:10:710 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 00:07:11:711 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-14 00:10:51:1051 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 00:10:51:1051 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 00:10:52:1052 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-14 00:11:12:1112 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 00:11:13:1113 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 00:11:14:1114 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-14 00:13:01:131 [35mhttp[39m: [35mGET /api/v1/business/profile/45 200 526 - 567.777 ms[39m
+[35m[39m
+2024-12-14 00:15:06:156 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-14 00:15:06:156 [35mhttp[39m: [35mGET /api/v1/business/profile/45 401 866 - 344.403 ms[39m
+[35m[39m
+2024-12-14 00:15:42:1542 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 00:15:43:1543 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 00:15:44:1544 [32minfo[39m: [32mMongoDB Database connected successfully[39m

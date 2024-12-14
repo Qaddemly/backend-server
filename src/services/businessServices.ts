@@ -135,3 +135,57 @@ export const getAllJobsOfBusiness = async (businessId: number) => {
     }
     return await JobRepository.getAllJobsOfBusiness(businessId);
 };
+/**
+ * TODO: Test This function
+ * */
+export const addHrToBusiness = async (
+    userId: number,
+    businessId: number,
+    accountEmail: string,
+    role: HrRole,
+) => {
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        Logger.error('Business not found');
+        throw new AppError('Business not found', 404);
+    }
+
+    const HrOfRequestedUser = await HrEmployeeRepository.findOneBy({
+        id: userId,
+        business: business,
+    });
+    if (
+        !HrOfRequestedUser ||
+        (HrOfRequestedUser.role !== HrRole.OWNER &&
+            HrOfRequestedUser.role !== HrRole.SUPER_ADMIN)
+    ) {
+        Logger.error('User does not have permission to add hr to business');
+        throw new AppError(
+            'User does not have permission to add hr to business',
+            403,
+        );
+    }
+
+    const account = await AccountRepository.findOneBy({ email: accountEmail });
+    if (!account) {
+        Logger.error('Account not found');
+        throw new AppError('Account not found', 404);
+    }
+
+    // Check if user already has role in business
+    const checkIfAccountHasRole = await HrEmployeeRepository.findOneBy({
+        account: account,
+        business: business,
+    });
+
+    if (checkIfAccountHasRole) {
+        Logger.error('User already has role in business');
+        throw new AppError('User already has role in business', 400);
+    }
+
+    const hrEmployee = new HrEmployee();
+    hrEmployee.business = business;
+    hrEmployee.account = account;
+    hrEmployee.role = role;
+    return await HrEmployeeRepository.save(hrEmployee);
+};
