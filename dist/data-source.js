@@ -9,7 +9,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     port: 5433,
     username: 'postgres',
     password: 'ESl33665599',
-    database: 'typeorm learning',
+    database: 'graduation_project',
     synchronize: true,
     logging: false,
     entities: [__dirname + '/entity/*{.js,.ts}'],

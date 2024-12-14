@@ -3,8 +3,8 @@ import { CountryCode } from '../enums/countryCode';
 
 export class Phone {
     @Column({ type: 'enum', enum: CountryCode, nullable: true })
-    country_code: string;
+    country_code: number;
 
-    @Column({ type: 'text', nullable: true })
-    number: string;
+    @Column({ nullable: true })
+    number: number;
 }

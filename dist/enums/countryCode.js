@@ -36,14 +36,14 @@ var CountryCode;
     CountryCode[CountryCode["Burundi"] = 257] = "Burundi";
     CountryCode[CountryCode["Cambodia"] = 855] = "Cambodia";
     CountryCode[CountryCode["Cameroon"] = 237] = "Cameroon";
-    CountryCode[CountryCode["Canada"] = 1] = "Canada";
+    //Canada = 1,
     CountryCode[CountryCode["CapeVerdeIslands"] = 238] = "CapeVerdeIslands";
     CountryCode[CountryCode["CaymanIslands"] = 1345] = "CaymanIslands";
     CountryCode[CountryCode["CentralAfricanRepublic"] = 236] = "CentralAfricanRepublic";
     CountryCode[CountryCode["Chile"] = 56] = "Chile";
     CountryCode[CountryCode["China"] = 86] = "China";
     CountryCode[CountryCode["Colombia"] = 57] = "Colombia";
-    CountryCode[CountryCode["Comoros"] = 269] = "Comoros";
+    //Comoros = 269,
     CountryCode[CountryCode["Congo"] = 242] = "Congo";
     CountryCode[CountryCode["CookIslands"] = 682] = "CookIslands";
     CountryCode[CountryCode["CostaRica"] = 506] = "CostaRica";
@@ -55,7 +55,7 @@ var CountryCode;
     CountryCode[CountryCode["Denmark"] = 45] = "Denmark";
     CountryCode[CountryCode["Djibouti"] = 253] = "Djibouti";
     CountryCode[CountryCode["Dominica"] = 1809] = "Dominica";
-    CountryCode[CountryCode["DominicanRepublic"] = 1809] = "DominicanRepublic";
+    //DominicanRepublic = 1809,
     CountryCode[CountryCode["Ecuador"] = 593] = "Ecuador";
     CountryCode[CountryCode["Egypt"] = 20] = "Egypt";
     CountryCode[CountryCode["ElSalvador"] = 503] = "ElSalvador";
@@ -100,7 +100,7 @@ var CountryCode;
     CountryCode[CountryCode["Jamaica"] = 1876] = "Jamaica";
     CountryCode[CountryCode["Japan"] = 81] = "Japan";
     CountryCode[CountryCode["Jordan"] = 962] = "Jordan";
-    CountryCode[CountryCode["Kazakhstan"] = 7] = "Kazakhstan";
+    //Kazakhstan = 7,
     CountryCode[CountryCode["Kenya"] = 254] = "Kenya";
     CountryCode[CountryCode["Kiribati"] = 686] = "Kiribati";
     CountryCode[CountryCode["KoreaNorth"] = 850] = "KoreaNorth";
@@ -164,7 +164,7 @@ var CountryCode;
     CountryCode[CountryCode["Qatar"] = 974] = "Qatar";
     CountryCode[CountryCode["Reunion"] = 262] = "Reunion";
     CountryCode[CountryCode["Romania"] = 40] = "Romania";
-    CountryCode[CountryCode["Russia"] = 7] = "Russia";
+    //Russia = 7,
     CountryCode[CountryCode["Rwanda"] = 250] = "Rwanda";
     CountryCode[CountryCode["SanMarino"] = 378] = "SanMarino";
     CountryCode[CountryCode["SaoTomePrincipe"] = 239] = "SaoTomePrincipe";
@@ -198,7 +198,7 @@ var CountryCode;
     CountryCode[CountryCode["TrinidadTobago"] = 1868] = "TrinidadTobago";
     CountryCode[CountryCode["Tunisia"] = 216] = "Tunisia";
     CountryCode[CountryCode["Turkey"] = 90] = "Turkey";
-    CountryCode[CountryCode["Turkmenistan"] = 7] = "Turkmenistan";
+    // Turkmenistan = 7,
     CountryCode[CountryCode["TurkmenistanB"] = 993] = "TurkmenistanB";
     CountryCode[CountryCode["TurksCaicosIslands"] = 1649] = "TurksCaicosIslands";
     CountryCode[CountryCode["Tuvalu"] = 688] = "Tuvalu";
@@ -206,7 +206,7 @@ var CountryCode;
     CountryCode[CountryCode["Ukraine"] = 380] = "Ukraine";
     CountryCode[CountryCode["UnitedArabEmirates"] = 971] = "UnitedArabEmirates";
     CountryCode[CountryCode["Uruguay"] = 598] = "Uruguay";
-    CountryCode[CountryCode["Uzbekistan"] = 7] = "Uzbekistan";
+    // Uzbekistan = 7,
     CountryCode[CountryCode["Vanuatu"] = 678] = "Vanuatu";
     CountryCode[CountryCode["VaticanCity"] = 379] = "VaticanCity";
     CountryCode[CountryCode["Venezuela"] = 58] = "Venezuela";

@@ -42,6 +42,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.resetCodeVerified = exports.generateAnotherPassResetCode = exports.generateAndEmailPassResetCode = exports.generateAndEmailCode = exports.generateAnotherActivationCode = exports.resettingUserCodeFields = exports.cryptoEncryption = void 0;
 var crypto_1 = __importDefault(require("crypto"));
 var email_1 = require("./email");
+var accountRepository_1 = require("../Repository/accountRepository");
 // create general code for activation or resetting password
 var createCode = function () {
     var code = Math.floor(100000 + Math.random() * 900000).toString();
@@ -53,39 +54,39 @@ var cryptoEncryption = function (objective) {
 };
 exports.cryptoEncryption = cryptoEncryption;
 //used for generating activation code and adn activationToken
-var generateActivationTokenAndCode = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+var generateActivationTokenAndCode = function (userTempData, email) { return __awaiter(void 0, void 0, void 0, function () {
     var code, hashedCode, activationToken, hashedActivationToken;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 code = createCode();
                 hashedCode = (0, exports.cryptoEncryption)(code);
-                activationToken = "".concat(user.email + code);
+                activationToken = "".concat(email + code);
                 hashedActivationToken = (0, exports.cryptoEncryption)(activationToken);
-                //5 save token and code to user
-                user.activationCode = hashedCode;
-                user.activationCodeExpiresIn = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-                user.activationToken = hashedActivationToken;
-                return [4 /*yield*/, user.save()];
+                //5 save token and code to userTempData
+                userTempData.activationCode = hashedCode;
+                userTempData.activationCodeExpiresIn = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+                userTempData.activationToken = hashedActivationToken;
+                return [4 /*yield*/, userTempData.save()];
             case 1:
                 _a.sent();
                 return [2 /*return*/, [hashedActivationToken, code]];
         }
     });
 }); };
-var resettingUserCodeFields = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+var resettingUserCodeFields = function (userTempData) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                user.activationCode = undefined;
-                user.activationCodeExpiresIn = undefined;
-                user.activationToken = undefined;
-                user.passwordResetCode = undefined;
-                user.passwordResetCodeExpires = undefined;
-                user.passwordResetVerificationToken = undefined;
-                user.passwordResetToken = undefined;
-                user.activationCode = undefined;
-                return [4 /*yield*/, user.save()];
+                userTempData.activationCode = undefined;
+                userTempData.activationCodeExpiresIn = undefined;
+                userTempData.activationToken = undefined;
+                userTempData.passwordResetCode = undefined;
+                userTempData.passwordResetCodeExpires = undefined;
+                userTempData.passwordResetVerificationToken = undefined;
+                userTempData.passwordResetToken = undefined;
+                userTempData.activationCode = undefined;
+                return [4 /*yield*/, userTempData.save()];
             case 1:
                 _a.sent();
                 return [2 /*return*/];
@@ -93,16 +94,16 @@ var resettingUserCodeFields = function (user) { return __awaiter(void 0, void 0,
     });
 }); };
 exports.resettingUserCodeFields = resettingUserCodeFields;
-var generateAnotherActivationCode = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+var generateAnotherActivationCode = function (userTempData) { return __awaiter(void 0, void 0, void 0, function () {
     var code, hashedCode;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 code = createCode();
                 hashedCode = (0, exports.cryptoEncryption)(code);
-                user.activationCode = hashedCode;
-                user.activationCodeExpiresIn = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-                return [4 /*yield*/, user.save()];
+                userTempData.activationCode = hashedCode;
+                userTempData.activationCodeExpiresIn = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+                return [4 /*yield*/, userTempData.save()];
             case 1:
                 _a.sent();
                 return [2 /*return*/, code];
@@ -110,16 +111,16 @@ var generateAnotherActivationCode = function (user) { return __awaiter(void 0, v
     });
 }); };
 exports.generateAnotherActivationCode = generateAnotherActivationCode;
-var generateAndEmailCode = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+var generateAndEmailCode = function (userTempData, email) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, activationToken, code, subject, message;
     return __generator(this, function (_b) {
         switch (_b.label) {
-            case 0: return [4 /*yield*/, generateActivationTokenAndCode(user)];
+            case 0: return [4 /*yield*/, generateActivationTokenAndCode(userTempData, email)];
             case 1:
                 _a = _b.sent(), activationToken = _a[0], code = _a[1];
                 subject = 'email activation';
                 message = "your activation code is ".concat(code);
-                return [4 /*yield*/, (0, email_1.sendingCodeToEmail)(user, subject, message)];
+                return [4 /*yield*/, (0, email_1.sendingCodeToEmail)(email, subject, message)];
             case 2:
                 _b.sent();
                 return [2 /*return*/, activationToken];
@@ -128,36 +129,36 @@ var generateAndEmailCode = function (user) { return __awaiter(void 0, void 0, vo
 }); };
 exports.generateAndEmailCode = generateAndEmailCode;
 //used for generating activation code and adn activationToken
-var generatePassResetTokenAndCode = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+var generatePassResetTokenAndCode = function (userTempData, email) { return __awaiter(void 0, void 0, void 0, function () {
     var code, hashedCode, activationToken, hashedActivationToken;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 code = createCode();
                 hashedCode = (0, exports.cryptoEncryption)(code);
-                activationToken = "".concat(user.email + code);
+                activationToken = "".concat(email + code);
                 hashedActivationToken = (0, exports.cryptoEncryption)(activationToken);
-                //5 save token and code to user
-                user.passwordResetCode = hashedCode;
-                user.passwordResetCodeExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-                user.passwordResetVerificationToken = hashedActivationToken;
-                return [4 /*yield*/, user.save()];
+                //5 save token and code to userTempData
+                userTempData.passwordResetCode = hashedCode;
+                userTempData.passwordResetCodeExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+                userTempData.passwordResetVerificationToken = hashedActivationToken;
+                return [4 /*yield*/, userTempData.save()];
             case 1:
                 _a.sent();
                 return [2 /*return*/, [hashedActivationToken, code]];
         }
     });
 }); };
-var generateAndEmailPassResetCode = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+var generateAndEmailPassResetCode = function (userTempData, email) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, hashedActivationToken, code, subject, message;
     return __generator(this, function (_b) {
         switch (_b.label) {
-            case 0: return [4 /*yield*/, generatePassResetTokenAndCode(user)];
+            case 0: return [4 /*yield*/, generatePassResetTokenAndCode(userTempData, email)];
             case 1:
                 _a = _b.sent(), hashedActivationToken = _a[0], code = _a[1];
                 subject = 'password reset code';
                 message = "your password reset code is valid for (10 min) \n\n  ".concat(code, "\n");
-                return [4 /*yield*/, (0, email_1.sendingCodeToEmail)(user, subject, message)];
+                return [4 /*yield*/, (0, email_1.sendingCodeToEmail)(email, subject, message)];
             case 2:
                 _b.sent();
                 return [2 /*return*/, hashedActivationToken];
@@ -165,16 +166,16 @@ var generateAndEmailPassResetCode = function (user) { return __awaiter(void 0, v
     });
 }); };
 exports.generateAndEmailPassResetCode = generateAndEmailPassResetCode;
-var generateAnotherPassResetCode = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+var generateAnotherPassResetCode = function (userTempData) { return __awaiter(void 0, void 0, void 0, function () {
     var code, hashedCode;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 code = createCode();
                 hashedCode = (0, exports.cryptoEncryption)(code);
-                user.passwordResetCode = hashedCode;
-                user.passwordResetCodeExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-                return [4 /*yield*/, user.save()];
+                userTempData.passwordResetCode = hashedCode;
+                userTempData.passwordResetCodeExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+                return [4 /*yield*/, userTempData.save()];
             case 1:
                 _a.sent();
                 return [2 /*return*/, code];
@@ -182,25 +183,29 @@ var generateAnotherPassResetCode = function (user) { return __awaiter(void 0, vo
     });
 }); };
 exports.generateAnotherPassResetCode = generateAnotherPassResetCode;
-var resetCodeVerified = function (user) { return __awaiter(void 0, void 0, void 0, function () {
+var resetCodeVerified = function (userTempData, // User temporary data
+user) { return __awaiter(void 0, void 0, void 0, function () {
     var resetToken, passwordResetToken;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 if (!user.isActivated) {
                     user.isActivated = true;
-                    user.activationCode = undefined;
-                    user.activationCodeExpiresIn = undefined;
-                    user.activationToken = undefined;
+                    userTempData.activationCode = undefined;
+                    userTempData.activationCodeExpiresIn = undefined;
+                    userTempData.activationToken = undefined;
                 }
-                resetToken = "".concat(user.email, "+").concat(user.passwordResetVerificationToken);
+                resetToken = "".concat(user.email, "+").concat(userTempData.passwordResetVerificationToken);
                 passwordResetToken = (0, exports.cryptoEncryption)(resetToken);
-                user.passwordResetToken = passwordResetToken;
-                user.passwordResetCode = undefined;
-                user.passwordResetCodeExpires = undefined;
-                user.passwordResetVerificationToken = undefined;
-                return [4 /*yield*/, user.save()];
+                userTempData.passwordResetToken = passwordResetToken;
+                userTempData.passwordResetCode = undefined;
+                userTempData.passwordResetCodeExpires = undefined;
+                userTempData.passwordResetVerificationToken = undefined;
+                return [4 /*yield*/, userTempData.save()];
             case 1:
+                _a.sent();
+                return [4 /*yield*/, accountRepository_1.AccountRepository.save(user)];
+            case 2:
                 _a.sent();
                 return [2 /*return*/, passwordResetToken];
         }
