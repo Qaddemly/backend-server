@@ -2,6 +2,7 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    Index,
     OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
@@ -14,16 +15,9 @@ import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { Job } from './Job';
 import { Address } from './Address';
 
-/**
- * TODO: add fields of CEO, FOUNDER, FOUNDED
- * TODO: remove specialities and add tags
- * TODO: phone number optional
- * TODO: email optional
- * TODO: website optional
- * */
-
 @Entity()
 export class Business {
+    @Index({ unique: true })
     @PrimaryGeneratedColumn()
     id: number;
 

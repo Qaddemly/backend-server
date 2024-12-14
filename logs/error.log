@@ -14,43 +14,30 @@
 2024-12-13 00:35:17:3517 [31merror[39m: [31m"business" alias was not found. Maybe you forgot to join it?[39m
 2024-12-13 00:52:14:5214 [31merror[39m: [31msyntax error at or near "."[39m
 2024-12-13 00:53:08:538 [31merror[39m: [31mcolumn r.changed_at does not exist[39m
-2024-12-13 17:53:59:5359 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 17:54:53:5453 [31merror[39m: [31mnull value in column "university" of relation "education" violates not-null constraint[39m
-2024-12-13 17:56:38:5638 [31merror[39m: [31mnull value in column "account_id" of relation "education" violates not-null constraint[39m
-2024-12-13 17:57:12:5712 [31merror[39m: [31mnull value in column "account_id" of relation "education" violates not-null constraint[39m
-2024-12-13 17:58:46:5846 [31merror[39m: [31mnull value in column "account_id" of relation "education" violates not-null constraint[39m
-2024-12-13 17:59:58:5958 [31merror[39m: [31mnull value in column "account_id" of relation "education" violates not-null constraint[39m
-2024-12-13 18:01:15:115 [31merror[39m: [31mnull value in column "account_id" of relation "education" violates not-null constraint[39m
-2024-12-13 18:07:58:758 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 18:12:35:1235 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 18:13:04:134 [31merror[39m: [31mrelation "education" does not exist[39m
-2024-12-13 18:21:20:2120 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 18:22:52:2252 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 18:23:54:2354 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 18:24:52:2452 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 18:26:00:260 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 18:27:03:273 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 18:27:52:2752 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 18:28:32:2832 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
-2024-12-13 19:41:51:4151 [31merror[39m: [31mCannot perform update query because update values are not defined. Call "qb.set(...)" method to specify updated values.[39m
-2024-12-13 20:00:44:044 [31merror[39m: [31mProperty "education" was not found in "Account". Make sure your query is correct.[39m
-2024-12-13 20:06:35:635 [31merror[39m: [31mrelation "skill" does not exist[39m
-2024-12-13 20:18:07:187 [31merror[39m: [31mRelation with property path education in entity was not found.[39m
-2024-12-13 20:47:42:4742 [31merror[39m: [31mnull value in column "end_date" of relation "experience" violates not-null constraint[39m
-2024-12-13 20:47:55:4755 [31merror[39m: [31mvalidationErrors[39m
-2024-12-13 20:49:22:4922 [31merror[39m: [31mvalidationErrors[39m
-2024-12-13 20:49:41:4941 [31merror[39m: [31mvalidationErrors[39m
-2024-12-13 20:50:37:5037 [31merror[39m: [31mvalidationErrors[39m
-2024-12-13 20:51:03:513 [31merror[39m: [31mvalidationErrors[39m
-2024-12-13 20:52:23:5223 [31merror[39m: [31mvalidationErrors[39m
-2024-12-13 20:53:10:5310 [31merror[39m: [31mvalidationErrors[39m
-2024-12-13 20:54:34:5434 [31merror[39m: [31mvalidationErrors[39m
-2024-12-13 23:02:55:255 [31merror[39m: [31mnull value in column "end_date" of relation "experience" violates not-null constraint[39m
-2024-12-13 23:03:54:354 [31merror[39m: [31mnull value in column "end_date" of relation "experience" violates not-null constraint[39m
-2024-12-13 23:06:09:69 [31merror[39m: [31mnull value in column "end_date" of relation "experience" violates not-null constraint[39m
-2024-12-13 23:07:47:747 [31merror[39m: [31mvalidationErrors[39m
-2024-12-14 00:28:46:2846 [31merror[39m: [31mCannot read properties of null (reading 'university')[39m
-2024-12-14 00:31:00:310 [31merror[39m: [31mCannot read properties of undefined (reading 'university')[39m
-2024-12-14 00:34:44:3444 [31merror[39m: [31mvalidationErrors[39m
-2024-12-14 00:35:08:358 [31merror[39m: [31mvalidationErrors[39m
-2024-12-14 01:48:19:4819 [31merror[39m: [31mnull value in column "logo" of relation "business" violates not-null constraint[39m
+2024-12-13 12:35:41:3541 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 12:35:50:3550 [31merror[39m: [31mcolumn r.business_id does not exist[39m
+2024-12-13 13:14:51:1451 [31merror[39m: [31mcolumn review.business_id does not exist[39m
+2024-12-13 13:18:41:1841 [31merror[39m: [31mrelation "reviews" does not exist[39m
+2024-12-13 13:34:42:3442 [31merror[39m: [31msyntax error at or near "as"[39m
+2024-12-13 13:43:03:433 [31merror[39m: [31msyntax error at or near "j"[39m
+2024-12-13 13:43:45:4345 [31merror[39m: [31msyntax error at or near "j"[39m
+2024-12-13 13:44:17:4417 [31merror[39m: [31msyntax error at or near "j"[39m
+2024-12-13 13:46:27:4627 [31merror[39m: [31msyntax error at or near "FROM"[39m
+2024-12-13 14:03:49:349 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2024-12-13 14:11:10:1110 [31merror[39m: [31msyntax error at or near "FORM"[39m
+2024-12-13 14:12:02:122 [31merror[39m: [31msyntax error at or near "FORM"[39m
+2024-12-13 16:28:02:282 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 16:28:12:2812 [31merror[39m: [31mnull value in column "logo" of relation "business" violates not-null constraint[39m
+2024-12-13 16:28:50:2850 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 16:28:59:2859 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 3 }[39m
+2024-12-13 17:05:43:543 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2024-12-13 17:05:55:555 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2024-12-13 17:06:27:627 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-13 23:18:16:1816 [31merror[39m: [31mvalidationErrors[39m
+2024-12-13 23:18:33:1833 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2024-12-13 23:22:21:2221 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 4 }[39m
+2024-12-14 00:15:06:156 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-14 19:25:37:2537 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 1 }[39m
+2024-12-14 19:25:47:2547 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 2 }[39m
+2024-12-14 19:26:13:2613 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 3 }[39m
+2024-12-14 19:26:17:2617 [31merror[39m: [31mvalidationErrors[39m

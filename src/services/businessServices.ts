@@ -9,6 +9,7 @@ import AppError from '../utils/appError';
 import { HrEmployeeRepository } from '../Repository/hrEmployeeRepository';
 import { Logger } from '../utils/logger';
 import { ReviewRepository } from '../Repository/reviewRepository';
+import { JobRepository } from '../Repository/jobRepository';
 /**
  * TODO: mark the Account that created the business as the owner.
  * TODO: make it possible for user to add hr_employees with their roles at Creation.
@@ -108,5 +109,83 @@ export const getFiveReviewsOfBusiness = async (businessId: number) => {
         Logger.error('Business not found');
         throw new AppError('Business not found', 404);
     }
-    return await BusinessRepository.getFiveReviewsOfBusiness(businessId);
+    return await ReviewRepository.getFiveReviewsOfBusiness(businessId);
+};
+export const getSixJobsOfBusiness = async (businessId: number) => {
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        Logger.error('Business not found');
+        throw new AppError('Business not found', 404);
+    }
+    return await JobRepository.getSixJobsOfBusiness(businessId);
+};
+export const getAllReviewsOfBusiness = async (businessId: number) => {
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        Logger.error('Business not found');
+        throw new AppError('Business not found', 404);
+    }
+    return await ReviewRepository.getAllReviewsOfBusiness(businessId);
+};
+export const getAllJobsOfBusiness = async (businessId: number) => {
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        Logger.error('Business not found');
+        throw new AppError('Business not found', 404);
+    }
+    return await JobRepository.getAllJobsOfBusiness(businessId);
+};
+/**
+ * TODO: Test This function
+ * */
+export const addHrToBusiness = async (
+    userId: number,
+    businessId: number,
+    accountEmail: string,
+    role: HrRole,
+) => {
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        Logger.error('Business not found');
+        throw new AppError('Business not found', 404);
+    }
+
+    const HrOfRequestedUser = await HrEmployeeRepository.findOneBy({
+        id: userId,
+        business: business,
+    });
+    if (
+        !HrOfRequestedUser ||
+        (HrOfRequestedUser.role !== HrRole.OWNER &&
+            HrOfRequestedUser.role !== HrRole.SUPER_ADMIN)
+    ) {
+        Logger.error('User does not have permission to add hr to business');
+        throw new AppError(
+            'User does not have permission to add hr to business',
+            403,
+        );
+    }
+
+    const account = await AccountRepository.findOneBy({ email: accountEmail });
+    if (!account) {
+        Logger.error('Account not found');
+        throw new AppError('Account not found', 404);
+    }
+
+    // Check if user already has role in business
+    const checkIfAccountHasRole = await HrEmployeeRepository.findOneBy({
+        account: account,
+        business: business,
+    });
+
+    if (checkIfAccountHasRole) {
+        Logger.error('User already has role in business');
+        throw new AppError('User already has role in business', 400);
+    }
+
+    const hrEmployee = new HrEmployee();
+    hrEmployee.business = business;
+    hrEmployee.account = account;
+    hrEmployee.role = role;
+    return await HrEmployeeRepository.save(hrEmployee);
 };

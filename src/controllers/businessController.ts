@@ -4,6 +4,7 @@ import { CreateBusinessDto, UpdateBusinessDTO } from '../dtos/businessDto';
 
 import * as businessServices from './../services/businessServices';
 import { getBusinessQueryParams } from '../types/types';
+import { HrRole } from '../enums/HrRole';
 
 /**
  *
@@ -100,6 +101,59 @@ export const getFiveReviewsOfBusiness = catchAsync(
     },
 );
 
-export const deleteBusiness = catchAsync(
-    async (req: Request, res: Response) => {},
+export const getSixJobsOfBusiness = catchAsync(
+    async (req: Request<{ businessId: string }>, res: Response) => {
+        const jobs = await businessServices.getSixJobsOfBusiness(
+            Number(req.params.businessId),
+        );
+        res.status(200).json({
+            status: 'success',
+            jobs,
+        });
+    },
+);
+
+export const getAllReviewsOfBusiness = catchAsync(
+    async (req: Request<{ businessId: string }>, res: Response) => {
+        const reviews = await businessServices.getAllReviewsOfBusiness(
+            Number(req.params.businessId),
+        );
+        res.status(200).json({
+            status: 'success',
+            reviews,
+        });
+    },
+);
+export const getAllJobsOfBusiness = catchAsync(
+    async (req: Request<{ businessId: string }>, res: Response) => {
+        const jobs = await businessServices.getAllJobsOfBusiness(
+            Number(req.params.businessId),
+        );
+        res.status(200).json({
+            status: 'success',
+            jobs,
+        });
+    },
+);
+
+export const addHrToBusiness = catchAsync(
+    async (
+        req: Request<
+            { businessId: string },
+            {},
+            { account_email: string; role: HrRole }
+        >,
+        res: Response,
+    ) => {
+        await businessServices.addHrToBusiness(
+            req.user.id,
+            Number(req.params.businessId),
+            req.body.account_email,
+            req.body.role,
+        );
+        res.status(201).json({
+            status: 'success',
+            message: 'HR added successfully',
+        });
+    },
 );

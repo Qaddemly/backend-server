@@ -38,4 +38,25 @@ businessRoute.get(
     protect,
     businessController.getFiveReviewsOfBusiness,
 );
-businessRoute.delete('/:id', protect, businessController.deleteBusiness);
+businessRoute.get(
+    '/profile/reviews/:businessId',
+    protect,
+    businessController.getAllReviewsOfBusiness,
+);
+businessRoute.get(
+    '/profile/jobsSix/:businessId',
+    protect,
+    businessController.getSixJobsOfBusiness,
+);
+businessRoute.get(
+    '/profile/jobs/:businessId',
+    protect,
+    businessController.getAllJobsOfBusiness,
+);
+
+// Admin
+businessRoute.post(
+    '/myBusiness/:businessId/hr',
+    protect,
+    businessController.addHrToBusiness,
+);
