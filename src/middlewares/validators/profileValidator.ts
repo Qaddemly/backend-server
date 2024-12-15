@@ -118,3 +118,15 @@ export const createUserOneExperienceValidator: ValidationChain[] = [
 export const deleteUserOneExperienceValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),
 ];
+
+export const createUserOneSkillValidator: ValidationChain[] = [
+    body('name')
+        .isString()
+        .withMessage('name must be a string')
+        .notEmpty()
+        .withMessage('name required'),
+];
+
+export const deleteUserOneSkillValidator: ValidationChain[] = [
+    param('id').isInt().withMessage('id must be an integer'),
+];

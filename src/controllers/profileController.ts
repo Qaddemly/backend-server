@@ -2,8 +2,10 @@ import { Request, Response, NextFunction } from 'express';
 import AppError from '../utils/appError';
 import {
     createUserOneExperienceService,
+    createUserOneSkillService,
     deleteMeService,
     deleteUserOneExperienceService,
+    deleteUserOneSkillService,
     updateUserOneExperienceService,
 } from '../services/userService';
 import catchAsync from 'express-async-handler';
@@ -51,6 +53,31 @@ export const deleteUserOneExperience = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             await deleteUserOneExperienceService(req);
+            res.status(204).json({});
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const createUserOneSkill = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const experience = await createUserOneSkillService(req);
+            res.status(201).json({
+                success: true,
+                experience,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const deleteUserOneSkill = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            await deleteUserOneSkillService(req);
             res.status(204).json({});
         } catch (err) {
             return next(err);

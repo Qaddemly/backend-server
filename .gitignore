@@ -8,4 +8,6 @@ temp/
 src/data-source.ts
 logs/
 src/uploads/
+
 .env
+dist/

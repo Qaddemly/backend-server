@@ -1,40 +1,58 @@
 import { Router } from 'express';
 import {
     createUserOneExperience,
+    createUserOneSkill,
     deleteMe,
     deleteUserOneExperience,
+    deleteUserOneSkill,
     updateUserOneExperience,
-} from '../controllers/userController';
+} from '../controllers/profileController';
 import { protect } from '../services/authServices';
 import validateRequestMiddleware from '../middlewares/validator';
 import {
     updateUserOneExperienceValidator,
     createUserOneExperienceValidator,
     deleteUserOneExperienceValidator,
-} from '../middlewares/validators/userValidator';
+    createUserOneSkillValidator,
+    deleteUserOneSkillValidator,
+} from '../middlewares/validators/profileValidator';
 
-const userRouter = Router();
+const profileRouter = Router();
 
-userRouter.post(
+profileRouter.post(
     '/addNewExperience',
     protect,
     validateRequestMiddleware(createUserOneExperienceValidator),
     createUserOneExperience,
 );
-userRouter.put(
+profileRouter.put(
     '/updateExperience/:id',
     protect,
     validateRequestMiddleware(updateUserOneExperienceValidator),
     updateUserOneExperience,
 );
 
-userRouter.delete(
+profileRouter.delete(
     '/deleteExperience/:id',
     protect,
     validateRequestMiddleware(deleteUserOneExperienceValidator),
     deleteUserOneExperience,
 );
 
-userRouter.delete('/deleteMe', protect, deleteMe);
+profileRouter.post(
+    '/addNewSkill',
+    protect,
+    validateRequestMiddleware(createUserOneSkillValidator),
+    createUserOneSkill,
+);
 
-export default userRouter;
+profileRouter.delete(
+    '/deleteSkill/:id',
+    protect,
+    validateRequestMiddleware(deleteUserOneSkillValidator),
+    deleteUserOneSkill,
+);
+
+profileRouter.delete('/deleteMe', protect, deleteMe);
+
+export default profileRouter;

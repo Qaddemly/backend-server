@@ -7,6 +7,8 @@ import { Experience } from '../entity/Experience';
 import { AccountRepository } from '../Repository/accountRepository';
 import { Account } from '../entity/Account';
 import AccountTempData from '../models/accountModel';
+import { Skill } from '../entity/Skill';
+import { SkillRepository } from '../Repository/skillRepository';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -92,6 +94,40 @@ export const deleteUserOneExperienceService = async (req: Request) => {
             throw new AppError('No experience found with that ID', 404);
         }
         await ExperienceRepository.remove(experience);
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const createUserOneSkillService = async (req: Request) => {
+    const userId = Number(req.user.id);
+
+    let { name } = req.body;
+
+    const user = await AccountRepository.findOneBy({ id: userId });
+    const skill = new Skill();
+    skill.account = user;
+    skill.name = name;
+
+    const createdSkill = await SkillRepository.save(skill);
+    delete createdSkill.account;
+    const SkillReturned: { [key: string]: any } = { ...createdSkill };
+    SkillReturned.accountId = userId;
+    return SkillReturned;
+};
+
+export const deleteUserOneSkillService = async (req: Request) => {
+    try {
+        const userId = Number(req.user.id);
+        const skillId = Number(req.params.id);
+        const skill = await SkillRepository.findOneBy({
+            account: { id: userId },
+            id: skillId,
+        });
+        if (!skill) {
+            throw new AppError('No skill found with that ID', 404);
+        }
+        await SkillRepository.remove(skill);
     } catch (err) {
         throw err;
     }
