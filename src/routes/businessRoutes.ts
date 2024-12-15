@@ -5,6 +5,12 @@ import {
     uploadSingleImage,
 } from '../middlewares/upload.middleWare';
 import { protect } from '../services/authServices';
+import validateRequestMiddleware from '../middlewares/validator';
+import {
+    businessCreationValidator,
+    businessUpdateValidator,
+    checkAddNewHrValidator,
+} from '../middlewares/validators/bussiness.Validator';
 
 export const businessRoute = express.Router();
 
@@ -13,6 +19,7 @@ businessRoute.post(
     protect,
     uploadSingleImage('logo'),
     resizeBusinessLogo,
+    validateRequestMiddleware(businessCreationValidator),
     businessController.createBusiness,
 );
 businessRoute.get(
@@ -31,6 +38,7 @@ businessRoute.put(
     protect,
     uploadSingleImage('logo'),
     resizeBusinessLogo,
+    validateRequestMiddleware(businessUpdateValidator),
     businessController.updateBusiness,
 );
 businessRoute.get(
@@ -56,7 +64,8 @@ businessRoute.get(
 
 // Admin
 businessRoute.post(
-    '/myBusiness/:businessId/hr',
+    '/myBusiness/dashboard/hr/:businessId',
     protect,
+    validateRequestMiddleware(checkAddNewHrValidator),
     businessController.addHrToBusiness,
 );

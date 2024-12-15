@@ -44,3 +44,41 @@
 2024-12-14 22:51:36:5136 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
 2024-12-14 22:52:04:524 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
 2024-12-15 13:05:42:542 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-15 18:25:04:254 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 18:25:14:2514 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 4 }[39m
+2024-12-15 18:26:45:2645 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 18:27:44:2744 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-15 18:51:03:513 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 18:51:40:5140 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 18:52:18:5218 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 19:02:47:247 [31merror[39m: [31msyntax error at or near "r"[39m
+2024-12-15 19:08:22:822 [31merror[39m: [31msyntax error at or near "j"[39m
+2024-12-15 19:23:46:2346 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:24:50:2450 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:53:30:5330 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:54:37:5437 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:55:45:5545 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:56:21:5621 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 20:07:32:732 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:07:32:732 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:21:1021 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:21:1021 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:49:1049 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:49:1049 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:11:31:1131 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:11:31:1131 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:14:48:1448 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:14:48:1448 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:15:03:153 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:15:03:153 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:15:12:1512 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:15:12:1512 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:21:07:217 [31merror[39m: [31mAccount not found[39m
+2024-12-15 20:21:07:217 [31merror[39m: [31mAccount not found[39m
+2024-12-15 20:24:06:246 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:24:11:2411 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:24:14:2414 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:25:19:2519 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:25:19:2519 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:30:17:3017 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:30:27:3027 [31merror[39m: [31mvalidationErrors[39m
