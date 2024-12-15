@@ -852,3 +852,115 @@
 2024-12-15 19:58:28:5828 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
 2024-12-15 19:58:28:5828 [35mhttp[39m: [35mPUT /api/v1/business/50001 200 568 - 503.670 ms[39m
 [35m[39m
+2024-12-15 20:01:57:157 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:01:57:157 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:01:59:159 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:02:05:25 [32minfo[39m: [32mBusiness 50004 created successfully[39m
+2024-12-15 20:02:06:26 [35mhttp[39m: [35mPOST /api/v1/business 201 559 - 495.256 ms[39m
+[35m[39m
+2024-12-15 20:06:47:647 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:06:48:648 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:06:49:649 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:07:32:732 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:07:32:732 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:07:32:732 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/50001/hr 403 888 - 475.217 ms[39m
+[35m[39m
+2024-12-15 20:10:15:1015 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:10:15:1015 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:10:18:1018 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:10:21:1021 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:21:1021 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:21:1021 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/50001/hr 403 888 - 502.711 ms[39m
+[35m[39m
+2024-12-15 20:10:46:1046 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:10:46:1046 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:10:48:1048 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:10:49:1049 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:49:1049 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:49:1049 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/50001/hr 403 888 - 368.654 ms[39m
+[35m[39m
+2024-12-15 20:11:27:1127 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:11:27:1127 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:11:29:1129 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:11:31:1131 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:11:31:1131 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:11:31:1131 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/50001/hr 403 888 - 402.167 ms[39m
+[35m[39m
+2024-12-15 20:14:21:1421 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:14:21:1421 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:14:25:1425 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:14:48:1448 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:14:48:1448 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:14:48:1448 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/50001/hr 403 888 - 521.954 ms[39m
+[35m[39m
+2024-12-15 20:15:03:153 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:15:03:153 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:15:03:153 [35mhttp[39m: [35mPUT /api/v1/business/1 403 881 - 358.686 ms[39m
+[35m[39m
+2024-12-15 20:15:09:159 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 20:15:09:159 [35mhttp[39m: [35mPUT /api/v1/business/50001 200 568 - 282.465 ms[39m
+[35m[39m
+2024-12-15 20:15:12:1512 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:15:12:1512 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:15:12:1512 [35mhttp[39m: [35mPUT /api/v1/business/5000 403 881 - 279.833 ms[39m
+[35m[39m
+2024-12-15 20:16:39:1639 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:16:39:1639 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:16:40:1640 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:17:00:170 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:17:00:170 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:17:01:171 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:17:02:172 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/50001/hr 404 86 - 156.095 ms[39m
+[35m[39m
+2024-12-15 20:17:12:1712 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 443.596 ms[39m
+[35m[39m
+2024-12-15 20:17:32:1732 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 467.229 ms[39m
+[35m[39m
+2024-12-15 20:18:02:182 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:18:02:182 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:18:05:185 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:18:14:1814 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 515.679 ms[39m
+[35m[39m
+2024-12-15 20:19:51:1951 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:19:51:1951 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:19:54:1954 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:19:58:1958 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 382.405 ms[39m
+[35m[39m
+2024-12-15 20:21:03:213 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:21:03:213 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:21:05:215 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:21:07:217 [31merror[39m: [31mAccount not found[39m
+2024-12-15 20:21:07:217 [31merror[39m: [31mAccount not found[39m
+2024-12-15 20:21:07:217 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 526.276 ms[39m
+[35m[39m
+2024-12-15 20:24:00:240 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:24:00:240 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:24:04:244 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:24:06:246 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:24:06:246 [35mhttp[39m: [35mPUT /api/v1/business/5000 400 176 - 422.266 ms[39m
+[35m[39m
+2024-12-15 20:24:11:2411 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:24:11:2411 [35mhttp[39m: [35mPUT /api/v1/business/5000 400 178 - 270.237 ms[39m
+[35m[39m
+2024-12-15 20:24:14:2414 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:24:14:2414 [35mhttp[39m: [35mPUT /api/v1/business/5000 400 151 - 298.779 ms[39m
+[35m[39m
+2024-12-15 20:24:51:2451 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:24:51:2451 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:24:54:2454 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:25:19:2519 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:25:19:2519 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:25:19:2519 [35mhttp[39m: [35mPUT /api/v1/business/5000 403 881 - 415.811 ms[39m
+[35m[39m
+2024-12-15 20:25:24:2524 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 20:25:24:2524 [35mhttp[39m: [35mPUT /api/v1/business/50001 200 564 - 285.017 ms[39m
+[35m[39m
+2024-12-15 20:29:56:2956 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:29:56:2956 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:29:58:2958 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:30:17:3017 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:30:17:3017 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 184 - 507.513 ms[39m
+[35m[39m
+2024-12-15 20:30:27:3027 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:30:27:3027 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 159 - 271.185 ms[39m
+[35m[39m

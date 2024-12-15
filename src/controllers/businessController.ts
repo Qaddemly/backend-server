@@ -79,9 +79,8 @@ export const updateBusiness = catchAsync(
 
 export const getUserBusinesses = catchAsync(
     async (req: Request, res: Response) => {
-        const businesses = await businessServices.getUserBusinesses(
-            req.user.id,
-        );
+        const businesses =
+            await businessServices.getBusinessesThatUserHasRoleIn(req.user.id);
         res.status(200).json({
             status: 'success',
             businesses,

@@ -65,7 +65,7 @@ export const createBusiness = async (
     const saved_business = await BusinessRepository.save(business);
     await HrEmployeeRepository.save(hrEmployee);
     Logger.info(`Business ${saved_business.id} created successfully`);
-    return saved_business;
+    return getBusinessDto(saved_business);
 };
 
 export const updateBusiness = async (
@@ -95,7 +95,7 @@ export const updateBusiness = async (
     return getBusinessDto(business);
 };
 
-export const getUserBusinesses = async (accountId: number) => {
+export const getBusinessesThatUserHasRoleIn = async (accountId: number) => {
     return await BusinessRepository.getBusinessOfAccount(accountId);
 };
 
@@ -105,7 +105,7 @@ export const getBusinessById = async (businessId: number) => {
         Logger.error('Business not found');
         throw new AppError('Business not found', 404);
     }
-    return business;
+    return getBusinessDto(business);
 };
 export const getFiveReviewsOfBusiness = async (businessId: number) => {
     const business = await BusinessRepository.findOneBy({ id: businessId });
@@ -139,9 +139,6 @@ export const getAllJobsOfBusiness = async (businessId: number) => {
     }
     return await JobRepository.getAllJobsOfBusiness(businessId);
 };
-/**
- * TODO: Test This function
- * */
 export const addHrToBusiness = async (
     userId: number,
     businessId: number,
@@ -153,16 +150,11 @@ export const addHrToBusiness = async (
         Logger.error('Business not found');
         throw new AppError('Business not found', 404);
     }
-
-    const HrOfRequestedUser = await HrEmployeeRepository.findOneBy({
-        id: userId,
-        business: business,
-    });
-    if (
-        !HrOfRequestedUser ||
-        (HrOfRequestedUser.role !== HrRole.OWNER &&
-            HrOfRequestedUser.role !== HrRole.SUPER_ADMIN)
-    ) {
+    const checkIfUserHasRole = await HrEmployeeRepository.checkPermission(
+        userId,
+        businessId,
+    );
+    if (!checkIfUserHasRole) {
         Logger.error('User does not have permission to add hr to business');
         throw new AppError(
             'User does not have permission to add hr to business',
@@ -176,6 +168,8 @@ export const addHrToBusiness = async (
         throw new AppError('Account not found', 404);
     }
 
+    console.log(account);
+    console.log(accountEmail);
     // Check if user already has role in business
     const checkIfAccountHasRole = await HrEmployeeRepository.findOneBy({
         account: account,
