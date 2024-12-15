@@ -47,6 +47,7 @@ import {
 } from '../utils/returningFieldAsInMongoDb';
 import { Language } from '../entity/Language';
 import { LanguageRepository } from '../Repository/languageRepository';
+import { Logger } from '../utils/logger';
 
 export const createUserForSignUp = async (reqBody: signUpBody) => {
     const { firstName, lastName, email, password } = reqBody;
@@ -62,16 +63,27 @@ export const createUserForSignUp = async (reqBody: signUpBody) => {
     return newUser;
 };
 export const signUpService = async (userData: signUpBody) => {
-    const newUser = await createUserForSignUp(userData);
-    const userTempData = await AccountTempData.create({
-        accountId: newUser.id,
-    });
-    //2-sending email containing activation code for user mail
-    const activationToken = await generateAndEmailCode(
-        userTempData,
-        newUser.email,
-    );
-    return activationToken;
+    try {
+        const newUser = await createUserForSignUp(userData);
+        const userTempData = await AccountTempData.create({
+            accountId: newUser.id,
+        });
+        //2-sending email containing activation code for user mail
+        const activationToken = await generateAndEmailCode(
+            userTempData,
+            newUser.email,
+        );
+        return activationToken;
+    } catch (err) {
+        if (err.code === 11000) {
+            throw new AppError(
+                `accountTempData is already exists , please delete accountTempData for accountId ${err.keyValue.accountId}`,
+                400,
+            );
+        }
+        console.error(err);
+        throw err;
+    }
 };
 
 export const updateUserForSignUpStepTwo = async (

@@ -4,9 +4,12 @@ import AppError from '../utils/appError';
 import { ExperienceRepository } from '../Repository/experineceRepository';
 import { updateExperienceData } from '../types/documentTypes';
 import { Experience } from '../entity/Experience';
+import { AccountRepository } from '../Repository/accountRepository';
+import { Account } from '../entity/Account';
+import AccountTempData from '../models/accountModel';
 
 export const updateUserOneExperienceService = async (req: Request) => {
-    const userId = Number(req.user.id);
+    const userId = req.user.id;
     const experienceId = Number(req.params.id);
     let {
         jobTitle,
@@ -58,12 +61,9 @@ export const createUserOneExperienceService = async (req: Request) => {
         endDate,
     } = req.body;
 
-    if (stillWorking === true) {
-        endDate = null;
-    }
-
+    const user = await AccountRepository.findOneBy({ id: userId });
     const experience = new Experience();
-    experience.account.id = userId;
+    experience.account = user;
     experience.job_title = jobTitle;
     experience.employment_type = employmentType;
     experience.company_name = companyName;
@@ -73,7 +73,36 @@ export const createUserOneExperienceService = async (req: Request) => {
     experience.start_date = startDate;
     experience.end_date = endDate;
 
-    await ExperienceRepository.save(experience);
+    const createdExperience = await ExperienceRepository.save(experience);
+    delete createdExperience.account;
+    const experienceReturned: { [key: string]: any } = { ...createdExperience };
+    experienceReturned.accountId = userId;
+    return experienceReturned;
+};
 
-    return experience;
+export const deleteUserOneExperienceService = async (req: Request) => {
+    try {
+        const userId = Number(req.user.id);
+        const experienceId = Number(req.params.id);
+        const experience = await ExperienceRepository.findOneBy({
+            account: { id: userId },
+            id: experienceId,
+        });
+        if (!experience) {
+            throw new AppError('No experience found with that ID', 404);
+        }
+        await ExperienceRepository.remove(experience);
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const deleteMeService = async (req: Request) => {
+    try {
+        const userId = Number(req.user.id);
+        await AccountRepository.delete({ id: userId });
+        await AccountTempData.deleteOne({ accountId: userId });
+    } catch (err) {
+        throw err;
+    }
 };

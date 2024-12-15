@@ -1,9 +1,10 @@
-import { body, ValidationChain } from 'express-validator';
+import { body, param, ValidationChain } from 'express-validator';
 
 import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
 
-export const userCreationValidatorStepTwo: ValidationChain[] = [
+export const updateUserOneExperienceValidator: ValidationChain[] = [
+    param('id').isInt().withMessage('id must be an integer'),
     body('jobTitle')
         .optional()
         .isString()
@@ -41,10 +42,15 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
             if (value in LocationType) return value;
             else throw new Error('Invalid location type');
         }),
-    body('stillWorking')
-        .optional()
-        .isBoolean()
-        .withMessage('Still working must be a boolean'),
+    body('stillWorking').custom((val, { req }) => {
+        if (typeof val !== 'boolean') {
+            throw new Error('Still working must be a boolean');
+        }
+        if (req.body.endDate && val == true) {
+            throw new Error('you cant add still working with endDate');
+        }
+        return true;
+    }),
     body('startDate')
         .optional()
         .isDate({ format: 'YYYY-MM-DD' })
@@ -88,15 +94,18 @@ export const createUserOneExperienceValidator: ValidationChain[] = [
             if (value in LocationType) return value;
             else throw new Error('Invalid location type');
         }),
-    body('stillWorking').custom((val, { req }) => {
-        if (typeof val !== 'boolean') {
-            throw new Error('Still working must be a boolean');
-        }
-        if (req.body.endDate) {
-            throw new Error('you cant add still working with endDate');
-        }
-        return val;
-    }),
+    body('stillWorking')
+        .exists()
+        .withMessage('still working is required')
+        .custom((val, { req }) => {
+            if (typeof val !== 'boolean') {
+                throw new Error('Still working must be a boolean');
+            }
+            if (req.body.endDate && val == true) {
+                throw new Error('you cant add still working with endDate');
+            }
+            return true;
+        }),
     body('startDate')
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid start date'),
@@ -104,4 +113,8 @@ export const createUserOneExperienceValidator: ValidationChain[] = [
         .optional()
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid end date'),
+];
+
+export const deleteUserOneExperienceValidator: ValidationChain[] = [
+    param('id').isInt().withMessage('id must be an integer'),
 ];
