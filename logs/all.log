@@ -633,3 +633,17 @@
 2024-12-14 22:42:00:420 [32minfo[39m: [32mPostgres Database connected successfully[39m
 2024-12-14 22:43:10:4310 [32minfo[39m: [32mServer is running on port 8000[39m
 2024-12-14 22:43:10:4310 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-14 22:51:35:5135 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 22:51:36:5136 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-14 22:52:04:524 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 22:52:04:524 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-15 13:05:41:541 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 13:05:42:542 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-15 13:06:28:628 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 13:06:28:628 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 13:08:37:837 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 13:08:38:838 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 13:08:40:840 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 13:10:23:1023 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 13:10:23:1023 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 13:10:25:1025 [32minfo[39m: [32mMongoDB Database connected successfully[39m
