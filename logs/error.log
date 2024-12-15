@@ -44,3 +44,11 @@
 2024-12-14 22:51:36:5136 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
 2024-12-14 22:52:04:524 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
 2024-12-15 13:05:42:542 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-15 18:25:04:254 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 18:25:14:2514 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 4 }[39m
+2024-12-15 18:26:45:2645 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 18:27:44:2744 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-15 18:51:03:513 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 18:51:40:5140 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 18:52:18:5218 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 19:02:47:247 [31merror[39m: [31msyntax error at or near "r"[39m

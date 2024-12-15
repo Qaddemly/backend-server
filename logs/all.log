@@ -647,3 +647,104 @@
 2024-12-15 13:10:23:1023 [32minfo[39m: [32mServer is running on port 8000[39m
 2024-12-15 13:10:23:1023 [32minfo[39m: [32mPostgres Database connected successfully[39m
 2024-12-15 13:10:25:1025 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 18:24:50:2450 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 18:24:51:2451 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 18:24:52:2452 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 18:25:04:254 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 18:25:04:254 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 184 - 376.494 ms[39m
+[35m[39m
+2024-12-15 18:25:14:2514 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 4 }[39m
+2024-12-15 18:25:14:2514 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 500 1122 - 832.092 ms[39m
+[35m[39m
+2024-12-15 18:26:45:2645 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 18:26:45:2645 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 188 - 307.403 ms[39m
+[35m[39m
+2024-12-15 18:26:52:2652 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2479.278 ms[39m
+[35m[39m
+2024-12-15 18:27:44:2744 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-15 18:27:44:2744 [35mhttp[39m: [35mPOST /api/v1/business 401 761 - 599.454 ms[39m
+[35m[39m
+2024-12-15 18:27:55:2755 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 865 - 1096.329 ms[39m
+[35m[39m
+2024-12-15 18:28:02:282 [32minfo[39m: [32mBusiness 50001 created successfully[39m
+2024-12-15 18:28:02:282 [35mhttp[39m: [35mPOST /api/v1/business 201 561 - 502.159 ms[39m
+[35m[39m
+2024-12-15 18:29:01:291 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 18:29:01:291 [35mhttp[39m: [35mPUT /api/v1/business/50001 200 556 - 370.889 ms[39m
+[35m[39m
+2024-12-15 18:29:37:2937 [35mhttp[39m: [35mGET /api/v1/business/profile/50001 200 512 - 544.817 ms[39m
+[35m[39m
+2024-12-15 18:30:06:306 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 1497 - 4888.761 ms[39m
+[35m[39m
+2024-12-15 18:31:30:3130 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 18:31:31:3131 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 18:31:32:3132 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 18:31:34:3134 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 1497 - 378.277 ms[39m
+[35m[39m
+2024-12-15 18:31:39:3139 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/1 200 1497 - 294.020 ms[39m
+[35m[39m
+2024-12-15 18:33:54:3354 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/50001 200 1552 - 397.802 ms[39m
+[35m[39m
+2024-12-15 18:38:55:3855 [35mhttp[39m: [35mGET /api/v1/business/profile/jobsSix/50001 200 2643 - 497.105 ms[39m
+[35m[39m
+2024-12-15 18:38:59:3859 [35mhttp[39m: [35mGET /api/v1/business/profile/jobsSix/50001 200 2643 - 287.646 ms[39m
+[35m[39m
+2024-12-15 18:39:55:3955 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 18:39:55:3955 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 18:39:56:3956 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 18:40:02:402 [35mhttp[39m: [35mGET /api/v1/business/profile/jobsSix/50001 200 2643 - 353.928 ms[39m
+[35m[39m
+2024-12-15 18:40:04:404 [35mhttp[39m: [35mGET /api/v1/business/profile/jobsSix/50001 200 2643 - 280.704 ms[39m
+[35m[39m
+2024-12-15 18:40:06:406 [35mhttp[39m: [35mGET /api/v1/business/profile/jobsSix/50001 200 2643 - 300.337 ms[39m
+[35m[39m
+2024-12-15 18:40:14:4014 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 200 42750887 - 2517.049 ms[39m
+[35m[39m
+2024-12-15 18:50:48:5048 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 18:50:48:5048 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 18:50:51:5051 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 18:51:03:513 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 18:51:03:513 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 500 539 - 587.910 ms[39m
+[35m[39m
+2024-12-15 18:51:33:5133 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 18:51:33:5133 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 18:51:34:5134 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 18:51:40:5140 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 18:51:40:5140 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 500 539 - 533.510 ms[39m
+[35m[39m
+2024-12-15 18:52:14:5214 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 18:52:14:5214 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 18:52:15:5215 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 18:52:18:5218 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 18:52:18:5218 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 500 539 - 361.147 ms[39m
+[35m[39m
+2024-12-15 18:54:39:5439 [35mhttp[39m: [35mGET /api/v1/business/profile/jobsSix/50001 200 2643 - 473.199 ms[39m
+[35m[39m
+2024-12-15 18:59:06:596 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 18:59:07:597 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 18:59:08:598 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 18:59:19:5919 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 200 2408 - 571.987 ms[39m
+[35m[39m
+2024-12-15 18:59:51:5951 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 18:59:51:5951 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:00:07:07 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:00:08:08 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:00:09:09 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:02:40:240 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:02:40:240 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:02:41:241 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:02:47:247 [31merror[39m: [31msyntax error at or near "r"[39m
+2024-12-15 19:02:47:247 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 500 549 - 508.611 ms[39m
+[35m[39m
+2024-12-15 19:03:27:327 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:03:27:327 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:03:28:328 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:03:34:334 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/1 200 911 - 355.742 ms[39m
+[35m[39m
+2024-12-15 19:03:42:342 [35mhttp[39m: [35mGET /api/v1/business/profile/reviews/50001 200 152924 - 322.950 ms[39m
+[35m[39m
+2024-12-15 19:04:32:432 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:04:32:432 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:04:34:434 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:04:41:441 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/50001 200 1442 - 342.592 ms[39m
+[35m[39m
