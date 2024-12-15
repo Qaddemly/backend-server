@@ -748,3 +748,21 @@
 2024-12-15 19:04:34:434 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2024-12-15 19:04:41:441 [35mhttp[39m: [35mGET /api/v1/business/profile/reviewsFive/50001 200 1442 - 342.592 ms[39m
 [35m[39m
+2024-12-15 19:08:18:818 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:08:18:818 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:08:20:820 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:08:22:822 [31merror[39m: [31msyntax error at or near "j"[39m
+2024-12-15 19:08:22:822 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 500 549 - 373.724 ms[39m
+[35m[39m
+2024-12-15 19:08:45:845 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:08:45:845 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:08:47:847 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:08:59:859 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 200 30 - 402.018 ms[39m
+[35m[39m
+2024-12-15 19:09:05:95 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/50001 200 2293227 - 417.917 ms[39m
+[35m[39m
+2024-12-15 19:09:52:952 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:09:52:952 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:09:54:954 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:10:02:102 [35mhttp[39m: [35mGET /api/v1/business/profile/jobsSix/50001 200 2727 - 377.182 ms[39m
+[35m[39m
