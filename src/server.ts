@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
+//dotenv.config({ path: './abdo.env' });
 dotenv.config();
-
 import app from './app';
 import databaseConnect from './config/database.connection';
 import { AppDataSource } from './data-source';

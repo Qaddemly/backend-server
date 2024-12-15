@@ -26,13 +26,12 @@ import {
     createRefreshToken,
     verifyTokenAsync,
 } from '../utils/jwt';
-import { mongoId, userDocument, UserType } from '../types/documentTypes';
+import { UserType } from '../types/documentTypes';
 import { uploadProfilePicAndResume } from '../middlewares/upload.middleWare';
 import sharp from 'sharp';
 import { expressFiles } from '../types/types';
 import { AccountRepository } from '../Repository/accountRepository';
 import AccountTempData from '../models/accountModel';
-import User from '../models/userModel';
 import { Account } from '../entity/Account';
 import { EducationRepository } from '../Repository/educationRepository';
 import { Education } from '../entity/Education';
@@ -85,7 +84,7 @@ export const updateUserForSignUpStepTwo = async (
     if (!user) {
         throw new AppError('user not found', 404);
     }
-    const userJson = await updateUserAfterCompleteData(user, req);
+    const userJson = await updateUserAfterSignUpFirstStep(user, req);
     return userJson;
 };
 export const uploadUserPICAndResume = uploadProfilePicAndResume([
@@ -586,7 +585,7 @@ export const clearCookies = (res: Response) => {
     res.clearCookie('refreshToken');
 };
 
-export const updateUserAfterCompleteData = async (
+export const updateUserAfterSignUpFirstStep = async (
     user: Account,
     req: Request,
 ) => {
@@ -929,3 +928,34 @@ export const getMeService = (req: Request) => {
     const user = req.user;
     return returnUserInFormOfMongoDBObject(user as Account);
 };
+
+export const updateUserOneExperience = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const userId = req.user.id;
+        const experienceId = req.params.id;
+        const {
+            jobTitle,
+            employmentType,
+            companyName,
+            location,
+            locationType,
+            stillWorking,
+            startDate,
+            endDate,
+        } = req.body;
+        const experience = await ExperienceRepository.update(
+            { account: { id: userId } },
+            {
+                job_title: jobTitle,
+                employment_type: employmentType,
+                company_name: companyName,
+                location: location,
+                location_type: locationType,
+                still_working: stillWorking,
+                start_date: startDate,
+                end_date: endDate,
+            },
+        );
+        res.status(200).json({ experience });
+    },
+);

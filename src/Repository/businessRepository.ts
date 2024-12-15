@@ -26,13 +26,6 @@ class BusinessRepositoryClass extends Repository<Business> {
             [accountId],
         );
     }
-
-    async getFiveReviewsOfBusiness(businessId: number): Promise<Business[]> {
-        return await this.query(
-            'SELECT a.first_name, a.last_name, a.profile_picture, r.description, r.rating, r.business_id, r.account_id, r.created_at, r.updated_at FROM review AS r JOIN business AS b ON r.business_id = $1 JOIN account AS a ON r.account_id = a.id LIMIT 5',
-            [businessId],
-        );
-    }
 }
 
 export const BusinessRepository = AppDataSource.getRepository(Business).extend(
