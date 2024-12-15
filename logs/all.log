@@ -766,3 +766,89 @@
 2024-12-15 19:09:54:954 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2024-12-15 19:10:02:102 [35mhttp[39m: [35mGET /api/v1/business/profile/jobsSix/50001 200 2727 - 377.182 ms[39m
 [35m[39m
+2024-12-15 19:13:31:1331 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:13:31:1331 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:13:33:1333 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:13:44:1344 [32minfo[39m: [32mBusiness 50002 created successfully[39m
+2024-12-15 19:13:44:1344 [35mhttp[39m: [35mPOST /api/v1/business 201 561 - 787.053 ms[39m
+[35m[39m
+2024-12-15 19:14:13:1413 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:14:13:1413 [35mhttp[39m: [35mPUT /api/v1/business/50001 200 556 - 467.032 ms[39m
+[35m[39m
+2024-12-15 19:23:28:2328 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:23:28:2328 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:23:31:2331 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:23:40:2340 [32minfo[39m: [32mBusiness 50003 created successfully[39m
+2024-12-15 19:23:40:2340 [35mhttp[39m: [35mPOST /api/v1/business 201 559 - 615.049 ms[39m
+[35m[39m
+2024-12-15 19:23:46:2346 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:23:46:2346 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:23:46:2346 [35mhttp[39m: [35mPUT /api/v1/business/50001 500 893 - 480.882 ms[39m
+[35m[39m
+2024-12-15 19:24:40:2440 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:24:41:2441 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:24:42:2442 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:24:50:2450 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:24:50:2450 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:24:50:2450 [35mhttp[39m: [35mPUT /api/v1/business/50001 500 893 - 639.055 ms[39m
+[35m[39m
+2024-12-15 19:26:12:2612 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:26:12:2612 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:26:14:2614 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:26:15:2615 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:26:15:2615 [35mhttp[39m: [35mPUT /api/v1/business/50001 200 556 - 417.633 ms[39m
+[35m[39m
+2024-12-15 19:47:18:4718 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:47:19:4719 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:47:20:4720 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:47:23:4723 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:47:23:4723 [35mhttp[39m: [35mPUT /api/v1/business/50001 200 116 - 511.141 ms[39m
+[35m[39m
+2024-12-15 19:47:58:4758 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:47:58:4758 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:48:00:480 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:48:02:482 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:48:02:482 [35mhttp[39m: [35mPUT /api/v1/business/50001 200 116 - 400.405 ms[39m
+[35m[39m
+2024-12-15 19:49:12:4912 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:49:12:4912 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:49:14:4914 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:52:29:5229 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:52:29:5229 [35mhttp[39m: [35mPUT /api/v1/business/50001 200 556 - 435.261 ms[39m
+[35m[39m
+2024-12-15 19:53:21:5321 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:53:21:5321 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:53:23:5323 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:53:30:5330 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:53:30:5330 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:53:30:5330 [35mhttp[39m: [35mPUT /api/v1/business/50001 500 893 - 391.769 ms[39m
+[35m[39m
+2024-12-15 19:54:32:5432 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:54:32:5432 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:54:34:5434 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:54:37:5437 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:54:37:5437 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:54:37:5437 [35mhttp[39m: [35mPUT /api/v1/business/50001 500 893 - 370.266 ms[39m
+[35m[39m
+2024-12-15 19:55:24:5524 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:55:24:5524 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:55:39:5539 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:55:40:5540 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:55:41:5541 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:55:45:5545 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:55:45:5545 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:55:45:5545 [35mhttp[39m: [35mPUT /api/v1/business/50001 500 893 - 351.560 ms[39m
+[35m[39m
+2024-12-15 19:56:13:5613 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:56:13:5613 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:56:15:5615 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:56:21:5621 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:56:21:5621 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:56:21:5621 [35mhttp[39m: [35mPUT /api/v1/business/50001 500 893 - 448.465 ms[39m
+[35m[39m
+2024-12-15 19:58:21:5821 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 19:58:22:5822 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 19:58:23:5823 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 19:58:28:5828 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2024-12-15 19:58:28:5828 [35mhttp[39m: [35mPUT /api/v1/business/50001 200 568 - 503.670 ms[39m
+[35m[39m

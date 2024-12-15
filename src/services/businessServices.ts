@@ -1,5 +1,9 @@
 import { Business } from '../entity/Business';
-import { CreateBusinessDto, UpdateBusinessDTO } from '../dtos/businessDto';
+import {
+    CreateBusinessDto,
+    getBusinessDto,
+    UpdateBusinessDTO,
+} from '../dtos/businessDto';
 import { BusinessRepository } from '../Repository/businessRepository';
 import { AccountRepository } from '../Repository/accountRepository';
 import { HrEmployee } from '../entity/HrEmployee';
@@ -18,7 +22,7 @@ import { JobRepository } from '../Repository/jobRepository';
 export const createBusiness = async (
     createBusinessDto: CreateBusinessDto,
     accountId: number,
-): Promise<Business> => {
+) => {
     // Get the current authenticated user
     const account = await AccountRepository.findOneBy({ id: accountId });
 
@@ -88,7 +92,7 @@ export const updateBusiness = async (
         businessId,
     );
     Logger.info(`Business ${businessId} updated successfully`);
-    return business;
+    return getBusinessDto(business);
 };
 
 export const getUserBusinesses = async (accountId: number) => {
