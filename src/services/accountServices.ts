@@ -28,3 +28,7 @@ export const followBusiness = async (accountId: number, businessId: number) => {
     followBusiness.business = business;
     return FollowBusinessRepository.save(followBusiness);
 };
+
+export const getFollowedBusinesses = async (accountId: number) => {
+    return await FollowBusinessRepository.getFollowedBusinesses(accountId);
+};

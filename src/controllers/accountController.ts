@@ -17,3 +17,14 @@ export const followBusiness = catchAsync(
         });
     },
 );
+export const getFollowedBusinesses = catchAsync(
+    async (req: Request, res: Response) => {
+        const accountId = req.user.id;
+        const followedBusinesses =
+            await accountServices.getFollowedBusinesses(accountId);
+        res.status(200).json({
+            status: 'success',
+            data: followedBusinesses,
+        });
+    },
+);

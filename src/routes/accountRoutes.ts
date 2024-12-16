@@ -10,3 +10,8 @@ accountRouter.post(
     protect,
     accountController.followBusiness,
 );
+accountRouter.get(
+    'followedBusinesses',
+    protect,
+    accountController.getFollowedBusinesses,
+);
