@@ -4,6 +4,7 @@ import {
     createJobService,
     getAllUserSavedJobsService,
     getOneJobService,
+    removeSavedJobFromUserService,
     saveJobToUserService,
     updateJobService,
 } from '../services/jobServices';
@@ -60,10 +61,24 @@ export const updateOneJob = catchAsync(
 export const saveJobToUser = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const job = await saveJobToUserService(req);
+            const user = await saveJobToUserService(req);
             res.status(200).json({
                 success: true,
-                job,
+                user,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const unSaveJobFromUser = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const user = await removeSavedJobFromUserService(req);
+            res.status(200).json({
+                success: true,
+                user,
             });
         } catch (err) {
             return next(err);

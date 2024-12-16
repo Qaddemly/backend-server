@@ -25,6 +25,14 @@ class AccountRepositoryClass extends Repository<Account> {
         // Return the account with all its relations
         return account;
     }
+    async getAccountWithSavedJobs(userId: number) {
+        const account = await this.findOne({
+            where: { id: userId },
+            relations: ['saved_jobs'],
+            // Load current saved jobs
+        });
+        return account;
+    }
 }
 
 export const AccountRepository = AppDataSource.getRepository(Account).extend(

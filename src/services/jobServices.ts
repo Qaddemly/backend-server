@@ -128,11 +128,7 @@ export const saveJobToUserService = async (req: Request) => {
     if (!job) {
         throw new AppError('Job not found', 404);
     }
-    const account = await AccountRepository.findOne({
-        where: { id: userId },
-        relations: ['saved_jobs'],
-        // Load current saved jobs
-    });
+    const account = await AccountRepository.getAccountWithSavedJobs(userId);
     const isJobAlreadySaved = account.saved_jobs.some(
         (savedJob) => savedJob.id === jobId,
     );
@@ -144,14 +140,30 @@ export const saveJobToUserService = async (req: Request) => {
     return savedUser;
 };
 
+export const removeSavedJobFromUserService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const jobId = Number(req.params.id);
+    const job = await JobRepository.findOneBy({ id: jobId });
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    const account = await AccountRepository.getAccountWithSavedJobs(userId);
+    const isJobAlreadySaved = account.saved_jobs.some(
+        (savedJob) => savedJob.id === jobId,
+    );
+    if (!isJobAlreadySaved) {
+        throw new AppError('Job already not saved', 409);
+    }
+    account.saved_jobs = account.saved_jobs.filter((job) => job.id !== jobId);
+
+    const savedUser = await AccountRepository.save(account);
+    return savedUser;
+};
+
 export const getAllUserSavedJobsService = async (req: Request) => {
     const userId = Number(req.user.id);
 
-    const account = await AccountRepository.findOne({
-        where: { id: userId },
-        relations: ['saved_jobs'],
-        // Load current saved jobs
-    });
+    const account = await AccountRepository.getAccountWithSavedJobs(userId);
 
     return account.saved_jobs;
 };

@@ -4,6 +4,7 @@ import {
     getAllUserSavedJobs,
     getOneJob,
     saveJobToUser,
+    unSaveJobFromUser,
     updateOneJob,
 } from '../controllers/jobController';
 import { protect } from '../services/authServices';
@@ -42,6 +43,13 @@ jobRouter.post(
     protect,
     validateRequestMiddleware(idJobValidator),
     saveJobToUser,
+);
+
+jobRouter.delete(
+    '/unSaveJob/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    unSaveJobFromUser,
 );
 
 jobRouter.get('/allUserSavedJobs', protect, getAllUserSavedJobs);
