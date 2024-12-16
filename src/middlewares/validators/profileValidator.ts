@@ -2,6 +2,7 @@ import { body, param, ValidationChain } from 'express-validator';
 
 import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
+import { Language } from '../../enums/language';
 
 export const updateUserOneExperienceValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),
@@ -128,5 +129,21 @@ export const createUserOneSkillValidator: ValidationChain[] = [
 ];
 
 export const deleteUserOneSkillValidator: ValidationChain[] = [
+    param('id').isInt().withMessage('id must be an integer'),
+];
+
+export const createUserOneLanguageValidator: ValidationChain[] = [
+    body('name')
+        .isString()
+        .withMessage('name must be a string')
+        .notEmpty()
+        .withMessage('name required')
+        .custom((value) => {
+            if (value in Language) return value;
+            else throw new Error('Invalid language');
+        }),
+];
+
+export const deleteUserOneLanguageValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),
 ];

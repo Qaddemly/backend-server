@@ -675,3 +675,26 @@
 2024-12-15 19:52:39:5239 [31merror[39m: [31mNo skill found with that ID[39m
 2024-12-15 19:52:39:5239 [35mhttp[39m: [35mDELETE /api/v1/user/deleteSkill/2 404 676 - 298.173 ms[39m
 [35m[39m
+2024-12-15 20:13:39:1339 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:13:39:1339 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:13:41:1341 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:13:48:1348 [31merror[39m: [31mNo language found with that ID[39m
+2024-12-15 20:13:48:1348 [35mhttp[39m: [35mDELETE /api/v1/user/deleteLanguage/3 404 682 - 493.600 ms[39m
+[35m[39m
+2024-12-15 20:13:54:1354 [31merror[39m: [31minvalid input value for enum language_name_enum: "arabic"[39m
+2024-12-15 20:13:54:1354 [35mhttp[39m: [35mPOST /api/v1/user/addNewLanguage 500 1024 - 335.770 ms[39m
+[35m[39m
+2024-12-15 20:14:53:1453 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:14:53:1453 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:14:55:1455 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:15:25:1525 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:15:25:1525 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:15:26:1526 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:15:28:1528 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:15:28:1528 [35mhttp[39m: [35mPOST /api/v1/user/addNewLanguage 400 164 - 351.317 ms[39m
+[35m[39m
+2024-12-15 20:15:56:1556 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 20:15:56:1556 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 20:15:58:1558 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 20:16:07:167 [35mhttp[39m: [35mPOST /api/v1/user/addNewLanguage 201 66 - 390.969 ms[39m
+[35m[39m

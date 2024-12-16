@@ -9,6 +9,8 @@ import { Account } from '../entity/Account';
 import AccountTempData from '../models/accountModel';
 import { Skill } from '../entity/Skill';
 import { SkillRepository } from '../Repository/skillRepository';
+import { Language } from '../entity/Language';
+import { LanguageRepository } from '../Repository/languageRepository';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -128,6 +130,40 @@ export const deleteUserOneSkillService = async (req: Request) => {
             throw new AppError('No skill found with that ID', 404);
         }
         await SkillRepository.remove(skill);
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const createUserOneLanguageService = async (req: Request) => {
+    const userId = Number(req.user.id);
+
+    let { name } = req.body;
+
+    const user = await AccountRepository.findOneBy({ id: userId });
+    const language = new Language();
+    language.account = user;
+    language.name = name;
+
+    const createdLanguage = await LanguageRepository.save(language);
+    delete createdLanguage.account;
+    const LanguageReturned: { [key: string]: any } = { ...createdLanguage };
+    LanguageReturned.accountId = userId;
+    return LanguageReturned;
+};
+
+export const deleteUserOneLanguageService = async (req: Request) => {
+    try {
+        const userId = Number(req.user.id);
+        const languageId = Number(req.params.id);
+        const language = await LanguageRepository.findOneBy({
+            account: { id: userId },
+            id: languageId,
+        });
+        if (!language) {
+            throw new AppError('No language found with that ID', 404);
+        }
+        await LanguageRepository.remove(language);
     } catch (err) {
         throw err;
     }

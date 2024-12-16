@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import {
     createUserOneExperience,
+    createUserOneLanguage,
     createUserOneSkill,
     deleteMe,
     deleteUserOneExperience,
+    deleteUserOneLanguage,
     deleteUserOneSkill,
     updateUserOneExperience,
 } from '../controllers/profileController';
@@ -15,6 +17,8 @@ import {
     deleteUserOneExperienceValidator,
     createUserOneSkillValidator,
     deleteUserOneSkillValidator,
+    createUserOneLanguageValidator,
+    deleteUserOneLanguageValidator,
 } from '../middlewares/validators/profileValidator';
 
 const profileRouter = Router();
@@ -51,6 +55,20 @@ profileRouter.delete(
     protect,
     validateRequestMiddleware(deleteUserOneSkillValidator),
     deleteUserOneSkill,
+);
+
+profileRouter.post(
+    '/addNewLanguage',
+    protect,
+    validateRequestMiddleware(createUserOneLanguageValidator),
+    createUserOneLanguage,
+);
+
+profileRouter.delete(
+    '/deleteLanguage/:id',
+    protect,
+    validateRequestMiddleware(deleteUserOneLanguageValidator),
+    deleteUserOneLanguage,
 );
 
 profileRouter.delete('/deleteMe', protect, deleteMe);

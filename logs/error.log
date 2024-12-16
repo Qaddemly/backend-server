@@ -50,3 +50,6 @@
 2024-12-15 19:50:35:5035 [31merror[39m: [31mnull value in column "job_title" of relation "experience" violates not-null constraint[39m
 2024-12-15 19:52:32:5232 [31merror[39m: [31mNo skill found with that ID[39m
 2024-12-15 19:52:39:5239 [31merror[39m: [31mNo skill found with that ID[39m
+2024-12-15 20:13:48:1348 [31merror[39m: [31mNo language found with that ID[39m
+2024-12-15 20:13:54:1354 [31merror[39m: [31minvalid input value for enum language_name_enum: "arabic"[39m
+2024-12-15 20:15:28:1528 [31merror[39m: [31mvalidationErrors[39m
