@@ -17,6 +17,19 @@ export const followBusiness = catchAsync(
         });
     },
 );
+
+export const unfollowBusiness = catchAsync(
+    async (req: Request, res: Response) => {
+        const accountId = req.user.id;
+        const businessId = parseInt(req.params.businessId);
+        await accountServices.unfollowBusiness(accountId, businessId);
+        res.status(200).json({
+            status: 'success',
+            message: 'Business unfollowed successfully',
+        });
+    },
+);
+
 export const getFollowedBusinesses = catchAsync(
     async (req: Request, res: Response) => {
         const accountId = req.user.id;
@@ -24,6 +37,7 @@ export const getFollowedBusinesses = catchAsync(
             await accountServices.getFollowedBusinesses(accountId);
         res.status(200).json({
             status: 'success',
+            followedBusinesses: followedBusinesses.length,
             data: followedBusinesses,
         });
     },

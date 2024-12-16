@@ -15,3 +15,8 @@ accountRouter.get(
     protect,
     accountController.getFollowedBusinesses,
 );
+accountRouter.delete(
+    '/unfollowBusiness/:businessId',
+    protect,
+    accountController.unfollowBusiness,
+);

@@ -3,10 +3,14 @@ import { AppDataSource } from '../data-source';
 import { FollowBusiness } from '../entity/FollowBusiness';
 
 class FollowBusinessRepositoryClass extends Repository<FollowBusiness> {
-    async checkIfUserFollowBusiness(accountId: number, businessId: number) {
-        return await this.query(
+    async checkIfUserFollowBusiness(
+        accountId: number,
+        businessId: number,
+    ): Promise<Boolean> {
+        const query = await this.query(
             `SELECT * FROM follow_business WHERE account_id = ${accountId} AND business_id = ${businessId}`,
         );
+        return query.length > 0;
     }
     async getFollowedBusinesses(accountId: number) {
         return await this.query(
@@ -15,6 +19,11 @@ class FollowBusinessRepositoryClass extends Repository<FollowBusiness> {
                     b.logo        AS business_logo,
                     b.description AS business_description
                 FROM follow_business as fb JOIN business as b ON (fb.business_id = b.id AND fb.account_id = ${accountId})`,
+        );
+    }
+    async unfollowBusiness(accountId: number, businessId: number) {
+        return await this.query(
+            `DELETE FROM follow_business WHERE account_id = ${accountId} AND business_id = ${businessId}`,
         );
     }
 }

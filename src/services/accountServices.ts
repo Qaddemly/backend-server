@@ -18,10 +18,11 @@ export const followBusiness = async (accountId: number, businessId: number) => {
             businessId,
         );
 
+    console.log(checkFollowBusiness);
+
     if (checkFollowBusiness) {
         throw new Error('Business already followed');
     }
-    console.log(checkFollowBusiness);
 
     const followBusiness = new FollowBusiness();
     followBusiness.account = account;
@@ -31,4 +32,34 @@ export const followBusiness = async (accountId: number, businessId: number) => {
 
 export const getFollowedBusinesses = async (accountId: number) => {
     return await FollowBusinessRepository.getFollowedBusinesses(accountId);
+};
+
+export const unfollowBusiness = async (
+    accountId: number,
+    businessId: number,
+) => {
+    const account = await AccountRepository.findOneBy({ id: accountId });
+    if (!account) {
+        throw new Error('Account not found');
+    }
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        throw new Error('Business not found');
+    }
+    const checkFollowBusiness =
+        await FollowBusinessRepository.checkIfUserFollowBusiness(
+            accountId,
+            businessId,
+        );
+
+    console.log(checkFollowBusiness);
+
+    if (!checkFollowBusiness) {
+        throw new Error('Business not followed');
+    }
+
+    return await FollowBusinessRepository.unfollowBusiness(
+        accountId,
+        businessId,
+    );
 };

@@ -98,3 +98,8 @@
 2024-12-16 12:24:04:244 [31merror[39m: [31mAccount not found[39m
 2024-12-16 12:30:31:3031 [31merror[39m: [31msyntax error at or near "JOIN"[39m
 2024-12-16 12:32:09:329 [31merror[39m: [31msyntax error at or near "JOIN"[39m
+2024-12-16 12:46:53:4653 [31merror[39m: [31mPostgres Database connection failed Index "job_index_on_job_application_id" contains column that is missing in the entity (Job): job_applications[39m
+2024-12-16 13:06:52:652 [31merror[39m: [31mBusiness already followed[39m
+2024-12-16 13:09:31:931 [31merror[39m: [31mBusiness already followed[39m
+2024-12-16 13:10:43:1043 [31merror[39m: [31mBusiness already followed[39m
+2024-12-16 13:10:48:1048 [31merror[39m: [31mBusiness not followed[39m

@@ -67,7 +67,6 @@ export class Job {
     })
     business: Business;
 
-    @Index('job_index_on_job_application_id')
     @OneToMany(() => JobApplication, (job_application) => job_application.job, {
         cascade: true,
     })
