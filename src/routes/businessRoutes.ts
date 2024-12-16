@@ -61,6 +61,11 @@ businessRouter.get(
     protect,
     businessController.getAllJobsOfBusiness,
 );
+businessRouter.get(
+    '/profile/followersNumber/:businessId',
+    protect,
+    businessController.getFollowersNumberOfBusiness,
+);
 
 // Admin
 businessRouter.post(
@@ -68,4 +73,9 @@ businessRouter.post(
     protect,
     validateRequestMiddleware(checkAddNewHrValidator),
     businessController.addHrToBusiness,
+);
+businessRouter.get(
+    '/myBusiness/dashboard/followers/:businessId',
+    protect,
+    businessController.getFollowersOfBusiness,
 );

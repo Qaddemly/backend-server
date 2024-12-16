@@ -14,6 +14,7 @@ import { HrEmployeeRepository } from '../Repository/hrEmployeeRepository';
 import { Logger } from '../utils/logger';
 import { ReviewRepository } from '../Repository/reviewRepository';
 import { JobRepository } from '../Repository/jobRepository';
+import { FollowBusinessRepository } from '../Repository/followBusinessRepository';
 /**
  * TODO: mark the Account that created the business as the owner.
  * TODO: make it possible for user to add hr_employees with their roles at Creation.
@@ -185,4 +186,14 @@ export const addHrToBusiness = async (
     hrEmployee.account = account;
     hrEmployee.role = role;
     return await HrEmployeeRepository.save(hrEmployee);
+};
+
+export const getFollowersNumberOfBusiness = async (businessId: number) => {
+    return await FollowBusinessRepository.getFollowersNumberOfBusiness(
+        businessId,
+    );
+};
+
+export const getFollowersOfBusiness = async (businessId: number) => {
+    return await FollowBusinessRepository.getFollowersOfBusiness(businessId);
 };

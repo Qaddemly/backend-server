@@ -26,6 +26,20 @@ class FollowBusinessRepositoryClass extends Repository<FollowBusiness> {
             `DELETE FROM follow_business WHERE account_id = ${accountId} AND business_id = ${businessId}`,
         );
     }
+    async getFollowersOfBusiness(businessId: number) {
+        return await this.query(
+            `SELECT account.id AS account_id,
+                    account.first_name AS account_first_name,
+                    account.last_name AS account_last_name,
+                    account.profile_picture as account_profile_picture
+                FROM follow_business JOIN account ON (account.id = follow_business.account_id AND business_id = ${businessId})`,
+        );
+    }
+    async getFollowersNumberOfBusiness(businessId: number) {
+        return await this.query(
+            `SELECT COUNT(*) FROM follow_business WHERE business_id = ${businessId}`,
+        );
+    }
 }
 
 export const FollowBusinessRepository = AppDataSource.getRepository(

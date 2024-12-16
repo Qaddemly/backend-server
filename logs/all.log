@@ -1123,3 +1123,30 @@
 2024-12-16 13:10:48:1048 [31merror[39m: [31mBusiness not followed[39m
 2024-12-16 13:10:48:1048 [35mhttp[39m: [35mDELETE /api/v1/account/unfollowBusiness/1 500 683 - 265.637 ms[39m
 [35m[39m
+2024-12-16 13:18:00:180 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:18:01:181 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:18:02:182 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:18:22:1822 [35mhttp[39m: [35mGET /api/v1/business/profile/followersNumber/1 200 48 - 517.985 ms[39m
+[35m[39m
+2024-12-16 13:18:27:1827 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 63 - 288.666 ms[39m
+[35m[39m
+2024-12-16 13:18:30:1830 [35mhttp[39m: [35mGET /api/v1/business/profile/followersNumber/1 200 48 - 267.621 ms[39m
+[35m[39m
+2024-12-16 13:19:14:1914 [35mhttp[39m: [35mGET /api/v1/business/profile/followersNumber/1 200 48 - 423.803 ms[39m
+[35m[39m
+2024-12-16 13:19:40:1940 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/followers/1 200 280 - 331.026 ms[39m
+[35m[39m
+2024-12-16 13:21:07:217 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:21:07:217 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:21:09:219 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:21:33:2133 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:21:33:2133 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:21:34:2134 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:21:39:2139 [31merror[39m: [31msyntax error at or near "JOIN"[39m
+2024-12-16 13:21:39:2139 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/followers/1 500 555 - 334.226 ms[39m
+[35m[39m
+2024-12-16 13:22:14:2214 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:22:14:2214 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:22:15:2215 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:22:17:2217 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/followers/1 200 670 - 369.793 ms[39m
+[35m[39m
