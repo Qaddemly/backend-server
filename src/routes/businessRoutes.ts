@@ -12,9 +12,9 @@ import {
     checkAddNewHrValidator,
 } from '../middlewares/validators/bussiness.Validator';
 
-export const businessRoute = express.Router();
+export const businessRouter = express.Router();
 
-businessRoute.post(
+businessRouter.post(
     '/',
     protect,
     uploadSingleImage('logo'),
@@ -22,50 +22,63 @@ businessRoute.post(
     validateRequestMiddleware(businessCreationValidator),
     businessController.createBusiness,
 );
-businessRoute.get(
+businessRouter.get(
     '/userBusinesses',
     protect,
     businessController.getUserBusinesses,
 );
-businessRoute.get('/', protect, businessController.searchBusinessByName);
-businessRoute.get(
+businessRouter.get('/', protect, businessController.searchBusinessByName);
+businessRouter.get(
     '/profile/:businessId',
     protect,
     businessController.getBusinessById,
 );
-businessRoute.put(
-    '/:businessId',
+
+businessRouter.get(
+    '/profile/reviewsFive/:businessId',
+    protect,
+    businessController.getFiveReviewsOfBusiness,
+);
+businessRouter.get(
+    '/profile/reviews/:businessId',
+    protect,
+    businessController.getAllReviewsOfBusiness,
+);
+businessRouter.get(
+    '/profile/jobsSix/:businessId',
+    protect,
+    businessController.getSixJobsOfBusiness,
+);
+businessRouter.get(
+    '/profile/jobs/:businessId',
+    protect,
+    businessController.getAllJobsOfBusiness,
+);
+businessRouter.get(
+    '/profile/followersNumber/:businessId',
+    protect,
+    businessController.getFollowersNumberOfBusiness,
+);
+
+// Admin
+businessRouter.post(
+    '/myBusiness/dashboard/hr/:businessId',
+    protect,
+    validateRequestMiddleware(checkAddNewHrValidator),
+    businessController.addHrToBusiness,
+);
+
+businessRouter.put(
+    '/myBusiness/dashboard/edit/:businessId',
     protect,
     uploadSingleImage('logo'),
     resizeBusinessLogo,
     validateRequestMiddleware(businessUpdateValidator),
     businessController.updateBusiness,
 );
-businessRoute.get(
-    '/profile/reviewsFive/:businessId',
-    protect,
-    businessController.getFiveReviewsOfBusiness,
-);
-businessRoute.get(
-    '/profile/reviews/:businessId',
-    protect,
-    businessController.getAllReviewsOfBusiness,
-);
-businessRoute.get(
-    '/profile/jobsSix/:businessId',
-    protect,
-    businessController.getSixJobsOfBusiness,
-);
-businessRoute.get(
-    '/profile/jobs/:businessId',
-    protect,
-    businessController.getAllJobsOfBusiness,
-);
 
-// Admin
-businessRoute.post(
-    '/myBusiness/dashboard/hr/:businessId',
+businessRouter.get(
+    '/myBusiness/dashboard/followers/:businessId',
     protect,
-    validateRequestMiddleware(checkAddNewHrValidator),
-    businessController.addHrToBusiness,
+    businessController.getFollowersOfBusiness,
 );

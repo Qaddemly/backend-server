@@ -44,3 +44,80 @@
 2024-12-14 22:51:36:5136 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
 2024-12-14 22:52:04:524 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
 2024-12-15 13:05:42:542 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+<<<<<<< HEAD
+=======
+2024-12-15 18:25:04:254 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 18:25:14:2514 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 4 }[39m
+2024-12-15 18:26:45:2645 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 18:27:44:2744 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-15 18:51:03:513 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 18:51:40:5140 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 18:52:18:5218 [31merror[39m: [31mthere is no parameter $1[39m
+2024-12-15 19:02:47:247 [31merror[39m: [31msyntax error at or near "r"[39m
+2024-12-15 19:08:22:822 [31merror[39m: [31msyntax error at or near "j"[39m
+2024-12-15 19:23:46:2346 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:24:50:2450 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:53:30:5330 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:54:37:5437 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:55:45:5545 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 19:56:21:5621 [31merror[39m: [31mCannot read properties of undefined (reading 'country')[39m
+2024-12-15 20:07:32:732 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:07:32:732 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:21:1021 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:21:1021 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:49:1049 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:10:49:1049 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:11:31:1131 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:11:31:1131 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:14:48:1448 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:14:48:1448 [31merror[39m: [31mUser does not have permission to add hr to business[39m
+2024-12-15 20:15:03:153 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:15:03:153 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:15:12:1512 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:15:12:1512 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:21:07:217 [31merror[39m: [31mAccount not found[39m
+2024-12-15 20:21:07:217 [31merror[39m: [31mAccount not found[39m
+2024-12-15 20:24:06:246 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:24:11:2411 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:24:14:2414 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:25:19:2519 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:25:19:2519 [31merror[39m: [31mUser does not have permission to update business[39m
+2024-12-15 20:30:17:3017 [31merror[39m: [31mvalidationErrors[39m
+2024-12-15 20:30:27:3027 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 12:19:15:1915 [31merror[39m: [31mBusiness already followed[39m
+2024-12-16 12:19:39:1939 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 12:19:45:1945 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:19:45:1945 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:19:50:1950 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:19:50:1950 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:23:26:2326 [31merror[39m: [31mUser already has role in business[39m
+2024-12-16 12:23:26:2326 [31merror[39m: [31mUser already has role in business[39m
+2024-12-16 12:23:39:2339 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:23:39:2339 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:23:59:2359 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:23:59:2359 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:24:04:244 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:24:04:244 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:30:31:3031 [31merror[39m: [31msyntax error at or near "JOIN"[39m
+2024-12-16 12:32:09:329 [31merror[39m: [31msyntax error at or near "JOIN"[39m
+2024-12-16 12:46:53:4653 [31merror[39m: [31mPostgres Database connection failed Index "job_index_on_job_application_id" contains column that is missing in the entity (Job): job_applications[39m
+2024-12-16 13:06:52:652 [31merror[39m: [31mBusiness already followed[39m
+2024-12-16 13:09:31:931 [31merror[39m: [31mBusiness already followed[39m
+2024-12-16 13:10:43:1043 [31merror[39m: [31mBusiness already followed[39m
+2024-12-16 13:10:48:1048 [31merror[39m: [31mBusiness not followed[39m
+2024-12-16 13:21:39:2139 [31merror[39m: [31msyntax error at or near "JOIN"[39m
+2024-12-16 13:44:16:4416 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:44:28:4428 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:45:02:452 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:45:59:4559 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:46:37:4637 [31merror[39m: [31mrelation "business_phone" does not exist[39m
+2024-12-16 13:49:35:4935 [31merror[39m: [31mPostgres Database connection failed could not create unique index "job_index_on_business_id"[39m
+2024-12-16 13:50:05:505 [31merror[39m: [31mPostgres Database connection failed could not create unique index "review_idx_on_business_id"[39m
+2024-12-16 13:51:02:512 [31merror[39m: [31mPostgres Database connection failed could not create unique index "job_index_on_business_id"[39m
+2024-12-16 13:52:25:5225 [31merror[39m: [31mCannot read properties of undefined (reading 'country_code')[39m
+2024-12-16 13:58:34:5834 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 14:00:42:042 [31merror[39m: [31mCannot read properties of undefined (reading 'length')[39m
+2024-12-16 14:01:59:159 [31merror[39m: [31mCannot read properties of undefined (reading 'length')[39m
+2024-12-16 14:11:14:1114 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 14:13:11:1311 [31merror[39m: [31mvalidationErrors[39m
+>>>>>>> 708ab7686ce7ee842677cf8fef1bcb1d97f9df6e
