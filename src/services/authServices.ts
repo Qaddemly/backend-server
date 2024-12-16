@@ -26,13 +26,12 @@ import {
     createRefreshToken,
     verifyTokenAsync,
 } from '../utils/jwt';
-import { mongoId, userDocument, UserType } from '../types/documentTypes';
+import { UserType } from '../types/documentTypes';
 import { uploadProfilePicAndResume } from '../middlewares/upload.middleWare';
 import sharp from 'sharp';
 import { expressFiles } from '../types/types';
 import { AccountRepository } from '../Repository/accountRepository';
 import AccountTempData from '../models/accountModel';
-import User from '../models/userModel';
 import { Account } from '../entity/Account';
 import { EducationRepository } from '../Repository/educationRepository';
 import { Education } from '../entity/Education';
@@ -48,6 +47,7 @@ import {
 } from '../utils/returningFieldAsInMongoDb';
 import { Language } from '../entity/Language';
 import { LanguageRepository } from '../Repository/languageRepository';
+import { Logger } from '../utils/logger';
 
 export const createUserForSignUp = async (reqBody: signUpBody) => {
     const { firstName, lastName, email, password } = reqBody;
@@ -63,16 +63,27 @@ export const createUserForSignUp = async (reqBody: signUpBody) => {
     return newUser;
 };
 export const signUpService = async (userData: signUpBody) => {
-    const newUser = await createUserForSignUp(userData);
-    const userTempData = await AccountTempData.create({
-        accountId: newUser.id,
-    });
-    //2-sending email containing activation code for user mail
-    const activationToken = await generateAndEmailCode(
-        userTempData,
-        newUser.email,
-    );
-    return activationToken;
+    try {
+        const newUser = await createUserForSignUp(userData);
+        const userTempData = await AccountTempData.create({
+            accountId: newUser.id,
+        });
+        //2-sending email containing activation code for user mail
+        const activationToken = await generateAndEmailCode(
+            userTempData,
+            newUser.email,
+        );
+        return activationToken;
+    } catch (err) {
+        if (err.code === 11000) {
+            throw new AppError(
+                `accountTempData is already exists , please delete accountTempData for accountId ${err.keyValue.accountId}`,
+                400,
+            );
+        }
+        console.error(err);
+        throw err;
+    }
 };
 
 export const updateUserForSignUpStepTwo = async (
@@ -85,7 +96,7 @@ export const updateUserForSignUpStepTwo = async (
     if (!user) {
         throw new AppError('user not found', 404);
     }
-    const userJson = await updateUserAfterCompleteData(user, req);
+    const userJson = await updateUserAfterSignUpFirstStep(user, req);
     return userJson;
 };
 export const uploadUserPICAndResume = uploadProfilePicAndResume([
@@ -315,8 +326,8 @@ export const logInService = async (
 
         const [accessToken, refreshToken, updatedUser] =
             await createTokensForLoggedInUser(account, req, res);
-        const returnedUser = await returnUserInFormOfMongoDBObject(account);
-        return [true, accessToken, refreshToken, returnedUser];
+
+        return [true, accessToken, refreshToken, updatedUser];
     }
 };
 
@@ -586,7 +597,7 @@ export const clearCookies = (res: Response) => {
     res.clearCookie('refreshToken');
 };
 
-export const updateUserAfterCompleteData = async (
+export const updateUserAfterSignUpFirstStep = async (
     user: Account,
     req: Request,
 ) => {
@@ -925,7 +936,39 @@ export const returnUserInFormOfMongoDBObject = async (user: Account) => {
     return userJson;
 };
 
-export const getMeService = (req: Request) => {
-    const user = req.user;
-    return returnUserInFormOfMongoDBObject(user as Account);
+export const getMeService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const account = await AccountRepository.findAllAccountData(req.user.id);
+    return account;
 };
+
+export const updateUserOneExperience = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const userId = req.user.id;
+        const experienceId = req.params.id;
+        const {
+            jobTitle,
+            employmentType,
+            companyName,
+            location,
+            locationType,
+            stillWorking,
+            startDate,
+            endDate,
+        } = req.body;
+        const experience = await ExperienceRepository.update(
+            { account: { id: userId } },
+            {
+                job_title: jobTitle,
+                employment_type: employmentType,
+                company_name: companyName,
+                location: location,
+                location_type: locationType,
+                still_working: stillWorking,
+                start_date: startDate,
+                end_date: endDate,
+            },
+        );
+        res.status(200).json({ experience });
+    },
+);

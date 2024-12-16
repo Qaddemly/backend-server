@@ -30,7 +30,7 @@ import {
     userUpdateValidator,
     changePasswordValidator,
     forgetPasswordValidator,
-} from '../middlewares/validators/userValidator';
+} from '../middlewares/validators/authValidator';
 import validateRequestMiddleware from '../middlewares/validator';
 import { loginRateLimiter } from '../middlewares/rateLimitMiddleWares';
 const authRouter = express.Router();

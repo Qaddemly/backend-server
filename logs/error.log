@@ -44,6 +44,8 @@
 2024-12-14 22:51:36:5136 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
 2024-12-14 22:52:04:524 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
 2024-12-15 13:05:42:542 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+<<<<<<< HEAD
+=======
 2024-12-15 18:25:04:254 [31merror[39m: [31mvalidationErrors[39m
 2024-12-15 18:25:14:2514 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 4 }[39m
 2024-12-15 18:26:45:2645 [31merror[39m: [31mvalidationErrors[39m
@@ -118,3 +120,4 @@
 2024-12-16 14:01:59:159 [31merror[39m: [31mCannot read properties of undefined (reading 'length')[39m
 2024-12-16 14:11:14:1114 [31merror[39m: [31mvalidationErrors[39m
 2024-12-16 14:13:11:1311 [31merror[39m: [31mvalidationErrors[39m
+>>>>>>> 708ab7686ce7ee842677cf8fef1bcb1d97f9df6e
