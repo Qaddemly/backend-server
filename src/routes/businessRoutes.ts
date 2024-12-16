@@ -12,9 +12,9 @@ import {
     checkAddNewHrValidator,
 } from '../middlewares/validators/bussiness.Validator';
 
-export const businessRoute = express.Router();
+export const businessRouter = express.Router();
 
-businessRoute.post(
+businessRouter.post(
     '/',
     protect,
     uploadSingleImage('logo'),
@@ -22,18 +22,18 @@ businessRoute.post(
     validateRequestMiddleware(businessCreationValidator),
     businessController.createBusiness,
 );
-businessRoute.get(
+businessRouter.get(
     '/userBusinesses',
     protect,
     businessController.getUserBusinesses,
 );
-businessRoute.get('/', protect, businessController.searchBusinessByName);
-businessRoute.get(
+businessRouter.get('/', protect, businessController.searchBusinessByName);
+businessRouter.get(
     '/profile/:businessId',
     protect,
     businessController.getBusinessById,
 );
-businessRoute.put(
+businessRouter.put(
     '/:businessId',
     protect,
     uploadSingleImage('logo'),
@@ -41,29 +41,29 @@ businessRoute.put(
     validateRequestMiddleware(businessUpdateValidator),
     businessController.updateBusiness,
 );
-businessRoute.get(
+businessRouter.get(
     '/profile/reviewsFive/:businessId',
     protect,
     businessController.getFiveReviewsOfBusiness,
 );
-businessRoute.get(
+businessRouter.get(
     '/profile/reviews/:businessId',
     protect,
     businessController.getAllReviewsOfBusiness,
 );
-businessRoute.get(
+businessRouter.get(
     '/profile/jobsSix/:businessId',
     protect,
     businessController.getSixJobsOfBusiness,
 );
-businessRoute.get(
+businessRouter.get(
     '/profile/jobs/:businessId',
     protect,
     businessController.getAllJobsOfBusiness,
 );
 
 // Admin
-businessRoute.post(
+businessRouter.post(
     '/myBusiness/dashboard/hr/:businessId',
     protect,
     validateRequestMiddleware(checkAddNewHrValidator),

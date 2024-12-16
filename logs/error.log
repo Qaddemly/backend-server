@@ -82,3 +82,17 @@
 2024-12-15 20:25:19:2519 [31merror[39m: [31mUser does not have permission to update business[39m
 2024-12-15 20:30:17:3017 [31merror[39m: [31mvalidationErrors[39m
 2024-12-15 20:30:27:3027 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 12:19:15:1915 [31merror[39m: [31mBusiness already followed[39m
+2024-12-16 12:19:39:1939 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 12:19:45:1945 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:19:45:1945 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:19:50:1950 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:19:50:1950 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:23:26:2326 [31merror[39m: [31mUser already has role in business[39m
+2024-12-16 12:23:26:2326 [31merror[39m: [31mUser already has role in business[39m
+2024-12-16 12:23:39:2339 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:23:39:2339 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:23:59:2359 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:23:59:2359 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:24:04:244 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:24:04:244 [31merror[39m: [31mAccount not found[39m

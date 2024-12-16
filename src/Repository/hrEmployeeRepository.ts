@@ -19,6 +19,11 @@ class HrEmployeeRepositoryClass extends Repository<HrEmployee> {
             .getMany();
         return HrBusinesses.length !== 0;
     }
+    async checkIfUserHasRoleInBusiness(accountId: number, businessId: number) {
+        return await this.query(
+            `SELECT * FROM hr_employee WHERE account_id = ${accountId} AND business_id = ${businessId}`,
+        );
+    }
 }
 
 export const HrEmployeeRepository = AppDataSource.getRepository(

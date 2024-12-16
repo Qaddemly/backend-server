@@ -964,3 +964,79 @@
 2024-12-15 20:30:27:3027 [31merror[39m: [31mvalidationErrors[39m
 2024-12-15 20:30:27:3027 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 159 - 271.185 ms[39m
 [35m[39m
+2024-12-16 12:08:11:811 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:08:11:811 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:08:12:812 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:08:16:816 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 1033 - 525.929 ms[39m
+[35m[39m
+2024-12-16 12:09:05:95 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:09:06:96 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:09:07:97 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:09:23:923 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 63 - 542.331 ms[39m
+[35m[39m
+2024-12-16 12:09:25:925 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 63 - 278.759 ms[39m
+[35m[39m
+2024-12-16 12:12:52:1252 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:12:52:1252 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:12:54:1254 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:14:14:1414 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:14:14:1414 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:14:15:1415 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:14:18:1418 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 63 - 360.724 ms[39m
+[35m[39m
+2024-12-16 12:14:20:1420 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 63 - 334.445 ms[39m
+[35m[39m
+2024-12-16 12:14:42:1442 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:14:42:1442 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:14:43:1443 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:14:45:1445 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 63 - 344.775 ms[39m
+[35m[39m
+2024-12-16 12:16:33:1633 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:16:33:1633 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:16:35:1635 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:16:37:1637 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 63 - 379.648 ms[39m
+[35m[39m
+2024-12-16 12:16:39:1639 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 63 - 276.322 ms[39m
+[35m[39m
+2024-12-16 12:19:12:1912 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:19:12:1912 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:19:13:1913 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:19:15:1915 [31merror[39m: [31mBusiness already followed[39m
+2024-12-16 12:19:15:1915 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 500 691 - 539.558 ms[39m
+[35m[39m
+2024-12-16 12:19:39:1939 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 12:19:39:1939 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 159 - 622.191 ms[39m
+[35m[39m
+2024-12-16 12:19:45:1945 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:19:45:1945 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:19:45:1945 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 291.769 ms[39m
+[35m[39m
+2024-12-16 12:19:50:1950 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:19:50:1950 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:19:50:1950 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 270.773 ms[39m
+[35m[39m
+2024-12-16 12:20:33:2033 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2512.834 ms[39m
+[35m[39m
+2024-12-16 12:21:44:2144 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 343.397 ms[39m
+[35m[39m
+2024-12-16 12:21:46:2146 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 276.289 ms[39m
+[35m[39m
+2024-12-16 12:23:22:2322 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:23:23:2323 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:23:24:2324 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:23:26:2326 [31merror[39m: [31mUser already has role in business[39m
+2024-12-16 12:23:26:2326 [31merror[39m: [31mUser already has role in business[39m
+2024-12-16 12:23:26:2326 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 348.476 ms[39m
+[35m[39m
+2024-12-16 12:23:39:2339 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:23:39:2339 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:23:39:2339 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/5000100 404 822 - 463.701 ms[39m
+[35m[39m
+2024-12-16 12:23:59:2359 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:23:59:2359 [31merror[39m: [31mBusiness not found[39m
+2024-12-16 12:23:59:2359 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/5000100 404 822 - 436.451 ms[39m
+[35m[39m
+2024-12-16 12:24:04:244 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:24:04:244 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:24:04:244 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 275.959 ms[39m
+[35m[39m

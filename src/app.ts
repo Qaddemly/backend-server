@@ -10,7 +10,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { globalErrorHandler } from './middlewares/error.middleWare';
 import mountRoutes from './routes';
-import { businessRoute } from './routes/businessRoutes';
+import { businessRouter } from './routes/businessRoutes';
 import { morganMiddleware } from './utils/logger';
 
 const app = express();

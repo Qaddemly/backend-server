@@ -168,13 +168,12 @@ export const addHrToBusiness = async (
         throw new AppError('Account not found', 404);
     }
 
-    console.log(account);
-    console.log(accountEmail);
     // Check if user already has role in business
-    const checkIfAccountHasRole = await HrEmployeeRepository.findOneBy({
-        account: account,
-        business: business,
-    });
+    const checkIfAccountHasRole =
+        await HrEmployeeRepository.checkIfUserHasRoleInBusiness(
+            account.id,
+            businessId,
+        );
 
     if (checkIfAccountHasRole) {
         Logger.error('User already has role in business');
