@@ -111,21 +111,17 @@ export const businessCreationValidator: ValidationChain[] = [
 ];
 export const businessUpdateValidator: ValidationChain[] = [
     body('name')
-        .trim()
         .optional()
+        .trim()
         .isLength({ min: 3 })
         .withMessage('name must be at least 3 characters')
         .isLength({ max: 32 })
         .withMessage('name must be at most 32 characters'),
     body('logo').optional().notEmpty().withMessage('logo cannot be empty'),
-    body('CEO')
-        .trim()
-        .optional()
-        .isAlpha()
-        .withMessage('CEO must be a string of alphabets'),
+    body('CEO').trim().notEmpty().withMessage('CEO cannot be empty'),
     body('founder')
-        .trim()
         .optional()
+        .trim()
         .isLength({ min: 3 })
         .withMessage('founder at least 3 characters '),
     body('founded').optional().isDate().withMessage('founded must be Date'),
@@ -147,7 +143,7 @@ export const businessUpdateValidator: ValidationChain[] = [
     body('industry')
         .optional()
         .trim()
-        .isLength({ min: 5 })
+        .isLength({ min: 2 })
         .withMessage('industry at least 5 characters'),
     body('website')
         .optional()
@@ -183,23 +179,6 @@ export const businessUpdateValidator: ValidationChain[] = [
         .withMessage('City cannot be empty')
         .isAlpha()
         .withMessage('City must be a string of alphabets'),
-    body('phone').optional().isObject(),
-    body('phone.country_code')
-        .if(body('phone').exists())
-        .trim()
-        .notEmpty()
-        .withMessage('Country Code cannot be empty')
-        .custom((value) => {
-            if (value in CountryCode) return value;
-            else throw new Error('Country Code is invalid');
-        }),
-    body('phone.number')
-        .if(body('phone').exists())
-        .trim()
-        .notEmpty()
-        .withMessage('Phone number cannot be empty')
-        .isNumeric()
-        .withMessage('Phone number must be a number'),
 ];
 
 export const checkAddNewHrValidator: ValidationChain[] = [

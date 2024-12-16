@@ -1229,3 +1229,29 @@
 2024-12-16 14:04:32:432 [32minfo[39m: [32mBusiness 50008 created successfully[39m
 2024-12-16 14:04:32:432 [35mhttp[39m: [35mPOST /api/v1/business 201 554 - 511.339 ms[39m
 [35m[39m
+2024-12-16 14:09:37:937 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 14:09:37:937 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 14:09:38:938 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 14:09:42:942 [32minfo[39m: [32mBusiness 50009 created successfully[39m
+2024-12-16 14:09:42:942 [35mhttp[39m: [35mPOST /api/v1/business 201 554 - 692.707 ms[39m
+[35m[39m
+2024-12-16 14:10:52:1052 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 14:10:53:1053 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 14:10:54:1054 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 14:11:04:114 [35mhttp[39m: [35mPUT /api/v1/myBusiness/dashboard/edit/50009 404 79 - 165.713 ms[39m
+[35m[39m
+2024-12-16 14:11:14:1114 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 14:11:14:1114 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/edit/50009 400 186 - 366.761 ms[39m
+[35m[39m
+2024-12-16 14:13:08:138 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 14:13:08:138 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 14:13:09:139 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 14:13:11:1311 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 14:13:11:1311 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/edit/50009 400 208 - 320.232 ms[39m
+[35m[39m
+2024-12-16 14:13:18:1318 [32minfo[39m: [32mBusiness 50009 updated successfully[39m
+2024-12-16 14:13:18:1318 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/edit/50009 200 593 - 290.878 ms[39m
+[35m[39m
+2024-12-16 14:13:48:1348 [32minfo[39m: [32mBusiness 50009 updated successfully[39m
+2024-12-16 14:13:48:1348 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/edit/50009 200 599 - 357.363 ms[39m
+[35m[39m

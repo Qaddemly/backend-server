@@ -33,14 +33,7 @@ businessRouter.get(
     protect,
     businessController.getBusinessById,
 );
-businessRouter.put(
-    '/:businessId',
-    protect,
-    uploadSingleImage('logo'),
-    resizeBusinessLogo,
-    validateRequestMiddleware(businessUpdateValidator),
-    businessController.updateBusiness,
-);
+
 businessRouter.get(
     '/profile/reviewsFive/:businessId',
     protect,
@@ -74,6 +67,16 @@ businessRouter.post(
     validateRequestMiddleware(checkAddNewHrValidator),
     businessController.addHrToBusiness,
 );
+
+businessRouter.put(
+    '/myBusiness/dashboard/edit/:businessId',
+    protect,
+    uploadSingleImage('logo'),
+    resizeBusinessLogo,
+    validateRequestMiddleware(businessUpdateValidator),
+    businessController.updateBusiness,
+);
+
 businessRouter.get(
     '/myBusiness/dashboard/followers/:businessId',
     protect,
