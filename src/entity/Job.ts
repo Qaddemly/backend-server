@@ -16,6 +16,7 @@ import { JobApplication } from './JobApplication';
 
 @Entity()
 export class Job {
+    @Index('job_idx_on_id', { unique: true })
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -56,7 +57,7 @@ export class Job {
     @Column('int')
     experience: number;
 
-    @Index({ unique: true })
+    @Index('job_index_on_business_id')
     @ManyToOne(() => Business, (business) => business.jobs, {
         onDelete: 'CASCADE',
     })

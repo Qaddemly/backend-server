@@ -156,3 +156,27 @@ export const addHrToBusiness = catchAsync(
         });
     },
 );
+
+export const getFollowersOfBusiness = catchAsync(
+    async (req: Request<{ businessId: string }>, res: Response) => {
+        const followers = await businessServices.getFollowersOfBusiness(
+            Number(req.params.businessId),
+        );
+        res.status(200).json({
+            status: 'success',
+            followers,
+        });
+    },
+);
+
+export const getFollowersNumberOfBusiness = catchAsync(
+    async (req: Request<{ businessId: string }>, res: Response) => {
+        const followers = await businessServices.getFollowersNumberOfBusiness(
+            Number(req.params.businessId),
+        );
+        res.status(200).json({
+            status: 'success',
+            followers,
+        });
+    },
+);

@@ -22,7 +22,7 @@ export class Review {
     @Column('integer')
     rating: number;
 
-    @Index({ unique: true })
+    @Index('review_idx_on_business_id')
     @ManyToOne(() => Business, (business) => business.reviews, {
         onDelete: 'CASCADE',
     })
@@ -32,6 +32,7 @@ export class Review {
     })
     business: Business;
 
+    @Index('review_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.reviews, {
         onDelete: 'CASCADE',
     })

@@ -1,7 +1,16 @@
 1. Send follow to business khattab
+    -> post a follow to business by user (done)
+    -> remove follow to business by user (done)
+    -> get all followers of business khattab
+    -> get all followed businesses of user khattab (done)
 2. Suggest company for you khattab
 3. resume (oneToMany) khattab
+    -> add new resume khattab
+    -> remove resume khattab
 4. business phone (oneToMany) khattab
+    -> add new phone khattab
+    -> remove phone khattab
+    -> edit phone khattab
 5. Search Filter of business khattab
 6. Review Controller & Service (create - update - delete - get) khattab
 ----------------------------------------------

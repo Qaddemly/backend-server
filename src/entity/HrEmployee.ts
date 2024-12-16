@@ -2,6 +2,7 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    Index,
     JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
@@ -16,6 +17,7 @@ export class HrEmployee {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Index('hr_employee_idx_on_business_id')
     @ManyToOne(() => Business, (business) => business.hr_employees, {
         onDelete: 'CASCADE',
     })
@@ -25,6 +27,7 @@ export class HrEmployee {
     })
     business: Business;
 
+    @Index('hr_employee_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.business_roles, {
         onDelete: 'CASCADE',
     })

@@ -2,6 +2,7 @@ import { LocationType } from '../enums/locationType';
 import { Account } from '../entity/Account';
 import { Address } from '../entity/Address';
 import { Business } from '../entity/Business';
+import { BusinessPhone } from '../entity/BusinessPhone';
 
 export interface CreateBusinessDto {
     name: string;
@@ -16,7 +17,7 @@ export interface CreateBusinessDto {
     industry: string;
     headquarter: string;
     email?: string;
-    phone?: string;
+    phones?: BusinessPhone[];
     website?: string;
 }
 
@@ -33,7 +34,7 @@ export interface UpdateBusinessDTO {
     industry?: string;
     headquarter?: string;
     email?: string;
-    phone?: string;
+    phone?: BusinessPhone;
     website?: string;
 }
 
@@ -51,7 +52,7 @@ export interface getBusinessDto {
     industry: string;
     headquarter: string;
     email?: string;
-    phone?: string;
+    phone?: BusinessPhone;
     website?: string;
     created_at: Date;
     updated_at: Date;
@@ -60,6 +61,9 @@ export interface getBusinessDto {
 export const getBusinessDto = (business) => {
     const country = business.country || business.address.country;
     const city = business.city || business.address.city;
+
+    // Phone will have it's own API
+
     return {
         id: business.id,
         name: business.name,
@@ -77,7 +81,6 @@ export const getBusinessDto = (business) => {
         industry: business.industry,
         headquarter: business.headquarter,
         email: business.email,
-        phone: business.phone,
         website: business.website,
         created_at: business.created_at,
         updated_at: business.updated_at,
