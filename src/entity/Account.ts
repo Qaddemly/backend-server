@@ -53,6 +53,7 @@ export class Account {
 
     @Column(() => Phone, { prefix: false })
     phone: Phone;
+
     @Column('text', { nullable: true })
     resume: string;
 

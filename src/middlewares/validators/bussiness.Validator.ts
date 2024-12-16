@@ -3,6 +3,7 @@ import { body, ValidationChain } from 'express-validator';
 import { Country } from '../../enums/country';
 import { LocationType } from '../../enums/locationType';
 import { HrRole } from '../../enums/HrRole';
+import { CountryCode } from '../../enums/countryCode';
 export const businessCreationValidator: ValidationChain[] = [
     body('name')
         .trim()
@@ -13,12 +14,7 @@ export const businessCreationValidator: ValidationChain[] = [
         .isLength({ max: 32 })
         .withMessage('name must be at most 32 characters'),
     body('logo').notEmpty().withMessage('logo cannot be empty'),
-    body('CEO')
-        .trim()
-        .notEmpty()
-        .withMessage('CEO cannot be empty')
-        .isAlpha()
-        .withMessage('CEO must be a string of alphabets'),
+    body('CEO').trim().notEmpty().withMessage('CEO cannot be empty'),
     body('founder')
         .trim()
         .notEmpty()
@@ -53,7 +49,7 @@ export const businessCreationValidator: ValidationChain[] = [
         .trim()
         .notEmpty()
         .withMessage('industry is required')
-        .isLength({ min: 5 })
+        .isLength({ min: 2 })
         .withMessage('industry at least 5 characters'),
     body('website')
         .optional()
@@ -91,11 +87,27 @@ export const businessCreationValidator: ValidationChain[] = [
         .withMessage('City cannot be empty')
         .isAlpha()
         .withMessage('City must be a string of alphabets'),
-    body('phone')
-        .optional()
+    body('phone').optional().isArray(),
+    body('phone.*')
+        .if(body('phone').exists())
         .isObject()
-        .isMobilePhone(['any'])
-        .withMessage('invalid phone number'),
+        .withMessage('phone must be an object'),
+    body('phone.*.country_code')
+        .if(body('phone').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Country Code cannot be empty')
+        .custom((value) => {
+            if (value in CountryCode) return value;
+            else throw new Error('Country Code is invalid');
+        }),
+    body('phone.*.number')
+        .if(body('phone').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Phone number cannot be empty')
+        .isNumeric()
+        .withMessage('Phone number must be a number'),
 ];
 export const businessUpdateValidator: ValidationChain[] = [
     body('name')
@@ -171,11 +183,23 @@ export const businessUpdateValidator: ValidationChain[] = [
         .withMessage('City cannot be empty')
         .isAlpha()
         .withMessage('City must be a string of alphabets'),
-    body('phone')
-        .optional()
-        .isObject()
-        .isMobilePhone(['any'])
-        .withMessage('invalid phone number'),
+    body('phone').optional().isObject(),
+    body('phone.country_code')
+        .if(body('phone').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Country Code cannot be empty')
+        .custom((value) => {
+            if (value in CountryCode) return value;
+            else throw new Error('Country Code is invalid');
+        }),
+    body('phone.number')
+        .if(body('phone').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Phone number cannot be empty')
+        .isNumeric()
+        .withMessage('Phone number must be a number'),
 ];
 
 export const checkAddNewHrValidator: ValidationChain[] = [

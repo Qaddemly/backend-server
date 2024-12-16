@@ -15,6 +15,8 @@ import { Logger } from '../utils/logger';
 import { ReviewRepository } from '../Repository/reviewRepository';
 import { JobRepository } from '../Repository/jobRepository';
 import { FollowBusinessRepository } from '../Repository/followBusinessRepository';
+import { BusinessPhone } from '../entity/BusinessPhone';
+import { BusinessPhoneRepository } from '../Repository/businessPhoneRepository';
 /**
  * TODO: mark the Account that created the business as the owner.
  * TODO: make it possible for user to add hr_employees with their roles at Creation.
@@ -24,6 +26,7 @@ export const createBusiness = async (
     createBusinessDto: CreateBusinessDto,
     accountId: number,
 ) => {
+    console.log(createBusinessDto);
     // Get the current authenticated user
     const account = await AccountRepository.findOneBy({ id: accountId });
 
@@ -54,17 +57,25 @@ export const createBusiness = async (
     business.website = createBusinessDto.website;
     business.headquarter = createBusinessDto.headquarter;
     business.email = createBusinessDto.email;
-    business.phone = createBusinessDto.phone;
 
-    // business.hr_employees = createBusinessDto.hr_employees;
+    const saved_business = await BusinessRepository.save(business);
 
+    // Add the account that created the business as the owner
     const hrEmployee = new HrEmployee();
     hrEmployee.business = business;
     hrEmployee.account = account;
     hrEmployee.role = HrRole.OWNER;
-
-    const saved_business = await BusinessRepository.save(business);
     await HrEmployeeRepository.save(hrEmployee);
+
+    // Add the phones to the business
+    for (let inputPhone of createBusinessDto.phones) {
+        const phone = new BusinessPhone();
+        phone.business = business;
+        phone.country_code = inputPhone.country_code;
+        phone.number = inputPhone.number;
+        await BusinessPhoneRepository.save(phone);
+    }
+
     Logger.info(`Business ${saved_business.id} created successfully`);
     return getBusinessDto(saved_business);
 };

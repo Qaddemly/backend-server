@@ -104,3 +104,15 @@
 2024-12-16 13:10:43:1043 [31merror[39m: [31mBusiness already followed[39m
 2024-12-16 13:10:48:1048 [31merror[39m: [31mBusiness not followed[39m
 2024-12-16 13:21:39:2139 [31merror[39m: [31msyntax error at or near "JOIN"[39m
+2024-12-16 13:44:16:4416 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:44:28:4428 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:45:02:452 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:45:59:4559 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:46:37:4637 [31merror[39m: [31mrelation "business_phone" does not exist[39m
+2024-12-16 13:49:35:4935 [31merror[39m: [31mPostgres Database connection failed could not create unique index "job_index_on_business_id"[39m
+2024-12-16 13:50:05:505 [31merror[39m: [31mPostgres Database connection failed could not create unique index "review_idx_on_business_id"[39m
+2024-12-16 13:51:02:512 [31merror[39m: [31mPostgres Database connection failed could not create unique index "job_index_on_business_id"[39m
+2024-12-16 13:52:25:5225 [31merror[39m: [31mCannot read properties of undefined (reading 'country_code')[39m
+2024-12-16 13:58:34:5834 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 14:00:42:042 [31merror[39m: [31mCannot read properties of undefined (reading 'length')[39m
+2024-12-16 14:01:59:159 [31merror[39m: [31mCannot read properties of undefined (reading 'length')[39m

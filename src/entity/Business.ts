@@ -14,6 +14,8 @@ import { FollowBusiness } from './FollowBusiness';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { Job } from './Job';
 import { Address } from './Address';
+import { Phone } from './Phone';
+import { BusinessPhone } from './BusinessPhone';
 
 @Entity()
 export class Business {
@@ -67,8 +69,12 @@ export class Business {
     @Column('text', { nullable: true })
     email: string;
 
-    @Column('text', { nullable: true })
-    phone: string;
+    @OneToMany(
+        () => BusinessPhone,
+        (businessPhones) => businessPhones.business,
+        { cascade: true },
+    )
+    phones: BusinessPhone[];
 
     @OneToMany(() => Review, (review) => review.business, { cascade: true })
     reviews: Review[];

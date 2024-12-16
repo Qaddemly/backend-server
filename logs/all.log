@@ -1150,3 +1150,82 @@
 2024-12-16 13:22:15:2215 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2024-12-16 13:22:17:2217 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/followers/1 200 670 - 369.793 ms[39m
 [35m[39m
+2024-12-16 13:40:02:402 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:40:02:402 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:40:04:404 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:43:57:4357 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:43:57:4357 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:43:59:4359 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:44:12:4412 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:44:12:4412 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:44:13:4413 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:44:16:4416 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:44:16:4416 [35mhttp[39m: [35mPOST /api/v1/business 400 151 - 503.903 ms[39m
+[35m[39m
+2024-12-16 13:44:28:4428 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:44:28:4428 [35mhttp[39m: [35mPOST /api/v1/business 400 186 - 485.805 ms[39m
+[35m[39m
+2024-12-16 13:45:02:452 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:45:02:452 [35mhttp[39m: [35mPOST /api/v1/business 400 208 - 580.868 ms[39m
+[35m[39m
+2024-12-16 13:45:30:4530 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:45:31:4531 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:45:33:4533 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:45:59:4559 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:45:59:4559 [35mhttp[39m: [35mPOST /api/v1/business 400 180 - 537.310 ms[39m
+[35m[39m
+2024-12-16 13:46:29:4629 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:46:30:4630 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:46:31:4631 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:46:37:4637 [31merror[39m: [31mrelation "business_phone" does not exist[39m
+2024-12-16 13:46:37:4637 [35mhttp[39m: [35mPOST /api/v1/business 500 1135 - 661.343 ms[39m
+[35m[39m
+2024-12-16 13:49:14:4914 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:49:14:4914 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:49:16:4916 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:49:34:4934 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:49:35:4935 [31merror[39m: [31mPostgres Database connection failed could not create unique index "job_index_on_business_id"[39m
+2024-12-16 13:49:36:4936 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:50:05:505 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:50:05:505 [31merror[39m: [31mPostgres Database connection failed could not create unique index "review_idx_on_business_id"[39m
+2024-12-16 13:50:06:506 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:51:01:511 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:51:02:512 [31merror[39m: [31mPostgres Database connection failed could not create unique index "job_index_on_business_id"[39m
+2024-12-16 13:51:03:513 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:51:55:5155 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:51:55:5155 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:51:56:5156 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:52:25:5225 [32minfo[39m: [32mBusiness 50006 created successfully[39m
+2024-12-16 13:52:25:5225 [31merror[39m: [31mCannot read properties of undefined (reading 'country_code')[39m
+2024-12-16 13:52:25:5225 [35mhttp[39m: [35mPOST /api/v1/business 500 903 - 751.118 ms[39m
+[35m[39m
+2024-12-16 13:54:32:5432 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:54:32:5432 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:54:33:5433 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:58:30:5830 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:58:30:5830 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:58:32:5832 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:58:34:5834 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 13:58:34:5834 [35mhttp[39m: [35mPOST /api/v1/business 400 245 - 619.955 ms[39m
+[35m[39m
+2024-12-16 14:00:39:039 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 14:00:40:040 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 14:00:41:041 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 14:00:42:042 [31merror[39m: [31mCannot read properties of undefined (reading 'length')[39m
+2024-12-16 14:00:42:042 [35mhttp[39m: [35mPOST /api/v1/business 500 761 - 519.089 ms[39m
+[35m[39m
+2024-12-16 14:01:56:156 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 14:01:56:156 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 14:01:57:157 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 14:01:59:159 [31merror[39m: [31mCannot read properties of undefined (reading 'length')[39m
+2024-12-16 14:01:59:159 [35mhttp[39m: [35mPOST /api/v1/business 500 761 - 534.803 ms[39m
+[35m[39m
+2024-12-16 14:02:52:252 [32minfo[39m: [32mBusiness 50007 created successfully[39m
+2024-12-16 14:02:52:252 [35mhttp[39m: [35mPOST /api/v1/business 201 553 - 851.493 ms[39m
+[35m[39m
+2024-12-16 14:04:29:429 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 14:04:30:430 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 14:04:31:431 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 14:04:32:432 [32minfo[39m: [32mBusiness 50008 created successfully[39m
+2024-12-16 14:04:32:432 [35mhttp[39m: [35mPOST /api/v1/business 201 554 - 511.339 ms[39m
+[35m[39m
