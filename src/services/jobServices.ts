@@ -229,3 +229,12 @@ export const applyToJobService = async (req: Request) => {
     const savedUser = await AccountRepository.save(account);
     return jobApplication;
 };
+
+export const getAllUserJobsApplicationsService = async (req: Request) => {
+    const userId = Number(req.user.id);
+
+    const account =
+        await AccountRepository.getAccountWithJobApplications(userId);
+
+    return account.job_applications;
+};

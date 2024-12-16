@@ -3,6 +3,7 @@ import AppError from '../utils/appError';
 import {
     applyToJobService,
     createJobService,
+    getAllUserJobsApplicationsService,
     getAllUserSavedJobsService,
     getOneJobService,
     removeSavedJobFromUserService,
@@ -108,6 +109,21 @@ export const applyToJob = catchAsync(
             res.status(200).json({
                 success: true,
                 jobApplication,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllUserJobApplications = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const jobApplications =
+                await getAllUserJobsApplicationsService(req);
+            res.status(200).json({
+                success: true,
+                jobApplications,
             });
         } catch (err) {
             return next(err);

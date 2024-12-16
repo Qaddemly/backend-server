@@ -2063,3 +2063,26 @@
 2024-12-16 23:09:06:96 [31merror[39m: [31myou have already applied to that job[39m
 2024-12-16 23:09:06:96 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 409 693 - 352.550 ms[39m
 [35m[39m
+2024-12-16 23:10:11:1011 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:10:12:1012 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:10:13:1013 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:14:55:1455 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:14:55:1455 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:14:57:1457 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:15:55:1555 [31merror[39m: [31myou have already applied to that job[39m
+2024-12-16 23:15:55:1555 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 409 693 - 705.007 ms[39m
+[35m[39m
+2024-12-16 23:16:54:1654 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:16:54:1654 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:17:03:173 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:17:03:173 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:17:04:174 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:18:02:182 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:18:03:183 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:18:04:184 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:18:44:1844 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:18:45:1845 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:18:46:1846 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:19:23:1923 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:19:23:1923 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:19:24:1924 [32minfo[39m: [32mMongoDB Database connected successfully[39m

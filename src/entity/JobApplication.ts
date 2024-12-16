@@ -1,4 +1,5 @@
 import {
+    Column,
     CreateDateColumn,
     Entity,
     JoinColumn,
@@ -31,6 +32,7 @@ export class JobApplication {
         foreignKeyConstraintName: 'FK_JOB_APPLICATION_RESUME',
     })
     resume: Resume;
+    @Column()
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 

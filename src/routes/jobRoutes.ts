@@ -2,6 +2,7 @@ import express from 'express';
 import {
     applyToJob,
     createJob,
+    getAllUserJobApplications,
     getAllUserSavedJobs,
     getOneJob,
     saveJobToUser,
@@ -55,6 +56,7 @@ jobRouter.delete(
 );
 
 jobRouter.get('/allUserSavedJobs', protect, getAllUserSavedJobs);
+jobRouter.get('/allUserJobApplications', protect, getAllUserJobApplications);
 
 jobRouter.post(
     '/applyToJob/:id',
