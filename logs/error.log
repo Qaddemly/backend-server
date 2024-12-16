@@ -161,3 +161,8 @@
 2024-12-16 19:47:52:4752 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
 2024-12-16 19:49:28:4928 [31merror[39m: [31mBusiness with that id not found[39m
 2024-12-16 19:49:40:4940 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 19:53:49:5349 [31merror[39m: [31myou do not have permission to post job[39m
+2024-12-16 19:54:03:543 [31merror[39m: [31mBusiness with that id not found[39m
+2024-12-16 20:43:31:4331 [31merror[39m: [31mstream is not readable[39m
+2024-12-16 20:45:35:4535 [31merror[39m: [31mJob already saved[39m
+2024-12-16 20:45:57:4557 [31merror[39m: [31mJob not found[39m

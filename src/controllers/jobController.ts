@@ -2,7 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import AppError from '../utils/appError';
 import {
     createJobService,
+    getAllUserSavedJobsService,
     getOneJobService,
+    saveJobToUserService,
     updateJobService,
 } from '../services/jobServices';
 import catchAsync from 'express-async-handler';
@@ -48,6 +50,34 @@ export const updateOneJob = catchAsync(
             res.status(200).json({
                 success: true,
                 job,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const saveJobToUser = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const job = await saveJobToUserService(req);
+            res.status(200).json({
+                success: true,
+                job,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllUserSavedJobs = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const savedJobs = await getAllUserSavedJobsService(req);
+            res.status(200).json({
+                success: true,
+                savedJobs,
             });
         } catch (err) {
             return next(err);

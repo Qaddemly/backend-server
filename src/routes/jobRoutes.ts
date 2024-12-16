@@ -1,7 +1,9 @@
 import express from 'express';
 import {
     createJob,
+    getAllUserSavedJobs,
     getOneJob,
+    saveJobToUser,
     updateOneJob,
 } from '../controllers/jobController';
 import { protect } from '../services/authServices';
@@ -34,4 +36,13 @@ jobRouter.put(
     validateRequestMiddleware(updateJobValidator),
     updateOneJob,
 );
+
+jobRouter.post(
+    '/saveJob/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    saveJobToUser,
+);
+
+jobRouter.get('/allUserSavedJobs', protect, getAllUserSavedJobs);
 export default jobRouter;

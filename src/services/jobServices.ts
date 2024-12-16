@@ -6,6 +6,7 @@ import { Job } from '../entity/Job';
 import { JobRepository } from '../Repository/jobRepository';
 import { HrEmployeeRepository } from '../Repository/hrEmployeeRepository';
 import { HrRole } from '../enums/HrRole';
+import { AccountRepository } from '../Repository/accountRepository';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -118,4 +119,39 @@ export const updateJobService = async (
     // delete returnedJob.business;
     // returnedJob.business_id = business_id;
     return job;
+};
+
+export const saveJobToUserService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const jobId = Number(req.params.id);
+    const job = await JobRepository.findOneBy({ id: jobId });
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    const account = await AccountRepository.findOne({
+        where: { id: userId },
+        relations: ['saved_jobs'],
+        // Load current saved jobs
+    });
+    const isJobAlreadySaved = account.saved_jobs.some(
+        (savedJob) => savedJob.id === jobId,
+    );
+    if (isJobAlreadySaved) {
+        throw new AppError('Job already saved', 409);
+    }
+    account.saved_jobs.push(job);
+    const savedUser = await AccountRepository.save(account);
+    return savedUser;
+};
+
+export const getAllUserSavedJobsService = async (req: Request) => {
+    const userId = Number(req.user.id);
+
+    const account = await AccountRepository.findOne({
+        where: { id: userId },
+        relations: ['saved_jobs'],
+        // Load current saved jobs
+    });
+
+    return account.saved_jobs;
 };
