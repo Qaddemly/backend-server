@@ -40,8 +40,11 @@ class AccountRepositoryClass extends Repository<Account> {
     async getAccountWithJobApplications(userId: number) {
         const account = await this.findOne({
             where: { id: userId },
-            relations: ['job_applications', 'job_applications.job'],
-            // Load current job_applications
+            relations: [
+                'job_applications',
+                'job_applications.job',
+                'job_applications.resume',
+            ],
         });
         return account;
     }

@@ -7,6 +7,7 @@ import {
     deleteUserOneExperience,
     deleteUserOneLanguage,
     deleteUserOneSkill,
+    updateUserOneEducation,
     updateUserOneExperience,
 } from '../controllers/profileController';
 import { protect } from '../services/authServices';
@@ -19,6 +20,7 @@ import {
     deleteUserOneSkillValidator,
     createUserOneLanguageValidator,
     deleteUserOneLanguageValidator,
+    updateUserOneEducationValidator,
 } from '../middlewares/validators/profileValidator';
 
 const profileRouter = Router();
@@ -69,6 +71,13 @@ profileRouter.delete(
     protect,
     validateRequestMiddleware(deleteUserOneLanguageValidator),
     deleteUserOneLanguage,
+);
+
+profileRouter.put(
+    '/updateEducation',
+    protect,
+    validateRequestMiddleware(updateUserOneEducationValidator),
+    updateUserOneEducation,
 );
 
 profileRouter.delete('/deleteMe', protect, deleteMe);

@@ -375,10 +375,7 @@ export const protect = catchAsync(
                     `${user.password_changed_at.getTime() / 1000}`,
                     10,
                 );
-                console.log(
-                    passChangedAtTimeStamp > decoded!.iat,
-                    decoded!.iat,
-                );
+
                 if (passChangedAtTimeStamp > decoded!.iat!) {
                     throw new AppError(
                         'password is changed please login again',

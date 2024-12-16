@@ -188,3 +188,28 @@
 2024-12-16 23:06:44:644 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
 2024-12-16 23:09:06:96 [31merror[39m: [31myou have already applied to that job[39m
 2024-12-16 23:15:55:1555 [31merror[39m: [31myou have already applied to that job[39m
+2024-12-16 23:24:55:2455 [31merror[39m: [31myou have already applied to that job[39m
+2024-12-16 23:51:51:5151 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2024-12-16 23:53:35:5335 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 00:06:21:621 [31merror[39m: [31mJob already not saved[39m
+2024-12-17 00:06:52:652 [31merror[39m: [31mJob already not saved[39m
+2024-12-17 00:06:59:659 [31merror[39m: [31mJob already saved[39m
+2024-12-17 00:07:05:75 [31merror[39m: [31mJob already not saved[39m
+2024-12-17 00:09:02:92 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2024-12-17 00:10:07:107 [31merror[39m: [31myou do not have permission to post job[39m
+2024-12-17 00:10:36:1036 [31merror[39m: [31mResume not found[39m
+2024-12-17 00:11:21:1121 [31merror[39m: [31mResume not found[39m
+2024-12-17 00:11:39:1139 [31merror[39m: [31myou have already applied to that job[39m
+2024-12-17 00:11:50:1150 [31merror[39m: [31myou are not allowed to show all applications[39m
+2024-12-17 01:05:40:540 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 01:06:30:630 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 01:06:41:641 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 01:07:12:712 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 01:13:10:1310 [31merror[39m: [31mExpected double-quoted property name in JSON at position 114 (line 7 column 1)[39m
+2024-12-17 01:13:51:1351 [31merror[39m: [31mExpected double-quoted property name in JSON at position 99 (line 7 column 1)[39m
+2024-12-17 01:16:27:1627 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 01:19:51:1951 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 01:20:10:2010 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 01:20:44:2044 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 01:20:53:2053 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 01:21:08:218 [31merror[39m: [31mvalidationErrors[39m

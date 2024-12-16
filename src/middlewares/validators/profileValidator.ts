@@ -147,3 +147,48 @@ export const createUserOneLanguageValidator: ValidationChain[] = [
 export const deleteUserOneLanguageValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),
 ];
+
+export const updateUserOneEducationValidator: ValidationChain[] = [
+    body('university')
+        .optional()
+        .isString()
+        .withMessage('university must be a string')
+        .trim()
+        .notEmpty()
+        .withMessage('University name cannot be empty'),
+    body('fieldOfStudy')
+        .optional()
+        .isString()
+        .withMessage('university must be a string')
+        .trim()
+        .notEmpty()
+        .withMessage('Field of study cannot be empty'),
+    body('gpa')
+        .optional()
+        .notEmpty()
+        .withMessage('GPA cannot be empty')
+        .isNumeric()
+        .withMessage('GPA must be a number')
+        .custom((value) => {
+            if (value >= 0 && value <= 4) return value;
+            else throw new Error('GPA must be between 0 and 4');
+        }),
+    body('start_date')
+        .optional()
+        .isDate()
+        .withMessage('Invalid start date')
+        .custom((val, { req }) => {
+            if (val >= req.body.end_date) {
+                throw new Error('Start date must be less than end date');
+            } else return val;
+        }),
+    body('end_date')
+        .optional()
+        .isDate()
+        .withMessage('Invalid end date')
+        .custom((val, { req }) => {
+            if (val <= req.body.start_date) {
+                throw new Error('Start date must be less than end date');
+            } else return val;
+        }),
+];

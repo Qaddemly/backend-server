@@ -11,6 +11,7 @@ import { Skill } from '../entity/Skill';
 import { SkillRepository } from '../Repository/skillRepository';
 import { Language } from '../entity/Language';
 import { LanguageRepository } from '../Repository/languageRepository';
+import { EducationRepository } from '../Repository/educationRepository';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -100,6 +101,95 @@ export const deleteUserOneExperienceService = async (req: Request) => {
         throw err;
     }
 };
+
+export const updateUserOneEducationService = async (req: Request) => {
+    const userId = req.user.id;
+    const education = await EducationRepository.findOneBy({
+        account_id: userId,
+    });
+    if (!education) {
+        throw new AppError('user don`t have education', 404);
+    }
+
+    let {
+        university,
+
+        field_of_study,
+
+        gpa,
+
+        start_date,
+
+        end_date,
+    } = req.body;
+
+    const updatedData = {
+        university,
+
+        field_of_study,
+
+        gpa,
+
+        start_date,
+
+        end_date,
+    };
+    const updatedEducation = await EducationRepository.updateEducation(
+        updatedData,
+        userId,
+    );
+    return updatedEducation;
+};
+
+// export const createUserOneEducationService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+
+//     let {
+//         jobTitle,
+//         employmentType,
+//         companyName,
+//         location,
+//         locationType,
+//         stillWorking,
+//         startDate,
+//         endDate,
+//     } = req.body;
+
+//     const user = await AccountRepository.findOneBy({ id: userId });
+//     const experience = new Education();
+//     experience.account = user;
+//     experience.job_title = jobTitle;
+//     experience.employment_type = employmentType;
+//     experience.company_name = companyName;
+//     experience.location = location;
+//     experience.location_type = locationType;
+//     experience.still_working = stillWorking;
+//     experience.start_date = startDate;
+//     experience.end_date = endDate;
+
+//     const createdEducation = await EducationRepository.save(experience);
+//     delete createdEducation.account;
+//     const experienceReturned: { [key: string]: any } = { ...createdEducation };
+//     experienceReturned.accountId = userId;
+//     return experienceReturned;
+// };
+
+// export const deleteUserOneEducationService = async (req: Request) => {
+//     try {
+//         const userId = Number(req.user.id);
+//         const experienceId = Number(req.params.id);
+//         const experience = await EducationRepository.findOneBy({
+//             account: { id: userId },
+//             id: experienceId,
+//         });
+//         if (!experience) {
+//             throw new AppError('No experience found with that ID', 404);
+//         }
+//         await ExperienceRepository.remove(experience);
+//     } catch (err) {
+//         throw err;
+//     }
+// };
 
 export const createUserOneSkillService = async (req: Request) => {
     const userId = Number(req.user.id);

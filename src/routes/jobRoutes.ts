@@ -2,6 +2,7 @@ import express from 'express';
 import {
     applyToJob,
     createJob,
+    getAllJobApplicationsToJob,
     getAllUserJobApplications,
     getAllUserSavedJobs,
     getOneJob,
@@ -17,6 +18,7 @@ import {
     idJobValidator,
     updateJobValidator,
 } from '../middlewares/validators/jobValidator';
+import { getAllJobsApplicationsForJobService } from '../services/jobServices';
 
 const jobRouter = express.Router();
 
@@ -57,6 +59,12 @@ jobRouter.delete(
 
 jobRouter.get('/allUserSavedJobs', protect, getAllUserSavedJobs);
 jobRouter.get('/allUserJobApplications', protect, getAllUserJobApplications);
+jobRouter.get(
+    '/allJobApplicationsToOneJob/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    getAllJobApplicationsToJob,
+);
 
 jobRouter.post(
     '/applyToJob/:id',

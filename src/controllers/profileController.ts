@@ -9,6 +9,7 @@ import {
     deleteUserOneLanguageService,
     deleteUserOneSkillService,
     updateUserOneExperienceService,
+    updateUserOneEducationService,
 } from '../services/userServices';
 import catchAsync from 'express-async-handler';
 
@@ -106,6 +107,20 @@ export const deleteUserOneLanguage = catchAsync(
         try {
             await deleteUserOneLanguageService(req);
             res.status(204).json({});
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const updateUserOneEducation = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const education = await updateUserOneEducationService(req);
+            res.status(200).json({
+                success: true,
+                education,
+            });
         } catch (err) {
             return next(err);
         }

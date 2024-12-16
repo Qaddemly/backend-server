@@ -26,7 +26,7 @@
 10. user save job eslam //
 11. get all saved job eslam //
 12. delete saved job eslam //
-13. get all applications to certain user eslam
+13. get all applications to certain user eslam //
 14. update application status (accept, reject, pending)
 15. add validation to job & job application & review eslam
 17. add index to all tables khattab
