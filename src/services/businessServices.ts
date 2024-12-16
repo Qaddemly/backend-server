@@ -90,6 +90,7 @@ export const updateBusiness = async (
     const permissionToUpdate = await HrEmployeeRepository.checkPermission(
         accountId,
         businessId,
+        [HrRole.OWNER, HrRole.SUPER_ADMIN],
     );
 
     if (!permissionToUpdate) {
@@ -165,6 +166,7 @@ export const addHrToBusiness = async (
     const checkIfUserHasRole = await HrEmployeeRepository.checkPermission(
         userId,
         businessId,
+        [HrRole.OWNER, HrRole.SUPER_ADMIN],
     );
     if (!checkIfUserHasRole) {
         Logger.error('User does not have permission to add hr to business');

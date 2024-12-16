@@ -7,6 +7,7 @@ class HrEmployeeRepositoryClass extends Repository<HrEmployee> {
     async checkPermission(
         accountId: number,
         businessId: number,
+        roles: HrRole[],
     ): Promise<boolean> {
         const HrBusinesses = await this.createQueryBuilder('hr_employee')
             .where('hr_employee.account = :account', { account: accountId })

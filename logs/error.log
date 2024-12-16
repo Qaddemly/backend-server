@@ -121,3 +121,43 @@
 2024-12-16 14:11:14:1114 [31merror[39m: [31mvalidationErrors[39m
 2024-12-16 14:13:11:1311 [31merror[39m: [31mvalidationErrors[39m
 >>>>>>> 708ab7686ce7ee842677cf8fef1bcb1d97f9df6e
+2024-12-16 14:28:21:2821 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 14:28:36:2836 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 14:29:09:299 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 14:35:36:3536 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 17:35:56:3556 [31merror[39m: [31mBusiness with that id not found[39m
+2024-12-16 17:37:54:3754 [31merror[39m: [31mBusiness with that id not found[39m
+2024-12-16 17:38:26:3826 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 17:40:01:401 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:40:28:4028 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:40:57:4057 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:45:27:4527 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:45:32:4532 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:46:19:4619 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:46:29:4629 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:48:50:4850 [31merror[39m: [31mUnexpected field[39m
+2024-12-16 17:49:19:4919 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:49:49:4949 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:51:25:5125 [31merror[39m: [31mError: Unknown field![39m
+2024-12-16 17:52:47:5247 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:57:37:5737 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:57:45:5745 [31merror[39m: [31mUnexpected field[39m
+2024-12-16 17:58:06:586 [31merror[39m: [31mField name missing[39m
+2024-12-16 17:59:22:5922 [31merror[39m: [31mField name missing[39m
+2024-12-16 18:07:18:718 [31merror[39m: [31myou do not have permission to post job[39m
+2024-12-16 18:10:11:1011 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 18:12:14:1214 [31merror[39m: [31mmalformed array literal: "java node go"[39m
+2024-12-16 18:12:35:1235 [31merror[39m: [31mmalformed array literal: "java,node,go"[39m
+2024-12-16 18:12:53:1253 [31merror[39m: [31mnull value in column "skills" of relation "job" violates not-null constraint[39m
+2024-12-16 18:14:25:1425 [31merror[39m: [31mnull value in column "skills" of relation "job" violates not-null constraint[39m
+2024-12-16 19:03:57:357 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 19:09:09:99 [31merror[39m: [31mJob not found[39m
+2024-12-16 19:20:01:201 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 19:20:41:2041 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 19:44:50:4450 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 19:45:00:450 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 19:45:55:4555 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 19:46:50:4650 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 19:47:52:4752 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 19:49:28:4928 [31merror[39m: [31mBusiness with that id not found[39m
+2024-12-16 19:49:40:4940 [31merror[39m: [31mvalidationErrors[39m

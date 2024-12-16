@@ -1,6 +1,7 @@
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../data-source';
 import { Job } from '../entity/Job';
+import { updateJobQueryData } from '../dtos/jobDto';
 
 class JobRepositoryClass extends Repository<Job> {
     async getSixJobsOfBusiness(businessId: number) {
@@ -39,6 +40,29 @@ class JobRepositoryClass extends Repository<Job> {
                         b.logo as business_logo,
                         b.industry as business_industry
                         FROM job as j JOIN business as b ON (j.business_id = b.id AND b.id = ${businessId})`);
+    }
+    async findJobDetails(jobId: number) {
+        const job = await this.createQueryBuilder('job')
+            .leftJoinAndSelect('job.business', 'business') // Join with the Business table
+            .where('job.id = :jobId', { jobId }) // Filter for a specific Job ID
+            .select([
+                'job', // Select all fields from the Job entity
+                'business.id', // Include only the Business ID
+            ])
+            .getOne();
+        return {
+            ...job,
+        };
+    }
+
+    async updateOneJob(jonId: number, updateData: updateJobQueryData) {
+        const job = await this.createQueryBuilder('job')
+            .update(Job)
+            .set(updateData)
+            .where('id = :jonId', { jonId: jonId })
+            .returning('*')
+            .execute();
+        return job.raw[0];
     }
 }
 
