@@ -1040,3 +1040,40 @@
 2024-12-16 12:24:04:244 [31merror[39m: [31mAccount not found[39m
 2024-12-16 12:24:04:244 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 275.959 ms[39m
 [35m[39m
+2024-12-16 12:28:25:2825 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:28:25:2825 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:28:26:2826 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:28:28:2828 [35mhttp[39m: [35mPOST /api/v1/account/getFollowedBusinesses 404 77 - 145.625 ms[39m
+[35m[39m
+2024-12-16 12:28:46:2846 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:28:47:2847 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:28:48:2848 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:28:50:2850 [35mhttp[39m: [35mPOST /api/v1/account/getFollowedBusinesses 404 77 - 142.302 ms[39m
+[35m[39m
+2024-12-16 12:29:19:2919 [35mhttp[39m: [35mGET /api/v1/account/FollowedBusinesses 200 349 - 505.440 ms[39m
+[35m[39m
+2024-12-16 12:30:00:300 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:30:00:300 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:30:01:301 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:30:20:3020 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:30:20:3020 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:30:21:3021 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:30:31:3031 [31merror[39m: [31msyntax error at or near "JOIN"[39m
+2024-12-16 12:30:31:3031 [35mhttp[39m: [35mGET /api/v1/account/FollowedBusinesses 500 555 - 886.155 ms[39m
+[35m[39m
+2024-12-16 12:32:03:323 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:32:03:323 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:32:05:325 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:32:09:329 [31merror[39m: [31msyntax error at or near "JOIN"[39m
+2024-12-16 12:32:09:329 [35mhttp[39m: [35mGET /api/v1/account/FollowedBusinesses 500 555 - 354.039 ms[39m
+[35m[39m
+2024-12-16 12:32:48:3248 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:32:48:3248 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:32:49:3249 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:33:21:3321 [35mhttp[39m: [35mGET /api/v1/account/FollowedBusinesses 200 4157 - 387.445 ms[39m
+[35m[39m
+2024-12-16 12:36:06:366 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 12:36:06:366 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 12:36:07:367 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 12:36:08:368 [35mhttp[39m: [35mGET /api/v1/account/FollowedBusinesses 200 1205 - 316.786 ms[39m
+[35m[39m

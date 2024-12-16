@@ -11,7 +11,7 @@ accountRouter.post(
     accountController.followBusiness,
 );
 accountRouter.get(
-    'followedBusinesses',
+    '/followedBusinesses',
     protect,
     accountController.getFollowedBusinesses,
 );

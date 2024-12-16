@@ -96,3 +96,5 @@
 2024-12-16 12:23:59:2359 [31merror[39m: [31mBusiness not found[39m
 2024-12-16 12:24:04:244 [31merror[39m: [31mAccount not found[39m
 2024-12-16 12:24:04:244 [31merror[39m: [31mAccount not found[39m
+2024-12-16 12:30:31:3031 [31merror[39m: [31msyntax error at or near "JOIN"[39m
+2024-12-16 12:32:09:329 [31merror[39m: [31msyntax error at or near "JOIN"[39m

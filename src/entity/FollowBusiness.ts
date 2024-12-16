@@ -13,7 +13,7 @@ export class FollowBusiness {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Index()
+    @Index('follow_business_idx_on_business_id')
     @ManyToOne(() => Business, (business) => business.followers, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
@@ -24,7 +24,7 @@ export class FollowBusiness {
     })
     business: Business;
 
-    @Index()
+    @Index('follow_business_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.follow_businesses, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
