@@ -9,7 +9,7 @@ import {
     deleteUserOneLanguageService,
     deleteUserOneSkillService,
     updateUserOneExperienceService,
-} from '../services/userService';
+} from '../services/userServices';
 import catchAsync from 'express-async-handler';
 
 export const deleteMe = catchAsync(

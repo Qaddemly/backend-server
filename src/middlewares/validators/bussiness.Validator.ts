@@ -2,6 +2,7 @@ import { body, ValidationChain } from 'express-validator';
 
 import { Country } from '../../enums/country';
 import { LocationType } from '../../enums/locationType';
+import { HrRole } from '../../enums/HrRole';
 export const businessCreationValidator: ValidationChain[] = [
     body('name')
         .trim()
@@ -104,7 +105,7 @@ export const businessUpdateValidator: ValidationChain[] = [
         .withMessage('name must be at least 3 characters')
         .isLength({ max: 32 })
         .withMessage('name must be at most 32 characters'),
-    body('logo').notEmpty().withMessage('logo cannot be empty'),
+    body('logo').optional().notEmpty().withMessage('logo cannot be empty'),
     body('CEO')
         .trim()
         .optional()
@@ -175,4 +176,15 @@ export const businessUpdateValidator: ValidationChain[] = [
         .isObject()
         .isMobilePhone(['any'])
         .withMessage('invalid phone number'),
+];
+
+export const checkAddNewHrValidator: ValidationChain[] = [
+    body('account_email').trim().isEmail().withMessage('invalid email address'),
+    body('role').custom((val) => {
+        if (val in HrRole) {
+            return val;
+        } else {
+            throw new Error('invalid role');
+        }
+    }),
 ];

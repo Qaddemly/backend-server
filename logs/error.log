@@ -41,15 +41,6 @@
 2024-12-14 19:25:47:2547 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 2 }[39m
 2024-12-14 19:26:13:2613 [31merror[39m: [31mE11000 duplicate key error collection: test.accounttempdatas index: accountId_1 dup key: { accountId: 3 }[39m
 2024-12-14 19:26:17:2617 [31merror[39m: [31mvalidationErrors[39m
-2024-12-15 19:43:34:4334 [31merror[39m: [31mPostgres Database connection failed password authentication failed for user "postgres"[39m
-2024-12-15 19:44:09:449 [31merror[39m: [31mPostgres Database connection failed read ECONNRESET[39m
-2024-12-15 19:44:49:4449 [31merror[39m: [31mPostgres Database connection failed password authentication failed for user "postgres"[39m
-2024-12-15 19:46:29:4629 [31merror[39m: [31mPostgres Database connection failed password authentication failed for user "postgres"[39m
-2024-12-15 19:50:14:5014 [31merror[39m: [31mvalidationErrors[39m
-2024-12-15 19:50:24:5024 [31merror[39m: [31mvalidationErrors[39m
-2024-12-15 19:50:35:5035 [31merror[39m: [31mnull value in column "job_title" of relation "experience" violates not-null constraint[39m
-2024-12-15 19:52:32:5232 [31merror[39m: [31mNo skill found with that ID[39m
-2024-12-15 19:52:39:5239 [31merror[39m: [31mNo skill found with that ID[39m
-2024-12-15 20:13:48:1348 [31merror[39m: [31mNo language found with that ID[39m
-2024-12-15 20:13:54:1354 [31merror[39m: [31minvalid input value for enum language_name_enum: "arabic"[39m
-2024-12-15 20:15:28:1528 [31merror[39m: [31mvalidationErrors[39m
+2024-12-14 22:51:36:5136 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-14 22:52:04:524 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-15 13:05:42:542 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m

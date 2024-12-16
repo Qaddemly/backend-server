@@ -326,8 +326,8 @@ export const logInService = async (
 
         const [accessToken, refreshToken, updatedUser] =
             await createTokensForLoggedInUser(account, req, res);
-        const returnedUser = await returnUserInFormOfMongoDBObject(account);
-        return [true, accessToken, refreshToken, returnedUser];
+
+        return [true, accessToken, refreshToken, updatedUser];
     }
 };
 
@@ -936,9 +936,10 @@ export const returnUserInFormOfMongoDBObject = async (user: Account) => {
     return userJson;
 };
 
-export const getMeService = (req: Request) => {
-    const user = req.user;
-    return returnUserInFormOfMongoDBObject(user as Account);
+export const getMeService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const account = await AccountRepository.findAllAccountData(req.user.id);
+    return account;
 };
 
 export const updateUserOneExperience = catchAsync(

@@ -633,68 +633,44 @@
 2024-12-14 22:42:00:420 [32minfo[39m: [32mPostgres Database connected successfully[39m
 2024-12-14 22:43:10:4310 [32minfo[39m: [32mServer is running on port 8000[39m
 2024-12-14 22:43:10:4310 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-15 19:43:34:4334 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 19:43:34:4334 [31merror[39m: [31mPostgres Database connection failed password authentication failed for user "postgres"[39m
-2024-12-15 19:43:36:4336 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 19:44:09:449 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 19:44:09:449 [31merror[39m: [31mPostgres Database connection failed read ECONNRESET[39m
-2024-12-15 19:44:10:4410 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 19:44:49:4449 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 19:44:49:4449 [31merror[39m: [31mPostgres Database connection failed password authentication failed for user "postgres"[39m
-2024-12-15 19:44:51:4451 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 19:46:29:4629 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 19:46:29:4629 [31merror[39m: [31mPostgres Database connection failed password authentication failed for user "postgres"[39m
-2024-12-15 19:46:30:4630 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 19:47:11:4711 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 19:47:11:4711 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-15 19:47:13:4713 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 19:49:12:4912 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 19:49:12:4912 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-15 19:49:14:4914 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 19:50:14:5014 [31merror[39m: [31mvalidationErrors[39m
-2024-12-15 19:50:14:5014 [35mhttp[39m: [35mPOST /api/v1/user/addNewSkill 400 223 - 2402.946 ms[39m
+2024-12-14 22:51:35:5135 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 22:51:36:5136 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-14 22:52:04:524 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-14 22:52:04:524 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-15 13:05:41:541 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 13:05:42:542 [31merror[39m: [31mPostgres Database connection failed Entity metadata for Account#skills was not found. Check if you specified a correct entity object and if it's connected in the connection options.[39m
+2024-12-15 13:06:28:628 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 13:06:28:628 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 13:08:37:837 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 13:08:38:838 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 13:08:40:840 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-15 13:10:23:1023 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-15 13:10:23:1023 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-15 13:10:25:1025 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:44:13:4413 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 867 - 814.752 ms[39m
 [35m[39m
-2024-12-15 19:50:24:5024 [31merror[39m: [31mvalidationErrors[39m
-2024-12-15 19:50:24:5024 [35mhttp[39m: [35mPOST /api/v1/user/addNewSkill 400 162 - 296.794 ms[39m
+2024-12-16 13:45:10:4510 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:45:10:4510 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:45:12:4512 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:48:11:4811 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:48:11:4811 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:48:13:4813 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:48:51:4851 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:48:52:4852 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:48:53:4853 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:49:05:495 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 808 - 855.964 ms[39m
 [35m[39m
-2024-12-15 19:50:35:5035 [31merror[39m: [31mnull value in column "job_title" of relation "experience" violates not-null constraint[39m
-2024-12-15 19:50:35:5035 [35mhttp[39m: [35mPOST /api/v1/user/addNewSkill 500 1086 - 661.191 ms[39m
+2024-12-16 13:52:52:5252 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:52:52:5252 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:52:53:5253 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 13:53:00:530 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 655 - 324.136 ms[39m
 [35m[39m
-2024-12-15 19:51:00:510 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 19:51:00:510 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-15 19:51:02:512 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 19:51:05:515 [35mhttp[39m: [35mPOST /api/v1/user/addNewSkill 201 72 - 1096.731 ms[39m
+2024-12-16 13:53:16:5316 [35mhttp[39m: [35mPOST /api/v1/user/addNewExperience 201 249 - 376.714 ms[39m
 [35m[39m
-2024-12-15 19:51:59:5159 [35mhttp[39m: [35mPOST /api/v1/user/addNewSkill 201 75 - 1890.324 ms[39m
+2024-12-16 13:53:21:5321 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 860 - 296.725 ms[39m
 [35m[39m
-2024-12-15 19:52:32:5232 [31merror[39m: [31mNo skill found with that ID[39m
-2024-12-15 19:52:32:5232 [35mhttp[39m: [35mDELETE /api/v1/user/deleteSkill/3 404 676 - 332.971 ms[39m
-[35m[39m
-2024-12-15 19:52:37:5237 [35mhttp[39m: [35mDELETE /api/v1/user/deleteSkill/2 204 - - 315.416 ms[39m
-[35m[39m
-2024-12-15 19:52:39:5239 [31merror[39m: [31mNo skill found with that ID[39m
-2024-12-15 19:52:39:5239 [35mhttp[39m: [35mDELETE /api/v1/user/deleteSkill/2 404 676 - 298.173 ms[39m
-[35m[39m
-2024-12-15 20:13:39:1339 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 20:13:39:1339 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-15 20:13:41:1341 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 20:13:48:1348 [31merror[39m: [31mNo language found with that ID[39m
-2024-12-15 20:13:48:1348 [35mhttp[39m: [35mDELETE /api/v1/user/deleteLanguage/3 404 682 - 493.600 ms[39m
-[35m[39m
-2024-12-15 20:13:54:1354 [31merror[39m: [31minvalid input value for enum language_name_enum: "arabic"[39m
-2024-12-15 20:13:54:1354 [35mhttp[39m: [35mPOST /api/v1/user/addNewLanguage 500 1024 - 335.770 ms[39m
-[35m[39m
-2024-12-15 20:14:53:1453 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 20:14:53:1453 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-15 20:14:55:1455 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 20:15:25:1525 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 20:15:25:1525 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-15 20:15:26:1526 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 20:15:28:1528 [31merror[39m: [31mvalidationErrors[39m
-2024-12-15 20:15:28:1528 [35mhttp[39m: [35mPOST /api/v1/user/addNewLanguage 400 164 - 351.317 ms[39m
-[35m[39m
-2024-12-15 20:15:56:1556 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-15 20:15:56:1556 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-15 20:15:58:1558 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-15 20:16:07:167 [35mhttp[39m: [35mPOST /api/v1/user/addNewLanguage 201 66 - 390.969 ms[39m
-[35m[39m
+2024-12-16 13:55:37:5537 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:55:37:5537 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:56:53:5653 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 13:56:53:5653 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 13:56:55:5655 [32minfo[39m: [32mMongoDB Database connected successfully[39m

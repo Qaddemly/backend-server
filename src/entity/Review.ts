@@ -2,6 +2,7 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    Index,
     JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
@@ -21,6 +22,7 @@ export class Review {
     @Column('integer')
     rating: number;
 
+    @Index({ unique: true })
     @ManyToOne(() => Business, (business) => business.reviews, {
         onDelete: 'CASCADE',
     })
