@@ -168,3 +168,22 @@
 2024-12-16 20:45:57:4557 [31merror[39m: [31mJob not found[39m
 2024-12-16 21:05:39:539 [31merror[39m: [31mJob already saved[39m
 2024-12-16 21:11:55:1155 [31merror[39m: [31mJob already not saved[39m
+2024-12-16 22:00:43:043 [31merror[39m: [31mPostgres Database connection failed Data type "test" in "Resume.name" is not supported by "postgres" database.[39m
+2024-12-16 22:00:55:055 [31merror[39m: [31mPostgres Database connection failed Data type "test" in "Resume.name" is not supported by "postgres" database.[39m
+2024-12-16 22:01:11:111 [31merror[39m: [31mPostgres Database connection failed Data type "test" in "Resume.name" is not supported by "postgres" database.[39m
+2024-12-16 22:09:25:925 [31merror[39m: [31mPostgres Database connection failed Data type "test" in "Resume.name" is not supported by "postgres" database.[39m
+2024-12-16 22:09:48:948 [31merror[39m: [31mPostgres Database connection failed Data type "test" in "Resume.name" is not supported by "postgres" database.[39m
+2024-12-16 22:55:20:5520 [31merror[39m: [31mResume not found[39m
+2024-12-16 22:56:23:5623 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 22:57:07:577 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 22:57:55:5755 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 23:00:10:010 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 23:00:48:048 [31merror[39m: [31myou are member of that business ,you cant apply job [39m
+2024-12-16 23:01:38:138 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 23:02:36:236 [31merror[39m: [31mResume not found[39m
+2024-12-16 23:03:09:39 [31merror[39m: [31mResume not found[39m
+2024-12-16 23:03:16:316 [31merror[39m: [31myou have already applied to that job[39m
+2024-12-16 23:04:47:447 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 23:05:18:518 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 23:06:44:644 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 23:09:06:96 [31merror[39m: [31myou have already applied to that job[39m

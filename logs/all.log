@@ -1899,3 +1899,167 @@
 2024-12-16 21:11:55:1155 [31merror[39m: [31mJob already not saved[39m
 2024-12-16 21:11:55:1155 [35mhttp[39m: [35mDELETE /api/v1/job/unSaveJob/5 409 663 - 307.280 ms[39m
 [35m[39m
+2024-12-16 21:20:59:2059 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 21:20:59:2059 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 21:21:01:211 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 21:21:37:2137 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 21:21:37:2137 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 21:21:38:2138 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 21:23:26:2326 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 21:23:26:2326 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 21:23:28:2328 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 21:24:19:2419 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 21:24:20:2420 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 21:24:21:2421 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 21:25:43:2543 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 21:25:44:2544 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 21:25:45:2545 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 21:26:22:2622 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 21:26:23:2623 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 21:26:25:2625 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 21:59:30:5930 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 21:59:30:5930 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 21:59:31:5931 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:00:10:010 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:00:10:010 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:00:12:012 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:00:42:042 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:00:43:043 [31merror[39m: [31mPostgres Database connection failed Data type "test" in "Resume.name" is not supported by "postgres" database.[39m
+2024-12-16 22:00:54:054 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:00:55:055 [31merror[39m: [31mPostgres Database connection failed Data type "test" in "Resume.name" is not supported by "postgres" database.[39m
+2024-12-16 22:00:56:056 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:01:11:111 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:01:11:111 [31merror[39m: [31mPostgres Database connection failed Data type "test" in "Resume.name" is not supported by "postgres" database.[39m
+2024-12-16 22:01:13:113 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:09:25:925 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:09:25:925 [31merror[39m: [31mPostgres Database connection failed Data type "test" in "Resume.name" is not supported by "postgres" database.[39m
+2024-12-16 22:09:47:947 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:09:48:948 [31merror[39m: [31mPostgres Database connection failed Data type "test" in "Resume.name" is not supported by "postgres" database.[39m
+2024-12-16 22:09:49:949 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:11:12:1112 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:11:13:1113 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:11:14:1114 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:38:42:3842 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:38:42:3842 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:38:43:3843 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:39:23:3923 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:39:23:3923 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:39:25:3925 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:42:58:4258 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:42:58:4258 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:42:59:4259 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:44:16:4416 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:44:16:4416 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:44:18:4418 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:45:38:4538 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:45:38:4538 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:45:39:4539 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:45:54:4554 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:45:54:4554 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:45:56:4556 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:46:07:467 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:46:08:468 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:46:09:469 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:46:50:4650 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:46:50:4650 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:46:52:4652 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:47:28:4728 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:47:28:4728 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:47:30:4730 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:50:16:5016 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:50:16:5016 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:50:18:5018 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:50:33:5033 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:50:33:5033 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:50:42:5042 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:50:42:5042 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:50:44:5044 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:51:43:5143 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:51:43:5143 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:51:45:5145 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:53:36:5336 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:53:36:5336 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:53:37:5337 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:54:40:5440 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:54:40:5440 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:54:41:5441 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:55:20:5520 [31merror[39m: [31mResume not found[39m
+2024-12-16 22:55:20:5520 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 404 653 - 716.863 ms[39m
+[35m[39m
+2024-12-16 22:56:23:5623 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 22:56:23:5623 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 500 618 - 451.605 ms[39m
+[35m[39m
+2024-12-16 22:57:07:577 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 22:57:07:577 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 500 618 - 320.832 ms[39m
+[35m[39m
+2024-12-16 22:57:50:5750 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:57:50:5750 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:57:51:5751 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:57:55:5755 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 22:57:55:5755 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 500 618 - 360.301 ms[39m
+[35m[39m
+2024-12-16 22:59:14:5914 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:59:14:5914 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:59:16:5916 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 22:59:42:5942 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 22:59:43:5943 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 22:59:44:5944 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:00:04:04 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:00:04:04 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:00:06:06 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:00:10:010 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 23:00:10:010 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 500 618 - 351.415 ms[39m
+[35m[39m
+2024-12-16 23:00:44:044 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:00:44:044 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:00:46:046 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:00:48:048 [31merror[39m: [31myou are member of that business ,you cant apply job [39m
+2024-12-16 23:00:48:048 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 403 725 - 363.120 ms[39m
+[35m[39m
+2024-12-16 23:01:26:126 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:01:27:127 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:01:28:128 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:01:38:138 [31merror[39m: [31mvalidationErrors[39m
+2024-12-16 23:01:38:138 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 180 - 213.118 ms[39m
+[35m[39m
+2024-12-16 23:01:47:147 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2037.851 ms[39m
+[35m[39m
+2024-12-16 23:02:13:213 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 162 - 1986.407 ms[39m
+[35m[39m
+2024-12-16 23:02:28:228 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 815 - 745.048 ms[39m
+[35m[39m
+2024-12-16 23:02:36:236 [31merror[39m: [31mResume not found[39m
+2024-12-16 23:02:36:236 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 404 653 - 293.089 ms[39m
+[35m[39m
+2024-12-16 23:03:09:39 [31merror[39m: [31mResume not found[39m
+2024-12-16 23:03:09:39 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 404 653 - 331.161 ms[39m
+[35m[39m
+2024-12-16 23:03:16:316 [31merror[39m: [31myou have already applied to that job[39m
+2024-12-16 23:03:16:316 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 409 693 - 336.707 ms[39m
+[35m[39m
+2024-12-16 23:04:01:41 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:04:01:41 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:04:02:42 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:04:31:431 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:04:32:432 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:04:33:433 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:04:43:443 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 200 910 - 494.825 ms[39m
+[35m[39m
+2024-12-16 23:04:47:447 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 23:04:47:447 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 500 740 - 293.330 ms[39m
+[35m[39m
+2024-12-16 23:05:18:518 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 23:05:18:518 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 500 740 - 355.746 ms[39m
+[35m[39m
+2024-12-16 23:06:15:615 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:06:15:615 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:06:17:617 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:06:44:644 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2024-12-16 23:06:44:644 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 500 740 - 409.680 ms[39m
+[35m[39m
+2024-12-16 23:09:02:92 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-16 23:09:02:92 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-16 23:09:03:93 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-16 23:09:06:96 [31merror[39m: [31myou have already applied to that job[39m
+2024-12-16 23:09:06:96 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 409 693 - 352.550 ms[39m
+[35m[39m

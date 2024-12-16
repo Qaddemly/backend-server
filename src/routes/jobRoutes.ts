@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+    applyToJob,
     createJob,
     getAllUserSavedJobs,
     getOneJob,
@@ -10,6 +11,7 @@ import {
 import { protect } from '../services/authServices';
 import validateRequestMiddleware from '../middlewares/validator';
 import {
+    applyToJobValidator,
     createJobValidator,
     idJobValidator,
     updateJobValidator,
@@ -53,4 +55,14 @@ jobRouter.delete(
 );
 
 jobRouter.get('/allUserSavedJobs', protect, getAllUserSavedJobs);
+
+jobRouter.post(
+    '/applyToJob/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    validateRequestMiddleware(applyToJobValidator),
+
+    applyToJob,
+);
+
 export default jobRouter;

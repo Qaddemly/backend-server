@@ -14,7 +14,10 @@ class AccountRepositoryClass extends Repository<Account> {
             .leftJoinAndSelect('account.reviews', 'review') // Join reviews
             .leftJoinAndSelect('account.business_roles', 'business_role') // Join business roles
             .leftJoinAndSelect('account.job_applications', 'job_application') // Join job applications
-            .leftJoinAndSelect('account.saved_jobs', 'saved_job') // Join saved jobs
+            .leftJoinAndSelect(
+                'account.job_applicationssaved_jobs',
+                'saved_job',
+            ) // Join saved jobs
             .where('account.id = :id', { id: accountId }) // Filter by accountId
             .getOne();
 
@@ -30,6 +33,15 @@ class AccountRepositoryClass extends Repository<Account> {
             where: { id: userId },
             relations: ['saved_jobs'],
             // Load current saved jobs
+        });
+        return account;
+    }
+
+    async getAccountWithJobApplications(userId: number) {
+        const account = await this.findOne({
+            where: { id: userId },
+            relations: ['job_applications', 'job_applications.job'],
+            // Load current job_applications
         });
         return account;
     }

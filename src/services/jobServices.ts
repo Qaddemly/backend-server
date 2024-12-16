@@ -7,6 +7,9 @@ import { JobRepository } from '../Repository/jobRepository';
 import { HrEmployeeRepository } from '../Repository/hrEmployeeRepository';
 import { HrRole } from '../enums/HrRole';
 import { AccountRepository } from '../Repository/accountRepository';
+import { JobApplication } from '../entity/JobApplication';
+import { ResumeRepository } from '../Repository/resumeRepository';
+import { JobApplicationRepository } from '../Repository/jobApplicationRepository';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -166,4 +169,63 @@ export const getAllUserSavedJobsService = async (req: Request) => {
     const account = await AccountRepository.getAccountWithSavedJobs(userId);
 
     return account.saved_jobs;
+};
+
+export const applyToJobService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const jobId = Number(req.params.id);
+    const { resume_id } = req.body;
+    const resume = await ResumeRepository.findOneBy({
+        id: resume_id,
+        account: { id: userId },
+    });
+    if (!resume) {
+        throw new AppError('Resume not found', 404);
+    }
+    const job = await JobRepository.getJobWithBusiness(jobId);
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    const business = await BusinessRepository.findOneBy({
+        id: job.business.id,
+    });
+    if (!business) {
+        throw new AppError('Business not found', 404);
+    }
+    const isNotAllowedToApplyJob = await HrEmployeeRepository.checkPermission(
+        userId,
+        business.id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+        ],
+    );
+    if (isNotAllowedToApplyJob) {
+        throw new AppError(
+            'you are member of that business ,you cant apply job ',
+            403,
+        );
+    }
+
+    const account =
+        await AccountRepository.getAccountWithJobApplications(userId);
+    const isJobAlreadyApplied = account.job_applications.some(
+        (jobApplication) => jobApplication.job.id === jobId,
+    );
+    if (isJobAlreadyApplied) {
+        throw new AppError('you have already applied to that job', 409);
+    }
+    const jobApplication = new JobApplication();
+    jobApplication.job = job; // Associate job with the application
+    jobApplication.resume = resume;
+    account.job_applications.push(jobApplication);
+
+    // Save the new job application
+    await JobApplicationRepository.save(jobApplication);
+
+    const savedUser = await AccountRepository.save(account);
+    return jobApplication;
 };

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import AppError from '../utils/appError';
 import {
+    applyToJobService,
     createJobService,
     getAllUserSavedJobsService,
     getOneJobService,
@@ -93,6 +94,20 @@ export const getAllUserSavedJobs = catchAsync(
             res.status(200).json({
                 success: true,
                 savedJobs,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const applyToJob = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const jobApplication = await applyToJobService(req);
+            res.status(200).json({
+                success: true,
+                jobApplication,
             });
         } catch (err) {
             return next(err);

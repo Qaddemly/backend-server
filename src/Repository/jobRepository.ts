@@ -64,6 +64,14 @@ class JobRepositoryClass extends Repository<Job> {
             .execute();
         return job.raw[0];
     }
+    async getJobWithBusiness(jobId: number) {
+        const job = await this.findOne({
+            where: { id: jobId },
+            relations: ['business'],
+            // Load current business
+        });
+        return job;
+    }
 }
 
 export const JobRepository = AppDataSource.getRepository(Job).extend(

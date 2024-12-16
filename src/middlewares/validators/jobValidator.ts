@@ -114,6 +114,13 @@ export const idJobValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),
 ];
 
+export const applyToJobValidator: ValidationChain[] = [
+    body('resume_id')
+        .notEmpty()
+        .withMessage('resume_id required')
+        .isInt()
+        .withMessage('resume_id must be an integer'),
+];
 export const createUserOneSkillValidator: ValidationChain[] = [
     body('name')
         .isString()
