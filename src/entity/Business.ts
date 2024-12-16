@@ -17,7 +17,7 @@ import { Address } from './Address';
 
 @Entity()
 export class Business {
-    @Index({ unique: true })
+    @Index('business_idx_on_id', { unique: true })
     @PrimaryGeneratedColumn()
     id: number;
 

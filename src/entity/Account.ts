@@ -25,6 +25,7 @@ import { Phone } from './Phone';
 
 @Entity()
 export class Account {
+    @Index('account_idx_on_id', { unique: true })
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -34,6 +35,7 @@ export class Account {
     @Column({ type: 'text' })
     last_name: string;
 
+    @Index('account_idx_on_email', { unique: true })
     @Column({ type: 'text', unique: true })
     email: string;
 
