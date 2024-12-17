@@ -81,15 +81,15 @@ authRouter.post('/logout', protect, logOut);
 // render consent page
 authRouter.get('/googleAuth', googleAuth);
 authRouter.get('/google/redirect', googleRedirection);
-authRouter.patch(
-    '/updateMe',
-    protect,
-    uploadUserPICAndResume,
-    validateRequestMiddleware(userUpdateValidator),
-    resizeUserImage,
-    savingResumeInDisk,
-    updateMe,
-);
+// authRouter.patch(
+//     '/updateMe',
+//     protect,
+//     uploadUserPICAndResume,
+//     validateRequestMiddleware(userUpdateValidator),
+//     resizeUserImage,
+//     savingResumeInDisk,
+//     updateMe,
+// );
 
 authRouter.get('/getMe', protect, getMe);
 authRouter.put(

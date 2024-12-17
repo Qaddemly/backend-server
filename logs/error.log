@@ -215,3 +215,50 @@
 2024-12-17 01:21:08:218 [31merror[39m: [31mvalidationErrors[39m
 2024-12-17 02:04:56:456 [31merror[39m: [31mvalidationErrors[39m
 2024-12-17 02:05:21:521 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:06:02:62 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:06:20:620 [31merror[39m: [31muser already has education[39m
+2024-12-17 02:06:39:639 [31merror[39m: [31mNo education found with that ID[39m
+2024-12-17 02:12:26:1226 [31merror[39m: [31mProperty "phone.countryCode" was not found in "Account". Make sure your query is correct.[39m
+2024-12-17 02:12:42:1242 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:13:29:1329 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:13:41:1341 [31merror[39m: [31mcolumn "account_id" does not exist[39m
+2024-12-17 02:14:38:1438 [31merror[39m: [31mcolumn "account_id" does not exist[39m
+2024-12-17 02:16:14:1614 [31merror[39m: [31mUnexpected field[39m
+2024-12-17 02:17:35:1735 [31merror[39m: [31mError: Unknown field![39m
+2024-12-17 02:22:51:2251 [31merror[39m: [31mCannot read properties of undefined (reading '0')[39m
+2024-12-17 02:23:37:2337 [31merror[39m: [31msrc/uploads/users/user-967466779-1734395017409.jpeg: unable to open for write[39m
+[31mwindows error: The system cannot find the file specified.[39m
+2024-12-17 02:24:46:2446 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:25:14:2514 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:25:30:2530 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:25:37:2537 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:25:46:2546 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:56:32:5632 [31merror[39m: [31mUnexpected field[39m
+2024-12-17 02:56:38:5638 [31merror[39m: [31mCannot read properties of undefined (reading '0')[39m
+2024-12-17 02:57:37:5737 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 02:58:57:5857 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 02:59:34:5934 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 03:00:03:03 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 03:00:22:022 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 03:01:11:111 [31merror[39m: [31mduplicate key value violates unique constraint "PK_7ff05ea7599e13fac01ac812e48"[39m
+2024-12-17 03:06:03:63 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 03:06:55:655 [31merror[39m: [31mduplicate key value violates unique constraint "PK_7ff05ea7599e13fac01ac812e48"[39m
+2024-12-17 03:09:52:952 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 03:09:58:958 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 03:10:34:1034 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
+2024-12-17 03:11:17:1117 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 03:12:02:122 [31merror[39m: [31mduplicate key value violates unique constraint "PK_7ff05ea7599e13fac01ac812e48"[39m
+2024-12-17 03:13:10:1310 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 03:16:25:1625 [31merror[39m: [31mCannot read properties of undefined (reading 'joinColumns')[39m
+2024-12-17 03:17:18:1718 [31merror[39m: [31muser already has education[39m
+2024-12-17 03:17:34:1734 [31merror[39m: [31muser don`t have education[39m
+2024-12-17 03:36:20:3620 [31merror[39m: [31mCannot read properties of undefined (reading 'resumes')[39m
+2024-12-17 03:36:58:3658 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 03:37:39:3739 [31merror[39m: [31mCannot read properties of undefined (reading 'resumes')[39m
+2024-12-17 03:37:45:3745 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 03:38:15:3815 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 03:40:14:4014 [31merror[39m: [31mCannot read properties of undefined (reading 'resumes')[39m
+2024-12-17 03:41:37:4137 [31merror[39m: [31mCannot read properties of undefined (reading 'resumes')[39m
+2024-12-17 03:42:47:4247 [31merror[39m: [31mNo resumes provided[39m
+2024-12-17 03:44:31:4431 [31merror[39m: [31mNo resume found with that ID[39m
+2024-12-17 03:55:22:5522 [31merror[39m: [31mNo resume found with that ID[39m

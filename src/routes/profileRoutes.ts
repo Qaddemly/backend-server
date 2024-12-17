@@ -12,10 +12,15 @@ import {
     deleteUserOneEducation,
     updateUserBasicInfo,
     createUserOneEducation,
+    addUserOneResume,
+    deleteUserOneResume,
 } from '../controllers/profileController';
 import {
     protect,
     resizeUserImage,
+    savingResumeInDisk,
+    uploadProfilePic,
+    uploadResume,
     uploadUserPICAndResume,
 } from '../services/authServices';
 import validateRequestMiddleware from '../middlewares/validator';
@@ -30,6 +35,7 @@ import {
     updateUserOneEducationValidator,
     createUserOneEducationValidator,
     updateUserBasicInfoValidator,
+    createUserOneResumeValidator,
 } from '../middlewares/validators/profileValidator';
 
 const profileRouter = Router();
@@ -98,10 +104,20 @@ profileRouter.post(
 
 profileRouter.delete('/deleteEducation', protect, deleteUserOneEducation);
 
-profileRouter.patch(
-    '/updateMe',
+profileRouter.post(
+    '/addResume',
     protect,
-    uploadUserPICAndResume,
+    uploadResume,
+    savingResumeInDisk,
+    //validateRequestMiddleware(createUserOneResumeValidator),
+    addUserOneResume,
+);
+
+profileRouter.delete('/deleteResume/:id', protect, deleteUserOneResume);
+profileRouter.patch(
+    '/updateBasicInfo',
+    protect,
+    uploadProfilePic,
     validateRequestMiddleware(updateUserBasicInfoValidator),
     resizeUserImage,
     updateUserBasicInfo,

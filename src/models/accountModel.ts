@@ -12,6 +12,7 @@ export interface userDoc extends mongoose.Document {
     passwordResetToken?: string;
     googleId?: string;
     refreshTokens: string[];
+    completeRegistration: boolean;
 }
 
 const userSchema = new mongoose.Schema<userDoc>(
@@ -27,6 +28,7 @@ const userSchema = new mongoose.Schema<userDoc>(
         activationCode: String,
         activationCodeExpiresIn: Date,
         activationToken: String,
+        completeRegistration: Boolean,
     },
     {
         timestamps: true,

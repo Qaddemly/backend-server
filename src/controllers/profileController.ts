@@ -13,6 +13,8 @@ import {
     createUserOneEducationService,
     deleteUserOneEducationService,
     updateAccountBasicInfoService,
+    deleteUserOneResumeService,
+    addUserOneResumeService,
 } from '../services/profileServices';
 import catchAsync from 'express-async-handler';
 
@@ -148,6 +150,31 @@ export const deleteUserOneEducation = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             const education = await deleteUserOneEducationService(req);
+            res.status(204).json({});
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const addUserOneResume = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const resume = await addUserOneResumeService(req);
+            res.status(200).json({
+                success: true,
+                resume,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const deleteUserOneResume = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const resume = await deleteUserOneResumeService(req);
             res.status(204).json({});
         } catch (err) {
             return next(err);

@@ -13,6 +13,10 @@ import { Language } from '../entity/Language';
 import { LanguageRepository } from '../Repository/languageRepository';
 import { EducationRepository } from '../Repository/educationRepository';
 import { Education } from '../entity/Education';
+import { Resume } from '../entity/Resume';
+import { ResumeRepository } from '../Repository/resumeRepository';
+import fs from 'fs';
+import path from 'path';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -183,7 +187,7 @@ export const deleteUserOneEducationService = async (req: Request) => {
             account_id: userId,
         });
         if (!education) {
-            throw new AppError('No education found with that ID', 404);
+            throw new AppError('user don`t have education', 404);
         }
         await EducationRepository.remove(education);
     } catch (err) {
@@ -254,6 +258,53 @@ export const deleteUserOneLanguageService = async (req: Request) => {
             throw new AppError('No language found with that ID', 404);
         }
         await LanguageRepository.remove(language);
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const addUserOneResumeService = async (req: Request) => {
+    const userId = Number(req.user.id);
+
+    let { resumes } = req.body;
+    if (!resumes) {
+        throw new AppError('No resumes provided', 400);
+    }
+
+    const user = await AccountRepository.findOneBy({ id: userId });
+    const newResume = new Resume();
+    newResume.account = user;
+    newResume.url = resumes;
+
+    const createdResume = await ResumeRepository.save(newResume);
+    delete createdResume.account;
+    const ResumeReturned: { [key: string]: any } = { ...createdResume };
+    ResumeReturned.accountId = userId;
+    return ResumeReturned;
+};
+
+export const deleteUserOneResumeService = async (req: Request) => {
+    try {
+        const userId = Number(req.user.id);
+        const resumeId = Number(req.params.id);
+        const resume = await ResumeRepository.findOneBy({
+            account: { id: userId },
+            id: resumeId,
+        });
+        if (!resume) {
+            throw new AppError('No resume found with that ID', 404);
+        }
+
+        await ResumeRepository.remove(resume);
+        // const startIndex = resume.url.indexOf('/uploads');
+
+        // const result = resume.url.substring(startIndex, -1);
+        // console.log(result);
+        // const rootPath = path.resolve(__dirname, '../');
+        // const resumePath = `src/${result}`;
+        // await fs.unlink(resumePath, (c) => {
+        //     console.log(c);
+        // });
     } catch (err) {
         throw err;
     }

@@ -55,7 +55,7 @@ class AccountRepositoryClass extends Repository<Account> {
         const result = await this.createQueryBuilder()
             .update(Account)
             .set(updateData)
-            .where('account_id = :accountId', { accountId })
+            .where('id = :accountId', { accountId })
             .returning('*')
             .execute();
         return result.raw[0];

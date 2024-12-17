@@ -123,6 +123,17 @@ export const deleteUserOneExperienceValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),
 ];
 
+export const deleteUserOneResumeValidator: ValidationChain[] = [
+    param('id').isInt().withMessage('id must be an integer'),
+];
+
+export const createUserOneResumeValidator: ValidationChain[] = [
+    body('resumes')
+        .notEmpty()
+        .withMessage('resumes is required')
+        .isString()
+        .withMessage('resume must be string'),
+];
 export const createUserOneSkillValidator: ValidationChain[] = [
     body('name')
         .isString()
@@ -279,7 +290,7 @@ export const updateUserBasicInfoValidator: ValidationChain[] = [
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid date of birth'),
     body('phone').optional().isObject(),
-    body('phone.countryCode')
+    body('phone.country_code')
         .if(body('phone').exists())
         .notEmpty()
         .withMessage('Country code cannot be empty')
