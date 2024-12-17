@@ -2985,263 +2985,410 @@
 [35m[39m
 2024-12-17 03:58:52:5852 [35mhttp[39m: [35mDELETE /api/v1/user/deleteResume/14 204 - - 464.928 ms[39m
 [35m[39m
-2024-12-17 04:00:12:012 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 04:00:12:012 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 04:00:13:013 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 15:27:41:2741 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 15:27:43:2743 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 15:27:43:2743 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 15:28:19:2819 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1427.688 ms[39m
-[35m[39m
-2024-12-17 15:28:30:2830 [31merror[39m: [31mRelation with property path job_applicationssaved_jobs in entity was not found.[39m
-2024-12-17 15:28:30:2830 [35mhttp[39m: [35mGET /api/v1/auth/getMe 500 1545 - 574.175 ms[39m
-[35m[39m
-2024-12-17 15:30:40:3040 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 133 - 556.057 ms[39m
-[35m[39m
-2024-12-17 15:30:54:3054 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 133 - 362.028 ms[39m
-[35m[39m
-2024-12-17 15:31:04:314 [35mhttp[39m: [35mDELETE /api/v1/user/deleteResume/16 204 - - 529.983 ms[39m
-[35m[39m
-2024-12-17 15:31:07:317 [31merror[39m: [31mNo resume found with that ID[39m
-2024-12-17 15:31:07:317 [35mhttp[39m: [35mDELETE /api/v1/user/deleteResume/16 404 694 - 352.240 ms[39m
-[35m[39m
-2024-12-17 15:31:50:3150 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 824.174 ms[39m
-[35m[39m
-2024-12-17 15:32:14:3214 [35mhttp[39m: [35mGET /api/v1/job/allUserSavedJobs 200 31 - 593.034 ms[39m
-[35m[39m
-2024-12-17 15:33:00:330 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 201 849 - 717.840 ms[39m
-[35m[39m
-2024-12-17 15:33:03:333 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 201 849 - 343.330 ms[39m
-[35m[39m
-2024-12-17 15:33:57:3357 [31merror[39m: [31mduplicate key value violates unique constraint "PK_54115ee388cdb6d86bb4bf5b2ea"[39m
-2024-12-17 15:33:57:3357 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 500 1068 - 1061.248 ms[39m
-[35m[39m
-2024-12-17 15:48:51:4851 [31merror[39m: [31mduplicate key value violates unique constraint "PK_54115ee388cdb6d86bb4bf5b2ea"[39m
-2024-12-17 15:48:51:4851 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 500 1068 - 1667.382 ms[39m
-[35m[39m
-2024-12-17 15:49:15:4915 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 3049.562 ms[39m
-[35m[39m
-2024-12-17 15:49:32:4932 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1932.314 ms[39m
-[35m[39m
-2024-12-17 15:51:34:5134 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 15:51:34:5134 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 15:51:36:5136 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 15:51:41:5141 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 3444 - 999.988 ms[39m
-[35m[39m
-2024-12-17 15:55:41:5541 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 15:55:41:5541 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 15:55:42:5542 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 15:55:56:5556 [31merror[39m: [31m"job_application" alias was not found. Maybe you forgot to join it?[39m
-2024-12-17 15:55:56:5556 [35mhttp[39m: [35mGET /api/v1/auth/getMe 500 1581 - 612.539 ms[39m
-[35m[39m
-2024-12-17 15:56:46:5646 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 15:56:46:5646 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 15:56:47:5647 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 15:56:52:5652 [31merror[39m: [31mRelation with property path job_application.job in entity was not found.[39m
-2024-12-17 15:56:52:5652 [35mhttp[39m: [35mGET /api/v1/auth/getMe 500 1531 - 747.348 ms[39m
-[35m[39m
-2024-12-17 15:57:12:5712 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 15:57:13:5713 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 15:57:14:5714 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 15:57:17:5717 [31merror[39m: [31mRelation with property path job_application in entity was not found.[39m
-2024-12-17 15:57:17:5717 [35mhttp[39m: [35mGET /api/v1/auth/getMe 500 1523 - 331.780 ms[39m
-[35m[39m
-2024-12-17 15:57:36:5736 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 15:57:36:5736 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 15:57:38:5738 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 15:57:42:5742 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 3444 - 519.166 ms[39m
-[35m[39m
-2024-12-17 15:58:40:5840 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 15:58:40:5840 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 15:58:42:5842 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 15:58:44:5844 [31merror[39m: [31mcolumn "job" does not exist[39m
-2024-12-17 15:58:44:5844 [35mhttp[39m: [35mGET /api/v1/auth/getMe 500 1002 - 387.323 ms[39m
-[35m[39m
-2024-12-17 16:00:14:014 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:00:15:015 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:00:16:016 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:00:20:020 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4099 - 873.368 ms[39m
-[35m[39m
-2024-12-17 16:00:51:051 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7 200 51 - 497.584 ms[39m
-[35m[39m
-2024-12-17 16:00:54:054 [31merror[39m: [31mJob already saved[39m
-2024-12-17 16:00:54:054 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7 409 655 - 294.281 ms[39m
-[35m[39m
-2024-12-17 16:01:00:10 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4446 - 637.656 ms[39m
-[35m[39m
-2024-12-17 16:02:42:242 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:02:42:242 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:02:44:244 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:02:51:251 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 5114 - 3279.547 ms[39m
-[35m[39m
-2024-12-17 16:04:37:437 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:04:37:437 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:04:38:438 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:09:05:95 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:09:05:95 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:09:06:96 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:10:54:1054 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:10:54:1054 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:10:55:1055 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:17:01:171 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:17:01:171 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:17:02:172 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:17:37:1737 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:17:37:1737 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:17:38:1738 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:18:24:1824 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:18:24:1824 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:18:25:1825 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:18:52:1852 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:18:52:1852 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:18:54:1854 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:18:59:1859 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:18:59:1859 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 1042 - 538.888 ms[39m
-[35m[39m
-2024-12-17 16:19:33:1933 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2562.182 ms[39m
-[35m[39m
-2024-12-17 16:21:17:2117 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 162 - 1883.299 ms[39m
-[35m[39m
-2024-12-17 16:21:29:2129 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 820 - 755.511 ms[39m
-[35m[39m
-2024-12-17 16:21:38:2138 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:21:38:2138 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 1042 - 287.728 ms[39m
-[35m[39m
-2024-12-17 16:22:36:2236 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:22:37:2237 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:22:38:2238 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:22:41:2241 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:22:41:2241 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 1042 - 357.690 ms[39m
-[35m[39m
-2024-12-17 16:23:52:2352 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:23:52:2352 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:23:53:2353 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:23:56:2356 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:23:56:2356 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 686 - 423.158 ms[39m
-[35m[39m
-2024-12-17 16:24:26:2426 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:24:26:2426 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:24:27:2427 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:24:34:2434 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:24:34:2434 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 686 - 356.632 ms[39m
-[35m[39m
-2024-12-17 16:25:07:257 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:25:07:257 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:25:09:259 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:25:34:2534 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:25:34:2534 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:25:35:2535 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:25:38:2538 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 201 851 - 450.361 ms[39m
-[35m[39m
-2024-12-17 16:26:50:2650 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:26:50:2650 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:26:51:2651 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:27:13:2713 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:27:13:2713 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:27:14:2714 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:28:26:2826 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:28:26:2826 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:28:27:2827 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:29:37:2937 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:29:37:2937 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 1042 - 491.272 ms[39m
-[35m[39m
-2024-12-17 16:30:46:3046 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 3473.794 ms[39m
-[35m[39m
-2024-12-17 16:31:15:3115 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 815 - 905.870 ms[39m
-[35m[39m
-2024-12-17 16:31:20:3120 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 201 1098 - 340.363 ms[39m
-[35m[39m
-2024-12-17 16:31:41:3141 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 1014 - 548.762 ms[39m
-[35m[39m
-2024-12-17 16:33:06:336 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:33:06:336 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:33:08:338 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:33:33:3333 [31merror[39m: [31mvalidationErrors[39m
-2024-12-17 16:33:33:3333 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 263 - 372.241 ms[39m
-[35m[39m
-2024-12-17 16:34:58:3458 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:34:58:3458 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:35:00:350 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:35:51:3551 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:35:51:3551 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:35:52:3552 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:36:21:3621 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:36:22:3622 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:36:23:3623 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:37:01:371 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 1915.778 ms[39m
-[35m[39m
-2024-12-17 16:38:51:3851 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:38:51:3851 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:38:53:3853 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:39:07:397 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 815 - 809.968 ms[39m
-[35m[39m
-2024-12-17 16:39:12:3912 [31merror[39m: [31mvalidationErrors[39m
-2024-12-17 16:39:12:3912 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 263 - 307.690 ms[39m
-[35m[39m
-2024-12-17 16:39:20:3920 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 201 1131 - 354.566 ms[39m
-[35m[39m
-2024-12-17 16:39:40:3940 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 1012 - 345.654 ms[39m
-[35m[39m
-2024-12-17 16:39:54:3954 [31merror[39m: [31myou do not have permission to post job[39m
-2024-12-17 16:39:54:3954 [35mhttp[39m: [35mPOST /api/v1/job/postJob 403 696 - 522.365 ms[39m
-[35m[39m
-2024-12-17 16:40:04:404 [31merror[39m: [31mResume not found[39m
-2024-12-17 16:40:04:404 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 404 653 - 340.510 ms[39m
-[35m[39m
-2024-12-17 16:40:25:4025 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7 200 51 - 335.985 ms[39m
-[35m[39m
-2024-12-17 16:40:28:4028 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 1359 - 297.912 ms[39m
-[35m[39m
-2024-12-17 16:40:41:4041 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 200 159 - 436.620 ms[39m
-[35m[39m
-2024-12-17 16:40:53:4053 [31merror[39m: [31muser already has education[39m
-2024-12-17 16:40:53:4053 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 409 690 - 359.192 ms[39m
-[35m[39m
-2024-12-17 16:42:22:4222 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:42:22:4222 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:42:23:4223 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:42:27:4227 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:42:27:4227 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 1042 - 349.619 ms[39m
-[35m[39m
-2024-12-17 16:42:40:4240 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2096.938 ms[39m
-[35m[39m
-2024-12-17 16:43:06:436 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 813 - 765.563 ms[39m
-[35m[39m
-2024-12-17 16:43:16:4316 [31merror[39m: [31muser don`t have education[39m
-2024-12-17 16:43:16:4316 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 404 688 - 325.714 ms[39m
-[35m[39m
-2024-12-17 16:43:27:4327 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 201 1129 - 370.613 ms[39m
-[35m[39m
-2024-12-17 16:43:35:4335 [31merror[39m: [31muser already has education[39m
-2024-12-17 16:43:35:4335 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 409 690 - 285.193 ms[39m
-[35m[39m
-2024-12-17 16:43:44:4344 [35mhttp[39m: [35mDELETE /api/v1/user/deleteEducation 204 - - 281.307 ms[39m
-[35m[39m
-2024-12-17 16:43:47:4347 [31merror[39m: [31muser don`t have education[39m
-2024-12-17 16:43:47:4347 [35mhttp[39m: [35mDELETE /api/v1/user/deleteEducation 404 688 - 277.469 ms[39m
-[35m[39m
-2024-12-17 16:43:51:4351 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 200 159 - 335.691 ms[39m
-[35m[39m
-2024-12-17 16:43:56:4356 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 1010 - 287.627 ms[39m
-[35m[39m
-2024-12-17 16:45:29:4529 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:45:29:4529 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:45:31:4531 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:47:19:4719 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:47:19:4719 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:47:21:4721 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:47:26:4726 [31merror[39m: [31mRelation with property path education in entity was not found.[39m
-2024-12-17 16:47:26:4726 [35mhttp[39m: [35mGET /api/v1/auth/getMe 500 1511 - 325.604 ms[39m
-[35m[39m
-2024-12-17 16:47:47:4747 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:47:48:4748 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:47:49:4749 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:52:07:527 [32minfo[39m: [32mServer is running on port 8000[39m
-2024-12-17 16:52:08:528 [32minfo[39m: [32mPostgres Database connected successfully[39m
-2024-12-17 16:52:09:529 [32minfo[39m: [32mMongoDB Database connected successfully[39m
-2024-12-17 16:52:13:5213 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 1153 - 331.498 ms[39m
-[35m[39m
-2024-12-17 16:52:30:5230 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7 200 51 - 353.712 ms[39m
-[35m[39m
-2024-12-17 16:52:40:5240 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 1500 - 308.538 ms[39m
+2024-12-17 10:49:54:4954 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 10:49:54:4954 [31merror[39m: [31mPostgres Database connection failed[39m
+2024-12-17 10:49:56:4956 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 10:50:42:5042 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 10:50:42:5042 [31merror[39m: [31mPostgres Database connection failed[39m
+2024-12-17 10:50:44:5044 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 10:53:08:538 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 10:53:09:539 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 10:53:10:5310 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:16:17:1617 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 11:16:17:1617 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 11:16:19:1619 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:16:38:1638 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:16:38:1638 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:16:38:1638 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 730.926 ms[39m
+[35m[39m
+2024-12-17 11:16:53:1653 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:16:53:1653 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:16:53:1653 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 344.820 ms[39m
+[35m[39m
+2024-12-17 11:18:45:1845 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 11:18:45:1845 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 11:18:46:1846 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:18:50:1850 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:18:50:1850 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:18:50:1850 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 404.487 ms[39m
+[35m[39m
+2024-12-17 11:19:26:1926 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 11:19:27:1927 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 11:19:28:1928 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:19:34:1934 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 378.570 ms[39m
+[35m[39m
+2024-12-17 11:19:37:1937 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:19:37:1937 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:19:37:1937 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 323.332 ms[39m
+[35m[39m
+2024-12-17 11:19:59:1959 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2024-12-17 11:19:59:1959 [35mhttp[39m: [35mPOST /api/v1/auth/login 500 751 - 941.841 ms[39m
+[35m[39m
+2024-12-17 11:20:45:2045 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1042.865 ms[39m
+[35m[39m
+2024-12-17 11:20:58:2058 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 162 - 2460.329 ms[39m
+[35m[39m
+2024-12-17 11:21:19:2119 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 1007.689 ms[39m
+[35m[39m
+2024-12-17 11:21:29:2129 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:29:2129 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:29:2129 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/edit/50009 403 902 - 432.509 ms[39m
+[35m[39m
+2024-12-17 11:21:36:2136 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:36:2136 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:36:2136 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 902 - 274.316 ms[39m
+[35m[39m
+2024-12-17 11:21:41:2141 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:41:2141 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:41:2141 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/edit/50009 403 902 - 270.510 ms[39m
+[35m[39m
+2024-12-17 11:21:46:2146 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:46:2146 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:46:2146 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/followers/1 403 902 - 271.120 ms[39m
+[35m[39m
+2024-12-17 11:21:50:2150 [35mhttp[39m: [35mGET /api/v1/business/profile/followersNumber/1 200 48 - 273.661 ms[39m
+[35m[39m
+2024-12-17 11:22:30:2230 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/50001 200 2273227 - 460.364 ms[39m
+[35m[39m
+2024-12-17 11:31:19:3119 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 11:31:19:3119 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 11:31:20:3120 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:31:31:3131 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1262.702 ms[39m
+[35m[39m
+2024-12-17 11:31:45:3145 [31merror[39m: [31mAccount not found[39m
+2024-12-17 11:31:45:3145 [31merror[39m: [31mAccount not found[39m
+2024-12-17 11:31:45:3145 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 461.425 ms[39m
+[35m[39m
+2024-12-17 11:31:50:3150 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:31:50:3150 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:31:50:3150 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 300.478 ms[39m
+[35m[39m
+2024-12-17 11:34:03:343 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 11:34:03:343 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 11:34:05:345 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:34:29:3429 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 11:34:29:3429 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 172 - 382.408 ms[39m
+[35m[39m
+2024-12-17 11:35:11:3511 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 477.550 ms[39m
+[35m[39m
+2024-12-17 11:35:36:3536 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 375.205 ms[39m
+[35m[39m
+2024-12-17 11:39:26:3926 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 11:39:26:3926 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 11:39:27:3927 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:39:32:3932 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 354.418 ms[39m
+[35m[39m
+2024-12-17 11:40:59:4059 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 11:40:59:4059 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 11:41:00:410 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:41:02:412 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 364.016 ms[39m
+[35m[39m
+2024-12-17 11:42:18:4218 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 11:42:19:4219 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 11:42:20:4220 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:42:24:4224 [31merror[39m: [31mUser does not have role in business[39m
+2024-12-17 11:42:24:4224 [31merror[39m: [31mUser does not have role in business[39m
+2024-12-17 11:42:24:4224 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 404 856 - 508.744 ms[39m
+[35m[39m
+2024-12-17 11:43:02:432 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 11:43:02:432 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 11:43:04:434 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:43:31:4331 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 11:43:31:4331 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 11:43:32:4332 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 11:43:39:4339 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 372.657 ms[39m
+[35m[39m
+2024-12-17 11:43:42:4342 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 279.485 ms[39m
+[35m[39m
+2024-12-17 11:43:47:4347 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 11:43:47:4347 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 159 - 279.352 ms[39m
+[35m[39m
+2024-12-17 11:43:55:4355 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 278.986 ms[39m
+[35m[39m
+2024-12-17 12:06:45:645 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:06:45:645 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:06:47:647 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:06:48:648 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 12:06:48:648 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 400 143 - 492.004 ms[39m
+[35m[39m
+2024-12-17 12:08:02:82 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:08:03:83 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:08:04:84 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:08:06:86 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 200 56 - 399.008 ms[39m
+[35m[39m
+2024-12-17 12:08:34:834 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:08:35:835 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:08:36:836 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:08:40:840 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 200 56 - 343.401 ms[39m
+[35m[39m
+2024-12-17 12:08:44:844 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 200 56 - 290.490 ms[39m
+[35m[39m
+2024-12-17 12:09:39:939 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:09:39:939 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:09:40:940 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:09:45:945 [31merror[39m: [31mError while deleting role[39m
+2024-12-17 12:09:45:945 [31merror[39m: [31mError while deleting role[39m
+2024-12-17 12:09:45:945 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 500 837 - 356.859 ms[39m
+[35m[39m
+2024-12-17 12:10:45:1045 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:10:45:1045 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:10:46:1046 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:19:46:1946 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:19:46:1946 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:19:47:1947 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:19:49:1949 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:19:49:1949 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:19:49:1949 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 500.781 ms[39m
+[35m[39m
+2024-12-17 12:20:29:2029 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 358.549 ms[39m
+[35m[39m
+2024-12-17 12:20:31:2031 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:20:31:2031 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:20:31:2031 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 295.109 ms[39m
+[35m[39m
+2024-12-17 12:20:51:2051 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 348.517 ms[39m
+[35m[39m
+2024-12-17 12:21:08:218 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 352.601 ms[39m
+[35m[39m
+2024-12-17 12:22:36:2236 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:22:37:2237 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:22:38:2238 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:22:47:2247 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 459.680 ms[39m
+[35m[39m
+2024-12-17 12:22:57:2257 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:22:57:2257 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:22:57:2257 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 1399 - 288.956 ms[39m
+[35m[39m
+2024-12-17 12:25:16:2516 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:25:17:2517 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:25:18:2518 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:25:30:2530 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:25:30:2530 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:25:30:2530 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 904 - 508.614 ms[39m
+[35m[39m
+2024-12-17 12:26:21:2621 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:26:22:2622 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:26:23:2623 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:26:27:2627 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:26:27:2627 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:26:27:2627 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 904 - 370.386 ms[39m
+[35m[39m
+2024-12-17 12:27:43:2743 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:27:44:2744 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:27:56:2756 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:27:57:2757 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:27:58:2758 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:29:05:295 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:29:05:295 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:29:07:297 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:29:12:2912 [31merror[39m: [31mCannot read properties of undefined (reading 'role')[39m
+2024-12-17 12:29:12:2912 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 500 1461 - 361.220 ms[39m
+[35m[39m
+2024-12-17 12:29:50:2950 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:29:50:2950 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:29:53:2953 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:29:57:2957 [31merror[39m: [31mCannot read properties of undefined (reading 'role')[39m
+2024-12-17 12:29:57:2957 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 500 1461 - 501.639 ms[39m
+[35m[39m
+2024-12-17 12:31:20:3120 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:31:20:3120 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:31:22:3122 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:31:24:3124 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:31:24:3124 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:31:24:3124 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 904 - 360.534 ms[39m
+[35m[39m
+2024-12-17 12:32:24:3224 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:32:24:3224 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:32:25:3225 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:32:27:3227 [31merror[39m: [31mBusiness can only have one owner, cannot be updated to owner[39m
+2024-12-17 12:32:27:3227 [31merror[39m: [31mBusiness can only have one owner, cannot be updated to owner[39m
+2024-12-17 12:32:27:3227 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 906 - 333.419 ms[39m
+[35m[39m
+2024-12-17 12:33:20:3320 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:33:20:3320 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:33:21:3321 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:33:23:3323 [31merror[39m: [31mBusiness can only have one owner, cannot be updated to owner[39m
+2024-12-17 12:33:23:3323 [31merror[39m: [31mBusiness can only have one owner, cannot be updated to owner[39m
+2024-12-17 12:33:23:3323 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 906 - 343.000 ms[39m
+[35m[39m
+2024-12-17 12:33:28:3328 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 282.768 ms[39m
+[35m[39m
+2024-12-17 12:33:44:3344 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:33:44:3344 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:33:44:3344 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 343.185 ms[39m
+[35m[39m
+2024-12-17 12:33:47:3347 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 277.168 ms[39m
+[35m[39m
+2024-12-17 12:33:54:3354 [31merror[39m: [31mAccount not found[39m
+2024-12-17 12:33:54:3354 [31merror[39m: [31mAccount not found[39m
+2024-12-17 12:33:54:3354 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 300.404 ms[39m
+[35m[39m
+2024-12-17 12:34:12:3412 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 934.701 ms[39m
+[35m[39m
+2024-12-17 12:34:17:3417 [31merror[39m: [31mUser dont have authority to update super admin, cannot be updated[39m
+2024-12-17 12:34:17:3417 [31merror[39m: [31mUser dont have authority to update super admin, cannot be updated[39m
+2024-12-17 12:34:17:3417 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 916 - 278.101 ms[39m
+[35m[39m
+2024-12-17 12:34:36:3436 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 490.883 ms[39m
+[35m[39m
+2024-12-17 12:40:09:409 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 12:40:09:409 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 12:40:10:4010 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 12:40:18:4018 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2024-12-17 12:40:18:4018 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2024-12-17 12:40:18:4018 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 910 - 353.984 ms[39m
+[35m[39m
+2024-12-17 12:40:31:4031 [31merror[39m: [31mUser dont have authority to add owner, cannot be added[39m
+2024-12-17 12:40:31:4031 [31merror[39m: [31mUser dont have authority to add owner, cannot be added[39m
+2024-12-17 12:40:31:4031 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 894 - 331.215 ms[39m
+[35m[39m
+2024-12-17 13:26:20:2620 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 13:26:20:2620 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 13:26:21:2621 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 13:26:29:2629 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:26:29:2629 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:26:29:2629 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 902 - 551.520 ms[39m
+[35m[39m
+2024-12-17 13:26:36:2636 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:26:36:2636 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:26:36:2636 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 902 - 292.289 ms[39m
+[35m[39m
+2024-12-17 13:28:19:2819 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 13:28:20:2820 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 13:28:21:2821 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 13:28:26:2826 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:28:26:2826 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:28:26:2826 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 902 - 339.344 ms[39m
+[35m[39m
+2024-12-17 13:29:39:2939 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 13:29:40:2940 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 13:29:41:2941 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 13:29:43:2943 [31merror[39m: [31mCannot set properties of undefined (setting 'role')[39m
+2024-12-17 13:29:43:2943 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 500 777 - 332.701 ms[39m
+[35m[39m
+2024-12-17 13:32:29:3229 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 13:32:29:3229 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 13:32:31:3231 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 13:32:34:3234 [31merror[39m: [31mCannot set properties of undefined (setting 'role')[39m
+2024-12-17 13:32:34:3234 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 500 777 - 366.336 ms[39m
+[35m[39m
+2024-12-17 13:32:55:3255 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 13:32:56:3256 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 13:32:57:3257 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 13:35:19:3519 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 13:35:20:3520 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 13:35:21:3521 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 16:39:11:3911 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 16:39:12:3912 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 16:39:13:3913 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 16:39:18:3918 [31merror[39m: [31mCannot set properties of undefined (setting 'role')[39m
+2024-12-17 16:39:18:3918 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 500 777 - 705.846 ms[39m
+[35m[39m
+2024-12-17 16:40:31:4031 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 16:40:32:4032 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 16:40:33:4033 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 16:40:36:4036 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 16:40:36:4036 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 16:40:36:4036 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 345.064 ms[39m
+[35m[39m
+2024-12-17 16:44:26:4426 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 16:44:27:4427 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 16:44:28:4428 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 16:44:59:4459 [31merror[39m: [31mUser dont have authority to update super admin, cannot be updated[39m
+2024-12-17 16:44:59:4459 [31merror[39m: [31mUser dont have authority to update super admin, cannot be updated[39m
+2024-12-17 16:44:59:4459 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 1420 - 416.541 ms[39m
+[35m[39m
+2024-12-17 16:45:03:453 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 390.643 ms[39m
+[35m[39m
+2024-12-17 16:45:19:4519 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 336.864 ms[39m
+[35m[39m
+2024-12-17 16:45:52:4552 [31merror[39m: [31mAccount not found[39m
+2024-12-17 16:45:52:4552 [31merror[39m: [31mAccount not found[39m
+2024-12-17 16:45:52:4552 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 459.499 ms[39m
+[35m[39m
+2024-12-17 16:46:06:466 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 533.671 ms[39m
+[35m[39m
+2024-12-17 16:49:34:4934 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 16:49:34:4934 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 16:49:36:4936 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 16:49:41:4941 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 495.583 ms[39m
+[35m[39m
+2024-12-17 16:50:13:5013 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 16:50:13:5013 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 16:50:15:5015 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 16:50:16:5016 [31merror[39m: [31mError while updating role[39m
+2024-12-17 16:50:16:5016 [31merror[39m: [31mError while updating role[39m
+2024-12-17 16:50:16:5016 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 836 - 375.728 ms[39m
+[35m[39m
+2024-12-17 16:50:33:5033 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 200 56 - 489.150 ms[39m
+[35m[39m
+2024-12-17 16:52:10:5210 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 16:52:11:5211 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 16:52:12:5212 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 16:52:15:5215 [31merror[39m: [31mError while deleting role, Email address of account do not exists in the HR list of company[39m
+2024-12-17 16:52:15:5215 [31merror[39m: [31mError while deleting role[39m
+2024-12-17 16:52:15:5215 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 400 836 - 391.362 ms[39m
+[35m[39m
+2024-12-17 16:59:10:5910 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 16:59:10:5910 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 16:59:11:5911 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 16:59:13:5913 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 20 - 322.670 ms[39m
+[35m[39m
+2024-12-17 16:59:43:5943 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 16:59:43:5943 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 16:59:44:5944 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 16:59:46:5946 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 4274 - 482.696 ms[39m
+[35m[39m
+2024-12-17 17:01:13:113 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 1939 - 447.026 ms[39m
+[35m[39m
+2024-12-17 17:03:25:325 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 17:03:26:326 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 17:03:27:327 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 17:03:31:331 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 1003 - 316.440 ms[39m
+[35m[39m
+2024-12-17 17:04:20:420 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 17:04:20:420 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 17:04:21:421 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 17:04:26:426 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1253.871 ms[39m
+[35m[39m
+2024-12-17 17:04:52:452 [31merror[39m: [31mError while updating role, Email address of account do not exists in the HR list of company[39m
+2024-12-17 17:04:52:452 [31merror[39m: [31mError while updating role[39m
+2024-12-17 17:04:52:452 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 836 - 465.699 ms[39m
+[35m[39m
+2024-12-17 17:05:07:57 [31merror[39m: [31mError while updating role, Email address of account do not exists in the HR list of company[39m
+2024-12-17 17:05:07:57 [31merror[39m: [31mError while updating role[39m
+2024-12-17 17:05:07:57 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 836 - 336.606 ms[39m
+[35m[39m
+2024-12-17 17:07:46:746 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 17:07:47:747 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 17:07:48:748 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 17:07:50:750 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 340.472 ms[39m
+[35m[39m
+2024-12-17 17:08:21:821 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 17:08:22:822 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 17:08:23:823 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 17:08:30:830 [31merror[39m: [31mError while updating role, Email address of account do not exists in the HR list of company[39m
+2024-12-17 17:08:30:830 [31merror[39m: [31mError while updating role[39m
+2024-12-17 17:08:30:830 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 836 - 371.580 ms[39m
+[35m[39m
+2024-12-17 17:08:39:839 [31merror[39m: [31mAccount not found[39m
+2024-12-17 17:08:39:839 [31merror[39m: [31mAccount not found[39m
+2024-12-17 17:08:39:839 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 277.247 ms[39m
+[35m[39m
+2024-12-17 17:08:58:858 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1022.100 ms[39m
+[35m[39m
+2024-12-17 17:09:02:92 [31merror[39m: [31mOwner cannot be deleted[39m
+2024-12-17 17:09:02:92 [31merror[39m: [31mOwner cannot be deleted[39m
+2024-12-17 17:09:02:92 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 832 - 281.215 ms[39m
+[35m[39m
+2024-12-17 17:13:36:1336 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 17:13:36:1336 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 17:13:37:1337 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 17:13:45:1345 [31merror[39m: [31mUser does not have role in business[39m
+2024-12-17 17:13:45:1345 [31merror[39m: [31mUser does not have role in business[39m
+2024-12-17 17:13:45:1345 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 856 - 349.217 ms[39m
+[35m[39m
+2024-12-17 17:14:20:1420 [31merror[39m: [31mOwner cannot be deleted[39m
+2024-12-17 17:14:20:1420 [31merror[39m: [31mOwner cannot be deleted[39m
+2024-12-17 17:14:20:1420 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 832 - 354.013 ms[39m
 [35m[39m

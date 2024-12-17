@@ -9,8 +9,21 @@ import validateRequestMiddleware from '../middlewares/validator';
 import {
     businessCreationValidator,
     businessUpdateValidator,
-    checkAddNewHrValidator,
+    checkCreateOrUpdateHr,
+    checkDeleteHr,
 } from '../middlewares/validators/bussiness.Validator';
+import {
+    addHrToBusiness,
+    checkAddNewHrAuthority,
+    checkBusinessDashboardAuthority,
+    checkDeleteHrAuthority,
+    checkUpdateSuperAdminAuthority,
+    deleteHr,
+    getFollowersOfBusiness,
+    hrDashboardEntry,
+    updateBusiness,
+    updateHrRole,
+} from '../controllers/businessController';
 
 export const businessRouter = express.Router();
 
@@ -60,25 +73,59 @@ businessRouter.get(
     businessController.getFollowersNumberOfBusiness,
 );
 
-// Admin
 businessRouter.post(
     '/myBusiness/dashboard/hr/:businessId',
     protect,
-    validateRequestMiddleware(checkAddNewHrValidator),
-    businessController.addHrToBusiness,
+    validateRequestMiddleware(checkCreateOrUpdateHr),
+    checkBusinessDashboardAuthority, // check if user has role in business, and return role
+    hrDashboardEntry, // check if user account Exists or not and return it's id
+    checkAddNewHrAuthority,
+    addHrToBusiness,
 );
-
+businessRouter.put(
+    '/myBusiness/dashboard/hr/:businessId',
+    protect,
+    validateRequestMiddleware(checkCreateOrUpdateHr),
+    checkBusinessDashboardAuthority,
+    hrDashboardEntry,
+    checkUpdateSuperAdminAuthority,
+    updateHrRole,
+);
+businessRouter.delete(
+    '/myBusiness/dashboard/hr/:businessId',
+    protect,
+    validateRequestMiddleware(checkDeleteHr),
+    checkBusinessDashboardAuthority,
+    hrDashboardEntry,
+    checkDeleteHrAuthority,
+    deleteHr,
+);
+businessRouter.get(
+    '/myBusiness/dashboard/hr/all/:businessId',
+    protect,
+    checkBusinessDashboardAuthority,
+    businessController.getAllHrOfBusiness,
+);
+//-----------------------------
 businessRouter.put(
     '/myBusiness/dashboard/edit/:businessId',
     protect,
+    validateRequestMiddleware(businessUpdateValidator),
+    checkBusinessDashboardAuthority,
     uploadSingleImage('logo'),
     resizeBusinessLogo,
-    validateRequestMiddleware(businessUpdateValidator),
-    businessController.updateBusiness,
+    updateBusiness,
 );
 
 businessRouter.get(
     '/myBusiness/dashboard/followers/:businessId',
     protect,
-    businessController.getFollowersOfBusiness,
+    checkBusinessDashboardAuthority,
+    getFollowersOfBusiness,
 );
+
+// businessRouter.post(
+//     '/myBusiness/dashboard/edit/phoneNumber',
+//     protect,
+//     businessController.addPhoneNumberToBusiness,
+// );
