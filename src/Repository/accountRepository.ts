@@ -1,6 +1,7 @@
 import { Repository } from 'typeorm';
 import { Account } from '../entity/Account';
 import { AppDataSource } from '../data-source';
+import { EducationRepository } from './educationRepository';
 
 class AccountRepositoryClass extends Repository<Account> {
     async findAllAccountData(accountId: number) {
@@ -10,23 +11,24 @@ class AccountRepositoryClass extends Repository<Account> {
             //.leftJoinAndSelect('account.education', 'education') // Join education
             .leftJoinAndSelect('account.skills', 'skill') // Join skills
             .leftJoinAndSelect('account.languages', 'language') // Join languages
-            .leftJoinAndSelect('account.follow_businesses', 'follow_business') // Join follow_businesses
-            .leftJoinAndSelect('account.reviews', 'review') // Join reviews
+            //.leftJoinAndSelect('account.follow_businesses', 'follow_business') // Join follow_businesses
+            //.leftJoinAndSelect('account.reviews', 'review') // Join reviews
+            .leftJoinAndSelect('account.resumes', 'resume')
             .leftJoinAndSelect('account.business_roles', 'business_role') // Join business roles
             .leftJoinAndSelect('account.job_applications', 'job_application') // Join job applications
-            .leftJoinAndSelect(
-                'account.job_applicationssaved_jobs',
-                'saved_job',
-            ) // Join saved jobs
+            .leftJoinAndSelect('job_application.job', 'job') // Ensure the Job entity is included
+
+            .leftJoinAndSelect('account.saved_jobs', 'saved_job') // Join saved jobs
             .where('account.id = :id', { id: accountId }) // Filter by accountId
             .getOne();
 
-        if (!account) {
-            throw new Error('Account not found');
-        }
-
+        const education = await EducationRepository.findOneBy({
+            account_id: account.id,
+        });
+        const accountJson: { [key: string]: any } = { ...account };
+        accountJson.education = education;
         // Return the account with all its relations
-        return account;
+        return accountJson;
     }
     async getAccountWithSavedJobs(userId: number) {
         const account = await this.findOne({

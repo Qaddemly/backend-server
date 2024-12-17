@@ -13,7 +13,6 @@ import {
     resetPassword,
     signUp,
     SignUpStepTwo,
-    updateMe,
     verifyPasswordResetCode,
 } from '../controllers/authControllers';
 import {

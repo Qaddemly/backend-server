@@ -262,3 +262,28 @@
 2024-12-17 03:42:47:4247 [31merror[39m: [31mNo resumes provided[39m
 2024-12-17 03:44:31:4431 [31merror[39m: [31mNo resume found with that ID[39m
 2024-12-17 03:55:22:5522 [31merror[39m: [31mNo resume found with that ID[39m
+2024-12-17 15:28:30:2830 [31merror[39m: [31mRelation with property path job_applicationssaved_jobs in entity was not found.[39m
+2024-12-17 15:31:07:317 [31merror[39m: [31mNo resume found with that ID[39m
+2024-12-17 15:33:57:3357 [31merror[39m: [31mduplicate key value violates unique constraint "PK_54115ee388cdb6d86bb4bf5b2ea"[39m
+2024-12-17 15:48:51:4851 [31merror[39m: [31mduplicate key value violates unique constraint "PK_54115ee388cdb6d86bb4bf5b2ea"[39m
+2024-12-17 15:55:56:5556 [31merror[39m: [31m"job_application" alias was not found. Maybe you forgot to join it?[39m
+2024-12-17 15:56:52:5652 [31merror[39m: [31mRelation with property path job_application.job in entity was not found.[39m
+2024-12-17 15:57:17:5717 [31merror[39m: [31mRelation with property path job_application in entity was not found.[39m
+2024-12-17 15:58:44:5844 [31merror[39m: [31mcolumn "job" does not exist[39m
+2024-12-17 16:00:54:054 [31merror[39m: [31mJob already saved[39m
+2024-12-17 16:18:59:1859 [31merror[39m: [31myou already complete your data[39m
+2024-12-17 16:21:38:2138 [31merror[39m: [31myou already complete your data[39m
+2024-12-17 16:22:41:2241 [31merror[39m: [31myou already complete your data[39m
+2024-12-17 16:23:56:2356 [31merror[39m: [31myou already complete your data[39m
+2024-12-17 16:24:34:2434 [31merror[39m: [31myou already complete your data[39m
+2024-12-17 16:29:37:2937 [31merror[39m: [31myou already complete your data[39m
+2024-12-17 16:33:33:3333 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 16:39:12:3912 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 16:39:54:3954 [31merror[39m: [31myou do not have permission to post job[39m
+2024-12-17 16:40:04:404 [31merror[39m: [31mResume not found[39m
+2024-12-17 16:40:53:4053 [31merror[39m: [31muser already has education[39m
+2024-12-17 16:42:27:4227 [31merror[39m: [31myou already complete your data[39m
+2024-12-17 16:43:16:4316 [31merror[39m: [31muser don`t have education[39m
+2024-12-17 16:43:35:4335 [31merror[39m: [31muser already has education[39m
+2024-12-17 16:43:47:4347 [31merror[39m: [31muser don`t have education[39m
+2024-12-17 16:47:26:4726 [31merror[39m: [31mRelation with property path education in entity was not found.[39m
