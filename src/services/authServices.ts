@@ -549,33 +549,33 @@ export const signInGoogleRedirection = async (req: Request, res: Response) => {
     return [accessToken, refreshToken, updatedUser];
 };
 
-export const updateMyInfo = async (
-    req: Request<{}, {}, updateMeBody>,
-    userId: number,
-) => {
-    const {
-        address,
-        phone,
-        education,
-        experience,
-        skills,
-        dateOfBirth,
-        languages,
-        profilePicture,
-        firstName,
-        lastName,
-        email,
-        resume,
-    } = req.body;
+// export const updateMyInfo = async (
+//     req: Request<{}, {}, updateMeBody>,
+//     userId: number,
+// ) => {
+//     const {
+//         address,
+//         phone,
+//         education,
+//         experience,
+//         skills,
+//         dateOfBirth,
+//         languages,
+//         profilePicture,
+//         firstName,
+//         lastName,
+//         email,
+//         resume,
+//     } = req.body;
 
-    const user = await AccountRepository.findAllAccountData(userId);
-    if (!user) {
-        throw new AppError('user not found', 404);
-    }
+//     const user = await AccountRepository.findAllAccountData(userId);
+//     if (!user) {
+//         throw new AppError('user not found', 404);
+//     }
 
-    const userJson = await updateAllAccountData(user, req);
-    return userJson;
-};
+//     const userJson = await updateAllAccountData(user, req);
+//     return userJson;
+// };
 
 export const changeCurrentPassword = async (
     req: Request<{}, {}, changeMyPasswordBody>,
@@ -636,9 +636,53 @@ export const updateUserAfterSignUpFirstStep = async (
     } = req.body;
     const userId = Number(req.user.id);
     //const userTempData = await AccountTempData.findOne({ accountId: userId });
+    console.log(user);
+    if (
+        user.address.city ||
+        user.address.country ||
+        user.phone.country_code ||
+        user.phone.number ||
+        user.profile_picture ||
+        user.date_of_birth
+    ) {
+        throw new AppError('you already complete your data', 400);
+    }
+    const foundedEducation = await EducationRepository.findOneBy({
+        account_id: userId,
+    });
+    if (foundedEducation) {
+        throw new AppError('you already complete your data', 400);
+    }
+    const foundedResume = await ResumeRepository.findOne({
+        where: { account: { id: userId } },
+    });
+    console.log(foundedResume);
+    if (foundedResume) {
+        throw new AppError('you already complete your data', 400);
+    }
+    const foundedExperience = await ExperienceRepository.findOne({
+        where: { account: { id: userId } },
+    });
+    if (foundedExperience) {
+        throw new AppError('you already complete your data', 400);
+    }
+    const foundedLanguages = await LanguageRepository.findOne({
+        where: { account: { id: userId } },
+    });
+    if (foundedLanguages) {
+        throw new AppError('you already complete your data', 400);
+    }
+    const foundedSkills = await SkillRepository.findOne({
+        where: { account: { id: userId } },
+    });
+    if (foundedSkills) {
+        throw new AppError('you already complete your data', 400);
+    }
 
-    user.address = address;
-    user.phone = phone;
+    user.address.city = address.city;
+    user.address.country = address.country;
+    user.phone.country_code = phone.countryCode;
+    user.phone.number = phone.number;
     user.profile_picture = profile_picture;
     user.date_of_birth = date_of_birth;
     const userJson: { [key: string]: any } = { ...user };
@@ -652,25 +696,25 @@ export const updateUserAfterSignUpFirstStep = async (
         education_.start_date = education.startDate;
         education_.end_date = education.endDate;
         // Save the education to the database
-        //const savedEducation = await EducationRepository.save(education_);
+        const savedEducation = await EducationRepository.save(education_);
 
         userJson.education = education_;
     }
     if (skills) {
-        const arraySkills: any = [];
         const newSkills = skills.map((skillData) => {
             const skill = new Skill();
             skill.name = skillData;
-            arraySkills.push(skill.name);
             skill.account = user; // Link the skill to the account
             return skill;
         });
 
         const savedSkills = await SkillRepository.save(newSkills);
-        userJson.skills = arraySkills;
+        savedSkills.map((skill) => {
+            delete skill.account;
+        });
+        userJson.skills = savedSkills;
     }
     if (experience) {
-        const arrayExperience: any = [];
         const newExperience = experience.map((experience) => {
             const experience_ = new Experience();
             //experience_.account = user;
@@ -688,12 +732,13 @@ export const updateUserAfterSignUpFirstStep = async (
 
         // Save the experience
         const savedExperience = await ExperienceRepository.save(newExperience);
-        userJson.experience = arrayExperience;
+        savedExperience.map((resumeData) => {
+            delete resumeData.account;
+        });
+        userJson.experience = savedExperience;
     }
 
     if (languages) {
-        const arrayLanguage: any = [];
-
         const newLanguage = languages.map((lang) => {
             const language_ = new Language();
             language_.account = user;
@@ -705,7 +750,10 @@ export const updateUserAfterSignUpFirstStep = async (
 
         // Save the Language
         const savedLanguage = await LanguageRepository.save(newLanguage);
-        userJson.languages = arrayLanguage;
+        savedLanguage.map((resumeData) => {
+            delete resumeData.account;
+        });
+        userJson.languages = savedLanguage;
     }
     if (resumes) {
         const arrayResumes: any = [];
@@ -724,7 +772,6 @@ export const updateUserAfterSignUpFirstStep = async (
         userJson.resumes = arrayResumes;
     }
     await AccountRepository.save(user);
-
     return userJson;
 };
 
