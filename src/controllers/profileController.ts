@@ -9,7 +9,13 @@ import {
     deleteUserOneLanguageService,
     deleteUserOneSkillService,
     updateUserOneExperienceService,
-} from '../services/userServices';
+    updateUserOneEducationService,
+    createUserOneEducationService,
+    deleteUserOneEducationService,
+    updateAccountBasicInfoService,
+    deleteUserOneResumeService,
+    addUserOneResumeService,
+} from '../services/profileServices';
 import catchAsync from 'express-async-handler';
 
 export const deleteMe = catchAsync(
@@ -106,6 +112,81 @@ export const deleteUserOneLanguage = catchAsync(
         try {
             await deleteUserOneLanguageService(req);
             res.status(204).json({});
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const updateUserOneEducation = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const education = await updateUserOneEducationService(req);
+            res.status(200).json({
+                success: true,
+                education,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const createUserOneEducation = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const education = await createUserOneEducationService(req);
+            res.status(200).json({
+                success: true,
+                education,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const deleteUserOneEducation = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const education = await deleteUserOneEducationService(req);
+            res.status(204).json({});
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const addUserOneResume = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const resume = await addUserOneResumeService(req);
+            res.status(200).json({
+                success: true,
+                resume,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const deleteUserOneResume = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const resume = await deleteUserOneResumeService(req);
+            res.status(204).json({});
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const updateUserBasicInfo = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const updatedUser = await updateAccountBasicInfoService(req);
+            res.status(200).json({ success: true, updatedUser });
         } catch (err) {
             return next(err);
         }

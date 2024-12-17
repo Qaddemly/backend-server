@@ -1,4 +1,5 @@
 import {
+    Column,
     CreateDateColumn,
     Entity,
     JoinColumn,
@@ -7,6 +8,7 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 import { Job } from './Job';
+import { Resume } from './Resume';
 
 @Entity()
 export class JobApplication {
@@ -22,6 +24,15 @@ export class JobApplication {
     })
     job: Job;
 
+    @ManyToOne(() => Resume, (resume) => resume.job_applications, {
+        onDelete: 'CASCADE',
+    })
+    @JoinColumn({
+        name: 'resume_id',
+        foreignKeyConstraintName: 'FK_JOB_APPLICATION_RESUME',
+    })
+    resume: Resume;
+    @Column()
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 

@@ -39,7 +39,7 @@ export class Job {
     // Will be added Later
     // Not sure if this is the right way
     @Column('text', { array: true })
-    skills: string;
+    skills: string[];
 
     @Column('float')
     salary: number;

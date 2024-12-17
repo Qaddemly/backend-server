@@ -5,19 +5,9 @@ export interface signUpBody
     extends Pick<userDoc, 'firstName' | 'lastName' | 'email' | 'password'> {
     passwordConfirm: string;
 }
-export interface signUpBodyStepTwoDTO
-    extends Pick<
-        userDoc,
-        | 'address'
-        | 'phone'
-        | 'skills'
-        | 'experience'
-        | 'dateOfBirth'
-        | 'education'
-        | 'languages'
-        | 'profilePicture'
-        | 'resume'
-    > {}
+export interface signUpBodyStepTwoDTO {
+    [key: string]: any;
+}
 
 export interface updateMeBody
     extends Pick<

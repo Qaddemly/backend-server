@@ -48,6 +48,8 @@ import {
 import { Language } from '../entity/Language';
 import { LanguageRepository } from '../Repository/languageRepository';
 import { Logger } from '../utils/logger';
+import { Resume } from '../entity/Resume';
+import { ResumeRepository } from '../Repository/resumeRepository';
 
 export const createUserForSignUp = async (reqBody: signUpBody) => {
     const { firstName, lastName, email, password } = reqBody;
@@ -100,8 +102,21 @@ export const updateUserForSignUpStepTwo = async (
     return userJson;
 };
 export const uploadUserPICAndResume = uploadProfilePicAndResume([
-    { name: 'profilePicture', maxCount: 1 },
-    { name: 'resume', maxCount: 1 },
+    { name: 'profile_picture', maxCount: 1 },
+    { name: 'resumes', maxCount: 10 },
+]);
+export const uploadProfilePic = uploadProfilePicAndResume([
+    {
+        name: 'profile_picture',
+        maxCount: 1,
+    },
+]);
+
+export const uploadResume = uploadProfilePicAndResume([
+    {
+        name: 'resumes',
+        maxCount: 1,
+    },
 ]);
 //export const uploadUserImage = uploadSingleImage('profilePicture');
 export const resizeUserImage = catchAsync(
@@ -111,18 +126,22 @@ export const resizeUserImage = catchAsync(
         next: NextFunction,
     ) => {
         //console.log((req.files! as expressFiles).resume);
-        if ((req.files! as expressFiles).profilePicture) {
-            // console.log("req.files", req.files.imageCover[0]);
-            const userImageName = `user-${Math.round(
-                Math.random() * 1e9,
-            )}-${Date.now()}.jpeg`;
-            const imageDbUrl = `${process.env.BASE_URL}/uploads/users/${userImageName}`;
-            await sharp((req.files! as expressFiles).profilePicture[0].buffer)
-                .resize(800, 600)
-                .toFormat('jpeg')
-                .jpeg({ quality: 90 })
-                .toFile(`src/uploads/users/${userImageName}`);
-            req.body.profilePicture = imageDbUrl;
+        if (req.files) {
+            if ((req.files! as expressFiles).profile_picture) {
+                // console.log("req.files", req.files.imageCover[0]);
+                const userImageName = `user-${Math.round(
+                    Math.random() * 1e9,
+                )}-${Date.now()}.jpeg`;
+                const imageDbUrl = `${process.env.BASE_URL}/uploads/users/${userImageName}`;
+                await sharp(
+                    (req.files! as expressFiles).profile_picture[0].buffer,
+                )
+                    .resize(800, 600)
+                    .toFormat('jpeg')
+                    .jpeg({ quality: 90 })
+                    .toFile(`src/uploads/users/${userImageName}`);
+                req.body.profile_picture = imageDbUrl;
+            }
         }
         next();
     },
@@ -135,29 +154,35 @@ export const savingResumeInDisk = catchAsync(
         res: Response,
         next: NextFunction,
     ) => {
-        if ((req.files! as expressFiles).resume) {
-            const originalFileName = (req.files! as expressFiles).resume[0]
-                .originalname;
-            const resumeExtension = originalFileName.substring(
-                originalFileName.lastIndexOf('.') + 1,
-            );
-            const resumeName = `resume-${Math.round(
-                Math.random() * 1e9,
-            )}-${Date.now()}.${resumeExtension}`;
-            const resumeDbUrl = `${process.env.BASE_URL}/uploads/resumes/${resumeName}`;
-            // Save the PDF to disk
-            const filePath = `src/uploads/resumes/${resumeName}`;
+        if (req.files) {
+            if ((req.files! as expressFiles).resumes) {
+                const resumesUrlArrays: string[] = [];
+                const resumes = (req.files as expressFiles).resumes.map(
+                    (resume) => {
+                        const originalFileName = resume.originalname;
+                        const resumeExtension = originalFileName.substring(
+                            originalFileName.lastIndexOf('.') + 1,
+                        );
+                        const resumeName = `resume-${Math.round(
+                            Math.random() * 1e9,
+                        )}-${Date.now()}.${resumeExtension}`;
+                        const resumeDbUrl = `${process.env.BASE_URL}/uploads/resumes/${resumeName}`;
+                        // Save the PDF to disk
+                        resumesUrlArrays.push(resumeDbUrl);
+                        const filePath = `src/uploads/resumes/${resumeName}`;
 
-            fs.writeFile(
-                filePath,
-                (req.files! as expressFiles).resume[0].buffer,
-                (err) => {
-                    if (err) {
-                        return next(new AppError('Error saving file to disk.'));
-                    }
-                },
-            );
-            req.body.resume = resumeDbUrl;
+                        fs.writeFile(filePath, resume.buffer, (err) => {
+                            if (err) {
+                                return next(
+                                    new AppError('Error saving file to disk.'),
+                                );
+                            }
+                        });
+                    },
+                );
+
+                req.body.resumes = resumesUrlArrays;
+            }
         }
         next();
     },
@@ -375,10 +400,7 @@ export const protect = catchAsync(
                     `${user.password_changed_at.getTime() / 1000}`,
                     10,
                 );
-                console.log(
-                    passChangedAtTimeStamp > decoded!.iat,
-                    decoded!.iat,
-                );
+
                 if (passChangedAtTimeStamp > decoded!.iat!) {
                     throw new AppError(
                         'password is changed please login again',
@@ -607,65 +629,34 @@ export const updateUserAfterSignUpFirstStep = async (
         education,
         experience,
         skills,
-        dateOfBirth,
+        date_of_birth,
         languages,
-        profilePicture,
-        resume,
+        profile_picture,
+        resumes,
     } = req.body;
-    const userId = req.user.id;
+    const userId = Number(req.user.id);
+    //const userTempData = await AccountTempData.findOne({ accountId: userId });
+
     user.address = address;
-    user.phone.country_code = phone.countryCode;
-    user.phone.number = Number(phone.number);
-    user.resume = resume;
-    user.profile_picture = profilePicture;
-    user.date_of_birth = dateOfBirth;
+    user.phone = phone;
+    user.profile_picture = profile_picture;
+    user.date_of_birth = date_of_birth;
     const userJson: { [key: string]: any } = { ...user };
-    delete userJson.first_name;
-    delete userJson.last_name;
-    delete userJson.date_of_birth;
 
-    userJson.firstName = user.first_name;
-    userJson.lastName = user.last_name;
-    userJson.dateOfBirth = user.date_of_birth;
-    userJson.phone = returningPhone(user.phone);
     if (education) {
-        const foundedEducation = await EducationRepository.findOneBy({
-            account_id: user.id,
-        });
-        console.log(foundedEducation);
-        if (foundedEducation) {
-            const eduObj: { [key: string]: any } = {};
-            eduObj.university = education.university;
-            eduObj.field_of_study = education.fieldOfStudy;
-            eduObj.gpa = education.gpa;
-            eduObj.start_date = education.startDate;
-            eduObj.end_date = education.endDate;
-            // Save the education to the database
-            const savedEducation = await EducationRepository.updateEducation(
-                eduObj,
-                userId,
-            );
-            const returnedEducation = returningEducation(savedEducation);
+        const education_ = new Education();
+        education_.account_id = userId; // Associate with the user's ID
+        education_.university = education.university;
+        education_.field_of_study = education.fieldOfStudy;
+        education_.gpa = education.gpa;
+        education_.start_date = education.startDate;
+        education_.end_date = education.endDate;
+        // Save the education to the database
+        //const savedEducation = await EducationRepository.save(education_);
 
-            userJson.education = returnedEducation;
-        } else {
-            const education_ = new Education();
-            education_.account_id = userId; // Associate with the user's ID
-            education_.university = education.university;
-            education_.field_of_study = education.fieldOfStudy;
-            education_.gpa = education.gpa;
-            education_.start_date = education.startDate;
-            education_.end_date = education.endDate;
-            // Save the education to the database
-            const savedEducation = await EducationRepository.save(education_);
-            const returnedEducation = returningEducation(savedEducation);
-
-            userJson.education = returnedEducation;
-        }
+        userJson.education = education_;
     }
     if (skills) {
-        // Create and link new skills
-        await SkillRepository.deleteAllSkills(user.id);
         const arraySkills: any = [];
         const newSkills = skills.map((skillData) => {
             const skill = new Skill();
@@ -675,14 +666,11 @@ export const updateUserAfterSignUpFirstStep = async (
             return skill;
         });
 
-        // Save the skills
         const savedSkills = await SkillRepository.save(newSkills);
         userJson.skills = arraySkills;
     }
     if (experience) {
         const arrayExperience: any = [];
-        await ExperienceRepository.deleteAllExperience(user.id);
-
         const newExperience = experience.map((experience) => {
             const experience_ = new Experience();
             //experience_.account = user;
@@ -694,7 +682,6 @@ export const updateUserAfterSignUpFirstStep = async (
             experience_.still_working = experience.stillWorking;
             experience_.start_date = experience.startDate;
             experience_.end_date = experience.endDate;
-            arrayExperience.push(returningExperiences(experience_));
             experience_.account = user; // Link the experience_ to the account
             return experience_;
         });
@@ -706,14 +693,12 @@ export const updateUserAfterSignUpFirstStep = async (
 
     if (languages) {
         const arrayLanguage: any = [];
-        await LanguageRepository.deleteAllLanguages(user.id);
 
         const newLanguage = languages.map((lang) => {
             const language_ = new Language();
             language_.account = user;
             language_.name = lang;
 
-            arrayLanguage.push(returningLanguage(language_));
             language_.account = user; // Link the language_ to the account
             return language_;
         });
@@ -722,15 +707,24 @@ export const updateUserAfterSignUpFirstStep = async (
         const savedLanguage = await LanguageRepository.save(newLanguage);
         userJson.languages = arrayLanguage;
     }
-    delete userJson.first_name;
-    delete userJson.last_name;
-    delete userJson.date_of_birth;
-
-    userJson.firstName = user.first_name;
-    userJson.lastName = user.last_name;
-    userJson.dateOfBirth = user.date_of_birth;
-    userJson.phone = returningPhone(user.phone);
+    if (resumes) {
+        const arrayResumes: any = [];
+        const newResumes = resumes.map((resumeData) => {
+            const resume_ = new Resume();
+            resume_.url = resumeData;
+            resume_.account = user;
+            arrayResumes.push(resume_);
+            return resume_;
+        });
+        // Save the resume
+        const savedResumes = await ResumeRepository.save(newResumes);
+        arrayResumes.map((resumeData) => {
+            delete resumeData.account;
+        });
+        userJson.resumes = arrayResumes;
+    }
     await AccountRepository.save(user);
+
     return userJson;
 };
 

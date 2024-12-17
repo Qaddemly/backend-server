@@ -7,9 +7,22 @@ import {
     deleteUserOneExperience,
     deleteUserOneLanguage,
     deleteUserOneSkill,
+    updateUserOneEducation,
     updateUserOneExperience,
+    deleteUserOneEducation,
+    updateUserBasicInfo,
+    createUserOneEducation,
+    addUserOneResume,
+    deleteUserOneResume,
 } from '../controllers/profileController';
-import { protect } from '../services/authServices';
+import {
+    protect,
+    resizeUserImage,
+    savingResumeInDisk,
+    uploadProfilePic,
+    uploadResume,
+    uploadUserPICAndResume,
+} from '../services/authServices';
 import validateRequestMiddleware from '../middlewares/validator';
 import {
     updateUserOneExperienceValidator,
@@ -19,6 +32,10 @@ import {
     deleteUserOneSkillValidator,
     createUserOneLanguageValidator,
     deleteUserOneLanguageValidator,
+    updateUserOneEducationValidator,
+    createUserOneEducationValidator,
+    updateUserBasicInfoValidator,
+    createUserOneResumeValidator,
 } from '../middlewares/validators/profileValidator';
 
 const profileRouter = Router();
@@ -69,6 +86,41 @@ profileRouter.delete(
     protect,
     validateRequestMiddleware(deleteUserOneLanguageValidator),
     deleteUserOneLanguage,
+);
+
+profileRouter.put(
+    '/updateEducation',
+    protect,
+    validateRequestMiddleware(updateUserOneEducationValidator),
+    updateUserOneEducation,
+);
+
+profileRouter.post(
+    '/addEducation',
+    protect,
+    validateRequestMiddleware(createUserOneEducationValidator),
+    createUserOneEducation,
+);
+
+profileRouter.delete('/deleteEducation', protect, deleteUserOneEducation);
+
+profileRouter.post(
+    '/addResume',
+    protect,
+    uploadResume,
+    savingResumeInDisk,
+    //validateRequestMiddleware(createUserOneResumeValidator),
+    addUserOneResume,
+);
+
+profileRouter.delete('/deleteResume/:id', protect, deleteUserOneResume);
+profileRouter.patch(
+    '/updateBasicInfo',
+    protect,
+    uploadProfilePic,
+    validateRequestMiddleware(updateUserBasicInfoValidator),
+    resizeUserImage,
+    updateUserBasicInfo,
 );
 
 profileRouter.delete('/deleteMe', protect, deleteMe);

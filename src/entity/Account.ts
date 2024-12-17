@@ -22,6 +22,7 @@ import { Language } from './Language';
 import { Skill } from './Skill';
 import { Job } from './Job';
 import { Phone } from './Phone';
+import { Resume } from './Resume';
 
 @Entity()
 export class Account {
@@ -75,6 +76,11 @@ export class Account {
         cascade: true,
     })
     languages: Language[];
+
+    @OneToMany(() => Resume, (resume) => resume.account, {
+        cascade: true,
+    })
+    resumes: Resume[];
 
     @OneToMany(() => Skill, (skill) => skill.account, { cascade: true })
     skills: Skill[];

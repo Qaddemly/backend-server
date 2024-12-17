@@ -90,9 +90,9 @@ const resumeFileFilter = (
 const upload = multer({
     storage: storage,
     fileFilter: function (req, file, cb) {
-        if (file.fieldname === 'profilePicture') {
+        if (file.fieldname === 'profile_picture') {
             photoFileFilter(req, file, cb);
-        } else if (file.fieldname === 'resume') {
+        } else if (file.fieldname === 'resumes') {
             resumeFileFilter(req, file, cb);
         } else {
             cb(new AppError('Error: Unknown field!'));

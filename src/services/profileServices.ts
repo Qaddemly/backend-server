@@ -11,6 +11,12 @@ import { Skill } from '../entity/Skill';
 import { SkillRepository } from '../Repository/skillRepository';
 import { Language } from '../entity/Language';
 import { LanguageRepository } from '../Repository/languageRepository';
+import { EducationRepository } from '../Repository/educationRepository';
+import { Education } from '../entity/Education';
+import { Resume } from '../entity/Resume';
+import { ResumeRepository } from '../Repository/resumeRepository';
+import fs from 'fs';
+import path from 'path';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -101,6 +107,94 @@ export const deleteUserOneExperienceService = async (req: Request) => {
     }
 };
 
+export const updateUserOneEducationService = async (req: Request) => {
+    const userId = req.user.id;
+    const education = await EducationRepository.findOneBy({
+        account_id: userId,
+    });
+    if (!education) {
+        throw new AppError('user don`t have education', 404);
+    }
+
+    let {
+        university,
+
+        field_of_study,
+
+        gpa,
+
+        start_date,
+
+        end_date,
+    } = req.body;
+
+    const updatedData = {
+        university,
+
+        field_of_study,
+
+        gpa,
+
+        start_date,
+
+        end_date,
+    };
+    const updatedEducation = await EducationRepository.updateEducation(
+        updatedData,
+        userId,
+    );
+    return updatedEducation;
+};
+
+export const createUserOneEducationService = async (req: Request) => {
+    const userId = Number(req.user.id);
+
+    const foundedEducation = await EducationRepository.findOneBy({
+        account_id: userId,
+    });
+    if (foundedEducation) {
+        throw new AppError('user already has education', 409);
+    }
+    let {
+        university,
+
+        field_of_study,
+
+        gpa,
+
+        start_date,
+
+        end_date,
+    } = req.body;
+
+    const user = await AccountRepository.findOneBy({ id: userId });
+    const education = new Education();
+    education.account_id = userId;
+    education.gpa = gpa;
+    education.university = university;
+    education.field_of_study = field_of_study;
+    education.start_date = start_date;
+    education.end_date = end_date;
+    const createdEducation = await EducationRepository.save(education);
+    return createdEducation;
+};
+
+export const deleteUserOneEducationService = async (req: Request) => {
+    try {
+        const userId = Number(req.user.id);
+        const educationId = Number(req.params.id);
+        const education = await EducationRepository.findOneBy({
+            account_id: userId,
+        });
+        if (!education) {
+            throw new AppError('user don`t have education', 404);
+        }
+        await EducationRepository.remove(education);
+    } catch (err) {
+        throw err;
+    }
+};
+
 export const createUserOneSkillService = async (req: Request) => {
     const userId = Number(req.user.id);
 
@@ -169,6 +263,53 @@ export const deleteUserOneLanguageService = async (req: Request) => {
     }
 };
 
+export const addUserOneResumeService = async (req: Request) => {
+    const userId = Number(req.user.id);
+
+    let { resumes } = req.body;
+    if (!resumes) {
+        throw new AppError('No resumes provided', 400);
+    }
+
+    const user = await AccountRepository.findOneBy({ id: userId });
+    const newResume = new Resume();
+    newResume.account = user;
+    newResume.url = resumes;
+
+    const createdResume = await ResumeRepository.save(newResume);
+    delete createdResume.account;
+    const ResumeReturned: { [key: string]: any } = { ...createdResume };
+    ResumeReturned.accountId = userId;
+    return ResumeReturned;
+};
+
+export const deleteUserOneResumeService = async (req: Request) => {
+    try {
+        const userId = Number(req.user.id);
+        const resumeId = Number(req.params.id);
+        const resume = await ResumeRepository.findOneBy({
+            account: { id: userId },
+            id: resumeId,
+        });
+        if (!resume) {
+            throw new AppError('No resume found with that ID', 404);
+        }
+
+        await ResumeRepository.remove(resume);
+        // const startIndex = resume.url.indexOf('/uploads');
+
+        // const result = resume.url.substring(startIndex, -1);
+        // console.log(result);
+        // const rootPath = path.resolve(__dirname, '../');
+        // const resumePath = `src/${result}`;
+        // await fs.unlink(resumePath, (c) => {
+        //     console.log(c);
+        // });
+    } catch (err) {
+        throw err;
+    }
+};
+
 export const deleteMeService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
@@ -177,4 +318,31 @@ export const deleteMeService = async (req: Request) => {
     } catch (err) {
         throw err;
     }
+};
+
+export const updateAccountBasicInfoService = async (req: Request) => {
+    const {
+        address,
+        first_name,
+        last_name,
+        email,
+        phone,
+        date_of_birth,
+        profile_picture,
+    } = req.body;
+    const userId = req.user.id;
+    const updatedData = {
+        address,
+        first_name,
+        last_name,
+        email,
+        phone,
+        date_of_birth,
+        profile_picture,
+    };
+    const updatedUser = await AccountRepository.updateUserBasicInfo(
+        updatedData,
+        userId,
+    );
+    return updatedUser;
 };
