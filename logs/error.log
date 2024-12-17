@@ -262,3 +262,5 @@
 2024-12-17 03:42:47:4247 [31merror[39m: [31mNo resumes provided[39m
 2024-12-17 03:44:31:4431 [31merror[39m: [31mNo resume found with that ID[39m
 2024-12-17 03:55:22:5522 [31merror[39m: [31mNo resume found with that ID[39m
+2024-12-17 10:49:54:4954 [31merror[39m: [31mPostgres Database connection failed[39m
+2024-12-17 10:50:42:5042 [31merror[39m: [31mPostgres Database connection failed[39m

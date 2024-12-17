@@ -2985,3 +2985,12 @@
 [35m[39m
 2024-12-17 03:58:52:5852 [35mhttp[39m: [35mDELETE /api/v1/user/deleteResume/14 204 - - 464.928 ms[39m
 [35m[39m
+2024-12-17 10:49:54:4954 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 10:49:54:4954 [31merror[39m: [31mPostgres Database connection failed[39m
+2024-12-17 10:49:56:4956 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 10:50:42:5042 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 10:50:42:5042 [31merror[39m: [31mPostgres Database connection failed[39m
+2024-12-17 10:50:44:5044 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 10:53:08:538 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 10:53:09:539 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 10:53:10:5310 [32minfo[39m: [32mMongoDB Database connected successfully[39m
