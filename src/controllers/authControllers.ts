@@ -27,7 +27,6 @@ import {
     createNewPassword,
     logInService,
     updateUserForSignUpStepTwo,
-    updateMyInfo,
     changeCurrentPassword,
     signInGoogleRedirection,
     clearCookies,
@@ -282,23 +281,23 @@ export const googleRedirection = [
     },
 ];
 
-export const updateMe = catchAsync(
-    async (
-        req: Request<{}, {}, updateMeBody>,
-        res: Response,
-        next: NextFunction,
-    ) => {
-        try {
-            const user = await updateMyInfo(req, req.user?.id);
-            res.status(200).json({
-                success: true,
-                user,
-            });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
+// export const updateMe = catchAsync(
+//     async (
+//         req: Request<{}, {}, updateMeBody>,
+//         res: Response,
+//         next: NextFunction,
+//     ) => {
+//         try {
+//             const user = await updateMyInfo(req, req.user?.id);
+//             res.status(200).json({
+//                 success: true,
+//                 user,
+//             });
+//         } catch (err) {
+//             return next(err);
+//         }
+//     },
+// );
 
 export const getMe = catchAsync(
     async (req: Request<{}, {}, {}>, res: Response, next: NextFunction) => {
