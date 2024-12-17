@@ -264,3 +264,92 @@
 2024-12-17 03:55:22:5522 [31merror[39m: [31mNo resume found with that ID[39m
 2024-12-17 10:49:54:4954 [31merror[39m: [31mPostgres Database connection failed[39m
 2024-12-17 10:50:42:5042 [31merror[39m: [31mPostgres Database connection failed[39m
+2024-12-17 11:16:38:1638 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:16:38:1638 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:16:53:1653 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:16:53:1653 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:18:50:1850 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:18:50:1850 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:19:37:1937 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:19:37:1937 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:19:59:1959 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2024-12-17 11:21:29:2129 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:29:2129 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:36:2136 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:36:2136 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:41:2141 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:41:2141 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:46:2146 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:21:46:2146 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 11:31:45:3145 [31merror[39m: [31mAccount not found[39m
+2024-12-17 11:31:45:3145 [31merror[39m: [31mAccount not found[39m
+2024-12-17 11:31:50:3150 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:31:50:3150 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 11:34:29:3429 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 11:42:24:4224 [31merror[39m: [31mUser does not have role in business[39m
+2024-12-17 11:42:24:4224 [31merror[39m: [31mUser does not have role in business[39m
+2024-12-17 11:43:47:4347 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 12:06:48:648 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 12:09:45:945 [31merror[39m: [31mError while deleting role[39m
+2024-12-17 12:09:45:945 [31merror[39m: [31mError while deleting role[39m
+2024-12-17 12:19:49:1949 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:19:49:1949 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:20:31:2031 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:20:31:2031 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:22:57:2257 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:22:57:2257 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:25:30:2530 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:25:30:2530 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:26:27:2627 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:26:27:2627 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:29:12:2912 [31merror[39m: [31mCannot read properties of undefined (reading 'role')[39m
+2024-12-17 12:29:57:2957 [31merror[39m: [31mCannot read properties of undefined (reading 'role')[39m
+2024-12-17 12:31:24:3124 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:31:24:3124 [31merror[39m: [31mUser dont have authority to update owner, cannot be updated[39m
+2024-12-17 12:32:27:3227 [31merror[39m: [31mBusiness can only have one owner, cannot be updated to owner[39m
+2024-12-17 12:32:27:3227 [31merror[39m: [31mBusiness can only have one owner, cannot be updated to owner[39m
+2024-12-17 12:33:23:3323 [31merror[39m: [31mBusiness can only have one owner, cannot be updated to owner[39m
+2024-12-17 12:33:23:3323 [31merror[39m: [31mBusiness can only have one owner, cannot be updated to owner[39m
+2024-12-17 12:33:44:3344 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:33:44:3344 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 12:33:54:3354 [31merror[39m: [31mAccount not found[39m
+2024-12-17 12:33:54:3354 [31merror[39m: [31mAccount not found[39m
+2024-12-17 12:34:17:3417 [31merror[39m: [31mUser dont have authority to update super admin, cannot be updated[39m
+2024-12-17 12:34:17:3417 [31merror[39m: [31mUser dont have authority to update super admin, cannot be updated[39m
+2024-12-17 12:40:18:4018 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2024-12-17 12:40:18:4018 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2024-12-17 12:40:31:4031 [31merror[39m: [31mUser dont have authority to add owner, cannot be added[39m
+2024-12-17 12:40:31:4031 [31merror[39m: [31mUser dont have authority to add owner, cannot be added[39m
+2024-12-17 13:26:29:2629 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:26:29:2629 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:26:36:2636 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:26:36:2636 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:28:26:2826 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:28:26:2826 [31merror[39m: [31mUser does not have permission to access business dashboard[39m
+2024-12-17 13:29:43:2943 [31merror[39m: [31mCannot set properties of undefined (setting 'role')[39m
+2024-12-17 13:32:34:3234 [31merror[39m: [31mCannot set properties of undefined (setting 'role')[39m
+2024-12-17 16:39:18:3918 [31merror[39m: [31mCannot set properties of undefined (setting 'role')[39m
+2024-12-17 16:40:36:4036 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 16:40:36:4036 [31merror[39m: [31mUser already has role in business[39m
+2024-12-17 16:44:59:4459 [31merror[39m: [31mUser dont have authority to update super admin, cannot be updated[39m
+2024-12-17 16:44:59:4459 [31merror[39m: [31mUser dont have authority to update super admin, cannot be updated[39m
+2024-12-17 16:45:52:4552 [31merror[39m: [31mAccount not found[39m
+2024-12-17 16:45:52:4552 [31merror[39m: [31mAccount not found[39m
+2024-12-17 16:50:16:5016 [31merror[39m: [31mError while updating role[39m
+2024-12-17 16:50:16:5016 [31merror[39m: [31mError while updating role[39m
+2024-12-17 16:52:15:5215 [31merror[39m: [31mError while deleting role, Email address of account do not exists in the HR list of company[39m
+2024-12-17 16:52:15:5215 [31merror[39m: [31mError while deleting role[39m
+2024-12-17 17:04:52:452 [31merror[39m: [31mError while updating role, Email address of account do not exists in the HR list of company[39m
+2024-12-17 17:04:52:452 [31merror[39m: [31mError while updating role[39m
+2024-12-17 17:05:07:57 [31merror[39m: [31mError while updating role, Email address of account do not exists in the HR list of company[39m
+2024-12-17 17:05:07:57 [31merror[39m: [31mError while updating role[39m
+2024-12-17 17:08:30:830 [31merror[39m: [31mError while updating role, Email address of account do not exists in the HR list of company[39m
+2024-12-17 17:08:30:830 [31merror[39m: [31mError while updating role[39m
+2024-12-17 17:08:39:839 [31merror[39m: [31mAccount not found[39m
+2024-12-17 17:08:39:839 [31merror[39m: [31mAccount not found[39m
+2024-12-17 17:09:02:92 [31merror[39m: [31mOwner cannot be deleted[39m
+2024-12-17 17:09:02:92 [31merror[39m: [31mOwner cannot be deleted[39m
+2024-12-17 17:13:45:1345 [31merror[39m: [31mUser does not have role in business[39m
+2024-12-17 17:13:45:1345 [31merror[39m: [31mUser does not have role in business[39m
+2024-12-17 17:14:20:1420 [31merror[39m: [31mOwner cannot be deleted[39m
+2024-12-17 17:14:20:1420 [31merror[39m: [31mOwner cannot be deleted[39m
