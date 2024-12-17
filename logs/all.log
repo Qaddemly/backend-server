@@ -2438,3 +2438,80 @@
 2024-12-17 01:22:31:2231 [32minfo[39m: [32mServer is running on port 8000[39m
 2024-12-17 01:22:31:2231 [32minfo[39m: [32mPostgres Database connected successfully[39m
 2024-12-17 01:22:33:2233 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:22:45:2245 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:22:46:2246 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:22:47:2247 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:22:59:2259 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 200 190 - 366.183 ms[39m
+[35m[39m
+2024-12-17 01:31:59:3159 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:31:59:3159 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:32:01:321 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:32:46:3246 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:32:47:3247 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:32:48:3248 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:34:17:3417 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:34:17:3417 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:34:18:3418 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:34:59:3459 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:34:59:3459 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:35:00:350 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:36:53:3653 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:36:53:3653 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:36:55:3655 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:37:59:3759 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:37:59:3759 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:38:00:380 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:38:51:3851 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:38:51:3851 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:38:53:3853 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:45:25:4525 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:45:25:4525 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:45:27:4527 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:47:02:472 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:47:02:472 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:47:04:474 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:47:37:4737 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:47:37:4737 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:47:38:4738 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:48:01:481 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:48:01:481 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:48:02:482 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:49:45:4945 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:49:46:4946 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:49:47:4947 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:52:09:529 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:52:09:529 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:52:10:5210 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:52:25:5225 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:52:26:5226 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:52:27:5227 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:53:52:5352 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:53:52:5352 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:53:53:5353 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:55:02:552 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:55:02:552 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:55:04:554 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:55:52:5552 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:55:52:5552 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:55:54:5554 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:56:24:5624 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:56:24:5624 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:56:26:5626 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 01:58:19:5819 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 01:58:20:5820 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 01:58:22:5822 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 02:00:53:053 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 02:00:54:054 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 02:00:55:055 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 02:02:52:252 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 02:02:53:253 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 02:02:54:254 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 02:04:08:48 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-17 02:04:09:49 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-17 02:04:10:410 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-17 02:04:56:456 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:04:56:456 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 400 273 - 815.826 ms[39m
+[35m[39m
+2024-12-17 02:05:21:521 [31merror[39m: [31mvalidationErrors[39m
+2024-12-17 02:05:21:521 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 400 273 - 325.952 ms[39m
+[35m[39m

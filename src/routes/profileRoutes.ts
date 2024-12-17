@@ -9,8 +9,15 @@ import {
     deleteUserOneSkill,
     updateUserOneEducation,
     updateUserOneExperience,
+    deleteUserOneEducation,
+    updateUserBasicInfo,
+    createUserOneEducation,
 } from '../controllers/profileController';
-import { protect } from '../services/authServices';
+import {
+    protect,
+    resizeUserImage,
+    uploadUserPICAndResume,
+} from '../services/authServices';
 import validateRequestMiddleware from '../middlewares/validator';
 import {
     updateUserOneExperienceValidator,
@@ -21,6 +28,8 @@ import {
     createUserOneLanguageValidator,
     deleteUserOneLanguageValidator,
     updateUserOneEducationValidator,
+    createUserOneEducationValidator,
+    updateUserBasicInfoValidator,
 } from '../middlewares/validators/profileValidator';
 
 const profileRouter = Router();
@@ -78,6 +87,24 @@ profileRouter.put(
     protect,
     validateRequestMiddleware(updateUserOneEducationValidator),
     updateUserOneEducation,
+);
+
+profileRouter.post(
+    '/addEducation',
+    protect,
+    validateRequestMiddleware(createUserOneEducationValidator),
+    createUserOneEducation,
+);
+
+profileRouter.delete('/deleteEducation', protect, deleteUserOneEducation);
+
+profileRouter.patch(
+    '/updateMe',
+    protect,
+    uploadUserPICAndResume,
+    validateRequestMiddleware(updateUserBasicInfoValidator),
+    resizeUserImage,
+    updateUserBasicInfo,
 );
 
 profileRouter.delete('/deleteMe', protect, deleteMe);

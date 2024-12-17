@@ -3,6 +3,9 @@ import { body, param, ValidationChain } from 'express-validator';
 import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
 import { Language } from '../../enums/language';
+import { CountryCode } from '../../enums/countryCode';
+import { Country } from '../../enums/country';
+import { AccountRepository } from '../../Repository/accountRepository';
 
 export const updateUserOneExperienceValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),
@@ -191,4 +194,123 @@ export const updateUserOneEducationValidator: ValidationChain[] = [
                 throw new Error('Start date must be less than end date');
             } else return val;
         }),
+];
+
+export const createUserOneEducationValidator: ValidationChain[] = [
+    body('university')
+        .isString()
+        .withMessage('university must be a string')
+        .trim()
+        .notEmpty()
+        .withMessage('University name cannot be empty'),
+    body('field_of_study')
+        .isString()
+        .withMessage('field of study must be a string')
+        .trim()
+        .notEmpty()
+        .withMessage('Field of study cannot be empty'),
+    body('gpa')
+        .notEmpty()
+        .withMessage('GPA cannot be empty')
+        .isNumeric()
+        .withMessage('GPA must be a number')
+        .custom((value) => {
+            if (value >= 0 && value <= 4) return value;
+            else throw new Error('GPA must be between 0 and 4');
+        }),
+    body('start_date')
+        .isDate()
+        .withMessage('Invalid start date')
+        .custom((val, { req }) => {
+            if (val >= req.body.end_date) {
+                throw new Error('Start date must be less than end date');
+            } else return val;
+        }),
+    body('end_date')
+        .isDate()
+        .withMessage('Invalid end date')
+        .custom((val, { req }) => {
+            if (val <= req.body.start_date) {
+                throw new Error('Start date must be less than end date');
+            } else return val;
+        }),
+];
+
+export const updateUserBasicInfoValidator: ValidationChain[] = [
+    body('email')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Email cannot be empty')
+        .isEmail()
+        .withMessage('Please provide a valid email address')
+        .toLowerCase()
+        .custom(async (val) => {
+            const user = await AccountRepository.findOneBy({ email: val });
+            if (!user) {
+                return true;
+            } else {
+                throw new Error('Email already exists');
+            }
+        }),
+    body('first_name')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('First name cannot be empty')
+        .isAlpha()
+        .withMessage('First name must be a string of alphabets'),
+    body('last_name')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Last name cannot be empty')
+        .isAlpha()
+        .withMessage('Last name must be a string of alphabets'),
+    body('profile_picture')
+        .optional()
+        .notEmpty()
+        .withMessage('profile_picture cannot be empty')
+        .isString()
+        .withMessage('profile_picture must be a string'),
+
+    body('date_of_birth')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid date of birth'),
+    body('phone').optional().isObject(),
+    body('phone.countryCode')
+        .if(body('phone').exists())
+        .notEmpty()
+        .withMessage('Country code cannot be empty')
+        .custom((value) => {
+            if (value in CountryCode) return value;
+            else throw new Error('Invalid country code');
+        }),
+    body('phone.number')
+        .if(body('phone').exists())
+        .notEmpty()
+        .withMessage('Phone number cannot be empty')
+        .isNumeric()
+        .withMessage('Phone number must be numeric'),
+    body('address').optional().isObject(),
+    body('address.country')
+        .if(body('address').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('Country cannot be empty')
+        .custom((value) => {
+            if (value in Country) return value;
+            else
+                throw new Error(
+                    'Country Name is invalid (not in the country list)',
+                );
+        }),
+    body('address.city')
+        .if(body('address').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('City cannot be empty')
+        .isAlpha()
+        .withMessage('City must be a string of alphabets'),
 ];

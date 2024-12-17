@@ -48,6 +48,18 @@ class AccountRepositoryClass extends Repository<Account> {
         });
         return account;
     }
+    async updateUserBasicInfo(
+        updateData: { [key: string]: any },
+        accountId: number,
+    ) {
+        const result = await this.createQueryBuilder()
+            .update(Account)
+            .set(updateData)
+            .where('account_id = :accountId', { accountId })
+            .returning('*')
+            .execute();
+        return result.raw[0];
+    }
 }
 
 export const AccountRepository = AppDataSource.getRepository(Account).extend(

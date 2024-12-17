@@ -12,6 +12,7 @@ import { SkillRepository } from '../Repository/skillRepository';
 import { Language } from '../entity/Language';
 import { LanguageRepository } from '../Repository/languageRepository';
 import { EducationRepository } from '../Repository/educationRepository';
+import { Education } from '../entity/Education';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -141,55 +142,54 @@ export const updateUserOneEducationService = async (req: Request) => {
     return updatedEducation;
 };
 
-// export const createUserOneEducationService = async (req: Request) => {
-//     const userId = Number(req.user.id);
+export const createUserOneEducationService = async (req: Request) => {
+    const userId = Number(req.user.id);
 
-//     let {
-//         jobTitle,
-//         employmentType,
-//         companyName,
-//         location,
-//         locationType,
-//         stillWorking,
-//         startDate,
-//         endDate,
-//     } = req.body;
+    const foundedEducation = await EducationRepository.findOneBy({
+        account_id: userId,
+    });
+    if (foundedEducation) {
+        throw new AppError('user already has education', 409);
+    }
+    let {
+        university,
 
-//     const user = await AccountRepository.findOneBy({ id: userId });
-//     const experience = new Education();
-//     experience.account = user;
-//     experience.job_title = jobTitle;
-//     experience.employment_type = employmentType;
-//     experience.company_name = companyName;
-//     experience.location = location;
-//     experience.location_type = locationType;
-//     experience.still_working = stillWorking;
-//     experience.start_date = startDate;
-//     experience.end_date = endDate;
+        field_of_study,
 
-//     const createdEducation = await EducationRepository.save(experience);
-//     delete createdEducation.account;
-//     const experienceReturned: { [key: string]: any } = { ...createdEducation };
-//     experienceReturned.accountId = userId;
-//     return experienceReturned;
-// };
+        gpa,
 
-// export const deleteUserOneEducationService = async (req: Request) => {
-//     try {
-//         const userId = Number(req.user.id);
-//         const experienceId = Number(req.params.id);
-//         const experience = await EducationRepository.findOneBy({
-//             account: { id: userId },
-//             id: experienceId,
-//         });
-//         if (!experience) {
-//             throw new AppError('No experience found with that ID', 404);
-//         }
-//         await ExperienceRepository.remove(experience);
-//     } catch (err) {
-//         throw err;
-//     }
-// };
+        start_date,
+
+        end_date,
+    } = req.body;
+
+    const user = await AccountRepository.findOneBy({ id: userId });
+    const education = new Education();
+    education.account_id = userId;
+    education.gpa = gpa;
+    education.university = university;
+    education.field_of_study = field_of_study;
+    education.start_date = start_date;
+    education.end_date = end_date;
+    const createdEducation = await EducationRepository.save(education);
+    return createdEducation;
+};
+
+export const deleteUserOneEducationService = async (req: Request) => {
+    try {
+        const userId = Number(req.user.id);
+        const educationId = Number(req.params.id);
+        const education = await EducationRepository.findOneBy({
+            account_id: userId,
+        });
+        if (!education) {
+            throw new AppError('No education found with that ID', 404);
+        }
+        await EducationRepository.remove(education);
+    } catch (err) {
+        throw err;
+    }
+};
 
 export const createUserOneSkillService = async (req: Request) => {
     const userId = Number(req.user.id);
@@ -267,4 +267,31 @@ export const deleteMeService = async (req: Request) => {
     } catch (err) {
         throw err;
     }
+};
+
+export const updateAccountBasicInfoService = async (req: Request) => {
+    const {
+        address,
+        first_name,
+        last_name,
+        email,
+        phone,
+        date_of_birth,
+        profile_picture,
+    } = req.body;
+    const userId = req.user.id;
+    const updatedData = {
+        address,
+        first_name,
+        last_name,
+        email,
+        phone,
+        date_of_birth,
+        profile_picture,
+    };
+    const updatedUser = await AccountRepository.updateUserBasicInfo(
+        updatedData,
+        userId,
+    );
+    return updatedUser;
 };
