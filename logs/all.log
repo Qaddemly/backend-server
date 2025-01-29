@@ -3245,3 +3245,1061 @@
 [35m[39m
 2024-12-17 16:52:40:5240 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 1500 - 308.538 ms[39m
 [35m[39m
+2024-12-22 23:26:13:2613 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-22 23:26:15:2615 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-22 23:26:15:2615 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-22 23:26:34:2634 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-22 23:26:34:2634 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-22 23:26:35:2635 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-22 23:27:19:2719 [31merror[39m: [31mcolumn "createdat" does not exist[39m
+2024-12-22 23:27:19:2719 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 500 1015 - 444.831 ms[39m
+[35m[39m
+2024-12-22 23:29:03:293 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-22 23:29:04:294 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-22 23:29:05:295 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-22 23:29:09:299 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 37 - 160.194 ms[39m
+[35m[39m
+2024-12-22 23:30:24:3024 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-22 23:30:24:3024 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-22 23:30:26:3026 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-22 23:30:29:3029 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 37 - 156.837 ms[39m
+[35m[39m
+2024-12-22 23:30:46:3046 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-22 23:30:46:3046 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-22 23:30:48:3048 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-22 23:30:51:3051 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 1856 - 170.556 ms[39m
+[35m[39m
+2024-12-22 23:32:17:3217 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-22 23:32:18:3218 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-22 23:32:19:3219 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-22 23:32:44:3244 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-22 23:32:45:3245 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-22 23:32:46:3246 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-22 23:33:18:3318 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-22 23:33:18:3318 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-22 23:33:20:3320 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-22 23:33:29:3329 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-22 23:33:29:3329 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-22 23:33:31:3331 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-22 23:36:52:3652 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-22 23:36:52:3652 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-22 23:36:54:3654 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2024-12-22 23:36:59:3659 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 37 - 158.857 ms[39m
+[35m[39m
+2025-01-27 14:44:52:4452 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 14:44:53:4453 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 14:44:53:4453 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 16:05:10:510 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-01-27 16:05:11:511 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7 401 1051 - 38.387 ms[39m
+[35m[39m
+2025-01-27 16:05:22:522 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 822 - 2391.759 ms[39m
+[35m[39m
+2025-01-27 16:05:30:530 [31merror[39m: [31mJob already saved[39m
+2025-01-27 16:05:30:530 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7 409 655 - 403.379 ms[39m
+[35m[39m
+2025-01-27 16:06:12:612 [31merror[39m: [31mJob already not saved[39m
+2025-01-27 16:06:12:612 [35mhttp[39m: [35mDELETE /api/v1/job/unSaveJob/5 409 663 - 337.119 ms[39m
+[35m[39m
+2025-01-27 16:06:21:621 [35mhttp[39m: [35mDELETE /api/v1/job/unSaveJob/7 200 53 - 1935.646 ms[39m
+[35m[39m
+2025-01-27 16:07:07:77 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7 200 51 - 353.010 ms[39m
+[35m[39m
+2025-01-27 21:00:33:033 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:00:33:033 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:00:34:034 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:02:34:234 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:02:34:234 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:02:36:236 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:04:13:413 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:04:13:413 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:04:14:414 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:35:25:3525 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:35:26:3526 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:35:27:3527 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:42:24:4224 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:42:24:4224 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:42:26:4226 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:49:42:4942 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:49:43:4943 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:49:44:4944 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:50:30:5030 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:50:30:5030 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:50:31:5031 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:51:03:513 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:51:03:513 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:51:05:515 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:51:29:5129 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:51:30:5130 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:51:31:5131 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:53:37:5337 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:53:37:5337 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:53:39:5339 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:54:59:5459 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:54:59:5459 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:55:01:551 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:55:42:5542 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:55:43:5543 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:55:44:5544 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:56:10:5610 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:56:10:5610 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:56:12:5612 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:56:54:5654 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:56:55:5655 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:56:56:5656 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 21:59:26:5926 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 21:59:26:5926 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 21:59:28:5928 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:00:03:03 [31merror[39m: [31mMissing required 'sortableColumns' config.[39m
+2025-01-27 22:00:03:03 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 500 1119 - 635.540 ms[39m
+[35m[39m
+2025-01-27 22:01:21:121 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 22:01:21:121 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 22:01:23:123 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:01:26:126 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 4650 - 318.666 ms[39m
+[35m[39m
+2025-01-27 22:02:09:29 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?keywords=java 200 4650 - 187.839 ms[39m
+[35m[39m
+2025-01-27 22:05:15:515 [31merror[39m: [31minvalid input syntax for type integer: "in:java"[39m
+2025-01-27 22:05:15:515 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=in:java 500 1046 - 1863.284 ms[39m
+[35m[39m
+2025-01-27 22:05:33:533 [31merror[39m: [31minvalid input syntax for type integer: "java"[39m
+2025-01-27 22:05:33:533 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=java 500 1040 - 265.469 ms[39m
+[35m[39m
+2025-01-27 22:09:00:90 [31merror[39m: [31minvalid input syntax for type integer: "java"[39m
+2025-01-27 22:09:00:90 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$in:java 500 1040 - 224.374 ms[39m
+[35m[39m
+2025-01-27 22:09:20:920 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$in:3,5 200 3992 - 188.462 ms[39m
+[35m[39m
+2025-01-27 22:10:29:1029 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 22:10:29:1029 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 22:10:31:1031 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:10:37:1037 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$contains:java 200 4720 - 173.306 ms[39m
+[35m[39m
+2025-01-27 22:12:49:1249 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 22:12:50:1250 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 22:12:51:1251 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:12:52:1252 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$contains:java 200 3994 - 1047.697 ms[39m
+[35m[39m
+2025-01-27 22:13:01:131 [31merror[39m: [31minvalid input syntax for type integer: "java"[39m
+2025-01-27 22:13:01:131 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=java 500 1040 - 155.752 ms[39m
+[35m[39m
+2025-01-27 22:13:14:1314 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$contains:java 200 3994 - 191.286 ms[39m
+[35m[39m
+2025-01-27 22:13:22:1322 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$contains:5 200 1034 - 147.620 ms[39m
+[35m[39m
+2025-01-27 22:19:08:198 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=5 200 289 - 194.930 ms[39m
+[35m[39m
+2025-01-27 22:19:31:1931 [31merror[39m: [31minvalid input syntax for type integer: "@contains:5"[39m
+2025-01-27 22:19:31:1931 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=@contains:5 500 1054 - 180.628 ms[39m
+[35m[39m
+2025-01-27 22:19:38:1938 [31merror[39m: [31minvalid input syntax for type integer: "contains:5"[39m
+2025-01-27 22:19:38:1938 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=contains:5 500 1052 - 140.745 ms[39m
+[35m[39m
+2025-01-27 22:19:44:1944 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$contains:5 200 1034 - 146.504 ms[39m
+[35m[39m
+2025-01-27 22:19:57:1957 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$contains:node 200 4006 - 204.104 ms[39m
+[35m[39m
+2025-01-27 22:20:23:2023 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$contains:node,5 200 1044 - 215.238 ms[39m
+[35m[39m
+2025-01-27 22:21:20:2120 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$contains:node 200 4006 - 183.325 ms[39m
+[35m[39m
+2025-01-27 22:22:25:2225 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=e 200 4723 - 189.174 ms[39m
+[35m[39m
+2025-01-27 22:22:43:2243 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=soft 200 4015 - 204.592 ms[39m
+[35m[39m
+2025-01-27 22:23:00:230 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=eslam 200 4731 - 189.437 ms[39m
+[35m[39m
+2025-01-27 22:25:00:250 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=java 200 1047 - 199.434 ms[39m
+[35m[39m
+2025-01-27 22:25:19:2519 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=rrrrrr 200 1106 - 181.989 ms[39m
+[35m[39m
+2025-01-27 22:26:17:2617 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=rrrrrr&salary=500 200 1106 - 184.540 ms[39m
+[35m[39m
+2025-01-27 22:27:22:2722 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=rrrrrr&/filter.salary=500 200 1152 - 187.826 ms[39m
+[35m[39m
+2025-01-27 22:27:31:2731 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=rrrrrr&/filter.salary=$eq:500 200 1160 - 140.409 ms[39m
+[35m[39m
+2025-01-27 22:27:52:2752 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?/filter.salary=$eq:500 200 4867 - 295.474 ms[39m
+[35m[39m
+2025-01-27 22:28:52:2852 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$eq:500 200 1010 - 186.911 ms[39m
+[35m[39m
+2025-01-27 22:28:59:2859 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=rrrrrr&filter.salary=$eq:500 200 380 - 141.477 ms[39m
+[35m[39m
+2025-01-27 22:30:17:3017 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 22:30:17:3017 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 22:30:19:3019 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:30:35:3035 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 22:30:35:3035 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 22:30:36:3036 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:31:15:3115 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=rrrrrr&filter.salary=$eq:500 200 380 - 321.300 ms[39m
+[35m[39m
+2025-01-27 22:32:18:3218 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 22:32:18:3218 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 22:32:19:3219 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:33:13:3313 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=2 200 1200 - 269.776 ms[39m
+[35m[39m
+2025-01-27 22:33:31:3331 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=1 200 4767 - 195.820 ms[39m
+[35m[39m
+2025-01-27 22:33:42:3342 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=2 200 1200 - 196.178 ms[39m
+[35m[39m
+2025-01-27 22:34:53:3453 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=1 200 4767 - 203.066 ms[39m
+[35m[39m
+2025-01-27 22:39:09:399 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 22:39:09:399 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 22:39:11:3911 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:42:05:425 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 22:42:05:425 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 22:42:06:426 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:42:10:4210 [31merror[39m: [31mMissing required 'sortableColumns' config.[39m
+2025-01-27 22:42:10:4210 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=1 500 1119 - 162.709 ms[39m
+[35m[39m
+2025-01-27 22:43:20:4320 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 22:43:20:4320 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 22:43:21:4321 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:43:50:4350 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 22:43:50:4350 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 22:43:51:4351 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 22:48:03:483 [31merror[39m: [31mvalidationErrors[39m
+2025-01-27 22:48:03:483 [35mhttp[39m: [35mPOST /api/v1/job/postJob 400 206 - 727.560 ms[39m
+[35m[39m
+2025-01-27 23:07:32:732 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 23:07:32:732 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 23:07:33:733 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 23:12:38:1238 [31merror[39m: [31mvalidationErrors[39m
+2025-01-27 23:12:38:1238 [35mhttp[39m: [35mPOST /api/v1/job/postJob 400 206 - 562.179 ms[39m
+[35m[39m
+2025-01-27 23:22:28:2228 [31merror[39m: [31mBusiness with that id not found[39m
+2025-01-27 23:22:28:2228 [35mhttp[39m: [35mPOST /api/v1/job/postJob 404 682 - 329.709 ms[39m
+[35m[39m
+2025-01-27 23:24:14:2414 [31merror[39m: [31mvalidationErrors[39m
+2025-01-27 23:24:14:2414 [35mhttp[39m: [35mPOST /api/v1/job/postJob 400 157 - 481.474 ms[39m
+[35m[39m
+2025-01-27 23:26:08:268 [31merror[39m: [31mvalidationErrors[39m
+2025-01-27 23:26:08:268 [35mhttp[39m: [35mPOST /api/v1/job/postJob 400 227 - 324.130 ms[39m
+[35m[39m
+2025-01-27 23:28:16:2816 [31merror[39m: [31mvalidationErrors[39m
+2025-01-27 23:28:16:2816 [35mhttp[39m: [35mPOST /api/v1/job/postJob 400 356 - 323.174 ms[39m
+[35m[39m
+2025-01-27 23:38:48:3848 [31merror[39m: [31myou do not have permission to post job[39m
+2025-01-27 23:38:48:3848 [35mhttp[39m: [35mPOST /api/v1/job/postJob 403 696 - 2259.041 ms[39m
+[35m[39m
+2025-01-27 23:48:52:4852 [31merror[39m: [31myou do not have permission to post job[39m
+2025-01-27 23:48:52:4852 [35mhttp[39m: [35mPOST /api/v1/job/postJob 403 696 - 492.438 ms[39m
+[35m[39m
+2025-01-27 23:51:38:5138 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-27 23:51:39:5139 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-27 23:51:40:5140 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-27 23:51:41:5141 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-27 23:51:41:5141 [35mhttp[39m: [35mPOST /api/v1/job/postJob 403 702 - 1804.480 ms[39m
+[35m[39m
+2025-01-27 23:58:33:5833 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-01-27 23:58:33:5833 [35mhttp[39m: [35mPOST /api/v1/job/postJob 401 1051 - 14.416 ms[39m
+[35m[39m
+2025-01-28 00:08:16:816 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 822 - 777.563 ms[39m
+[35m[39m
+2025-01-28 00:28:36:2836 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-28 00:28:36:2836 [35mhttp[39m: [35mPOST /api/v1/job/postJob 403 702 - 484.811 ms[39m
+[35m[39m
+2025-01-28 00:28:49:2849 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 384 - 480.502 ms[39m
+[35m[39m
+2025-01-28 00:29:09:299 [31merror[39m: [31mBusiness with that id not found[39m
+2025-01-28 00:29:09:299 [35mhttp[39m: [35mPOST /api/v1/job/postJob 404 682 - 323.004 ms[39m
+[35m[39m
+2025-01-28 00:32:44:3244 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
+2025-01-28 00:32:44:3244 [35mhttp[39m: [35mPOST /api/v1/job/postJob 500 1068 - 835.467 ms[39m
+[35m[39m
+2025-01-28 00:33:00:330 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 385 - 338.115 ms[39m
+[35m[39m
+2025-01-28 01:25:26:2526 [31merror[39m: [31mBusiness with that id not found[39m
+2025-01-28 01:25:26:2526 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/4 404 682 - 552.616 ms[39m
+[35m[39m
+2025-01-28 01:25:37:2537 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/4 200 321 - 342.134 ms[39m
+[35m[39m
+2025-01-28 01:25:49:2549 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/4 200 321 - 328.258 ms[39m
+[35m[39m
+2025-01-28 01:26:02:262 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/4 200 321 - 334.721 ms[39m
+[35m[39m
+2025-01-28 01:26:49:2649 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/11 200 322 - 339.194 ms[39m
+[35m[39m
+2025-01-28 01:26:57:2657 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 01:26:57:2657 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/11 400 285 - 283.198 ms[39m
+[35m[39m
+2025-01-28 01:28:49:2849 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/11 200 322 - 331.288 ms[39m
+[35m[39m
+2025-01-28 01:29:03:293 [31merror[39m: [31minvalid input value for enum job_employee_type_enum: ""[39m
+2025-01-28 01:29:03:293 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/11 500 567 - 503.125 ms[39m
+[35m[39m
+2025-01-28 01:29:56:2956 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/11 200 322 - 348.222 ms[39m
+[35m[39m
+2025-01-28 01:30:08:308 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "OnSite"[39m
+2025-01-28 01:30:08:308 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/11 500 579 - 328.690 ms[39m
+[35m[39m
+2025-01-28 01:30:12:3012 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/11 200 322 - 393.330 ms[39m
+[35m[39m
+2025-01-28 01:33:35:3335 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 01:33:36:3336 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 01:33:37:3337 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 01:33:43:3343 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 01:33:43:3343 [35mhttp[39m: [35mPOST /api/v1/job/postJob 400 261 - 445.793 ms[39m
+[35m[39m
+2025-01-28 01:33:58:3358 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 385 - 444.488 ms[39m
+[35m[39m
+2025-01-28 01:48:11:4811 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/110 200 16 - 509.930 ms[39m
+[35m[39m
+2025-01-28 01:49:51:4951 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 01:49:51:4951 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 01:49:53:4953 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 01:49:57:4957 [31merror[39m: [31mJob not found[39m
+2025-01-28 01:49:57:4957 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/110 404 647 - 339.986 ms[39m
+[35m[39m
+2025-01-28 01:59:38:5938 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 01:59:38:5938 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/110 400 243 - 487.495 ms[39m
+[35m[39m
+2025-01-28 02:00:08:08 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 02:00:08:08 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 02:00:09:09 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 02:00:14:014 [31merror[39m: [31myou do not have permission to post job[39m
+2025-01-28 02:00:14:014 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/110 403 697 - 329.453 ms[39m
+[35m[39m
+2025-01-28 02:00:24:024 [31merror[39m: [31myou do not have permission to post job[39m
+2025-01-28 02:00:24:024 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/110 403 697 - 517.852 ms[39m
+[35m[39m
+2025-01-28 02:02:11:211 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 02:02:11:211 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 02:02:13:213 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 02:02:15:215 [31merror[39m: [31mJob not found[39m
+2025-01-28 02:02:15:215 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/110 404 646 - 330.006 ms[39m
+[35m[39m
+2025-01-28 02:02:23:223 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-01-28 02:02:23:223 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/11 500 618 - 294.610 ms[39m
+[35m[39m
+2025-01-28 02:02:48:248 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 02:02:49:249 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 02:02:50:250 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 02:02:52:252 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/11 200 322 - 491.512 ms[39m
+[35m[39m
+2025-01-28 02:03:03:33 [31merror[39m: [31myou do not have permission to post job[39m
+2025-01-28 02:03:03:33 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/5 403 697 - 486.722 ms[39m
+[35m[39m
+2025-01-28 02:03:16:316 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 02:03:16:316 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 02:03:18:318 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 02:04:22:422 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/11 200 322 - 652.321 ms[39m
+[35m[39m
+2025-01-28 02:05:53:553 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 02:05:53:553 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 02:05:54:554 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 02:07:27:727 [31merror[39m: [31mJob already saved[39m
+2025-01-28 02:07:27:727 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7 409 655 - 471.873 ms[39m
+[35m[39m
+2025-01-28 02:10:34:1034 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:10:34:1034 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7agag 400 168 - 642.229 ms[39m
+[35m[39m
+2025-01-28 02:12:02:122 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/11 200 51 - 347.924 ms[39m
+[35m[39m
+2025-01-28 02:13:21:1321 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:13:21:1321 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/11afa 400 168 - 322.291 ms[39m
+[35m[39m
+2025-01-28 02:13:28:1328 [35mhttp[39m: [35mPOST /api/v1/job/saveJob 404 59 - 138.661 ms[39m
+[35m[39m
+2025-01-28 02:14:00:140 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:14:00:140 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/11afa 400 168 - 338.966 ms[39m
+[35m[39m
+2025-01-28 02:14:52:1452 [35mhttp[39m: [35mPOST /api/v1/job/saveJob 404 59 - 137.975 ms[39m
+[35m[39m
+2025-01-28 02:16:01:161 [31merror[39m: [31mJob not found[39m
+2025-01-28 02:16:01:161 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/160 404 647 - 335.985 ms[39m
+[35m[39m
+2025-01-28 02:32:22:3222 [35mhttp[39m: [35mDELETE /api/v1/job/unSaveJob/7 200 53 - 796.226 ms[39m
+[35m[39m
+2025-01-28 02:34:13:3413 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7 200 51 - 2077.436 ms[39m
+[35m[39m
+2025-01-28 02:34:16:3416 [31merror[39m: [31mJob already saved[39m
+2025-01-28 02:34:16:3416 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/7 409 655 - 287.951 ms[39m
+[35m[39m
+2025-01-28 02:38:38:3838 [35mhttp[39m: [35mDELETE /api/v1/job/unSaveJob/7 200 53 - 1864.565 ms[39m
+[35m[39m
+2025-01-28 02:39:05:395 [31merror[39m: [31mJob already not saved[39m
+2025-01-28 02:39:05:395 [35mhttp[39m: [35mDELETE /api/v1/job/unSaveJob/7 409 663 - 326.572 ms[39m
+[35m[39m
+2025-01-28 02:44:34:4434 [31merror[39m: [31mResume not found[39m
+2025-01-28 02:44:34:4434 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/11 404 653 - 697.793 ms[39m
+[35m[39m
+2025-01-28 02:46:45:4645 [31merror[39m: [31myou are member of that business ,you cant apply job [39m
+2025-01-28 02:46:45:4645 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/11 403 725 - 335.807 ms[39m
+[35m[39m
+2025-01-28 02:49:24:4924 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 02:49:24:4924 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 02:49:25:4925 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 02:49:40:4940 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 02:49:40:4940 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 02:49:41:4941 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 02:52:32:5232 [31merror[39m: [31mExpected ',' or '}' after property value in JSON at position 15 (line 1 column 16)[39m
+2025-01-28 02:52:32:5232 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/11 400 1032 - 153.920 ms[39m
+[35m[39m
+2025-01-28 02:52:41:5241 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:52:41:5241 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/11 400 179 - 345.313 ms[39m
+[35m[39m
+2025-01-28 02:54:19:5419 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:54:19:5419 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/11ada 400 168 - 328.618 ms[39m
+[35m[39m
+2025-01-28 02:54:34:5434 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:54:34:5434 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/11ada 400 168 - 491.116 ms[39m
+[35m[39m
+2025-01-28 02:55:21:5521 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob 404 62 - 138.834 ms[39m
+[35m[39m
+2025-01-28 02:57:05:575 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-28 02:57:05:575 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/11 403 703 - 342.472 ms[39m
+[35m[39m
+2025-01-28 02:59:02:592 [31merror[39m: [31mJob not found[39m
+2025-01-28 02:59:02:592 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/110 404 647 - 349.674 ms[39m
+[35m[39m
+2025-01-28 03:01:17:117 [31merror[39m: [31mJob not found[39m
+2025-01-28 03:01:17:117 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/110 404 647 - 324.435 ms[39m
+[35m[39m
+2025-01-28 03:02:56:256 [31merror[39m: [31mResume not found[39m
+2025-01-28 03:02:56:256 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/11 404 653 - 322.411 ms[39m
+[35m[39m
+2025-01-28 03:04:48:448 [31merror[39m: [31mResume not found[39m
+2025-01-28 03:04:48:448 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/9 404 653 - 489.875 ms[39m
+[35m[39m
+2025-01-28 03:04:53:453 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-28 03:04:53:453 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/9 403 703 - 289.360 ms[39m
+[35m[39m
+2025-01-28 03:05:26:526 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 200 954 - 524.181 ms[39m
+[35m[39m
+2025-01-28 03:06:24:624 [31merror[39m: [31myou have already applied to that job[39m
+2025-01-28 03:06:24:624 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 409 693 - 355.117 ms[39m
+[35m[39m
+2025-01-28 03:06:28:628 [31merror[39m: [31myou have already applied to that job[39m
+2025-01-28 03:06:28:628 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 409 693 - 290.329 ms[39m
+[35m[39m
+2025-01-28 03:15:13:1513 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 03:15:13:1513 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 03:15:14:1514 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 17:13:07:137 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 17:13:08:138 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 17:13:09:139 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 17:13:50:1350 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$eq:500 200 1706 - 421.580 ms[39m
+[35m[39m
+2025-01-28 17:14:12:1412 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gte:500 200 4907 - 195.541 ms[39m
+[35m[39m
+2025-01-28 17:16:53:1653 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gte:500 200 4907 - 191.324 ms[39m
+[35m[39m
+2025-01-28 17:17:03:173 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gte:500&page=2 200 3389 - 195.477 ms[39m
+[35m[39m
+2025-01-28 17:17:40:1740 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=2&filter.salary=$gt:500 200 1953 - 191.008 ms[39m
+[35m[39m
+2025-01-28 17:17:45:1745 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:500 200 4915 - 158.907 ms[39m
+[35m[39m
+2025-01-28 17:19:25:1925 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backend%20developer 200 342 - 197.843 ms[39m
+[35m[39m
+2025-01-28 17:19:57:1957 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backend%20developer 200 342 - 192.978 ms[39m
+[35m[39m
+2025-01-28 17:20:05:205 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=%22backend%20developer%22 200 350 - 147.501 ms[39m
+[35m[39m
+2025-01-28 17:20:14:2014 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backend%20developer 200 342 - 145.012 ms[39m
+[35m[39m
+2025-01-28 17:20:26:2026 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backend%20developer 200 1819 - 191.833 ms[39m
+[35m[39m
+2025-01-28 17:20:55:2055 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backen 200 2521 - 194.218 ms[39m
+[35m[39m
+2025-01-28 17:27:46:2746 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 17:27:46:2746 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 17:27:48:2748 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 17:27:54:2754 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backen 200 2412 - 176.512 ms[39m
+[35m[39m
+2025-01-28 17:29:55:2955 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 17:29:56:2956 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 17:29:57:2957 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 17:30:01:301 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backen 200 2415 - 180.748 ms[39m
+[35m[39m
+2025-01-28 17:35:41:3541 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 17:35:42:3542 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 17:35:43:3543 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 17:35:51:3551 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 17:35:51:3551 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 17:35:52:3552 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 17:35:54:3554 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backen 200 2415 - 169.486 ms[39m
+[35m[39m
+2025-01-28 18:39:38:3938 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:39:38:3938 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:39:39:3939 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:40:39:4039 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:40:39:4039 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:40:40:4040 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:40:45:4045 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backen 200 2400 - 201.483 ms[39m
+[35m[39m
+2025-01-28 18:41:34:4134 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backen 200 2400 - 200.996 ms[39m
+[35m[39m
+2025-01-28 18:42:21:4221 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:500 200 4579 - 291.268 ms[39m
+[35m[39m
+2025-01-28 18:44:42:4442 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:44:42:4442 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:44:44:4444 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:44:48:4448 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:500 200 4579 - 316.256 ms[39m
+[35m[39m
+2025-01-28 18:45:33:4533 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:45:33:4533 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:45:35:4535 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:46:42:4642 [31merror[39m: [31minvalid input syntax for type double precision: "500$limit=10"[39m
+2025-01-28 18:46:42:4642 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:500$limit=10 500 1074 - 582.010 ms[39m
+[35m[39m
+2025-01-28 18:46:59:4659 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:500&limit=10 200 4579 - 294.540 ms[39m
+[35m[39m
+2025-01-28 18:47:53:4753 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:47:53:4753 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:47:55:4755 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:47:57:4757 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:500&limit=10 200 4579 - 176.990 ms[39m
+[35m[39m
+2025-01-28 18:48:30:4830 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:48:31:4831 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:48:32:4832 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:48:33:4833 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:500&limit=2 200 1615 - 176.000 ms[39m
+[35m[39m
+2025-01-28 18:49:06:496 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 4536 - 200.793 ms[39m
+[35m[39m
+2025-01-28 18:50:27:5027 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:50:27:5027 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:50:28:5028 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:50:34:5034 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 4536 - 175.289 ms[39m
+[35m[39m
+2025-01-28 18:50:40:5040 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 4536 - 152.349 ms[39m
+[35m[39m
+2025-01-28 18:50:46:5046 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs? 200 4536 - 149.602 ms[39m
+[35m[39m
+2025-01-28 18:51:12:5112 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:51:12:5112 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:51:13:5113 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:51:20:5120 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 4536 - 173.852 ms[39m
+[35m[39m
+2025-01-28 18:51:56:5156 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:51:56:5156 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:51:58:5158 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:52:00:520 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 4536 - 215.632 ms[39m
+[35m[39m
+2025-01-28 18:52:48:5248 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:52:48:5248 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:52:50:5250 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:53:00:530 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 4536 - 251.326 ms[39m
+[35m[39m
+2025-01-28 18:53:51:5351 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:53:51:5351 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:53:53:5353 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:53:58:5358 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 4536 - 202.983 ms[39m
+[35m[39m
+2025-01-28 18:54:29:5429 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:54:29:5429 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:54:30:5430 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 18:55:10:5510 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 18:55:10:5510 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 18:55:11:5511 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:32:59:3259 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:32:59:3259 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:33:00:330 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:35:13:3513 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:35:13:3513 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:35:15:3515 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:39:33:3933 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:39:33:3933 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:39:34:3934 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:39:48:3948 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:39:48:3948 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:39:49:3949 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:40:36:4036 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:40:36:4036 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:40:37:4037 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:40:42:4042 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 4549 - 193.642 ms[39m
+[35m[39m
+2025-01-28 23:41:09:419 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=2 200 4521 - 284.902 ms[39m
+[35m[39m
+2025-01-28 23:41:36:4136 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:41:36:4136 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:41:38:4138 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:41:40:4140 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=2 200 4521 - 196.155 ms[39m
+[35m[39m
+2025-01-28 23:41:44:4144 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=2 200 4521 - 179.645 ms[39m
+[35m[39m
+2025-01-28 23:42:37:4237 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:42:37:4237 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:42:38:4238 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:42:48:4248 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:42:48:4248 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:42:57:4257 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:42:57:4257 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:42:58:4258 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:43:01:431 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=2 200 4521 - 175.767 ms[39m
+[35m[39m
+2025-01-28 23:43:23:4323 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?limit=2&page=2 200 1615 - 427.017 ms[39m
+[35m[39m
+2025-01-28 23:43:29:4329 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?limit=2&page=5 200 1592 - 147.537 ms[39m
+[35m[39m
+2025-01-28 23:43:39:4339 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?limit=2&page=7 200 874 - 144.449 ms[39m
+[35m[39m
+2025-01-28 23:46:07:467 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:46:07:467 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:46:09:469 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:46:28:4628 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:46:28:4628 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:46:29:4629 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:48:00:480 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:48:00:480 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:48:01:481 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:48:03:483 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?limit=2&page=7 200 889 - 179.853 ms[39m
+[35m[39m
+2025-01-28 23:48:30:4830 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?limit=6 200 4517 - 191.707 ms[39m
+[35m[39m
+2025-01-28 23:49:03:493 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:49:03:493 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:49:05:495 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:49:10:4910 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?limit=6 200 4510 - 279.090 ms[39m
+[35m[39m
+2025-01-28 23:50:19:5019 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:50:19:5019 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:50:21:5021 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:50:55:5055 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:50:55:5055 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:50:57:5057 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:54:33:5433 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:54:33:5433 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:54:34:5434 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 23:55:48:5548 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 23:55:48:5548 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 23:55:49:5549 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 00:30:58:3058 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 00:30:59:3059 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 00:31:00:310 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 00:38:07:387 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:500 200 8247 - 1758.676 ms[39m
+[35m[39m
+2025-01-29 00:39:45:3945 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gte]=50 200 9635 - 198.433 ms[39m
+[35m[39m
+2025-01-29 00:41:00:410 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gte]=sla 200 9635 - 197.327 ms[39m
+[35m[39m
+2025-01-29 00:41:28:4128 [31merror[39m: [31minvalid input syntax for type double precision: "af"[39m
+2025-01-29 00:41:28:4128 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:af 500 1054 - 379.819 ms[39m
+[35m[39m
+2025-01-29 00:45:06:456 [31merror[39m: [31moperator does not exist: text @> unknown[39m
+2025-01-29 00:45:06:456 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=$contains:hardware 500 1026 - 295.317 ms[39m
+[35m[39m
+2025-01-29 00:45:48:4548 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=$in:hardware 200 9681 - 203.659 ms[39m
+[35m[39m
+2025-01-29 00:46:12:4612 [31merror[39m: [31moperator does not exist: text @> unknown[39m
+2025-01-29 00:46:12:4612 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=$contains:hardware 500 1026 - 212.077 ms[39m
+[35m[39m
+2025-01-29 00:46:17:4617 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=$contain:hardware 200 192 - 147.262 ms[39m
+[35m[39m
+2025-01-29 00:46:53:4653 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 00:46:53:4653 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 00:46:55:4655 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 00:52:19:5219 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry[gte]=hardware 200 9635 - 217.300 ms[39m
+[35m[39m
+2025-01-29 01:03:35:335 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gte]=hardware 200 9635 - 199.736 ms[39m
+[35m[39m
+2025-01-29 01:03:57:357 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gte]=5000 200 9635 - 228.396 ms[39m
+[35m[39m
+2025-01-29 01:04:48:448 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gte:500 200 9666 - 202.733 ms[39m
+[35m[39m
+2025-01-29 01:07:21:721 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$in:20,60 200 9667 - 198.409 ms[39m
+[35m[39m
+2025-01-29 01:08:47:847 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[in]=20,60 200 9635 - 204.053 ms[39m
+[35m[39m
+2025-01-29 01:11:14:1114 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:11:15:1115 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:11:16:1116 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:11:35:1135 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:11:35:1135 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:11:36:1136 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:12:21:1221 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:12:21:1221 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:12:22:1222 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:12:57:1257 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:12:57:1257 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:12:58:1258 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:13:15:1315 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=5000 200 9635 - 227.237 ms[39m
+[35m[39m
+2025-01-29 01:14:09:149 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:14:09:149 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:14:10:1410 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:14:16:1416 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=5000 200 9635 - 177.273 ms[39m
+[35m[39m
+2025-01-29 01:16:40:1640 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:16:40:1640 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:16:41:1641 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:16:44:1644 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=5000 200 9635 - 180.717 ms[39m
+[35m[39m
+2025-01-29 01:17:39:1739 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:17:39:1739 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:17:40:1740 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:17:54:1754 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:17:54:1754 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:17:56:1756 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:18:38:1838 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:5000 200 950 - 237.754 ms[39m
+[35m[39m
+2025-01-29 01:20:55:2055 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:20:56:2056 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:20:57:2057 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:21:12:2112 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:21:12:2112 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:21:13:2113 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:21:16:2116 [31merror[39m: [31minvalid input syntax for type double precision: "$7:0"[39m
+2025-01-29 01:21:16:2116 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary=$gt:5000 500 1058 - 207.968 ms[39m
+[35m[39m
+2025-01-29 01:21:31:2131 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=7000 200 950 - 194.982 ms[39m
+[35m[39m
+2025-01-29 01:22:54:2254 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=7000&search=soft 200 218 - 295.207 ms[39m
+[35m[39m
+2025-01-29 01:25:50:2550 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:25:50:2550 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:25:52:2552 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:25:56:2556 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=7000&search=soft 200 996 - 176.480 ms[39m
+[35m[39m
+2025-01-29 01:26:12:2612 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=7000&search=soft,page=2 200 225 - 199.133 ms[39m
+[35m[39m
+2025-01-29 01:28:20:2820 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=2&filter.salary[gt]=7000&search=soft 200 235 - 203.815 ms[39m
+[35m[39m
+2025-01-29 01:39:58:3958 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:39:58:3958 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:40:00:400 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:43:15:4315 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 9635 - 235.417 ms[39m
+[35m[39m
+2025-01-29 01:43:54:4354 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?sortBy.title=DESC 200 9635 - 196.351 ms[39m
+[35m[39m
+2025-01-29 01:45:19:4519 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?sortBy=title:DESC 200 9630 - 257.717 ms[39m
+[35m[39m
+2025-01-29 01:45:58:4558 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:45:58:4558 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:45:59:4559 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:46:01:461 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?sortBy=title:DESC,id:DESC 200 9635 - 168.682 ms[39m
+[35m[39m
+2025-01-29 01:46:30:4630 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?sortBy=title:DESC$sortBy=id:DESC 200 9635 - 203.855 ms[39m
+[35m[39m
+2025-01-29 01:46:42:4642 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?sortBy=title:DESC&sortBy=id:DESC 200 9644 - 301.733 ms[39m
+[35m[39m
+2025-01-29 01:47:33:4733 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:47:33:4733 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:47:34:4734 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:47:38:4738 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?sortBy=title:DESC&sortBy=id:DESC 200 9644 - 183.414 ms[39m
+[35m[39m
+2025-01-29 01:47:53:4753 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=7000&sortBy=title:DESC&sortBy=id:DESC 200 959 - 200.726 ms[39m
+[35m[39m
+2025-01-29 01:49:41:4941 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=7000&sortBy=id:DESC 200 942 - 197.796 ms[39m
+[35m[39m
+2025-01-29 01:50:13:5013 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=soft&sortBy=id:DESC 200 5346 - 217.034 ms[39m
+[35m[39m
+2025-01-29 01:51:22:5122 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:51:22:5122 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node&filter.salary[gt]=7000&sortBy=id:DESC 500 1040 - 1823.643 ms[39m
+[35m[39m
+2025-01-29 01:52:17:5217 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:52:17:5217 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node&filter.salary[gt]=7000&sortBy=id:DESC 500 1040 - 292.414 ms[39m
+[35m[39m
+2025-01-29 01:52:28:5228 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:52:28:5228 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node&sortBy=id:DESC 500 1040 - 196.225 ms[39m
+[35m[39m
+2025-01-29 01:52:38:5238 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:52:38:5238 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node,go&filter.salary[gt]=7000&sortBy=id:DESC 500 1040 - 147.431 ms[39m
+[35m[39m
+2025-01-29 01:53:08:538 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:53:08:538 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:53:09:539 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:53:23:5323 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:53:23:5323 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$in:node&filter.salary[gt]=7000&sortBy=id:DESC 500 1040 - 222.614 ms[39m
+[35m[39m
+2025-01-29 01:54:07:547 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:54:07:547 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:54:08:548 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:54:11:5411 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:54:11:5411 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$in:node 500 1040 - 181.222 ms[39m
+[35m[39m
+2025-01-29 01:54:41:5441 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:54:41:5441 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:54:42:5442 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:54:57:5457 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:54:57:5457 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:54:59:5459 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:55:12:5512 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:55:12:5512 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$in:node 500 1040 - 217.353 ms[39m
+[35m[39m
+2025-01-29 01:55:33:5533 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:55:33:5533 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node 500 1040 - 204.452 ms[39m
+[35m[39m
+2025-01-29 01:56:09:569 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:56:09:569 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:56:10:5610 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:57:09:579 [31merror[39m: [31minvalid input syntax for type integer: "[node]"[39m
+2025-01-29 01:57:09:579 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=[node] 500 1044 - 302.765 ms[39m
+[35m[39m
+2025-01-29 01:57:25:5725 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:57:25:5725 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node,go 500 1040 - 290.605 ms[39m
+[35m[39m
+2025-01-29 01:57:29:5729 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=5 200 171 - 147.473 ms[39m
+[35m[39m
+2025-01-29 01:58:08:588 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 01:58:08:588 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 01:58:09:589 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 01:58:20:5820 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "5"[39m
+2025-01-29 01:58:20:5820 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=5 500 1062 - 337.266 ms[39m
+[35m[39m
+2025-01-29 01:58:29:5829 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "partTime"[39m
+2025-01-29 01:58:29:5829 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=partTime 500 1076 - 153.390 ms[39m
+[35m[39m
+2025-01-29 02:01:18:118 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:01:18:118 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:01:19:119 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:01:37:137 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "partTime"[39m
+2025-01-29 02:01:37:137 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=partTime 500 1076 - 237.671 ms[39m
+[35m[39m
+2025-01-29 02:01:52:152 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:01:52:152 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:01:53:153 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:01:56:156 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?keywords=java 200 9635 - 171.451 ms[39m
+[35m[39m
+2025-01-29 02:02:21:221 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
+2025-01-29 02:02:21:221 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=kkk 500 1038 - 207.909 ms[39m
+[35m[39m
+2025-01-29 02:04:59:459 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
+2025-01-29 02:04:59:459 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=kkk 500 1038 - 186.624 ms[39m
+[35m[39m
+2025-01-29 02:05:07:57 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
+2025-01-29 02:05:07:57 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=kkk 500 1038 - 143.187 ms[39m
+[35m[39m
+2025-01-29 02:05:34:534 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:05:34:534 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:05:35:535 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:05:39:539 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
+2025-01-29 02:05:39:539 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=kkk 500 1038 - 172.769 ms[39m
+[35m[39m
+2025-01-29 02:05:57:557 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:05:57:557 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:05:58:558 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:07:37:737 [31merror[39m: [31minvalid input syntax for type integer: "[5]"[39m
+2025-01-29 02:07:37:737 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=[5] 500 1038 - 316.582 ms[39m
+[35m[39m
+2025-01-29 02:07:45:745 [31merror[39m: [31minvalid input syntax for type integer: "'node'"[39m
+2025-01-29 02:07:45:745 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=%27node%27 500 1044 - 143.347 ms[39m
+[35m[39m
+2025-01-29 02:07:51:751 [31merror[39m: [31minvalid input syntax for type integer: "'"node""[39m
+2025-01-29 02:07:51:751 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=%27%22node%22 500 1050 - 142.677 ms[39m
+[35m[39m
+2025-01-29 02:08:09:89 [31merror[39m: [31minvalid input syntax for type integer: ""[39m
+2025-01-29 02:08:09:89 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in] 500 1032 - 192.656 ms[39m
+[35m[39m
+2025-01-29 02:11:21:1121 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:11:21:1121 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:11:23:1123 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:11:32:1132 [31merror[39m: [31minvalid input syntax for type integer: ""[39m
+2025-01-29 02:11:32:1132 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in] 500 1032 - 304.351 ms[39m
+[35m[39m
+2025-01-29 02:11:37:1137 [31merror[39m: [31minvalid input syntax for type integer: "eslam"[39m
+2025-01-29 02:11:37:1137 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=eslam 500 1042 - 151.475 ms[39m
+[35m[39m
+2025-01-29 02:11:55:1155 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=5 200 171 - 189.470 ms[39m
+[35m[39m
+2025-01-29 02:12:49:1249 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=5 200 171 - 187.688 ms[39m
+[35m[39m
+2025-01-29 02:13:51:1351 [31merror[39m: [31minvalid input syntax for type integer: "e"[39m
+2025-01-29 02:13:51:1351 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=e 500 1034 - 195.554 ms[39m
+[35m[39m
+2025-01-29 02:15:18:1518 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:15:18:1518 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:15:19:1519 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:15:23:1523 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=e 200 9665 - 169.355 ms[39m
+[35m[39m
+2025-01-29 02:15:43:1543 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node 200 9668 - 204.610 ms[39m
+[35m[39m
+2025-01-29 02:15:50:1550 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:15:50:1550 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[eq]=node 500 1040 - 165.611 ms[39m
+[35m[39m
+2025-01-29 02:16:12:1612 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:16:12:1612 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:16:14:1614 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:16:29:1629 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:16:30:1630 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:16:31:1631 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:16:36:1636 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:16:36:1636 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[eq]=node 500 1040 - 174.263 ms[39m
+[35m[39m
+2025-01-29 02:16:43:1643 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:16:43:1643 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node,go 500 1040 - 145.665 ms[39m
+[35m[39m
+2025-01-29 02:19:17:1917 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:19:18:1918 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:19:19:1919 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:19:40:1940 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:19:40:1940 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node,go 500 1040 - 215.830 ms[39m
+[35m[39m
+2025-01-29 02:20:44:2044 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:20:44:2044 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:20:45:2045 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:20:49:2049 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node,go 200 9671 - 188.501 ms[39m
+[35m[39m
+2025-01-29 02:21:07:217 [31merror[39m: [31mQueryBuilder parameter keys may only contain numbers, letters, underscores, or periods.[39m
+2025-01-29 02:21:07:217 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords)[in]=node,go 500 1425 - 268.045 ms[39m
+[35m[39m
+2025-01-29 02:21:28:2128 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node,go 200 9671 - 186.445 ms[39m
+[35m[39m
+2025-01-29 02:22:09:229 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:22:09:229 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:22:10:2210 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:22:18:2218 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node,go 200 9671 - 292.237 ms[39m
+[35m[39m
+2025-01-29 02:22:40:2240 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=5 200 9665 - 202.998 ms[39m
+[35m[39m
+2025-01-29 02:22:56:2256 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:22:57:2257 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:22:58:2258 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:23:03:233 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=5 200 171 - 170.334 ms[39m
+[35m[39m
+2025-01-29 02:23:43:2343 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:23:43:2343 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:23:44:2344 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:24:05:245 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=5 200 9635 - 209.763 ms[39m
+[35m[39m
+2025-01-29 02:24:27:2427 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:24:27:2427 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$in:node,k 500 1040 - 227.035 ms[39m
+[35m[39m
+2025-01-29 02:25:02:252 [31merror[39m: [31minvalid input syntax for type integer: "Node"[39m
+2025-01-29 02:25:02:252 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords=$in:Node 500 1040 - 180.880 ms[39m
+[35m[39m
+2025-01-29 02:25:11:2511 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=partTime 200 9635 - 152.911 ms[39m
+[35m[39m
+2025-01-29 02:25:36:2536 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=Onsite 200 9635 - 205.260 ms[39m
+[35m[39m
+2025-01-29 02:26:14:2614 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:26:15:2615 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:26:16:2616 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:26:53:2653 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:26:54:2654 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:26:55:2655 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:27:03:273 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=Onsite 200 9635 - 178.525 ms[39m
+[35m[39m
+2025-01-29 02:27:32:2732 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:27:33:2733 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:27:34:2734 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:28:26:2826 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:28:26:2826 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:28:27:2827 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:28:31:2831 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=Onsite 200 8946 - 283.421 ms[39m
+[35m[39m
+2025-01-29 02:29:17:2917 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:29:17:2917 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:29:18:2918 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:29:24:2924 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=Onsite 200 8946 - 171.412 ms[39m
+[35m[39m
+2025-01-29 02:29:45:2945 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=Onsite,Remote 200 9682 - 302.327 ms[39m
+[35m[39m
+2025-01-29 02:30:12:3012 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:30:12:3012 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node 500 1040 - 233.493 ms[39m
+[35m[39m
+2025-01-29 02:30:33:3033 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:30:33:3033 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:30:34:3034 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:30:39:3039 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:30:39:3039 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node 500 1040 - 180.457 ms[39m
+[35m[39m
+2025-01-29 02:30:50:3050 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=Onsite,Remote 200 9682 - 208.032 ms[39m
+[35m[39m
+2025-01-29 02:33:01:331 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:33:02:332 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:33:03:333 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:33:12:3312 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:33:12:3312 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node 500 1040 - 215.980 ms[39m
+[35m[39m
+2025-01-29 02:36:26:3626 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:36:26:3626 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:36:28:3628 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:36:40:3640 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=Onsite,Remote 200 9682 - 443.127 ms[39m
+[35m[39m
+2025-01-29 02:37:26:3726 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.employee_type[in]=PartTime 200 886 - 216.877 ms[39m
+[35m[39m
+2025-01-29 02:38:32:3832 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry[in]=hardware 200 9681 - 191.275 ms[39m
+[35m[39m
+2025-01-29 02:38:45:3845 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry[in]=hardwaree 200 188 - 185.352 ms[39m
+[35m[39m
+2025-01-29 02:39:59:3959 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:40:00:400 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:40:01:401 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:41:12:4112 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:41:13:4113 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:41:14:4114 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:41:27:4127 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backen 200 2390 - 201.837 ms[39m
+[35m[39m
+2025-01-29 02:51:09:519 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 9635 - 185.291 ms[39m
+[35m[39m
+2025-01-29 02:51:44:5144 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 9635 - 289.839 ms[39m
+[35m[39m
+2025-01-29 02:52:34:5234 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backend 200 2391 - 185.443 ms[39m
+[35m[39m
+2025-01-29 02:54:18:5418 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:54:19:5419 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:54:27:5427 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:54:27:5427 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:54:28:5428 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:54:36:5436 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 02:54:37:5437 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 02:54:38:5438 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 02:54:52:5452 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=2&search=backend&limit=2 200 949 - 198.362 ms[39m
+[35m[39m
+2025-01-29 02:55:14:5514 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?page=2&search=backend&limit=2 200 949 - 187.237 ms[39m
+[35m[39m
+2025-01-29 02:55:30:5530 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backend&limit=3&page=1 200 2390 - 181.294 ms[39m
+[35m[39m
+2025-01-29 02:55:44:5544 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backend&page=1&limit=2 200 1659 - 184.403 ms[39m
+[35m[39m
+2025-01-29 03:04:26:426 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?search=backend&page=1&limit=2&filter.business.industry=$in:hardware 200 1705 - 190.171 ms[39m
+[35m[39m
+2025-01-29 03:04:32:432 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=$in:hardware 200 9681 - 147.229 ms[39m
+[35m[39m
+2025-01-29 03:05:12:512 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry[in]=hardward 200 187 - 185.697 ms[39m
+[35m[39m
+2025-01-29 03:05:39:539 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=$inn:hardware 200 188 - 184.530 ms[39m
+[35m[39m
+2025-01-29 03:05:48:548 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=hardware 200 9677 - 145.050 ms[39m
+[35m[39m
+2025-01-29 03:07:10:710 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 03:07:10:710 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 03:07:11:711 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 03:07:17:717 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry[in]=hardward&filter.business.industry=hardware 200 189 - 178.352 ms[39m
+[35m[39m
+2025-01-29 03:07:40:740 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry[in]=hardward 200 187 - 217.510 ms[39m
+[35m[39m
+2025-01-29 03:07:49:749 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=hardware 200 9677 - 155.319 ms[39m
+[35m[39m
+2025-01-29 03:08:06:86 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industrye=hardware 200 9678 - 215.050 ms[39m
+[35m[39m
+2025-01-29 03:08:24:824 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=$in:hardware 200 9681 - 197.680 ms[39m
+[35m[39m
+2025-01-29 03:08:48:848 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry[in]=hardware 200 9681 - 197.265 ms[39m
+[35m[39m
+2025-01-29 03:09:55:955 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry[in]=hardware 200 7522 - 197.073 ms[39m
+[35m[39m
+2025-01-29 03:10:06:106 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=$in:hardware 200 7522 - 201.429 ms[39m
+[35m[39m
+2025-01-29 03:10:18:1018 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=hardware 200 7518 - 195.964 ms[39m
+[35m[39m
+2025-01-29 03:10:34:1034 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=hardware,so 200 186 - 205.184 ms[39m
+[35m[39m
+2025-01-29 03:10:42:1042 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry=hardware,software 200 192 - 142.704 ms[39m
+[35m[39m
+2025-01-29 03:11:08:118 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.business.industry[in]=software 200 2345 - 195.063 ms[39m
+[35m[39m
+2025-01-29 03:12:06:126 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?sortBy=salary:DESC 200 9631 - 203.286 ms[39m
+[35m[39m
+2025-01-29 03:12:54:1254 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?sortBy=salary:DESC 200 9631 - 196.527 ms[39m
+[35m[39m
+2025-01-29 03:13:40:1340 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?sortBy=salary:ASC 200 9630 - 186.331 ms[39m
+[35m[39m
+2025-01-29 03:15:15:1515 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.location_type[in]=Onsite,Remote 200 9682 - 287.924 ms[39m
+[35m[39m
+2025-01-29 03:17:09:179 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=7000 200 950 - 188.710 ms[39m
+[35m[39m
+2025-01-29 03:18:27:1827 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.employee_type[in]=PartTime 200 886 - 188.858 ms[39m
+[35m[39m
+2025-01-29 03:19:14:1914 [31merror[39m: [31mError in getting jobs[39m
+2025-01-29 03:19:14:1914 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.keywords[in]=node 400 663 - 190.339 ms[39m
+[35m[39m
+2025-01-29 03:20:53:2053 [31merror[39m: [31mError in getting jobs[39m
+2025-01-29 03:20:53:2053 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.salary[gt]=node 400 663 - 192.941 ms[39m
+[35m[39m
+2025-01-29 14:19:57:1957 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 14:19:58:1958 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 14:19:59:1959 [32minfo[39m: [32mMongoDB Database connected successfully[39m

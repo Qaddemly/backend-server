@@ -287,3 +287,102 @@
 2024-12-17 16:43:35:4335 [31merror[39m: [31muser already has education[39m
 2024-12-17 16:43:47:4347 [31merror[39m: [31muser don`t have education[39m
 2024-12-17 16:47:26:4726 [31merror[39m: [31mRelation with property path education in entity was not found.[39m
+2024-12-22 23:27:19:2719 [31merror[39m: [31mcolumn "createdat" does not exist[39m
+2025-01-27 16:05:10:510 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-01-27 16:05:30:530 [31merror[39m: [31mJob already saved[39m
+2025-01-27 16:06:12:612 [31merror[39m: [31mJob already not saved[39m
+2025-01-27 22:00:03:03 [31merror[39m: [31mMissing required 'sortableColumns' config.[39m
+2025-01-27 22:05:15:515 [31merror[39m: [31minvalid input syntax for type integer: "in:java"[39m
+2025-01-27 22:05:33:533 [31merror[39m: [31minvalid input syntax for type integer: "java"[39m
+2025-01-27 22:09:00:90 [31merror[39m: [31minvalid input syntax for type integer: "java"[39m
+2025-01-27 22:13:01:131 [31merror[39m: [31minvalid input syntax for type integer: "java"[39m
+2025-01-27 22:19:31:1931 [31merror[39m: [31minvalid input syntax for type integer: "@contains:5"[39m
+2025-01-27 22:19:38:1938 [31merror[39m: [31minvalid input syntax for type integer: "contains:5"[39m
+2025-01-27 22:42:10:4210 [31merror[39m: [31mMissing required 'sortableColumns' config.[39m
+2025-01-27 22:48:03:483 [31merror[39m: [31mvalidationErrors[39m
+2025-01-27 23:12:38:1238 [31merror[39m: [31mvalidationErrors[39m
+2025-01-27 23:22:28:2228 [31merror[39m: [31mBusiness with that id not found[39m
+2025-01-27 23:24:14:2414 [31merror[39m: [31mvalidationErrors[39m
+2025-01-27 23:26:08:268 [31merror[39m: [31mvalidationErrors[39m
+2025-01-27 23:28:16:2816 [31merror[39m: [31mvalidationErrors[39m
+2025-01-27 23:38:48:3848 [31merror[39m: [31myou do not have permission to post job[39m
+2025-01-27 23:48:52:4852 [31merror[39m: [31myou do not have permission to post job[39m
+2025-01-27 23:51:41:5141 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-27 23:58:33:5833 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-01-28 00:28:36:2836 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-28 00:29:09:299 [31merror[39m: [31mBusiness with that id not found[39m
+2025-01-28 00:32:44:3244 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
+2025-01-28 01:25:26:2526 [31merror[39m: [31mBusiness with that id not found[39m
+2025-01-28 01:26:57:2657 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 01:29:03:293 [31merror[39m: [31minvalid input value for enum job_employee_type_enum: ""[39m
+2025-01-28 01:30:08:308 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "OnSite"[39m
+2025-01-28 01:33:43:3343 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 01:49:57:4957 [31merror[39m: [31mJob not found[39m
+2025-01-28 01:59:38:5938 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:00:14:014 [31merror[39m: [31myou do not have permission to post job[39m
+2025-01-28 02:00:24:024 [31merror[39m: [31myou do not have permission to post job[39m
+2025-01-28 02:02:15:215 [31merror[39m: [31mJob not found[39m
+2025-01-28 02:02:23:223 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-01-28 02:03:03:33 [31merror[39m: [31myou do not have permission to post job[39m
+2025-01-28 02:07:27:727 [31merror[39m: [31mJob already saved[39m
+2025-01-28 02:10:34:1034 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:13:21:1321 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:14:00:140 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:16:01:161 [31merror[39m: [31mJob not found[39m
+2025-01-28 02:34:16:3416 [31merror[39m: [31mJob already saved[39m
+2025-01-28 02:39:05:395 [31merror[39m: [31mJob already not saved[39m
+2025-01-28 02:44:34:4434 [31merror[39m: [31mResume not found[39m
+2025-01-28 02:46:45:4645 [31merror[39m: [31myou are member of that business ,you cant apply job [39m
+2025-01-28 02:52:32:5232 [31merror[39m: [31mExpected ',' or '}' after property value in JSON at position 15 (line 1 column 16)[39m
+2025-01-28 02:52:41:5241 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:54:19:5419 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:54:34:5434 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 02:57:05:575 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-28 02:59:02:592 [31merror[39m: [31mJob not found[39m
+2025-01-28 03:01:17:117 [31merror[39m: [31mJob not found[39m
+2025-01-28 03:02:56:256 [31merror[39m: [31mResume not found[39m
+2025-01-28 03:04:48:448 [31merror[39m: [31mResume not found[39m
+2025-01-28 03:04:53:453 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-28 03:06:24:624 [31merror[39m: [31myou have already applied to that job[39m
+2025-01-28 03:06:28:628 [31merror[39m: [31myou have already applied to that job[39m
+2025-01-28 18:46:42:4642 [31merror[39m: [31minvalid input syntax for type double precision: "500$limit=10"[39m
+2025-01-29 00:41:28:4128 [31merror[39m: [31minvalid input syntax for type double precision: "af"[39m
+2025-01-29 00:45:06:456 [31merror[39m: [31moperator does not exist: text @> unknown[39m
+2025-01-29 00:46:12:4612 [31merror[39m: [31moperator does not exist: text @> unknown[39m
+2025-01-29 01:21:16:2116 [31merror[39m: [31minvalid input syntax for type double precision: "$7:0"[39m
+2025-01-29 01:51:22:5122 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:52:17:5217 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:52:28:5228 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:52:38:5238 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:53:23:5323 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:54:11:5411 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:55:12:5512 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:55:33:5533 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:57:09:579 [31merror[39m: [31minvalid input syntax for type integer: "[node]"[39m
+2025-01-29 01:57:25:5725 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 01:58:20:5820 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "5"[39m
+2025-01-29 01:58:29:5829 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "partTime"[39m
+2025-01-29 02:01:37:137 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "partTime"[39m
+2025-01-29 02:02:21:221 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
+2025-01-29 02:04:59:459 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
+2025-01-29 02:05:07:57 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
+2025-01-29 02:05:39:539 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
+2025-01-29 02:07:37:737 [31merror[39m: [31minvalid input syntax for type integer: "[5]"[39m
+2025-01-29 02:07:45:745 [31merror[39m: [31minvalid input syntax for type integer: "'node'"[39m
+2025-01-29 02:07:51:751 [31merror[39m: [31minvalid input syntax for type integer: "'"node""[39m
+2025-01-29 02:08:09:89 [31merror[39m: [31minvalid input syntax for type integer: ""[39m
+2025-01-29 02:11:32:1132 [31merror[39m: [31minvalid input syntax for type integer: ""[39m
+2025-01-29 02:11:37:1137 [31merror[39m: [31minvalid input syntax for type integer: "eslam"[39m
+2025-01-29 02:13:51:1351 [31merror[39m: [31minvalid input syntax for type integer: "e"[39m
+2025-01-29 02:15:50:1550 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:16:36:1636 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:16:43:1643 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:19:40:1940 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:21:07:217 [31merror[39m: [31mQueryBuilder parameter keys may only contain numbers, letters, underscores, or periods.[39m
+2025-01-29 02:24:27:2427 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:25:02:252 [31merror[39m: [31minvalid input syntax for type integer: "Node"[39m
+2025-01-29 02:30:12:3012 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:30:39:3039 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 02:33:12:3312 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
+2025-01-29 03:19:14:1914 [31merror[39m: [31mError in getting jobs[39m
+2025-01-29 03:20:53:2053 [31merror[39m: [31mError in getting jobs[39m

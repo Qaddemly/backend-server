@@ -3,6 +3,7 @@ import {
     applyToJob,
     createJob,
     getAllJobApplicationsToJob,
+    getAllJobs,
     getAllUserJobApplications,
     getAllUserSavedJobs,
     getOneJob,
@@ -73,6 +74,12 @@ jobRouter.post(
     validateRequestMiddleware(applyToJobValidator),
 
     applyToJob,
+);
+
+jobRouter.get(
+    '/getAllJobs/',
+
+    getAllJobs,
 );
 
 export default jobRouter;

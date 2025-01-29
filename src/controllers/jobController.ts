@@ -4,6 +4,7 @@ import {
     applyToJobService,
     createJobService,
     getAllJobsApplicationsForJobService,
+    getAllJobsService,
     getAllUserJobsApplicationsService,
     getAllUserSavedJobsService,
     getOneJobService,
@@ -140,6 +141,20 @@ export const getAllJobApplicationsToJob = catchAsync(
             res.status(200).json({
                 success: true,
                 jobApplications: jobApplications,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllJobs = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const jobs = await getAllJobsService(req);
+            res.status(200).json({
+                success: true,
+                jobs,
             });
         } catch (err) {
             return next(err);

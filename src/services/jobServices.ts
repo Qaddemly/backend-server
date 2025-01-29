@@ -10,6 +10,19 @@ import { AccountRepository } from '../Repository/accountRepository';
 import { JobApplication } from '../entity/JobApplication';
 import { ResumeRepository } from '../Repository/resumeRepository';
 import { JobApplicationRepository } from '../Repository/jobApplicationRepository';
+import { ApiFeatures } from '../utils/apiFeatures';
+import { Paginate } from '../utils/pagination/decorator';
+import {
+    FilterComparator,
+    FilterOperator,
+    FilterSuffix,
+} from '../utils/pagination/filter';
+import {
+    paginate,
+    PaginateConfig,
+    PaginationType,
+} from '../utils/pagination/typeorm-paginate';
+import { transformFilter } from '../utils/pagination/transformQuery';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -43,7 +56,7 @@ export const createJobService = async (
         ],
     );
     if (!isAllowedToPostJob) {
-        throw new AppError('you do not have permission to post job', 403);
+        throw new AppError('you do not have permission to that action', 403);
     }
     const newJob = new Job();
     newJob.title = title;
@@ -85,17 +98,20 @@ export const updateJobService = async (
         employee_type,
         keywords,
         experience,
-        business_id,
     } = req.body;
     const userId = Number(req.user.id);
     const jobId = Number(req.params.id);
-    const business = await BusinessRepository.findOneBy({ id: business_id });
-    if (!business) {
-        throw new AppError('Business with that id not found', 404);
+    const foundedJob = await JobRepository.findOne({
+        where: { id: jobId },
+        relations: ['business'],
+    });
+    if (!foundedJob) {
+        throw new AppError('Job not found', 404);
     }
     const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
         userId,
-        business.id,
+
+        foundedJob.business.id,
         [
             HrRole.SUPER_ADMIN,
             HrRole.HR,
@@ -107,6 +123,7 @@ export const updateJobService = async (
     if (!isAllowedToPostJob) {
         throw new AppError('you do not have permission to post job', 403);
     }
+
     const job = await JobRepository.updateOneJob(jobId, {
         title: title,
         description: description,
@@ -204,10 +221,7 @@ export const applyToJobService = async (req: Request) => {
         ],
     );
     if (isNotAllowedToApplyJob) {
-        throw new AppError(
-            'you are member of that business ,you cant apply job ',
-            403,
-        );
+        throw new AppError('you do not have permission to that action', 403);
     }
 
     const account =
@@ -268,4 +282,53 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
         await JobApplicationRepository.findAllApplicationsByJobId(jobId);
 
     return job_applications;
+};
+
+export const getAllJobsService = async (req: Request) => {
+    try {
+        console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<Job> = {
+            searchableColumns: ['title', 'business.name', 'description'],
+            sortableColumns: ['salary'],
+            filterableColumns: {
+                salary: [
+                    FilterOperator.EQ,
+                    FilterOperator.GTE,
+                    FilterOperator.GT,
+                    FilterOperator.LT,
+                    FilterOperator.LTE,
+                ],
+                experience: [
+                    FilterOperator.EQ,
+                    FilterOperator.GTE,
+                    FilterOperator.GT,
+                    FilterOperator.LT,
+                    FilterOperator.LTE,
+                ],
+                location_type: [FilterOperator.IN, FilterOperator.ILIKE],
+                employee_type: [FilterOperator.IN, FilterOperator.CONTAINS],
+                //keywords: true,
+                keywords: [FilterOperator.IN, FilterOperator.ILIKE],
+                'business.industry': [FilterOperator.IN],
+            },
+            relations: ['business'],
+            defaultSortBy: [['created_at', 'DESC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = JobRepository.createQueryBuilder('job');
+
+        const jobs = await paginate<Job>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+        return jobs;
+    } catch (err) {
+        throw new AppError('Error in getting jobs', 400);
+    }
 };

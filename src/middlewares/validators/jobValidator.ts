@@ -22,7 +22,7 @@ export const createJobValidator: ValidationChain[] = [
         .withMessage('description required')
         .isLength({ min: 20 })
         .withMessage('description must be at least 20 characters'),
-    body('employmentType')
+    body('employee_type')
         .notEmpty()
         .withMessage('Employment type cannot be empty')
         .custom((value) => {
@@ -36,7 +36,7 @@ export const createJobValidator: ValidationChain[] = [
         .trim()
         .notEmpty()
         .withMessage('Location cannot be empty'),
-    body('locationType')
+    body('location_type')
         .trim()
         .notEmpty()
         .withMessage('Location type cannot be empty')
@@ -49,17 +49,16 @@ export const createJobValidator: ValidationChain[] = [
         .notEmpty()
         .withMessage('salary required')
         .isNumeric()
-        .withMessage('in valid salary'),
+        .withMessage('in valid salary')
+        .custom((value) => {
+            if (value > 0) return value;
+            else throw new Error('invalid salary');
+        }),
     body('keywords').isArray().withMessage('in valid keywords'),
     body('skills').isArray().withMessage('in valid skills'),
 ];
 
 export const updateJobValidator: ValidationChain[] = [
-    body('business_id')
-        .notEmpty()
-        .withMessage('business_id required')
-        .isNumeric()
-        .withMessage('in valid business_id'),
     body('title')
         .optional()
         .isString()
@@ -74,7 +73,7 @@ export const updateJobValidator: ValidationChain[] = [
         .withMessage('description required')
         .isLength({ min: 20 })
         .withMessage('description must be at least 20 characters'),
-    body('employmentType')
+    body('employee_type')
         .optional()
         .notEmpty()
         .withMessage('Employment type cannot be empty')
@@ -90,7 +89,7 @@ export const updateJobValidator: ValidationChain[] = [
         .trim()
         .notEmpty()
         .withMessage('Location cannot be empty'),
-    body('locationType')
+    body('location_type')
         .optional()
         .trim()
         .notEmpty()
