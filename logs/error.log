@@ -353,3 +353,80 @@
 2024-12-17 17:13:45:1345 [31merror[39m: [31mUser does not have role in business[39m
 2024-12-17 17:14:20:1420 [31merror[39m: [31mOwner cannot be deleted[39m
 2024-12-17 17:14:20:1420 [31merror[39m: [31mOwner cannot be deleted[39m
+2025-01-28 11:49:44:4944 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 11:49:44:4944 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 11:50:59:5059 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 11:50:59:5059 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 11:54:57:5457 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-28 11:54:57:5457 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-28 12:08:38:838 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:08:38:838 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:35:12:3512 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:35:12:3512 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:40:49:4049 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:40:49:4049 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:43:11:4311 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:43:11:4311 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:45:23:4523 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-28 12:45:23:4523 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-28 12:46:41:4641 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-28 12:46:41:4641 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-28 12:47:37:4737 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:47:37:4737 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:50:28:5028 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:50:28:5028 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 13:16:35:1635 [31merror[39m: [31mAccount not found[39m
+2025-01-28 13:16:35:1635 [31merror[39m: [31mAccount not found[39m
+2025-01-28 13:17:04:174 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 13:17:22:1722 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 13:17:33:1733 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 13:17:44:1744 [31merror[39m: [31mBad escaped character in JSON at position 62 (line 3 column 14)[39m
+2025-01-28 13:17:51:1751 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 13:18:31:1831 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 13:19:03:193 [31merror[39m: [31mBusiness not found[39m
+2025-01-28 13:19:03:193 [31merror[39m: [31mBusiness not found[39m
+2025-01-28 13:26:46:2646 [31merror[39m: [31mUser does not have role in business[39m
+2025-01-28 13:26:46:2646 [31merror[39m: [31mUser does not have role in business[39m
+2025-01-28 13:29:31:2931 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 13:29:31:2931 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 14:17:53:1753 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 14:18:19:1819 [31merror[39m: [31mUser does not have role in business[39m
+2025-01-28 14:18:19:1819 [31merror[39m: [31mUser does not have role in business[39m
+2025-01-28 15:29:49:2949 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-01-28 15:29:49:2949 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-01-28 15:31:19:3119 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-01-28 15:31:19:3119 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-01-28 15:31:32:3132 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-28 15:31:32:3132 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-28 15:32:29:3229 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-28 15:32:29:3229 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-28 15:32:33:3233 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-28 15:32:33:3233 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-29 06:12:08:128 [31merror[39m: [31mOwner cannot be deleted[39m
+2025-01-29 06:12:08:128 [31merror[39m: [31mOwner cannot be deleted[39m
+2025-01-29 06:12:17:1217 [31merror[39m: [31mOwner cannot be deleted[39m
+2025-01-29 06:12:17:1217 [31merror[39m: [31mOwner cannot be deleted[39m
+2025-01-29 06:12:40:1240 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-29 06:12:40:1240 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-29 06:13:29:1329 [31merror[39m: [31mUser Email does not have role in business[39m
+2025-01-29 06:13:29:1329 [31merror[39m: [31mUser Email does not have role in business[39m
+2025-01-29 06:14:24:1424 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-29 06:14:24:1424 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-29 06:20:19:2019 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:20:19:2019 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:20:30:2030 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:20:30:2030 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:24:31:2431 [31merror[39m: [31mNo permission to update user with higher role[39m
+2025-01-29 06:24:31:2431 [31merror[39m: [31mNo permission to update user with higher role[39m
+2025-01-29 06:27:55:2755 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:27:55:2755 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:29:16:2916 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:29:16:2916 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:30:02:302 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:30:02:302 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:30:16:3016 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 06:30:16:3016 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-29 06:31:43:3143 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:31:43:3143 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:31:50:3150 [31merror[39m: [31mNo permission to update user with higher or same role[39m
+2025-01-29 06:31:50:3150 [31merror[39m: [31mNo permission to update user with higher or same role[39m

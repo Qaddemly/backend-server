@@ -15,14 +15,15 @@ import {
 import {
     addHrToBusiness,
     checkAddNewHrAuthority,
-    checkBusinessDashboardAuthority,
+    checkOwnerOrSuperAdmin,
     checkDeleteHrAuthority,
-    checkUpdateSuperAdminAuthority,
+    checkUpdateHrAuthority,
     deleteHr,
     getFollowersOfBusiness,
     hrDashboardEntry,
     updateBusiness,
     updateHrRole,
+    checkRoleInBusiness,
 } from '../controllers/businessController';
 
 export const businessRouter = express.Router();
@@ -77,8 +78,8 @@ businessRouter.post(
     '/myBusiness/dashboard/hr/:businessId',
     protect,
     validateRequestMiddleware(checkCreateOrUpdateHr),
-    checkBusinessDashboardAuthority, // check if user has role in business, and return role
-    hrDashboardEntry, // check if user account Exists or not and return it's id
+    hrDashboardEntry,
+    checkOwnerOrSuperAdmin,
     checkAddNewHrAuthority,
     addHrToBusiness,
 );
@@ -86,24 +87,24 @@ businessRouter.put(
     '/myBusiness/dashboard/hr/:businessId',
     protect,
     validateRequestMiddleware(checkCreateOrUpdateHr),
-    checkBusinessDashboardAuthority,
     hrDashboardEntry,
-    checkUpdateSuperAdminAuthority,
+    checkOwnerOrSuperAdmin,
+    checkUpdateHrAuthority,
     updateHrRole,
 );
 businessRouter.delete(
     '/myBusiness/dashboard/hr/:businessId',
     protect,
     validateRequestMiddleware(checkDeleteHr),
-    checkBusinessDashboardAuthority,
     hrDashboardEntry,
+    checkOwnerOrSuperAdmin,
     checkDeleteHrAuthority,
     deleteHr,
 );
 businessRouter.get(
     '/myBusiness/dashboard/hr/all/:businessId',
     protect,
-    checkBusinessDashboardAuthority,
+    checkRoleInBusiness,
     businessController.getAllHrOfBusiness,
 );
 //-----------------------------
@@ -111,7 +112,7 @@ businessRouter.put(
     '/myBusiness/dashboard/edit/:businessId',
     protect,
     validateRequestMiddleware(businessUpdateValidator),
-    checkBusinessDashboardAuthority,
+    checkOwnerOrSuperAdmin,
     uploadSingleImage('logo'),
     resizeBusinessLogo,
     updateBusiness,
@@ -120,7 +121,7 @@ businessRouter.put(
 businessRouter.get(
     '/myBusiness/dashboard/followers/:businessId',
     protect,
-    checkBusinessDashboardAuthority,
+    checkOwnerOrSuperAdmin,
     getFollowersOfBusiness,
 );
 

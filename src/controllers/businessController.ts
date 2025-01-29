@@ -135,13 +135,11 @@ export const getFollowersNumberOfBusiness = catchAsync(
     },
 );
 
-// ----------------- Hr -----------------
 export const addHrToBusiness = catchAsync(
-    async (req: Request, res: Response) => {
+    async (req: RequestWithHrDashboard, res: Response) => {
         await businessServices.addHrToBusiness(
-            req.user.id,
             Number(req.params.businessId),
-            req.body.account_email,
+            req.hrDashboardUserInfo.toBeProcessedUserId,
             req.body.role,
         );
         res.status(201).json({
@@ -185,14 +183,17 @@ export const getAllHrOfBusiness = catchAsync(
         });
     },
 );
-
-export const checkBusinessDashboardAuthority = catchAsync(
+/**
+ * Get role of the authenticated user in the business, and check if it's OWNER or SUPER_ADMIN
+ * Then append role to the request object in `req.hrDashboardUserInfo.role`
+ * */
+export const checkOwnerOrSuperAdmin = catchAsync(
     async (req: RequestWithHrDashboard, res: Response, next) => {
         if (!req.hrDashboardUserInfo) {
             req.hrDashboardUserInfo = {};
         }
-        req.hrDashboardUserInfo.role =
-            await businessServices.checkBusinessDashboardAuthority(
+        req.hrDashboardUserInfo.authenticatedUserRole =
+            await businessServices.checkOwnerOrSuperAdmin(
                 req.user.id,
                 Number(req.params.businessId),
             );
@@ -200,19 +201,27 @@ export const checkBusinessDashboardAuthority = catchAsync(
     },
 );
 
-export const checkUpdateSuperAdminAuthority = catchAsync(
+export const checkUpdateHrAuthority = catchAsync(
     async (req: RequestWithHrDashboard, res: Response, next) => {
-        await businessServices.checkUpdateSuperAdminAuthority(
-            req.hrDashboardUserInfo.role,
+        await businessServices.checkUpdateHrAuthority(
+            req.hrDashboardUserInfo.toBeProcessedUserId,
+            Number(req.params.businessId),
+            req.hrDashboardUserInfo.authenticatedUserRole,
             req.body.role,
         );
         next();
     },
 );
+/**
+ * Validate business
+ * - Business can only have 1 `OWNER`
+ * - `OWNER` can add `SUPER_ADMIN`, `HIRING_MANAGER`, `RECRUITER`, `HR`
+ * - `SUPER_ADMIN` can add `HIRING_MANAGER`, `RECRUITER`, `HR`
+ * */
 export const checkAddNewHrAuthority = catchAsync(
     async (req: RequestWithHrDashboard, res: Response, next) => {
         await businessServices.checkAddNewHrAuthority(
-            req.hrDashboardUserInfo.role,
+            req.hrDashboardUserInfo.authenticatedUserRole,
             req.body.role,
         );
         next();
@@ -222,14 +231,19 @@ export const checkAddNewHrAuthority = catchAsync(
 export const checkDeleteHrAuthority = catchAsync(
     async (req: RequestWithHrDashboard, res: Response, next) => {
         await businessServices.checkDeleteHrAuthority(
-            req.hrDashboardUserInfo.role,
+            req.hrDashboardUserInfo.authenticatedUserRole,
             req.hrDashboardUserInfo.toBeProcessedUserId,
             Number(req.params.businessId),
         );
         next();
     },
 );
-
+/**
+ * Creates `req.hrDashboardUserInfo` object
+ * Check if user email we want to add exists in database or not
+ * Check if business id is valid or not
+ * Append `toBeProcessedUserId` to the request object in `req.hrDashboardUserInfo.toBeProcessedUserId`
+ * */
 export const hrDashboardEntry = catchAsync(
     async (req: RequestWithHrDashboard, res: Response, next: NextFunction) => {
         if (!req.hrDashboardUserInfo) {
@@ -240,6 +254,20 @@ export const hrDashboardEntry = catchAsync(
                 Number(req.params.businessId),
                 req.body.account_email,
             );
+        next();
+    },
+);
+
+/**
+ * Get role of the current authenticated user in the business
+ * If user do not have role return 403
+ * */
+export const checkRoleInBusiness = catchAsync(
+    async (req: RequestWithHrDashboard, res: Response, next) => {
+        await businessServices.checkRoleInBusiness(
+            req.user.id,
+            Number(req.params.businessId),
+        );
         next();
     },
 );

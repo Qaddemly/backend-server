@@ -6,6 +6,7 @@ import { businessRouter } from './businessRoutes';
 import app from '../app';
 import { accountRouter } from './accountRoutes';
 import jobRouter from './jobRoutes';
+import { reviewRouter } from './reviewRoutes';
 
 const mountRoutes = (app: Express) => {
     const prefixUrl = '/api/v1';
@@ -15,6 +16,7 @@ const mountRoutes = (app: Express) => {
 
     app.use('/api/v1/account', accountRouter);
     app.use('/api/v1/business', businessRouter);
+    app.use('/api/v1/review', reviewRouter);
 };
 
 export default mountRoutes;
