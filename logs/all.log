@@ -3392,3 +3392,316 @@
 2024-12-17 17:14:20:1420 [31merror[39m: [31mOwner cannot be deleted[39m
 2024-12-17 17:14:20:1420 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 832 - 354.013 ms[39m
 [35m[39m
+2024-12-26 13:07:08:78 [32minfo[39m: [32mServer is running on port 8000[39m
+2024-12-26 13:07:09:79 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2024-12-26 13:07:10:710 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 11:46:36:4636 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 11:46:36:4636 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 11:46:38:4638 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 11:49:02:492 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1288.255 ms[39m
+[35m[39m
+2025-01-28 11:49:44:4944 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 11:49:44:4944 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 11:49:44:4944 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 491.820 ms[39m
+[35m[39m
+2025-01-28 11:50:56:5056 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 504.169 ms[39m
+[35m[39m
+2025-01-28 11:50:59:5059 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 11:50:59:5059 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 11:50:59:5059 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 389.796 ms[39m
+[35m[39m
+2025-01-28 11:54:57:5457 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-28 11:54:57:5457 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-28 11:54:57:5457 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 1346 - 455.489 ms[39m
+[35m[39m
+2025-01-28 11:55:32:5532 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 468.368 ms[39m
+[35m[39m
+2025-01-28 12:01:13:113 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 12:01:14:114 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 12:01:15:115 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 12:08:03:83 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 12:08:04:84 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 12:08:05:85 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 12:08:10:810 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 828 - 1008.981 ms[39m
+[35m[39m
+2025-01-28 12:08:38:838 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:08:38:838 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:08:38:838 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 1406 - 406.511 ms[39m
+[35m[39m
+2025-01-28 12:34:59:3459 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 12:35:00:350 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 12:35:01:351 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 12:35:12:3512 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:35:12:3512 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:35:12:3512 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 1406 - 880.884 ms[39m
+[35m[39m
+2025-01-28 12:35:45:3545 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 488.068 ms[39m
+[35m[39m
+2025-01-28 12:36:13:3613 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 534.301 ms[39m
+[35m[39m
+2025-01-28 12:40:49:4049 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:40:49:4049 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:40:49:4049 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 401.502 ms[39m
+[35m[39m
+2025-01-28 12:41:54:4154 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 445.933 ms[39m
+[35m[39m
+2025-01-28 12:43:11:4311 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:43:11:4311 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:43:11:4311 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 492.623 ms[39m
+[35m[39m
+2025-01-28 12:44:35:4435 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 408.872 ms[39m
+[35m[39m
+2025-01-28 12:45:23:4523 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-28 12:45:23:4523 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-28 12:45:23:4523 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 890 - 532.079 ms[39m
+[35m[39m
+2025-01-28 12:46:17:4617 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1078.203 ms[39m
+[35m[39m
+2025-01-28 12:46:41:4641 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-28 12:46:41:4641 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-28 12:46:41:4641 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 1346 - 380.443 ms[39m
+[35m[39m
+2025-01-28 12:47:37:4737 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:47:37:4737 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 12:47:37:4737 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 442.389 ms[39m
+[35m[39m
+2025-01-28 12:47:50:4750 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 485.568 ms[39m
+[35m[39m
+2025-01-28 12:49:00:490 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 391.577 ms[39m
+[35m[39m
+2025-01-28 12:49:58:4958 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 1015.496 ms[39m
+[35m[39m
+2025-01-28 12:50:28:5028 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:50:28:5028 [31merror[39m: [31mUser dont have authority to added super admin, cannot be added[39m
+2025-01-28 12:50:28:5028 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 1406 - 478.684 ms[39m
+[35m[39m
+2025-01-28 12:51:00:510 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 400.042 ms[39m
+[35m[39m
+2025-01-28 13:16:26:1626 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 13:16:26:1626 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 13:16:27:1627 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 13:16:35:1635 [31merror[39m: [31mAccount not found[39m
+2025-01-28 13:16:35:1635 [31merror[39m: [31mAccount not found[39m
+2025-01-28 13:16:35:1635 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 734.220 ms[39m
+[35m[39m
+2025-01-28 13:17:04:174 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 13:17:04:174 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 183 - 382.465 ms[39m
+[35m[39m
+2025-01-28 13:17:22:1722 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 13:17:22:1722 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 183 - 345.070 ms[39m
+[35m[39m
+2025-01-28 13:17:33:1733 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 13:17:33:1733 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 143 - 349.346 ms[39m
+[35m[39m
+2025-01-28 13:17:44:1744 [31merror[39m: [31mBad escaped character in JSON at position 62 (line 3 column 14)[39m
+2025-01-28 13:17:44:1744 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 1139 - 138.618 ms[39m
+[35m[39m
+2025-01-28 13:17:51:1751 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 13:17:51:1751 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 158 - 475.128 ms[39m
+[35m[39m
+2025-01-28 13:18:31:1831 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 13:18:31:1831 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 172 - 398.008 ms[39m
+[35m[39m
+2025-01-28 13:19:03:193 [31merror[39m: [31mBusiness not found[39m
+2025-01-28 13:19:03:193 [31merror[39m: [31mBusiness not found[39m
+2025-01-28 13:19:03:193 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/46565465 404 822 - 627.193 ms[39m
+[35m[39m
+2025-01-28 13:25:30:2530 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 13:25:31:2531 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 13:25:32:2532 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 13:25:54:2554 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 1109.503 ms[39m
+[35m[39m
+2025-01-28 13:25:59:2559 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 749 - 339.720 ms[39m
+[35m[39m
+2025-01-28 13:26:46:2646 [31merror[39m: [31mUser does not have role in business[39m
+2025-01-28 13:26:46:2646 [31merror[39m: [31mUser does not have role in business[39m
+2025-01-28 13:26:46:2646 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 403 877 - 435.586 ms[39m
+[35m[39m
+2025-01-28 13:29:12:2912 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1278.609 ms[39m
+[35m[39m
+2025-01-28 13:29:31:2931 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 13:29:31:2931 [31merror[39m: [31mUser already has role in business[39m
+2025-01-28 13:29:31:2931 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 403.922 ms[39m
+[35m[39m
+2025-01-28 13:29:46:2946 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 409.783 ms[39m
+[35m[39m
+2025-01-28 13:30:09:309 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 200 56 - 380.999 ms[39m
+[35m[39m
+2025-01-28 14:17:53:1753 [31merror[39m: [31mvalidationErrors[39m
+2025-01-28 14:17:53:1753 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 400 173 - 775.697 ms[39m
+[35m[39m
+2025-01-28 14:18:19:1819 [31merror[39m: [31mUser does not have role in business[39m
+2025-01-28 14:18:19:1819 [31merror[39m: [31mUser does not have role in business[39m
+2025-01-28 14:18:19:1819 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 856 - 713.439 ms[39m
+[35m[39m
+2025-01-28 15:28:21:2821 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 15:28:22:2822 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 15:28:23:2823 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 15:29:08:298 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 652.480 ms[39m
+[35m[39m
+2025-01-28 15:29:17:2917 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 200 56 - 317.056 ms[39m
+[35m[39m
+2025-01-28 15:29:35:2935 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 512.971 ms[39m
+[35m[39m
+2025-01-28 15:29:45:2945 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 924.343 ms[39m
+[35m[39m
+2025-01-28 15:29:49:2949 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-01-28 15:29:49:2949 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-01-28 15:29:49:2949 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 916 - 316.099 ms[39m
+[35m[39m
+2025-01-28 15:31:19:3119 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-01-28 15:31:19:3119 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-01-28 15:31:19:3119 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 916 - 377.505 ms[39m
+[35m[39m
+2025-01-28 15:31:28:3128 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 828 - 993.892 ms[39m
+[35m[39m
+2025-01-28 15:31:32:3132 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-28 15:31:32:3132 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-28 15:31:32:3132 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 890 - 310.364 ms[39m
+[35m[39m
+2025-01-28 15:31:39:3139 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 918.064 ms[39m
+[35m[39m
+2025-01-28 15:31:42:3142 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 200 56 - 311.904 ms[39m
+[35m[39m
+2025-01-28 15:32:01:321 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 200 56 - 552.254 ms[39m
+[35m[39m
+2025-01-28 15:32:07:327 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 321.924 ms[39m
+[35m[39m
+2025-01-28 15:32:18:3218 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 895.904 ms[39m
+[35m[39m
+2025-01-28 15:32:29:3229 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-28 15:32:29:3229 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-28 15:32:29:3229 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 890 - 380.384 ms[39m
+[35m[39m
+2025-01-28 15:32:33:3233 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-28 15:32:33:3233 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-28 15:32:33:3233 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 890 - 306.618 ms[39m
+[35m[39m
+2025-01-28 15:33:25:3325 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1000.185 ms[39m
+[35m[39m
+2025-01-28 16:00:41:041 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-28 16:00:42:042 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-28 16:00:43:043 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-28 16:01:04:14 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1230.761 ms[39m
+[35m[39m
+2025-01-28 16:01:20:120 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 529.493 ms[39m
+[35m[39m
+2025-01-28 16:01:28:128 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 326.297 ms[39m
+[35m[39m
+2025-01-28 16:01:57:157 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 401.650 ms[39m
+[35m[39m
+2025-01-29 06:12:02:122 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 06:12:03:123 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 06:12:04:124 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 06:12:08:128 [31merror[39m: [31mOwner cannot be deleted[39m
+2025-01-29 06:12:08:128 [31merror[39m: [31mOwner cannot be deleted[39m
+2025-01-29 06:12:08:128 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 832 - 876.274 ms[39m
+[35m[39m
+2025-01-29 06:12:15:1215 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 928.045 ms[39m
+[35m[39m
+2025-01-29 06:12:17:1217 [31merror[39m: [31mOwner cannot be deleted[39m
+2025-01-29 06:12:17:1217 [31merror[39m: [31mOwner cannot be deleted[39m
+2025-01-29 06:12:17:1217 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 403 832 - 309.170 ms[39m
+[35m[39m
+2025-01-29 06:12:40:1240 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-29 06:12:40:1240 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-29 06:12:40:1240 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 1346 - 432.272 ms[39m
+[35m[39m
+2025-01-29 06:12:48:1248 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 390.264 ms[39m
+[35m[39m
+2025-01-29 06:13:29:1329 [31merror[39m: [31mUser Email does not have role in business[39m
+2025-01-29 06:13:29:1329 [31merror[39m: [31mUser Email does not have role in business[39m
+2025-01-29 06:13:29:1329 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 868 - 485.743 ms[39m
+[35m[39m
+2025-01-29 06:14:24:1424 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-29 06:14:24:1424 [31merror[39m: [31mBusiness can only have one owner[39m
+2025-01-29 06:14:24:1424 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 403 1346 - 482.556 ms[39m
+[35m[39m
+2025-01-29 06:14:40:1440 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 437.777 ms[39m
+[35m[39m
+2025-01-29 06:14:47:1447 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 331.857 ms[39m
+[35m[39m
+2025-01-29 06:15:34:1534 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 06:15:34:1534 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 06:15:35:1535 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 06:16:21:1621 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 493.918 ms[39m
+[35m[39m
+2025-01-29 06:16:24:1624 [32minfo[39m: [32mHR[39m
+2025-01-29 06:16:24:1624 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 301.463 ms[39m
+[35m[39m
+2025-01-29 06:19:58:1958 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 06:19:58:1958 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 06:20:00:200 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 06:20:15:2015 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 474.909 ms[39m
+[35m[39m
+2025-01-29 06:20:19:2019 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:20:19:2019 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:20:19:2019 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 846 - 303.245 ms[39m
+[35m[39m
+2025-01-29 06:20:26:2026 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 306.393 ms[39m
+[35m[39m
+2025-01-29 06:20:30:2030 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:20:30:2030 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:20:30:2030 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 846 - 312.563 ms[39m
+[35m[39m
+2025-01-29 06:24:15:2415 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 06:24:16:2416 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 06:24:17:2417 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 06:24:29:2429 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 652.859 ms[39m
+[35m[39m
+2025-01-29 06:24:31:2431 [32minfo[39m: [32m1[39m
+2025-01-29 06:24:31:2431 [32minfo[39m: [32m1[39m
+2025-01-29 06:24:31:2431 [31merror[39m: [31mNo permission to update user with higher role[39m
+2025-01-29 06:24:31:2431 [31merror[39m: [31mNo permission to update user with higher role[39m
+2025-01-29 06:24:31:2431 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 1372 - 299.642 ms[39m
+[35m[39m
+2025-01-29 06:27:45:2745 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 06:27:45:2745 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 06:27:46:2746 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 06:27:55:2755 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:27:55:2755 [31merror[39m: [31mBusiness can only have 1 Owner[39m
+2025-01-29 06:27:55:2755 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 846 - 365.434 ms[39m
+[35m[39m
+2025-01-29 06:28:02:282 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 501.249 ms[39m
+[35m[39m
+2025-01-29 06:28:07:287 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 297.711 ms[39m
+[35m[39m
+2025-01-29 06:28:13:2813 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 289.204 ms[39m
+[35m[39m
+2025-01-29 06:28:15:2815 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 288.233 ms[39m
+[35m[39m
+2025-01-29 06:29:12:2912 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 06:29:12:2912 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 06:29:14:2914 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 06:29:16:2916 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:29:16:2916 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:29:16:2916 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 838 - 434.868 ms[39m
+[35m[39m
+2025-01-29 06:30:02:302 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:30:02:302 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:30:02:302 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 838 - 399.028 ms[39m
+[35m[39m
+2025-01-29 06:30:10:3010 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 1026.308 ms[39m
+[35m[39m
+2025-01-29 06:30:16:3016 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 06:30:16:3016 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-29 06:30:16:3016 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 890 - 326.216 ms[39m
+[35m[39m
+2025-01-29 06:30:51:3051 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1064.227 ms[39m
+[35m[39m
+2025-01-29 06:31:02:312 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 389.219 ms[39m
+[35m[39m
+2025-01-29 06:31:12:3112 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 927.904 ms[39m
+[35m[39m
+2025-01-29 06:31:34:3134 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 512.135 ms[39m
+[35m[39m
+2025-01-29 06:31:43:3143 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:31:43:3143 [31merror[39m: [31mUser already has this role[39m
+2025-01-29 06:31:43:3143 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 838 - 313.083 ms[39m
+[35m[39m
+2025-01-29 06:31:50:3150 [31merror[39m: [31mNo permission to update user with higher or same role[39m
+2025-01-29 06:31:50:3150 [31merror[39m: [31mNo permission to update user with higher or same role[39m
+2025-01-29 06:31:50:3150 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 892 - 309.068 ms[39m
+[35m[39m
+2025-01-29 06:32:48:3248 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 351.506 ms[39m
+[35m[39m

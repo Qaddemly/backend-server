@@ -7,7 +7,7 @@ import {
 import { BusinessRepository } from '../Repository/businessRepository';
 import { AccountRepository } from '../Repository/accountRepository';
 import { HrEmployee } from '../entity/HrEmployee';
-import { HrRole } from '../enums/HrRole';
+import { HrRole, HrRolePriority } from '../enums/HrRole';
 import { Address } from '../entity/Address';
 import AppError from '../utils/appError';
 import { HrEmployeeRepository } from '../Repository/hrEmployeeRepository';
@@ -155,24 +155,27 @@ export const getAllJobsOfBusiness = async (businessId: number) => {
     return await JobRepository.getAllJobsOfBusiness(businessId);
 };
 export const addHrToBusiness = async (
-    userId: number,
     businessId: number,
-    accountEmail: string,
+    toBeAddedAccountId: number,
     role: HrRole,
 ) => {
+    // Check If the business with this ID already exists
     const business = await BusinessRepository.findOneBy({ id: businessId });
     if (!business) {
         Logger.error('Business not found');
         throw new AppError('Business not found', 404);
     }
-
-    const account = await AccountRepository.findOneBy({ email: accountEmail });
+    // Check if the account with this email already exists
+    const account = await AccountRepository.findOneBy({
+        id: toBeAddedAccountId,
+    });
     if (!account) {
         Logger.error('Account not found');
         throw new AppError('Account not found', 404);
     }
 
-    // Check if user already has role in business
+    // Check if user who we want to add has role in business or not
+    // If wes return true, it means user already has role in business
     const checkIfAccountHasRole =
         await HrEmployeeRepository.checkIfUserHasRoleInBusiness(
             account.id,
@@ -209,7 +212,6 @@ export const updateHrRole = async (
         );
         throw new AppError('Error while updating role', 400);
     }
-    return true;
 };
 export const deleteHr = async (businessId: number, accountId: number) => {
     const deletedHrEmployee = await HrEmployeeRepository.deleteRole(
@@ -238,7 +240,12 @@ export const getFollowersOfBusiness = async (businessId: number) => {
     return await FollowBusinessRepository.getFollowersOfBusiness(businessId);
 };
 
-export const checkBusinessDashboardAuthority = async (
+/**
+ * @description This middleware checks if user who made the request has role of `SUPER_ADMIN` or `OWNER`
+ * @throws AppError if user is not `SUPER_ADMIN` or `OWNER`
+ * @return role of the authenticated user
+ * */
+export const checkOwnerOrSuperAdmin = async (
     userId: number,
     businessId: number,
 ) => {
@@ -246,63 +253,91 @@ export const checkBusinessDashboardAuthority = async (
     console.log(role);
     if (role !== HrRole.OWNER && role !== HrRole.SUPER_ADMIN) {
         Logger.error(
-            'User does not have permission to access business dashboard',
+            'USER must be SUPER_ADMIN or OWNER to access this endpoint',
         );
         throw new AppError(
-            'User does not have permission to access business dashboard',
+            'User does not have permission to access this section',
             403,
         );
     }
     return role;
 };
-export const checkUpdateSuperAdminAuthority = async (
-    userRole: HrRole,
-    role: HrRole,
+
+/**
+ * @param accountId - To be updated Account ID
+ * @param businessId - Business ID
+ * @param authenticatedUserRole - Authenticated user role
+ * @param newRole - New role to be updated
+ *
+ * @description This Function checks for
+ * - If user who we want to update has role in business or nor
+ * - Super Admin can't update another super Admin
+ * - OWNER can't be updated
+ *
+ * @note only SUPER_ADMIN & OWNER can access this function, because there's a middleware before it who checks if user who made the request is SUPER_ADMIN or OWNER
+ * */
+export const checkUpdateHrAuthority = async (
+    accountId: number,
+    businessId: number,
+    authenticatedUserRole: HrRole,
+    newRole: HrRole,
 ) => {
-    if (role === HrRole.OWNER && userRole === HrRole.OWNER) {
-        Logger.error(
-            'Business can only have one owner, cannot be updated to owner',
-        );
+    const toBeUpdatedHrEmployee = await HrEmployeeRepository.getRole(
+        accountId,
+        businessId,
+    );
+    if (!toBeUpdatedHrEmployee) {
+        Logger.error('User Email does not have role in business');
+        throw new AppError('User Email does not have role in business', 403);
+    }
+
+    if (newRole === HrRole.OWNER) {
+        Logger.error('Business can only have 1 Owner');
+        throw new AppError('Business can only have 1 Owner', 403);
+    }
+
+    if (HrRolePriority[newRole] >= HrRolePriority[authenticatedUserRole]) {
+        Logger.error('No permission to update user with higher or same role');
         throw new AppError(
-            'Business can only have one owner, cannot be updated to owner',
-            403,
-        );
-    } else if (role === HrRole.OWNER) {
-        Logger.error(
-            'User dont have authority to update owner, cannot be updated',
-        );
-        throw new AppError(
-            'User dont have authority to update owner, cannot be updated',
+            'No permission to update user with higher or same role',
             403,
         );
     }
-
-    if (role === HrRole.SUPER_ADMIN && userRole !== HrRole.OWNER) {
-        Logger.error(
-            'User dont have authority to update super admin, cannot be updated',
-        );
-        throw new AppError(
-            'User dont have authority to update super admin, cannot be updated',
-            403,
-        );
+    if (newRole === toBeUpdatedHrEmployee) {
+        Logger.error('User already has this role');
+        throw new AppError('User already has this role', 400);
     }
 };
-
+/**
+ * @param authenticatedRole - Authenticated user role
+ * @param toBeAddedRole - To be added role
+ *
+ * @description This checks for the following
+ * - Owner can't be added as business can only have 1 Owner
+ * - Super Admin can't add another Super Admin
+ *
+ * @throws AppError if user not have authority
+ *
+ * @note only SUPER_ADMIN & OWNER can access this middleware, because there's a middleware before it who checks if user who made the request is SUPER_ADMIN or OWNER
+ * */
 export const checkAddNewHrAuthority = async (
-    userRole: HrRole,
-    role: HrRole,
+    authenticatedRole: HrRole,
+    toBeAddedRole: HrRole,
 ) => {
-    if (role === HrRole.OWNER && userRole === HrRole.OWNER) {
+    if (toBeAddedRole === HrRole.OWNER && authenticatedRole === HrRole.OWNER) {
         Logger.error('Business can only have one owner');
         throw new AppError('Business can only have one owner', 403);
-    } else if (role === HrRole.OWNER) {
+    } else if (toBeAddedRole === HrRole.OWNER) {
         Logger.error('User dont have authority to add owner, cannot be added');
         throw new AppError(
             'User dont have authority to add owner, cannot be added',
             403,
         );
     }
-    if (role === HrRole.SUPER_ADMIN && userRole !== HrRole.OWNER) {
+    if (
+        toBeAddedRole === HrRole.SUPER_ADMIN &&
+        authenticatedRole !== HrRole.OWNER
+    ) {
         Logger.error(
             'User dont have authority to added super admin, cannot be added',
         );
@@ -312,14 +347,30 @@ export const checkAddNewHrAuthority = async (
         );
     }
 };
-
+/**
+ *
+ * @param authenticatedUserRole - Authenticated user role
+ * @param toBeAddedAccountId - To be added Account ID
+ * @param businessId - Business ID
+ *
+ * @description This checks for the following
+ * - checks if to be deleted user has role in business or nor
+ * - Owner can't be deleted
+ * - Super Admin can't delete another Super Admin
+ *
+ * @throws AppError if user is OWNER or SUPER_ADMIN
+ *
+ * @note only SUPER_ADMIN & OWNER can access this middleware, because there's a middleware before it who checks if user who made the request is SUPER_ADMIN or OWNER
+ *
+ * */
 export const checkDeleteHrAuthority = async (
-    userRole: HrRole,
-    accountId: number,
+    authenticatedUserRole: HrRole,
+    toBeAddedAccountId: number,
     businessId: number,
 ) => {
+    // Check if user who we want to delete have a role in business or nor
     const hrEmployeeRole = await HrEmployeeRepository.getRole(
-        accountId,
+        toBeAddedAccountId,
         businessId,
     );
     if (!hrEmployeeRole) {
@@ -332,7 +383,7 @@ export const checkDeleteHrAuthority = async (
     }
     if (
         hrEmployeeRole === HrRole.SUPER_ADMIN &&
-        userRole === HrRole.SUPER_ADMIN
+        authenticatedUserRole === HrRole.SUPER_ADMIN
     ) {
         Logger.error(
             'User dont have authority to delete super admin, cannot be deleted',
@@ -362,3 +413,18 @@ export const hrDashboardEntry = async (
 
     return account.id;
 };
+
+export async function checkRoleInBusiness(
+    authenticatedUserId: number,
+    businessId: number,
+) {
+    const role = await HrEmployeeRepository.getRole(
+        authenticatedUserId,
+        businessId,
+    );
+    if (!role) {
+        Logger.error('User does not have role in business');
+        throw new AppError('User does not have role in business', 403);
+    }
+    return role;
+}

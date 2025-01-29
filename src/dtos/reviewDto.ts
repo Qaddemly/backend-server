@@ -1,10 +1,13 @@
-import { Business } from '../entity/Business';
-import { Account } from '../entity/Account';
+import exp from 'node:constants';
 
-interface getReviewDTO {
-    id: string;
+export interface CreateReviewBodyDTO {
+    business_id: number;
     description: string;
     rating: number;
-    business: Business;
-    account: Account;
+}
+export interface CreateReviewDTO {
+    description: string;
+    rating: number;
+    business_id: number;
+    account_id: number;
 }
