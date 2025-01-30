@@ -23,6 +23,7 @@ import {
     PaginationType,
 } from '../utils/pagination/typeorm-paginate';
 import { transformFilter } from '../utils/pagination/transformQuery';
+import { Account } from '../entity/Account';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -180,6 +181,13 @@ export const removeSavedJobFromUserService = async (req: Request) => {
     return savedUser;
 };
 
+// export const getAllUserSavedJobsService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+
+//     const account = await AccountRepository.getAccountWithSavedJobs(userId);
+
+//     return account.saved_jobs;
+// };
 export const getAllUserSavedJobsService = async (req: Request) => {
     const userId = Number(req.user.id);
 
@@ -244,14 +252,78 @@ export const applyToJobService = async (req: Request) => {
     return jobApplication;
 };
 
+// export const getAllUserJobsApplicationsService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+
+//     const account =
+//         await AccountRepository.getAccountWithJobApplications(userId);
+
+//     return account.job_applications;
+// };
 export const getAllUserJobsApplicationsService = async (req: Request) => {
     const userId = Number(req.user.id);
+    try {
+        const transformedQuery = Paginate(req);
+        const paginateConfig: PaginateConfig<JobApplication> = {
+            searchableColumns: ['job.title'],
+            sortableColumns: ['created_at'],
+            //filterableColumns:{id:5},
+            relations: ['job'],
+            //where: { job: job },
+            defaultSortBy: [['created_at', 'DESC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+            //where: { resume: { account: account } },
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = JobApplicationRepository.createQueryBuilder(
+            'job_application',
+        )
+            .innerJoinAndSelect('job_application.resume', 'resume')
+            .where('resume.accountId = :accountId', { accountId: userId });
 
-    const account =
-        await AccountRepository.getAccountWithJobApplications(userId);
-
-    return account.job_applications;
+        const job_applications = await paginate<JobApplication>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+        return job_applications;
+    } catch (err) {
+        console.error('Error in getting job_applications', err);
+        throw new AppError('Error in getting job_applications', 400);
+    }
 };
+
+// export const getAllJobsApplicationsForJobService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+//     const jobId = Number(req.params.id);
+//     const job = await JobRepository.getJobWithBusiness(jobId);
+//     if (!job) {
+//         throw new AppError('Job not found', 404);
+//     }
+//     const business = await BusinessRepository.findOneBy({
+//         id: job.business.id,
+//     });
+//     if (!business) {
+//         throw new AppError('Business not found', 404);
+//     }
+//     const isAllowedToShowAllApplications =
+//         await HrEmployeeRepository.checkPermission(userId, business.id, [
+//             HrRole.SUPER_ADMIN,
+//             HrRole.HR,
+//             HrRole.RECRUITER,
+//             HrRole.HIRING_MANAGER,
+//             HrRole.SUPER_ADMIN,
+//         ]);
+//     if (!isAllowedToShowAllApplications) {
+//         throw new AppError('you are not allowed to show all applications', 403);
+//     }
+
+//     const job_applications =
+//         await JobApplicationRepository.findAllApplicationsByJobId(jobId);
+
+//     return job_applications;
+// };
 
 export const getAllJobsApplicationsForJobService = async (req: Request) => {
     const userId = Number(req.user.id);
@@ -273,22 +345,50 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
             HrRole.RECRUITER,
             HrRole.HIRING_MANAGER,
             HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
         ]);
     if (!isAllowedToShowAllApplications) {
-        throw new AppError('you are not allowed to show all applications', 403);
+        throw new AppError('you are not allowed to do that action', 403);
     }
+    try {
+        //console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        //console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<JobApplication> = {
+            searchableColumns: [
+                'resume.account.first_name',
+                'resume.account.last_name',
+            ],
+            sortableColumns: ['created_at'],
+            //filterableColumns:{id:5},
+            relations: ['job', 'resume', 'resume.account'],
+            //where: { job: job },
+            defaultSortBy: [['created_at', 'ASC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
 
-    const job_applications =
-        await JobApplicationRepository.findAllApplicationsByJobId(jobId);
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = JobApplicationRepository.createQueryBuilder(
+            'job_application',
+        ).where({ job: { id: jobId } });
 
-    return job_applications;
+        const job_applications = await paginate<JobApplication>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+        return job_applications;
+    } catch (err) {
+        throw new AppError('Error in getting job_applications', 400);
+    }
 };
 
 export const getAllJobsService = async (req: Request) => {
     try {
-        console.log('req', req.query);
+        //console.log('req', req.query);
         const transformedQuery = Paginate(req);
-        console.log('transformedQuery', transformedQuery);
+        //console.log('transformedQuery', transformedQuery);
         const paginateConfig: PaginateConfig<Job> = {
             searchableColumns: ['title', 'business.name', 'description'],
             sortableColumns: ['salary'],
