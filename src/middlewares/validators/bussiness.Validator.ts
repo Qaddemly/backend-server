@@ -181,7 +181,7 @@ export const businessUpdateValidator: ValidationChain[] = [
         .withMessage('City must be a string of alphabets'),
 ];
 
-export const checkAddNewHrValidator: ValidationChain[] = [
+export const checkCreateOrUpdateHr: ValidationChain[] = [
     body('account_email').trim().isEmail().withMessage('invalid email address'),
     body('role').custom((val) => {
         if (val in HrRole) {
@@ -190,4 +190,8 @@ export const checkAddNewHrValidator: ValidationChain[] = [
             throw new Error('invalid role');
         }
     }),
+];
+
+export const checkDeleteHr: ValidationChain[] = [
+    body('account_email').trim().isEmail().withMessage('invalid email address'),
 ];

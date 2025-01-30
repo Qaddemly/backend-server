@@ -39,3 +39,7 @@ export type expressFiles = {
 export interface getBusinessQueryParams {
     prefix: string;
 }
+export interface hrDashboardUserInfo {
+    toBeProcessedUserId?: number;
+    role?: string;
+}

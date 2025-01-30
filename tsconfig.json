@@ -14,7 +14,7 @@
         // "alwaysStrict": true,                             /* Ensure 'use strict' is always emitted. */
         "noUnusedLocals": false /* Enable error reporting when local variables aren't read. */,
         "noUnusedParameters": false,
-        "esModuleInterop": true,
+        "esModuleInterop": true
 
     },
     "include": ["./src/**/**/*.ts"],

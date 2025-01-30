@@ -13,13 +13,16 @@
     -> edit phone khattab
 5. Search Filter of business khattab
 6. Review Controller & Service (create - update - delete - get) khattab
+-> Idea of having the images of profile & business, in two formats
+    1. good quality but to get it you need to press the image to get full image
+    2. low quality
 ----------------------------------------------
 1. Apply to job (with user info & will add additional fields later) eslam //
 2. Get job details eslam //
 3. Post new job eslam //
-4. search for jobs (search filter of job) eslam 
+4. search for jobs (search filter of job) eslam
 5. update job eslam //
-6. get all applications to certain job eslam 
+6. get all applications to certain job eslam
 7. suggest jobs for you (AI) khattab
 8. Archive job (make job no longer accept applications) khattab
 9. Make job not-visible khattab
@@ -30,4 +33,3 @@
 14. update application status (accept, reject, pending)
 15. add validation to job & job application & review eslam
 17. add index to all tables khattab
-
