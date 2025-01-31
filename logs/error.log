@@ -613,3 +613,29 @@
 2025-01-30 20:47:36:4736 [31merror[39m: [31mError in getting jobs[39m
 2025-01-31 16:11:47:1147 [31merror[39m: [31mError in getting jobs[39m
 2025-01-31 16:13:39:1339 [31merror[39m: [31mError in getting jobs[39m
+2025-01-31 18:34:57:3457 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-31 18:37:08:378 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-31 18:56:28:5628 [31merror[39m: [31myou do not have permission to do that action[39m
+2025-01-31 18:56:53:5653 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-31 18:57:17:5717 [31merror[39m: [31mBusiness with that id not found[39m
+2025-01-31 18:57:29:5729 [31merror[39m: [31myou do not have permission to that action[39m
+2025-01-31 18:58:57:5857 [31merror[39m: [31myou do not have permission to do that action[39m
+2025-01-31 18:59:00:590 [31merror[39m: [31myou do not have permission to do that action[39m
+2025-01-31 18:59:27:5927 [31merror[39m: [31mJob is already Closed[39m
+2025-01-31 20:39:01:391 [31merror[39m: [31mJob is already Closed[39m
+2025-01-31 20:39:44:3944 [31merror[39m: [31mJob is already Archived[39m
+2025-01-31 20:41:01:411 [31merror[39m: [31mJob not found[39m
+2025-01-31 20:42:59:4259 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-01-31 20:43:39:4339 [31merror[39m: [31mJob not found[39m
+2025-01-31 20:43:45:4345 [31merror[39m: [31myou do not have permission to do that action[39m
+2025-01-31 20:44:52:4452 [31merror[39m: [31mJob is already Closed[39m
+2025-01-31 20:45:25:4525 [31merror[39m: [31mJob not found[39m
+2025-01-31 20:46:01:461 [31merror[39m: [31myou do not have permission to do that action[39m
+2025-01-31 20:48:10:4810 [31merror[39m: [31mJob is already Opened[39m
+2025-01-31 20:48:40:4840 [31merror[39m: [31mJob not found[39m
+2025-01-31 20:49:09:499 [31merror[39m: [31myou do not have permission to do that action[39m
+2025-01-31 20:49:58:4958 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-01-31 20:50:24:5024 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-01-31 21:29:54:2954 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-01-31 21:38:44:3844 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-01-31 21:39:19:3919 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m

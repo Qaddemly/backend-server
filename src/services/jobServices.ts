@@ -24,6 +24,8 @@ import {
 } from '../utils/pagination/typeorm-paginate';
 import { transformFilter } from '../utils/pagination/transformQuery';
 import { Account } from '../entity/Account';
+import { JobStatus } from '../enums/jobStatus';
+import { In, Not } from 'typeorm';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -54,6 +56,7 @@ export const createJobService = async (
             HrRole.RECRUITER,
             HrRole.HIRING_MANAGER,
             HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
         ],
     );
     if (!isAllowedToPostJob) {
@@ -79,12 +82,26 @@ export const createJobService = async (
 
 export const getOneJobService = async (req: Request) => {
     const jobId = Number(req.params.id);
+    let userId = req.user && req.user.id ? Number(req.user.id) : null;
+    console.log(req.user.id);
     const job = await JobRepository.findJobDetails(jobId);
     console.log(!job);
     if (!job.id) {
         throw new AppError('Job not found', 404);
     }
-    return job;
+    console.log(userId);
+    if (!userId) {
+        return { ...job, isSaved: false };
+    } else {
+        const isSaved = await JobRepository.query(`
+    SELECT job.* FROM job 
+INNER JOIN account_saved_jobs ON account_saved_jobs.job_id = job.id
+INNER JOIN account ON account.id = account_saved_jobs.account_id
+WHERE account.id =${userId} and job.id=${jobId}`);
+        console.log('is saved', isSaved);
+        console.log('a7a');
+        return { ...job, isSaved: isSaved ? true : false };
+    }
 };
 
 export const updateJobService = async (
@@ -110,7 +127,7 @@ export const updateJobService = async (
     if (!foundedJob) {
         throw new AppError('Job not found', 404);
     }
-    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+    const isAllowedToUpdateJob = await HrEmployeeRepository.checkPermission(
         userId,
 
         foundedJob.business.id,
@@ -122,7 +139,7 @@ export const updateJobService = async (
             HrRole.SUPER_ADMIN,
         ],
     );
-    if (!isAllowedToPostJob) {
+    if (!isAllowedToUpdateJob) {
         throw new AppError('you do not have permission to post job', 403);
     }
 
@@ -142,6 +159,72 @@ export const updateJobService = async (
     // returnedJob.business_id = business_id;
     return job;
 };
+// export const makeJobClosedService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+//     const jobId = Number(req.params.id);
+//     const job = await JobRepository.findOne({
+//         where: { id: jobId },
+//         relations: ['business'],
+//     });
+//     if (!job) {
+//         throw new AppError('Job not found', 404);
+//     }
+//     const isAllowedToUpdateJob = await HrEmployeeRepository.checkPermission(
+//         userId,
+
+//         job.business.id,
+//         [
+//             HrRole.SUPER_ADMIN,
+//             HrRole.HR,
+//             HrRole.RECRUITER,
+//             HrRole.HIRING_MANAGER,
+//             HrRole.SUPER_ADMIN,
+//         ],
+//     );
+//     if (!isAllowedToUpdateJob) {
+//         throw new AppError('you do not have permission to do that action', 403);
+//     }
+//     if (job.status === JobStatus.CLOSED) {
+//         throw new AppError('Job is already Closed', 409);
+//     }
+//     job.status = JobStatus.CLOSED;
+//     await JobRepository.save(job);
+//     return job;
+// };
+
+// export const makeJobArchivedService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+//     const jobId = Number(req.params.id);
+//     const job = await JobRepository.findOne({
+//         where: { id: jobId },
+//         relations: ['business'],
+//     });
+//     if (!job) {
+//         throw new AppError('Job not found', 404);
+//     }
+//     const isAllowedToUpdateJob = await HrEmployeeRepository.checkPermission(
+//         userId,
+
+//         job.business.id,
+//         [
+//             HrRole.SUPER_ADMIN,
+//             HrRole.HR,
+//             HrRole.RECRUITER,
+//             HrRole.HIRING_MANAGER,
+//             HrRole.SUPER_ADMIN,
+//         ],
+//     );
+//     if (!isAllowedToUpdateJob) {
+//         throw new AppError('you do not have permission to do that action', 403);
+//     }
+
+//     if (job.status === JobStatus.ARCHIVED) {
+//         throw new AppError('Job is already archived', 409);
+//     }
+//     job.status = JobStatus.ARCHIVED;
+//     await JobRepository.save(job);
+//     return job;
+// };
 
 export const saveJobToUserService = async (req: Request) => {
     const userId = Number(req.user.id);
@@ -422,7 +505,7 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
     }
 };
 
-export const getAllJobsService = async (req: Request) => {
+export const getAllJobsSearchWithFilterService = async (req: Request) => {
     try {
         //console.log('req', req.query);
         const transformedQuery = Paginate(req);
@@ -458,7 +541,9 @@ export const getAllJobsService = async (req: Request) => {
 
             paginationType: PaginationType.TAKE_AND_SKIP,
         };
-        const queryBuilder = JobRepository.createQueryBuilder('job');
+        const queryBuilder = JobRepository.createQueryBuilder('job').where({
+            status: Not(JobStatus.ARCHIVED), // Excludes ARCHIVED
+        });
 
         const jobs = await paginate<Job>(
             transformedQuery,
@@ -469,4 +554,38 @@ export const getAllJobsService = async (req: Request) => {
     } catch (err) {
         throw new AppError('Error in getting jobs', 400);
     }
+};
+
+export const changeJobStatus = async (req: Request, status: JobStatus) => {
+    const userId = Number(req.user.id);
+    const jobId = Number(req.params.id);
+    const job = await JobRepository.findOne({
+        where: { id: jobId },
+        relations: ['business'],
+    });
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    const isAllowedToUpdateJob = await HrEmployeeRepository.checkPermission(
+        userId,
+
+        job.business.id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (!isAllowedToUpdateJob) {
+        throw new AppError('you do not have permission to do that action', 403);
+    }
+    if (job.status === status) {
+        throw new AppError(`Job is already ${status}`, 409);
+    }
+    job.status = status;
+    await JobRepository.save(job);
+    return job;
 };
