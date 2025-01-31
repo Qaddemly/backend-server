@@ -80,7 +80,8 @@ export const createJobService = async (
 export const getOneJobService = async (req: Request) => {
     const jobId = Number(req.params.id);
     const job = await JobRepository.findJobDetails(jobId);
-    if (!job) {
+    console.log(!job);
+    if (!job.id) {
         throw new AppError('Job not found', 404);
     }
     return job;
@@ -188,10 +189,47 @@ export const removeSavedJobFromUserService = async (req: Request) => {
 
 //     return account.saved_jobs;
 // };
+// export const getAllUserSavedJobsService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+
+//     const account = await AccountRepository.getAccountWithSavedJobs(userId);
+
+//     return account.saved_jobs;
+// };
+
 export const getAllUserSavedJobsService = async (req: Request) => {
     const userId = Number(req.user.id);
 
     const account = await AccountRepository.getAccountWithSavedJobs(userId);
+    try {
+        //console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        //console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<Job> = {
+            searchableColumns: ['title'],
+            sortableColumns: ['created_at'],
+            //relations: ['saved_by_accounts'],
+            defaultSortBy: [['id', 'ASC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = JobRepository.createQueryBuilder('job')
+            .innerJoin('job.saved_by_accounts', 'account')
+            .where('account.id = :accountId', { accountId: userId });
+
+        const jobs = await paginate<Job>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+
+        return jobs;
+    } catch (err) {
+        console.error('Error in getting jobs', err);
+        throw new AppError('Error in getting jobs', 400);
+    }
 
     return account.saved_jobs;
 };

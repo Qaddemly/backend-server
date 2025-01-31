@@ -271,3 +271,20 @@ export const checkRoleInBusiness = catchAsync(
         next();
     },
 );
+
+export const getAllBusinessWithSearchAndFilter = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const jobs =
+                await businessServices.getAllBusinessWithSearchAndFilterService(
+                    req,
+                );
+            res.status(200).json({
+                success: true,
+                jobs,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);

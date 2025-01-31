@@ -337,12 +337,12 @@ export async function paginate<T extends ObjectLiteral>(
             }
         }
     }
-
-    if (!sortBy.length && !query.search) {
-        sortBy.push(
-            ...(config.defaultSortBy || [[config.sortableColumns[0], 'ASC']]),
-        );
-    }
+    //default search
+    // if (!sortBy.length && !query.search) {
+    //     sortBy.push(
+    //         ...(config.defaultSortBy || [[config.sortableColumns[0], 'ASC']]),
+    //     );
+    // }
 
     for (const order of sortBy) {
         const columnProperties = getPropertiesByColumnName(order[0]);
