@@ -11,3 +11,4 @@ src/uploads/
 
 /.env
 dist/
+.env

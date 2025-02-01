@@ -3,9 +3,13 @@ import {
     applyToJob,
     createJob,
     getAllJobApplicationsToJob,
+    getAllJobs,
     getAllUserJobApplications,
     getAllUserSavedJobs,
     getOneJob,
+    makeJobArchived,
+    makeJobClosed,
+    makeJobOpened,
     saveJobToUser,
     unSaveJobFromUser,
     updateOneJob,
@@ -43,6 +47,30 @@ jobRouter.put(
     updateOneJob,
 );
 
+jobRouter.put(
+    '/makeJobOpened/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    validateRequestMiddleware(updateJobValidator),
+    makeJobOpened,
+);
+
+jobRouter.put(
+    '/makeJobClosed/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    validateRequestMiddleware(updateJobValidator),
+    makeJobClosed,
+);
+
+jobRouter.put(
+    '/makeJobArchived/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    validateRequestMiddleware(updateJobValidator),
+    makeJobArchived,
+);
+
 jobRouter.post(
     '/saveJob/:id',
     protect,
@@ -73,6 +101,12 @@ jobRouter.post(
     validateRequestMiddleware(applyToJobValidator),
 
     applyToJob,
+);
+
+jobRouter.get(
+    '/getAllJobs/',
+
+    getAllJobs,
 );
 
 export default jobRouter;

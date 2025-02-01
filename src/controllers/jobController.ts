@@ -2,8 +2,10 @@ import { Request, Response, NextFunction } from 'express';
 import AppError from '../utils/appError';
 import {
     applyToJobService,
+    changeJobStatus,
     createJobService,
     getAllJobsApplicationsForJobService,
+    getAllJobsSearchWithFilterService,
     getAllUserJobsApplicationsService,
     getAllUserSavedJobsService,
     getOneJobService,
@@ -13,6 +15,7 @@ import {
 } from '../services/jobServices';
 import catchAsync from 'express-async-handler';
 import { CreateJobBodyBTO } from '../dtos/jobDto';
+import { JobStatus } from '../enums/jobStatus';
 
 export const createJob = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
@@ -54,6 +57,48 @@ export const updateOneJob = catchAsync(
             res.status(200).json({
                 success: true,
                 job,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const makeJobOpened = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const savedJobs = await changeJobStatus(req, JobStatus.OPENED);
+            res.status(200).json({
+                success: true,
+                message: 'job Opened successfully',
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const makeJobClosed = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const savedJobs = await changeJobStatus(req, JobStatus.CLOSED);
+            res.status(200).json({
+                success: true,
+                message: 'job closed successfully',
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const makeJobArchived = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const savedJobs = await changeJobStatus(req, JobStatus.ARCHIVED);
+            res.status(200).json({
+                success: true,
+                message: 'job archived successfully',
             });
         } catch (err) {
             return next(err);
@@ -140,6 +185,20 @@ export const getAllJobApplicationsToJob = catchAsync(
             res.status(200).json({
                 success: true,
                 jobApplications: jobApplications,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllJobs = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const jobs = await getAllJobsSearchWithFilterService(req);
+            res.status(200).json({
+                success: true,
+                jobs,
             });
         } catch (err) {
             return next(err);
