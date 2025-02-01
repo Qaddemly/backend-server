@@ -5993,3 +5993,6 @@
 [35m[39m
 2025-02-01 16:22:25:2225 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 403 - 3565.969 ms[39m
 [35m[39m
+2025-02-01 20:10:17:1017 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-01 20:10:17:1017 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-01 20:10:18:1018 [32minfo[39m: [32mMongoDB Database connected successfully[39m
