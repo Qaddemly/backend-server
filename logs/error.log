@@ -639,3 +639,6 @@
 2025-01-31 21:29:54:2954 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
 2025-01-31 21:38:44:3844 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
 2025-01-31 21:39:19:3919 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-01 14:52:56:5256 [31merror[39m: [31mjob is no longer available [39m
+2025-02-01 14:57:27:5727 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-01 14:58:43:5843 [31merror[39m: [31mJob not found[39m

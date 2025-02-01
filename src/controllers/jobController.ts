@@ -154,6 +154,7 @@ export const applyToJob = catchAsync(
             const jobApplication = await applyToJobService(req);
             res.status(200).json({
                 success: true,
+                message: 'congrats your application is submitted successfully ',
                 jobApplication,
             });
         } catch (err) {
