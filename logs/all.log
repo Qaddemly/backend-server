@@ -5960,3 +5960,36 @@
 2025-01-31 21:39:19:3919 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
 2025-01-31 21:39:19:3919 [35mhttp[39m: [35mGET /api/v1/job/oneJob/5 500 1071 - 155.363 ms[39m
 [35m[39m
+2025-02-01 14:47:44:4744 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-01 14:47:46:4746 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-01 14:47:46:4746 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-01 14:48:54:4854 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-01 14:48:55:4855 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-01 14:48:56:4856 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-01 14:49:35:4935 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-01 14:49:35:4935 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-01 14:49:36:4936 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-01 14:50:09:509 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-01 14:50:09:509 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-01 14:50:10:5010 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-01 14:52:56:5256 [31merror[39m: [31mjob is no longer available [39m
+2025-02-01 14:52:56:5256 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/3 400 676 - 2540.980 ms[39m
+[35m[39m
+2025-02-01 14:54:46:5446 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/4 200 1014 - 902.779 ms[39m
+[35m[39m
+2025-02-01 14:56:56:5656 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-01 14:56:56:5656 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-01 14:56:58:5658 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-01 14:57:10:5710 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-01 14:57:10:5710 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-01 14:57:11:5711 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-01 14:57:27:5727 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-01 14:57:27:5727 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 409 694 - 457.290 ms[39m
+[35m[39m
+2025-02-01 14:58:20:5820 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/6 200 1094 - 2139.160 ms[39m
+[35m[39m
+2025-02-01 14:58:43:5843 [31merror[39m: [31mJob not found[39m
+2025-02-01 14:58:43:5843 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/60 404 648 - 381.549 ms[39m
+[35m[39m
+2025-02-01 16:22:25:2225 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 403 - 3565.969 ms[39m
+[35m[39m
