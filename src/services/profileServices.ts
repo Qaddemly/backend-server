@@ -274,7 +274,7 @@ export const addUserOneResumeService = async (req: Request) => {
     const user = await AccountRepository.findOneBy({ id: userId });
     const newResume = new Resume();
     newResume.account = user;
-    newResume.url = resumes;
+    newResume.url = resumes[0];
 
     const createdResume = await ResumeRepository.save(newResume);
     delete createdResume.account;

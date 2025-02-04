@@ -362,58 +362,17 @@ export const protect = catchAsync(
         let userTempData: any; // user temp data from mongo like (refresh token ,password reset token, ...)
 
         try {
-            const [refreshTokenDecodedEmail, foundedUser, foundUserTempData] =
-                await refreshTokenHandler(req, res);
-            userTempData = foundUserTempData;
-            let token: string;
-            if (
-                req.headers.authorization &&
-                req.headers.authorization.startsWith('Bearer')
-            ) {
-                token = req.headers.authorization.split(' ')[0];
-            } else {
-                token = req.cookies.accessToken;
-            }
-            if (!token) {
-                throw new AppError('there is no access token', 401);
-            }
-            user = foundedUser; // this line because when access token expired it will not got to the line after decoded
-            const decoded = (await verifyTokenAsync(
-                token,
-                'access',
-            )) as JwtPayload;
-            user = await AccountRepository.findOneBy({ id: decoded!.userId });
-            if (!user) {
-                throw new AppError(
-                    'user belong to that token does not exist',
-                    401,
-                );
-            }
-            if (user.email !== refreshTokenDecodedEmail) {
-                throw new AppError(
-                    'malicious, refresh token does not match with access token',
-                    403,
-                );
-            }
-            if (user.password_changed_at) {
-                const passChangedAtTimeStamp = parseInt(
-                    `${user.password_changed_at.getTime() / 1000}`,
-                    10,
-                );
-
-                if (passChangedAtTimeStamp > decoded!.iat!) {
-                    throw new AppError(
-                        'password is changed please login again',
-                        401,
-                    );
-                }
-            }
+            [user, userTempData] = await checkingTokens(
+                req,
+                res,
+                user,
+                userTempData,
+            );
 
             // if (user.passwordResetVerificationToken || user.activationToken) {
             //     await resettingUserCodeFields(user);
             // }
-            req.user = user; // for letting user to use protected routes
-            req.user.googleId = userTempData.googleId;
+
             next();
         } catch (err) {
             if ((err as Error).message === 'jwt expired') {
@@ -457,6 +416,80 @@ export const protect = catchAsync(
         }
     },
 );
+/**
+ * @description this function used as middleware for endpoints which allow logged in users or not logged users to access this route.
+ * @example when user get one job , this route is general accessable but when logged in user get that route we can display to it if he saved that job or not
+ */
+export const optionalProtect = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        let user: any; // user from postgres
+        let userTempData: any; // user temp data from mongo like (refresh token ,password reset token, ...)
+        try {
+            if (req.cookies.accessToken || req.cookies.refreshToken) {
+                [user, userTempData] = await checkingTokens(
+                    req,
+                    res,
+                    user,
+                    userTempData,
+                );
+            }
+            next();
+        } catch (err) {
+            if (req.cookies) {
+                clearCookies(res);
+            }
+            next();
+        }
+    },
+);
+const checkingTokens = async (
+    req: Request,
+    res: Response,
+    user: any,
+    userTempData: any,
+) => {
+    const [refreshTokenDecodedEmail, foundedUser, foundUserTempData] =
+        await refreshTokenHandler(req, res);
+    userTempData = foundUserTempData;
+    let token: string;
+    if (
+        req.headers.authorization &&
+        req.headers.authorization.startsWith('Bearer')
+    ) {
+        token = req.headers.authorization.split(' ')[0];
+    } else {
+        token = req.cookies.accessToken;
+    }
+    if (!token) {
+        throw new AppError('there is no access token', 401);
+    }
+    user = foundedUser; // this line because when access token expired it will not got to the line after decoded
+    const decoded = (await verifyTokenAsync(token, 'access')) as JwtPayload;
+    user = await AccountRepository.findOneBy({ id: decoded!.userId });
+    if (!user) {
+        throw new AppError('user belong to that token does not exist', 401);
+    }
+    if (user.email !== refreshTokenDecodedEmail) {
+        throw new AppError(
+            'malicious, refresh token does not match with access token',
+            403,
+        );
+    }
+    if (user.password_changed_at) {
+        const passChangedAtTimeStamp = parseInt(
+            `${user.password_changed_at.getTime() / 1000}`,
+            10,
+        );
+
+        if (passChangedAtTimeStamp > decoded!.iat!) {
+            throw new AppError('password is changed please login again', 401);
+        }
+    }
+    req.user = user; // for letting user to use protected routes
+    req.user.googleId = userTempData.googleId;
+    return [user, userTempData];
+};
+
 const refreshTokenHandler = async (req: Request, res: Response) => {
     try {
         let refreshToken: string;

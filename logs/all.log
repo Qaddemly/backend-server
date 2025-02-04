@@ -5996,3 +5996,341 @@
 2025-02-01 20:10:17:1017 [32minfo[39m: [32mServer is running on port 8000[39m
 2025-02-01 20:10:17:1017 [32minfo[39m: [32mPostgres Database connected successfully[39m
 2025-02-01 20:10:18:1018 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-03 14:01:03:13 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-03 14:01:04:14 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-03 14:01:04:14 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-03 14:05:51:551 [31merror[39m: [31mNo experience found with that ID[39m
+2025-02-03 14:05:51:551 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/2 404 701 - 880.495 ms[39m
+[35m[39m
+2025-02-03 14:27:27:2727 [31merror[39m: [31mNo experience found with that ID[39m
+2025-02-03 14:27:27:2727 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/2 404 701 - 2228.359 ms[39m
+[35m[39m
+2025-02-03 14:28:59:2859 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 200 280 - 424.330 ms[39m
+[35m[39m
+2025-02-03 14:29:07:297 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:29:07:297 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 400 178 - 349.410 ms[39m
+[35m[39m
+2025-02-03 14:30:32:3032 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:30:32:3032 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 400 178 - 401.839 ms[39m
+[35m[39m
+2025-02-03 14:30:37:3037 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:30:37:3037 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 400 191 - 335.683 ms[39m
+[35m[39m
+2025-02-03 14:30:50:3050 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 200 257 - 488.989 ms[39m
+[35m[39m
+2025-02-03 14:31:11:3111 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:31:11:3111 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 400 191 - 461.048 ms[39m
+[35m[39m
+2025-02-03 14:31:22:3122 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:31:22:3122 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 400 178 - 384.277 ms[39m
+[35m[39m
+2025-02-03 14:31:29:3129 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 200 257 - 362.879 ms[39m
+[35m[39m
+2025-02-03 14:32:06:326 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:32:06:326 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 400 191 - 340.936 ms[39m
+[35m[39m
+2025-02-03 14:32:52:3252 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 200 280 - 364.531 ms[39m
+[35m[39m
+2025-02-03 14:32:58:3258 [35mhttp[39m: [35mPUT /api/v1/user/updateExperience/20 200 275 - 296.311 ms[39m
+[35m[39m
+2025-02-03 14:37:33:3733 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 200 191 - 580.700 ms[39m
+[35m[39m
+2025-02-03 14:38:21:3821 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 200 186 - 346.742 ms[39m
+[35m[39m
+2025-02-03 14:38:34:3834 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 200 186 - 334.442 ms[39m
+[35m[39m
+2025-02-03 14:38:47:3847 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 200 186 - 335.439 ms[39m
+[35m[39m
+2025-02-03 14:39:02:392 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:39:02:392 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 400 262 - 495.006 ms[39m
+[35m[39m
+2025-02-03 14:40:11:4011 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:40:11:4011 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 400 262 - 328.230 ms[39m
+[35m[39m
+2025-02-03 14:40:16:4016 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:40:16:4016 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 400 262 - 287.912 ms[39m
+[35m[39m
+2025-02-03 14:40:38:4038 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:40:38:4038 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 400 176 - 328.252 ms[39m
+[35m[39m
+2025-02-03 14:41:33:4133 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:41:33:4133 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation 400 169 - 331.852 ms[39m
+[35m[39m
+2025-02-03 14:41:56:4156 [31merror[39m: [31muser already has education[39m
+2025-02-03 14:41:56:4156 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 409 690 - 332.505 ms[39m
+[35m[39m
+2025-02-03 14:42:43:4243 [31merror[39m: [31muser already has education[39m
+2025-02-03 14:42:43:4243 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 409 690 - 457.630 ms[39m
+[35m[39m
+2025-02-03 14:44:01:441 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:44:01:441 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 400 169 - 326.719 ms[39m
+[35m[39m
+2025-02-03 14:44:41:4441 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:44:41:4441 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 400 270 - 329.488 ms[39m
+[35m[39m
+2025-02-03 14:45:05:455 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 200 159 - 401.410 ms[39m
+[35m[39m
+2025-02-03 14:45:56:4556 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
+2025-02-03 14:45:56:4556 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 1216 - 507.266 ms[39m
+[35m[39m
+2025-02-03 14:47:12:4712 [31merror[39m: [31mUnexpected field[39m
+2025-02-03 14:47:12:4712 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 1139 - 432.712 ms[39m
+[35m[39m
+2025-02-03 14:47:25:4725 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 134 - 440.562 ms[39m
+[35m[39m
+2025-02-03 14:48:24:4824 [31merror[39m: [31mUnexpected field[39m
+2025-02-03 14:48:24:4824 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 1139 - 483.101 ms[39m
+[35m[39m
+2025-02-03 14:50:30:5030 [31merror[39m: [31mUnexpected field[39m
+2025-02-03 14:50:30:5030 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 1139 - 327.235 ms[39m
+[35m[39m
+2025-02-03 14:53:24:5324 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-03 14:53:24:5324 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-03 14:53:26:5326 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-03 14:54:07:547 [31merror[39m: [31mUnexpected field[39m
+2025-02-03 14:54:07:547 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 1139 - 370.365 ms[39m
+[35m[39m
+2025-02-03 14:54:13:5413 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 132 - 322.607 ms[39m
+[35m[39m
+2025-02-03 14:56:39:5639 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-03 14:56:39:5639 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-03 14:56:40:5640 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-03 14:56:56:5656 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
+2025-02-03 14:56:56:5656 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 1216 - 418.622 ms[39m
+[35m[39m
+2025-02-03 14:58:09:589 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-03 14:58:09:589 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-03 14:58:10:5810 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-03 15:00:54:054 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-03 15:00:54:054 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-03 15:00:55:055 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-03 15:01:30:130 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
+2025-02-03 15:01:30:130 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 1216 - 524.994 ms[39m
+[35m[39m
+2025-02-03 15:03:07:37 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-03 15:03:07:37 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-03 15:03:08:38 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-03 15:03:34:334 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-03 15:03:34:334 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-03 15:03:35:335 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-03 15:08:35:835 [31merror[39m: [31mNo resume found with that ID[39m
+2025-02-03 15:08:35:835 [35mhttp[39m: [35mDELETE /api/v1/user/deleteResume/16 404 694 - 406.626 ms[39m
+[35m[39m
+2025-02-03 15:09:17:917 [31merror[39m: [31mNo resume found with that ID[39m
+2025-02-03 15:09:17:917 [35mhttp[39m: [35mDELETE /api/v1/user/deleteResume/16 404 694 - 341.819 ms[39m
+[35m[39m
+2025-02-03 15:09:40:940 [35mhttp[39m: [35mDELETE /api/v1/user/deleteResume/24 204 - - 495.935 ms[39m
+[35m[39m
+2025-02-03 15:10:16:1016 [35mhttp[39m: [35mDELETE /api/v1/user/deleteEducation 204 - - 741.667 ms[39m
+[35m[39m
+2025-02-03 15:10:51:1051 [31merror[39m: [31muser don`t have education[39m
+2025-02-03 15:10:51:1051 [35mhttp[39m: [35mDELETE /api/v1/user/deleteEducation 404 688 - 346.080 ms[39m
+[35m[39m
+2025-02-03 15:11:25:1125 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 200 159 - 690.132 ms[39m
+[35m[39m
+2025-02-03 15:11:35:1135 [35mhttp[39m: [35mDELETE /api/v1/user/deleteEducation 204 - - 532.981 ms[39m
+[35m[39m
+2025-02-03 15:14:33:1433 [35mhttp[39m: [35mPOST /api/v1/user/addNewExperience 201 251 - 456.320 ms[39m
+[35m[39m
+2025-02-03 15:15:40:1540 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 15:15:40:1540 [35mhttp[39m: [35mPOST /api/v1/user/addNewExperience 400 240 - 332.349 ms[39m
+[35m[39m
+2025-02-03 15:16:19:1619 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 15:16:19:1619 [35mhttp[39m: [35mPOST /api/v1/user/addNewExperience 400 191 - 439.778 ms[39m
+[35m[39m
+2025-02-03 15:17:20:1720 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 15:17:20:1720 [35mhttp[39m: [35mPOST /api/v1/user/addNewExperience 400 179 - 328.773 ms[39m
+[35m[39m
+2025-02-03 15:17:29:1729 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 15:17:29:1729 [35mhttp[39m: [35mPOST /api/v1/user/addNewExperience 400 179 - 294.473 ms[39m
+[35m[39m
+2025-02-03 18:46:40:4640 [35mhttp[39m: [35mPOST /api/v1/user/addNewSkill 201 77 - 2846.981 ms[39m
+[35m[39m
+2025-02-03 18:47:44:4744 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-03 18:47:44:4744 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-03 18:47:46:4746 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-03 18:49:02:492 [35mhttp[39m: [35mPOST /api/v1/user/addNewSkill 201 72 - 767.673 ms[39m
+[35m[39m
+2025-02-03 18:50:00:500 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 18:50:00:500 [35mhttp[39m: [35mPOST /api/v1/user/addNewSkill 400 162 - 377.577 ms[39m
+[35m[39m
+2025-02-03 18:50:45:5045 [35mhttp[39m: [35mPOST /api/v1/user/addNewLanguage 201 68 - 653.191 ms[39m
+[35m[39m
+2025-02-03 18:52:45:5245 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 18:52:45:5245 [35mhttp[39m: [35mPOST /api/v1/user/addNewLanguage 400 163 - 331.691 ms[39m
+[35m[39m
+2025-02-03 18:54:19:5419 [35mhttp[39m: [35mDELETE /api/v1/user/deleteLanguage/32 204 - - 1969.786 ms[39m
+[35m[39m
+2025-02-03 18:54:37:5437 [31merror[39m: [31mNo language found with that ID[39m
+2025-02-03 18:54:37:5437 [35mhttp[39m: [35mDELETE /api/v1/user/deleteLanguage/32 404 698 - 346.779 ms[39m
+[35m[39m
+2025-02-03 18:55:01:551 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 18:55:01:551 [35mhttp[39m: [35mDELETE /api/v1/user/deleteLanguage/32faf 400 168 - 433.644 ms[39m
+[35m[39m
+2025-02-03 18:56:08:568 [35mhttp[39m: [35mDELETE /api/v1/user/deleteExperience/21 204 - - 468.372 ms[39m
+[35m[39m
+2025-02-03 18:56:31:5631 [31merror[39m: [31mNo experience found with that ID[39m
+2025-02-03 18:56:31:5631 [35mhttp[39m: [35mDELETE /api/v1/user/deleteExperience/21 404 702 - 344.234 ms[39m
+[35m[39m
+2025-02-03 18:56:53:5653 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 18:56:53:5653 [35mhttp[39m: [35mDELETE /api/v1/user/deleteExperience/21sfa 400 168 - 495.599 ms[39m
+[35m[39m
+2025-02-03 18:58:04:584 [35mhttp[39m: [35mDELETE /api/v1/user/deleteSkill/49 204 - - 1917.234 ms[39m
+[35m[39m
+2025-02-03 18:58:21:5821 [31merror[39m: [31mNo skill found with that ID[39m
+2025-02-03 18:58:21:5821 [35mhttp[39m: [35mDELETE /api/v1/user/deleteSkill/49 404 692 - 445.373 ms[39m
+[35m[39m
+2025-02-03 18:58:47:5847 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 18:58:47:5847 [35mhttp[39m: [35mDELETE /api/v1/user/deleteSkill/49adad 400 169 - 323.124 ms[39m
+[35m[39m
+2025-02-03 18:59:58:5958 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 553 - 2144.346 ms[39m
+[35m[39m
+2025-02-04 15:02:19:219 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 15:02:20:220 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 15:02:20:220 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 15:12:17:1217 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 15:12:18:1218 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 15:12:19:1219 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 15:13:11:1311 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 15:13:11:1311 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 15:13:12:1312 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 15:14:43:1443 [31merror[39m: [31mCannot read properties of undefined (reading 'refreshTokens')[39m
+2025-02-04 15:14:43:1443 [35mhttp[39m: [35mPOST /api/v1/job/postJob 500 645 - 2132.864 ms[39m
+[35m[39m
+2025-02-04 15:15:06:156 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 898 - 884.570 ms[39m
+[35m[39m
+2025-02-04 15:15:12:1512 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 15:15:12:1512 [35mhttp[39m: [35mPOST /api/v1/job/postJob 401 646 - 290.050 ms[39m
+[35m[39m
+2025-02-04 15:16:24:1624 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 15:16:24:1624 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 15:16:26:1626 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 15:16:46:1646 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 15:16:46:1646 [35mhttp[39m: [35mPOST /api/v1/job/postJob 401 646 - 375.240 ms[39m
+[35m[39m
+2025-02-04 15:16:52:1652 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 898 - 750.423 ms[39m
+[35m[39m
+2025-02-04 15:17:00:170 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 15:17:00:170 [35mhttp[39m: [35mPOST /api/v1/job/postJob 401 646 - 294.222 ms[39m
+[35m[39m
+2025-02-04 15:19:26:1926 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 15:19:27:1927 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 15:19:36:1936 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 15:19:36:1936 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 15:19:38:1938 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 15:19:41:1941 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 15:19:41:1941 [35mhttp[39m: [35mPOST /api/v1/job/postJob 401 646 - 330.539 ms[39m
+[35m[39m
+2025-02-04 15:20:13:2013 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 15:20:13:2013 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 15:20:14:2014 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 15:20:32:2032 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 15:20:33:2033 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 15:20:34:2034 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 15:20:38:2038 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
+2025-02-04 15:20:38:2038 [35mhttp[39m: [35mPOST /api/v1/job/postJob 500 1068 - 751.693 ms[39m
+[35m[39m
+2025-02-04 15:20:44:2044 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 403 - 435.771 ms[39m
+[35m[39m
+2025-02-04 16:35:12:3512 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:35:12:3512 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:35:13:3513 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:35:24:3524 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 898 - 1017.348 ms[39m
+[35m[39m
+2025-02-04 16:35:28:3528 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
+2025-02-04 16:35:28:3528 [35mhttp[39m: [35mPOST /api/v1/job/postJob 500 1068 - 391.190 ms[39m
+[35m[39m
+2025-02-04 16:35:34:3534 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
+2025-02-04 16:35:34:3534 [35mhttp[39m: [35mPOST /api/v1/job/postJob 500 1068 - 340.853 ms[39m
+[35m[39m
+2025-02-04 16:35:35:3535 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 403 - 318.387 ms[39m
+[35m[39m
+2025-02-04 16:35:48:3548 [35mhttp[39m: [35mPUT /api/v1/job/makeJobClosed/19 200 52 - 581.827 ms[39m
+[35m[39m
+2025-02-04 16:36:07:367 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 16:36:07:367 [35mhttp[39m: [35mPUT /api/v1/job/makeJobClosed/19 401 1051 - 9.041 ms[39m
+[35m[39m
+2025-02-04 16:38:29:3829 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:38:29:3829 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:38:31:3831 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:40:44:4044 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:40:44:4044 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:40:45:4045 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:41:52:4152 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:41:53:4153 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:42:01:421 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:42:01:421 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:42:02:422 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:42:43:4243 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:42:44:4244 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:42:45:4245 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:45:54:4554 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:45:54:4554 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:45:55:4555 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:49:18:4918 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:49:19:4919 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:49:20:4920 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:49:59:4959 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:49:59:4959 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:50:00:500 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:50:37:5037 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 16:50:37:5037 [35mhttp[39m: [35mPUT /api/v1/job/makeJobClosed/19 401 1051 - 152.421 ms[39m
+[35m[39m
+2025-02-04 16:50:42:5042 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 898 - 835.314 ms[39m
+[35m[39m
+2025-02-04 16:50:56:5056 [35mhttp[39m: [35mGET /api/v1/job/oneJob/5 200 835 - 510.168 ms[39m
+[35m[39m
+2025-02-04 16:51:30:5130 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 836 - 349.248 ms[39m
+[35m[39m
+2025-02-04 16:52:22:5222 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:52:22:5222 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:52:23:5223 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:52:34:5234 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 837 - 482.930 ms[39m
+[35m[39m
+2025-02-04 16:52:47:5247 [35mhttp[39m: [35mGET /api/v1/job/oneJob/5 200 835 - 356.727 ms[39m
+[35m[39m
+2025-02-04 16:53:13:5313 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-04 16:53:13:5313 [35mhttp[39m: [35mGET /api/v1/job/oneJob/5 500 1071 - 9.567 ms[39m
+[35m[39m
+2025-02-04 16:53:18:5318 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-04 16:53:18:5318 [35mhttp[39m: [35mGET /api/v1/job/oneJob/5 500 1071 - 140.507 ms[39m
+[35m[39m
+2025-02-04 16:54:01:541 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:54:01:541 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:54:02:542 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:54:07:547 [35mhttp[39m: [35mGET /api/v1/job/oneJob/5 200 836 - 169.907 ms[39m
+[35m[39m
+2025-02-04 16:54:31:5431 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:54:31:5431 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:54:32:5432 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:54:42:5442 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:54:42:5442 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:54:43:5443 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:55:03:553 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 16:55:03:553 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/19 401 1051 - 156.039 ms[39m
+[35m[39m
+2025-02-04 16:55:13:5513 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 898 - 812.415 ms[39m
+[35m[39m
+2025-02-04 16:55:16:5516 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/19 200 51 - 370.416 ms[39m
+[35m[39m
+2025-02-04 16:55:23:5523 [31merror[39m: [31mJob already saved[39m
+2025-02-04 16:55:23:5523 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/19 409 656 - 334.453 ms[39m
+[35m[39m
+2025-02-04 16:55:50:5550 [35mhttp[39m: [35mGET /api/v1/job/oneJob/5 200 835 - 472.067 ms[39m
+[35m[39m
+2025-02-04 16:55:56:5556 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 836 - 301.090 ms[39m
+[35m[39m
+2025-02-04 16:56:01:561 [31merror[39m: [31mJob not found[39m
+2025-02-04 16:56:01:561 [35mhttp[39m: [35mGET /api/v1/job/oneJob/35 404 647 - 296.196 ms[39m
+[35m[39m
+2025-02-04 16:56:17:5617 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-04 16:56:18:5618 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-04 16:56:19:5619 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-04 16:56:34:5634 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 836 - 381.570 ms[39m
+[35m[39m
+2025-02-04 16:57:27:5727 [35mhttp[39m: [35mGET /api/v1/job/oneJob/17 200 856 - 353.462 ms[39m
+[35m[39m
+2025-02-04 16:58:19:5819 [35mhttp[39m: [35mGET /api/v1/job/oneJob/17 200 856 - 50.419 ms[39m
+[35m[39m
+2025-02-04 16:58:24:5824 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 837 - 147.033 ms[39m
+[35m[39m

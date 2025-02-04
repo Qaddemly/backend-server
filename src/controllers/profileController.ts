@@ -71,10 +71,10 @@ export const deleteUserOneExperience = catchAsync(
 export const createUserOneSkill = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const experience = await createUserOneSkillService(req);
+            const skill = await createUserOneSkillService(req);
             res.status(201).json({
                 success: true,
-                experience,
+                skill,
             });
         } catch (err) {
             return next(err);

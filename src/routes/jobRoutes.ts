@@ -14,7 +14,7 @@ import {
     unSaveJobFromUser,
     updateOneJob,
 } from '../controllers/jobController';
-import { protect } from '../services/authServices';
+import { optionalProtect, protect } from '../services/authServices';
 import validateRequestMiddleware from '../middlewares/validator';
 import {
     applyToJobValidator,
@@ -36,6 +36,7 @@ jobRouter.post(
 jobRouter.get(
     '/oneJob/:id',
     validateRequestMiddleware(idJobValidator),
+    optionalProtect,
     getOneJob,
 );
 
