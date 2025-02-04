@@ -83,24 +83,20 @@ export const createJobService = async (
 export const getOneJobService = async (req: Request) => {
     const jobId = Number(req.params.id);
     let userId = req.user && req.user.id ? Number(req.user.id) : null;
-    console.log(req.user.id);
     const job = await JobRepository.findJobDetails(jobId);
-    console.log(!job);
     if (!job.id) {
         throw new AppError('Job not found', 404);
     }
-    console.log(userId);
     if (!userId) {
         return { ...job, isSaved: false };
     } else {
         const isSaved = await JobRepository.query(`
     SELECT job.* FROM job 
-INNER JOIN account_saved_jobs ON account_saved_jobs.job_id = job.id
-INNER JOIN account ON account.id = account_saved_jobs.account_id
-WHERE account.id =${userId} and job.id=${jobId}`);
-        console.log('is saved', isSaved);
-        console.log('a7a');
-        return { ...job, isSaved: isSaved ? true : false };
+    INNER JOIN account_saved_jobs ON account_saved_jobs.job_id = job.id
+    INNER JOIN account ON account.id = account_saved_jobs.account_id
+    WHERE account.id =${userId} and job.id=${jobId}`);
+
+        return { ...job, isSaved: isSaved.length > 0 ? true : false };
     }
 };
 

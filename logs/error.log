@@ -642,3 +642,57 @@
 2025-02-01 14:52:56:5256 [31merror[39m: [31mjob is no longer available [39m
 2025-02-01 14:57:27:5727 [31merror[39m: [31myou have already applied to that job[39m
 2025-02-01 14:58:43:5843 [31merror[39m: [31mJob not found[39m
+2025-02-03 14:05:51:551 [31merror[39m: [31mNo experience found with that ID[39m
+2025-02-03 14:27:27:2727 [31merror[39m: [31mNo experience found with that ID[39m
+2025-02-03 14:29:07:297 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:30:32:3032 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:30:37:3037 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:31:11:3111 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:31:22:3122 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:32:06:326 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:39:02:392 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:40:11:4011 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:40:16:4016 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:40:38:4038 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:41:33:4133 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:41:56:4156 [31merror[39m: [31muser already has education[39m
+2025-02-03 14:42:43:4243 [31merror[39m: [31muser already has education[39m
+2025-02-03 14:44:01:441 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:44:41:4441 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 14:45:56:4556 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
+2025-02-03 14:47:12:4712 [31merror[39m: [31mUnexpected field[39m
+2025-02-03 14:48:24:4824 [31merror[39m: [31mUnexpected field[39m
+2025-02-03 14:50:30:5030 [31merror[39m: [31mUnexpected field[39m
+2025-02-03 14:54:07:547 [31merror[39m: [31mUnexpected field[39m
+2025-02-03 14:56:56:5656 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
+2025-02-03 15:01:30:130 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
+2025-02-03 15:08:35:835 [31merror[39m: [31mNo resume found with that ID[39m
+2025-02-03 15:09:17:917 [31merror[39m: [31mNo resume found with that ID[39m
+2025-02-03 15:10:51:1051 [31merror[39m: [31muser don`t have education[39m
+2025-02-03 15:15:40:1540 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 15:16:19:1619 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 15:17:20:1720 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 15:17:29:1729 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 18:50:00:500 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 18:52:45:5245 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 18:54:37:5437 [31merror[39m: [31mNo language found with that ID[39m
+2025-02-03 18:55:01:551 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 18:56:31:5631 [31merror[39m: [31mNo experience found with that ID[39m
+2025-02-03 18:56:53:5653 [31merror[39m: [31mvalidationErrors[39m
+2025-02-03 18:58:21:5821 [31merror[39m: [31mNo skill found with that ID[39m
+2025-02-03 18:58:47:5847 [31merror[39m: [31mvalidationErrors[39m
+2025-02-04 15:14:43:1443 [31merror[39m: [31mCannot read properties of undefined (reading 'refreshTokens')[39m
+2025-02-04 15:15:12:1512 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 15:16:46:1646 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 15:17:00:170 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 15:19:41:1941 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 15:20:38:2038 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
+2025-02-04 16:35:28:3528 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
+2025-02-04 16:35:34:3534 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
+2025-02-04 16:36:07:367 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 16:50:37:5037 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 16:53:13:5313 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-04 16:53:18:5318 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-04 16:55:03:553 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-04 16:55:23:5523 [31merror[39m: [31mJob already saved[39m
+2025-02-04 16:56:01:561 [31merror[39m: [31mJob not found[39m
