@@ -82,26 +82,17 @@ export const createBusiness = async (
     return getBusinessDto(saved_business);
 };
 
+/**
+ * @description This middleware get to be updated fields and update the business
+ * @param updateBusinessDTO - Fields to be updated
+ * @param businessId - Business ID
+ *
+ * @note only SUPER_ADMIN & OWNER can access this middleware, because there's a middleware before it who checks if user who made the request is SUPER_ADMIN or OWNER
+ * */
 export const updateBusiness = async (
     updateBusinessDTO: UpdateBusinessDTO,
-    accountId: number,
     businessId: number,
 ) => {
-    const account = await AccountRepository.findOneBy({ id: accountId });
-    // We need to get all business that user has role in
-    const permissionToUpdate = await HrEmployeeRepository.checkPermission(
-        accountId,
-        businessId,
-        [HrRole.OWNER, HrRole.SUPER_ADMIN],
-    );
-
-    if (!permissionToUpdate) {
-        Logger.error('User does not have permission to update business');
-        throw new AppError(
-            'User does not have permission to update business',
-            403,
-        );
-    }
     const business = await BusinessRepository.updateBusiness(
         updateBusinessDTO,
         businessId,
@@ -255,10 +246,7 @@ export const checkOwnerOrSuperAdmin = async (
         Logger.error(
             'USER must be SUPER_ADMIN or OWNER to access this endpoint',
         );
-        throw new AppError(
-            'User does not have permission to access this section',
-            403,
-        );
+        throw new AppError('Access denied', 403);
     }
     return role;
 };

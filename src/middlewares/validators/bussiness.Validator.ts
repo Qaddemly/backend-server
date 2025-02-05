@@ -113,12 +113,13 @@ export const businessUpdateValidator: ValidationChain[] = [
     body('name')
         .optional()
         .trim()
+        .notEmpty()
         .isLength({ min: 3 })
         .withMessage('name must be at least 3 characters')
         .isLength({ max: 32 })
         .withMessage('name must be at most 32 characters'),
     body('logo').optional().notEmpty().withMessage('logo cannot be empty'),
-    body('CEO').trim().notEmpty().withMessage('CEO cannot be empty'),
+    body('CEO').optional().trim().notEmpty().withMessage('CEO cannot be empty'),
     body('founder')
         .optional()
         .trim()
@@ -194,4 +195,36 @@ export const checkCreateOrUpdateHr: ValidationChain[] = [
 
 export const checkDeleteHr: ValidationChain[] = [
     body('account_email').trim().isEmail().withMessage('invalid email address'),
+];
+
+export const businessAddPhoneNumberValidator: ValidationChain[] = [
+    body('country_code')
+        .trim()
+        .notEmpty()
+        .withMessage('Country Code cannot be empty')
+        .custom((value) => {
+            if (value in CountryCode) return value;
+            else throw new Error('Country Code is invalid');
+        }),
+    body('number')
+        .trim()
+        .notEmpty()
+        .withMessage('Phone number cannot be empty')
+        .isNumeric()
+        .withMessage('Phone number must be a number'),
+];
+
+export const businessUpdatePhoneNumberValidator: ValidationChain[] = [
+    body('country_code')
+        .optional()
+        .trim()
+        .custom((value) => {
+            if (value in CountryCode) return value;
+            else throw new Error('Country Code is invalid');
+        }),
+    body('number')
+        .optional()
+        .trim()
+        .isNumeric()
+        .withMessage('Phone number must be a number'),
 ];

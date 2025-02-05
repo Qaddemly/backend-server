@@ -3705,3 +3705,156 @@
 [35m[39m
 2025-01-29 06:32:48:3248 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 351.506 ms[39m
 [35m[39m
+2025-01-29 06:43:53:4353 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 06:43:54:4354 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 06:43:55:4355 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 06:44:06:446 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 06:44:06:446 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50009 400 160 - 581.824 ms[39m
+[35m[39m
+2025-01-29 06:44:53:4453 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 06:44:53:4453 [35mhttp[39m: [35mPOST /api/v1/business 400 151 - 414.873 ms[39m
+[35m[39m
+2025-01-29 06:45:06:456 [32minfo[39m: [32mBusiness 50010 created successfully[39m
+2025-01-29 06:45:06:456 [35mhttp[39m: [35mPOST /api/v1/business 201 554 - 606.970 ms[39m
+[35m[39m
+2025-01-29 06:45:44:4544 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 06:45:44:4544 [35mhttp[39m: [35mPOST /api/v1/business 400 281 - 526.504 ms[39m
+[35m[39m
+2025-01-29 06:49:09:499 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 06:49:10:4910 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 06:49:11:4911 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 06:51:03:513 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 06:51:03:513 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-29 06:51:03:513 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50009 403 890 - 414.334 ms[39m
+[35m[39m
+2025-01-29 06:51:32:5132 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 1037.925 ms[39m
+[35m[39m
+2025-01-29 06:53:02:532 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 06:53:03:533 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 06:53:05:535 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 06:53:10:5310 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 06:53:10:5310 [31merror[39m: [31mAccess denied[39m
+2025-01-29 06:53:10:5310 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50009 403 812 - 367.064 ms[39m
+[35m[39m
+2025-01-29 06:57:14:5714 [32minfo[39m: [32mBusiness 50010 updated successfully[39m
+2025-01-29 06:57:14:5714 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 200 599 - 491.764 ms[39m
+[35m[39m
+2025-01-29 06:57:38:5738 [32minfo[39m: [32mBusiness 50010 updated successfully[39m
+2025-01-29 06:57:38:5738 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 200 591 - 420.595 ms[39m
+[35m[39m
+2025-01-29 06:57:55:5755 [32minfo[39m: [32mBusiness 50010 updated successfully[39m
+2025-01-29 06:57:55:5755 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 200 589 - 375.452 ms[39m
+[35m[39m
+2025-01-29 06:58:32:5832 [32minfo[39m: [32mBusiness 50010 updated successfully[39m
+2025-01-29 06:58:32:5832 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 200 589 - 361.201 ms[39m
+[35m[39m
+2025-01-29 06:58:51:5851 [32minfo[39m: [32mBusiness 50010 updated successfully[39m
+2025-01-29 06:58:51:5851 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 200 597 - 354.055 ms[39m
+[35m[39m
+2025-01-29 07:02:52:252 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 07:02:52:252 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 07:02:54:254 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 07:03:03:33 [32minfo[39m: [32mBusiness 50010 updated successfully[39m
+2025-01-29 07:03:03:33 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 200 589 - 613.497 ms[39m
+[35m[39m
+2025-01-29 07:03:15:315 [32minfo[39m: [32mBusiness 50010 updated successfully[39m
+2025-01-29 07:03:15:315 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 200 655 - 395.672 ms[39m
+[35m[39m
+2025-01-29 07:03:28:328 [32minfo[39m: [32mBusiness 50010 updated successfully[39m
+2025-01-29 07:03:28:328 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 200 614 - 385.128 ms[39m
+[35m[39m
+2025-01-29 07:04:57:457 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 07:04:57:457 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 07:04:58:458 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 07:05:02:52 [32minfo[39m: [32mBusiness 50010 updated successfully[39m
+2025-01-29 07:05:02:52 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 200 612 - 360.891 ms[39m
+[35m[39m
+2025-01-29 07:05:06:56 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 07:05:06:56 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 400 258 - 288.465 ms[39m
+[35m[39m
+2025-01-29 07:05:26:526 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 07:05:26:526 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 400 178 - 362.504 ms[39m
+[35m[39m
+2025-01-29 07:05:33:533 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 07:05:33:533 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 400 178 - 317.814 ms[39m
+[35m[39m
+2025-01-29 07:05:36:536 [32minfo[39m: [32mBusiness 50010 updated successfully[39m
+2025-01-29 07:05:36:536 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 200 594 - 296.045 ms[39m
+[35m[39m
+2025-01-29 07:05:49:549 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1005.971 ms[39m
+[35m[39m
+2025-01-29 07:05:54:554 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 07:05:54:554 [31merror[39m: [31mAccess denied[39m
+2025-01-29 07:05:54:554 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50010 403 812 - 297.418 ms[39m
+[35m[39m
+2025-01-29 07:05:59:559 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2025-01-29 07:05:59:559 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001 200 543 - 313.502 ms[39m
+[35m[39m
+2025-01-29 07:06:15:615 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-01-29 07:06:15:615 [35mhttp[39m: [35mPOST /api/v1/auth/login 500 751 - 819.829 ms[39m
+[35m[39m
+2025-01-29 07:06:22:622 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 961.546 ms[39m
+[35m[39m
+2025-01-29 07:06:30:630 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2025-01-29 07:06:30:630 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001 200 543 - 291.540 ms[39m
+[35m[39m
+2025-01-29 07:06:33:633 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2025-01-29 07:06:33:633 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001 200 543 - 288.401 ms[39m
+[35m[39m
+2025-01-29 07:06:44:644 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-01-29 07:06:44:644 [35mhttp[39m: [35mPOST /api/v1/auth/login 500 751 - 801.199 ms[39m
+[35m[39m
+2025-01-29 07:07:01:71 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 487.384 ms[39m
+[35m[39m
+2025-01-29 07:07:09:79 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 924.568 ms[39m
+[35m[39m
+2025-01-29 07:07:14:714 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 07:07:14:714 [31merror[39m: [31mAccess denied[39m
+2025-01-29 07:07:15:715 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001 403 812 - 280.345 ms[39m
+[35m[39m
+2025-01-29 07:07:31:731 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 07:07:31:731 [31merror[39m: [31mAccess denied[39m
+2025-01-29 07:07:31:731 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 403 812 - 356.252 ms[39m
+[35m[39m
+2025-01-29 07:07:38:738 [35mhttp[39m: [35mPOST /api/v1/auth/login 429 89 - 135.292 ms[39m
+[35m[39m
+2025-01-29 07:07:41:741 [35mhttp[39m: [35mPOST /api/v1/auth/login 429 89 - 136.429 ms[39m
+[35m[39m
+2025-01-29 07:07:47:747 [35mhttp[39m: [35mPOST /api/v1/auth/login 429 89 - 135.938 ms[39m
+[35m[39m
+2025-01-29 07:08:03:83 [35mhttp[39m: [35mPOST /api/v1/auth/login 429 89 - 135.393 ms[39m
+[35m[39m
+2025-01-29 07:08:26:826 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-01-29 07:08:27:827 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-01-29 07:08:28:828 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-01-29 07:08:41:841 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1134.101 ms[39m
+[35m[39m
+2025-01-29 07:08:45:845 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 200 61 - 317.593 ms[39m
+[35m[39m
+2025-01-29 07:08:53:853 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 898.285 ms[39m
+[35m[39m
+2025-01-29 07:08:58:858 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2025-01-29 07:08:58:858 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001 200 543 - 318.896 ms[39m
+[35m[39m
+2025-02-05 10:39:50:3950 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 10:39:50:3950 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 10:39:52:3952 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-05 10:39:58:3958 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-05 10:39:58:3958 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001 401 847 - 193.159 ms[39m
+[35m[39m
+2025-02-05 10:40:11:4011 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 1680.798 ms[39m
+[35m[39m
+2025-02-05 10:40:14:4014 [32minfo[39m: [32mBusiness 50001 updated successfully[39m
+2025-02-05 10:40:14:4014 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001 200 543 - 490.886 ms[39m
+[35m[39m
+2025-02-05 10:40:40:4040 [31merror[39m: [31mUser already has role in business[39m
+2025-02-05 10:40:40:4040 [31merror[39m: [31mUser already has role in business[39m
+2025-02-05 10:40:40:4040 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 412.513 ms[39m
+[35m[39m
+2025-02-05 10:40:58:4058 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 420.440 ms[39m
+[35m[39m
+2025-02-05 10:43:36:4336 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 10:43:36:4336 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 10:43:38:4338 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-05 10:43:59:4359 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 497.577 ms[39m
+[35m[39m

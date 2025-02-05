@@ -430,3 +430,24 @@
 2025-01-29 06:31:43:3143 [31merror[39m: [31mUser already has this role[39m
 2025-01-29 06:31:50:3150 [31merror[39m: [31mNo permission to update user with higher or same role[39m
 2025-01-29 06:31:50:3150 [31merror[39m: [31mNo permission to update user with higher or same role[39m
+2025-01-29 06:44:06:446 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 06:44:53:4453 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 06:45:44:4544 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 06:51:03:513 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 06:51:03:513 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-29 06:53:10:5310 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 06:53:10:5310 [31merror[39m: [31mAccess denied[39m
+2025-01-29 07:05:06:56 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 07:05:26:526 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 07:05:33:533 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 07:05:54:554 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 07:05:54:554 [31merror[39m: [31mAccess denied[39m
+2025-01-29 07:06:15:615 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-01-29 07:06:44:644 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-01-29 07:07:14:714 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 07:07:14:714 [31merror[39m: [31mAccess denied[39m
+2025-01-29 07:07:31:731 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 07:07:31:731 [31merror[39m: [31mAccess denied[39m
+2025-02-05 10:39:58:3958 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-05 10:40:40:4040 [31merror[39m: [31mUser already has role in business[39m
+2025-02-05 10:40:40:4040 [31merror[39m: [31mUser already has role in business[39m

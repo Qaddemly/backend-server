@@ -7,7 +7,9 @@ import {
 import { protect } from '../services/authServices';
 import validateRequestMiddleware from '../middlewares/validator';
 import {
+    businessAddPhoneNumberValidator,
     businessCreationValidator,
+    businessUpdatePhoneNumberValidator,
     businessUpdateValidator,
     checkCreateOrUpdateHr,
     checkDeleteHr,
@@ -107,15 +109,42 @@ businessRouter.get(
     checkRoleInBusiness,
     businessController.getAllHrOfBusiness,
 );
+
 //-----------------------------
+
 businessRouter.put(
-    '/myBusiness/dashboard/edit/:businessId',
+    '/myBusiness/dashboard/settings/:businessId',
     protect,
-    validateRequestMiddleware(businessUpdateValidator),
     checkOwnerOrSuperAdmin,
     uploadSingleImage('logo'),
     resizeBusinessLogo,
+    validateRequestMiddleware(businessUpdateValidator),
     updateBusiness,
+);
+
+// Phone Number
+
+businessRouter.post(
+    '/myBusiness/dashboard/settings/:businessId/phone',
+    protect,
+    checkOwnerOrSuperAdmin,
+    validateRequestMiddleware(businessAddPhoneNumberValidator),
+    businessController.addPhoneNumberToBusiness,
+);
+
+businessRouter.put(
+    '/myBusiness/dashboard/settings/:businessId/phone/:phoneId',
+    protect,
+    checkOwnerOrSuperAdmin,
+    validateRequestMiddleware(businessUpdatePhoneNumberValidator),
+    businessController.updatePhoneNumberOfBusiness,
+);
+
+businessRouter.delete(
+    '/myBusiness/dashboard/settings/:businessId/phone/:phoneId',
+    protect,
+    checkOwnerOrSuperAdmin,
+    businessController.deletePhoneNumberOfBusiness,
 );
 
 businessRouter.get(

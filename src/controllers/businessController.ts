@@ -3,7 +3,14 @@ import catchAsync from 'express-async-handler';
 import { CreateBusinessDto, UpdateBusinessDTO } from '../dtos/businessDto';
 
 import * as businessServices from './../services/businessServices';
-import { RequestWithHrDashboard } from '../types/request';
+import { HrRole } from '../enums/HrRole';
+import { HrDashboardUserInfo } from '../types/request';
+
+declare module 'express-serve-static-core' {
+    interface Request {
+        hrDashboardUserInfo?: HrDashboardUserInfo;
+    }
+}
 
 export const createBusiness = catchAsync(
     async (req: Request<{}, {}, CreateBusinessDto>, res: Response) => {
@@ -26,7 +33,6 @@ export const updateBusiness = catchAsync(
     ) => {
         const business = await businessServices.updateBusiness(
             req.body,
-            req.user.id,
             Number(req.params.businessId),
         );
         res.status(200).json({
@@ -136,7 +142,14 @@ export const getFollowersNumberOfBusiness = catchAsync(
 );
 
 export const addHrToBusiness = catchAsync(
-    async (req: RequestWithHrDashboard, res: Response) => {
+    async (
+        req: Request<
+            { businessId: string },
+            {},
+            { account_email: string; role: HrRole }
+        >,
+        res: Response,
+    ) => {
         await businessServices.addHrToBusiness(
             Number(req.params.businessId),
             req.hrDashboardUserInfo.toBeProcessedUserId,
@@ -150,7 +163,14 @@ export const addHrToBusiness = catchAsync(
 );
 
 export const updateHrRole = catchAsync(
-    async (req: RequestWithHrDashboard, res: Response) => {
+    async (
+        req: Request<
+            { businessId: string },
+            {},
+            { account_email: string; role: HrRole }
+        >,
+        res: Response,
+    ) => {
         await businessServices.updateHrRole(
             Number(req.params.businessId),
             req.hrDashboardUserInfo.toBeProcessedUserId,
@@ -162,18 +182,23 @@ export const updateHrRole = catchAsync(
         });
     },
 );
-export const deleteHr = catchAsync(async (req: RequestWithHrDashboard, res) => {
-    await businessServices.deleteHr(
-        Number(req.params.businessId),
-        req.hrDashboardUserInfo.toBeProcessedUserId,
-    );
-    res.status(200).json({
-        status: 'success',
-        message: 'HR deleted successfully',
-    });
-});
+export const deleteHr = catchAsync(
+    async (
+        req: Request<{ businessId: string }, {}, { account_email: string }>,
+        res: Response,
+    ) => {
+        await businessServices.deleteHr(
+            Number(req.params.businessId),
+            req.hrDashboardUserInfo.toBeProcessedUserId,
+        );
+        res.status(200).json({
+            status: 'success',
+            message: 'HR deleted successfully',
+        });
+    },
+);
 export const getAllHrOfBusiness = catchAsync(
-    async (req: RequestWithHrDashboard, res: Response) => {
+    async (req: Request<{ businessId: string }>, res: Response) => {
         const HRs = await businessServices.getAllHrOfBusiness(
             Number(req.params.businessId),
         );
@@ -188,7 +213,7 @@ export const getAllHrOfBusiness = catchAsync(
  * Then append role to the request object in `req.hrDashboardUserInfo.role`
  * */
 export const checkOwnerOrSuperAdmin = catchAsync(
-    async (req: RequestWithHrDashboard, res: Response, next) => {
+    async (req: Request, res: Response, next) => {
         if (!req.hrDashboardUserInfo) {
             req.hrDashboardUserInfo = {};
         }
@@ -202,7 +227,7 @@ export const checkOwnerOrSuperAdmin = catchAsync(
 );
 
 export const checkUpdateHrAuthority = catchAsync(
-    async (req: RequestWithHrDashboard, res: Response, next) => {
+    async (req: Request, res: Response, next) => {
         await businessServices.checkUpdateHrAuthority(
             req.hrDashboardUserInfo.toBeProcessedUserId,
             Number(req.params.businessId),
@@ -219,7 +244,7 @@ export const checkUpdateHrAuthority = catchAsync(
  * - `SUPER_ADMIN` can add `HIRING_MANAGER`, `RECRUITER`, `HR`
  * */
 export const checkAddNewHrAuthority = catchAsync(
-    async (req: RequestWithHrDashboard, res: Response, next) => {
+    async (req: Request, res: Response, next) => {
         await businessServices.checkAddNewHrAuthority(
             req.hrDashboardUserInfo.authenticatedUserRole,
             req.body.role,
@@ -229,7 +254,7 @@ export const checkAddNewHrAuthority = catchAsync(
 );
 
 export const checkDeleteHrAuthority = catchAsync(
-    async (req: RequestWithHrDashboard, res: Response, next) => {
+    async (req: Request, res: Response, next) => {
         await businessServices.checkDeleteHrAuthority(
             req.hrDashboardUserInfo.authenticatedUserRole,
             req.hrDashboardUserInfo.toBeProcessedUserId,
@@ -245,7 +270,7 @@ export const checkDeleteHrAuthority = catchAsync(
  * Append `toBeProcessedUserId` to the request object in `req.hrDashboardUserInfo.toBeProcessedUserId`
  * */
 export const hrDashboardEntry = catchAsync(
-    async (req: RequestWithHrDashboard, res: Response, next: NextFunction) => {
+    async (req: Request, res: Response, next: NextFunction) => {
         if (!req.hrDashboardUserInfo) {
             req.hrDashboardUserInfo = {};
         }
@@ -263,11 +288,23 @@ export const hrDashboardEntry = catchAsync(
  * If user do not have role return 403
  * */
 export const checkRoleInBusiness = catchAsync(
-    async (req: RequestWithHrDashboard, res: Response, next) => {
+    async (req: Request, res: Response, next) => {
         await businessServices.checkRoleInBusiness(
             req.user.id,
             Number(req.params.businessId),
         );
         next();
     },
+);
+
+/**
+ * */
+export const addPhoneNumberToBusiness = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {},
+);
+export const updatePhoneNumberOfBusiness = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {},
+);
+export const deletePhoneNumberOfBusiness = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {},
 );
