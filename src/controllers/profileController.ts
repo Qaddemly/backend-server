@@ -15,6 +15,7 @@ import {
     updateAccountBasicInfoService,
     deleteUserOneResumeService,
     addUserOneResumeService,
+    getAllUserResumesService,
 } from '../services/profileServices';
 import catchAsync from 'express-async-handler';
 
@@ -164,6 +165,20 @@ export const addUserOneResume = catchAsync(
             res.status(200).json({
                 success: true,
                 resume,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllUserResumes = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const resumes = await getAllUserResumesService(req);
+            res.status(200).json({
+                success: true,
+                resumes,
             });
         } catch (err) {
             return next(err);

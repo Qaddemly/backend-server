@@ -283,6 +283,14 @@ export const addUserOneResumeService = async (req: Request) => {
     return ResumeReturned;
 };
 
+export const getAllUserResumesService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const resumes = await ResumeRepository.find({
+        where: { account: { id: userId } },
+    });
+    return resumes;
+};
+
 export const deleteUserOneResumeService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
