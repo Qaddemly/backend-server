@@ -362,12 +362,54 @@ export const protect = catchAsync(
         let userTempData: any; // user temp data from mongo like (refresh token ,password reset token, ...)
 
         try {
-            [user, userTempData] = await checkingTokens(
-                req,
-                res,
-                user,
-                userTempData,
-            );
+            const [refreshTokenDecodedEmail, foundedUser, foundUserTempData] =
+                await refreshTokenHandler(req, res);
+            userTempData = foundUserTempData;
+            let token: string;
+            if (
+                req.headers.authorization &&
+                req.headers.authorization.startsWith('Bearer')
+            ) {
+                token = req.headers.authorization.split(' ')[0];
+            } else {
+                token = req.cookies.accessToken;
+            }
+            if (!token) {
+                throw new AppError('there is no access token', 401);
+            }
+            user = foundedUser; // this line because when access token expired it will not got to the line after decoded
+            const decoded = (await verifyTokenAsync(
+                token,
+                'access',
+            )) as JwtPayload;
+            user = await AccountRepository.findOneBy({ id: decoded!.userId });
+            if (!user) {
+                throw new AppError(
+                    'user belong to that token does not exist',
+                    401,
+                );
+            }
+            if (user.email !== refreshTokenDecodedEmail) {
+                throw new AppError(
+                    'malicious, refresh token does not match with access token',
+                    403,
+                );
+            }
+            if (user.password_changed_at) {
+                const passChangedAtTimeStamp = parseInt(
+                    `${user.password_changed_at.getTime() / 1000}`,
+                    10,
+                );
+
+                if (passChangedAtTimeStamp > decoded!.iat!) {
+                    throw new AppError(
+                        'password is changed please login again',
+                        401,
+                    );
+                }
+            }
+            req.user = user; // for letting user to use protected routes
+            req.user.googleId = userTempData.googleId;
 
             // if (user.passwordResetVerificationToken || user.activationToken) {
             //     await resettingUserCodeFields(user);

@@ -76,7 +76,9 @@ export class Job {
     })
     job_applications: JobApplication[];
 
-    @ManyToMany(() => Account, (account) => account.saved_jobs)
+    @ManyToMany(() => Account, (account) => account.saved_jobs, {
+        cascade: true,
+    })
     saved_by_accounts: Account[];
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
