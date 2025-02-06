@@ -6424,3 +6424,130 @@
 2025-02-06 15:18:56:1856 [32minfo[39m: [32mServer is running on port 8000[39m
 2025-02-06 15:18:56:1856 [32minfo[39m: [32mPostgres Database connected successfully[39m
 2025-02-06 15:18:58:1858 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:23:39:2339 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:23:39:2339 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:23:41:2341 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:23:51:2351 [35mhttp[39m: [35mGET /api/v1/auth/getMe - - - - ms[39m
+[35m[39m
+2025-02-06 16:24:05:245 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/19 - - - - ms[39m
+[35m[39m
+2025-02-06 16:25:06:256 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:25:06:256 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:25:07:257 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:25:37:2537 [31merror[39m: [31mJob already saved[39m
+2025-02-06 16:25:37:2537 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/19 409 656 - 565.099 ms[39m
+[35m[39m
+2025-02-06 16:28:45:2845 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:28:45:2845 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:28:47:2847 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:28:54:2854 [31merror[39m: [31mJob already saved[39m
+2025-02-06 16:28:54:2854 [35mhttp[39m: [35mPOST /api/v1/job/saveJob/19 409 656 - 512.730 ms[39m
+[35m[39m
+2025-02-06 16:28:59:2859 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 343.996 ms[39m
+[35m[39m
+2025-02-06 16:30:29:3029 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:30:30:3030 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:30:31:3031 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:30:36:3036 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 530.647 ms[39m
+[35m[39m
+2025-02-06 16:30:42:3042 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 328.052 ms[39m
+[35m[39m
+2025-02-06 16:31:21:3121 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:31:21:3121 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:31:22:3122 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:32:13:3213 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:32:13:3213 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:32:14:3214 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:32:35:3235 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:32:35:3235 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:32:37:3237 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:32:42:3242 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 526.248 ms[39m
+[35m[39m
+2025-02-06 16:32:47:3247 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 836 - 306.902 ms[39m
+[35m[39m
+2025-02-06 16:33:01:331 [35mhttp[39m: [35mGET /api/v1/job/oneJob/3 200 839 - 491.845 ms[39m
+[35m[39m
+2025-02-06 16:33:12:3312 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-06 16:33:13:3313 [35mhttp[39m: [35mGET /api/v1/job/oneJob/3 200 1051 - 11.491 ms[39m
+[35m[39m
+2025-02-06 16:33:17:3317 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-06 16:33:17:3317 [35mhttp[39m: [35mGET /api/v1/job/oneJob/3 401 1051 - 139.514 ms[39m
+[35m[39m
+2025-02-06 16:33:21:3321 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-06 16:33:21:3321 [35mhttp[39m: [35mGET /api/v1/job/oneJob/3 401 1051 - 138.060 ms[39m
+[35m[39m
+2025-02-06 16:34:26:3426 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:34:26:3426 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:34:27:3427 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:34:30:3430 [35mhttp[39m: [35mGET /api/v1/job/oneJob/3 200 839 - 166.350 ms[39m
+[35m[39m
+2025-02-06 16:34:37:3437 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-06 16:34:37:3437 [35mhttp[39m: [35mGET /api/v1/auth/getMe 401 1051 - 149.329 ms[39m
+[35m[39m
+2025-02-06 16:34:43:3443 [35mhttp[39m: [35mGET /api/v1/job/oneJob/3 200 839 - 302.056 ms[39m
+[35m[39m
+2025-02-06 16:35:03:353 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 837 - 195.935 ms[39m
+[35m[39m
+2025-02-06 16:35:08:358 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-06 16:35:08:358 [35mhttp[39m: [35mGET /api/v1/job/allUserSavedJobs 401 1051 - 138.699 ms[39m
+[35m[39m
+2025-02-06 16:35:15:3515 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 898 - 961.640 ms[39m
+[35m[39m
+2025-02-06 16:35:20:3520 [35mhttp[39m: [35mGET /api/v1/job/allUserSavedJobs 200 1431 - 431.516 ms[39m
+[35m[39m
+2025-02-06 16:35:32:3532 [35mhttp[39m: [35mGET /api/v1/job/allUserJobApplications 200 2156 - 631.696 ms[39m
+[35m[39m
+2025-02-06 16:38:25:3825 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:38:25:3825 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:38:27:3827 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:38:39:3839 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:38:39:3839 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:38:40:3840 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:39:15:3915 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:39:15:3915 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:39:16:3916 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:40:20:4020 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 16:40:20:4020 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 16:40:21:4021 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 16:40:29:4029 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 524.476 ms[39m
+[35m[39m
+2025-02-06 17:05:08:58 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 2188.488 ms[39m
+[35m[39m
+2025-02-06 17:05:21:521 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 540.430 ms[39m
+[35m[39m
+2025-02-06 17:05:53:553 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 537.839 ms[39m
+[35m[39m
+2025-02-06 17:06:03:63 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 543.973 ms[39m
+[35m[39m
+2025-02-06 17:06:13:613 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 472.957 ms[39m
+[35m[39m
+2025-02-06 17:07:45:745 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 523.793 ms[39m
+[35m[39m
+2025-02-06 17:08:38:838 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 514.396 ms[39m
+[35m[39m
+2025-02-06 17:08:52:852 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-06 17:08:52:852 [35mhttp[39m: [35mGET /api/v1/auth/getMe 401 729 - 849.903 ms[39m
+[35m[39m
+2025-02-06 17:09:11:911 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 898 - 767.437 ms[39m
+[35m[39m
+2025-02-06 17:09:31:931 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 898 - 812.562 ms[39m
+[35m[39m
+2025-02-06 17:09:47:947 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 567.733 ms[39m
+[35m[39m
+2025-02-06 17:10:04:104 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 4274 - 523.313 ms[39m
+[35m[39m
+2025-02-06 17:10:09:109 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 836 - 308.246 ms[39m
+[35m[39m
+2025-02-06 17:10:55:1055 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-06 17:10:56:1056 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-06 17:10:57:1057 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-06 17:11:04:114 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 836 - 493.313 ms[39m
+[35m[39m
+2025-02-06 17:11:06:116 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 836 - 302.174 ms[39m
+[35m[39m
+2025-02-06 17:11:09:119 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 836 - 305.979 ms[39m
+[35m[39m
+2025-02-06 17:11:10:1110 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 836 - 303.318 ms[39m
+[35m[39m
+2025-02-06 17:11:19:1119 [35mhttp[39m: [35mGET /api/v1/job/oneJob/19 200 837 - 9.867 ms[39m
+[35m[39m
