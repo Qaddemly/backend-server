@@ -7006,3 +7006,238 @@
 [35m[39m
 2025-02-06 22:03:12:312 [35mhttp[39m: [35mDELETE /api/v1/review/32 204 - - 547.265 ms[39m
 [35m[39m
+2025-02-07 00:15:57:1557 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 00:15:58:1558 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 00:15:59:1559 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 00:17:04:174 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 578 - 780.661 ms[39m
+[35m[39m
+2025-02-07 00:17:27:1727 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 646 - 471.497 ms[39m
+[35m[39m
+2025-02-07 00:18:12:1812 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 484 - 352.278 ms[39m
+[35m[39m
+2025-02-07 00:20:33:2033 [31merror[39m: [31mvalidationErrors[39m
+2025-02-07 00:20:33:2033 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 400 305 - 437.405 ms[39m
+[35m[39m
+2025-02-07 00:20:38:2038 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 484 - 308.227 ms[39m
+[35m[39m
+2025-02-07 00:20:49:2049 [31merror[39m: [31mvalidationErrors[39m
+2025-02-07 00:20:49:2049 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 400 281 - 344.059 ms[39m
+[35m[39m
+2025-02-07 00:20:54:2054 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 484 - 303.986 ms[39m
+[35m[39m
+2025-02-07 00:21:04:214 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 489 - 350.516 ms[39m
+[35m[39m
+2025-02-07 00:21:11:2111 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 559 - 311.105 ms[39m
+[35m[39m
+2025-02-07 00:21:30:2130 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 560 - 367.101 ms[39m
+[35m[39m
+2025-02-07 00:21:53:2153 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 628 - 448.643 ms[39m
+[35m[39m
+2025-02-07 00:21:59:2159 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 628 - 299.274 ms[39m
+[35m[39m
+2025-02-07 00:22:06:226 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 628 - 306.820 ms[39m
+[35m[39m
+2025-02-07 00:22:13:2213 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 485 - 295.965 ms[39m
+[35m[39m
+2025-02-07 00:22:23:2223 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 485 - 349.733 ms[39m
+[35m[39m
+2025-02-07 00:22:27:2227 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 485 - 364.870 ms[39m
+[35m[39m
+2025-02-07 00:22:34:2234 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 486 - 413.611 ms[39m
+[35m[39m
+2025-02-07 00:22:42:2242 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 559 - 299.721 ms[39m
+[35m[39m
+2025-02-07 00:24:34:2434 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 00:24:35:2435 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 00:24:36:2436 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 00:24:49:2449 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 00:24:49:2449 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 00:24:56:2456 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 00:25:00:250 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 16 - 443.927 ms[39m
+[35m[39m
+2025-02-07 00:25:17:2517 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 00:25:18:2518 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 00:25:24:2524 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 00:25:51:2551 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 00:25:52:2552 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 00:25:56:2556 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:05:39:539 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:05:41:541 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:05:41:541 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:06:52:652 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:06:53:653 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:06:54:654 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:07:44:744 [31merror[39m: [31mNo resumes provided[39m
+2025-02-07 17:07:44:744 [35mhttp[39m: [35mPOST /api/v1/user/addResume 400 1047 - 946.422 ms[39m
+[35m[39m
+2025-02-07 17:08:00:80 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 130 - 484.695 ms[39m
+[35m[39m
+2025-02-07 17:09:02:92 [31merror[39m: [31mUnexpected field[39m
+2025-02-07 17:09:02:92 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 1139 - 336.002 ms[39m
+[35m[39m
+2025-02-07 17:09:43:943 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 130 - 337.551 ms[39m
+[35m[39m
+2025-02-07 17:12:47:1247 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:12:48:1248 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:12:50:1250 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:14:34:1434 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:14:35:1435 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:14:36:1436 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:18:21:1821 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:18:21:1821 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:18:22:1822 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:18:28:1828 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 643 - 474.135 ms[39m
+[35m[39m
+2025-02-07 17:18:52:1852 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 644 - 347.220 ms[39m
+[35m[39m
+2025-02-07 17:19:40:1940 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 644 - 631.864 ms[39m
+[35m[39m
+2025-02-07 17:19:57:1957 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 643 - 443.621 ms[39m
+[35m[39m
+2025-02-07 17:20:02:202 [35mhttp[39m: [35mPATCH /api/v1/user/updateBasicInfo 200 643 - 289.031 ms[39m
+[35m[39m
+2025-02-07 17:23:14:2314 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:23:15:2315 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:23:16:2316 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:23:55:2355 [31merror[39m: [31mError saving file to disk.[39m
+2025-02-07 17:23:55:2355 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 376 - 369.245 ms[39m
+[35m[39m
+2025-02-07 17:24:55:2455 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:24:55:2455 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:24:56:2456 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:26:42:2642 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:26:43:2643 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:26:44:2644 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:30:40:3040 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:30:40:3040 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:30:41:3041 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:30:58:3058 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:30:58:3058 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:30:59:3059 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:31:52:3152 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:31:52:3152 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:31:53:3153 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:32:06:326 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-07 17:32:06:326 [35mhttp[39m: [35mPOST /api/v1/user/addResume 401 729 - 503.873 ms[39m
+[35m[39m
+2025-02-07 17:32:10:3210 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-07 17:32:10:3210 [35mhttp[39m: [35mPOST /api/v1/user/addResume 401 1051 - 138.903 ms[39m
+[35m[39m
+2025-02-07 17:32:30:3230 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 963 - 1106.148 ms[39m
+[35m[39m
+2025-02-07 17:32:36:3236 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 130 - 321.529 ms[39m
+[35m[39m
+2025-02-07 17:34:30:3430 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:34:31:3431 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:34:32:3432 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:35:35:3535 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:35:35:3535 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:35:37:3537 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:36:43:3643 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:36:43:3643 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:36:44:3644 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:37:22:3722 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:37:22:3722 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:37:23:3723 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:39:34:3934 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:39:35:3935 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:39:36:3936 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:42:40:4240 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:42:41:4241 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:42:42:4242 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 17:43:23:4323 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 17:43:24:4324 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 17:43:25:4325 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:48:37:4837 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:48:38:4838 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:48:39:4839 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:51:03:513 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:51:03:513 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:51:05:515 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:52:07:527 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:52:07:527 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:52:08:528 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:52:36:5236 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:52:36:5236 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:52:37:5237 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:52:42:5242 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 130 - 800.639 ms[39m
+[35m[39m
+2025-02-07 18:52:59:5259 [31merror[39m: [31mError saving file to disk.[39m
+2025-02-07 18:52:59:5259 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 376 - 343.105 ms[39m
+[35m[39m
+2025-02-07 18:53:40:5340 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:53:41:5341 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:53:43:5343 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:54:19:5419 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:54:20:5420 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:54:21:5421 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:54:47:5447 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:54:47:5447 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:54:49:5449 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:55:18:5518 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:55:19:5519 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:55:20:5520 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:55:24:5524 [31merror[39m: [31mError saving file to disk.[39m
+2025-02-07 18:55:24:5524 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 376 - 353.203 ms[39m
+[35m[39m
+2025-02-07 18:56:19:5619 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:56:19:5619 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:56:20:5620 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:56:37:5637 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:56:37:5637 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:56:38:5638 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:56:42:5642 [31merror[39m: [31mNo resumes provided[39m
+2025-02-07 18:56:42:5642 [35mhttp[39m: [35mPOST /api/v1/user/addResume 400 1047 - 336.688 ms[39m
+[35m[39m
+2025-02-07 18:57:29:5729 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:57:30:5730 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:57:31:5731 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:59:00:590 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:59:01:591 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:59:02:592 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 18:59:21:5921 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 18:59:21:5921 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 18:59:22:5922 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 19:00:25:025 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 19:00:25:025 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 19:00:26:026 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 19:00:40:040 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 19:00:40:040 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 19:00:41:041 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 19:00:45:045 [31merror[39m: [31mENOENT: no such file or directory, open 'E:\me\graduation_project\backend-server\src\uploads\resumes\resume-823663569-1738947645357.pdf'[39m
+2025-02-07 19:00:45:045 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 456 - 326.495 ms[39m
+[35m[39m
+2025-02-07 19:01:03:13 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 19:01:04:14 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 19:01:05:15 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 19:01:09:19 [31merror[39m: [31mENOENT: no such file or directory, open 'E:\me\graduation_project\backend-server\src\uploads\resumes\resume-870063359-1738947669426.pdf'[39m
+2025-02-07 19:01:09:19 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 456 - 326.568 ms[39m
+[35m[39m
+2025-02-07 19:01:29:129 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 130 - 666.577 ms[39m
+[35m[39m
+2025-02-07 19:01:40:140 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 130 - 648.662 ms[39m
+[35m[39m
+2025-02-07 19:02:00:20 [35mhttp[39m: [35mGET /uploads/resumes/resume-384043341-1738947700587.pdf 200 123829 - 4.004 ms[39m
+[35m[39m
+2025-02-07 19:02:57:257 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 19:02:57:257 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 19:02:58:258 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 19:03:53:353 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-07 19:03:53:353 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-07 19:03:54:354 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-07 19:04:04:44 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 130 - 475.928 ms[39m
+[35m[39m
+2025-02-07 19:04:15:415 [31merror[39m: [31merror while saving file[39m
+2025-02-07 19:04:15:415 [35mhttp[39m: [35mPOST /api/v1/user/addResume 500 353 - 437.557 ms[39m
+[35m[39m
+2025-02-07 20:02:25:225 [35mhttp[39m: [35mGET /api/v1/user/getAllResumes 200 970 - 2775.627 ms[39m
+[35m[39m
+2025-02-07 20:02:54:254 [35mhttp[39m: [35mPOST /api/v1/user/addResume 200 130 - 376.918 ms[39m
+[35m[39m
+2025-02-07 20:03:01:31 [35mhttp[39m: [35mGET /api/v1/user/getAllResumes 200 1061 - 300.540 ms[39m
+[35m[39m
+2025-02-07 20:03:07:37 [35mhttp[39m: [35mGET /uploads/resumes/resume-535848779-1738951374893.pdf 200 123829 - 143.711 ms[39m
+[35m[39m
+2025-02-07 20:03:21:321 [31merror[39m: [31myou already complete your data[39m
+2025-02-07 20:03:21:321 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 1042 - 432.612 ms[39m
+[35m[39m

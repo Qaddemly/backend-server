@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
-import fs from 'fs';
+import fs from 'fs/promises';
 import AppError from '../utils/appError';
 import {
     changeMyPasswordBody,
@@ -155,37 +155,39 @@ export const savingResumeInDisk = catchAsync(
         res: Response,
         next: NextFunction,
     ) => {
-        if (req.files) {
-            if ((req.files! as expressFiles).resumes) {
-                const resumesUrlArrays: string[] = [];
-                const resumes = (req.files as expressFiles).resumes.map(
-                    (resume) => {
-                        const originalFileName = resume.originalname;
-                        const resumeExtension = originalFileName.substring(
-                            originalFileName.lastIndexOf('.') + 1,
-                        );
-                        const resumeName = `resume-${Math.round(
-                            Math.random() * 1e9,
-                        )}-${Date.now()}.${resumeExtension}`;
-                        const resumeDbUrl = `${process.env.BASE_URL}/uploads/resumes/${resumeName}`;
-                        // Save the PDF to disk
-                        resumesUrlArrays.push(resumeDbUrl);
-                        const filePath = `src/uploads/resumes/${resumeName}`;
+        try {
+            if (req.files) {
+                if ((req.files! as expressFiles).resumes) {
+                    const resumesUrlArrays: string[] = [];
+                    const resumes = (req.files as expressFiles).resumes.map(
+                        async (resume) => {
+                            const originalFileName = resume.originalname;
+                            const resumeExtension = originalFileName.substring(
+                                originalFileName.lastIndexOf('.') + 1,
+                            );
+                            const resumeName = `resume-${Math.round(
+                                Math.random() * 1e9,
+                            )}-${Date.now()}.${resumeExtension}`;
+                            const resumeDbUrl = `${process.env.BASE_URL}/uploads/resumes/${resumeName}`;
+                            // Save the PDF to disk
+                            resumesUrlArrays.push(resumeDbUrl);
+                            const filePath = `src/uploads/resumes/${resumeName}`;
 
-                        fs.writeFile(filePath, resume.buffer, (err) => {
-                            if (err) {
-                                return next(
-                                    new AppError('Error saving file to disk.'),
-                                );
-                            }
-                        });
-                    },
-                );
+                            await fs.writeFile(filePath, resume.buffer);
+                            return resumeDbUrl;
+                        },
+                    );
+                    const resumesUrl = await Promise.all(resumes);
 
-                req.body.resumes = resumesUrlArrays;
+                    req.body.resumes = resumesUrl;
+                }
             }
+            next();
+        } catch (err) {
+            const customError = new AppError('error while saving file');
+            customError.stack = err.stack;
+            return next(customError);
         }
-        next();
     },
 );
 

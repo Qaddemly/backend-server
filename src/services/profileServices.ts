@@ -352,5 +352,19 @@ export const updateAccountBasicInfoService = async (req: Request) => {
         updatedData,
         userId,
     );
-    return updatedUser;
+    const returnedUser = { ...updatedUser };
+    (returnedUser as Account).address = {
+        country: updatedUser.country,
+        city: updatedUser.city,
+    };
+    delete returnedUser.country;
+    delete returnedUser.city;
+    (returnedUser as Account).phone = {
+        country_code: updatedUser.country_code,
+        number: updatedUser.number,
+    };
+    delete returnedUser.country_code;
+    delete returnedUser.number;
+
+    return returnedUser;
 };
