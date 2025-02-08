@@ -451,3 +451,48 @@
 2025-02-05 10:39:58:3958 [31merror[39m: [31myou are not logged in please login to access this route[39m
 2025-02-05 10:40:40:4040 [31merror[39m: [31mUser already has role in business[39m
 2025-02-05 10:40:40:4040 [31merror[39m: [31mUser already has role in business[39m
+2025-02-05 16:06:41:641 [31merror[39m: [31mvalidationErrors[39m
+2025-02-05 16:07:27:727 [31merror[39m: [31moperator does not exist: business_phone_country_code_enum = integer[39m
+2025-02-05 16:09:11:911 [31merror[39m: [31mbind message supplies 2 parameters, but prepared statement "" requires 0[39m
+2025-02-05 17:35:21:3521 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-05 17:35:21:3521 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-05 17:35:38:3538 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-05 17:35:38:3538 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-05 17:38:01:381 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-05 17:38:01:381 [31merror[39m: [31mAccess denied[39m
+2025-02-05 17:39:00:390 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-05 17:39:00:390 [31merror[39m: [31mAccess denied[39m
+2025-02-05 17:39:16:3916 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:43:21:4321 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:43:25:4325 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-08 16:43:25:4325 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-08 16:47:48:4748 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 16:47:48:4748 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 16:49:34:4934 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-08 16:49:34:4934 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-08 16:51:05:515 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-08 16:51:05:515 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-08 16:54:09:549 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 16:54:09:549 [31merror[39m: [31mAccess denied[39m
+2025-02-08 16:54:49:5449 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 16:54:49:5449 [31merror[39m: [31mAccess denied[39m
+2025-02-08 16:54:57:5457 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:55:12:5512 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:55:33:5533 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:55:45:5545 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 17:00:24:024 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:00:24:024 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:02:18:218 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:02:18:218 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:02:41:241 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:02:41:241 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:14:11:1411 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:14:11:1411 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:14:28:1428 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:14:28:1428 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:16:03:163 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:16:03:163 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:16:49:1649 [31merror[39m: [31mBusiness not found[39m
+2025-02-08 17:16:49:1649 [31merror[39m: [31mBusiness not found[39m
+2025-02-08 17:19:43:1943 [31merror[39m: [31mBusiness already followed[39m
+2025-02-08 17:20:43:2043 [31merror[39m: [31mBusiness not followed[39m

@@ -18,6 +18,7 @@ import { FollowBusinessRepository } from '../Repository/followBusinessRepository
 import { BusinessPhone } from '../entity/BusinessPhone';
 import { BusinessPhoneRepository } from '../Repository/businessPhoneRepository';
 import exp from 'node:constants';
+import { CountryCode } from '../enums/countryCode';
 
 /**
  * TODO: mark the Account that created the business as the owner.
@@ -74,7 +75,7 @@ export const createBusiness = async (
         const phone = new BusinessPhone();
         phone.business = business;
         phone.country_code = inputPhone.country_code;
-        phone.number = inputPhone.number;
+        phone.phone_number = inputPhone.phone_number;
         await BusinessPhoneRepository.save(phone);
     }
 
@@ -381,6 +382,86 @@ export const checkDeleteHrAuthority = async (
             403,
         );
     }
+};
+
+export const getAllPhonesOfBusiness = async (businessId: number) => {
+    // We need to check if business exist or not
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        Logger.error('Business not found');
+        throw new AppError('Business not found', 404);
+    }
+
+    return BusinessPhoneRepository.findBy({
+        business: { id: businessId },
+    });
+};
+
+/**
+ * TODO: Add index to phone_number & country_code, because we will search if phone Number if already exist or not
+ * @Note Before this middleware called, we check that user is `SUPER_ADMIN` or `OWNER` in the business he requested
+ * And also we verify in the same step that the business Already exists
+ * */
+export const addPhoneNumberToBusiness = async (
+    businessId: number,
+    country_code: CountryCode,
+    phone_number: string,
+) => {
+    const phoneNumberExist =
+        await BusinessPhoneRepository.checkIfPhoneNumberExists(
+            country_code,
+            phone_number,
+        );
+    if (phoneNumberExist) {
+        Logger.error('Phone number already exist in database');
+        throw new AppError('Phone number already is already used', 400);
+    }
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    const phoneNumber = new BusinessPhone();
+    phoneNumber.phone_number = phone_number;
+    phoneNumber.country_code = country_code;
+    phoneNumber.business = business;
+    return await BusinessPhoneRepository.save(phoneNumber);
+};
+/**
+ * @Note Before this middleware called, we check that user is `SUPER_ADMIN` or `OWNER` in the business he requested
+ * **/
+export const updatePhoneNumberOfBusiness = async (
+    businessId: number,
+    phoneId: number,
+    country_code?: CountryCode,
+    phone_number?: string,
+) => {
+    // Get the phone number
+    const phoneNumber = await BusinessPhoneRepository.findOneBy({
+        id: phoneId,
+        business: { id: businessId },
+    });
+    if (!phoneNumber) {
+        Logger.error('Phone number not found');
+        throw new AppError('Phone number not found', 404);
+    }
+    if (country_code) {
+        phoneNumber.country_code = country_code;
+    }
+    if (phone_number) {
+        phoneNumber.phone_number = phone_number;
+    }
+    return await BusinessPhoneRepository.save(phoneNumber);
+};
+export const deletePhoneNumberOfBusiness = async (
+    businessId: number,
+    phoneId: number,
+) => {
+    const phoneNumber = await BusinessPhoneRepository.findOneBy({
+        id: phoneId,
+        business: { id: businessId },
+    });
+    if (!phoneNumber) {
+        Logger.error('Phone number not found');
+        throw new AppError('Phone number not found', 404);
+    }
+    return await BusinessPhoneRepository.delete(phoneNumber);
 };
 
 export const hrDashboardEntry = async (

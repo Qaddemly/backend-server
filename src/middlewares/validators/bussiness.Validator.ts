@@ -206,7 +206,7 @@ export const businessAddPhoneNumberValidator: ValidationChain[] = [
             if (value in CountryCode) return value;
             else throw new Error('Country Code is invalid');
         }),
-    body('number')
+    body('phone_number')
         .trim()
         .notEmpty()
         .withMessage('Phone number cannot be empty')
@@ -222,7 +222,7 @@ export const businessUpdatePhoneNumberValidator: ValidationChain[] = [
             if (value in CountryCode) return value;
             else throw new Error('Country Code is invalid');
         }),
-    body('number')
+    body('phone_number')
         .optional()
         .trim()
         .isNumeric()

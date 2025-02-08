@@ -3858,3 +3858,228 @@
 2025-02-05 10:43:38:4338 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2025-02-05 10:43:59:4359 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 201 54 - 497.577 ms[39m
 [35m[39m
+2025-02-05 16:04:04:44 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 16:04:05:45 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 16:04:06:46 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-05 16:06:41:641 [31merror[39m: [31mvalidationErrors[39m
+2025-02-05 16:06:41:641 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 400 272 - 898.673 ms[39m
+[35m[39m
+2025-02-05 16:07:22:722 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 16:07:23:723 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 16:07:24:724 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-05 16:07:27:727 [31merror[39m: [31moperator does not exist: business_phone_country_code_enum = integer[39m
+2025-02-05 16:07:27:727 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 500 625 - 412.971 ms[39m
+[35m[39m
+2025-02-05 16:09:06:96 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 16:09:07:97 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 16:09:08:98 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-05 16:09:11:911 [31merror[39m: [31mbind message supplies 2 parameters, but prepared statement "" requires 0[39m
+2025-02-05 16:09:11:911 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 500 639 - 365.284 ms[39m
+[35m[39m
+2025-02-05 16:10:21:1021 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 16:10:22:1022 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 16:10:23:1023 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-05 16:10:27:1027 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 64 - 381.660 ms[39m
+[35m[39m
+2025-02-05 17:28:53:2853 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 64 - 715.753 ms[39m
+[35m[39m
+2025-02-05 17:30:28:3028 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 17:30:29:3029 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 17:30:32:3032 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-05 17:30:42:3042 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 64 - 460.798 ms[39m
+[35m[39m
+2025-02-05 17:30:47:3047 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 64 - 345.746 ms[39m
+[35m[39m
+2025-02-05 17:31:10:3110 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 64 - 421.641 ms[39m
+[35m[39m
+2025-02-05 17:31:37:3137 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 64 - 476.892 ms[39m
+[35m[39m
+2025-02-05 17:31:53:3153 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 64 - 570.295 ms[39m
+[35m[39m
+2025-02-05 17:35:11:3511 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 17:35:12:3512 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 17:35:13:3513 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-05 17:35:21:3521 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-05 17:35:21:3521 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-05 17:35:21:3521 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 400 858 - 407.301 ms[39m
+[35m[39m
+2025-02-05 17:35:34:3534 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 64 - 518.089 ms[39m
+[35m[39m
+2025-02-05 17:35:38:3538 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-05 17:35:38:3538 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-05 17:35:38:3538 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 400 858 - 344.229 ms[39m
+[35m[39m
+2025-02-05 17:37:15:3715 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 64 - 493.483 ms[39m
+[35m[39m
+2025-02-05 17:38:01:381 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-05 17:38:01:381 [31merror[39m: [31mAccess denied[39m
+2025-02-05 17:38:01:381 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 403 812 - 389.842 ms[39m
+[35m[39m
+2025-02-05 17:39:00:390 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-05 17:39:00:390 [31merror[39m: [31mAccess denied[39m
+2025-02-05 17:39:00:390 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 403 812 - 559.915 ms[39m
+[35m[39m
+2025-02-05 17:39:12:3912 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1271.032 ms[39m
+[35m[39m
+2025-02-05 17:39:16:3916 [31merror[39m: [31mvalidationErrors[39m
+2025-02-05 17:39:16:3916 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 400 278 - 308.908 ms[39m
+[35m[39m
+2025-02-05 17:41:57:4157 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 17:41:57:4157 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 17:41:59:4159 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-05 17:43:24:4324 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 17:43:24:4324 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 17:43:25:4325 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-05 18:10:16:1016 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-05 18:10:16:1016 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-05 18:10:18:1018 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 16:43:08:438 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 16:43:08:438 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 16:43:09:439 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 16:43:13:4313 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1140.751 ms[39m
+[35m[39m
+2025-02-08 16:43:21:4321 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:43:21:4321 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 400 278 - 328.598 ms[39m
+[35m[39m
+2025-02-08 16:43:25:4325 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-08 16:43:25:4325 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-08 16:43:25:4325 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 400 858 - 317.236 ms[39m
+[35m[39m
+2025-02-08 16:43:29:4329 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 64 - 348.254 ms[39m
+[35m[39m
+2025-02-08 16:44:46:4446 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 16:44:46:4446 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 16:44:47:4447 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 16:44:51:4451 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/1 200 66 - 382.134 ms[39m
+[35m[39m
+2025-02-08 16:46:26:4626 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 200 66 - 440.267 ms[39m
+[35m[39m
+2025-02-08 16:47:20:4720 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 16:47:20:4720 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 16:47:22:4722 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 16:47:23:4723 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 200 66 - 421.831 ms[39m
+[35m[39m
+2025-02-08 16:47:48:4748 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 16:47:48:4748 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 16:47:48:4748 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 427.143 ms[39m
+[35m[39m
+2025-02-08 16:49:13:4913 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 16:49:13:4913 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 16:49:14:4914 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 16:49:34:4934 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-08 16:49:34:4934 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-08 16:49:34:4934 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 400 858 - 434.415 ms[39m
+[35m[39m
+2025-02-08 16:49:39:4939 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 201 593 - 312.974 ms[39m
+[35m[39m
+2025-02-08 16:51:05:515 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-08 16:51:05:515 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-08 16:51:05:515 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/50001/phone 400 858 - 366.700 ms[39m
+[35m[39m
+2025-02-08 16:51:35:5135 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 200 66 - 391.548 ms[39m
+[35m[39m
+2025-02-08 16:52:40:5240 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 16:52:40:5240 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 16:52:41:5241 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 16:52:44:5244 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 200 132 - 411.858 ms[39m
+[35m[39m
+2025-02-08 16:54:07:547 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 1143.777 ms[39m
+[35m[39m
+2025-02-08 16:54:09:549 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 16:54:09:549 [31merror[39m: [31mAccess denied[39m
+2025-02-08 16:54:09:549 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 403 812 - 306.293 ms[39m
+[35m[39m
+2025-02-08 16:54:49:5449 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 16:54:49:5449 [31merror[39m: [31mAccess denied[39m
+2025-02-08 16:54:49:5449 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 403 812 - 496.826 ms[39m
+[35m[39m
+2025-02-08 16:54:55:5455 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 941.253 ms[39m
+[35m[39m
+2025-02-08 16:54:57:5457 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:54:57:5457 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 400 179 - 300.099 ms[39m
+[35m[39m
+2025-02-08 16:55:12:5512 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:55:12:5512 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 400 178 - 395.418 ms[39m
+[35m[39m
+2025-02-08 16:55:33:5533 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:55:33:5533 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 400 179 - 363.279 ms[39m
+[35m[39m
+2025-02-08 16:55:45:5545 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:55:45:5545 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 400 188 - 369.890 ms[39m
+[35m[39m
+2025-02-08 17:00:20:020 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 17:00:21:021 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 17:00:22:022 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 17:00:24:024 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:00:24:024 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:00:24:024 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/465 404 830 - 381.537 ms[39m
+[35m[39m
+2025-02-08 17:01:05:15 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/settings/50001/phone/8 200 66 - 469.074 ms[39m
+[35m[39m
+2025-02-08 17:01:19:119 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/settings/50001/phone/9 200 66 - 369.606 ms[39m
+[35m[39m
+2025-02-08 17:01:35:135 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/settings/50001/phone/10 200 66 - 797.751 ms[39m
+[35m[39m
+2025-02-08 17:02:18:218 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:02:18:218 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:02:18:218 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/settings/50001/phone/1045 404 830 - 475.278 ms[39m
+[35m[39m
+2025-02-08 17:02:39:239 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 1370.587 ms[39m
+[35m[39m
+2025-02-08 17:02:41:241 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:02:41:241 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:02:41:241 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/settings/50001/phone/1045 403 812 - 291.929 ms[39m
+[35m[39m
+2025-02-08 17:13:35:1335 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 17:13:36:1336 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 17:13:37:1337 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 17:14:11:1411 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:14:11:1411 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:14:11:1411 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/settings/50001/phone 403 812 - 609.206 ms[39m
+[35m[39m
+2025-02-08 17:14:28:1428 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:14:28:1428 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:14:28:1428 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/settings/50001/phone 403 812 - 383.165 ms[39m
+[35m[39m
+2025-02-08 17:14:33:1433 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 969.665 ms[39m
+[35m[39m
+2025-02-08 17:14:36:1436 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/settings/50001/phone 200 38 - 341.637 ms[39m
+[35m[39m
+2025-02-08 17:15:16:1516 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 17:15:17:1517 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 17:15:18:1518 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 17:15:20:1520 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/settings/50001/phone 200 89 - 362.766 ms[39m
+[35m[39m
+2025-02-08 17:16:00:160 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 812 - 1079.852 ms[39m
+[35m[39m
+2025-02-08 17:16:03:163 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:16:03:163 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:16:03:163 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/settings/50001/phone 403 812 - 315.418 ms[39m
+[35m[39m
+2025-02-08 17:16:37:1637 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 17:16:37:1637 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 17:16:39:1639 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 17:16:44:1644 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/settings/50001/phone 200 89 - 355.316 ms[39m
+[35m[39m
+2025-02-08 17:16:49:1649 [31merror[39m: [31mBusiness not found[39m
+2025-02-08 17:16:49:1649 [31merror[39m: [31mBusiness not found[39m
+2025-02-08 17:16:49:1649 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/settings/46565654/phone 404 822 - 315.265 ms[39m
+[35m[39m
+2025-02-08 17:19:27:1927 [35mhttp[39m: [35mGET /api/v1/account/FollowedBusinesses 200 53 - 390.086 ms[39m
+[35m[39m
+2025-02-08 17:19:33:1933 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 63 - 334.753 ms[39m
+[35m[39m
+2025-02-08 17:19:37:1937 [35mhttp[39m: [35mGET /api/v1/account/FollowedBusinesses 200 199 - 311.004 ms[39m
+[35m[39m
+2025-02-08 17:19:43:1943 [31merror[39m: [31mBusiness already followed[39m
+2025-02-08 17:19:43:1943 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 500 691 - 311.995 ms[39m
+[35m[39m
+2025-02-08 17:20:04:204 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/2 201 63 - 383.415 ms[39m
+[35m[39m
+2025-02-08 17:20:23:2023 [35mhttp[39m: [35mGET /api/v1/account/FollowedBusinesses 200 346 - 473.206 ms[39m
+[35m[39m
+2025-02-08 17:20:35:2035 [35mhttp[39m: [35mDELETE /api/v1/account/unfollowBusiness/1 200 65 - 496.087 ms[39m
+[35m[39m
+2025-02-08 17:20:43:2043 [31merror[39m: [31mBusiness not followed[39m
+2025-02-08 17:20:43:2043 [35mhttp[39m: [35mDELETE /api/v1/account/unfollowBusiness/1 500 683 - 301.241 ms[39m
+[35m[39m

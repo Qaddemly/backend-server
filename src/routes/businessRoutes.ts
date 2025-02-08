@@ -27,6 +27,7 @@ import {
     updateHrRole,
     checkRoleInBusiness,
 } from '../controllers/businessController';
+import { getAllPhonesOfBusiness } from '../services/businessServices';
 
 export const businessRouter = express.Router();
 
@@ -123,6 +124,12 @@ businessRouter.put(
 );
 
 // Phone Number
+
+businessRouter.get(
+    '/myBusiness/dashboard/settings/:businessId/phone',
+    protect,
+    businessController.getAllPhonesOfBusiness,
+);
 
 businessRouter.post(
     '/myBusiness/dashboard/settings/:businessId/phone',

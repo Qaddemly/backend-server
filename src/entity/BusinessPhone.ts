@@ -28,5 +28,5 @@ export class BusinessPhone {
     country_code: CountryCode;
 
     @Column({ type: 'text', nullable: false })
-    number: string;
+    phone_number: string;
 }

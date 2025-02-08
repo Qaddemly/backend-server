@@ -5,6 +5,7 @@ import { CreateBusinessDto, UpdateBusinessDTO } from '../dtos/businessDto';
 import * as businessServices from './../services/businessServices';
 import { HrRole } from '../enums/HrRole';
 import { HrDashboardUserInfo } from '../types/request';
+import { CountryCode } from '../enums/countryCode';
 
 declare module 'express-serve-static-core' {
     interface Request {
@@ -297,14 +298,86 @@ export const checkRoleInBusiness = catchAsync(
     },
 );
 
+export const getAllPhonesOfBusiness = catchAsync(
+    async (
+        req: Request<{ businessId: string }>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        const phoneNumbers = await businessServices.getAllPhonesOfBusiness(
+            Number(req.params.businessId),
+        );
+        res.status(200).json({
+            status: 'success',
+            phoneNumbers,
+        });
+    },
+);
+
 /**
+ * @Description Add phone number to the business, user must be `OWNER` or `SUPER_ADMIN` to add phone number
+ * @Body {country_code: string, phone_number: string}
+ * @RequestParam {businessId: string}
+ * @Note Before this middleware called, we already check that the user is `OWNER` or `SUPER_ADMIN`
  * */
 export const addPhoneNumberToBusiness = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {},
+    async (
+        req: Request<
+            { businessId: string },
+            {},
+            { country_code: CountryCode; phone_number: string }
+        >,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        const phone = await businessServices.addPhoneNumberToBusiness(
+            Number(req.params.businessId),
+            req.body.country_code,
+            req.body.phone_number,
+        );
+        res.status(201).json({
+            status: 'success',
+            message: 'Phone number added successfully',
+            phone,
+        });
+    },
 );
 export const updatePhoneNumberOfBusiness = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {},
+    async (
+        req: Request<
+            { businessId: string; phoneId: string },
+            {},
+            { country_code?: CountryCode; phone_number?: string }
+        >,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        const phone = await businessServices.updatePhoneNumberOfBusiness(
+            Number(req.params.businessId),
+            Number(req.params.phoneId),
+            req.body.country_code,
+            req.body.phone_number,
+        );
+        res.status(200).json({
+            status: 'success',
+            message: 'Phone number updated successfully',
+            phone,
+        });
+    },
 );
 export const deletePhoneNumberOfBusiness = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {},
+    async (
+        req: Request<{ businessId: string; phoneId: string }>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        await businessServices.deletePhoneNumberOfBusiness(
+            Number(req.params.businessId),
+            Number(req.params.phoneId),
+        );
+        res.status(200).json({
+            status: 'success',
+            message: 'Phone number deleted successfully',
+        });
+    },
 );
