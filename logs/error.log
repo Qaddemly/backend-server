@@ -713,3 +713,74 @@
 2025-02-06 16:34:37:3437 [31merror[39m: [31myou are not logged in please login to access this route[39m
 2025-02-06 16:35:08:358 [31merror[39m: [31myou are not logged in please login to access this route[39m
 2025-02-06 17:08:52:852 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-06 17:23:37:2337 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-06 17:26:48:2648 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-06 17:33:27:3327 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-06 17:33:46:3346 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
+2025-02-06 17:35:58:3558 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
+2025-02-06 17:37:14:3714 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
+2025-02-06 17:38:47:3847 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
+2025-02-06 17:38:47:3847 [31merror[39m: [31mError creating review[39m
+2025-02-06 17:40:30:4030 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
+2025-02-06 17:40:30:4030 [31merror[39m: [31mError creating review[39m
+2025-02-06 17:40:48:4048 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
+2025-02-06 17:40:48:4048 [31merror[39m: [31mError creating review[39m
+2025-02-06 20:10:23:1023 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
+2025-02-06 20:10:23:1023 [31merror[39m: [31mError creating review[39m
+2025-02-06 20:12:19:1219 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
+2025-02-06 20:12:19:1219 [31merror[39m: [31mError creating review[39m
+2025-02-06 20:14:21:1421 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
+2025-02-06 20:14:21:1421 [31merror[39m: [31mError creating review[39m
+2025-02-06 20:16:13:1613 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
+2025-02-06 20:16:13:1613 [31merror[39m: [31mError creating review[39m
+2025-02-06 20:17:14:1714 [31merror[39m: [31mError creating review You have already reviewed this business[39m
+2025-02-06 20:17:14:1714 [31merror[39m: [31mError creating review[39m
+2025-02-06 20:20:31:2031 [31merror[39m: [31mError creating review You have already reviewed this business[39m
+2025-02-06 20:20:31:2031 [31merror[39m: [31mYou have already reviewed this business[39m
+2025-02-06 20:23:59:2359 [31merror[39m: [31mError creating review You have already reviewed this business[39m
+2025-02-06 20:23:59:2359 [31merror[39m: [31mYou have already reviewed this business[39m
+2025-02-06 20:25:54:2554 [31merror[39m: [31mError creating review You have already reviewed this business[39m
+2025-02-06 20:25:54:2554 [31merror[39m: [31mYou have already reviewed this business[39m
+2025-02-06 20:26:25:2625 [31merror[39m: [31mError creating review You have already reviewed this business[39m
+2025-02-06 20:26:25:2625 [31merror[39m: [31mYou have already reviewed this business[39m
+2025-02-06 20:26:52:2652 [31merror[39m: [31mBusiness not found, id not found[39m
+2025-02-06 20:26:52:2652 [31merror[39m: [31mError creating review Business not found[39m
+2025-02-06 20:26:52:2652 [31merror[39m: [31mBusiness not found[39m
+2025-02-06 20:38:42:3842 [31merror[39m: [31mExpected double-quoted property name in JSON at position 50 (line 6 column 1)[39m
+2025-02-06 20:38:48:3848 [31merror[39m: [31mvalidationErrors[39m
+2025-02-06 20:40:13:4013 [31merror[39m: [31mvalidationErrors[39m
+2025-02-06 20:40:26:4026 [31merror[39m: [31mError creating review You have already reviewed this business[39m
+2025-02-06 20:40:26:4026 [31merror[39m: [31mYou have already reviewed this business[39m
+2025-02-06 20:42:17:4217 [31merror[39m: [31mError creating review You have already reviewed this business[39m
+2025-02-06 20:42:17:4217 [31merror[39m: [31mYou have already reviewed this business[39m
+2025-02-06 20:42:54:4254 [31merror[39m: [31mvalidationErrors[39m
+2025-02-06 20:45:22:4522 [31merror[39m: [31mError creating review You have already reviewed this business[39m
+2025-02-06 20:45:22:4522 [31merror[39m: [31mYou have already reviewed this business[39m
+2025-02-06 21:15:01:151 [31merror[39m: [31mExpected double-quoted property name in JSON at position 78 (line 4 column 1)[39m
+2025-02-06 21:16:16:1616 [31merror[39m: [31mvalidationErrors[39m
+2025-02-06 21:17:18:1718 [31merror[39m: [31mvalidationErrors[39m
+2025-02-06 21:18:13:1813 [31merror[39m: [31mReview not found[39m
+2025-02-06 21:19:06:196 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-06 21:20:34:2034 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-06 21:21:56:2156 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-06 21:22:37:2237 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-06 21:23:24:2324 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-06 21:24:07:247 [31merror[39m: [31myou don`t have access to do this action[39m
+2025-02-06 21:27:33:2733 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-06 21:59:33:5933 [31merror[39m: [31mvalidationErrors[39m
+2025-02-06 22:00:09:09 [31merror[39m: [31mReview not found[39m
+2025-02-06 22:00:28:028 [31merror[39m: [31myou don`t have access to do this action[39m
+2025-02-07 00:20:33:2033 [31merror[39m: [31mvalidationErrors[39m
+2025-02-07 00:20:49:2049 [31merror[39m: [31mvalidationErrors[39m
+2025-02-07 17:07:44:744 [31merror[39m: [31mNo resumes provided[39m
+2025-02-07 17:09:02:92 [31merror[39m: [31mUnexpected field[39m
+2025-02-07 17:23:55:2355 [31merror[39m: [31mError saving file to disk.[39m
+2025-02-07 17:32:06:326 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-07 17:32:10:3210 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-07 18:52:59:5259 [31merror[39m: [31mError saving file to disk.[39m
+2025-02-07 18:55:24:5524 [31merror[39m: [31mError saving file to disk.[39m
+2025-02-07 18:56:42:5642 [31merror[39m: [31mNo resumes provided[39m
+2025-02-07 19:00:45:045 [31merror[39m: [31mENOENT: no such file or directory, open 'E:\me\graduation_project\backend-server\src\uploads\resumes\resume-823663569-1738947645357.pdf'[39m
+2025-02-07 19:01:09:19 [31merror[39m: [31mENOENT: no such file or directory, open 'E:\me\graduation_project\backend-server\src\uploads\resumes\resume-870063359-1738947669426.pdf'[39m
+2025-02-07 19:04:15:415 [31merror[39m: [31merror while saving file[39m
+2025-02-07 20:03:21:321 [31merror[39m: [31myou already complete your data[39m
