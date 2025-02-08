@@ -269,6 +269,7 @@ export const checkDeleteHrAuthority = catchAsync(
  * Check if user email we want to add exists in database or not
  * Check if business id is valid or not
  * Append `toBeProcessedUserId` to the request object in `req.hrDashboardUserInfo.toBeProcessedUserId`
+ * Check if user is trying to add/edit/delete himself
  * */
 export const hrDashboardEntry = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
@@ -280,6 +281,13 @@ export const hrDashboardEntry = catchAsync(
                 Number(req.params.businessId),
                 req.body.account_email,
             );
+        if (req.hrDashboardUserInfo.toBeProcessedUserId === req.user.id) {
+            res.status(400).json({
+                status: 'fail',
+                message: 'You can not add or edit or delete yourself',
+            });
+            return;
+        }
         next();
     },
 );

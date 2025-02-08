@@ -4083,3 +4083,41 @@
 2025-02-08 17:20:43:2043 [31merror[39m: [31mBusiness not followed[39m
 2025-02-08 17:20:43:2043 [35mhttp[39m: [35mDELETE /api/v1/account/unfollowBusiness/1 500 683 - 301.241 ms[39m
 [35m[39m
+2025-02-08 17:26:32:2632 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 17:26:32:2632 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 17:26:34:2634 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 17:26:54:2654 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 826 - 1253.275 ms[39m
+[35m[39m
+2025-02-08 17:27:23:2723 [31merror[39m: [31mUser cannot Add/Edit/Delete himself[39m
+2025-02-08 17:27:23:2723 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 500 62 - 387.169 ms[39m
+[35m[39m
+2025-02-08 17:28:50:2850 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 17:28:50:2850 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 17:28:51:2851 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 17:28:54:2854 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 72 - 379.209 ms[39m
+[35m[39m
+2025-02-08 17:29:15:2915 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 400 72 - 403.918 ms[39m
+[35m[39m
+2025-02-08 17:29:15:2915 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-02-08 17:29:27:2927 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 17:29:27:2927 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 17:29:27:2927 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 852 - 372.776 ms[39m
+[35m[39m
+2025-02-08 17:29:57:2957 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 72 - 363.394 ms[39m
+[35m[39m
+2025-02-08 17:29:57:2957 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 17:30:14:3014 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 72 - 365.367 ms[39m
+[35m[39m
+2025-02-08 17:30:14:3014 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 17:30:26:3026 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 400 72 - 356.595 ms[39m
+[35m[39m
+2025-02-08 17:30:26:3026 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-02-08 17:30:49:3049 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 17:30:49:3049 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 17:30:51:3051 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 17:30:53:3053 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 400 72 - 380.399 ms[39m
+[35m[39m
+2025-02-08 17:31:00:310 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 400 72 - 503.062 ms[39m
+[35m[39m
+2025-02-08 17:31:04:314 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 72 - 284.672 ms[39m
+[35m[39m
