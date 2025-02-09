@@ -18,6 +18,9 @@ import { FollowBusinessRepository } from '../Repository/followBusinessRepository
 import { BusinessPhone } from '../entity/BusinessPhone';
 import { BusinessPhoneRepository } from '../Repository/businessPhoneRepository';
 import exp from 'node:constants';
+
+import { CountryCode } from '../enums/countryCode';
+
 import { Request } from 'express';
 import { Paginate } from '../utils/pagination/decorator';
 import {
@@ -26,6 +29,7 @@ import {
     PaginateConfig,
     PaginationType,
 } from '../utils/pagination/typeorm-paginate';
+
 
 /**
  * TODO: mark the Account that created the business as the owner.
@@ -47,7 +51,7 @@ export const createBusiness = async (
             500,
         );
     }
-
+    console.log(`Are you here ?`);
     const business = new Business();
     business.name = createBusinessDto.name;
     business.logo = createBusinessDto.logo;
@@ -82,7 +86,7 @@ export const createBusiness = async (
         const phone = new BusinessPhone();
         phone.business = business;
         phone.country_code = inputPhone.country_code;
-        phone.number = inputPhone.number;
+        phone.phone_number = inputPhone.phone_number;
         await BusinessPhoneRepository.save(phone);
     }
 
@@ -90,26 +94,17 @@ export const createBusiness = async (
     return getBusinessDto(saved_business);
 };
 
+/**
+ * @description This middleware get to be updated fields and update the business
+ * @param updateBusinessDTO - Fields to be updated
+ * @param businessId - Business ID
+ *
+ * @note only SUPER_ADMIN & OWNER can access this middleware, because there's a middleware before it who checks if user who made the request is SUPER_ADMIN or OWNER
+ * */
 export const updateBusiness = async (
     updateBusinessDTO: UpdateBusinessDTO,
-    accountId: number,
     businessId: number,
 ) => {
-    const account = await AccountRepository.findOneBy({ id: accountId });
-    // We need to get all business that user has role in
-    const permissionToUpdate = await HrEmployeeRepository.checkPermission(
-        accountId,
-        businessId,
-        [HrRole.OWNER, HrRole.SUPER_ADMIN],
-    );
-
-    if (!permissionToUpdate) {
-        Logger.error('User does not have permission to update business');
-        throw new AppError(
-            'User does not have permission to update business',
-            403,
-        );
-    }
     const business = await BusinessRepository.updateBusiness(
         updateBusinessDTO,
         businessId,
@@ -234,8 +229,36 @@ export const deleteHr = async (businessId: number, accountId: number) => {
     }
     return true;
 };
-export const getAllHrOfBusiness = async (businessId: number) => {
-    return await HrEmployeeRepository.getAllHrOfBusiness(businessId);
+export const getAllHrOfBusiness = async (
+    businessId: number,
+    filterObject: { role: HrRole; name: string; email: string },
+) => {
+    const queryBuilder = HrEmployeeRepository.createQueryBuilder('hr_employee')
+        .leftJoinAndSelect('hr_employee.account', 'account')
+        .where('hr_employee.business = :businessId', { businessId });
+
+    if (filterObject.role) {
+        queryBuilder.andWhere('hr_employee.role = :role', {
+            role: filterObject.role,
+        });
+    }
+    if (filterObject.name) {
+        queryBuilder.andWhere(
+            "LOWER(account.first_name) || ' ' || LOWER(account.last_name) LIKE LOWER(:name)",
+            {
+                name: `%${filterObject.name}%`,
+            },
+        );
+    }
+    if (filterObject.email) {
+        queryBuilder.andWhere('LOWER(account.email) LIKE LOWER(:email)', {
+            email: `%${filterObject.email}%`,
+        });
+    }
+    console.log(queryBuilder.getQuery());
+    const res = await queryBuilder.getMany();
+    return res;
+    // return await HrEmployeeRepository.getAllHrOfBusiness(businessId);
 };
 
 export const getFollowersNumberOfBusiness = async (businessId: number) => {
@@ -263,10 +286,7 @@ export const checkOwnerOrSuperAdmin = async (
         Logger.error(
             'USER must be SUPER_ADMIN or OWNER to access this endpoint',
         );
-        throw new AppError(
-            'User does not have permission to access this section',
-            403,
-        );
+        throw new AppError('Access denied', 403);
     }
     return role;
 };
@@ -401,6 +421,86 @@ export const checkDeleteHrAuthority = async (
             403,
         );
     }
+};
+
+export const getAllPhonesOfBusiness = async (businessId: number) => {
+    // We need to check if business exist or not
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        Logger.error('Business not found');
+        throw new AppError('Business not found', 404);
+    }
+
+    return BusinessPhoneRepository.findBy({
+        business: { id: businessId },
+    });
+};
+
+/**
+ * TODO: Add index to phone_number & country_code, because we will search if phone Number if already exist or not
+ * @Note Before this middleware called, we check that user is `SUPER_ADMIN` or `OWNER` in the business he requested
+ * And also we verify in the same step that the business Already exists
+ * */
+export const addPhoneNumberToBusiness = async (
+    businessId: number,
+    country_code: CountryCode,
+    phone_number: string,
+) => {
+    const phoneNumberExist =
+        await BusinessPhoneRepository.checkIfPhoneNumberExists(
+            country_code,
+            phone_number,
+        );
+    if (phoneNumberExist) {
+        Logger.error('Phone number already exist in database');
+        throw new AppError('Phone number already is already used', 400);
+    }
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    const phoneNumber = new BusinessPhone();
+    phoneNumber.phone_number = phone_number;
+    phoneNumber.country_code = country_code;
+    phoneNumber.business = business;
+    return await BusinessPhoneRepository.save(phoneNumber);
+};
+/**
+ * @Note Before this middleware called, we check that user is `SUPER_ADMIN` or `OWNER` in the business he requested
+ * **/
+export const updatePhoneNumberOfBusiness = async (
+    businessId: number,
+    phoneId: number,
+    country_code?: CountryCode,
+    phone_number?: string,
+) => {
+    // Get the phone number
+    const phoneNumber = await BusinessPhoneRepository.findOneBy({
+        id: phoneId,
+        business: { id: businessId },
+    });
+    if (!phoneNumber) {
+        Logger.error('Phone number not found');
+        throw new AppError('Phone number not found', 404);
+    }
+    if (country_code) {
+        phoneNumber.country_code = country_code;
+    }
+    if (phone_number) {
+        phoneNumber.phone_number = phone_number;
+    }
+    return await BusinessPhoneRepository.save(phoneNumber);
+};
+export const deletePhoneNumberOfBusiness = async (
+    businessId: number,
+    phoneId: number,
+) => {
+    const phoneNumber = await BusinessPhoneRepository.findOneBy({
+        id: phoneId,
+        business: { id: businessId },
+    });
+    if (!phoneNumber) {
+        Logger.error('Phone number not found');
+        throw new AppError('Phone number not found', 404);
+    }
+    return await BusinessPhoneRepository.delete(phoneNumber);
 };
 
 export const hrDashboardEntry = async (
