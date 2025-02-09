@@ -2,12 +2,12 @@ import { Request, Response, NextFunction } from 'express';
 import AppError from '../utils/appError';
 import {
     createUserOneExperienceService,
-    createUserOneLanguageService,
-    createUserOneSkillService,
+    createUserOneOrMoreLanguageService,
+    createUserOneOrMoreSkillService,
     deleteMeService,
     deleteUserOneExperienceService,
-    deleteUserOneLanguageService,
-    deleteUserOneSkillService,
+    deleteUserOneOrMoreLanguageService,
+    deleteUserOneOrMoreSkillService,
     updateUserOneExperienceService,
     updateUserOneEducationService,
     createUserOneEducationService,
@@ -69,13 +69,13 @@ export const deleteUserOneExperience = catchAsync(
     },
 );
 
-export const createUserOneSkill = catchAsync(
+export const createUserOneOrMoreSkills = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const skill = await createUserOneSkillService(req);
+            const skills = await createUserOneOrMoreSkillService(req);
             res.status(201).json({
                 success: true,
-                skill,
+                skills,
             });
         } catch (err) {
             return next(err);
@@ -83,10 +83,10 @@ export const createUserOneSkill = catchAsync(
     },
 );
 
-export const deleteUserOneSkill = catchAsync(
+export const deleteUserOneOrMoreSkill = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            await deleteUserOneSkillService(req);
+            await deleteUserOneOrMoreSkillService(req);
             res.status(204).json({});
         } catch (err) {
             return next(err);
@@ -97,7 +97,7 @@ export const deleteUserOneSkill = catchAsync(
 export const createUserOneLanguage = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const language = await createUserOneLanguageService(req);
+            const language = await createUserOneOrMoreLanguageService(req);
             res.status(201).json({
                 success: true,
                 language,
@@ -108,10 +108,10 @@ export const createUserOneLanguage = catchAsync(
     },
 );
 
-export const deleteUserOneLanguage = catchAsync(
+export const deleteUserOneOrMoreLanguage = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            await deleteUserOneLanguageService(req);
+            await deleteUserOneOrMoreLanguageService(req);
             res.status(204).json({});
         } catch (err) {
             return next(err);

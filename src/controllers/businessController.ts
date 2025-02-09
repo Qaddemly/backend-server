@@ -397,6 +397,8 @@ export const deletePhoneNumberOfBusiness = catchAsync(
             status: 'success',
             message: 'Phone number deleted successfully',
         });
+    },
+);
 
 export const getAllBusinessWithSearchAndFilter = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
@@ -412,6 +414,5 @@ export const getAllBusinessWithSearchAndFilter = catchAsync(
         } catch (err) {
             return next(err);
         }
-
     },
 );

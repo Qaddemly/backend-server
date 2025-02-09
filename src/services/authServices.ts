@@ -174,11 +174,15 @@ export const savingResumeInDisk = catchAsync(
                             const filePath = `src/uploads/resumes/${resumeName}`;
 
                             await fs.writeFile(filePath, resume.buffer);
-                            return resumeDbUrl;
+                            return {
+                                url: resumeDbUrl,
+                                name: resume.originalname,
+                                size: resume.size,
+                            };
                         },
                     );
                     const resumesUrl = await Promise.all(resumes);
-
+                    console.log(resumesUrl);
                     req.body.resumes = resumesUrl;
                 }
             }

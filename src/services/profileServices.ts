@@ -195,69 +195,72 @@ export const deleteUserOneEducationService = async (req: Request) => {
     }
 };
 
-export const createUserOneSkillService = async (req: Request) => {
+export const createUserOneOrMoreSkillService = async (req: Request) => {
     const userId = Number(req.user.id);
 
-    let { name } = req.body;
+    let { skills } = req.body;
 
-    const user = await AccountRepository.findOneBy({ id: userId });
-    const skill = new Skill();
-    skill.account = user;
-    skill.name = name;
+    const newSkills = await SkillRepository.createQueryBuilder()
+        .insert()
+        .into(Skill)
+        .values(skills.map((name) => ({ account: { id: userId }, name })))
+        .returning('*')
+        .execute();
 
-    const createdSkill = await SkillRepository.save(skill);
-    delete createdSkill.account;
-    const SkillReturned: { [key: string]: any } = { ...createdSkill };
-    SkillReturned.accountId = userId;
-    return SkillReturned;
+    // const createdSkill = await SkillRepository.save(skill);
+    // delete createdSkill.account;
+    // const SkillReturned: { [key: string]: any } = { ...createdSkill };
+    // SkillReturned.accountId = userId;
+    return newSkills.raw;
 };
 
-export const deleteUserOneSkillService = async (req: Request) => {
+export const deleteUserOneOrMoreSkillService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
-        const skillId = Number(req.params.id);
-        const skill = await SkillRepository.findOneBy({
-            account: { id: userId },
-            id: skillId,
-        });
-        if (!skill) {
-            throw new AppError('No skill found with that ID', 404);
+        const { skillsId } = req.body;
+        const foundedSkills = await SkillRepository.query(`
+            select * from skill where id in (${skillsId.map((skill) => `${skill}`).join(', ')}) and account_id=${userId}  `);
+        if (foundedSkills.length != skillsId.length) {
+            throw new AppError('error while deleting skills', 400);
         }
-        await SkillRepository.remove(skill);
+        await SkillRepository.remove(foundedSkills);
     } catch (err) {
         throw err;
     }
 };
 
-export const createUserOneLanguageService = async (req: Request) => {
+export const createUserOneOrMoreLanguageService = async (req: Request) => {
     const userId = Number(req.user.id);
 
-    let { name } = req.body;
+    let { languages } = req.body;
+    console.log(`select * from language where
+        name in (${languages.map((lang) => `${lang}`).join(', ')}) and account_id=${userId}  `);
+    const foundedLanguages =
+        await LanguageRepository.query(`select * from language where
+        name in (${languages.map((lang) => `'${lang}'`).join(', ')}) and account_id=${userId}  `);
+    if (foundedLanguages.length != 0) {
+        throw new AppError('some languages already added', 400);
+    }
+    const newLanguages = await LanguageRepository.createQueryBuilder()
+        .insert()
+        .into(Language)
+        .values(languages.map((name) => ({ account: { id: userId }, name })))
+        .returning('*')
+        .execute();
 
-    const user = await AccountRepository.findOneBy({ id: userId });
-    const language = new Language();
-    language.account = user;
-    language.name = name;
-
-    const createdLanguage = await LanguageRepository.save(language);
-    delete createdLanguage.account;
-    const LanguageReturned: { [key: string]: any } = { ...createdLanguage };
-    LanguageReturned.accountId = userId;
-    return LanguageReturned;
+    return newLanguages.raw;
 };
 
-export const deleteUserOneLanguageService = async (req: Request) => {
+export const deleteUserOneOrMoreLanguageService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
-        const languageId = Number(req.params.id);
-        const language = await LanguageRepository.findOneBy({
-            account: { id: userId },
-            id: languageId,
-        });
-        if (!language) {
-            throw new AppError('No language found with that ID', 404);
+        const { languagesId } = req.body;
+        const foundedLanguages = await LanguageRepository.query(`
+            select * from language where id in (${languagesId.map((lang) => `${lang}`).join(', ')}) and account_id=${userId}  `);
+        if (foundedLanguages.length != languagesId.length) {
+            throw new AppError('error while deleting languages', 400);
         }
-        await LanguageRepository.remove(language);
+        await LanguageRepository.remove(foundedLanguages);
     } catch (err) {
         throw err;
     }
@@ -274,7 +277,9 @@ export const addUserOneResumeService = async (req: Request) => {
     const user = await AccountRepository.findOneBy({ id: userId });
     const newResume = new Resume();
     newResume.account = user;
-    newResume.url = resumes[0];
+    newResume.url = resumes[0].url;
+    newResume.name = resumes[0].name;
+    newResume.size = resumes[0].size;
 
     const createdResume = await ResumeRepository.save(newResume);
     delete createdResume.account;
@@ -304,15 +309,14 @@ export const deleteUserOneResumeService = async (req: Request) => {
         }
 
         await ResumeRepository.remove(resume);
-        // const startIndex = resume.url.indexOf('/uploads');
+        const startIndex = resume.url.indexOf('/uploads');
 
-        // const result = resume.url.substring(startIndex, -1);
-        // console.log(result);
-        // const rootPath = path.resolve(__dirname, '../');
-        // const resumePath = `src/${result}`;
-        // await fs.unlink(resumePath, (c) => {
-        //     console.log(c);
-        // });
+        const result = resume.url.substring(startIndex, resume.url.length);
+        const resumePath = `src${result}`;
+        console.log(resumePath);
+        fs.unlink(resumePath, (c) => {
+            // console.log(c);
+        });
     } catch (err) {
         throw err;
     }
