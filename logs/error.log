@@ -784,3 +784,25 @@
 2025-02-07 19:01:09:19 [31merror[39m: [31mENOENT: no such file or directory, open 'E:\me\graduation_project\backend-server\src\uploads\resumes\resume-870063359-1738947669426.pdf'[39m
 2025-02-07 19:04:15:415 [31merror[39m: [31merror while saving file[39m
 2025-02-07 20:03:21:321 [31merror[39m: [31myou already complete your data[39m
+2025-02-09 00:32:02:322 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-09 00:32:16:3216 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-09 00:35:12:3512 [31merror[39m: [31mUnexpected field[39m
+2025-02-09 00:38:50:3850 [31merror[39m: [31mPostgres Database connection failed column "name" of relation "resume" contains null values[39m
+2025-02-09 01:01:06:16 [31merror[39m: [31mNo resume found with that ID[39m
+2025-02-09 01:14:51:1451 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 01:15:05:155 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 01:18:26:1826 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 01:18:52:1852 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 01:46:10:4610 [31merror[39m: [31mCannot read properties of undefined (reading 'map')[39m
+2025-02-09 01:51:11:5111 [31merror[39m: [31mCannot read properties of undefined (reading 'map')[39m
+2025-02-09 01:59:57:5957 [31merror[39m: [31mCannot read properties of undefined (reading 'length')[39m
+2025-02-09 02:00:36:036 [31merror[39m: [31merror on deleting skills[39m
+2025-02-09 02:01:11:111 [31merror[39m: [31merror on deleting skills[39m
+2025-02-09 02:01:53:153 [31merror[39m: [31merror on deleting skills[39m
+2025-02-09 02:02:05:25 [31merror[39m: [31merror on deleting skills[39m
+2025-02-09 02:02:30:230 [31merror[39m: [31merror on deleting skills[39m
+2025-02-09 02:02:55:255 [31merror[39m: [31merror on deleting skills[39m
+2025-02-09 02:04:18:418 [31merror[39m: [31merror on deleting skills[39m
+2025-02-09 02:11:12:1112 [31merror[39m: [31merror while deleting skills[39m
+2025-02-09 02:11:35:1135 [31merror[39m: [31merror while deleting skills[39m
+2025-02-09 02:12:42:1242 [31merror[39m: [31mvalidationErrors[39m

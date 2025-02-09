@@ -135,15 +135,27 @@ export const createUserOneResumeValidator: ValidationChain[] = [
         .withMessage('resume must be string'),
 ];
 export const createUserOneSkillValidator: ValidationChain[] = [
-    body('name')
+    body('skills')
+        .isArray({ min: 1 }) // Ensure 'skills' is an array and not empty
+        .withMessage('Skills must be a non-empty array'),
+
+    body('skills.*')
         .isString()
-        .withMessage('name must be a string')
+        .trim()
         .notEmpty()
-        .withMessage('name required'),
+        .withMessage('Each skill must be a non-empty string'),
 ];
 
 export const deleteUserOneSkillValidator: ValidationChain[] = [
-    param('id').isInt().withMessage('id must be an integer'),
+    body('skillsId')
+        .isArray({ min: 1 }) // Ensure 'skills' is an array and not empty
+        .withMessage('Skills must be a non-empty array'),
+
+    body('skillsId.*')
+        .isInt()
+        .trim()
+        .notEmpty()
+        .withMessage('Each skill must be a non-empty interger'),
 ];
 
 export const createUserOneLanguageValidator: ValidationChain[] = [

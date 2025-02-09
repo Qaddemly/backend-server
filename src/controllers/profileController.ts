@@ -3,11 +3,11 @@ import AppError from '../utils/appError';
 import {
     createUserOneExperienceService,
     createUserOneLanguageService,
-    createUserOneSkillService,
+    createUserOneOrMoreSkillService,
     deleteMeService,
     deleteUserOneExperienceService,
     deleteUserOneLanguageService,
-    deleteUserOneSkillService,
+    deleteUserOneOrMoreSkillService,
     updateUserOneExperienceService,
     updateUserOneEducationService,
     createUserOneEducationService,
@@ -69,13 +69,13 @@ export const deleteUserOneExperience = catchAsync(
     },
 );
 
-export const createUserOneSkill = catchAsync(
+export const createUserOneOrMoreSkills = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const skill = await createUserOneSkillService(req);
+            const skills = await createUserOneOrMoreSkillService(req);
             res.status(201).json({
                 success: true,
-                skill,
+                skills,
             });
         } catch (err) {
             return next(err);
@@ -83,10 +83,10 @@ export const createUserOneSkill = catchAsync(
     },
 );
 
-export const deleteUserOneSkill = catchAsync(
+export const deleteUserOneOrMoreSkill = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            await deleteUserOneSkillService(req);
+            await deleteUserOneOrMoreSkillService(req);
             res.status(204).json({});
         } catch (err) {
             return next(err);
