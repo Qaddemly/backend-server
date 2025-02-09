@@ -4,6 +4,7 @@ import {
     Entity,
     Index,
     JoinColumn,
+    ManyToMany,
     ManyToOne,
     OneToMany,
     PrimaryGeneratedColumn,
@@ -13,6 +14,8 @@ import { LocationType } from '../enums/locationType';
 import { EmploymentType } from '../enums/employmentType';
 import { Business } from './Business';
 import { JobApplication } from './JobApplication';
+import { Account } from './Account';
+import { JobStatus } from '../enums/jobStatus';
 
 @Entity()
 export class Job {
@@ -35,7 +38,8 @@ export class Job {
         default: LocationType.Onsite,
     })
     location_type: LocationType;
-
+    @Column({ default: JobStatus.OPENED })
+    status: JobStatus;
     // Will be added Later
     // Not sure if this is the right way
     @Column('text', { array: true })
@@ -72,6 +76,10 @@ export class Job {
     })
     job_applications: JobApplication[];
 
+    @ManyToMany(() => Account, (account) => account.saved_jobs, {
+        cascade: true,
+    })
+    saved_by_accounts: Account[];
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 

@@ -14,6 +14,7 @@ import {
     createUserOneEducation,
     addUserOneResume,
     deleteUserOneResume,
+    getAllUserResumes,
 } from '../controllers/profileController';
 import {
     protect,
@@ -112,7 +113,7 @@ profileRouter.post(
     //validateRequestMiddleware(createUserOneResumeValidator),
     addUserOneResume,
 );
-
+profileRouter.get('/getAllResumes', protect, getAllUserResumes);
 profileRouter.delete('/deleteResume/:id', protect, deleteUserOneResume);
 profileRouter.patch(
     '/updateBasicInfo',

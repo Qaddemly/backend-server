@@ -5,6 +5,8 @@ import {
     validationResult,
 } from 'express-validator';
 
+import { body, check, query, ValidationChain } from 'express-validator';
+
 import { Country } from '../../enums/country';
 import { LocationType } from '../../enums/locationType';
 import { HrRole } from '../../enums/HrRole';
@@ -203,6 +205,7 @@ export const checkDeleteHr: ValidationChain[] = [
     body('account_email').trim().isEmail().withMessage('invalid email address'),
 ];
 
+
 export const getAllHrQueryValidator: ValidationChain[] = [
     query('role')
         .optional()
@@ -261,4 +264,7 @@ export const businessUpdatePhoneNumberValidator: ValidationChain[] = [
         .trim()
         .isNumeric()
         .withMessage('Phone number must be a number'),
+  
+export const searchAndFilterValidator: ValidationChain[] = [
+    query('search').notEmpty().withMessage('search cant be empty'),
 ];

@@ -78,7 +78,10 @@ export class Business {
 
     @OneToMany(() => Review, (review) => review.business, { cascade: true })
     reviews: Review[];
-
+    @Column({ type: 'float', default: 0.0 })
+    reviewsRatingsQuantity: number;
+    @Column({ type: 'float', default: 0.0 })
+    reviewsRatingsAverage: number;
     @OneToMany(
         () => FollowBusiness,
         (followBusiness) => followBusiness.business,

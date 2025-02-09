@@ -3,14 +3,18 @@ import {
     applyToJob,
     createJob,
     getAllJobApplicationsToJob,
+    getAllJobs,
     getAllUserJobApplications,
     getAllUserSavedJobs,
     getOneJob,
+    makeJobArchived,
+    makeJobClosed,
+    makeJobOpened,
     saveJobToUser,
     unSaveJobFromUser,
     updateOneJob,
 } from '../controllers/jobController';
-import { protect } from '../services/authServices';
+import { protect, protectOptional } from '../services/authServices';
 import validateRequestMiddleware from '../middlewares/validator';
 import {
     applyToJobValidator,
@@ -32,6 +36,7 @@ jobRouter.post(
 jobRouter.get(
     '/oneJob/:id',
     validateRequestMiddleware(idJobValidator),
+    protectOptional,
     getOneJob,
 );
 
@@ -41,6 +46,30 @@ jobRouter.put(
     validateRequestMiddleware(idJobValidator),
     validateRequestMiddleware(updateJobValidator),
     updateOneJob,
+);
+
+jobRouter.put(
+    '/makeJobOpened/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    validateRequestMiddleware(updateJobValidator),
+    makeJobOpened,
+);
+
+jobRouter.put(
+    '/makeJobClosed/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    validateRequestMiddleware(updateJobValidator),
+    makeJobClosed,
+);
+
+jobRouter.put(
+    '/makeJobArchived/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    validateRequestMiddleware(updateJobValidator),
+    makeJobArchived,
 );
 
 jobRouter.post(
@@ -73,6 +102,12 @@ jobRouter.post(
     validateRequestMiddleware(applyToJobValidator),
 
     applyToJob,
+);
+
+jobRouter.get(
+    '/getAllJobs/',
+
+    getAllJobs,
 );
 
 export default jobRouter;

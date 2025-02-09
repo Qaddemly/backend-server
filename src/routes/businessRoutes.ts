@@ -14,6 +14,7 @@ import {
     checkCreateOrUpdateHr,
     checkDeleteHr,
     getAllHrQueryValidator,
+    searchAndFilterValidator,
 } from '../middlewares/validators/bussiness.Validator';
 import {
     addHrToBusiness,
@@ -167,3 +168,9 @@ businessRouter.get(
 //     protect,
 //     businessController.addPhoneNumberToBusiness,
 // );
+
+businessRouter.get(
+    '/searchAndFilter',
+    validateRequestMiddleware(searchAndFilterValidator),
+    businessController.getAllBusinessWithSearchAndFilter,
+);

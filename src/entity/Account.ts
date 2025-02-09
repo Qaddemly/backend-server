@@ -96,7 +96,7 @@ export class Account {
     })
     job_applications: JobApplication[];
 
-    @ManyToMany(() => Job)
+    @ManyToMany(() => Job, (job) => job.saved_by_accounts)
     @JoinTable({
         name: 'account_saved_jobs',
         joinColumn: { name: 'account_id', referencedColumnName: 'id' },

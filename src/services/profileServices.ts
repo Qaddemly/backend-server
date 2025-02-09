@@ -274,13 +274,21 @@ export const addUserOneResumeService = async (req: Request) => {
     const user = await AccountRepository.findOneBy({ id: userId });
     const newResume = new Resume();
     newResume.account = user;
-    newResume.url = resumes;
+    newResume.url = resumes[0];
 
     const createdResume = await ResumeRepository.save(newResume);
     delete createdResume.account;
     const ResumeReturned: { [key: string]: any } = { ...createdResume };
     ResumeReturned.accountId = userId;
     return ResumeReturned;
+};
+
+export const getAllUserResumesService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const resumes = await ResumeRepository.find({
+        where: { account: { id: userId } },
+    });
+    return resumes;
 };
 
 export const deleteUserOneResumeService = async (req: Request) => {
@@ -344,5 +352,19 @@ export const updateAccountBasicInfoService = async (req: Request) => {
         updatedData,
         userId,
     );
-    return updatedUser;
+    const returnedUser = { ...updatedUser };
+    (returnedUser as Account).address = {
+        country: updatedUser.country,
+        city: updatedUser.city,
+    };
+    delete returnedUser.country;
+    delete returnedUser.city;
+    (returnedUser as Account).phone = {
+        country_code: updatedUser.country_code,
+        number: updatedUser.number,
+    };
+    delete returnedUser.country_code;
+    delete returnedUser.number;
+
+    return returnedUser;
 };
