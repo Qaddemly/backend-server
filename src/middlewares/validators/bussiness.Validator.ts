@@ -1,9 +1,12 @@
+import { validationResult } from 'express-validator';
+
 import { body, check, query, ValidationChain } from 'express-validator';
 
 import { Country } from '../../enums/country';
 import { LocationType } from '../../enums/locationType';
 import { HrRole } from '../../enums/HrRole';
 import { CountryCode } from '../../enums/countryCode';
+import { NextFunction, Request } from 'express';
 export const businessCreationValidator: ValidationChain[] = [
     body('name')
         .trim()
@@ -101,7 +104,7 @@ export const businessCreationValidator: ValidationChain[] = [
             if (value in CountryCode) return value;
             else throw new Error('Country Code is invalid');
         }),
-    body('phone.*.number')
+    body('phone.*.phone_number')
         .if(body('phone').exists())
         .trim()
         .notEmpty()
@@ -113,12 +116,13 @@ export const businessUpdateValidator: ValidationChain[] = [
     body('name')
         .optional()
         .trim()
+        .notEmpty()
         .isLength({ min: 3 })
         .withMessage('name must be at least 3 characters')
         .isLength({ max: 32 })
         .withMessage('name must be at most 32 characters'),
     body('logo').optional().notEmpty().withMessage('logo cannot be empty'),
-    body('CEO').trim().notEmpty().withMessage('CEO cannot be empty'),
+    body('CEO').optional().trim().notEmpty().withMessage('CEO cannot be empty'),
     body('founder')
         .optional()
         .trim()
@@ -196,6 +200,65 @@ export const checkDeleteHr: ValidationChain[] = [
     body('account_email').trim().isEmail().withMessage('invalid email address'),
 ];
 
+export const getAllHrQueryValidator: ValidationChain[] = [
+    query('role')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('role cannot be empty')
+        .custom((val) => {
+            if (val in HrRole) {
+                return val;
+            } else {
+                throw new Error('invalid role');
+            }
+        }),
+    query('email')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('email cannot be empty')
+        .isEmail()
+        .withMessage('invalid email address'),
+    query('name')
+        .optional()
+        .trim()
+        .toLowerCase()
+        .notEmpty()
+        .withMessage('name cannot be empty'),
+];
+
+export const businessAddPhoneNumberValidator: ValidationChain[] = [
+    body('country_code')
+        .trim()
+        .notEmpty()
+        .withMessage('Country Code cannot be empty')
+        .custom((value) => {
+            if (value in CountryCode) return value;
+            else throw new Error('Country Code is invalid');
+        }),
+    body('phone_number')
+        .trim()
+        .notEmpty()
+        .withMessage('Phone number cannot be empty')
+        .isNumeric()
+        .withMessage('Phone number must be a number'),
+];
+
+export const businessUpdatePhoneNumberValidator: ValidationChain[] = [
+    body('country_code')
+        .optional()
+        .trim()
+        .custom((value) => {
+            if (value in CountryCode) return value;
+            else throw new Error('Country Code is invalid');
+        }),
+    body('phone_number')
+        .optional()
+        .trim()
+        .isNumeric()
+        .withMessage('Phone number must be a number'),
+];
 export const searchAndFilterValidator: ValidationChain[] = [
     query('search').notEmpty().withMessage('search cant be empty'),
 ];

@@ -229,35 +229,38 @@ export const deleteUserOneOrMoreSkillService = async (req: Request) => {
     }
 };
 
-export const createUserOneLanguageService = async (req: Request) => {
+export const createUserOneOrMoreLanguageService = async (req: Request) => {
     const userId = Number(req.user.id);
 
-    let { name } = req.body;
+    let { languages } = req.body;
+    console.log(`select * from language where
+        name in (${languages.map((lang) => `${lang}`).join(', ')}) and account_id=${userId}  `);
+    const foundedLanguages =
+        await LanguageRepository.query(`select * from language where
+        name in (${languages.map((lang) => `'${lang}'`).join(', ')}) and account_id=${userId}  `);
+    if (foundedLanguages.length != 0) {
+        throw new AppError('some languages already added', 400);
+    }
+    const newLanguages = await LanguageRepository.createQueryBuilder()
+        .insert()
+        .into(Language)
+        .values(languages.map((name) => ({ account: { id: userId }, name })))
+        .returning('*')
+        .execute();
 
-    const user = await AccountRepository.findOneBy({ id: userId });
-    const language = new Language();
-    language.account = user;
-    language.name = name;
-
-    const createdLanguage = await LanguageRepository.save(language);
-    delete createdLanguage.account;
-    const LanguageReturned: { [key: string]: any } = { ...createdLanguage };
-    LanguageReturned.accountId = userId;
-    return LanguageReturned;
+    return newLanguages.raw;
 };
 
-export const deleteUserOneLanguageService = async (req: Request) => {
+export const deleteUserOneOrMoreLanguageService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
-        const languageId = Number(req.params.id);
-        const language = await LanguageRepository.findOneBy({
-            account: { id: userId },
-            id: languageId,
-        });
-        if (!language) {
-            throw new AppError('No language found with that ID', 404);
+        const { languagesId } = req.body;
+        const foundedLanguages = await LanguageRepository.query(`
+            select * from language where id in (${languagesId.map((lang) => `${lang}`).join(', ')}) and account_id=${userId}  `);
+        if (foundedLanguages.length != languagesId.length) {
+            throw new AppError('error while deleting languages', 400);
         }
-        await LanguageRepository.remove(language);
+        await LanguageRepository.remove(foundedLanguages);
     } catch (err) {
         throw err;
     }

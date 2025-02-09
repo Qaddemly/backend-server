@@ -159,19 +159,32 @@ export const deleteUserOneSkillValidator: ValidationChain[] = [
 ];
 
 export const createUserOneLanguageValidator: ValidationChain[] = [
-    body('name')
+    body('languages')
+        .isArray({ min: 1 }) // Ensure 'languages' is an array and not empty
+        .withMessage('languages must be a non-empty array'),
+
+    body('languages.*')
         .isString()
-        .withMessage('name must be a string')
+        .trim()
         .notEmpty()
-        .withMessage('name required')
-        .custom((value) => {
-            if (value in Language) return value;
-            else throw new Error('Invalid language');
+        .withMessage('Each language must be a non-empty string')
+        .custom((lang) => {
+            if (lang in Language) {
+                return lang;
+            } else throw new Error('Invalid language');
         }),
 ];
 
 export const deleteUserOneLanguageValidator: ValidationChain[] = [
-    param('id').isInt().withMessage('id must be an integer'),
+    body('languagesId')
+        .isArray({ min: 1 }) // Ensure 'skills' is an array and not empty
+        .withMessage('languagesId must be a non-empty array'),
+
+    body('languagesId.*')
+        .isInt()
+        .trim()
+        .notEmpty()
+        .withMessage('Each LanguagesId must be a non-empty interger'),
 ];
 
 export const updateUserOneEducationValidator: ValidationChain[] = [

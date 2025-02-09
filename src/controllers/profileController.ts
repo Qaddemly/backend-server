@@ -2,11 +2,11 @@ import { Request, Response, NextFunction } from 'express';
 import AppError from '../utils/appError';
 import {
     createUserOneExperienceService,
-    createUserOneLanguageService,
+    createUserOneOrMoreLanguageService,
     createUserOneOrMoreSkillService,
     deleteMeService,
     deleteUserOneExperienceService,
-    deleteUserOneLanguageService,
+    deleteUserOneOrMoreLanguageService,
     deleteUserOneOrMoreSkillService,
     updateUserOneExperienceService,
     updateUserOneEducationService,
@@ -97,7 +97,7 @@ export const deleteUserOneOrMoreSkill = catchAsync(
 export const createUserOneLanguage = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const language = await createUserOneLanguageService(req);
+            const language = await createUserOneOrMoreLanguageService(req);
             res.status(201).json({
                 success: true,
                 language,
@@ -108,10 +108,10 @@ export const createUserOneLanguage = catchAsync(
     },
 );
 
-export const deleteUserOneLanguage = catchAsync(
+export const deleteUserOneOrMoreLanguage = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            await deleteUserOneLanguageService(req);
+            await deleteUserOneOrMoreLanguageService(req);
             res.status(204).json({});
         } catch (err) {
             return next(err);

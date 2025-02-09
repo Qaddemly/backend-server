@@ -5,7 +5,7 @@ import {
     createUserOneOrMoreSkills,
     deleteMe,
     deleteUserOneExperience,
-    deleteUserOneLanguage,
+    deleteUserOneOrMoreLanguage,
     deleteUserOneOrMoreSkill,
     updateUserOneEducation,
     updateUserOneExperience,
@@ -83,10 +83,10 @@ profileRouter.post(
 );
 
 profileRouter.delete(
-    '/deleteLanguage/:id',
+    '/deleteLanguage',
     protect,
     validateRequestMiddleware(deleteUserOneLanguageValidator),
-    deleteUserOneLanguage,
+    deleteUserOneOrMoreLanguage,
 );
 
 profileRouter.put(
