@@ -199,9 +199,19 @@ export const deleteHr = catchAsync(
     },
 );
 export const getAllHrOfBusiness = catchAsync(
-    async (req: Request<{ businessId: string }>, res: Response) => {
+    async (
+        req: Request<
+            { businessId: string },
+            {},
+            {},
+            { role: HrRole; name: string; email: string }
+        >,
+        res: Response,
+    ) => {
+        console.log(req.query);
         const HRs = await businessServices.getAllHrOfBusiness(
             Number(req.params.businessId),
+            req.query,
         );
         res.status(200).json({
             status: 'success',

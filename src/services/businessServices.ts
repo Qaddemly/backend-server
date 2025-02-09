@@ -40,7 +40,7 @@ export const createBusiness = async (
             500,
         );
     }
-
+    console.log(`Are you here ?`);
     const business = new Business();
     business.name = createBusinessDto.name;
     business.logo = createBusinessDto.logo;
@@ -218,8 +218,36 @@ export const deleteHr = async (businessId: number, accountId: number) => {
     }
     return true;
 };
-export const getAllHrOfBusiness = async (businessId: number) => {
-    return await HrEmployeeRepository.getAllHrOfBusiness(businessId);
+export const getAllHrOfBusiness = async (
+    businessId: number,
+    filterObject: { role: HrRole; name: string; email: string },
+) => {
+    const queryBuilder = HrEmployeeRepository.createQueryBuilder('hr_employee')
+        .leftJoinAndSelect('hr_employee.account', 'account')
+        .where('hr_employee.business = :businessId', { businessId });
+
+    if (filterObject.role) {
+        queryBuilder.andWhere('hr_employee.role = :role', {
+            role: filterObject.role,
+        });
+    }
+    if (filterObject.name) {
+        queryBuilder.andWhere(
+            "LOWER(account.first_name) || ' ' || LOWER(account.last_name) LIKE LOWER(:name)",
+            {
+                name: `%${filterObject.name}%`,
+            },
+        );
+    }
+    if (filterObject.email) {
+        queryBuilder.andWhere('LOWER(account.email) LIKE LOWER(:email)', {
+            email: `%${filterObject.email}%`,
+        });
+    }
+    console.log(queryBuilder.getQuery());
+    const res = await queryBuilder.getMany();
+    return res;
+    // return await HrEmployeeRepository.getAllHrOfBusiness(businessId);
 };
 
 export const getFollowersNumberOfBusiness = async (businessId: number) => {

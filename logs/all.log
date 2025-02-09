@@ -4121,3 +4121,141 @@
 [35m[39m
 2025-02-08 17:31:04:314 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 400 72 - 284.672 ms[39m
 [35m[39m
+2025-02-08 23:18:59:1859 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 23:19:00:190 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 23:19:01:191 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 23:19:32:1932 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?test=fasfa,name=413 200 515 - 843.842 ms[39m
+[35m[39m
+2025-02-08 23:19:41:1941 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?test=fasfa&name=413 200 515 - 348.164 ms[39m
+[35m[39m
+2025-02-08 23:27:01:271 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-08 23:27:02:272 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-08 23:27:03:273 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-08 23:27:10:2710 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 23:27:10:2710 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role= 400 245 - 378.659 ms[39m
+[35m[39m
+2025-02-08 23:27:36:2736 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role=HR 200 515 - 412.261 ms[39m
+[35m[39m
+2025-02-08 23:27:42:2742 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 515 - 368.989 ms[39m
+[35m[39m
+2025-02-08 23:27:51:2751 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 23:27:51:2751 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role=afs 400 158 - 326.810 ms[39m
+[35m[39m
+2025-02-08 23:28:01:281 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role=HR 200 515 - 432.285 ms[39m
+[35m[39m
+2025-02-08 23:28:14:2814 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role=HR&name=Aboo%20K%20Hattab 200 515 - 435.993 ms[39m
+[35m[39m
+2025-02-09 11:13:58:1358 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-09 11:13:59:1359 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-09 11:14:00:140 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-09 11:14:15:1415 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 1156 - 670.798 ms[39m
+[35m[39m
+2025-02-09 11:14:45:1445 [31merror[39m: [31minvalid reference to FROM-clause entry for table "account"[39m
+2025-02-09 11:14:45:1445 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?name=es 500 1210 - 478.858 ms[39m
+[35m[39m
+2025-02-09 11:15:37:1537 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-09 11:15:37:1537 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-09 11:15:38:1538 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-09 11:15:40:1540 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?name=es 200 29 - 343.952 ms[39m
+[35m[39m
+2025-02-09 11:15:48:1548 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?name=eslam 200 29 - 289.807 ms[39m
+[35m[39m
+2025-02-09 11:16:03:163 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 1156 - 480.648 ms[39m
+[35m[39m
+2025-02-09 11:16:10:1610 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role=HR 200 586 - 291.981 ms[39m
+[35m[39m
+2025-02-09 11:16:16:1616 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 1156 - 285.723 ms[39m
+[35m[39m
+2025-02-09 11:16:22:1622 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role=OWNER 200 29 - 281.591 ms[39m
+[35m[39m
+2025-02-09 11:16:29:1629 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role=SUPER_ADMIN 200 598 - 281.178 ms[39m
+[35m[39m
+2025-02-09 11:16:38:1638 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 1156 - 294.190 ms[39m
+[35m[39m
+2025-02-09 11:17:47:1747 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-09 11:17:47:1747 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-09 11:17:48:1748 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-09 11:17:53:1753 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001 200 1156 - 397.995 ms[39m
+[35m[39m
+2025-02-09 11:18:01:181 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?email=abdokhattab1@mailsac.com 200 598 - 316.777 ms[39m
+[35m[39m
+2025-02-09 11:18:07:187 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:18:07:187 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?email=abdokhattab1@mailsac.c 400 187 - 296.810 ms[39m
+[35m[39m
+2025-02-09 11:18:13:1813 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?email=abdokhattab1@mailsac.co 200 29 - 324.108 ms[39m
+[35m[39m
+2025-02-09 11:18:39:1839 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-09 11:18:40:1840 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-09 11:18:41:1841 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-09 11:18:43:1843 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?email=abdokhattab1@mailsac.co 200 29 - 381.649 ms[39m
+[35m[39m
+2025-02-09 11:20:00:200 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-09 11:20:01:201 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-09 11:20:02:202 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-09 11:21:16:2116 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-09 11:21:16:2116 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-09 11:21:17:2117 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-09 11:21:21:2121 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?email=abdokhattab1@mailsac.co 200 598 - 358.192 ms[39m
+[35m[39m
+2025-02-09 11:21:28:2128 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:21:28:2128 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?email=abdokhattab 400 176 - 299.965 ms[39m
+[35m[39m
+2025-02-09 11:21:34:2134 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?email=abdokhattab1@mailsac.com 200 598 - 317.102 ms[39m
+[35m[39m
+2025-02-09 11:21:41:2141 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?name=abd 200 598 - 310.371 ms[39m
+[35m[39m
+2025-02-09 11:21:45:2145 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?name=es 200 586 - 305.194 ms[39m
+[35m[39m
+2025-02-09 11:22:25:2225 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:22:25:2225 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:22:25:2225 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50010?name=es 403 877 - 362.573 ms[39m
+[35m[39m
+2025-02-09 11:22:29:2229 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:22:29:2229 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:22:29:2229 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50010 403 877 - 294.818 ms[39m
+[35m[39m
+2025-02-09 11:27:01:271 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:27:01:271 [35mhttp[39m: [35mPOST /api/v1/business 400 151 - 653.562 ms[39m
+[35m[39m
+2025-02-09 11:27:13:2713 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:27:13:2713 [35mhttp[39m: [35mPOST /api/v1/business 500 1245 - 709.948 ms[39m
+[35m[39m
+2025-02-09 11:27:33:2733 [32minfo[39m: [32mBusiness 50012 created successfully[39m
+2025-02-09 11:27:33:2733 [35mhttp[39m: [35mPOST /api/v1/business 201 554 - 577.577 ms[39m
+[35m[39m
+2025-02-09 11:28:02:282 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:28:02:282 [35mhttp[39m: [35mPOST /api/v1/business 500 1245 - 581.861 ms[39m
+[35m[39m
+2025-02-09 11:29:24:2924 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-09 11:29:24:2924 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-09 11:29:26:2926 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-09 11:29:42:2942 [32minfo[39m: [32mBusiness 50014 created successfully[39m
+2025-02-09 11:29:42:2942 [35mhttp[39m: [35mPOST /api/v1/business 201 554 - 1259.149 ms[39m
+[35m[39m
+2025-02-09 11:29:55:2955 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:29:55:2955 [35mhttp[39m: [35mPOST /api/v1/business 500 1245 - 595.100 ms[39m
+[35m[39m
+2025-02-09 11:38:34:3834 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-09 11:38:34:3834 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-09 11:38:36:3836 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-09 11:38:43:3843 [31merror[39m: [31mCannot read properties of undefined (reading 'country_code')[39m
+2025-02-09 11:38:43:3843 [35mhttp[39m: [35mPOST /api/v1/business 500 773 - 652.350 ms[39m
+[35m[39m
+2025-02-09 11:40:02:402 [32minfo[39m: [32mBusiness 50017 created successfully[39m
+2025-02-09 11:40:02:402 [35mhttp[39m: [35mPOST /api/v1/business 201 532 - 483.606 ms[39m
+[35m[39m
+2025-02-09 11:40:10:4010 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:40:10:4010 [35mhttp[39m: [35mPOST /api/v1/business 400 265 - 365.966 ms[39m
+[35m[39m
+2025-02-09 11:40:23:4023 [32minfo[39m: [32mBusiness 50018 created successfully[39m
+2025-02-09 11:40:23:4023 [35mhttp[39m: [35mPOST /api/v1/business 201 554 - 592.613 ms[39m
+[35m[39m
+2025-02-09 11:40:33:4033 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:40:33:4033 [35mhttp[39m: [35mPOST /api/v1/business 500 1245 - 409.459 ms[39m
+[35m[39m
+2025-02-09 11:41:19:4119 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:41:19:4119 [35mhttp[39m: [35mPOST /api/v1/business 400 302 - 438.760 ms[39m
+[35m[39m
+2025-02-09 11:42:15:4215 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:42:15:4215 [35mhttp[39m: [35mPOST /api/v1/business 400 302 - 621.925 ms[39m
+[35m[39m

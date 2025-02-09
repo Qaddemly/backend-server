@@ -503,3 +503,21 @@
 2025-02-08 17:29:57:2957 [31merror[39m: [31mUser already has role in business[39m
 2025-02-08 17:30:14:3014 [31merror[39m: [31mUser already has role in business[39m
 2025-02-08 17:30:26:3026 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-02-08 23:27:10:2710 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 23:27:51:2751 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:14:45:1445 [31merror[39m: [31minvalid reference to FROM-clause entry for table "account"[39m
+2025-02-09 11:18:07:187 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:21:28:2128 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:22:25:2225 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:22:25:2225 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:22:29:2229 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:22:29:2229 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:27:01:271 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:27:13:2713 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:28:02:282 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:29:55:2955 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:38:43:3843 [31merror[39m: [31mCannot read properties of undefined (reading 'country_code')[39m
+2025-02-09 11:40:10:4010 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:40:33:4033 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:41:19:4119 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:42:15:4215 [31merror[39m: [31mvalidationErrors[39m

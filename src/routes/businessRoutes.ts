@@ -13,6 +13,7 @@ import {
     businessUpdateValidator,
     checkCreateOrUpdateHr,
     checkDeleteHr,
+    getAllHrQueryValidator,
 } from '../middlewares/validators/bussiness.Validator';
 import {
     addHrToBusiness,
@@ -108,9 +109,9 @@ businessRouter.get(
     '/myBusiness/dashboard/hr/all/:businessId',
     protect,
     checkRoleInBusiness,
+    validateRequestMiddleware(getAllHrQueryValidator),
     businessController.getAllHrOfBusiness,
 );
-
 //-----------------------------
 
 businessRouter.put(

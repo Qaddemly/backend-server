@@ -1,9 +1,15 @@
-import { body, ValidationChain } from 'express-validator';
+import {
+    body,
+    query,
+    ValidationChain,
+    validationResult,
+} from 'express-validator';
 
 import { Country } from '../../enums/country';
 import { LocationType } from '../../enums/locationType';
 import { HrRole } from '../../enums/HrRole';
 import { CountryCode } from '../../enums/countryCode';
+import { NextFunction, Request } from 'express';
 export const businessCreationValidator: ValidationChain[] = [
     body('name')
         .trim()
@@ -101,7 +107,7 @@ export const businessCreationValidator: ValidationChain[] = [
             if (value in CountryCode) return value;
             else throw new Error('Country Code is invalid');
         }),
-    body('phone.*.number')
+    body('phone.*.phone_number')
         .if(body('phone').exists())
         .trim()
         .notEmpty()
@@ -195,6 +201,34 @@ export const checkCreateOrUpdateHr: ValidationChain[] = [
 
 export const checkDeleteHr: ValidationChain[] = [
     body('account_email').trim().isEmail().withMessage('invalid email address'),
+];
+
+export const getAllHrQueryValidator: ValidationChain[] = [
+    query('role')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('role cannot be empty')
+        .custom((val) => {
+            if (val in HrRole) {
+                return val;
+            } else {
+                throw new Error('invalid role');
+            }
+        }),
+    query('email')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('email cannot be empty')
+        .isEmail()
+        .withMessage('invalid email address'),
+    query('name')
+        .optional()
+        .trim()
+        .toLowerCase()
+        .notEmpty()
+        .withMessage('name cannot be empty'),
 ];
 
 export const businessAddPhoneNumberValidator: ValidationChain[] = [
