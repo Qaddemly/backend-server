@@ -32,6 +32,19 @@ export interface Experience {
     endDate?: Date;
 }
 
+export interface SkillType {
+    name: string;
+}
+
+export interface ResumeType {
+    name: string;
+    url: string;
+    size: number;
+}
+export interface languageType {
+    name: string;
+}
+
 export type expressFiles = {
     [index: string]: Express.Multer.File[];
 };
@@ -42,4 +55,8 @@ export interface getBusinessQueryParams {
 export interface hrDashboardUserInfo {
     toBeProcessedUserId?: number;
     role?: string;
+}
+
+export interface PublicObject {
+    [index: string]: any;
 }

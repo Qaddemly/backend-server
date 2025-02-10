@@ -1,15 +1,18 @@
-import { Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    OneToOne,
+    PrimaryColumn,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Account } from './Account';
 
 @Entity()
 export class Education {
-    // Account has only 1 education
-    // Account has education, not education has an account
-    // So Foreign key must be in the education side
-    @OneToOne(() => Account, (account) => account.id)
-    @PrimaryColumn({ type: 'integer' })
-    account_id: number;
-
+    @PrimaryGeneratedColumn()
+    id: number;
     @Column('text')
     university: string;
 
@@ -24,4 +27,12 @@ export class Education {
 
     @Column('date')
     end_date: Date;
+    @ManyToOne(() => Account, (account) => account.educations, {
+        onDelete: 'CASCADE',
+    })
+    @JoinColumn({
+        name: 'account_id',
+        foreignKeyConstraintName: 'FK_EXPERIENCE_ACCOUNT',
+    })
+    account: Account;
 }

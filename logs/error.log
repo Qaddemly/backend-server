@@ -807,3 +807,51 @@
 2025-02-09 16:58:59:5859 [31merror[39m: [31msome languages already added[39m
 2025-02-09 17:00:51:051 [31merror[39m: [31merror while deleting languages[39m
 2025-02-09 17:01:19:119 [31merror[39m: [31merror while deleting languages[39m
+2025-02-09 17:03:59:359 [31merror[39m: [31mError in getting jobs[39m
+2025-02-09 17:15:10:1510 [31merror[39m: [31mError in getting jobs[39m
+2025-02-09 23:11:57:1157 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 23:12:59:1259 [31merror[39m: [31myou do not have permission to that action[39m
+2025-02-09 23:15:03:153 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-09 23:15:23:1523 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-09 23:17:42:1742 [31merror[39m: [31mField name missing[39m
+2025-02-09 23:17:57:1757 [31merror[39m: [31mField name missing[39m
+2025-02-09 23:18:17:1817 [31merror[39m: [31mField name missing[39m
+2025-02-09 23:19:46:1946 [31merror[39m: [31mField name missing[39m
+2025-02-09 23:37:36:3736 [31merror[39m: [31mPostgres Database connection failed column "account_id" is in a primary key[39m
+2025-02-09 23:41:38:4138 [31merror[39m: [31myou already complete your data[39m
+2025-02-09 23:41:54:4154 [31merror[39m: [31myou already complete your data[39m
+2025-02-09 23:54:05:545 [31merror[39m: [31myou already complete your data[39m
+2025-02-09 23:57:39:5739 [31merror[39m: [31mUnexpected field[39m
+2025-02-09 23:58:57:5857 [31merror[39m: [31myou already complete your data[39m
+2025-02-10 00:32:06:326 [31merror[39m: [31mnull value in column "field_of_study" of relation "education" violates not-null constraint[39m
+2025-02-10 00:42:50:4250 [31merror[39m: [31mnull value in column "name" of relation "skill" violates not-null constraint[39m
+2025-02-10 00:57:09:579 [31merror[39m: [31merror while deleting skills[39m
+2025-02-10 00:57:15:5715 [31merror[39m: [31merror while deleting skills[39m
+2025-02-10 00:57:24:5724 [31merror[39m: [31merror while deleting skills[39m
+2025-02-10 01:10:14:1014 [31merror[39m: [31mnull value in column "job_title" of relation "experience" violates not-null constraint[39m
+2025-02-10 01:11:36:1136 [31merror[39m: [31mnull value in column "employment_type" of relation "experience" violates not-null constraint[39m
+2025-02-10 01:22:43:2243 [31merror[39m: [31mnull value in column "name" of relation "skill" violates not-null constraint[39m
+2025-02-10 01:36:01:361 [31merror[39m: [31myou already complete your data[39m
+2025-02-10 01:39:45:3945 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 01:42:01:421 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 01:42:20:4220 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 01:42:27:4227 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 01:44:04:444 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 01:46:22:4622 [31merror[39m: [31myou already complete your data[39m
+2025-02-10 01:46:52:4652 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 01:47:14:4714 [31merror[39m: [31myou already complete your data[39m
+2025-02-10 01:48:54:4854 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 01:49:17:4917 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 01:49:24:4924 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 01:49:38:4938 [31merror[39m: [31myou already complete your data[39m
+2025-02-10 01:50:44:5044 [31merror[39m: [31maccountTempData is already exists , please delete accountTempData for accountId 12[39m
+2025-02-10 01:50:51:5051 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 01:51:03:513 [31merror[39m: [31maccountTempData is already exists , please delete accountTempData for accountId 13[39m
+2025-02-10 01:53:31:5331 [31merror[39m: [31mvalidationErrors[39m
+2025-02-10 02:00:27:027 [31merror[39m: [31merror while deleting skills[39m
+2025-02-10 02:00:35:035 [31merror[39m: [31msome languages already added[39m
+2025-02-10 02:00:46:046 [31merror[39m: [31msome languages already added[39m
+2025-02-10 02:01:43:143 [31merror[39m: [31msome languages already added[39m
+2025-02-10 02:02:38:238 [31merror[39m: [31merror while deleting languages[39m
+2025-02-10 02:02:44:244 [31merror[39m: [31merror while deleting languages[39m
+2025-02-10 02:02:52:252 [31merror[39m: [31merror while deleting languages[39m

@@ -109,12 +109,12 @@ export const deleteUserOneExperienceService = async (req: Request) => {
 
 export const updateUserOneEducationService = async (req: Request) => {
     const userId = req.user.id;
-    const education = await EducationRepository.findOneBy({
-        account_id: userId,
-    });
-    if (!education) {
-        throw new AppError('user don`t have education', 404);
-    }
+    // const education = await EducationRepository.findOneBy({
+    //     account_id: userId,
+    // });
+    // if (!education) {
+    //     throw new AppError('user don`t have education', 404);
+    // }
 
     let {
         university,
@@ -149,12 +149,12 @@ export const updateUserOneEducationService = async (req: Request) => {
 export const createUserOneEducationService = async (req: Request) => {
     const userId = Number(req.user.id);
 
-    const foundedEducation = await EducationRepository.findOneBy({
-        account_id: userId,
-    });
-    if (foundedEducation) {
-        throw new AppError('user already has education', 409);
-    }
+    // const foundedEducation = await EducationRepository.findOneBy({
+    //     account_id: userId,
+    // });
+    // if (foundedEducation) {
+    //     throw new AppError('user already has education', 409);
+    // }
     let {
         university,
 
@@ -169,7 +169,7 @@ export const createUserOneEducationService = async (req: Request) => {
 
     const user = await AccountRepository.findOneBy({ id: userId });
     const education = new Education();
-    education.account_id = userId;
+    // education.account_id = userId;
     education.gpa = gpa;
     education.university = university;
     education.field_of_study = field_of_study;
@@ -183,13 +183,13 @@ export const deleteUserOneEducationService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
         const educationId = Number(req.params.id);
-        const education = await EducationRepository.findOneBy({
-            account_id: userId,
-        });
-        if (!education) {
-            throw new AppError('user don`t have education', 404);
-        }
-        await EducationRepository.remove(education);
+        // const education = await EducationRepository.findOneBy({
+        //     account_id: userId,
+        // });
+        // if (!education) {
+        //     throw new AppError('user don`t have education', 404);
+        // }
+        // await EducationRepository.remove(education);
     } catch (err) {
         throw err;
     }
@@ -197,33 +197,16 @@ export const deleteUserOneEducationService = async (req: Request) => {
 
 export const createUserOneOrMoreSkillService = async (req: Request) => {
     const userId = Number(req.user.id);
-
     let { skills } = req.body;
-
-    const newSkills = await SkillRepository.createQueryBuilder()
-        .insert()
-        .into(Skill)
-        .values(skills.map((name) => ({ account: { id: userId }, name })))
-        .returning('*')
-        .execute();
-
-    // const createdSkill = await SkillRepository.save(skill);
-    // delete createdSkill.account;
-    // const SkillReturned: { [key: string]: any } = { ...createdSkill };
-    // SkillReturned.accountId = userId;
-    return newSkills.raw;
+    const newSkills = await SkillRepository.createSkills(userId, skills);
+    return newSkills;
 };
 
 export const deleteUserOneOrMoreSkillService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
         const { skillsId } = req.body;
-        const foundedSkills = await SkillRepository.query(`
-            select * from skill where id in (${skillsId.map((skill) => `${skill}`).join(', ')}) and account_id=${userId}  `);
-        if (foundedSkills.length != skillsId.length) {
-            throw new AppError('error while deleting skills', 400);
-        }
-        await SkillRepository.remove(foundedSkills);
+        await SkillRepository.deleteSkills(userId, skillsId);
     } catch (err) {
         throw err;
     }
@@ -233,34 +216,25 @@ export const createUserOneOrMoreLanguageService = async (req: Request) => {
     const userId = Number(req.user.id);
 
     let { languages } = req.body;
-    console.log(`select * from language where
-        name in (${languages.map((lang) => `${lang}`).join(', ')}) and account_id=${userId}  `);
     const foundedLanguages =
         await LanguageRepository.query(`select * from language where
         name in (${languages.map((lang) => `'${lang}'`).join(', ')}) and account_id=${userId}  `);
     if (foundedLanguages.length != 0) {
         throw new AppError('some languages already added', 400);
     }
-    const newLanguages = await LanguageRepository.createQueryBuilder()
-        .insert()
-        .into(Language)
-        .values(languages.map((name) => ({ account: { id: userId }, name })))
-        .returning('*')
-        .execute();
+    const newLanguages = await LanguageRepository.createLanguages(
+        userId,
+        languages,
+    );
 
-    return newLanguages.raw;
+    return newLanguages;
 };
 
 export const deleteUserOneOrMoreLanguageService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
         const { languagesId } = req.body;
-        const foundedLanguages = await LanguageRepository.query(`
-            select * from language where id in (${languagesId.map((lang) => `${lang}`).join(', ')}) and account_id=${userId}  `);
-        if (foundedLanguages.length != languagesId.length) {
-            throw new AppError('error while deleting languages', 400);
-        }
-        await LanguageRepository.remove(foundedLanguages);
+        await LanguageRepository.deleteLanguages(userId, languagesId);
     } catch (err) {
         throw err;
     }

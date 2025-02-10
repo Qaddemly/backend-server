@@ -83,22 +83,22 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
         .withMessage('City cannot be empty')
         .isAlpha()
         .withMessage('City must be a string of alphabets'),
-    body('dateOfBirth')
+    body('date_of_birth')
         .optional()
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid date of birth'),
-    body('education').optional().isObject(),
-    body('education.university')
+    body('education').optional().isArray(),
+    body('education.*.university')
         .if(body('education').exists())
         .trim()
         .notEmpty()
         .withMessage('University name cannot be empty'),
-    body('education.fieldOfStudy')
+    body('education.*.field_of_study')
         .if(body('education').exists())
         .trim()
         .notEmpty()
         .withMessage('Field of study cannot be empty'),
-    body('education.gpa')
+    body('education.*.gpa')
         .if(body('education').exists())
         .notEmpty()
         .withMessage('GPA cannot be empty')
@@ -108,11 +108,11 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
             if (value >= 0 && value <= 4) return value;
             else throw new Error('GPA must be between 0 and 4');
         }),
-    body('education.startDate')
+    body('education.*.start_date')
         .if(body('education').exists())
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid start date'),
-    body('education.endDate')
+    body('education.*.end_date')
         .if(body('education').exists())
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid end date'),
@@ -121,12 +121,12 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
         .if(body('experience').exists())
         .isObject()
         .withMessage('Experience must be an object'),
-    body('experience.*.jobTitle')
+    body('experience.*.job_title')
         .if(body('experience').exists())
         .trim()
         .notEmpty()
         .withMessage('Job title cannot be empty'),
-    body('experience.*.employmentType')
+    body('experience.*.employment_type')
         .if(body('experience').exists())
         .trim()
         .notEmpty()
@@ -135,7 +135,7 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
             if (value in EmploymentType) return value;
             else throw new Error('Invalid employment type');
         }),
-    body('experience.*.companyName')
+    body('experience.*.company_name')
         .if(body('experience').exists())
         .trim()
         .notEmpty()
@@ -145,7 +145,7 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
         .trim()
         .notEmpty()
         .withMessage('Location cannot be empty'),
-    body('experience.*.locationType')
+    body('experience.*.location_type')
         .if(body('experience').exists())
         .trim()
         .notEmpty()
@@ -154,11 +154,11 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
             if (value in LocationType) return value;
             else throw new Error('Invalid location type');
         }),
-    body('experience.*.stillWorking')
+    body('experience.*.still_working')
         .if(body('experience').exists())
         .isBoolean()
         .withMessage('Still working must be a boolean'),
-    body('experience.*.startDate')
+    body('experience.*.start_date')
         .if(body('experience').exists())
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid start date'),
