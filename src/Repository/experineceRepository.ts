@@ -1,16 +1,18 @@
 import { Repository } from 'typeorm';
 import { Experience } from '../entity/Experience';
+import { Experience as ExperienceType } from '../types/types';
 import { AppDataSource } from '../data-source';
 import { updateExperienceData } from '../types/documentTypes';
+import { insertValuesInToOneToManyRelationsWithAccount } from './commons';
 
 class ExperienceRepositoryClass extends Repository<Experience> {
-    async deleteAllExperience(accountId: number) {
-        return this.createQueryBuilder('experienceId')
-            .delete()
-            .where('account_id = :accountId', { accountId: accountId })
-            .execute();
+    async createExperiences(account_id: number, experiences: ExperienceType[]) {
+        return await insertValuesInToOneToManyRelationsWithAccount(
+            account_id,
+            Experience,
+            experiences,
+        );
     }
-
     async updateOneExperience(
         experienceId: number,
         accountId: number,

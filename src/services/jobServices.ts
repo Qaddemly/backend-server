@@ -415,37 +415,6 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
     }
 };
 
-// export const getAllJobsApplicationsForJobService = async (req: Request) => {
-//     const userId = Number(req.user.id);
-//     const jobId = Number(req.params.id);
-//     const job = await JobRepository.getJobWithBusiness(jobId);
-//     if (!job) {
-//         throw new AppError('Job not found', 404);
-//     }
-//     const business = await BusinessRepository.findOneBy({
-//         id: job.business.id,
-//     });
-//     if (!business) {
-//         throw new AppError('Business not found', 404);
-//     }
-//     const isAllowedToShowAllApplications =
-//         await HrEmployeeRepository.checkPermission(userId, business.id, [
-//             HrRole.SUPER_ADMIN,
-//             HrRole.HR,
-//             HrRole.RECRUITER,
-//             HrRole.HIRING_MANAGER,
-//             HrRole.SUPER_ADMIN,
-//         ]);
-//     if (!isAllowedToShowAllApplications) {
-//         throw new AppError('you are not allowed to show all applications', 403);
-//     }
-
-//     const job_applications =
-//         await JobApplicationRepository.findAllApplicationsByJobId(jobId);
-
-//     return job_applications;
-// };
-
 export const getAllJobsApplicationsForJobService = async (req: Request) => {
     const userId = Number(req.user.id);
     const jobId = Number(req.params.id);

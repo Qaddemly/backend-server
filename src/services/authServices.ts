@@ -90,9 +90,9 @@ export const signUpService = async (userData: signUpBody) => {
 };
 
 export const updateUserForSignUpStepTwo = async (
-    userId: number,
     req: Request<{}, {}, signUpBodyStepTwoDTO>,
 ) => {
+    const userId = Number(req.user.id);
     const user = await AccountRepository.findOneBy({
         id: userId,
     });
@@ -724,9 +724,9 @@ export const updateUserAfterSignUpFirstStep = async (
         profile_picture,
         resumes,
     } = req.body;
-    const userId = Number(req.user.id);
     //const userTempData = await AccountTempData.findOne({ accountId: userId });
-    console.log(user);
+    // console.log(user);
+    const userId = user.id;
     if (
         user.address.city ||
         user.address.country ||
@@ -738,7 +738,7 @@ export const updateUserAfterSignUpFirstStep = async (
         throw new AppError('you already complete your data', 400);
     }
     const foundedEducation = await EducationRepository.findOneBy({
-        account_id: userId,
+        account: { id: userId },
     });
     if (foundedEducation) {
         throw new AppError('you already complete your data', 400);
@@ -778,294 +778,400 @@ export const updateUserAfterSignUpFirstStep = async (
     const userJson: { [key: string]: any } = { ...user };
 
     if (education) {
-        const education_ = new Education();
-        education_.account_id = userId; // Associate with the user's ID
-        education_.university = education.university;
-        education_.field_of_study = education.fieldOfStudy;
-        education_.gpa = education.gpa;
-        education_.start_date = education.startDate;
-        education_.end_date = education.endDate;
-        // Save the education to the database
-        const savedEducation = await EducationRepository.save(education_);
-
-        userJson.education = education_;
+        const newEducations = await EducationRepository.createEductions(
+            user.id,
+            education,
+        );
+        userJson.educations = newEducations;
     }
     if (skills) {
-        const newSkills = skills.map((skillData) => {
-            const skill = new Skill();
-            skill.name = skillData;
-            skill.account = user; // Link the skill to the account
-            return skill;
-        });
-
-        const savedSkills = await SkillRepository.save(newSkills);
-        savedSkills.map((skill) => {
-            delete skill.account;
-        });
-        userJson.skills = savedSkills;
+        const newSkills = await SkillRepository.createSkills(user.id, skills);
+        userJson.skills = newSkills;
     }
     if (experience) {
-        const newExperience = experience.map((experience) => {
-            const experience_ = new Experience();
-            //experience_.account = user;
-            experience_.job_title = experience.jobTitle;
-            experience_.employment_type = experience.employmentType;
-            experience_.company_name = experience.companyName;
-            experience_.location = experience.location;
-            experience_.location_type = experience.locationType;
-            experience_.still_working = experience.stillWorking;
-            experience_.start_date = experience.startDate;
-            experience_.end_date = experience.endDate;
-            experience_.account = user; // Link the experience_ to the account
-            return experience_;
-        });
+        const newExperiences = await ExperienceRepository.createExperiences(
+            user.id,
+            experience,
+        );
 
-        // Save the experience
-        const savedExperience = await ExperienceRepository.save(newExperience);
-        savedExperience.map((resumeData) => {
-            delete resumeData.account;
-        });
-        userJson.experience = savedExperience;
+        userJson.experiences = newExperiences;
     }
 
     if (languages) {
-        const newLanguage = languages.map((lang) => {
-            const language_ = new Language();
-            language_.account = user;
-            language_.name = lang;
-
-            language_.account = user; // Link the language_ to the account
-            return language_;
-        });
-
-        // Save the Language
-        const savedLanguage = await LanguageRepository.save(newLanguage);
-        savedLanguage.map((resumeData) => {
-            delete resumeData.account;
-        });
-        userJson.languages = savedLanguage;
+        const newLanguages = await LanguageRepository.createLanguages(
+            user.id,
+            languages,
+        );
+        userJson.languages = newLanguages;
     }
     if (resumes) {
-        const arrayResumes: any = [];
-        const newResumes = resumes.map((resumeData) => {
-            const resume_ = new Resume();
-            resume_.url = resumeData;
-            resume_.account = user;
-            arrayResumes.push(resume_);
-            return resume_;
-        });
-        // Save the resume
-        const savedResumes = await ResumeRepository.save(newResumes);
-        arrayResumes.map((resumeData) => {
-            delete resumeData.account;
-        });
-        userJson.resumes = arrayResumes;
-    }
-    await AccountRepository.save(user);
-    return userJson;
-};
-
-export const updateAllAccountData = async (user: Account, req: Request) => {
-    const {
-        address,
-        phone,
-        education,
-        experience,
-        skills,
-        dateOfBirth,
-        languages,
-        profilePicture,
-        resume,
-    } = req.body;
-    const userId = req.user.id;
-    const address_ = address ? address : user.address;
-    user.address = address_;
-    const phone_ = phone ? phone : user.phone;
-    user.phone.country_code = phone_.countryCode;
-    user.phone.number = Number(phone_.number);
-    const resume_ = resume ? resume : user.resume;
-    user.resume = resume_;
-    const profilePicture_ = profilePicture
-        ? profilePicture
-        : user.profile_picture;
-    user.profile_picture = profilePicture_;
-    const dateOfBirth_ = dateOfBirth ? dateOfBirth : user.date_of_birth;
-    user.date_of_birth = dateOfBirth_;
-    const userJson: { [key: string]: any } = { ...user };
-    delete userJson.first_name;
-    delete userJson.last_name;
-    delete userJson.date_of_birth;
-
-    userJson.firstName = user.first_name;
-    userJson.lastName = user.last_name;
-    userJson.dateOfBirth = user.date_of_birth;
-    userJson.phone = returningPhone(user.phone);
-    if (education) {
-        const foundedEducation = await EducationRepository.findOneBy({
-            account_id: user.id,
-        });
-        if (!foundedEducation) {
-            const education_ = new Education();
-            education_.account_id = userId; // Associate with the user's ID
-            education_.university = education.university;
-            education_.field_of_study = education.fieldOfStudy;
-            education_.gpa = education.gpa;
-            education_.start_date = education.startDate;
-            education_.end_date = education.endDate;
-            // Save the education to the database
-            const savedEducation = await EducationRepository.save(education_);
-            const returnedEducation = returningEducation(savedEducation);
-
-            userJson.education = returnedEducation;
-        } else {
-            const eduObj: { [key: string]: any } = {};
-            eduObj.university = education.university;
-            eduObj.field_of_study = education.fieldOfStudy;
-            eduObj.gpa = education.gpa;
-            eduObj.start_date = education.startDate;
-            eduObj.end_date = education.endDate;
-            // Save the education to the database
-            const savedEducation = await EducationRepository.updateEducation(
-                eduObj,
-                userId,
-            );
-            const returnedEducation = returningEducation(savedEducation);
-
-            userJson.education = returnedEducation;
-        }
-    } else {
-        const foundedEducation = await EducationRepository.findOneBy({
-            account_id: user.id,
-        });
-
-        // Save the education to the database
-        const returnedEducation = returningEducation(foundedEducation);
-
-        userJson.education = returnedEducation;
-    }
-
-    if (skills) {
-        // Create and link new skills
-        await SkillRepository.deleteAllSkills(user.id);
-
-        const arraySkills: any = [];
-        const newSkills = skills.map((skillData) => {
-            const skill = new Skill();
-            skill.name = skillData;
-            arraySkills.push(skill.name);
-            skill.account = user; // Link the skill to the account
-            return skill;
-        });
-
-        // Save the skills
-        const savedSkills = await SkillRepository.save(newSkills);
-        userJson.skills = arraySkills;
-    } else {
-        userJson.skills = [];
-        user.skills.map((skill) => {
-            userJson.skills.push(skill.name);
-        });
-    }
-    if (experience) {
-        const arrayExperience: any = [];
-        await ExperienceRepository.deleteAllExperience(user.id);
-
-        const newExperience = experience.map((experience) => {
-            const experience_ = new Experience();
-            //experience_.account = user;
-            experience_.job_title = experience.jobTitle;
-            experience_.employment_type = experience.employmentType;
-            experience_.company_name = experience.companyName;
-            experience_.location = experience.location;
-            experience_.location_type = experience.locationType;
-            experience_.still_working = experience.stillWorking;
-            experience_.start_date = experience.startDate;
-            experience_.end_date = experience.endDate;
-            arrayExperience.push(returningExperiences(experience_));
-            experience_.account = user; // Link the experience_ to the account
-            return experience_;
-        });
-
-        // Save the experience
-        const savedExperience = await ExperienceRepository.save(newExperience);
-        userJson.experience = arrayExperience;
-    } else {
-        userJson.experiences = [];
-        user.experiences.map((exp) => {
-            userJson.experiences.push(returningExperiences(exp));
-        });
-    }
-
-    if (languages) {
-        const arrayLanguage: any = [];
-        await LanguageRepository.deleteAllLanguages(user.id);
-
-        const newLanguage = languages.map((lang) => {
-            const language_ = new Language();
-            language_.account = user;
-            language_.name = lang;
-
-            arrayLanguage.push(returningLanguage(language_));
-            language_.account = user; // Link the language_ to the account
-            return language_;
-        });
-
-        // Save the Language
-        const savedLanguage = await LanguageRepository.save(newLanguage);
-        userJson.languages = arrayLanguage;
-    } else {
-        userJson.languages = [];
-        user.languages.map((language) => {
-            userJson.languages.push(language.name);
-        });
-    }
-    delete userJson.first_name;
-    delete userJson.last_name;
-    delete userJson.date_of_birth;
-
-    userJson.firstName = user.first_name;
-    userJson.lastName = user.last_name;
-    userJson.dateOfBirth = user.date_of_birth;
-    userJson.phone = returningPhone(user.phone);
-    await AccountRepository.save(user);
-    return userJson;
-};
-
-export const returnUserInFormOfMongoDBObject = async (user: Account) => {
-    const userJson: { [key: string]: any } = { ...user };
-    delete userJson.first_name;
-    delete userJson.last_name;
-    delete userJson.date_of_birth;
-    userJson.firstName = user.first_name;
-    userJson.lastName = user.last_name;
-    userJson.dateOfBirth = user.date_of_birth;
-    userJson.phone = returningPhone(user.phone);
-
-    const education = await EducationRepository.findOneBy({
-        account_id: user.id,
-    });
-    if (education) userJson.education = returningEducation(education);
-    const skills = await SkillRepository.find({
-        where: { account: { id: user.id } },
-        relations: ['account'],
-    });
-    if (skills) userJson.skills = skills.map((skill) => skill.name);
-    const experiences = await ExperienceRepository.find({
-        where: { account: { id: user.id } },
-        relations: ['account'],
-    });
-    if (experiences)
-        userJson.experiences = experiences.map((experience) =>
-            returningExperiences(experience),
+        const newResumes = await ResumeRepository.createResumes(
+            user.id,
+            resumes,
         );
-    const languages = await LanguageRepository.find({
-        where: { account: { id: user.id } },
-        relations: ['account'],
-    });
-    if (languages)
-        userJson.languages = languages.map((language) => language.name);
+        userJson.resumes = newResumes;
+    }
+    await AccountRepository.save(user);
     return userJson;
 };
+
+// export const updateUserAfterSignUpFirstStep = async (
+//     user: Account,
+//     req: Request,
+// ) => {
+//     const {
+//         address,
+//         phone,
+//         education,
+//         experience,
+//         skills,
+//         date_of_birth,
+//         languages,
+//         profile_picture,
+//         resumes,
+//     } = req.body;
+//     const userId = Number(req.user.id);
+//     //const userTempData = await AccountTempData.findOne({ accountId: userId });
+//     console.log(user);
+//     if (
+//         user.address.city ||
+//         user.address.country ||
+//         user.phone.country_code ||
+//         user.phone.number ||
+//         user.profile_picture ||
+//         user.date_of_birth
+//     ) {
+//         throw new AppError('you already complete your data', 400);
+//     }
+//     const foundedEducation = await EducationRepository.findOneBy({
+//         account: { id: userId },
+//     });
+//     if (foundedEducation) {
+//         throw new AppError('you already complete your data', 400);
+//     }
+//     const foundedResume = await ResumeRepository.findOne({
+//         where: { account: { id: userId } },
+//     });
+//     console.log(foundedResume);
+//     if (foundedResume) {
+//         throw new AppError('you already complete your data', 400);
+//     }
+//     const foundedExperience = await ExperienceRepository.findOne({
+//         where: { account: { id: userId } },
+//     });
+//     if (foundedExperience) {
+//         throw new AppError('you already complete your data', 400);
+//     }
+//     const foundedLanguages = await LanguageRepository.findOne({
+//         where: { account: { id: userId } },
+//     });
+//     if (foundedLanguages) {
+//         throw new AppError('you already complete your data', 400);
+//     }
+//     const foundedSkills = await SkillRepository.findOne({
+//         where: { account: { id: userId } },
+//     });
+//     if (foundedSkills) {
+//         throw new AppError('you already complete your data', 400);
+//     }
+
+//     user.address.city = address.city;
+//     user.address.country = address.country;
+//     user.phone.country_code = phone.countryCode;
+//     user.phone.number = phone.number;
+//     user.profile_picture = profile_picture;
+//     user.date_of_birth = date_of_birth;
+//     const userJson: { [key: string]: any } = { ...user };
+
+//     if (education) {
+//         const education_ = new Education();
+//         education_.account = user; // Associate with the user's ID
+//         education_.university = education.university;
+//         education_.field_of_study = education.fieldOfStudy;
+//         education_.gpa = education.gpa;
+//         education_.start_date = education.startDate;
+//         education_.end_date = education.endDate;
+//         // Save the education to the database
+//         const savedEducation = await EducationRepository.save(education_);
+
+//         userJson.education = education_;
+//     }
+//     if (skills) {
+//         const newSkills = skills.map((skillData) => {
+//             const skill = new Skill();
+//             skill.name = skillData;
+//             skill.account = user; // Link the skill to the account
+//             return skill;
+//         });
+
+//         const savedSkills = await SkillRepository.save(newSkills);
+//         savedSkills.map((skill) => {
+//             delete skill.account;
+//         });
+//         userJson.skills = savedSkills;
+//     }
+//     if (experience) {
+//         const newExperience = experience.map((experience) => {
+//             const experience_ = new Experience();
+//             //experience_.account = user;
+//             experience_.job_title = experience.jobTitle;
+//             experience_.employment_type = experience.employmentType;
+//             experience_.company_name = experience.companyName;
+//             experience_.location = experience.location;
+//             experience_.location_type = experience.locationType;
+//             experience_.still_working = experience.stillWorking;
+//             experience_.start_date = experience.startDate;
+//             experience_.end_date = experience.endDate;
+//             experience_.account = user; // Link the experience_ to the account
+//             return experience_;
+//         });
+
+//         // Save the experience
+//         const savedExperience = await ExperienceRepository.save(newExperience);
+//         savedExperience.map((resumeData) => {
+//             delete resumeData.account;
+//         });
+//         userJson.experience = savedExperience;
+//     }
+
+//     if (languages) {
+//         const newLanguage = languages.map((lang) => {
+//             const language_ = new Language();
+//             language_.account = user;
+//             language_.name = lang;
+
+//             language_.account = user; // Link the language_ to the account
+//             return language_;
+//         });
+
+//         // Save the Language
+//         const savedLanguage = await LanguageRepository.save(newLanguage);
+//         savedLanguage.map((resumeData) => {
+//             delete resumeData.account;
+//         });
+//         userJson.languages = savedLanguage;
+//     }
+//     if (resumes) {
+//         const arrayResumes: any = [];
+//         const newResumes = resumes.map((resumeData) => {
+//             const resume_ = new Resume();
+//             resume_.url = resumeData;
+//             resume_.account = user;
+//             arrayResumes.push(resume_);
+//             return resume_;
+//         });
+//         // Save the resume
+//         const savedResumes = await ResumeRepository.save(newResumes);
+//         arrayResumes.map((resumeData) => {
+//             delete resumeData.account;
+//         });
+//         userJson.resumes = arrayResumes;
+//     }
+//     await AccountRepository.save(user);
+//     return userJson;
+// };
+
+// export const updateAllAccountData = async (user: Account, req: Request) => {
+//     const {
+//         address,
+//         phone,
+//         education,
+//         experience,
+//         skills,
+//         dateOfBirth,
+//         languages,
+//         profilePicture,
+//         resume,
+//     } = req.body;
+//     const userId = req.user.id;
+//     const address_ = address ? address : user.address;
+//     user.address = address_;
+//     const phone_ = phone ? phone : user.phone;
+//     user.phone.country_code = phone_.countryCode;
+//     user.phone.number = Number(phone_.number);
+//     const resume_ = resume ? resume : user.resume;
+//     user.resume = resume_;
+//     const profilePicture_ = profilePicture
+//         ? profilePicture
+//         : user.profile_picture;
+//     user.profile_picture = profilePicture_;
+//     const dateOfBirth_ = dateOfBirth ? dateOfBirth : user.date_of_birth;
+//     user.date_of_birth = dateOfBirth_;
+//     const userJson: { [key: string]: any } = { ...user };
+//     delete userJson.first_name;
+//     delete userJson.last_name;
+//     delete userJson.date_of_birth;
+
+//     userJson.firstName = user.first_name;
+//     userJson.lastName = user.last_name;
+//     userJson.dateOfBirth = user.date_of_birth;
+//     userJson.phone = returningPhone(user.phone);
+//     if (education) {
+//         const foundedEducation = await EducationRepository.findOneBy({
+//             account_id: user.id,
+//         });
+//         if (!foundedEducation) {
+//             const education_ = new Education();
+//             education_.account_id = userId; // Associate with the user's ID
+//             education_.university = education.university;
+//             education_.field_of_study = education.fieldOfStudy;
+//             education_.gpa = education.gpa;
+//             education_.start_date = education.startDate;
+//             education_.end_date = education.endDate;
+//             // Save the education to the database
+//             const savedEducation = await EducationRepository.save(education_);
+//             const returnedEducation = returningEducation(savedEducation);
+
+//             userJson.education = returnedEducation;
+//         } else {
+//             const eduObj: { [key: string]: any } = {};
+//             eduObj.university = education.university;
+//             eduObj.field_of_study = education.fieldOfStudy;
+//             eduObj.gpa = education.gpa;
+//             eduObj.start_date = education.startDate;
+//             eduObj.end_date = education.endDate;
+//             // Save the education to the database
+//             const savedEducation = await EducationRepository.updateEducation(
+//                 eduObj,
+//                 userId,
+//             );
+//             const returnedEducation = returningEducation(savedEducation);
+
+//             userJson.education = returnedEducation;
+//         }
+//     } else {
+//         const foundedEducation = await EducationRepository.findOneBy({
+//             account_id: user.id,
+//         });
+
+//         // Save the education to the database
+//         const returnedEducation = returningEducation(foundedEducation);
+
+//         userJson.education = returnedEducation;
+//     }
+
+//     if (skills) {
+//         // Create and link new skills
+//         await SkillRepository.deleteAllSkills(user.id);
+
+//         const arraySkills: any = [];
+//         const newSkills = skills.map((skillData) => {
+//             const skill = new Skill();
+//             skill.name = skillData;
+//             arraySkills.push(skill.name);
+//             skill.account = user; // Link the skill to the account
+//             return skill;
+//         });
+
+//         // Save the skills
+//         const savedSkills = await SkillRepository.save(newSkills);
+//         userJson.skills = arraySkills;
+//     } else {
+//         userJson.skills = [];
+//         user.skills.map((skill) => {
+//             userJson.skills.push(skill.name);
+//         });
+//     }
+//     if (experience) {
+//         const arrayExperience: any = [];
+//         await ExperienceRepository.deleteAllExperience(user.id);
+
+//         const newExperience = experience.map((experience) => {
+//             const experience_ = new Experience();
+//             //experience_.account = user;
+//             experience_.job_title = experience.jobTitle;
+//             experience_.employment_type = experience.employmentType;
+//             experience_.company_name = experience.companyName;
+//             experience_.location = experience.location;
+//             experience_.location_type = experience.locationType;
+//             experience_.still_working = experience.stillWorking;
+//             experience_.start_date = experience.startDate;
+//             experience_.end_date = experience.endDate;
+//             arrayExperience.push(returningExperiences(experience_));
+//             experience_.account = user; // Link the experience_ to the account
+//             return experience_;
+//         });
+
+//         // Save the experience
+//         const savedExperience = await ExperienceRepository.save(newExperience);
+//         userJson.experience = arrayExperience;
+//     } else {
+//         userJson.experiences = [];
+//         user.experiences.map((exp) => {
+//             userJson.experiences.push(returningExperiences(exp));
+//         });
+//     }
+
+//     if (languages) {
+//         const arrayLanguage: any = [];
+//         await LanguageRepository.deleteAllLanguages(user.id);
+
+//         const newLanguage = languages.map((lang) => {
+//             const language_ = new Language();
+//             language_.account = user;
+//             language_.name = lang;
+
+//             arrayLanguage.push(returningLanguage(language_));
+//             language_.account = user; // Link the language_ to the account
+//             return language_;
+//         });
+
+//         // Save the Language
+//         const savedLanguage = await LanguageRepository.save(newLanguage);
+//         userJson.languages = arrayLanguage;
+//     } else {
+//         userJson.languages = [];
+//         user.languages.map((language) => {
+//             userJson.languages.push(language.name);
+//         });
+//     }
+//     delete userJson.first_name;
+//     delete userJson.last_name;
+//     delete userJson.date_of_birth;
+
+//     userJson.firstName = user.first_name;
+//     userJson.lastName = user.last_name;
+//     userJson.dateOfBirth = user.date_of_birth;
+//     userJson.phone = returningPhone(user.phone);
+//     await AccountRepository.save(user);
+//     return userJson;
+// };
+
+// export const returnUserInFormOfMongoDBObject = async (user: Account) => {
+//     const userJson: { [key: string]: any } = { ...user };
+//     delete userJson.first_name;
+//     delete userJson.last_name;
+//     delete userJson.date_of_birth;
+//     userJson.firstName = user.first_name;
+//     userJson.lastName = user.last_name;
+//     userJson.dateOfBirth = user.date_of_birth;
+//     userJson.phone = returningPhone(user.phone);
+
+//     const education = await EducationRepository.findOneBy({
+//         account_id: user.id,
+//     });
+//     if (education) userJson.education = returningEducation(education);
+//     const skills = await SkillRepository.find({
+//         where: { account: { id: user.id } },
+//         relations: ['account'],
+//     });
+//     if (skills) userJson.skills = skills.map((skill) => skill.name);
+//     const experiences = await ExperienceRepository.find({
+//         where: { account: { id: user.id } },
+//         relations: ['account'],
+//     });
+//     if (experiences)
+//         userJson.experiences = experiences.map((experience) =>
+//             returningExperiences(experience),
+//         );
+//     const languages = await LanguageRepository.find({
+//         where: { account: { id: user.id } },
+//         relations: ['account'],
+//     });
+//     if (languages)
+//         userJson.languages = languages.map((language) => language.name);
+//     return userJson;
+// };
 
 export const getMeService = async (req: Request) => {
     const userId = Number(req.user.id);
@@ -1073,33 +1179,33 @@ export const getMeService = async (req: Request) => {
     return account;
 };
 
-export const updateUserOneExperience = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        const userId = req.user.id;
-        const experienceId = req.params.id;
-        const {
-            jobTitle,
-            employmentType,
-            companyName,
-            location,
-            locationType,
-            stillWorking,
-            startDate,
-            endDate,
-        } = req.body;
-        const experience = await ExperienceRepository.update(
-            { account: { id: userId } },
-            {
-                job_title: jobTitle,
-                employment_type: employmentType,
-                company_name: companyName,
-                location: location,
-                location_type: locationType,
-                still_working: stillWorking,
-                start_date: startDate,
-                end_date: endDate,
-            },
-        );
-        res.status(200).json({ experience });
-    },
-);
+// export const updateUserOneExperience = catchAsync(
+//     async (req: Request, res: Response, next: NextFunction) => {
+//         const userId = req.user.id;
+//         const experienceId = req.params.id;
+//         const {
+//             jobTitle,
+//             employmentType,
+//             companyName,
+//             location,
+//             locationType,
+//             stillWorking,
+//             startDate,
+//             endDate,
+//         } = req.body;
+//         const experience = await ExperienceRepository.update(
+//             { account: { id: userId } },
+//             {
+//                 job_title: jobTitle,
+//                 employment_type: employmentType,
+//                 company_name: companyName,
+//                 location: location,
+//                 location_type: locationType,
+//                 still_working: stillWorking,
+//                 start_date: startDate,
+//                 end_date: endDate,
+//             },
+//         );
+//         res.status(200).json({ experience });
+//     },
+// );
