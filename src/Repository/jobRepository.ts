@@ -45,10 +45,7 @@ class JobRepositoryClass extends Repository<Job> {
         const job = await this.createQueryBuilder('job')
             .leftJoinAndSelect('job.business', 'business') // Join with the Business table
             .where('job.id = :jobId', { jobId }) // Filter for a specific Job ID
-            .select([
-                'job', // Select all fields from the Job entity
-                'business.id', // Include only the Business ID
-            ])
+
             .getOne();
         return {
             ...job,

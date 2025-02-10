@@ -72,7 +72,7 @@ authRouter.post(
 );
 authRouter.post(
     '/logIn',
-    loginRateLimiter,
+    //loginRateLimiter,
     validateRequestMiddleware(loginValidator),
     logIn,
 );

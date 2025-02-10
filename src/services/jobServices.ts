@@ -10,6 +10,22 @@ import { AccountRepository } from '../Repository/accountRepository';
 import { JobApplication } from '../entity/JobApplication';
 import { ResumeRepository } from '../Repository/resumeRepository';
 import { JobApplicationRepository } from '../Repository/jobApplicationRepository';
+import { ApiFeatures } from '../utils/apiFeatures';
+import { Paginate } from '../utils/pagination/decorator';
+import {
+    FilterComparator,
+    FilterOperator,
+    FilterSuffix,
+} from '../utils/pagination/filter';
+import {
+    paginate,
+    PaginateConfig,
+    PaginationType,
+} from '../utils/pagination/typeorm-paginate';
+import { transformFilter } from '../utils/pagination/transformQuery';
+import { Account } from '../entity/Account';
+import { JobStatus } from '../enums/jobStatus';
+import { In, Not } from 'typeorm';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -40,10 +56,11 @@ export const createJobService = async (
             HrRole.RECRUITER,
             HrRole.HIRING_MANAGER,
             HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
         ],
     );
     if (!isAllowedToPostJob) {
-        throw new AppError('you do not have permission to post job', 403);
+        throw new AppError('you do not have permission to that action', 403);
     }
     const newJob = new Job();
     newJob.title = title;
@@ -65,11 +82,22 @@ export const createJobService = async (
 
 export const getOneJobService = async (req: Request) => {
     const jobId = Number(req.params.id);
+    let userId = req.user && req.user.id ? Number(req.user.id) : null;
     const job = await JobRepository.findJobDetails(jobId);
-    if (!job) {
+    if (!job.id) {
         throw new AppError('Job not found', 404);
     }
-    return job;
+    if (!userId) {
+        return { ...job, isSaved: false };
+    } else {
+        const isSaved = await JobRepository.query(`
+    SELECT job.* FROM job 
+    INNER JOIN account_saved_jobs ON account_saved_jobs.job_id = job.id
+    INNER JOIN account ON account.id = account_saved_jobs.account_id
+    WHERE account.id =${userId} and job.id=${jobId}`);
+
+        return { ...job, isSaved: isSaved.length > 0 ? true : false };
+    }
 };
 
 export const updateJobService = async (
@@ -85,17 +113,20 @@ export const updateJobService = async (
         employee_type,
         keywords,
         experience,
-        business_id,
     } = req.body;
     const userId = Number(req.user.id);
     const jobId = Number(req.params.id);
-    const business = await BusinessRepository.findOneBy({ id: business_id });
-    if (!business) {
-        throw new AppError('Business with that id not found', 404);
+    const foundedJob = await JobRepository.findOne({
+        where: { id: jobId },
+        relations: ['business'],
+    });
+    if (!foundedJob) {
+        throw new AppError('Job not found', 404);
     }
-    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+    const isAllowedToUpdateJob = await HrEmployeeRepository.checkPermission(
         userId,
-        business.id,
+
+        foundedJob.business.id,
         [
             HrRole.SUPER_ADMIN,
             HrRole.HR,
@@ -104,9 +135,10 @@ export const updateJobService = async (
             HrRole.SUPER_ADMIN,
         ],
     );
-    if (!isAllowedToPostJob) {
+    if (!isAllowedToUpdateJob) {
         throw new AppError('you do not have permission to post job', 403);
     }
+
     const job = await JobRepository.updateOneJob(jobId, {
         title: title,
         description: description,
@@ -123,6 +155,72 @@ export const updateJobService = async (
     // returnedJob.business_id = business_id;
     return job;
 };
+// export const makeJobClosedService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+//     const jobId = Number(req.params.id);
+//     const job = await JobRepository.findOne({
+//         where: { id: jobId },
+//         relations: ['business'],
+//     });
+//     if (!job) {
+//         throw new AppError('Job not found', 404);
+//     }
+//     const isAllowedToUpdateJob = await HrEmployeeRepository.checkPermission(
+//         userId,
+
+//         job.business.id,
+//         [
+//             HrRole.SUPER_ADMIN,
+//             HrRole.HR,
+//             HrRole.RECRUITER,
+//             HrRole.HIRING_MANAGER,
+//             HrRole.SUPER_ADMIN,
+//         ],
+//     );
+//     if (!isAllowedToUpdateJob) {
+//         throw new AppError('you do not have permission to do that action', 403);
+//     }
+//     if (job.status === JobStatus.CLOSED) {
+//         throw new AppError('Job is already Closed', 409);
+//     }
+//     job.status = JobStatus.CLOSED;
+//     await JobRepository.save(job);
+//     return job;
+// };
+
+// export const makeJobArchivedService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+//     const jobId = Number(req.params.id);
+//     const job = await JobRepository.findOne({
+//         where: { id: jobId },
+//         relations: ['business'],
+//     });
+//     if (!job) {
+//         throw new AppError('Job not found', 404);
+//     }
+//     const isAllowedToUpdateJob = await HrEmployeeRepository.checkPermission(
+//         userId,
+
+//         job.business.id,
+//         [
+//             HrRole.SUPER_ADMIN,
+//             HrRole.HR,
+//             HrRole.RECRUITER,
+//             HrRole.HIRING_MANAGER,
+//             HrRole.SUPER_ADMIN,
+//         ],
+//     );
+//     if (!isAllowedToUpdateJob) {
+//         throw new AppError('you do not have permission to do that action', 403);
+//     }
+
+//     if (job.status === JobStatus.ARCHIVED) {
+//         throw new AppError('Job is already archived', 409);
+//     }
+//     job.status = JobStatus.ARCHIVED;
+//     await JobRepository.save(job);
+//     return job;
+// };
 
 export const saveJobToUserService = async (req: Request) => {
     const userId = Number(req.user.id);
@@ -163,10 +261,54 @@ export const removeSavedJobFromUserService = async (req: Request) => {
     return savedUser;
 };
 
+// export const getAllUserSavedJobsService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+
+//     const account = await AccountRepository.getAccountWithSavedJobs(userId);
+
+//     return account.saved_jobs;
+// };
+// export const getAllUserSavedJobsService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+
+//     const account = await AccountRepository.getAccountWithSavedJobs(userId);
+
+//     return account.saved_jobs;
+// };
+
 export const getAllUserSavedJobsService = async (req: Request) => {
     const userId = Number(req.user.id);
 
     const account = await AccountRepository.getAccountWithSavedJobs(userId);
+    try {
+        //console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        //console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<Job> = {
+            searchableColumns: ['title'],
+            sortableColumns: ['created_at'],
+            //relations: ['saved_by_accounts'],
+            defaultSortBy: [['id', 'ASC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = JobRepository.createQueryBuilder('job')
+            .innerJoin('job.saved_by_accounts', 'account')
+            .where('account.id = :accountId', { accountId: userId });
+
+        const jobs = await paginate<Job>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+
+        return jobs;
+    } catch (err) {
+        console.error('Error in getting jobs', err);
+        throw new AppError('Error in getting jobs', 400);
+    }
 
     return account.saved_jobs;
 };
@@ -186,6 +328,9 @@ export const applyToJobService = async (req: Request) => {
     if (!job) {
         throw new AppError('Job not found', 404);
     }
+    if (job.status != JobStatus.OPENED) {
+        throw new AppError('job is no longer available ', 400);
+    }
     const business = await BusinessRepository.findOneBy({
         id: job.business.id,
     });
@@ -201,13 +346,11 @@ export const applyToJobService = async (req: Request) => {
             HrRole.RECRUITER,
             HrRole.HIRING_MANAGER,
             HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
         ],
     );
     if (isNotAllowedToApplyJob) {
-        throw new AppError(
-            'you are member of that business ,you cant apply job ',
-            403,
-        );
+        throw new AppError('you do not have permission to that action', 403);
     }
 
     const account =
@@ -230,14 +373,78 @@ export const applyToJobService = async (req: Request) => {
     return jobApplication;
 };
 
+// export const getAllUserJobsApplicationsService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+
+//     const account =
+//         await AccountRepository.getAccountWithJobApplications(userId);
+
+//     return account.job_applications;
+// };
 export const getAllUserJobsApplicationsService = async (req: Request) => {
     const userId = Number(req.user.id);
+    try {
+        const transformedQuery = Paginate(req);
+        const paginateConfig: PaginateConfig<JobApplication> = {
+            searchableColumns: ['job.title'],
+            sortableColumns: ['created_at'],
+            //filterableColumns:{id:5},
+            relations: ['job'],
+            //where: { job: job },
+            defaultSortBy: [['created_at', 'DESC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+            //where: { resume: { account: account } },
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = JobApplicationRepository.createQueryBuilder(
+            'job_application',
+        )
+            .innerJoinAndSelect('job_application.resume', 'resume')
+            .where('resume.accountId = :accountId', { accountId: userId });
 
-    const account =
-        await AccountRepository.getAccountWithJobApplications(userId);
-
-    return account.job_applications;
+        const job_applications = await paginate<JobApplication>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+        return job_applications;
+    } catch (err) {
+        console.error('Error in getting job_applications', err);
+        throw new AppError('Error in getting job_applications', 400);
+    }
 };
+
+// export const getAllJobsApplicationsForJobService = async (req: Request) => {
+//     const userId = Number(req.user.id);
+//     const jobId = Number(req.params.id);
+//     const job = await JobRepository.getJobWithBusiness(jobId);
+//     if (!job) {
+//         throw new AppError('Job not found', 404);
+//     }
+//     const business = await BusinessRepository.findOneBy({
+//         id: job.business.id,
+//     });
+//     if (!business) {
+//         throw new AppError('Business not found', 404);
+//     }
+//     const isAllowedToShowAllApplications =
+//         await HrEmployeeRepository.checkPermission(userId, business.id, [
+//             HrRole.SUPER_ADMIN,
+//             HrRole.HR,
+//             HrRole.RECRUITER,
+//             HrRole.HIRING_MANAGER,
+//             HrRole.SUPER_ADMIN,
+//         ]);
+//     if (!isAllowedToShowAllApplications) {
+//         throw new AppError('you are not allowed to show all applications', 403);
+//     }
+
+//     const job_applications =
+//         await JobApplicationRepository.findAllApplicationsByJobId(jobId);
+
+//     return job_applications;
+// };
 
 export const getAllJobsApplicationsForJobService = async (req: Request) => {
     const userId = Number(req.user.id);
@@ -259,13 +466,126 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
             HrRole.RECRUITER,
             HrRole.HIRING_MANAGER,
             HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
         ]);
     if (!isAllowedToShowAllApplications) {
-        throw new AppError('you are not allowed to show all applications', 403);
+        throw new AppError('you are not allowed to do that action', 403);
     }
+    try {
+        //console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        //console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<JobApplication> = {
+            searchableColumns: [
+                'resume.account.first_name',
+                'resume.account.last_name',
+            ],
+            sortableColumns: ['created_at'],
+            //filterableColumns:{id:5},
+            relations: ['job', 'resume', 'resume.account'],
+            //where: { job: job },
+            defaultSortBy: [['created_at', 'ASC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
 
-    const job_applications =
-        await JobApplicationRepository.findAllApplicationsByJobId(jobId);
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = JobApplicationRepository.createQueryBuilder(
+            'job_application',
+        ).where({ job: { id: jobId } });
 
-    return job_applications;
+        const job_applications = await paginate<JobApplication>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+        return job_applications;
+    } catch (err) {
+        throw new AppError('Error in getting job_applications', 400);
+    }
+};
+
+export const getAllJobsSearchWithFilterService = async (req: Request) => {
+    try {
+        //console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        //console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<Job> = {
+            searchableColumns: ['title', 'business.name', 'description'],
+            sortableColumns: ['salary'],
+            filterableColumns: {
+                salary: [
+                    FilterOperator.EQ,
+                    FilterOperator.GTE,
+                    FilterOperator.GT,
+                    FilterOperator.LT,
+                    FilterOperator.LTE,
+                ],
+                experience: [
+                    FilterOperator.EQ,
+                    FilterOperator.GTE,
+                    FilterOperator.GT,
+                    FilterOperator.LT,
+                    FilterOperator.LTE,
+                ],
+                location_type: [FilterOperator.IN, FilterOperator.ILIKE],
+                employee_type: [FilterOperator.IN, FilterOperator.CONTAINS],
+                //keywords: true,
+                keywords: [FilterOperator.IN, FilterOperator.ILIKE],
+                'business.industry': [FilterOperator.IN],
+            },
+            relations: ['business'],
+            defaultSortBy: [['created_at', 'DESC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = JobRepository.createQueryBuilder('job').where({
+            status: Not(JobStatus.ARCHIVED), // Excludes ARCHIVED
+        });
+
+        const jobs = await paginate<Job>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+        return jobs;
+    } catch (err) {
+        throw new AppError('Error in getting jobs', 400);
+    }
+};
+
+export const changeJobStatus = async (req: Request, status: JobStatus) => {
+    const userId = Number(req.user.id);
+    const jobId = Number(req.params.id);
+    const job = await JobRepository.findOne({
+        where: { id: jobId },
+        relations: ['business'],
+    });
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    const isAllowedToUpdateJob = await HrEmployeeRepository.checkPermission(
+        userId,
+
+        job.business.id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (!isAllowedToUpdateJob) {
+        throw new AppError('you do not have permission to do that action', 403);
+    }
+    if (job.status === status) {
+        throw new AppError(`Job is already ${status}`, 409);
+    }
+    job.status = status;
+    await JobRepository.save(job);
+    return job;
 };

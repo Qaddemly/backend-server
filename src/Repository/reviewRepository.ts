@@ -37,12 +37,13 @@ class ReviewRepositoryClass extends Repository<Review> {
     async addReviewToBusiness(createReviewDTO: CreateReviewDTO) {
         const res = await this.query(
             `INSERT INTO review (description, rating, business_id, account_id)
-                VALUES ('${createReviewDTO.description}', ${createReviewDTO.rating}, ${createReviewDTO.business_id}, ${createReviewDTO.account_id})`,
+                VALUES ('${createReviewDTO.description}', ${createReviewDTO.rating}, ${createReviewDTO.business_id}, ${createReviewDTO.account_id})
+                RETURNING *;`,
         );
-        console.log(res);
+        return res[0];
     }
 }
 
-export const ReviewRepository = AppDataSource.getRepository(Account).extend(
+export const ReviewRepository = AppDataSource.getRepository(Review).extend(
     ReviewRepositoryClass.prototype,
 );

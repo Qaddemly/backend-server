@@ -18,7 +18,18 @@ import { FollowBusinessRepository } from '../Repository/followBusinessRepository
 import { BusinessPhone } from '../entity/BusinessPhone';
 import { BusinessPhoneRepository } from '../Repository/businessPhoneRepository';
 import exp from 'node:constants';
+
 import { CountryCode } from '../enums/countryCode';
+
+import { Request } from 'express';
+import { Paginate } from '../utils/pagination/decorator';
+import {
+    FilterOperator,
+    paginate,
+    PaginateConfig,
+    PaginationType,
+} from '../utils/pagination/typeorm-paginate';
+
 
 /**
  * TODO: mark the Account that created the business as the owner.
@@ -525,3 +536,46 @@ export async function checkRoleInBusiness(
     }
     return role;
 }
+
+export const getAllBusinessWithSearchAndFilterService = async (
+    req: Request,
+) => {
+    try {
+        //console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        //console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<Business> = {
+            searchableColumns: ['name'],
+            sortableColumns: ['id'],
+            filterableColumns: {
+                reviewsRatingsAverage: [
+                    FilterOperator.EQ,
+                    FilterOperator.GT,
+                    FilterOperator.GTE,
+                    FilterOperator.LT,
+                    FilterOperator.LTE,
+                ],
+                'address.country': [FilterOperator.IN],
+                location_type: [FilterOperator.IN],
+                industry: [FilterOperator.IN],
+            },
+            //relations: ['business'],
+            defaultSortBy: [['reviewsRatingsAverage', 'DESC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = BusinessRepository.createQueryBuilder('business');
+
+        const jobs = await paginate<Business>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+        return jobs;
+    } catch (err) {
+        console.log(err);
+        throw new AppError('Error in getting jobs', 400);
+    }
+};
