@@ -4259,3 +4259,14 @@
 2025-02-09 11:42:15:4215 [31merror[39m: [31mvalidationErrors[39m
 2025-02-09 11:42:15:4215 [35mhttp[39m: [35mPOST /api/v1/business 400 302 - 621.925 ms[39m
 [35m[39m
+2025-02-09 14:12:37:1237 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-09 14:12:38:1238 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-09 14:12:39:1239 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-09 14:12:46:1246 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 14:12:46:1246 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 14:12:46:1246 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50010?role=HR 403 877 - 515.823 ms[39m
+[35m[39m
+2025-02-09 14:12:58:1258 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role=HR 200 586 - 489.508 ms[39m
+[35m[39m
+2025-02-09 14:13:25:1325 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role=HR&name=esla 200 586 - 377.130 ms[39m
+[35m[39m

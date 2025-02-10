@@ -521,3 +521,5 @@
 2025-02-09 11:40:33:4033 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
 2025-02-09 11:41:19:4119 [31merror[39m: [31mvalidationErrors[39m
 2025-02-09 11:42:15:4215 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 14:12:46:1246 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 14:12:46:1246 [31merror[39m: [31mUser does not have role in business[39m
