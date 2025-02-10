@@ -71,7 +71,10 @@ export class Account {
         cascade: true,
     })
     experiences: Experience[];
-
+    @OneToMany(() => Education, (education) => education.account, {
+        cascade: true,
+    })
+    educations: Education[];
     @OneToMany(() => Language, (language) => language.account, {
         cascade: true,
     })

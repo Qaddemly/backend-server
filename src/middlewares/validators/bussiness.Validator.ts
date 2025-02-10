@@ -1,9 +1,4 @@
-import {
-    body,
-    query,
-    ValidationChain,
-    validationResult,
-} from 'express-validator';
+import { validationResult } from 'express-validator';
 
 import { body, check, query, ValidationChain } from 'express-validator';
 
@@ -205,7 +200,6 @@ export const checkDeleteHr: ValidationChain[] = [
     body('account_email').trim().isEmail().withMessage('invalid email address'),
 ];
 
-
 export const getAllHrQueryValidator: ValidationChain[] = [
     query('role')
         .optional()
@@ -264,7 +258,7 @@ export const businessUpdatePhoneNumberValidator: ValidationChain[] = [
         .trim()
         .isNumeric()
         .withMessage('Phone number must be a number'),
-  
+];
 export const searchAndFilterValidator: ValidationChain[] = [
     query('search').notEmpty().withMessage('search cant be empty'),
 ];

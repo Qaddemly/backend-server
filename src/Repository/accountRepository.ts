@@ -22,11 +22,11 @@ class AccountRepositoryClass extends Repository<Account> {
             .where('account.id = :id', { id: accountId }) // Filter by accountId
             .getOne();
 
-        const education = await EducationRepository.findOneBy({
-            account_id: account.id,
-        });
+        // const education = await EducationRepository.findOneBy({
+        //     account_id: account.id,
+        // });
         const accountJson: { [key: string]: any } = { ...account };
-        accountJson.education = education;
+        //  accountJson.education = education;
         // Return the account with all its relations
         return accountJson;
     }

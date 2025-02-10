@@ -67,7 +67,7 @@ export const SignUpStepTwo = catchAsync(
         next: NextFunction,
     ) => {
         try {
-            const user = await updateUserForSignUpStepTwo(req.user?.id, req);
+            const user = await updateUserForSignUpStepTwo(req);
 
             res.status(201).json({
                 success: true,

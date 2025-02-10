@@ -27,4 +27,8 @@ export class Resume {
     job_applications: JobApplication[];
     @Column('text')
     url: string;
+    @Column('text', { default: null })
+    name: string;
+    @Column({ default: null })
+    size: number;
 }

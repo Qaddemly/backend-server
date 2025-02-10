@@ -109,12 +109,12 @@ export const deleteUserOneExperienceService = async (req: Request) => {
 
 export const updateUserOneEducationService = async (req: Request) => {
     const userId = req.user.id;
-    const education = await EducationRepository.findOneBy({
-        account_id: userId,
-    });
-    if (!education) {
-        throw new AppError('user don`t have education', 404);
-    }
+    // const education = await EducationRepository.findOneBy({
+    //     account_id: userId,
+    // });
+    // if (!education) {
+    //     throw new AppError('user don`t have education', 404);
+    // }
 
     let {
         university,
@@ -149,12 +149,12 @@ export const updateUserOneEducationService = async (req: Request) => {
 export const createUserOneEducationService = async (req: Request) => {
     const userId = Number(req.user.id);
 
-    const foundedEducation = await EducationRepository.findOneBy({
-        account_id: userId,
-    });
-    if (foundedEducation) {
-        throw new AppError('user already has education', 409);
-    }
+    // const foundedEducation = await EducationRepository.findOneBy({
+    //     account_id: userId,
+    // });
+    // if (foundedEducation) {
+    //     throw new AppError('user already has education', 409);
+    // }
     let {
         university,
 
@@ -169,7 +169,7 @@ export const createUserOneEducationService = async (req: Request) => {
 
     const user = await AccountRepository.findOneBy({ id: userId });
     const education = new Education();
-    education.account_id = userId;
+    // education.account_id = userId;
     education.gpa = gpa;
     education.university = university;
     education.field_of_study = field_of_study;
@@ -183,81 +183,58 @@ export const deleteUserOneEducationService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
         const educationId = Number(req.params.id);
-        const education = await EducationRepository.findOneBy({
-            account_id: userId,
-        });
-        if (!education) {
-            throw new AppError('user don`t have education', 404);
-        }
-        await EducationRepository.remove(education);
+        // const education = await EducationRepository.findOneBy({
+        //     account_id: userId,
+        // });
+        // if (!education) {
+        //     throw new AppError('user don`t have education', 404);
+        // }
+        // await EducationRepository.remove(education);
     } catch (err) {
         throw err;
     }
 };
 
-export const createUserOneSkillService = async (req: Request) => {
+export const createUserOneOrMoreSkillService = async (req: Request) => {
     const userId = Number(req.user.id);
-
-    let { name } = req.body;
-
-    const user = await AccountRepository.findOneBy({ id: userId });
-    const skill = new Skill();
-    skill.account = user;
-    skill.name = name;
-
-    const createdSkill = await SkillRepository.save(skill);
-    delete createdSkill.account;
-    const SkillReturned: { [key: string]: any } = { ...createdSkill };
-    SkillReturned.accountId = userId;
-    return SkillReturned;
+    let { skills } = req.body;
+    const newSkills = await SkillRepository.createSkills(userId, skills);
+    return newSkills;
 };
 
-export const deleteUserOneSkillService = async (req: Request) => {
+export const deleteUserOneOrMoreSkillService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
-        const skillId = Number(req.params.id);
-        const skill = await SkillRepository.findOneBy({
-            account: { id: userId },
-            id: skillId,
-        });
-        if (!skill) {
-            throw new AppError('No skill found with that ID', 404);
-        }
-        await SkillRepository.remove(skill);
+        const { skillsId } = req.body;
+        await SkillRepository.deleteSkills(userId, skillsId);
     } catch (err) {
         throw err;
     }
 };
 
-export const createUserOneLanguageService = async (req: Request) => {
+export const createUserOneOrMoreLanguageService = async (req: Request) => {
     const userId = Number(req.user.id);
 
-    let { name } = req.body;
+    let { languages } = req.body;
+    const foundedLanguages =
+        await LanguageRepository.query(`select * from language where
+        name in (${languages.map((lang) => `'${lang}'`).join(', ')}) and account_id=${userId}  `);
+    if (foundedLanguages.length != 0) {
+        throw new AppError('some languages already added', 400);
+    }
+    const newLanguages = await LanguageRepository.createLanguages(
+        userId,
+        languages,
+    );
 
-    const user = await AccountRepository.findOneBy({ id: userId });
-    const language = new Language();
-    language.account = user;
-    language.name = name;
-
-    const createdLanguage = await LanguageRepository.save(language);
-    delete createdLanguage.account;
-    const LanguageReturned: { [key: string]: any } = { ...createdLanguage };
-    LanguageReturned.accountId = userId;
-    return LanguageReturned;
+    return newLanguages;
 };
 
-export const deleteUserOneLanguageService = async (req: Request) => {
+export const deleteUserOneOrMoreLanguageService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
-        const languageId = Number(req.params.id);
-        const language = await LanguageRepository.findOneBy({
-            account: { id: userId },
-            id: languageId,
-        });
-        if (!language) {
-            throw new AppError('No language found with that ID', 404);
-        }
-        await LanguageRepository.remove(language);
+        const { languagesId } = req.body;
+        await LanguageRepository.deleteLanguages(userId, languagesId);
     } catch (err) {
         throw err;
     }
@@ -274,7 +251,9 @@ export const addUserOneResumeService = async (req: Request) => {
     const user = await AccountRepository.findOneBy({ id: userId });
     const newResume = new Resume();
     newResume.account = user;
-    newResume.url = resumes[0];
+    newResume.url = resumes[0].url;
+    newResume.name = resumes[0].name;
+    newResume.size = resumes[0].size;
 
     const createdResume = await ResumeRepository.save(newResume);
     delete createdResume.account;
@@ -304,15 +283,14 @@ export const deleteUserOneResumeService = async (req: Request) => {
         }
 
         await ResumeRepository.remove(resume);
-        // const startIndex = resume.url.indexOf('/uploads');
+        const startIndex = resume.url.indexOf('/uploads');
 
-        // const result = resume.url.substring(startIndex, -1);
-        // console.log(result);
-        // const rootPath = path.resolve(__dirname, '../');
-        // const resumePath = `src/${result}`;
-        // await fs.unlink(resumePath, (c) => {
-        //     console.log(c);
-        // });
+        const result = resume.url.substring(startIndex, resume.url.length);
+        const resumePath = `src${result}`;
+        console.log(resumePath);
+        fs.unlink(resumePath, (c) => {
+            // console.log(c);
+        });
     } catch (err) {
         throw err;
     }

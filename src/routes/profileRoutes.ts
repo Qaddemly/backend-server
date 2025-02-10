@@ -2,11 +2,11 @@ import { Router } from 'express';
 import {
     createUserOneExperience,
     createUserOneLanguage,
-    createUserOneSkill,
+    createUserOneOrMoreSkills,
     deleteMe,
     deleteUserOneExperience,
-    deleteUserOneLanguage,
-    deleteUserOneSkill,
+    deleteUserOneOrMoreLanguage,
+    deleteUserOneOrMoreSkill,
     updateUserOneEducation,
     updateUserOneExperience,
     deleteUserOneEducation,
@@ -65,14 +65,14 @@ profileRouter.post(
     '/addNewSkill',
     protect,
     validateRequestMiddleware(createUserOneSkillValidator),
-    createUserOneSkill,
+    createUserOneOrMoreSkills,
 );
 
 profileRouter.delete(
-    '/deleteSkill/:id',
+    '/deleteSkill',
     protect,
     validateRequestMiddleware(deleteUserOneSkillValidator),
-    deleteUserOneSkill,
+    deleteUserOneOrMoreSkill,
 );
 
 profileRouter.post(
@@ -83,10 +83,10 @@ profileRouter.post(
 );
 
 profileRouter.delete(
-    '/deleteLanguage/:id',
+    '/deleteLanguage',
     protect,
     validateRequestMiddleware(deleteUserOneLanguageValidator),
-    deleteUserOneLanguage,
+    deleteUserOneOrMoreLanguage,
 );
 
 profileRouter.put(
