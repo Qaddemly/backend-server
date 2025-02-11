@@ -74,10 +74,8 @@ export const createJobService = async (
     newJob.experience = experience;
     newJob.business = business;
     await JobRepository.save(newJob);
-    const returnedJob: { [key: string]: any } = newJob;
-    delete returnedJob.business;
-    returnedJob.business_id = business_id;
-    return returnedJob;
+
+    return newJob;
 };
 
 export const getOneJobService = async (req: Request) => {

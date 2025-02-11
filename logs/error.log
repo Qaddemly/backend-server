@@ -855,3 +855,7 @@
 2025-02-10 02:02:38:238 [31merror[39m: [31merror while deleting languages[39m
 2025-02-10 02:02:44:244 [31merror[39m: [31merror while deleting languages[39m
 2025-02-10 02:02:52:252 [31merror[39m: [31merror while deleting languages[39m
+2025-02-11 13:44:28:4428 [31merror[39m: [31mvalidationErrors[39m
+2025-02-11 13:46:43:4643 [31merror[39m: [31myou do not have permission to that action[39m
+2025-02-11 13:52:34:5234 [31merror[39m: [31myou do not have permission to that action[39m
+2025-02-11 14:07:28:728 [31merror[39m: [31mUnexpected field[39m
