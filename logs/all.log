@@ -8159,3 +8159,6 @@
 [35m[39m
 2025-02-12 02:48:24:4824 [35mhttp[39m: [35mPUT /api/v1/user/updateEducation/27 200 186 - 375.657 ms[39m
 [35m[39m
+2025-02-12 22:05:50:550 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-12 22:05:51:551 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-12 22:05:53:553 [32minfo[39m: [32mMongoDB Database connected successfully[39m
