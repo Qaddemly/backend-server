@@ -23,6 +23,7 @@ import { Skill } from './Skill';
 import { Job } from './Job';
 import { Phone } from './Phone';
 import { Resume } from './Resume';
+import { Certificate } from './Certificate';
 
 @Entity()
 export class Account {
@@ -57,6 +58,12 @@ export class Account {
 
     @Column('text', { nullable: true })
     resume: string;
+    @Column({ nullable: true })
+    about_me: string;
+    @Column({ nullable: true })
+    subtitle: string;
+    @Column({ type: 'simple-array', nullable: true })
+    links: string[];
 
     @Column({
         type: 'timestamptz',
@@ -121,7 +128,10 @@ export class Account {
         cascade: true,
     })
     business_roles: HrEmployee[];
-
+    @OneToMany(() => Certificate, (Certificate) => Certificate.account, {
+        cascade: true,
+    })
+    certificates: Certificate[];
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 

@@ -17,6 +17,7 @@ import { Resume } from '../entity/Resume';
 import { ResumeRepository } from '../Repository/resumeRepository';
 import fs from 'fs';
 import path from 'path';
+import { result } from 'lodash';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -109,40 +110,15 @@ export const deleteUserOneExperienceService = async (req: Request) => {
 
 export const updateUserOneEducationService = async (req: Request) => {
     const userId = req.user.id;
-    // const education = await EducationRepository.findOneBy({
-    //     account_id: userId,
-    // });
-    // if (!education) {
-    //     throw new AppError('user don`t have education', 404);
-    // }
-
-    let {
-        university,
-
-        field_of_study,
-
-        gpa,
-
-        start_date,
-
-        end_date,
-    } = req.body;
-
-    const updatedData = {
-        university,
-
-        field_of_study,
-
-        gpa,
-
-        start_date,
-
-        end_date,
-    };
+    const educationId = Number(req.params.id);
     const updatedEducation = await EducationRepository.updateEducation(
-        updatedData,
+        educationId,
+        req.body,
         userId,
     );
+    if (!updatedEducation) {
+        throw new AppError('No education found with that ID', 404);
+    }
     return updatedEducation;
 };
 
@@ -155,41 +131,46 @@ export const createUserOneEducationService = async (req: Request) => {
     // if (foundedEducation) {
     //     throw new AppError('user already has education', 409);
     // }
-    let {
-        university,
+    // let {
+    //     university,
 
-        field_of_study,
+    //     field_of_study,
 
-        gpa,
+    //     gpa,
 
-        start_date,
+    //     start_date,
 
-        end_date,
-    } = req.body;
+    //     end_date,
+    // } = req.body;
 
-    const user = await AccountRepository.findOneBy({ id: userId });
-    const education = new Education();
-    // education.account_id = userId;
-    education.gpa = gpa;
-    education.university = university;
-    education.field_of_study = field_of_study;
-    education.start_date = start_date;
-    education.end_date = end_date;
-    const createdEducation = await EducationRepository.save(education);
-    return createdEducation;
+    // const user = await AccountRepository.findOneBy({ id: userId });
+    // const education = new Education();
+    // // education.account_id = userId;
+    // education.gpa = gpa;
+    // education.university = university;
+    // education.field_of_study = field_of_study;
+    // education.start_date = start_date;
+    // education.end_date = end_date;
+    const createdEducation = await EducationRepository.createOneEducation(
+        userId,
+        req.body,
+    );
+    return createdEducation[0];
 };
 
 export const deleteUserOneEducationService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
         const educationId = Number(req.params.id);
-        // const education = await EducationRepository.findOneBy({
-        //     account_id: userId,
-        // });
-        // if (!education) {
-        //     throw new AppError('user don`t have education', 404);
-        // }
-        // await EducationRepository.remove(education);
+        const education = await EducationRepository.findOneBy({
+            account: { id: userId },
+            id: educationId,
+        });
+        if (!education) {
+            throw new AppError('No education found with that ID', 404);
+        }
+
+        await EducationRepository.remove(education);
     } catch (err) {
         throw err;
     }

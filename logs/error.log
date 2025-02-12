@@ -859,3 +859,33 @@
 2025-02-11 13:46:43:4643 [31merror[39m: [31myou do not have permission to that action[39m
 2025-02-11 13:52:34:5234 [31merror[39m: [31myou do not have permission to that action[39m
 2025-02-11 14:07:28:728 [31merror[39m: [31mUnexpected field[39m
+2025-02-12 01:54:11:5411 [31merror[39m: [31mError in getting jobs[39m
+2025-02-12 02:01:55:155 [31merror[39m: [31mPostgres Database connection failed Data type "array" in "Account.links" is not supported by "postgres" database.[39m
+2025-02-12 02:02:09:29 [31merror[39m: [31mPostgres Database connection failed Data type "array" in "Account.links" is not supported by "postgres" database.[39m
+2025-02-12 02:02:45:245 [31merror[39m: [31mPostgres Database connection failed Data type "array" in "Account.links" is not supported by "postgres" database.[39m
+2025-02-12 02:03:08:38 [31merror[39m: [31mPostgres Database connection failed ⨯ Unable to compile TypeScript:[39m
+[31m[96msrc/entity/Certificate.ts[0m:[93m9[0m:[93m14[0m - [91merror[0m[90m TS1146: [0mDeclaration expected.[39m
+
+[31m[7m9[0m     @Column()[39m
+[31m[7m [0m [91m             [0m[39m
+[31m[39m
+2025-02-12 02:03:23:323 [31merror[39m: [31mPostgres Database connection failed Data type "array" in "Account.links" is not supported by "postgres" database.[39m
+2025-02-12 02:05:41:541 [31merror[39m: [31mPostgres Database connection failed ⨯ Unable to compile TypeScript:[39m
+[31m[96msrc/entity/Certificate.ts[0m:[93m22[0m:[93m52[0m - [91merror[0m[90m TS2339: [0mProperty 'certificates' does not exist on type 'Account'.[39m
+
+[31m[7m22[0m     @ManyToOne(() => Account, (account) => account.certificates, {[39m
+[31m[7m  [0m [91m                                                   ~~~~~~~~~~~~[0m[39m
+[31m[39m
+2025-02-12 02:17:17:1717 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 02:17:40:1740 [31merror[39m: [31msyntax error at or near "Education"[39m
+2025-02-12 02:18:12:1812 [31merror[39m: [31msyntax error at or near "["[39m
+2025-02-12 02:19:30:1930 [31merror[39m: [31mcolumn "tanta" does not exist[39m
+2025-02-12 02:21:56:2156 [31merror[39m: [31mcolumn "start_date" is of type date but expression is of type integer[39m
+2025-02-12 02:35:15:3515 [31merror[39m: [31mNo education found with that ID[39m
+2025-02-12 02:40:01:401 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 02:40:08:408 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 02:40:18:4018 [31merror[39m: [31msyntax error at or near ":"[39m
+2025-02-12 02:42:02:422 [31merror[39m: [31mNo education found with that ID[39m
+2025-02-12 02:45:05:455 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 02:47:51:4751 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 02:47:52:4752 [31merror[39m: [31mvalidationErrors[39m

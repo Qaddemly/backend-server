@@ -37,6 +37,7 @@ import {
     createUserOneEducationValidator,
     updateUserBasicInfoValidator,
     createUserOneResumeValidator,
+    idValidator,
 } from '../middlewares/validators/profileValidator';
 
 const profileRouter = Router();
@@ -90,7 +91,7 @@ profileRouter.delete(
 );
 
 profileRouter.put(
-    '/updateEducation',
+    '/updateEducation/:id',
     protect,
     validateRequestMiddleware(updateUserOneEducationValidator),
     updateUserOneEducation,
@@ -103,7 +104,12 @@ profileRouter.post(
     createUserOneEducation,
 );
 
-profileRouter.delete('/deleteEducation', protect, deleteUserOneEducation);
+profileRouter.delete(
+    '/deleteEducation/:id',
+    protect,
+    validateRequestMiddleware(idValidator),
+    deleteUserOneEducation,
+);
 
 profileRouter.post(
     '/addResume',

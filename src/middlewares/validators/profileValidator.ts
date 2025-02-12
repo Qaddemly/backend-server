@@ -7,6 +7,9 @@ import { CountryCode } from '../../enums/countryCode';
 import { Country } from '../../enums/country';
 import { AccountRepository } from '../../Repository/accountRepository';
 
+export const idValidator: ValidationChain[] = [
+    param('id').isInt().withMessage('id must be an integer'),
+];
 export const updateUserOneExperienceValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),
     body('jobTitle')
@@ -188,6 +191,7 @@ export const deleteUserOneLanguageValidator: ValidationChain[] = [
 ];
 
 export const updateUserOneEducationValidator: ValidationChain[] = [
+    param('id').isInt().withMessage('id must be an integer'),
     body('university')
         .optional()
         .isString()
