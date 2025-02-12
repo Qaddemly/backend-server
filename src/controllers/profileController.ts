@@ -22,9 +22,20 @@ import {
     getProjectsOfLoggedInUserService,
     updateProjectService,
     deleteProjectService,
+    createVolunteeringService,
+    getVolunteeringByIdService,
+    getVolunteeringsOfUserByIdService,
+    getVolunteeringsOfLoggenInUserService,
+    updateVolunteeringService,
+    deleteVolunteeringService,
 } from '../services/profileServices';
 import catchAsync from 'express-async-handler';
-import { createProjectDTO, updateProjectDTO } from '../dtos/userDto';
+import {
+    createProjectDTO,
+    createVolunteeringDTO,
+    updateProjectDTO,
+    updateVolunteeringDTO,
+} from '../dtos/userDto';
 import { interfaces } from 'inversify';
 
 export const deleteMe = catchAsync(
@@ -288,6 +299,83 @@ export const updateProject = catchAsync(
 export const deleteProject = catchAsync(
     async (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
         await deleteProjectService(req.user.id, Number(req.params.id));
+        res.status(204).json({});
+    },
+);
+
+export const createVolunteering = catchAsync(
+    async (
+        req: Request<{}, {}, createVolunteeringDTO>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        const volunteering = await createVolunteeringService(
+            req.user.id,
+            req.body,
+        );
+        res.status(201).json({
+            success: true,
+            volunteering,
+        });
+    },
+);
+export const getVolunteeringById = catchAsync(
+    async (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
+        const volunteering = await getVolunteeringByIdService(
+            Number(req.params.id),
+        );
+        res.status(200).json({
+            success: true,
+            volunteering,
+        });
+    },
+);
+export const getVolunteeringsOfUserById = catchAsync(
+    async (
+        req: Request<{ userId: string }>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        const volunteerings = await getVolunteeringsOfUserByIdService(
+            Number(req.params.userId),
+        );
+        res.status(200).json({
+            success: true,
+            volunteerings,
+        });
+    },
+);
+export const getVolunteeringsOfLoggedInUser = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const volunteerings = await getVolunteeringsOfLoggenInUserService(
+            req.user.id,
+        );
+        res.status(200).json({
+            success: true,
+            volunteerings,
+        });
+    },
+);
+export const updateVolunteering = catchAsync(
+    async (
+        req: Request<{ id: string }, {}, updateVolunteeringDTO>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        const volunteering = await updateVolunteeringService(
+            req.user.id,
+            Number(req.params.id),
+            req.body,
+        );
+        res.status(200).json({
+            success: true,
+            volunteering,
+        });
+    },
+);
+export const deleteVolunteering = catchAsync(
+    async (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
+        await deleteVolunteeringService(req.user.id, Number(req.params.id));
         res.status(204).json({});
     },
 );

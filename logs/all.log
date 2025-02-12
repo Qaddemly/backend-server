@@ -4418,3 +4418,69 @@
 [35m[39m
 2025-02-12 17:49:13:4913 [35mhttp[39m: [35mDELETE /api/v1/user/project/4 204 - - 337.664 ms[39m
 [35m[39m
+2025-02-12 18:05:06:56 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-12 18:05:06:56 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-12 18:05:07:57 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-12 18:07:48:748 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-12 18:07:48:748 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-12 18:07:50:750 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-12 19:21:01:211 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-12 19:21:01:211 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-12 19:21:03:213 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-12 19:21:32:2132 [31merror[39m: [31mnull value in column "name" of relation "account_project" violates not-null constraint[39m
+2025-02-12 19:21:32:2132 [35mhttp[39m: [35mPOST /api/v1/user/volunteering 500 1231 - 723.293 ms[39m
+[35m[39m
+2025-02-12 19:22:15:2215 [31merror[39m: [31mnull value in column "name" of relation "account_project" violates not-null constraint[39m
+2025-02-12 19:22:15:2215 [35mhttp[39m: [35mPOST /api/v1/user/volunteering 500 1231 - 460.936 ms[39m
+[35m[39m
+2025-02-12 19:22:59:2259 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-12 19:22:59:2259 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-12 19:23:00:230 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-12 19:23:38:2338 [35mhttp[39m: [35mPOST /api/v1/user/volunteering 201 231 - 551.355 ms[39m
+[35m[39m
+2025-02-12 19:23:42:2342 [31merror[39m: [31mExpected double-quoted property name in JSON at position 32 (line 3 column 1)[39m
+2025-02-12 19:23:42:2342 [35mhttp[39m: [35mPOST /api/v1/user/volunteering 400 1167 - 135.802 ms[39m
+[35m[39m
+2025-02-12 19:23:48:2348 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 19:23:48:2348 [35mhttp[39m: [35mPOST /api/v1/user/volunteering 400 162 - 303.110 ms[39m
+[35m[39m
+2025-02-12 19:23:58:2358 [35mhttp[39m: [35mPOST /api/v1/user/volunteering 201 232 - 478.996 ms[39m
+[35m[39m
+2025-02-12 19:25:42:2542 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-12 19:25:43:2543 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-12 19:25:44:2544 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-12 19:25:47:2547 [35mhttp[39m: [35mGET /api/v1/user/volunteering/1 200 212 - 345.694 ms[39m
+[35m[39m
+2025-02-12 19:25:50:2550 [35mhttp[39m: [35mGET /api/v1/user/volunteering/2 200 213 - 281.383 ms[39m
+[35m[39m
+2025-02-12 19:27:59:2759 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-12 19:28:00:280 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-12 19:28:01:281 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-12 19:28:03:283 [35mhttp[39m: [35mGET /api/v1/user/volunteering/user/2 404 72 - 170.055 ms[39m
+[35m[39m
+2025-02-12 19:28:10:2810 [31merror[39m: [31mNo user found with that ID[39m
+2025-02-12 19:28:10:2810 [35mhttp[39m: [35mGET /api/v1/user/volunteerings/user/2 404 835 - 407.428 ms[39m
+[35m[39m
+2025-02-12 19:30:08:308 [35mhttp[39m: [35mGET /api/v1/user/volunteerings/user/1 200 397 - 497.108 ms[39m
+[35m[39m
+2025-02-12 19:32:43:3243 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-12 19:32:44:3244 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-12 19:32:45:3245 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-12 19:32:49:3249 [35mhttp[39m: [35mGET /api/v1/user/myVolunteerings 200 397 - 487.373 ms[39m
+[35m[39m
+2025-02-12 19:39:58:3958 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-12 19:39:59:3959 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-12 19:40:01:401 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-12 19:40:56:4056 [35mhttp[39m: [35mGET /api/v1/user/volunteering/1 200 212 - 433.096 ms[39m
+[35m[39m
+2025-02-12 19:41:12:4112 [35mhttp[39m: [35mPUT /api/v1/user/volunteering/1 200 212 - 390.566 ms[39m
+[35m[39m
+2025-02-12 19:41:21:4121 [35mhttp[39m: [35mPUT /api/v1/user/volunteering/1 200 214 - 347.114 ms[39m
+[35m[39m
+2025-02-12 19:44:00:440 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-12 19:44:01:441 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-12 19:44:02:442 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-12 19:44:09:449 [35mhttp[39m: [35mDELETE /api/v1/user/volunteering/1 204 - - 543.917 ms[39m
+[35m[39m
+2025-02-12 19:44:18:4418 [35mhttp[39m: [35mDELETE /api/v1/user/volunteering/2 204 - - 313.513 ms[39m
+[35m[39m

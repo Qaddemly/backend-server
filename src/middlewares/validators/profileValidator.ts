@@ -445,3 +445,67 @@ export const updateProjectValidator: ValidationChain[] = [
         .notEmpty()
         .withMessage('Link cannot be empty'),
 ];
+
+export const createVolunteeringValidator: ValidationChain[] = [
+    body('organization')
+        .trim()
+        .notEmpty()
+        .withMessage('Organization cannot be empty')
+        .isString()
+        .withMessage('Organization must be a string'),
+
+    body('role')
+        .trim()
+        .notEmpty()
+        .withMessage('Role cannot be empty')
+        .isString()
+        .withMessage('Role must be a string'),
+
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description must be a string'),
+
+    body('start_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid start date'),
+
+    body('end_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid end date'),
+];
+
+export const updateVolunteeringValidator: ValidationChain[] = [
+    body('organization')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Organization cannot be empty')
+        .isString()
+        .withMessage('Organization must be a string'),
+
+    body('role')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Role cannot be empty')
+        .isString()
+        .withMessage('Role must be a string'),
+
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description must be a string'),
+
+    body('start_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid start date'),
+
+    body('end_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid end date'),
+];

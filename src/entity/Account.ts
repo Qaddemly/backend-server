@@ -24,6 +24,7 @@ import { Job } from './Job';
 import { Phone } from './Phone';
 import { Resume } from './Resume';
 import { AccountProject } from './AccountProject';
+import { AccountVolunteering } from './AccountVolunteering';
 
 @Entity()
 export class Account {
@@ -129,6 +130,13 @@ export class Account {
         { cascade: true },
     )
     projects: AccountProject[];
+
+    @OneToMany(
+        () => AccountVolunteering,
+        (accountVolunteering) => accountVolunteering.account,
+        { cascade: true },
+    )
+    volunteering: AccountVolunteering[];
 
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;

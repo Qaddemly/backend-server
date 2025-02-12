@@ -534,3 +534,8 @@
 2025-02-12 17:28:42:2842 [31merror[39m: [31mNo project found with that ID[39m
 2025-02-12 17:32:24:3224 [31merror[39m: [31mNo user found with that ID[39m
 2025-02-12 17:45:18:4518 [31merror[39m: [31mNo project found with that ID[39m
+2025-02-12 19:21:32:2132 [31merror[39m: [31mnull value in column "name" of relation "account_project" violates not-null constraint[39m
+2025-02-12 19:22:15:2215 [31merror[39m: [31mnull value in column "name" of relation "account_project" violates not-null constraint[39m
+2025-02-12 19:23:42:2342 [31merror[39m: [31mExpected double-quoted property name in JSON at position 32 (line 3 column 1)[39m
+2025-02-12 19:23:48:2348 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 19:28:10:2810 [31merror[39m: [31mNo user found with that ID[39m

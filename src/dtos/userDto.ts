@@ -31,3 +31,18 @@ export interface updateProjectDTO {
     still_working?: boolean;
     link?: string;
 }
+
+export interface createVolunteeringDTO {
+    organization: string;
+    role: string;
+    description?: string;
+    start_date?: Date;
+    end_date?: Date;
+}
+export interface updateVolunteeringDTO {
+    organization?: string;
+    role?: string;
+    description?: string;
+    start_date?: Date;
+    end_date?: Date;
+}

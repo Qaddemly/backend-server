@@ -21,6 +21,12 @@ import {
     getProjectsOfLoggedInUser,
     updateProject,
     deleteProject,
+    createVolunteering,
+    getVolunteeringById,
+    getVolunteeringsOfUserById,
+    getVolunteeringsOfLoggedInUser,
+    updateVolunteering,
+    deleteVolunteering,
 } from '../controllers/profileController';
 import {
     protect,
@@ -45,6 +51,8 @@ import {
     createUserOneResumeValidator,
     createProjectValidator,
     updateProjectValidator,
+    createVolunteeringValidator,
+    updateVolunteeringValidator,
 } from '../middlewares/validators/profileValidator';
 
 const profileRouter = Router();
@@ -158,5 +166,35 @@ profileRouter.put(
 );
 
 profileRouter.delete('/project/:id', protect, deleteProject);
+
+/**
+ * Profile Volunteering
+ * */
+
+profileRouter.post(
+    '/volunteering',
+    protect,
+    validateRequestMiddleware(createVolunteeringValidator),
+    createVolunteering,
+);
+
+profileRouter.get('/volunteering/:id', protect, getVolunteeringById);
+
+profileRouter.get(
+    '/volunteerings/user/:userId',
+    protect,
+    getVolunteeringsOfUserById,
+);
+
+profileRouter.get('/myVolunteerings', protect, getVolunteeringsOfLoggedInUser);
+
+profileRouter.put(
+    '/volunteering/:id',
+    protect,
+    validateRequestMiddleware(updateVolunteeringValidator),
+    updateVolunteering,
+);
+
+profileRouter.delete('/volunteering/:id', protect, deleteVolunteering);
 
 export default profileRouter;
