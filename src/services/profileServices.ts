@@ -17,6 +17,16 @@ import { Resume } from '../entity/Resume';
 import { ResumeRepository } from '../Repository/resumeRepository';
 import fs from 'fs';
 import path from 'path';
+import {
+    createProjectDTO,
+    createVolunteeringDTO,
+    updateProjectDTO,
+    updateVolunteeringDTO,
+} from '../dtos/userDto';
+import { AccountProjectRepository } from '../Repository/accountProjectRepository';
+import { AccountProject } from '../entity/AccountProject';
+import { AccountVolunteering } from '../entity/AccountVolunteering';
+import { AccountVolunteeringRepository } from '../Repository/accountVolunteeringRepository';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -345,4 +355,165 @@ export const updateAccountBasicInfoService = async (req: Request) => {
     delete returnedUser.number;
 
     return returnedUser;
+};
+/**
+ * Phone
+ * */
+
+export const createProjectService = async (
+    userId: number,
+    projectDTO: createProjectDTO,
+) => {
+    const user = await AccountRepository.findOneBy({ id: userId });
+    if (!user) {
+        throw new AppError('No user found with that ID', 404);
+    }
+
+    const project = new AccountProject();
+    project.name = projectDTO.name;
+    project.account = { id: userId } as Account;
+    if (projectDTO.description) project.description = projectDTO.description;
+    if (projectDTO.skills) project.skills = projectDTO.skills;
+    if (projectDTO.start_date) project.start_date = projectDTO.start_date;
+    if (projectDTO.end_date) project.end_date = projectDTO.end_date;
+    if (projectDTO.still_working)
+        project.still_working = projectDTO.still_working;
+    if (projectDTO.link) project.link = projectDTO.link;
+    return await AccountProjectRepository.save(project);
+};
+export const getProjectByIdService = async (projectId: number) => {
+    const project = await AccountProjectRepository.findOneBy({ id: projectId });
+    if (!project) {
+        throw new AppError('No project found with that ID', 404);
+    }
+    return project;
+};
+export const getProjectsOfUserIdService = async (userId: number) => {
+    const account = await AccountRepository.findOneBy({ id: userId });
+    if (!account) {
+        throw new AppError('No user found with that ID', 404);
+    }
+
+    return await AccountProjectRepository.find({
+        where: { account: { id: userId } },
+    });
+};
+export const getProjectsOfLoggedInUserService = async (userId: number) => {
+    return await AccountProjectRepository.find({
+        where: { account: { id: userId } },
+    });
+};
+export const updateProjectService = async (
+    userId: number,
+    projectId: number,
+    updateProjectDTO: updateProjectDTO,
+) => {
+    const project = await AccountProjectRepository.findOneBy({
+        account: { id: userId },
+        id: projectId,
+    });
+    if (!project) {
+        throw new AppError('No project found with that ID', 404);
+    }
+    if (updateProjectDTO.name) project.name = updateProjectDTO.name;
+    if (updateProjectDTO.description)
+        project.description = updateProjectDTO.description;
+    if (updateProjectDTO.skills) project.skills = updateProjectDTO.skills;
+    if (updateProjectDTO.start_date)
+        project.start_date = updateProjectDTO.start_date;
+    if (updateProjectDTO.end_date) project.end_date = updateProjectDTO.end_date;
+    if (updateProjectDTO.still_working)
+        project.still_working = updateProjectDTO.still_working;
+    if (updateProjectDTO.link) project.link = updateProjectDTO.link;
+    return await AccountProjectRepository.save(project);
+};
+export const deleteProjectService = async (
+    userId: number,
+    projectId: number,
+) => {
+    const project = await AccountProjectRepository.findOneBy({
+        account: { id: userId },
+        id: projectId,
+    });
+    if (!project) {
+        throw new AppError('No project found with that ID', 404);
+    }
+    await AccountProjectRepository.remove(project);
+};
+
+export const createVolunteeringService = async (
+    userId: number,
+    createVolunteeringDTO: createVolunteeringDTO,
+) => {
+    const volunteering = new AccountVolunteering();
+    volunteering.account = { id: userId } as Account;
+    volunteering.organization = createVolunteeringDTO.organization;
+    volunteering.role = createVolunteeringDTO.role;
+    if (createVolunteeringDTO.description)
+        volunteering.description = createVolunteeringDTO.description;
+    if (createVolunteeringDTO.start_date)
+        volunteering.start_date = createVolunteeringDTO.start_date;
+    if (createVolunteeringDTO.end_date)
+        volunteering.end_date = createVolunteeringDTO.end_date;
+    return await AccountVolunteeringRepository.save(volunteering);
+};
+export const getVolunteeringByIdService = async (volunteeringId: number) => {
+    const volunteering = await AccountVolunteeringRepository.findOneBy({
+        id: volunteeringId,
+    });
+    if (!volunteering) {
+        throw new AppError('No volunteering found with that ID', 404);
+    }
+    return volunteering;
+};
+export const getVolunteeringsOfUserByIdService = async (userId: number) => {
+    const account = await AccountRepository.findOneBy({ id: userId });
+    if (!account) {
+        throw new AppError('No user found with that ID', 404);
+    }
+    return await AccountVolunteeringRepository.find({
+        where: { account: { id: userId } },
+    });
+};
+export const getVolunteeringsOfLoggenInUserService = async (userId: number) => {
+    return await AccountVolunteeringRepository.find({
+        where: { account: { id: userId } },
+    });
+};
+export const updateVolunteeringService = async (
+    userId: number,
+    volunteeringId: number,
+    updateVolunteeringDTO: updateVolunteeringDTO,
+) => {
+    const volunteering = await AccountVolunteeringRepository.findOneBy({
+        account: { id: userId },
+        id: volunteeringId,
+    });
+    if (!volunteering) {
+        throw new AppError('No volunteering found with that ID', 404);
+    }
+    if (updateVolunteeringDTO.organization)
+        volunteering.organization = updateVolunteeringDTO.organization;
+    if (updateVolunteeringDTO.role)
+        volunteering.role = updateVolunteeringDTO.role;
+    if (updateVolunteeringDTO.description)
+        volunteering.description = updateVolunteeringDTO.description;
+    if (updateVolunteeringDTO.start_date)
+        volunteering.start_date = updateVolunteeringDTO.start_date;
+    if (updateVolunteeringDTO.end_date)
+        volunteering.end_date = updateVolunteeringDTO.end_date;
+    return await AccountVolunteeringRepository.save(volunteering);
+};
+export const deleteVolunteeringService = async (
+    userId: number,
+    volunteeringId: number,
+) => {
+    const volunteering = await AccountVolunteeringRepository.findOneBy({
+        account: { id: userId },
+        id: volunteeringId,
+    });
+    if (!volunteering) {
+        throw new AppError('No volunteering found with that ID', 404);
+    }
+    await AccountVolunteeringRepository.remove(volunteering);
 };

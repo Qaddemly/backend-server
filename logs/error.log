@@ -262,154 +262,6 @@
 2024-12-17 03:42:47:4247 [31merror[39m: [31mNo resumes provided[39m
 2024-12-17 03:44:31:4431 [31merror[39m: [31mNo resume found with that ID[39m
 2024-12-17 03:55:22:5522 [31merror[39m: [31mNo resume found with that ID[39m
-<<<<<<< HEAD
-2024-12-17 15:28:30:2830 [31merror[39m: [31mRelation with property path job_applicationssaved_jobs in entity was not found.[39m
-2024-12-17 15:31:07:317 [31merror[39m: [31mNo resume found with that ID[39m
-2024-12-17 15:33:57:3357 [31merror[39m: [31mduplicate key value violates unique constraint "PK_54115ee388cdb6d86bb4bf5b2ea"[39m
-2024-12-17 15:48:51:4851 [31merror[39m: [31mduplicate key value violates unique constraint "PK_54115ee388cdb6d86bb4bf5b2ea"[39m
-2024-12-17 15:55:56:5556 [31merror[39m: [31m"job_application" alias was not found. Maybe you forgot to join it?[39m
-2024-12-17 15:56:52:5652 [31merror[39m: [31mRelation with property path job_application.job in entity was not found.[39m
-2024-12-17 15:57:17:5717 [31merror[39m: [31mRelation with property path job_application in entity was not found.[39m
-2024-12-17 15:58:44:5844 [31merror[39m: [31mcolumn "job" does not exist[39m
-2024-12-17 16:00:54:054 [31merror[39m: [31mJob already saved[39m
-2024-12-17 16:18:59:1859 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:21:38:2138 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:22:41:2241 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:23:56:2356 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:24:34:2434 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:29:37:2937 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:33:33:3333 [31merror[39m: [31mvalidationErrors[39m
-2024-12-17 16:39:12:3912 [31merror[39m: [31mvalidationErrors[39m
-2024-12-17 16:39:54:3954 [31merror[39m: [31myou do not have permission to post job[39m
-2024-12-17 16:40:04:404 [31merror[39m: [31mResume not found[39m
-2024-12-17 16:40:53:4053 [31merror[39m: [31muser already has education[39m
-2024-12-17 16:42:27:4227 [31merror[39m: [31myou already complete your data[39m
-2024-12-17 16:43:16:4316 [31merror[39m: [31muser don`t have education[39m
-2024-12-17 16:43:35:4335 [31merror[39m: [31muser already has education[39m
-2024-12-17 16:43:47:4347 [31merror[39m: [31muser don`t have education[39m
-2024-12-17 16:47:26:4726 [31merror[39m: [31mRelation with property path education in entity was not found.[39m
-2024-12-22 23:27:19:2719 [31merror[39m: [31mcolumn "createdat" does not exist[39m
-2025-01-27 16:05:10:510 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-01-27 16:05:30:530 [31merror[39m: [31mJob already saved[39m
-2025-01-27 16:06:12:612 [31merror[39m: [31mJob already not saved[39m
-2025-01-27 22:00:03:03 [31merror[39m: [31mMissing required 'sortableColumns' config.[39m
-2025-01-27 22:05:15:515 [31merror[39m: [31minvalid input syntax for type integer: "in:java"[39m
-2025-01-27 22:05:33:533 [31merror[39m: [31minvalid input syntax for type integer: "java"[39m
-2025-01-27 22:09:00:90 [31merror[39m: [31minvalid input syntax for type integer: "java"[39m
-2025-01-27 22:13:01:131 [31merror[39m: [31minvalid input syntax for type integer: "java"[39m
-2025-01-27 22:19:31:1931 [31merror[39m: [31minvalid input syntax for type integer: "@contains:5"[39m
-2025-01-27 22:19:38:1938 [31merror[39m: [31minvalid input syntax for type integer: "contains:5"[39m
-2025-01-27 22:42:10:4210 [31merror[39m: [31mMissing required 'sortableColumns' config.[39m
-2025-01-27 22:48:03:483 [31merror[39m: [31mvalidationErrors[39m
-2025-01-27 23:12:38:1238 [31merror[39m: [31mvalidationErrors[39m
-2025-01-27 23:22:28:2228 [31merror[39m: [31mBusiness with that id not found[39m
-2025-01-27 23:24:14:2414 [31merror[39m: [31mvalidationErrors[39m
-2025-01-27 23:26:08:268 [31merror[39m: [31mvalidationErrors[39m
-2025-01-27 23:28:16:2816 [31merror[39m: [31mvalidationErrors[39m
-2025-01-27 23:38:48:3848 [31merror[39m: [31myou do not have permission to post job[39m
-2025-01-27 23:48:52:4852 [31merror[39m: [31myou do not have permission to post job[39m
-2025-01-27 23:51:41:5141 [31merror[39m: [31myou do not have permission to that action[39m
-2025-01-27 23:58:33:5833 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-01-28 00:28:36:2836 [31merror[39m: [31myou do not have permission to that action[39m
-2025-01-28 00:29:09:299 [31merror[39m: [31mBusiness with that id not found[39m
-2025-01-28 00:32:44:3244 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
-2025-01-28 01:25:26:2526 [31merror[39m: [31mBusiness with that id not found[39m
-2025-01-28 01:26:57:2657 [31merror[39m: [31mvalidationErrors[39m
-2025-01-28 01:29:03:293 [31merror[39m: [31minvalid input value for enum job_employee_type_enum: ""[39m
-2025-01-28 01:30:08:308 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "OnSite"[39m
-2025-01-28 01:33:43:3343 [31merror[39m: [31mvalidationErrors[39m
-2025-01-28 01:49:57:4957 [31merror[39m: [31mJob not found[39m
-2025-01-28 01:59:38:5938 [31merror[39m: [31mvalidationErrors[39m
-2025-01-28 02:00:14:014 [31merror[39m: [31myou do not have permission to post job[39m
-2025-01-28 02:00:24:024 [31merror[39m: [31myou do not have permission to post job[39m
-2025-01-28 02:02:15:215 [31merror[39m: [31mJob not found[39m
-2025-01-28 02:02:23:223 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-01-28 02:03:03:33 [31merror[39m: [31myou do not have permission to post job[39m
-2025-01-28 02:07:27:727 [31merror[39m: [31mJob already saved[39m
-2025-01-28 02:10:34:1034 [31merror[39m: [31mvalidationErrors[39m
-2025-01-28 02:13:21:1321 [31merror[39m: [31mvalidationErrors[39m
-2025-01-28 02:14:00:140 [31merror[39m: [31mvalidationErrors[39m
-2025-01-28 02:16:01:161 [31merror[39m: [31mJob not found[39m
-2025-01-28 02:34:16:3416 [31merror[39m: [31mJob already saved[39m
-2025-01-28 02:39:05:395 [31merror[39m: [31mJob already not saved[39m
-2025-01-28 02:44:34:4434 [31merror[39m: [31mResume not found[39m
-2025-01-28 02:46:45:4645 [31merror[39m: [31myou are member of that business ,you cant apply job [39m
-2025-01-28 02:52:32:5232 [31merror[39m: [31mExpected ',' or '}' after property value in JSON at position 15 (line 1 column 16)[39m
-2025-01-28 02:52:41:5241 [31merror[39m: [31mvalidationErrors[39m
-2025-01-28 02:54:19:5419 [31merror[39m: [31mvalidationErrors[39m
-2025-01-28 02:54:34:5434 [31merror[39m: [31mvalidationErrors[39m
-2025-01-28 02:57:05:575 [31merror[39m: [31myou do not have permission to that action[39m
-2025-01-28 02:59:02:592 [31merror[39m: [31mJob not found[39m
-2025-01-28 03:01:17:117 [31merror[39m: [31mJob not found[39m
-2025-01-28 03:02:56:256 [31merror[39m: [31mResume not found[39m
-2025-01-28 03:04:48:448 [31merror[39m: [31mResume not found[39m
-2025-01-28 03:04:53:453 [31merror[39m: [31myou do not have permission to that action[39m
-2025-01-28 03:06:24:624 [31merror[39m: [31myou have already applied to that job[39m
-2025-01-28 03:06:28:628 [31merror[39m: [31myou have already applied to that job[39m
-2025-01-28 18:46:42:4642 [31merror[39m: [31minvalid input syntax for type double precision: "500$limit=10"[39m
-2025-01-29 00:41:28:4128 [31merror[39m: [31minvalid input syntax for type double precision: "af"[39m
-2025-01-29 00:45:06:456 [31merror[39m: [31moperator does not exist: text @> unknown[39m
-2025-01-29 00:46:12:4612 [31merror[39m: [31moperator does not exist: text @> unknown[39m
-2025-01-29 01:21:16:2116 [31merror[39m: [31minvalid input syntax for type double precision: "$7:0"[39m
-2025-01-29 01:51:22:5122 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 01:52:17:5217 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 01:52:28:5228 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 01:52:38:5238 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 01:53:23:5323 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 01:54:11:5411 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 01:55:12:5512 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 01:55:33:5533 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 01:57:09:579 [31merror[39m: [31minvalid input syntax for type integer: "[node]"[39m
-2025-01-29 01:57:25:5725 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 01:58:20:5820 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "5"[39m
-2025-01-29 01:58:29:5829 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "partTime"[39m
-2025-01-29 02:01:37:137 [31merror[39m: [31minvalid input value for enum job_location_type_enum: "partTime"[39m
-2025-01-29 02:02:21:221 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
-2025-01-29 02:04:59:459 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
-2025-01-29 02:05:07:57 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
-2025-01-29 02:05:39:539 [31merror[39m: [31minvalid input syntax for type integer: "kkk"[39m
-2025-01-29 02:07:37:737 [31merror[39m: [31minvalid input syntax for type integer: "[5]"[39m
-2025-01-29 02:07:45:745 [31merror[39m: [31minvalid input syntax for type integer: "'node'"[39m
-2025-01-29 02:07:51:751 [31merror[39m: [31minvalid input syntax for type integer: "'"node""[39m
-2025-01-29 02:08:09:89 [31merror[39m: [31minvalid input syntax for type integer: ""[39m
-2025-01-29 02:11:32:1132 [31merror[39m: [31minvalid input syntax for type integer: ""[39m
-2025-01-29 02:11:37:1137 [31merror[39m: [31minvalid input syntax for type integer: "eslam"[39m
-2025-01-29 02:13:51:1351 [31merror[39m: [31minvalid input syntax for type integer: "e"[39m
-2025-01-29 02:15:50:1550 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 02:16:36:1636 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 02:16:43:1643 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 02:19:40:1940 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 02:21:07:217 [31merror[39m: [31mQueryBuilder parameter keys may only contain numbers, letters, underscores, or periods.[39m
-2025-01-29 02:24:27:2427 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 02:25:02:252 [31merror[39m: [31minvalid input syntax for type integer: "Node"[39m
-2025-01-29 02:30:12:3012 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 02:30:39:3039 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 02:33:12:3312 [31merror[39m: [31minvalid input syntax for type integer: "node"[39m
-2025-01-29 03:19:14:1914 [31merror[39m: [31mError in getting jobs[39m
-2025-01-29 03:20:53:2053 [31merror[39m: [31mError in getting jobs[39m
-2025-01-29 14:28:42:2842 [31merror[39m: [31myou are not allowed to show all applications[39m
-2025-01-29 14:31:06:316 [31merror[39m: [31myou have already applied to that job[39m
-2025-01-29 14:31:11:3111 [31merror[39m: [31myou have already applied to that job[39m
-2025-01-29 14:33:25:3325 [31merror[39m: [31myou are not allowed to show all applications[39m
-2025-01-29 14:34:20:3420 [31merror[39m: [31myou are not allowed to show all applications[39m
-2025-01-29 15:00:34:034 [31merror[39m: [31myou are not allowed to show all applications[39m
-2025-01-29 15:02:06:26 [31merror[39m: [31mvalidationErrors[39m
-2025-01-29 15:06:11:611 [31merror[39m: [31mJob not found[39m
-2025-01-29 15:06:40:640 [31merror[39m: [31mvalidationErrors[39m
-2025-01-29 15:07:13:713 [31merror[39m: [31myou are not allowed to show all applications[39m
-2025-01-29 15:08:47:847 [31merror[39m: [31myou are not allowed to do that action[39m
-2025-01-29 15:09:02:92 [31merror[39m: [31myou are not allowed to do that action[39m
-2025-01-29 16:35:58:3558 [31merror[39m: [31mError in getting jobs[39m
-2025-01-29 17:00:02:02 [31merror[39m: [31mError in getting job_applications[39m
-2025-01-29 17:00:32:032 [31merror[39m: [31mError in getting job_applications[39m
-2025-01-29 17:02:36:236 [31merror[39m: [31mError in getting job_applications[39m
-2025-01-29 17:09:05:95 [31merror[39m: [31mError in getting job_applications[39m
-2025-01-29 17:17:52:1752 [31merror[39m: [31mError in getting job_applications[39m
-2025-01-29 17:30:29:3029 [31merror[39m: [31mError in getting job_applications[39m
-2025-01-29 17:31:25:3125 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-01-29 17:31:45:3145 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-01-30 02:00:27:027 [31merror[39m: [31myou are not logged in please login to access this route[39m
-=======
 2024-12-17 10:49:54:4954 [31merror[39m: [31mPostgres Database connection failed[39m
 2024-12-17 10:50:42:5042 [31merror[39m: [31mPostgres Database connection failed[39m
 2024-12-17 11:16:38:1638 [31merror[39m: [31mUser already has role in business[39m
@@ -578,280 +430,112 @@
 2025-01-29 06:31:43:3143 [31merror[39m: [31mUser already has this role[39m
 2025-01-29 06:31:50:3150 [31merror[39m: [31mNo permission to update user with higher or same role[39m
 2025-01-29 06:31:50:3150 [31merror[39m: [31mNo permission to update user with higher or same role[39m
->>>>>>> b342ce65484528d057fdd6842bfea26f08845a83
-2025-01-30 02:03:52:352 [31merror[39m: [31mPostgres Database connection failed password authentication failed for user "postgres"[39m
-2025-01-30 02:11:56:1156 [31merror[39m: [31mvalidationErrors[39m
-2025-01-30 02:15:04:154 [31merror[39m: [31mJob not found[39m
-2025-01-30 02:17:50:1750 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
-2025-01-30 02:24:29:2429 [31merror[39m: [31mJob already saved[39m
-2025-01-30 02:24:51:2451 [31merror[39m: [31mJob not found[39m
-2025-01-30 02:43:35:4335 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 02:44:30:4430 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 02:46:58:4658 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 02:59:05:595 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 03:02:54:254 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 03:03:32:332 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 03:13:04:134 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 03:15:23:1523 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 03:16:44:1644 [31merror[39m: [31mJob already not saved[39m
-2025-01-30 03:17:07:177 [31merror[39m: [31mJob not found[39m
-2025-01-30 03:17:37:1737 [31merror[39m: [31mvalidationErrors[39m
-2025-01-30 03:18:04:184 [31merror[39m: [31mvalidationErrors[39m
-2025-01-30 03:18:29:1829 [31merror[39m: [31myou have already applied to that job[39m
-2025-01-30 15:00:55:055 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 15:02:02:22 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 15:02:38:238 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 15:03:27:327 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 15:04:51:451 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 15:05:29:529 [31merror[39m: [31mError in getting jobs[39m
-2025-01-30 18:51:03:513 [31merror[39m: [31mBusiness not found, id not found[39m
-2025-01-30 19:41:18:4118 [31merror[39m: [31mPostgres Database connection failed Data type "double" in "Business.reviewsRatingsQuantity" is not supported by "postgres" database.[39m
-2025-01-30 19:51:50:5150 [31merror[39m: [31mError creating review invalid input syntax for type numeric: "3.55.5"[39m
-2025-01-30 20:25:31:2531 [31merror[39m: [31mvalidationErrors[39m
-2025-01-30 20:25:57:2557 [31merror[39m: [31mvalidationErrors[39m
-2025-01-30 20:26:35:2635 [31merror[39m: [31mvalidationErrors[39m
-2025-01-30 20:47:36:4736 [31merror[39m: [31mError in getting jobs[39m
-2025-01-31 16:11:47:1147 [31merror[39m: [31mError in getting jobs[39m
-2025-01-31 16:13:39:1339 [31merror[39m: [31mError in getting jobs[39m
-2025-01-31 18:34:57:3457 [31merror[39m: [31myou do not have permission to that action[39m
-2025-01-31 18:37:08:378 [31merror[39m: [31myou do not have permission to that action[39m
-2025-01-31 18:56:28:5628 [31merror[39m: [31myou do not have permission to do that action[39m
-2025-01-31 18:56:53:5653 [31merror[39m: [31myou do not have permission to that action[39m
-2025-01-31 18:57:17:5717 [31merror[39m: [31mBusiness with that id not found[39m
-2025-01-31 18:57:29:5729 [31merror[39m: [31myou do not have permission to that action[39m
-2025-01-31 18:58:57:5857 [31merror[39m: [31myou do not have permission to do that action[39m
-2025-01-31 18:59:00:590 [31merror[39m: [31myou do not have permission to do that action[39m
-2025-01-31 18:59:27:5927 [31merror[39m: [31mJob is already Closed[39m
-2025-01-31 20:39:01:391 [31merror[39m: [31mJob is already Closed[39m
-2025-01-31 20:39:44:3944 [31merror[39m: [31mJob is already Archived[39m
-2025-01-31 20:41:01:411 [31merror[39m: [31mJob not found[39m
-2025-01-31 20:42:59:4259 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-01-31 20:43:39:4339 [31merror[39m: [31mJob not found[39m
-2025-01-31 20:43:45:4345 [31merror[39m: [31myou do not have permission to do that action[39m
-2025-01-31 20:44:52:4452 [31merror[39m: [31mJob is already Closed[39m
-2025-01-31 20:45:25:4525 [31merror[39m: [31mJob not found[39m
-2025-01-31 20:46:01:461 [31merror[39m: [31myou do not have permission to do that action[39m
-2025-01-31 20:48:10:4810 [31merror[39m: [31mJob is already Opened[39m
-2025-01-31 20:48:40:4840 [31merror[39m: [31mJob not found[39m
-2025-01-31 20:49:09:499 [31merror[39m: [31myou do not have permission to do that action[39m
-2025-01-31 20:49:58:4958 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-01-31 20:50:24:5024 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-01-31 21:29:54:2954 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-01-31 21:38:44:3844 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-01-31 21:39:19:3919 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-02-01 14:52:56:5256 [31merror[39m: [31mjob is no longer available [39m
-2025-02-01 14:57:27:5727 [31merror[39m: [31myou have already applied to that job[39m
-2025-02-01 14:58:43:5843 [31merror[39m: [31mJob not found[39m
-2025-02-03 14:05:51:551 [31merror[39m: [31mNo experience found with that ID[39m
-2025-02-03 14:27:27:2727 [31merror[39m: [31mNo experience found with that ID[39m
-2025-02-03 14:29:07:297 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:30:32:3032 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:30:37:3037 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:31:11:3111 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:31:22:3122 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:32:06:326 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:39:02:392 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:40:11:4011 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:40:16:4016 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:40:38:4038 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:41:33:4133 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:41:56:4156 [31merror[39m: [31muser already has education[39m
-2025-02-03 14:42:43:4243 [31merror[39m: [31muser already has education[39m
-2025-02-03 14:44:01:441 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:44:41:4441 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 14:45:56:4556 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
-2025-02-03 14:47:12:4712 [31merror[39m: [31mUnexpected field[39m
-2025-02-03 14:48:24:4824 [31merror[39m: [31mUnexpected field[39m
-2025-02-03 14:50:30:5030 [31merror[39m: [31mUnexpected field[39m
-2025-02-03 14:54:07:547 [31merror[39m: [31mUnexpected field[39m
-2025-02-03 14:56:56:5656 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
-2025-02-03 15:01:30:130 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
-2025-02-03 15:08:35:835 [31merror[39m: [31mNo resume found with that ID[39m
-2025-02-03 15:09:17:917 [31merror[39m: [31mNo resume found with that ID[39m
-2025-02-03 15:10:51:1051 [31merror[39m: [31muser don`t have education[39m
-2025-02-03 15:15:40:1540 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 15:16:19:1619 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 15:17:20:1720 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 15:17:29:1729 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 18:50:00:500 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 18:52:45:5245 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 18:54:37:5437 [31merror[39m: [31mNo language found with that ID[39m
-2025-02-03 18:55:01:551 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 18:56:31:5631 [31merror[39m: [31mNo experience found with that ID[39m
-2025-02-03 18:56:53:5653 [31merror[39m: [31mvalidationErrors[39m
-2025-02-03 18:58:21:5821 [31merror[39m: [31mNo skill found with that ID[39m
-2025-02-03 18:58:47:5847 [31merror[39m: [31mvalidationErrors[39m
-2025-02-04 15:14:43:1443 [31merror[39m: [31mCannot read properties of undefined (reading 'refreshTokens')[39m
-2025-02-04 15:15:12:1512 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-04 15:16:46:1646 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-04 15:17:00:170 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-04 15:19:41:1941 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-04 15:20:38:2038 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
-2025-02-04 16:35:28:3528 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
-2025-02-04 16:35:34:3534 [31merror[39m: [31mduplicate key value violates unique constraint "PK_98ab1c14ff8d1cf80d18703b92f"[39m
-2025-02-04 16:36:07:367 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-04 16:50:37:5037 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-04 16:53:13:5313 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-02-04 16:53:18:5318 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-02-04 16:55:03:553 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-04 16:55:23:5523 [31merror[39m: [31mJob already saved[39m
-2025-02-04 16:56:01:561 [31merror[39m: [31mJob not found[39m
-2025-02-04 17:30:18:3018 [31merror[39m: [31mPostgres Database connection failed Relation Job#saved_by_accounts and Account#saved_jobs both has cascade remove set. This may lead to unexpected circular removals. Please set cascade remove only from one side of relationship.[39m
-2025-02-06 14:50:25:5025 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 14:50:28:5028 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 14:50:38:5038 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 15:00:30:030 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 15:00:34:034 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 15:07:06:76 [31merror[39m: [31mCannot read properties of undefined (reading 'refreshTokens')[39m
-2025-02-06 15:08:08:88 [31merror[39m: [31mCannot read properties of undefined (reading 'refreshTokens')[39m
-2025-02-06 15:12:57:1257 [31merror[39m: [31mCannot read properties of undefined (reading 'refreshTokens')[39m
-2025-02-06 16:25:37:2537 [31merror[39m: [31mJob already saved[39m
-2025-02-06 16:28:54:2854 [31merror[39m: [31mJob already saved[39m
-2025-02-06 16:33:12:3312 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 16:33:17:3317 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 16:33:21:3321 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 16:34:37:3437 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 16:35:08:358 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 17:08:52:852 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 17:23:37:2337 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 17:26:48:2648 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 17:33:27:3327 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-06 17:33:46:3346 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
-2025-02-06 17:35:58:3558 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
-2025-02-06 17:37:14:3714 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
-2025-02-06 17:38:47:3847 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
-2025-02-06 17:38:47:3847 [31merror[39m: [31mError creating review[39m
-2025-02-06 17:40:30:4030 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
-2025-02-06 17:40:30:4030 [31merror[39m: [31mError creating review[39m
-2025-02-06 17:40:48:4048 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
-2025-02-06 17:40:48:4048 [31merror[39m: [31mError creating review[39m
-2025-02-06 20:10:23:1023 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
-2025-02-06 20:10:23:1023 [31merror[39m: [31mError creating review[39m
-2025-02-06 20:12:19:1219 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
-2025-02-06 20:12:19:1219 [31merror[39m: [31mError creating review[39m
-2025-02-06 20:14:21:1421 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
-2025-02-06 20:14:21:1421 [31merror[39m: [31mError creating review[39m
-2025-02-06 20:16:13:1613 [31merror[39m: [31mError creating review Property "business" was not found in "Account". Make sure your query is correct.[39m
-2025-02-06 20:16:13:1613 [31merror[39m: [31mError creating review[39m
-2025-02-06 20:17:14:1714 [31merror[39m: [31mError creating review You have already reviewed this business[39m
-2025-02-06 20:17:14:1714 [31merror[39m: [31mError creating review[39m
-2025-02-06 20:20:31:2031 [31merror[39m: [31mError creating review You have already reviewed this business[39m
-2025-02-06 20:20:31:2031 [31merror[39m: [31mYou have already reviewed this business[39m
-2025-02-06 20:23:59:2359 [31merror[39m: [31mError creating review You have already reviewed this business[39m
-2025-02-06 20:23:59:2359 [31merror[39m: [31mYou have already reviewed this business[39m
-2025-02-06 20:25:54:2554 [31merror[39m: [31mError creating review You have already reviewed this business[39m
-2025-02-06 20:25:54:2554 [31merror[39m: [31mYou have already reviewed this business[39m
-2025-02-06 20:26:25:2625 [31merror[39m: [31mError creating review You have already reviewed this business[39m
-2025-02-06 20:26:25:2625 [31merror[39m: [31mYou have already reviewed this business[39m
-2025-02-06 20:26:52:2652 [31merror[39m: [31mBusiness not found, id not found[39m
-2025-02-06 20:26:52:2652 [31merror[39m: [31mError creating review Business not found[39m
-2025-02-06 20:26:52:2652 [31merror[39m: [31mBusiness not found[39m
-2025-02-06 20:38:42:3842 [31merror[39m: [31mExpected double-quoted property name in JSON at position 50 (line 6 column 1)[39m
-2025-02-06 20:38:48:3848 [31merror[39m: [31mvalidationErrors[39m
-2025-02-06 20:40:13:4013 [31merror[39m: [31mvalidationErrors[39m
-2025-02-06 20:40:26:4026 [31merror[39m: [31mError creating review You have already reviewed this business[39m
-2025-02-06 20:40:26:4026 [31merror[39m: [31mYou have already reviewed this business[39m
-2025-02-06 20:42:17:4217 [31merror[39m: [31mError creating review You have already reviewed this business[39m
-2025-02-06 20:42:17:4217 [31merror[39m: [31mYou have already reviewed this business[39m
-2025-02-06 20:42:54:4254 [31merror[39m: [31mvalidationErrors[39m
-2025-02-06 20:45:22:4522 [31merror[39m: [31mError creating review You have already reviewed this business[39m
-2025-02-06 20:45:22:4522 [31merror[39m: [31mYou have already reviewed this business[39m
-2025-02-06 21:15:01:151 [31merror[39m: [31mExpected double-quoted property name in JSON at position 78 (line 4 column 1)[39m
-2025-02-06 21:16:16:1616 [31merror[39m: [31mvalidationErrors[39m
-2025-02-06 21:17:18:1718 [31merror[39m: [31mvalidationErrors[39m
-2025-02-06 21:18:13:1813 [31merror[39m: [31mReview not found[39m
-2025-02-06 21:19:06:196 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-02-06 21:20:34:2034 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-02-06 21:21:56:2156 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-02-06 21:22:37:2237 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-02-06 21:23:24:2324 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-02-06 21:24:07:247 [31merror[39m: [31myou don`t have access to do this action[39m
-2025-02-06 21:27:33:2733 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-02-06 21:59:33:5933 [31merror[39m: [31mvalidationErrors[39m
-2025-02-06 22:00:09:09 [31merror[39m: [31mReview not found[39m
-2025-02-06 22:00:28:028 [31merror[39m: [31myou don`t have access to do this action[39m
-2025-02-07 00:20:33:2033 [31merror[39m: [31mvalidationErrors[39m
-2025-02-07 00:20:49:2049 [31merror[39m: [31mvalidationErrors[39m
-2025-02-07 17:07:44:744 [31merror[39m: [31mNo resumes provided[39m
-2025-02-07 17:09:02:92 [31merror[39m: [31mUnexpected field[39m
-2025-02-07 17:23:55:2355 [31merror[39m: [31mError saving file to disk.[39m
-2025-02-07 17:32:06:326 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-07 17:32:10:3210 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-07 18:52:59:5259 [31merror[39m: [31mError saving file to disk.[39m
-2025-02-07 18:55:24:5524 [31merror[39m: [31mError saving file to disk.[39m
-2025-02-07 18:56:42:5642 [31merror[39m: [31mNo resumes provided[39m
-2025-02-07 19:00:45:045 [31merror[39m: [31mENOENT: no such file or directory, open 'E:\me\graduation_project\backend-server\src\uploads\resumes\resume-823663569-1738947645357.pdf'[39m
-2025-02-07 19:01:09:19 [31merror[39m: [31mENOENT: no such file or directory, open 'E:\me\graduation_project\backend-server\src\uploads\resumes\resume-870063359-1738947669426.pdf'[39m
-2025-02-07 19:04:15:415 [31merror[39m: [31merror while saving file[39m
-2025-02-07 20:03:21:321 [31merror[39m: [31myou already complete your data[39m
-2025-02-09 16:24:04:244 [31merror[39m: [31mvalidationErrors[39m
-2025-02-09 16:24:41:2441 [31merror[39m: [31merror while deleting skills[39m
-2025-02-09 16:32:29:3229 [31merror[39m: [31mvalidationErrors[39m
-2025-02-09 16:35:20:3520 [31merror[39m: [31mvalidationErrors[39m
-2025-02-09 16:35:31:3531 [31merror[39m: [31mvalidationErrors[39m
-2025-02-09 16:36:10:3610 [31merror[39m: [31mvalidationErrors[39m
-2025-02-09 16:37:02:372 [31merror[39m: [31mvalidationErrors[39m
-2025-02-09 16:38:41:3841 [31merror[39m: [31mCannot read properties of undefined (reading 'map')[39m
-2025-02-09 16:39:26:3926 [31merror[39m: [31merror while deleting languages[39m
-2025-02-09 16:39:54:3954 [31merror[39m: [31merror while deleting languages[39m
-2025-02-09 16:40:57:4057 [31merror[39m: [31mvalidationErrors[39m
-2025-02-09 16:41:55:4155 [31merror[39m: [31mvalidationErrors[39m
-2025-02-09 16:47:21:4721 [31merror[39m: [31mcolumn "arabic" does not exist[39m
-2025-02-09 16:50:46:5046 [31merror[39m: [31mcolumn "arabic" does not exist[39m
-2025-02-09 16:52:52:5252 [31merror[39m: [31msome languages already added[39m
-2025-02-09 16:53:58:5358 [31merror[39m: [31msome languages already added[39m
-2025-02-09 16:56:17:5617 [31merror[39m: [31msome languages already added[39m
-2025-02-09 16:57:14:5714 [31merror[39m: [31msome languages already added[39m
-2025-02-09 16:57:42:5742 [31merror[39m: [31msome languages already added[39m
-2025-02-09 16:58:49:5849 [31merror[39m: [31mvalidationErrors[39m
-2025-02-09 16:58:59:5859 [31merror[39m: [31msome languages already added[39m
-2025-02-09 17:00:51:051 [31merror[39m: [31merror while deleting languages[39m
-2025-02-09 17:01:19:119 [31merror[39m: [31merror while deleting languages[39m
-2025-02-09 17:03:59:359 [31merror[39m: [31mError in getting jobs[39m
-2025-02-09 17:15:10:1510 [31merror[39m: [31mError in getting jobs[39m
-2025-02-09 23:11:57:1157 [31merror[39m: [31mvalidationErrors[39m
-2025-02-09 23:12:59:1259 [31merror[39m: [31myou do not have permission to that action[39m
-2025-02-09 23:15:03:153 [31merror[39m: [31myou have already applied to that job[39m
-2025-02-09 23:15:23:1523 [31merror[39m: [31myou are not allowed to do that action[39m
-2025-02-09 23:17:42:1742 [31merror[39m: [31mField name missing[39m
-2025-02-09 23:17:57:1757 [31merror[39m: [31mField name missing[39m
-2025-02-09 23:18:17:1817 [31merror[39m: [31mField name missing[39m
-2025-02-09 23:19:46:1946 [31merror[39m: [31mField name missing[39m
-2025-02-09 23:37:36:3736 [31merror[39m: [31mPostgres Database connection failed column "account_id" is in a primary key[39m
-2025-02-09 23:41:38:4138 [31merror[39m: [31myou already complete your data[39m
-2025-02-09 23:41:54:4154 [31merror[39m: [31myou already complete your data[39m
-2025-02-09 23:54:05:545 [31merror[39m: [31myou already complete your data[39m
-2025-02-09 23:57:39:5739 [31merror[39m: [31mUnexpected field[39m
-2025-02-09 23:58:57:5857 [31merror[39m: [31myou already complete your data[39m
-2025-02-10 00:32:06:326 [31merror[39m: [31mnull value in column "field_of_study" of relation "education" violates not-null constraint[39m
-2025-02-10 00:42:50:4250 [31merror[39m: [31mnull value in column "name" of relation "skill" violates not-null constraint[39m
-2025-02-10 00:57:09:579 [31merror[39m: [31merror while deleting skills[39m
-2025-02-10 00:57:15:5715 [31merror[39m: [31merror while deleting skills[39m
-2025-02-10 00:57:24:5724 [31merror[39m: [31merror while deleting skills[39m
-2025-02-10 01:10:14:1014 [31merror[39m: [31mnull value in column "job_title" of relation "experience" violates not-null constraint[39m
-2025-02-10 01:11:36:1136 [31merror[39m: [31mnull value in column "employment_type" of relation "experience" violates not-null constraint[39m
-2025-02-10 01:22:43:2243 [31merror[39m: [31mnull value in column "name" of relation "skill" violates not-null constraint[39m
-2025-02-10 01:36:01:361 [31merror[39m: [31myou already complete your data[39m
-2025-02-10 01:39:45:3945 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 01:42:01:421 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 01:42:20:4220 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 01:42:27:4227 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 01:44:04:444 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 01:46:22:4622 [31merror[39m: [31myou already complete your data[39m
-2025-02-10 01:46:52:4652 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 01:47:14:4714 [31merror[39m: [31myou already complete your data[39m
-2025-02-10 01:48:54:4854 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 01:49:17:4917 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 01:49:24:4924 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 01:49:38:4938 [31merror[39m: [31myou already complete your data[39m
-2025-02-10 01:50:44:5044 [31merror[39m: [31maccountTempData is already exists , please delete accountTempData for accountId 12[39m
-2025-02-10 01:50:51:5051 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 01:51:03:513 [31merror[39m: [31maccountTempData is already exists , please delete accountTempData for accountId 13[39m
-2025-02-10 01:53:31:5331 [31merror[39m: [31mvalidationErrors[39m
-2025-02-10 02:00:27:027 [31merror[39m: [31merror while deleting skills[39m
-2025-02-10 02:00:35:035 [31merror[39m: [31msome languages already added[39m
-2025-02-10 02:00:46:046 [31merror[39m: [31msome languages already added[39m
-2025-02-10 02:01:43:143 [31merror[39m: [31msome languages already added[39m
-2025-02-10 02:02:38:238 [31merror[39m: [31merror while deleting languages[39m
-2025-02-10 02:02:44:244 [31merror[39m: [31merror while deleting languages[39m
-2025-02-10 02:02:52:252 [31merror[39m: [31merror while deleting languages[39m
+2025-01-29 06:44:06:446 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 06:44:53:4453 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 06:45:44:4544 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 06:51:03:513 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 06:51:03:513 [31merror[39m: [31mUser does not have permission to access this section[39m
+2025-01-29 06:53:10:5310 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 06:53:10:5310 [31merror[39m: [31mAccess denied[39m
+2025-01-29 07:05:06:56 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 07:05:26:526 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 07:05:33:533 [31merror[39m: [31mvalidationErrors[39m
+2025-01-29 07:05:54:554 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 07:05:54:554 [31merror[39m: [31mAccess denied[39m
+2025-01-29 07:06:15:615 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-01-29 07:06:44:644 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-01-29 07:07:14:714 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 07:07:14:714 [31merror[39m: [31mAccess denied[39m
+2025-01-29 07:07:31:731 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-01-29 07:07:31:731 [31merror[39m: [31mAccess denied[39m
+2025-02-05 10:39:58:3958 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-05 10:40:40:4040 [31merror[39m: [31mUser already has role in business[39m
+2025-02-05 10:40:40:4040 [31merror[39m: [31mUser already has role in business[39m
+2025-02-05 16:06:41:641 [31merror[39m: [31mvalidationErrors[39m
+2025-02-05 16:07:27:727 [31merror[39m: [31moperator does not exist: business_phone_country_code_enum = integer[39m
+2025-02-05 16:09:11:911 [31merror[39m: [31mbind message supplies 2 parameters, but prepared statement "" requires 0[39m
+2025-02-05 17:35:21:3521 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-05 17:35:21:3521 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-05 17:35:38:3538 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-05 17:35:38:3538 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-05 17:38:01:381 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-05 17:38:01:381 [31merror[39m: [31mAccess denied[39m
+2025-02-05 17:39:00:390 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-05 17:39:00:390 [31merror[39m: [31mAccess denied[39m
+2025-02-05 17:39:16:3916 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:43:21:4321 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:43:25:4325 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-08 16:43:25:4325 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-08 16:47:48:4748 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 16:47:48:4748 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 16:49:34:4934 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-08 16:49:34:4934 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-08 16:51:05:515 [31merror[39m: [31mPhone number already exist in database[39m
+2025-02-08 16:51:05:515 [31merror[39m: [31mPhone number already is already used[39m
+2025-02-08 16:54:09:549 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 16:54:09:549 [31merror[39m: [31mAccess denied[39m
+2025-02-08 16:54:49:5449 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 16:54:49:5449 [31merror[39m: [31mAccess denied[39m
+2025-02-08 16:54:57:5457 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:55:12:5512 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:55:33:5533 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 16:55:45:5545 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 17:00:24:024 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:00:24:024 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:02:18:218 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:02:18:218 [31merror[39m: [31mPhone number not found[39m
+2025-02-08 17:02:41:241 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:02:41:241 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:14:11:1411 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:14:11:1411 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:14:28:1428 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:14:28:1428 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:16:03:163 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-08 17:16:03:163 [31merror[39m: [31mAccess denied[39m
+2025-02-08 17:16:49:1649 [31merror[39m: [31mBusiness not found[39m
+2025-02-08 17:16:49:1649 [31merror[39m: [31mBusiness not found[39m
+2025-02-08 17:19:43:1943 [31merror[39m: [31mBusiness already followed[39m
+2025-02-08 17:20:43:2043 [31merror[39m: [31mBusiness not followed[39m
+2025-02-08 17:27:23:2723 [31merror[39m: [31mUser cannot Add/Edit/Delete himself[39m
+2025-02-08 17:29:15:2915 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-02-08 17:29:27:2927 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 17:29:27:2927 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 17:29:57:2957 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 17:30:14:3014 [31merror[39m: [31mUser already has role in business[39m
+2025-02-08 17:30:26:3026 [31merror[39m: [31mUser dont have authority to delete super admin, cannot be deleted[39m
+2025-02-08 23:27:10:2710 [31merror[39m: [31mvalidationErrors[39m
+2025-02-08 23:27:51:2751 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:14:45:1445 [31merror[39m: [31minvalid reference to FROM-clause entry for table "account"[39m
+2025-02-09 11:18:07:187 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:21:28:2128 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:22:25:2225 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:22:25:2225 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:22:29:2229 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:22:29:2229 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 11:27:01:271 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:27:13:2713 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:28:02:282 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:29:55:2955 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:38:43:3843 [31merror[39m: [31mCannot read properties of undefined (reading 'country_code')[39m
+2025-02-09 11:40:10:4010 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:40:33:4033 [31merror[39m: [31mnull value in column "phone_number" of relation "business_phone" violates not-null constraint[39m
+2025-02-09 11:41:19:4119 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 11:42:15:4215 [31merror[39m: [31mvalidationErrors[39m
+2025-02-09 14:12:46:1246 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-09 14:12:46:1246 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-10 21:23:17:2317 [31merror[39m: [31mPostgres Database connection failed column "account_id" is in a primary key[39m
+2025-02-11 20:51:53:5153 [31merror[39m: [31mCannot set properties of null (setting 'googleId')[39m
+2025-02-12 16:32:41:3241 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 16:33:02:332 [31merror[39m: [31mCannot read properties of undefined (reading 'length')[39m
+2025-02-12 16:36:28:3628 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 17:08:44:844 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 17:13:31:1331 [31merror[39m: [31mnull value in column "description" of relation "account_project" violates not-null constraint[39m
+2025-02-12 17:14:30:1430 [31merror[39m: [31mnull value in column "skills" of relation "account_project" violates not-null constraint[39m
+2025-02-12 17:28:42:2842 [31merror[39m: [31mNo project found with that ID[39m
+2025-02-12 17:32:24:3224 [31merror[39m: [31mNo user found with that ID[39m
+2025-02-12 17:45:18:4518 [31merror[39m: [31mNo project found with that ID[39m
+2025-02-12 19:21:32:2132 [31merror[39m: [31mnull value in column "name" of relation "account_project" violates not-null constraint[39m
+2025-02-12 19:22:15:2215 [31merror[39m: [31mnull value in column "name" of relation "account_project" violates not-null constraint[39m
+2025-02-12 19:23:42:2342 [31merror[39m: [31mExpected double-quoted property name in JSON at position 32 (line 3 column 1)[39m
+2025-02-12 19:23:48:2348 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 19:28:10:2810 [31merror[39m: [31mNo user found with that ID[39m

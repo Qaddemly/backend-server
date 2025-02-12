@@ -8,7 +8,8 @@ temp/
 src/data-source.ts
 logs/
 src/uploads/
-
+logs/all.log
+logs/error.log
 
 dist/
 .env

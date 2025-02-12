@@ -350,3 +350,162 @@ export const updateUserBasicInfoValidator: ValidationChain[] = [
         .isAlpha()
         .withMessage('City must be a string of alphabets'),
 ];
+
+export const createProjectValidator: ValidationChain[] = [
+    body('name')
+        .trim()
+        .notEmpty()
+        .withMessage('Name cannot be empty')
+        .isString()
+        .withMessage('Name must be a string'),
+
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description must be a string'),
+
+    body('skills')
+        .optional()
+        .isArray({ min: 1 }) // Ensure 'skills' is an array and not empty
+        .withMessage('Skills must be a non-empty array'),
+
+    body('skills.*')
+        .if(body('skills').exists())
+        .trim()
+        .isString()
+        .notEmpty()
+        .withMessage('Each skill must be a non-empty string'),
+
+    body('start_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid start date'),
+
+    body('end_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid end date'),
+
+    body('still_working')
+        .optional()
+        .isBoolean()
+        .withMessage('Still working must be a boolean'),
+
+    body('link')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Link cannot be empty'),
+];
+
+export const updateProjectValidator: ValidationChain[] = [
+    body('name')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Name cannot be empty')
+        .isString()
+        .withMessage('Name must be a string'),
+
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description must be a string'),
+
+    body('skills')
+        .optional()
+        .isArray() // Ensure 'skills' is an array and not empty
+        .withMessage('Skills must be array'),
+
+    body('skills.*')
+        .if(body('skills').exists())
+        .trim()
+        .isString()
+        .notEmpty()
+        .withMessage('Each skill must be a non-empty string'),
+
+    body('start_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid start date'),
+
+    body('end_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid end date'),
+
+    body('still_working')
+        .optional()
+        .isBoolean()
+        .withMessage('Still working must be a boolean'),
+
+    body('link')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Link cannot be empty'),
+];
+
+export const createVolunteeringValidator: ValidationChain[] = [
+    body('organization')
+        .trim()
+        .notEmpty()
+        .withMessage('Organization cannot be empty')
+        .isString()
+        .withMessage('Organization must be a string'),
+
+    body('role')
+        .trim()
+        .notEmpty()
+        .withMessage('Role cannot be empty')
+        .isString()
+        .withMessage('Role must be a string'),
+
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description must be a string'),
+
+    body('start_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid start date'),
+
+    body('end_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid end date'),
+];
+
+export const updateVolunteeringValidator: ValidationChain[] = [
+    body('organization')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Organization cannot be empty')
+        .isString()
+        .withMessage('Organization must be a string'),
+
+    body('role')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Role cannot be empty')
+        .isString()
+        .withMessage('Role must be a string'),
+
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description must be a string'),
+
+    body('start_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid start date'),
+
+    body('end_date')
+        .optional()
+        .isDate({ format: 'YYYY-MM-DD' })
+        .withMessage('Invalid end date'),
+];
