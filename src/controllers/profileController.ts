@@ -16,8 +16,16 @@ import {
     deleteUserOneResumeService,
     addUserOneResumeService,
     getAllUserResumesService,
+    createProjectService,
+    getProjectByIdService,
+    getProjectsOfUserIdService,
+    getProjectsOfLoggedInUserService,
+    updateProjectService,
+    deleteProjectService,
 } from '../services/profileServices';
 import catchAsync from 'express-async-handler';
+import { createProjectDTO, updateProjectDTO } from '../dtos/userDto';
+import { interfaces } from 'inversify';
 
 export const deleteMe = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
@@ -205,5 +213,81 @@ export const updateUserBasicInfo = catchAsync(
         } catch (err) {
             return next(err);
         }
+    },
+);
+
+/**
+ * User Projects
+ * */
+export const createProject = catchAsync(
+    async (
+        req: Request<{}, {}, createProjectDTO>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        const project = await createProjectService(req.user.id, req.body);
+        res.status(201).json({
+            success: true,
+            project,
+        });
+    },
+);
+
+export const getProjectById = catchAsync(
+    async (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
+        const project = await getProjectByIdService(Number(req.params.id));
+        res.status(200).json({
+            success: true,
+            project,
+        });
+    },
+);
+
+export const getProjectsOfUserById = catchAsync(
+    async (
+        req: Request<{ userId: string }>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        const projects = await getProjectsOfUserIdService(
+            Number(req.params.userId),
+        );
+        res.status(200).json({
+            success: true,
+            projects,
+        });
+    },
+);
+
+export const getProjectsOfLoggedInUser = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const projects = await getProjectsOfLoggedInUserService(req.user.id);
+        res.status(200).json({
+            success: true,
+            projects,
+        });
+    },
+);
+export const updateProject = catchAsync(
+    async (
+        req: Request<{ id: string }, {}, updateProjectDTO>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        const project = await updateProjectService(
+            req.user.id,
+            Number(req.params.id),
+            req.body,
+        );
+        res.status(200).json({
+            success: true,
+            project,
+        });
+    },
+);
+export const deleteProject = catchAsync(
+    async (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
+        await deleteProjectService(req.user.id, Number(req.params.id));
+        res.status(204).json({});
     },
 );

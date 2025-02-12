@@ -15,6 +15,12 @@ import {
     addUserOneResume,
     deleteUserOneResume,
     getAllUserResumes,
+    createProject,
+    getProjectById,
+    getProjectsOfUserById,
+    getProjectsOfLoggedInUser,
+    updateProject,
+    deleteProject,
 } from '../controllers/profileController';
 import {
     protect,
@@ -37,6 +43,8 @@ import {
     createUserOneEducationValidator,
     updateUserBasicInfoValidator,
     createUserOneResumeValidator,
+    createProjectValidator,
+    updateProjectValidator,
 } from '../middlewares/validators/profileValidator';
 
 const profileRouter = Router();
@@ -125,5 +133,30 @@ profileRouter.patch(
 );
 
 profileRouter.delete('/deleteMe', protect, deleteMe);
+
+/**
+ * Profile Projects
+ * */
+profileRouter.post(
+    '/project',
+    protect,
+    validateRequestMiddleware(createProjectValidator),
+    createProject,
+);
+
+profileRouter.get('/project/:id', protect, getProjectById);
+
+profileRouter.get('/projects/user/:userId', protect, getProjectsOfUserById);
+
+profileRouter.get('/myProjects', protect, getProjectsOfLoggedInUser);
+
+profileRouter.put(
+    '/project/:id',
+    protect,
+    validateRequestMiddleware(updateProjectValidator),
+    updateProject,
+);
+
+profileRouter.delete('/project/:id', protect, deleteProject);
 
 export default profileRouter;

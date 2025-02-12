@@ -523,3 +523,14 @@
 2025-02-09 11:42:15:4215 [31merror[39m: [31mvalidationErrors[39m
 2025-02-09 14:12:46:1246 [31merror[39m: [31mUser does not have role in business[39m
 2025-02-09 14:12:46:1246 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-10 21:23:17:2317 [31merror[39m: [31mPostgres Database connection failed column "account_id" is in a primary key[39m
+2025-02-11 20:51:53:5153 [31merror[39m: [31mCannot set properties of null (setting 'googleId')[39m
+2025-02-12 16:32:41:3241 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 16:33:02:332 [31merror[39m: [31mCannot read properties of undefined (reading 'length')[39m
+2025-02-12 16:36:28:3628 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 17:08:44:844 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 17:13:31:1331 [31merror[39m: [31mnull value in column "description" of relation "account_project" violates not-null constraint[39m
+2025-02-12 17:14:30:1430 [31merror[39m: [31mnull value in column "skills" of relation "account_project" violates not-null constraint[39m
+2025-02-12 17:28:42:2842 [31merror[39m: [31mNo project found with that ID[39m
+2025-02-12 17:32:24:3224 [31merror[39m: [31mNo user found with that ID[39m
+2025-02-12 17:45:18:4518 [31merror[39m: [31mNo project found with that ID[39m

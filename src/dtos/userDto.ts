@@ -11,3 +11,23 @@ export interface updateExperienceDTO {
     startDate: Date;
     endDate: Date;
 }
+
+export interface createProjectDTO {
+    name: string;
+    description?: string;
+    skills?: string[];
+    start_date?: Date;
+    end_date?: Date;
+    still_working?: boolean;
+    link?: string;
+}
+
+export interface updateProjectDTO {
+    name?: string;
+    description?: string;
+    skills?: string[];
+    start_date?: Date;
+    end_date?: Date;
+    still_working?: boolean;
+    link?: string;
+}

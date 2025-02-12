@@ -20,5 +20,4 @@ function validateRequestMiddleware(validations: ContextRunner[]) {
         next();
     };
 }
-
 export default validateRequestMiddleware;
