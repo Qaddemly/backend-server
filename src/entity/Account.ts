@@ -66,7 +66,7 @@ export class Account {
     about_me: string;
     @Column({ nullable: true })
     subtitle: string;
-    @Column({ type: 'simple-array', nullable: true })
+    @Column({ type: 'text', array: true, nullable: true })
     links: string[];
 
     @Column({

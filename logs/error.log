@@ -714,3 +714,29 @@
 2025-02-12 22:38:22:3822 [31merror[39m: [31minvalid or expired code[39m
 2025-02-12 22:39:04:394 [31merror[39m: [31mno userTempData founded with that token[39m
 2025-02-12 22:39:12:3912 [31merror[39m: [31memail or password is incorrect[39m
+2025-02-12 23:16:25:1625 [31merror[39m: [31mNo education found with that ID[39m
+2025-02-12 23:16:31:1631 [31merror[39m: [31mNo education found with that ID[39m
+2025-02-12 23:17:08:178 [31merror[39m: [31mNo education found with that ID[39m
+2025-02-12 23:17:26:1726 [31merror[39m: [31mUnexpected token ',', "[39m
+[31m,{"passwor"... is not valid JSON[39m
+2025-02-12 23:26:21:2621 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 23:33:29:3329 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 23:35:01:351 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 23:40:47:4047 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 23:54:06:546 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 23:54:39:5439 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 23:55:27:5527 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 23:56:03:563 [31merror[39m: [31mvalidationErrors[39m
+2025-02-12 23:56:10:5610 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 00:01:50:150 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 00:03:07:37 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 00:20:27:2027 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 00:22:18:2218 [31merror[39m: [31mmalformed array literal: ""[39m
+2025-02-13 00:23:14:2314 [31merror[39m: [31mmalformed array literal: ""[39m
+2025-02-13 00:24:20:2420 [31merror[39m: [31mmalformed array literal: ""[39m
+2025-02-13 00:26:19:2619 [31merror[39m: [31mmalformed array literal: ""[39m
+2025-02-13 00:36:02:362 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 00:37:36:3736 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 00:38:05:385 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 00:41:33:4133 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 00:46:24:4624 [31merror[39m: [31mvalidationErrors[39m

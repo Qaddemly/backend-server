@@ -14,7 +14,7 @@ export class Certificate {
     @Column()
     title: string;
     @Column()
-    organization: string;
+    issuing_organization: string;
     @Column()
     start_date: Date;
     @Column()

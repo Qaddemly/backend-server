@@ -199,10 +199,10 @@ export const updateUserOneEducationValidator: ValidationChain[] = [
         .trim()
         .notEmpty()
         .withMessage('University name cannot be empty'),
-    body('fieldOfStudy')
+    body('field_of_study')
         .optional()
         .isString()
-        .withMessage('university must be a string')
+        .withMessage('field_of_study must be a string')
         .trim()
         .notEmpty()
         .withMessage('Field of study cannot be empty'),
@@ -353,6 +353,23 @@ export const updateUserBasicInfoValidator: ValidationChain[] = [
         .withMessage('City cannot be empty')
         .isAlpha()
         .withMessage('City must be a string of alphabets'),
+    body('links')
+        .optional({ nullable: true })
+        .isArray({ min: 0 })
+        .withMessage('links must be an array of strings'),
+    body('links.*')
+        .optional()
+        .isURL()
+        .withMessage('Each link must be a valid URL')
+        .trim(),
+    body('about_me')
+        .optional({ nullable: true })
+        .isString()
+        .withMessage('about_me must be a string'),
+    body('subtitle')
+        .optional({ nullable: true })
+        .isString()
+        .withMessage('subtitle must be a string'),
 ];
 
 export const createProjectValidator: ValidationChain[] = [

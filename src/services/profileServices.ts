@@ -306,19 +306,14 @@ export const updateAccountBasicInfoService = async (req: Request) => {
         phone,
         date_of_birth,
         profile_picture,
+        links,
+        about_me,
+        subtitle,
     } = req.body;
     const userId = req.user.id;
-    const updatedData = {
-        address,
-        first_name,
-        last_name,
-        email,
-        phone,
-        date_of_birth,
-        profile_picture,
-    };
+
     const updatedUser = await AccountRepository.updateUserBasicInfo(
-        updatedData,
+        req.body,
         userId,
     );
     const returnedUser = { ...updatedUser };
