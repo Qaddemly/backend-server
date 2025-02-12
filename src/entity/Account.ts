@@ -23,7 +23,11 @@ import { Skill } from './Skill';
 import { Job } from './Job';
 import { Phone } from './Phone';
 import { Resume } from './Resume';
+
 import { Certificate } from './Certificate';
+
+import { AccountProject } from './AccountProject';
+import { AccountVolunteering } from './AccountVolunteering';
 
 @Entity()
 export class Account {
@@ -128,10 +132,26 @@ export class Account {
         cascade: true,
     })
     business_roles: HrEmployee[];
+
     @OneToMany(() => Certificate, (Certificate) => Certificate.account, {
         cascade: true,
     })
     certificates: Certificate[];
+
+    @OneToMany(
+        () => AccountProject,
+        (accountProject) => accountProject.account,
+        { cascade: true },
+    )
+    projects: AccountProject[];
+
+    @OneToMany(
+        () => AccountVolunteering,
+        (accountVolunteering) => accountVolunteering.account,
+        { cascade: true },
+    )
+    volunteering: AccountVolunteering[];
+
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 

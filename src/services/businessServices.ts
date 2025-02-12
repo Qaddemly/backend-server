@@ -30,7 +30,6 @@ import {
     PaginationType,
 } from '../utils/pagination/typeorm-paginate';
 
-
 /**
  * TODO: mark the Account that created the business as the owner.
  * TODO: make it possible for user to add hr_employees with their roles at Creation.
@@ -82,14 +81,15 @@ export const createBusiness = async (
     await HrEmployeeRepository.save(hrEmployee);
 
     // Add the phones to the business
-    for (let inputPhone of createBusinessDto.phones) {
-        const phone = new BusinessPhone();
-        phone.business = business;
-        phone.country_code = inputPhone.country_code;
-        phone.phone_number = inputPhone.phone_number;
-        await BusinessPhoneRepository.save(phone);
+    if (createBusinessDto.phones) {
+        for (let inputPhone of createBusinessDto.phones) {
+            const phone = new BusinessPhone();
+            phone.business = business;
+            phone.country_code = inputPhone.country_code;
+            phone.phone_number = inputPhone.phone_number;
+            await BusinessPhoneRepository.save(phone);
+        }
     }
-
     Logger.info(`Business ${saved_business.id} created successfully`);
     return getBusinessDto(saved_business);
 };
