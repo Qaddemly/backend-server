@@ -1,10 +1,11 @@
+import { Address } from '../entity/Address';
 import { EmploymentType } from '../enums/employmentType';
 import { LocationType } from '../enums/locationType';
 
 export interface CreateJobBodyBTO {
     title: string;
     description: string;
-    location: string;
+    location: Address;
     location_type: LocationType;
     skills: string[];
     salary: number;

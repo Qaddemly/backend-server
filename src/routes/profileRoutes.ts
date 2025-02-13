@@ -27,6 +27,9 @@ import {
     getVolunteeringsOfLoggedInUser,
     updateVolunteering,
     deleteVolunteering,
+    createCertificate,
+    updateCertificate,
+    deleteCertificate,
 } from '../controllers/profileController';
 import {
     protect,
@@ -49,11 +52,20 @@ import {
     createUserOneEducationValidator,
     updateUserBasicInfoValidator,
     createUserOneResumeValidator,
+    idValidator,
     createProjectValidator,
     updateProjectValidator,
     createVolunteeringValidator,
     updateVolunteeringValidator,
+    createCertificateValidator,
+    certificateMediaValidator,
+    updateCertificateValidator,
+    certificateOnUpdateMediaValidator,
 } from '../middlewares/validators/profileValidator';
+import {
+    resizeCertificateImage,
+    uploadCertificateImage,
+} from '../services/profileServices';
 
 const profileRouter = Router();
 
@@ -106,7 +118,7 @@ profileRouter.delete(
 );
 
 profileRouter.put(
-    '/updateEducation',
+    '/updateEducation/:id',
     protect,
     validateRequestMiddleware(updateUserOneEducationValidator),
     updateUserOneEducation,
@@ -119,7 +131,12 @@ profileRouter.post(
     createUserOneEducation,
 );
 
-profileRouter.delete('/deleteEducation', protect, deleteUserOneEducation);
+profileRouter.delete(
+    '/deleteEducation/:id',
+    protect,
+    validateRequestMiddleware(idValidator),
+    deleteUserOneEducation,
+);
 
 profileRouter.post(
     '/addResume',
@@ -196,5 +213,30 @@ profileRouter.put(
 );
 
 profileRouter.delete('/volunteering/:id', protect, deleteVolunteering);
+profileRouter.post(
+    '/createCertificate',
+    protect,
+    uploadCertificateImage,
+    validateRequestMiddleware(createCertificateValidator),
+    resizeCertificateImage,
+    validateRequestMiddleware(certificateMediaValidator),
+    createCertificate,
+);
 
+profileRouter.put(
+    '/updateCertificate/:id',
+    protect,
+    uploadCertificateImage,
+    validateRequestMiddleware(idValidator),
+    validateRequestMiddleware(updateCertificateValidator),
+    resizeCertificateImage,
+    validateRequestMiddleware(certificateOnUpdateMediaValidator),
+    updateCertificate,
+);
+profileRouter.delete(
+    '/deleteCertificate/:id',
+    protect,
+    validateRequestMiddleware(idValidator),
+    deleteCertificate,
+);
 export default profileRouter;

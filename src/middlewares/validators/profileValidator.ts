@@ -7,6 +7,9 @@ import { CountryCode } from '../../enums/countryCode';
 import { Country } from '../../enums/country';
 import { AccountRepository } from '../../Repository/accountRepository';
 
+export const idValidator: ValidationChain[] = [
+    param('id').isInt().withMessage('id must be an integer'),
+];
 export const updateUserOneExperienceValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),
     body('jobTitle')
@@ -188,6 +191,7 @@ export const deleteUserOneLanguageValidator: ValidationChain[] = [
 ];
 
 export const updateUserOneEducationValidator: ValidationChain[] = [
+    param('id').isInt().withMessage('id must be an integer'),
     body('university')
         .optional()
         .isString()
@@ -195,10 +199,10 @@ export const updateUserOneEducationValidator: ValidationChain[] = [
         .trim()
         .notEmpty()
         .withMessage('University name cannot be empty'),
-    body('fieldOfStudy')
+    body('field_of_study')
         .optional()
         .isString()
-        .withMessage('university must be a string')
+        .withMessage('field_of_study must be a string')
         .trim()
         .notEmpty()
         .withMessage('Field of study cannot be empty'),
@@ -349,6 +353,23 @@ export const updateUserBasicInfoValidator: ValidationChain[] = [
         .withMessage('City cannot be empty')
         .isAlpha()
         .withMessage('City must be a string of alphabets'),
+    body('links')
+        .optional({ nullable: true })
+        .isArray({ min: 0 })
+        .withMessage('links must be an array of strings'),
+    body('links.*')
+        .optional()
+        .isURL()
+        .withMessage('Each link must be a valid URL')
+        .trim(),
+    body('about_me')
+        .optional({ nullable: true })
+        .isString()
+        .withMessage('about_me must be a string'),
+    body('subtitle')
+        .optional({ nullable: true })
+        .isString()
+        .withMessage('subtitle must be a string'),
 ];
 
 export const createProjectValidator: ValidationChain[] = [
@@ -508,4 +529,86 @@ export const updateVolunteeringValidator: ValidationChain[] = [
         .optional()
         .isDate({ format: 'YYYY-MM-DD' })
         .withMessage('Invalid end date'),
+];
+
+export const createCertificateValidator: ValidationChain[] = [
+    body('title')
+        .trim()
+        .notEmpty()
+        .withMessage('title cannot be empty')
+        .isString()
+        .withMessage('title must be a string'),
+
+    body('issuing_organization')
+        .notEmpty()
+        .withMessage('issuing_organization cannot be empty')
+        .isString()
+        .withMessage('issuing_organization must be a string'),
+
+    body('start_date')
+        .isDate()
+        .withMessage('Invalid start date')
+        .custom((val, { req }) => {
+            if (val >= req.body.end_date) {
+                throw new Error('Start date must be less than end date');
+            } else return val;
+        }),
+    body('end_date')
+        .isDate()
+        .withMessage('Invalid end date')
+        .custom((val, { req }) => {
+            if (val <= req.body.start_date) {
+                throw new Error('Start date must be less than end date');
+            } else return val;
+        }),
+];
+
+export const certificateMediaValidator: ValidationChain[] = [
+    body('media')
+        .notEmpty()
+        .withMessage('media cannot be empty')
+        .isString()
+        .withMessage('media must be a valid url'),
+];
+
+export const updateCertificateValidator: ValidationChain[] = [
+    body('title')
+        .optional()
+        .notEmpty()
+        .withMessage('title cannot be empty')
+        .isString()
+        .withMessage('title must be a string'),
+
+    body('issuing_organization')
+        .optional()
+        .notEmpty()
+        .withMessage('issuing_organization cannot be empty')
+        .isString()
+        .withMessage('issuing_organization must be a string'),
+
+    body('start_date')
+        .optional()
+        .isDate()
+        .withMessage('Invalid start date')
+        .custom((val, { req }) => {
+            if (val >= req.body.end_date) {
+                throw new Error('Start date must be less than end date');
+            } else return val;
+        }),
+    body('end_date')
+        .optional()
+        .isDate()
+        .withMessage('Invalid end date')
+        .custom((val, { req }) => {
+            if (val <= req.body.start_date) {
+                throw new Error('Start date must be less than end date');
+            } else return val;
+        }),
+];
+
+export const certificateOnUpdateMediaValidator: ValidationChain[] = [
+    body('media')
+        .optional()
+        .isString()
+        .withMessage('media must be a valid url'),
 ];

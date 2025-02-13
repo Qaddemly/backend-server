@@ -79,6 +79,7 @@ export const signUpService = async (userData: signUpBody) => {
         return activationToken;
     } catch (err) {
         if (err.code === 11000) {
+            await AccountRepository.deleteOneAccount(err.keyValue.accountId);
             throw new AppError(
                 `accountTempData is already exists , please delete accountTempData for accountId ${err.keyValue.accountId}`,
                 400,

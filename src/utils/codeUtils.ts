@@ -122,8 +122,8 @@ export const resetCodeVerified = async (
     userTempData: UserType, // User temporary data
     user: UserType, // account user
 ) => {
-    if (!user.isActivated) {
-        user.isActivated = true;
+    if (!user.is_activated) {
+        user.is_activated = true;
         userTempData.activationCode = undefined;
         userTempData.activationCodeExpiresIn = undefined;
         userTempData.activationToken = undefined;
