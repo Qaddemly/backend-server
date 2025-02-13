@@ -740,3 +740,25 @@
 2025-02-13 00:38:05:385 [31merror[39m: [31mvalidationErrors[39m
 2025-02-13 00:41:33:4133 [31merror[39m: [31mvalidationErrors[39m
 2025-02-13 00:46:24:4624 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 01:29:01:291 [31merror[39m: [31msyntax error at or near "values"[39m
+2025-02-13 01:31:09:319 [31merror[39m: [31msyntax error at or near "values"[39m
+2025-02-13 01:31:47:3147 [31merror[39m: [31msyntax error at or near "values"[39m
+2025-02-13 01:33:05:335 [31merror[39m: [31msyntax error at or near "values"[39m
+2025-02-13 01:34:26:3426 [31merror[39m: [31msyntax error at or near "values"[39m
+2025-02-13 01:34:53:3453 [31merror[39m: [31msyntax error at or near "values"[39m
+2025-02-13 01:37:22:3722 [31merror[39m: [31monly images is allowed[39m
+2025-02-13 01:53:18:5318 [31merror[39m: [31mNo certificate found with that ID[39m
+2025-02-13 02:07:29:729 [31merror[39m: [31monly images is allowed[39m
+2025-02-13 02:08:21:821 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 02:08:34:834 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 02:09:19:919 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 02:09:37:937 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 02:15:30:1530 [31merror[39m: [31mNo certificate found with that ID[39m
+2025-02-13 02:16:05:165 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 02:16:45:1645 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 02:28:13:2813 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 02:28:29:2829 [31merror[39m: [31mvalidationErrors[39m
+2025-02-13 02:28:35:2835 [31merror[39m: [31mNo certificate found with that ID[39m
+2025-02-13 02:29:15:2915 [31merror[39m: [31mNo certificate found with that ID[39m
+2025-02-13 02:29:43:2943 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-13 02:31:14:3114 [31merror[39m: [31mvalidationErrors[39m

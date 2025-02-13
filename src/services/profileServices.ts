@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import catchAsync from 'express-async-handler';
 import AppError from '../utils/appError';
 import { ExperienceRepository } from '../Repository/experineceRepository';
@@ -28,6 +28,10 @@ import { AccountProjectRepository } from '../Repository/accountProjectRepository
 import { AccountProject } from '../entity/AccountProject';
 import { AccountVolunteering } from '../entity/AccountVolunteering';
 import { AccountVolunteeringRepository } from '../Repository/accountVolunteeringRepository';
+import { CertificateRepository } from '../Repository/certificateRepository';
+import { uploadSingleImage } from '../middlewares/upload.middleWare';
+import { expressFiles } from '../types/types';
+import sharp from 'sharp';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -493,3 +497,74 @@ export const deleteVolunteeringService = async (
     }
     await AccountVolunteeringRepository.remove(volunteering);
 };
+
+export const createCertificateService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    console.log(req.body);
+    const newCertificate = await CertificateRepository.createNewCertificate(
+        userId,
+        req.body,
+    );
+    return newCertificate;
+};
+
+export const updateCertificateService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const certificateId = Number(req.params.id);
+    console.log(req.body);
+    const certificate = await CertificateRepository.updateOneCertificate(
+        certificateId,
+        req.body,
+        userId,
+    );
+    if (!certificate) {
+        throw new AppError('No certificate found with that ID', 404);
+    }
+    return certificate;
+};
+
+export const deleteCertificateService = async (req: Request) => {
+    try {
+        const userId = Number(req.user.id);
+        const certificateId = Number(req.params.id);
+        const certificate = await CertificateRepository.findOneBy({
+            account: { id: userId },
+            id: certificateId,
+        });
+        if (!certificate) {
+            throw new AppError('No certificate found with that ID', 404);
+        }
+
+        await CertificateRepository.remove(certificate);
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const uploadCertificateImage = uploadSingleImage('media');
+export const resizeCertificateImage = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            if (req.file) {
+                console.log(req.file);
+
+                const certificateImageName = `certificate-${Math.round(
+                    Math.random() * 1e9,
+                )}-${Date.now()}.jpeg`;
+                const imageDbUrl = `${process.env.BASE_URL}/uploads/certificates/${certificateImageName}`;
+                await sharp(req.file.buffer)
+                    .resize(800, 600)
+                    .toFormat('jpeg')
+                    .jpeg({ quality: 90 })
+                    .toFile(`src/uploads/certificates/${certificateImageName}`);
+                req.body.media = imageDbUrl;
+            }
+
+            next();
+        } catch (err) {
+            const customError = new AppError('error while saving file');
+            customError.stack = err.stack;
+            return next(customError);
+        }
+    },
+);

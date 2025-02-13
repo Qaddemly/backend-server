@@ -27,6 +27,9 @@ import {
     getVolunteeringsOfLoggedInUser,
     updateVolunteering,
     deleteVolunteering,
+    createCertificate,
+    updateCertificate,
+    deleteCertificate,
 } from '../controllers/profileController';
 import {
     protect,
@@ -54,7 +57,15 @@ import {
     updateProjectValidator,
     createVolunteeringValidator,
     updateVolunteeringValidator,
+    createCertificateValidator,
+    certificateMediaValidator,
+    updateCertificateValidator,
+    certificateOnUpdateMediaValidator,
 } from '../middlewares/validators/profileValidator';
+import {
+    resizeCertificateImage,
+    uploadCertificateImage,
+} from '../services/profileServices';
 
 const profileRouter = Router();
 
@@ -202,5 +213,30 @@ profileRouter.put(
 );
 
 profileRouter.delete('/volunteering/:id', protect, deleteVolunteering);
+profileRouter.post(
+    '/createCertificate',
+    protect,
+    uploadCertificateImage,
+    validateRequestMiddleware(createCertificateValidator),
+    resizeCertificateImage,
+    validateRequestMiddleware(certificateMediaValidator),
+    createCertificate,
+);
 
+profileRouter.put(
+    '/updateCertificate/:id',
+    protect,
+    uploadCertificateImage,
+    validateRequestMiddleware(idValidator),
+    validateRequestMiddleware(updateCertificateValidator),
+    resizeCertificateImage,
+    validateRequestMiddleware(certificateOnUpdateMediaValidator),
+    updateCertificate,
+);
+profileRouter.delete(
+    '/deleteCertificate/:id',
+    protect,
+    validateRequestMiddleware(idValidator),
+    deleteCertificate,
+);
 export default profileRouter;
