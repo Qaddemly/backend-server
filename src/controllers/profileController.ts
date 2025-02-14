@@ -28,6 +28,9 @@ import {
     getVolunteeringsOfLoggenInUserService,
     updateVolunteeringService,
     deleteVolunteeringService,
+    createCertificateService,
+    updateCertificateService,
+    deleteCertificateService,
 } from '../services/profileServices';
 import catchAsync from 'express-async-handler';
 import {
@@ -377,5 +380,44 @@ export const deleteVolunteering = catchAsync(
     async (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
         await deleteVolunteeringService(req.user.id, Number(req.params.id));
         res.status(204).json({});
+    },
+);
+
+export const createCertificate = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const certificate = await createCertificateService(req);
+            res.status(201).json({
+                success: true,
+                certificate,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const updateCertificate = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const certificate = await updateCertificateService(req);
+            res.status(200).json({
+                success: true,
+                certificate,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const deleteCertificate = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const certificate = await deleteCertificateService(req);
+            res.status(204).json({});
+        } catch (err) {
+            return next(err);
+        }
     },
 );

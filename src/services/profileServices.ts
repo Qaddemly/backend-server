@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import catchAsync from 'express-async-handler';
 import AppError from '../utils/appError';
 import { ExperienceRepository } from '../Repository/experineceRepository';
@@ -17,6 +17,7 @@ import { Resume } from '../entity/Resume';
 import { ResumeRepository } from '../Repository/resumeRepository';
 import fs from 'fs';
 import path from 'path';
+
 import {
     createProjectDTO,
     createVolunteeringDTO,
@@ -27,6 +28,10 @@ import { AccountProjectRepository } from '../Repository/accountProjectRepository
 import { AccountProject } from '../entity/AccountProject';
 import { AccountVolunteering } from '../entity/AccountVolunteering';
 import { AccountVolunteeringRepository } from '../Repository/accountVolunteeringRepository';
+import { CertificateRepository } from '../Repository/certificateRepository';
+import { uploadSingleImage } from '../middlewares/upload.middleWare';
+import { expressFiles } from '../types/types';
+import sharp from 'sharp';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -119,40 +124,15 @@ export const deleteUserOneExperienceService = async (req: Request) => {
 
 export const updateUserOneEducationService = async (req: Request) => {
     const userId = req.user.id;
-    // const education = await EducationRepository.findOneBy({
-    //     account_id: userId,
-    // });
-    // if (!education) {
-    //     throw new AppError('user don`t have education', 404);
-    // }
-
-    let {
-        university,
-
-        field_of_study,
-
-        gpa,
-
-        start_date,
-
-        end_date,
-    } = req.body;
-
-    const updatedData = {
-        university,
-
-        field_of_study,
-
-        gpa,
-
-        start_date,
-
-        end_date,
-    };
+    const educationId = Number(req.params.id);
     const updatedEducation = await EducationRepository.updateEducation(
-        updatedData,
+        educationId,
+        req.body,
         userId,
     );
+    if (!updatedEducation) {
+        throw new AppError('No education found with that ID', 404);
+    }
     return updatedEducation;
 };
 
@@ -165,41 +145,46 @@ export const createUserOneEducationService = async (req: Request) => {
     // if (foundedEducation) {
     //     throw new AppError('user already has education', 409);
     // }
-    let {
-        university,
+    // let {
+    //     university,
 
-        field_of_study,
+    //     field_of_study,
 
-        gpa,
+    //     gpa,
 
-        start_date,
+    //     start_date,
 
-        end_date,
-    } = req.body;
+    //     end_date,
+    // } = req.body;
 
-    const user = await AccountRepository.findOneBy({ id: userId });
-    const education = new Education();
-    // education.account_id = userId;
-    education.gpa = gpa;
-    education.university = university;
-    education.field_of_study = field_of_study;
-    education.start_date = start_date;
-    education.end_date = end_date;
-    const createdEducation = await EducationRepository.save(education);
-    return createdEducation;
+    // const user = await AccountRepository.findOneBy({ id: userId });
+    // const education = new Education();
+    // // education.account_id = userId;
+    // education.gpa = gpa;
+    // education.university = university;
+    // education.field_of_study = field_of_study;
+    // education.start_date = start_date;
+    // education.end_date = end_date;
+    const createdEducation = await EducationRepository.createOneEducation(
+        userId,
+        req.body,
+    );
+    return createdEducation[0];
 };
 
 export const deleteUserOneEducationService = async (req: Request) => {
     try {
         const userId = Number(req.user.id);
         const educationId = Number(req.params.id);
-        // const education = await EducationRepository.findOneBy({
-        //     account_id: userId,
-        // });
-        // if (!education) {
-        //     throw new AppError('user don`t have education', 404);
-        // }
-        // await EducationRepository.remove(education);
+        const education = await EducationRepository.findOneBy({
+            account: { id: userId },
+            id: educationId,
+        });
+        if (!education) {
+            throw new AppError('No education found with that ID', 404);
+        }
+
+        await EducationRepository.remove(education);
     } catch (err) {
         throw err;
     }
@@ -325,19 +310,14 @@ export const updateAccountBasicInfoService = async (req: Request) => {
         phone,
         date_of_birth,
         profile_picture,
+        links,
+        about_me,
+        subtitle,
     } = req.body;
     const userId = req.user.id;
-    const updatedData = {
-        address,
-        first_name,
-        last_name,
-        email,
-        phone,
-        date_of_birth,
-        profile_picture,
-    };
+
     const updatedUser = await AccountRepository.updateUserBasicInfo(
-        updatedData,
+        req.body,
         userId,
     );
     const returnedUser = { ...updatedUser };
@@ -517,3 +497,74 @@ export const deleteVolunteeringService = async (
     }
     await AccountVolunteeringRepository.remove(volunteering);
 };
+
+export const createCertificateService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    console.log(req.body);
+    const newCertificate = await CertificateRepository.createNewCertificate(
+        userId,
+        req.body,
+    );
+    return newCertificate;
+};
+
+export const updateCertificateService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const certificateId = Number(req.params.id);
+    console.log(req.body);
+    const certificate = await CertificateRepository.updateOneCertificate(
+        certificateId,
+        req.body,
+        userId,
+    );
+    if (!certificate) {
+        throw new AppError('No certificate found with that ID', 404);
+    }
+    return certificate;
+};
+
+export const deleteCertificateService = async (req: Request) => {
+    try {
+        const userId = Number(req.user.id);
+        const certificateId = Number(req.params.id);
+        const certificate = await CertificateRepository.findOneBy({
+            account: { id: userId },
+            id: certificateId,
+        });
+        if (!certificate) {
+            throw new AppError('No certificate found with that ID', 404);
+        }
+
+        await CertificateRepository.remove(certificate);
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const uploadCertificateImage = uploadSingleImage('media');
+export const resizeCertificateImage = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            if (req.file) {
+                console.log(req.file);
+
+                const certificateImageName = `certificate-${Math.round(
+                    Math.random() * 1e9,
+                )}-${Date.now()}.jpeg`;
+                const imageDbUrl = `${process.env.BASE_URL}/uploads/certificates/${certificateImageName}`;
+                await sharp(req.file.buffer)
+                    .resize(800, 600)
+                    .toFormat('jpeg')
+                    .jpeg({ quality: 90 })
+                    .toFile(`src/uploads/certificates/${certificateImageName}`);
+                req.body.media = imageDbUrl;
+            }
+
+            next();
+        } catch (err) {
+            const customError = new AppError('error while saving file');
+            customError.stack = err.stack;
+            return next(customError);
+        }
+    },
+);

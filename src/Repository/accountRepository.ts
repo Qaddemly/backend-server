@@ -62,6 +62,12 @@ class AccountRepositoryClass extends Repository<Account> {
             .execute();
         return result.raw[0];
     }
+
+    async deleteOneAccount(accountId: number) {
+        const result = await this.query(
+            `delete from account where id=${accountId}`,
+        );
+    }
 }
 
 export const AccountRepository = AppDataSource.getRepository(Account).extend(

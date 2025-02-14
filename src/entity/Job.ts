@@ -16,6 +16,7 @@ import { Business } from './Business';
 import { JobApplication } from './JobApplication';
 import { Account } from './Account';
 import { JobStatus } from '../enums/jobStatus';
+import { Address } from './Address';
 
 @Entity()
 export class Job {
@@ -29,8 +30,8 @@ export class Job {
     @Column('text')
     description: string;
 
-    @Column('text')
-    location: string;
+    // @Column('text')
+    // location: string;
 
     @Column({
         type: 'enum',
@@ -57,6 +58,8 @@ export class Job {
 
     @Column('text', { array: true })
     keywords: string[];
+    @Column(() => Address, { prefix: false })
+    location: Address;
 
     @Column('int')
     experience: number;

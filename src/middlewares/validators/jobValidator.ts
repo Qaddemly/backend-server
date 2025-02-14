@@ -3,6 +3,7 @@ import { body, param, ValidationChain } from 'express-validator';
 import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
 import { Language } from '../../enums/language';
+import { Country } from '../../enums/country';
 
 export const createJobValidator: ValidationChain[] = [
     body('business_id')
@@ -30,12 +31,26 @@ export const createJobValidator: ValidationChain[] = [
             else throw new Error('Invalid employment type');
         }),
 
-    body('location')
-        .isString()
-        .withMessage('location must be string')
+    body('location').optional().isObject(),
+    body('location.country')
+        .if(body('location').exists())
         .trim()
         .notEmpty()
-        .withMessage('Location cannot be empty'),
+        .withMessage('Country cannot be empty')
+        .custom((value) => {
+            if (value in Country) return value;
+            else
+                throw new Error(
+                    'Country Name is invalid (not in the country list)',
+                );
+        }),
+    body('address.city')
+        .if(body('address').exists())
+        .trim()
+        .notEmpty()
+        .withMessage('City cannot be empty')
+        .isAlpha()
+        .withMessage('City must be a string of alphabets'),
     body('location_type')
         .trim()
         .notEmpty()
