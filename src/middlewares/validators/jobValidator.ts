@@ -31,26 +31,19 @@ export const createJobValidator: ValidationChain[] = [
             else throw new Error('Invalid employment type');
         }),
 
-    body('location').optional().isObject(),
-    body('location.country')
-        .if(body('location').exists())
+    body('country')
         .trim()
         .notEmpty()
-        .withMessage('Country cannot be empty')
+        .withMessage('country cannot be empty')
         .custom((value) => {
             if (value in Country) return value;
-            else
-                throw new Error(
-                    'Country Name is invalid (not in the country list)',
-                );
+            else throw new Error('Invalid country');
         }),
-    body('address.city')
-        .if(body('address').exists())
+    body('city')
         .trim()
         .notEmpty()
-        .withMessage('City cannot be empty')
-        .isAlpha()
-        .withMessage('City must be a string of alphabets'),
+        .withMessage('city cannot be empty')
+        .isString(),
     body('location_type')
         .trim()
         .notEmpty()
@@ -97,13 +90,19 @@ export const updateJobValidator: ValidationChain[] = [
             else throw new Error('Invalid employment type');
         }),
 
-    body('location')
+    body('country')
         .optional()
-        .isString()
-        .withMessage('location must be string')
+        .trim()
+        .custom((value) => {
+            if (value in Country) return value;
+            else throw new Error('Invalid country');
+        }),
+    body('city')
+        .optional()
         .trim()
         .notEmpty()
-        .withMessage('Location cannot be empty'),
+        .withMessage('city cannot be empty')
+        .isString(),
     body('location_type')
         .optional()
         .trim()

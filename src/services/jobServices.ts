@@ -10,22 +10,15 @@ import { AccountRepository } from '../Repository/accountRepository';
 import { JobApplication } from '../entity/JobApplication';
 import { ResumeRepository } from '../Repository/resumeRepository';
 import { JobApplicationRepository } from '../Repository/jobApplicationRepository';
-import { ApiFeatures } from '../utils/apiFeatures';
 import { Paginate } from '../utils/pagination/decorator';
-import {
-    FilterComparator,
-    FilterOperator,
-    FilterSuffix,
-} from '../utils/pagination/filter';
+import { FilterOperator } from '../utils/pagination/filter';
 import {
     paginate,
     PaginateConfig,
     PaginationType,
 } from '../utils/pagination/typeorm-paginate';
-import { transformFilter } from '../utils/pagination/transformQuery';
-import { Account } from '../entity/Account';
 import { JobStatus } from '../enums/jobStatus';
-import { In, Not } from 'typeorm';
+import { Not } from 'typeorm';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -33,7 +26,8 @@ export const createJobService = async (
     const {
         title,
         description,
-        location,
+        country,
+        city,
         location_type,
         skills,
         salary,
@@ -65,7 +59,8 @@ export const createJobService = async (
     const newJob = new Job();
     newJob.title = title;
     newJob.description = description;
-    newJob.location = location;
+    newJob.country = country;
+    newJob.city = city;
     newJob.location_type = location_type;
     newJob.skills = skills;
     newJob.salary = salary;
@@ -73,9 +68,8 @@ export const createJobService = async (
     newJob.keywords = keywords;
     newJob.experience = experience;
     newJob.business = business;
-    await JobRepository.save(newJob);
-
-    return newJob;
+    console.log('newJob', newJob);
+    return await JobRepository.save(newJob);
 };
 
 export const getOneJobService = async (req: Request) => {
@@ -104,7 +98,8 @@ export const updateJobService = async (
     const {
         title,
         description,
-        location,
+        country,
+        city,
         location_type,
         skills,
         salary,
@@ -126,11 +121,11 @@ export const updateJobService = async (
 
         foundedJob.business.id,
         [
+            HrRole.OWNER,
             HrRole.SUPER_ADMIN,
             HrRole.HR,
             HrRole.RECRUITER,
             HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
         ],
     );
     if (!isAllowedToUpdateJob) {
@@ -140,7 +135,8 @@ export const updateJobService = async (
     const job = await JobRepository.updateOneJob(jobId, {
         title: title,
         description: description,
-        location: location,
+        country: country,
+        city: city,
         location_type: location_type,
         skills: skills,
         salary: salary,

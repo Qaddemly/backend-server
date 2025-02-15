@@ -5354,3 +5354,159 @@
 2025-02-13 02:31:14:3114 [31merror[39m: [31mvalidationErrors[39m
 2025-02-13 02:31:14:3114 [35mhttp[39m: [35mDELETE /api/v1/user/deleteCertificate/20a 400 166 - 489.768 ms[39m
 [35m[39m
+2025-02-15 09:19:32:1932 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 09:19:33:1933 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 09:19:34:1934 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 09:20:04:204 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 852 - 1248.453 ms[39m
+[35m[39m
+2025-02-15 09:20:12:2012 [35mhttp[39m: [35mPOST /api/v1/user/project 201 301 - 428.467 ms[39m
+[35m[39m
+2025-02-15 09:20:38:2038 [31merror[39m: [31mvalidationErrors[39m
+2025-02-15 09:20:38:2038 [35mhttp[39m: [35mPOST /api/v1/user/project 400 162 - 607.249 ms[39m
+[35m[39m
+2025-02-15 09:20:52:2052 [31merror[39m: [31mvalidationErrors[39m
+2025-02-15 09:20:52:2052 [35mhttp[39m: [35mPOST /api/v1/user/project 400 176 - 465.832 ms[39m
+[35m[39m
+2025-02-15 09:21:18:2118 [31merror[39m: [31mExpected double-quoted property name in JSON at position 28 (line 3 column 1)[39m
+2025-02-15 09:21:18:2118 [35mhttp[39m: [35mPOST /api/v1/user/project 400 1167 - 176.824 ms[39m
+[35m[39m
+2025-02-15 09:21:25:2125 [35mhttp[39m: [35mPOST /api/v1/user/project 201 254 - 440.456 ms[39m
+[35m[39m
+2025-02-15 09:22:42:2242 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 09:22:43:2243 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 09:22:44:2244 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 09:22:49:2249 [35mhttp[39m: [35mPOST /api/v1/user/project 201 254 - 451.669 ms[39m
+[35m[39m
+2025-02-15 09:23:01:231 [35mhttp[39m: [35mGET /api/v1/user/project/7 200 262 - 439.849 ms[39m
+[35m[39m
+2025-02-15 09:23:15:2315 [31merror[39m: [31mNo project found with that ID[39m
+2025-02-15 09:23:15:2315 [35mhttp[39m: [35mGET /api/v1/user/project/465 404 841 - 451.082 ms[39m
+[35m[39m
+2025-02-15 09:23:53:2353 [35mhttp[39m: [35mGET /api/v1/user/projects/user/1 200 3179 - 525.460 ms[39m
+[35m[39m
+2025-02-15 09:24:07:247 [31merror[39m: [31mNo user found with that ID[39m
+2025-02-15 09:24:07:247 [35mhttp[39m: [35mGET /api/v1/user/projects/user/465 404 835 - 447.183 ms[39m
+[35m[39m
+2025-02-15 09:24:26:2426 [35mhttp[39m: [35mGET /api/v1/user/myProjects 200 3179 - 434.098 ms[39m
+[35m[39m
+2025-02-15 09:24:45:2445 [31merror[39m: [31mNo project found with that ID[39m
+2025-02-15 09:24:45:2445 [35mhttp[39m: [35mPUT /api/v1/user/project/3 404 841 - 443.491 ms[39m
+[35m[39m
+2025-02-15 09:24:51:2451 [35mhttp[39m: [35mPUT /api/v1/user/project/7 200 253 - 394.953 ms[39m
+[35m[39m
+2025-02-15 09:25:10:2510 [35mhttp[39m: [35mPUT /api/v1/user/project/7 200 250 - 450.474 ms[39m
+[35m[39m
+2025-02-15 09:25:45:2545 [31merror[39m: [31mNo project found with that ID[39m
+2025-02-15 09:25:45:2545 [35mhttp[39m: [35mPUT /api/v1/user/project/465 404 841 - 424.891 ms[39m
+[35m[39m
+2025-02-15 09:26:08:268 [31merror[39m: [31mNo project found with that ID[39m
+2025-02-15 09:26:08:268 [35mhttp[39m: [35mDELETE /api/v1/user/project/4 404 841 - 411.175 ms[39m
+[35m[39m
+2025-02-15 09:26:34:2634 [35mhttp[39m: [35mDELETE /api/v1/user/project/7 204 - - 446.413 ms[39m
+[35m[39m
+2025-02-15 09:29:53:2953 [35mhttp[39m: [35mPOST /api/v1/user/volunteering 201 283 - 472.276 ms[39m
+[35m[39m
+2025-02-15 09:30:06:306 [31merror[39m: [31mExpected double-quoted property name in JSON at position 37 (line 4 column 1)[39m
+2025-02-15 09:30:06:306 [35mhttp[39m: [35mPOST /api/v1/user/volunteering 400 1167 - 159.500 ms[39m
+[35m[39m
+2025-02-15 09:30:11:3011 [31merror[39m: [31mvalidationErrors[39m
+2025-02-15 09:30:11:3011 [35mhttp[39m: [35mPOST /api/v1/user/volunteering 400 162 - 606.874 ms[39m
+[35m[39m
+2025-02-15 09:31:13:3113 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 09:31:13:3113 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 09:31:15:3115 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 09:32:12:3212 [35mhttp[39m: [35mGET /api/v1/user/volunteerings/user/1 200 267 - 505.227 ms[39m
+[35m[39m
+2025-02-15 09:32:29:3229 [31merror[39m: [31mNo user found with that ID[39m
+2025-02-15 09:32:29:3229 [35mhttp[39m: [35mGET /api/v1/user/volunteerings/user/145 404 835 - 551.996 ms[39m
+[35m[39m
+2025-02-15 09:32:40:3240 [31merror[39m: [31mNo volunteering found with that ID[39m
+2025-02-15 09:32:40:3240 [35mhttp[39m: [35mGET /api/v1/user/volunteering/2 404 851 - 430.766 ms[39m
+[35m[39m
+2025-02-15 09:32:47:3247 [31merror[39m: [31mNo volunteering found with that ID[39m
+2025-02-15 09:32:47:3247 [35mhttp[39m: [35mGET /api/v1/user/volunteering/4 404 851 - 361.557 ms[39m
+[35m[39m
+2025-02-15 09:32:50:3250 [31merror[39m: [31mNo volunteering found with that ID[39m
+2025-02-15 09:32:50:3250 [35mhttp[39m: [35mGET /api/v1/user/volunteering/8 404 851 - 362.002 ms[39m
+[35m[39m
+2025-02-15 09:33:02:332 [35mhttp[39m: [35mGET /api/v1/user/volunteering/3 200 264 - 423.898 ms[39m
+[35m[39m
+2025-02-15 09:33:15:3315 [31merror[39m: [31mNo volunteering found with that ID[39m
+2025-02-15 09:33:15:3315 [35mhttp[39m: [35mGET /api/v1/user/volunteering/7 404 851 - 427.765 ms[39m
+[35m[39m
+2025-02-15 09:33:39:3339 [35mhttp[39m: [35mGET /api/v1/user/myVolunteerings 200 267 - 506.211 ms[39m
+[35m[39m
+2025-02-15 09:33:55:3355 [31merror[39m: [31mNo volunteering found with that ID[39m
+2025-02-15 09:33:55:3355 [35mhttp[39m: [35mPUT /api/v1/user/volunteering/1 404 851 - 474.177 ms[39m
+[35m[39m
+2025-02-15 09:34:29:3429 [35mhttp[39m: [35mPUT /api/v1/user/volunteering/3 200 263 - 469.139 ms[39m
+[35m[39m
+2025-02-15 09:34:46:3446 [31merror[39m: [31mNo volunteering found with that ID[39m
+2025-02-15 09:34:46:3446 [35mhttp[39m: [35mDELETE /api/v1/user/volunteering/1 404 851 - 661.299 ms[39m
+[35m[39m
+2025-02-15 09:35:04:354 [35mhttp[39m: [35mDELETE /api/v1/user/volunteering/3 204 - - 464.803 ms[39m
+[35m[39m
+2025-02-15 09:38:23:3823 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 09:38:24:3824 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 09:38:26:3826 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 09:39:26:3926 [32minfo[39m: [32mBusiness 4 created successfully[39m
+2025-02-15 09:39:26:3926 [35mhttp[39m: [35mPOST /api/v1/business 201 550 - 652.376 ms[39m
+[35m[39m
+2025-02-15 09:39:38:3938 [31merror[39m: [31mvalidationErrors[39m
+2025-02-15 09:39:38:3938 [35mhttp[39m: [35mPOST /api/v1/job/postJob 400 164 - 438.011 ms[39m
+[35m[39m
+2025-02-15 09:56:18:5618 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 09:56:19:5619 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 09:56:20:5620 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 09:56:25:5625 [31merror[39m: [31mcolumn "country" specified more than once[39m
+2025-02-15 09:56:25:5625 [35mhttp[39m: [35mPOST /api/v1/job/postJob 500 1137 - 746.554 ms[39m
+[35m[39m
+2025-02-15 09:59:30:5930 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 09:59:31:5931 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 09:59:33:5933 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 09:59:35:5935 [31merror[39m: [31mcolumn "country" specified more than once[39m
+2025-02-15 09:59:35:5935 [35mhttp[39m: [35mPOST /api/v1/job/postJob 500 1137 - 519.694 ms[39m
+[35m[39m
+2025-02-15 10:03:58:358 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 10:03:59:359 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 10:04:00:40 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 10:04:04:44 [31merror[39m: [31mcolumn "country" specified more than once[39m
+2025-02-15 10:04:04:44 [35mhttp[39m: [35mPOST /api/v1/job/postJob 500 1137 - 500.452 ms[39m
+[35m[39m
+2025-02-15 10:04:30:430 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 10:04:31:431 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 10:04:32:432 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 10:04:50:450 [31merror[39m: [31mcolumn "country" specified more than once[39m
+2025-02-15 10:04:50:450 [35mhttp[39m: [35mPOST /api/v1/job/postJob 500 1137 - 601.625 ms[39m
+[35m[39m
+2025-02-15 10:05:38:538 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 10:05:39:539 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 10:05:40:540 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 10:05:42:542 [31merror[39m: [31mcolumn "country" specified more than once[39m
+2025-02-15 10:05:42:542 [35mhttp[39m: [35mPOST /api/v1/job/postJob 500 1137 - 501.385 ms[39m
+[35m[39m
+2025-02-15 10:07:01:71 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 10:07:01:71 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 10:07:03:73 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 10:07:05:75 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 941 - 686.037 ms[39m
+[35m[39m
+2025-02-15 10:08:23:823 [31merror[39m: [31myou do not have permission to post job[39m
+2025-02-15 10:08:23:823 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/1 403 843 - 484.511 ms[39m
+[35m[39m
+2025-02-15 10:09:41:941 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 10:09:41:941 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 10:09:42:942 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 10:09:45:945 [31merror[39m: [31minvalid input value for enum job_country_enum: "USA"[39m
+2025-02-15 10:09:45:945 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/1 500 619 - 502.498 ms[39m
+[35m[39m
+2025-02-15 10:11:02:112 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 10:11:03:113 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 10:11:04:114 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 10:11:22:1122 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 10:11:22:1122 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 10:11:24:1124 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 10:11:26:1126 [31merror[39m: [31minvalid input value for enum job_country_enum: "USA"[39m
+2025-02-15 10:11:26:1126 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/1 500 619 - 495.533 ms[39m
+[35m[39m
+2025-02-15 10:11:48:1148 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/1 200 354 - 464.173 ms[39m
+[35m[39m

@@ -17,6 +17,7 @@ import { JobApplication } from './JobApplication';
 import { Account } from './Account';
 import { JobStatus } from '../enums/jobStatus';
 import { Address } from './Address';
+import { Country } from '../enums/country';
 
 @Entity()
 export class Job {
@@ -30,8 +31,14 @@ export class Job {
     @Column('text')
     description: string;
 
-    // @Column('text')
-    // location: string;
+    @Column({
+        type: 'enum',
+        enum: Country,
+    })
+    country: Country;
+
+    @Column('text')
+    city: string;
 
     @Column({
         type: 'enum',
@@ -39,10 +46,10 @@ export class Job {
         default: LocationType.Onsite,
     })
     location_type: LocationType;
+
     @Column({ default: JobStatus.OPENED })
     status: JobStatus;
-    // Will be added Later
-    // Not sure if this is the right way
+
     @Column('text', { array: true })
     skills: string[];
 
@@ -58,8 +65,6 @@ export class Job {
 
     @Column('text', { array: true })
     keywords: string[];
-    @Column(() => Address, { prefix: false })
-    location: Address;
 
     @Column('int')
     experience: number;
