@@ -31,6 +31,9 @@ import {
     createCertificateService,
     updateCertificateService,
     deleteCertificateService,
+    getOneCertificateService,
+    getAllCertificatesOfCurrentUserService,
+    getAllCertificatesByUserIdService,
 } from '../services/profileServices';
 import catchAsync from 'express-async-handler';
 import {
@@ -404,6 +407,49 @@ export const updateCertificate = catchAsync(
             res.status(200).json({
                 success: true,
                 certificate,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getOneCertificate = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const certificate = await getOneCertificateService(req);
+            res.status(200).json({
+                success: true,
+                certificate,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getMyALLCertificate = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const certificates =
+                await getAllCertificatesOfCurrentUserService(req);
+            res.status(200).json({
+                success: true,
+                certificates,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const geALLCertificatesByUserId = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const certificates = await getAllCertificatesByUserIdService(req);
+            res.status(200).json({
+                success: true,
+                certificates,
             });
         } catch (err) {
             return next(err);

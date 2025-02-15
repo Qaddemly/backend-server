@@ -771,3 +771,6 @@
 2025-02-15 16:58:11:5811 [31merror[39m: [31myou have already applied to that job[39m
 2025-02-15 16:58:23:5823 [31merror[39m: [31msyntax error at or near ")"[39m
 2025-02-15 16:59:15:5915 [31merror[39m: [31msyntax error at or near "FROM"[39m
+2025-02-15 22:04:11:411 [31merror[39m: [31mNo certificate found with that ID[39m
+2025-02-15 22:04:58:458 [31merror[39m: [31mvalidationErrors[39m
+2025-02-15 22:09:20:920 [31merror[39m: [31mvalidationErrors[39m
