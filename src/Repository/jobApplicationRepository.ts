@@ -10,6 +10,23 @@ class JobApplicationRepositoryClass extends Repository<JobApplication> {
         });
         return jobApplications;
     }
+    async findOneByAccountIdAndJobId(accountId: number, jobId: number) {
+        const result = await this.query(
+            `select * from job_application where account_id=${accountId} and job_id=${jobId} `,
+        );
+        return result[0];
+    }
+    async createJobApplication(
+        accountId: number,
+        jobId: number,
+        resumeId?: number,
+    ) {
+        resumeId = resumeId ? resumeId : null;
+        const result = await this.query(
+            `insert into job_application (job_id,account_id,resume_id) values (${jobId},${accountId},${resumeId}) returning *`,
+        );
+        return result[0];
+    }
 }
 
 export const JobApplicationRepository = AppDataSource.getRepository(
