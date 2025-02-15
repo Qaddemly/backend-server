@@ -311,12 +311,14 @@ export const applyToJobService = async (req: Request) => {
     const userId = Number(req.user.id);
     const jobId = Number(req.params.id);
     const { resume_id } = req.body;
-    const resume = await ResumeRepository.findOneBy({
-        id: resume_id,
-        account: { id: userId },
-    });
-    if (!resume) {
-        throw new AppError('Resume not found', 404);
+    if (resume_id) {
+        const resume = await ResumeRepository.findOneBy({
+            id: resume_id,
+            account: { id: userId },
+        });
+        if (!resume) {
+            throw new AppError('Resume not found', 404);
+        }
     }
     const job = await JobRepository.getJobWithBusiness(jobId);
     if (!job) {
@@ -346,25 +348,39 @@ export const applyToJobService = async (req: Request) => {
     if (isNotAllowedToApplyJob) {
         throw new AppError('you do not have permission to that action', 403);
     }
-
-    const account =
-        await AccountRepository.getAccountWithJobApplications(userId);
-    const isJobAlreadyApplied = account.job_applications.some(
-        (jobApplication) => jobApplication.job.id === jobId,
-    );
-    if (isJobAlreadyApplied) {
+    const jobApplication =
+        await JobApplicationRepository.findOneByAccountIdAndJobId(
+            userId,
+            jobId,
+        );
+    if (jobApplication) {
         throw new AppError('you have already applied to that job', 409);
     }
-    const jobApplication = new JobApplication();
-    jobApplication.job = job; // Associate job with the application
-    jobApplication.resume = resume;
-    account.job_applications.push(jobApplication);
+    const newJobApplication =
+        await JobApplicationRepository.createJobApplication(
+            userId,
+            jobId,
+            resume_id,
+        );
+    return newJobApplication;
+    // const account =
+    //     await AccountRepository.getAccountWithJobApplications(userId);
+    // const isJobAlreadyApplied = account.job_applications.some(
+    //     (jobApplication) => jobApplication.job.id === jobId,
+    // );
+    // if (isJobAlreadyApplied) {
+    //     throw new AppError('you have already applied to that job', 409);
+    // }
+    // const jobApplication = new JobApplication();
+    // jobApplication.job = job; // Associate job with the application
+    // jobApplication.resume = resume;
+    // account.job_applications.push(jobApplication);
 
-    // Save the new job application
-    await JobApplicationRepository.save(jobApplication);
+    // // Save the new job application
+    // await JobApplicationRepository.save(jobApplication);
 
-    const savedUser = await AccountRepository.save(account);
-    return jobApplication;
+    // const savedUser = await AccountRepository.save(account);
+    // return jobApplication;
 };
 
 // export const getAllUserJobsApplicationsService = async (req: Request) => {

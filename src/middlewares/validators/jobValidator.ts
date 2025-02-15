@@ -129,8 +129,7 @@ export const idJobValidator: ValidationChain[] = [
 
 export const applyToJobValidator: ValidationChain[] = [
     body('resume_id')
-        .notEmpty()
-        .withMessage('resume_id required')
+        .optional()
         .isInt()
         .withMessage('resume_id must be an integer'),
 ];
