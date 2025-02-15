@@ -5459,3 +5459,84 @@
 2025-02-15 17:07:57:757 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2025-02-15 17:08:02:82 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/10030 200 290 - 937.148 ms[39m
 [35m[39m
+2025-02-15 21:20:40:2040 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:20:40:2040 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:20:41:2041 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:22:37:2237 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:22:37:2237 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:22:39:2239 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:29:41:2941 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:29:41:2941 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:29:43:2943 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:31:05:315 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:31:05:315 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:31:06:316 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:32:02:322 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:32:02:322 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:32:03:323 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:33:41:3341 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:33:41:3341 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:33:43:3343 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:34:24:3424 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:34:25:3425 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:34:26:3426 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:34:50:3450 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:35:03:353 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:35:04:354 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:35:05:355 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:35:26:3526 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:35:27:3527 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:35:28:3528 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:35:40:3540 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:35:40:3540 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:35:42:3542 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:42:13:4213 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:42:13:4213 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:42:14:4214 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:42:50:4250 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:42:50:4250 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:42:51:4251 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:59:33:5933 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:59:33:5933 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:59:34:5934 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 22:00:06:06 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 22:00:07:07 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 22:00:08:08 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 22:00:54:054 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 22:00:54:054 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 22:00:55:055 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 22:02:02:22 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 22:02:03:23 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 22:02:04:24 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 22:02:50:250 [35mhttp[39m: [35mGET /api/v1/user/get-one-certificate/5 404 74 - 145.955 ms[39m
+[35m[39m
+2025-02-15 22:03:09:39 [35mhttp[39m: [35mGET /api/v1/user/get-one-certificate/5 404 74 - 139.049 ms[39m
+[35m[39m
+2025-02-15 22:03:46:346 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 22:03:46:346 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 22:03:47:347 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 22:04:11:411 [31merror[39m: [31mNo certificate found with that ID[39m
+2025-02-15 22:04:11:411 [35mhttp[39m: [35mGET /api/v1/user/get-one-certificate/5 404 704 - 298.868 ms[39m
+[35m[39m
+2025-02-15 22:04:32:432 [35mhttp[39m: [35mGET /api/v1/user/get-one-certificate/1 200 280 - 181.156 ms[39m
+[35m[39m
+2025-02-15 22:04:58:458 [31merror[39m: [31mvalidationErrors[39m
+2025-02-15 22:04:58:458 [35mhttp[39m: [35mGET /api/v1/user/get-one-certificate/1a 400 165 - 140.938 ms[39m
+[35m[39m
+2025-02-15 22:05:52:552 [35mhttp[39m: [35mGET /api/v1/user/get-my-all-certificates 200 34 - 636.168 ms[39m
+[35m[39m
+2025-02-15 22:06:41:641 [35mhttp[39m: [35mPOST /api/v1/user/createCertificate 201 281 - 712.371 ms[39m
+[35m[39m
+2025-02-15 22:06:48:648 [35mhttp[39m: [35mPOST /api/v1/user/createCertificate 201 279 - 356.919 ms[39m
+[35m[39m
+2025-02-15 22:06:52:652 [35mhttp[39m: [35mGET /api/v1/user/get-my-all-certificates 200 533 - 294.145 ms[39m
+[35m[39m
+2025-02-15 22:07:57:757 [35mhttp[39m: [35mGET /api/v1/user/get-all-certificates/user/13 200 533 - 182.915 ms[39m
+[35m[39m
+2025-02-15 22:08:04:84 [35mhttp[39m: [35mGET /api/v1/user/get-all-certificates/user/2 200 742 - 145.035 ms[39m
+[35m[39m
+2025-02-15 22:08:41:841 [35mhttp[39m: [35mGET /api/v1/user/get-all-certificates/user/2 200 742 - 185.319 ms[39m
+[35m[39m
+2025-02-15 22:09:20:920 [31merror[39m: [31mvalidationErrors[39m
+2025-02-15 22:09:20:920 [35mhttp[39m: [35mGET /api/v1/user/get-all-certificates/user/2a 400 165 - 139.611 ms[39m
+[35m[39m
