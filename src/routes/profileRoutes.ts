@@ -30,6 +30,9 @@ import {
     createCertificate,
     updateCertificate,
     deleteCertificate,
+    getOneCertificate,
+    getMyALLCertificate,
+    geALLCertificatesByUserId,
 } from '../controllers/profileController';
 import {
     protect,
@@ -270,5 +273,18 @@ profileRouter.put('/jobApplication/archived/:id', protect);
  * Delete Job Application
  * */
 profileRouter.delete('/jobApplication/:id', protect);
+
+
+profileRouter.get(
+    '/get-one-certificate/:id',
+    validateRequestMiddleware(idValidator),
+    getOneCertificate,
+);
+profileRouter.get('/get-my-all-certificates', protect, getMyALLCertificate);
+profileRouter.get(
+    '/get-all-certificates/user/:id',
+    validateRequestMiddleware(idValidator),
+    geALLCertificatesByUserId,
+);
 
 export default profileRouter;

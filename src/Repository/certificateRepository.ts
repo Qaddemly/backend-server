@@ -27,6 +27,18 @@ class CertificateRepositoryClass extends Repository<Certificate> {
             .execute();
         return result.raw[0];
     }
+    async getOneCertificate(certificateId: number) {
+        const result = await this.query(
+            `select * from certificate where id =${certificateId}`,
+        );
+        return result[0];
+    }
+    async getAllCertificatesByAccountId(accountId: number) {
+        const result = await this.query(
+            `select * from certificate where account_id = ${accountId}`,
+        );
+        return result;
+    }
 }
 
 export const CertificateRepository = AppDataSource.getRepository(
