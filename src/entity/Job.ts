@@ -17,6 +17,8 @@ import { JobApplication } from './JobApplication';
 import { Account } from './Account';
 import { JobStatus } from '../enums/jobStatus';
 import { Address } from './Address';
+import { Country } from '../enums/country';
+import { JobApplicationState } from './JobApplicationStates';
 
 @Entity()
 export class Job {
@@ -30,8 +32,14 @@ export class Job {
     @Column('text')
     description: string;
 
-    // @Column('text')
-    // location: string;
+    @Column({
+        type: 'enum',
+        enum: Country,
+    })
+    country: Country;
+
+    @Column('text')
+    city: string;
 
     @Column({
         type: 'enum',
@@ -39,10 +47,10 @@ export class Job {
         default: LocationType.Onsite,
     })
     location_type: LocationType;
+
     @Column({ default: JobStatus.OPENED })
     status: JobStatus;
-    // Will be added Later
-    // Not sure if this is the right way
+
     @Column('text', { array: true })
     skills: string[];
 
@@ -58,8 +66,6 @@ export class Job {
 
     @Column('text', { array: true })
     keywords: string[];
-    @Column(() => Address, { prefix: false })
-    location: Address;
 
     @Column('int')
     experience: number;
@@ -83,6 +89,14 @@ export class Job {
         cascade: true,
     })
     saved_by_accounts: Account[];
+
+    @OneToMany(
+        () => JobApplicationState,
+        (business_job_application_state) => business_job_application_state.job,
+        { cascade: true },
+    )
+    job_application_states: JobApplicationState[];
+
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 

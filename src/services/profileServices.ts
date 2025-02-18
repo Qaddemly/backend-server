@@ -344,11 +344,6 @@ export const createProjectService = async (
     userId: number,
     projectDTO: createProjectDTO,
 ) => {
-    const user = await AccountRepository.findOneBy({ id: userId });
-    if (!user) {
-        throw new AppError('No user found with that ID', 404);
-    }
-
     const project = new AccountProject();
     project.name = projectDTO.name;
     project.account = { id: userId } as Account;
@@ -437,6 +432,7 @@ export const createVolunteeringService = async (
         volunteering.end_date = createVolunteeringDTO.end_date;
     return await AccountVolunteeringRepository.save(volunteering);
 };
+
 export const getVolunteeringByIdService = async (volunteeringId: number) => {
     const volunteering = await AccountVolunteeringRepository.findOneBy({
         id: volunteeringId,

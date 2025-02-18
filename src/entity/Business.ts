@@ -11,11 +11,10 @@ import { Review } from './Review';
 import { LocationType } from '../enums/locationType';
 import { HrEmployee } from './HrEmployee';
 import { FollowBusiness } from './FollowBusiness';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { Job } from './Job';
 import { Address } from './Address';
-import { Phone } from './Phone';
 import { BusinessPhone } from './BusinessPhone';
+import { JobApplicationState } from './JobApplicationStates';
 
 @Entity()
 export class Business {

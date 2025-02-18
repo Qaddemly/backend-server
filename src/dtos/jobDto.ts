@@ -1,11 +1,13 @@
 import { Address } from '../entity/Address';
 import { EmploymentType } from '../enums/employmentType';
 import { LocationType } from '../enums/locationType';
+import { Country } from '../enums/country';
 
 export interface CreateJobBodyBTO {
     title: string;
     description: string;
-    location: Address;
+    country: Country;
+    city: string;
     location_type: LocationType;
     skills: string[];
     salary: number;
@@ -22,7 +24,8 @@ export interface updateJobQueryData
         | 'description'
         | 'employee_type'
         | 'keywords'
-        | 'location'
+        | 'country'
+        | 'city'
         | 'salary'
         | 'location_type'
         | 'title'

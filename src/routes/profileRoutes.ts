@@ -242,6 +242,39 @@ profileRouter.delete(
     validateRequestMiddleware(idValidator),
     deleteCertificate,
 );
+
+/**
+ * Get All Job Applications of logged-in user
+ * */
+profileRouter.get('/jobApplication', protect);
+
+/**
+ * Get Details of certain job application (Joins)
+ * */
+
+profileRouter.get('/jobApplication/:id', protect);
+
+/**
+ * Get All Archived Job Applications of logged-in user
+ * */
+profileRouter.get('/jobApplication/archived', protect);
+
+/**
+ *  Get Details of Archived Job Applications of logged-in user
+ * */
+profileRouter.get('/jobApplication/archived/:id', protect);
+
+/**
+ * Make Job Application Archived or Unarchived (Toggle) based on query params
+ * */
+profileRouter.put('/jobApplication/archived/:id', protect);
+
+/**
+ * Delete Job Application
+ * */
+profileRouter.delete('/jobApplication/:id', protect);
+
+
 profileRouter.get(
     '/get-one-certificate/:id',
     validateRequestMiddleware(idValidator),
@@ -253,4 +286,5 @@ profileRouter.get(
     validateRequestMiddleware(idValidator),
     geALLCertificatesByUserId,
 );
+
 export default profileRouter;

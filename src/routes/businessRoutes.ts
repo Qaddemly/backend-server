@@ -30,6 +30,9 @@ import {
     checkRoleInBusiness,
 } from '../controllers/businessController';
 import { getAllPhonesOfBusiness } from '../services/businessServices';
+import { idJobValidator } from '../middlewares/validators/jobValidator';
+import { getAllJobApplicationsToJob } from '../controllers/jobController';
+import jobRouter from './jobRoutes';
 
 export const businessRouter = express.Router();
 
@@ -162,6 +165,19 @@ businessRouter.get(
     checkOwnerOrSuperAdmin,
     getFollowersOfBusiness,
 );
+// TODO : Recheck here
+businessRouter.get(
+    '/myBusiness/dashboard/job/:jobId/applications',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    getAllJobApplicationsToJob,
+);
+// jobRouter.get(
+//     '/allJobApplicationsToOneJob/:id',
+//     protect,
+//     validateRequestMiddleware(idJobValidator),
+//     getAllJobApplicationsToJob,
+// );
 
 // businessRouter.post(
 //     '/myBusiness/dashboard/edit/phoneNumber',
