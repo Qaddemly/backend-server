@@ -537,6 +537,30 @@ export const deleteCertificateService = async (req: Request) => {
     }
 };
 
+export const getOneCertificateService = async (req: Request) => {
+    const certificateId = Number(req.params.id);
+    const certificate =
+        await CertificateRepository.getOneCertificate(certificateId);
+    if (!certificate) {
+        throw new AppError('No certificate found with that ID', 404);
+    }
+    return certificate;
+};
+
+export const getAllCertificatesOfCurrentUserService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const certificates =
+        await CertificateRepository.getAllCertificatesByAccountId(userId);
+    return certificates;
+};
+
+export const getAllCertificatesByUserIdService = async (req: Request) => {
+    const userId = Number(req.params.id);
+    const certificates =
+        await CertificateRepository.getAllCertificatesByAccountId(userId);
+    return certificates;
+};
+
 export const uploadCertificateImage = uploadSingleImage('media');
 export const resizeCertificateImage = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
