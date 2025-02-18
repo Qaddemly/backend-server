@@ -18,7 +18,7 @@ import { Account } from './Account';
 import { JobStatus } from '../enums/jobStatus';
 import { Address } from './Address';
 import { Country } from '../enums/country';
-import { JobApplicationState } from './BusinessJobApplicationStates';
+import { JobApplicationState } from './JobApplicationStates';
 
 @Entity()
 export class Job {

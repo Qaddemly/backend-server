@@ -14,7 +14,7 @@ import { FollowBusiness } from './FollowBusiness';
 import { Job } from './Job';
 import { Address } from './Address';
 import { BusinessPhone } from './BusinessPhone';
-import { JobApplicationState } from './BusinessJobApplicationStates';
+import { JobApplicationState } from './JobApplicationStates';
 
 @Entity()
 export class Business {
