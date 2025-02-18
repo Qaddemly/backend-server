@@ -19,6 +19,9 @@ import {
 } from '../utils/pagination/typeorm-paginate';
 import { JobStatus } from '../enums/jobStatus';
 import { Not } from 'typeorm';
+import { AccountSavedJobsRepository } from '../Repository/accountSavedJobRepository';
+import { TypeOrmErrors } from '../enums/typeOrmErrors';
+import { AccountSavedJobs } from '../entity/AccountSavedJobs';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -216,43 +219,40 @@ export const updateJobService = async (
 //     return job;
 // };
 
-export const saveJobToUserService = async (req: Request) => {
-    const userId = Number(req.user.id);
-    const jobId = Number(req.params.id);
+export const saveJobToUserService = async (userId: number, jobId: number) => {
     const job = await JobRepository.findOneBy({ id: jobId });
     if (!job) {
         throw new AppError('Job not found', 404);
     }
-    const account = await AccountRepository.getAccountWithSavedJobs(userId);
-    const isJobAlreadySaved = account.saved_jobs.some(
-        (savedJob) => savedJob.id === jobId,
-    );
-    if (isJobAlreadySaved) {
+    const savedJob = await AccountSavedJobsRepository.findOneBy({
+        account: { id: userId },
+        job: { id: jobId },
+    });
+    if (savedJob) {
         throw new AppError('Job already saved', 409);
     }
-    account.saved_jobs.push(job);
-    const savedUser = await AccountRepository.save(account);
-    return savedUser.saved_jobs;
+    const newSavedJob = await AccountSavedJobsRepository.createSavedJob(
+        userId,
+        jobId,
+    );
 };
 
-export const removeSavedJobFromUserService = async (req: Request) => {
-    const userId = Number(req.user.id);
-    const jobId = Number(req.params.id);
+export const removeSavedJobFromUserService = async (
+    userId: number,
+    jobId: number,
+) => {
     const job = await JobRepository.findOneBy({ id: jobId });
     if (!job) {
         throw new AppError('Job not found', 404);
     }
-    const account = await AccountRepository.getAccountWithSavedJobs(userId);
-    const isJobAlreadySaved = account.saved_jobs.some(
-        (savedJob) => savedJob.id === jobId,
-    );
-    if (!isJobAlreadySaved) {
-        throw new AppError('Job already not saved', 409);
+    const savedJob = await AccountSavedJobsRepository.findOneBy({
+        account: { id: userId },
+        job: { id: jobId },
+    });
+    if (!savedJob) {
+        throw new AppError('Job already not saved', 404);
     }
-    account.saved_jobs = account.saved_jobs.filter((job) => job.id !== jobId);
-
-    const savedUser = await AccountRepository.save(account);
-    return savedUser;
+    await AccountSavedJobsRepository.deleteSavedJob(userId, jobId);
 };
 
 // export const getAllUserSavedJobsService = async (req: Request) => {
@@ -273,26 +273,24 @@ export const removeSavedJobFromUserService = async (req: Request) => {
 export const getAllUserSavedJobsService = async (req: Request) => {
     const userId = Number(req.user.id);
 
-    const account = await AccountRepository.getAccountWithSavedJobs(userId);
     try {
         //console.log('req', req.query);
         const transformedQuery = Paginate(req);
         //console.log('transformedQuery', transformedQuery);
-        const paginateConfig: PaginateConfig<Job> = {
-            searchableColumns: ['title'],
+        const paginateConfig: PaginateConfig<AccountSavedJobs> = {
+            searchableColumns: ['job.title'],
             sortableColumns: ['created_at'],
-            //relations: ['saved_by_accounts'],
-            defaultSortBy: [['id', 'ASC']],
+            relations: ['job'],
+            defaultSortBy: [['created_at', 'DESC']],
             maxLimit: 20,
             defaultLimit: transformedQuery.limit,
+            where: { account: { id: userId } },
 
             paginationType: PaginationType.TAKE_AND_SKIP,
         };
-        const queryBuilder = JobRepository.createQueryBuilder('job')
-            .innerJoin('job.saved_by_accounts', 'account')
-            .where('account.id = :accountId', { accountId: userId });
+        const queryBuilder = AccountSavedJobsRepository;
 
-        const jobs = await paginate<Job>(
+        const jobs = await paginate<AccountSavedJobs>(
             transformedQuery,
             queryBuilder,
             paginateConfig,
@@ -303,8 +301,6 @@ export const getAllUserSavedJobsService = async (req: Request) => {
         console.error('Error in getting jobs', err);
         throw new AppError('Error in getting jobs', 400);
     }
-
-    return account.saved_jobs;
 };
 
 export const applyToJobService = async (req: Request) => {

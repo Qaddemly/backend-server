@@ -109,7 +109,9 @@ export const makeJobArchived = catchAsync(
 export const saveJobToUser = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const savedJobs = await saveJobToUserService(req);
+            const userId = Number(req.user.id);
+            const jobId = Number(req.params.id);
+            await saveJobToUserService(userId, jobId);
             res.status(200).json({
                 success: true,
                 message: 'job saved successfully',
@@ -123,7 +125,9 @@ export const saveJobToUser = catchAsync(
 export const unSaveJobFromUser = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const user = await removeSavedJobFromUserService(req);
+            const userId = Number(req.user.id);
+            const jobId = Number(req.params.id);
+            removeSavedJobFromUserService(userId, jobId);
             res.status(200).json({
                 success: true,
                 message: 'job unsaved successfully',

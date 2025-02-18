@@ -69,6 +69,10 @@ import {
     resizeCertificateImage,
     uploadCertificateImage,
 } from '../services/profileServices';
+import {
+    getAllUserJobApplications,
+    getAllUserSavedJobs,
+} from '../controllers/jobController';
 
 const profileRouter = Router();
 
@@ -274,7 +278,6 @@ profileRouter.put('/jobApplication/archived/:id', protect);
  * */
 profileRouter.delete('/jobApplication/:id', protect);
 
-
 profileRouter.get(
     '/get-one-certificate/:id',
     validateRequestMiddleware(idValidator),
@@ -286,5 +289,7 @@ profileRouter.get(
     validateRequestMiddleware(idValidator),
     geALLCertificatesByUserId,
 );
+
+profileRouter.get('/job/mySavedJobs', protect, getAllUserSavedJobs);
 
 export default profileRouter;
