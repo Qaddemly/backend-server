@@ -771,3 +771,7 @@
 2025-02-15 16:58:11:5811 [31merror[39m: [31myou have already applied to that job[39m
 2025-02-15 16:58:23:5823 [31merror[39m: [31msyntax error at or near ")"[39m
 2025-02-15 16:59:15:5915 [31merror[39m: [31msyntax error at or near "FROM"[39m
+2025-02-15 21:11:23:1123 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-18 17:05:41:541 [31merror[39m: [31mPostgres Database connection failed Relation JobApplication#archived_by_account and Account#archived_job_applications both has cascade remove set. This may lead to unexpected circular removals. Please set cascade remove only from one side of relationship.[39m
+2025-02-18 17:06:44:644 [31merror[39m: [31mPostgres Database connection failed Entity "AccountArchivedJobApplications" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.[39m
+2025-02-18 17:07:55:755 [31merror[39m: [31mPostgres Database connection failed Data type "JobApplication" in "AccountArchivedJobApplications.job_application" is not supported by "postgres" database.[39m

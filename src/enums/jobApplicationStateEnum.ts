@@ -1,4 +1,4 @@
-export enum JobApplicationState {
+export enum JobApplicationStateEnum {
     PENDING = 'pending',
     REJECTED = 'rejected',
     UNDER_REVIEW = 'underReview',

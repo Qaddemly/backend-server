@@ -124,7 +124,7 @@ export const updateJobValidator: ValidationChain[] = [
 ];
 
 export const idJobValidator: ValidationChain[] = [
-    param('id').isInt().withMessage('id must be an integer'),
+    param('jobId').isInt().withMessage('id must be an integer'),
 ];
 
 export const applyToJobValidator: ValidationChain[] = [

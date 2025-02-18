@@ -88,12 +88,6 @@ jobRouter.delete(
 
 jobRouter.get('/allUserSavedJobs', protect, getAllUserSavedJobs);
 jobRouter.get('/allUserJobApplications', protect, getAllUserJobApplications);
-jobRouter.get(
-    '/allJobApplicationsToOneJob/:id',
-    protect,
-    validateRequestMiddleware(idJobValidator),
-    getAllJobApplicationsToJob,
-);
 
 jobRouter.post(
     '/applyToJob/:id',

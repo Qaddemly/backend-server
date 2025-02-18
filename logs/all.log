@@ -5459,3 +5459,68 @@
 2025-02-15 17:07:57:757 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2025-02-15 17:08:02:82 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/10030 200 290 - 937.148 ms[39m
 [35m[39m
+2025-02-15 21:10:52:1052 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:10:53:1053 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:10:54:1054 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-15 21:11:23:1123 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-15 21:11:23:1123 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/job/1/applications 500 1364 - 745.820 ms[39m
+[35m[39m
+2025-02-15 21:13:38:1338 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-15 21:13:39:1339 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-15 21:13:40:1340 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-16 14:56:36:5636 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-16 14:56:37:5637 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-16 14:56:38:5638 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-16 15:01:54:154 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/job/1/applications 200 131 - 919.407 ms[39m
+[35m[39m
+2025-02-16 15:02:07:27 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/job/1/applications 200 131 - 575.125 ms[39m
+[35m[39m
+2025-02-16 15:02:10:210 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/job/1/applications 200 131 - 423.856 ms[39m
+[35m[39m
+2025-02-17 12:00:21:021 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-17 12:00:21:021 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-17 12:00:25:025 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-17 12:01:10:110 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 941 - 1042.613 ms[39m
+[35m[39m
+2025-02-18 16:45:43:4543 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 16:45:44:4544 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 16:45:48:4548 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 16:46:20:4620 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 16:46:20:4620 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 16:46:22:4622 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 16:49:26:4926 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 16:49:27:4927 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 16:49:29:4929 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 16:55:25:5525 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 16:55:26:5526 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 16:55:27:5527 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 16:57:17:5717 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 16:57:18:5718 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 16:57:19:5719 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 17:05:41:541 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 17:05:41:541 [31merror[39m: [31mPostgres Database connection failed Relation JobApplication#archived_by_account and Account#archived_job_applications both has cascade remove set. This may lead to unexpected circular removals. Please set cascade remove only from one side of relationship.[39m
+2025-02-18 17:05:43:543 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 17:06:44:644 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 17:06:44:644 [31merror[39m: [31mPostgres Database connection failed Entity "AccountArchivedJobApplications" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.[39m
+2025-02-18 17:06:46:646 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 17:07:55:755 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 17:07:55:755 [31merror[39m: [31mPostgres Database connection failed Data type "JobApplication" in "AccountArchivedJobApplications.job_application" is not supported by "postgres" database.[39m
+2025-02-18 17:07:57:757 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 17:10:05:105 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 17:10:06:106 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 17:10:07:107 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 17:12:06:126 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 17:12:07:127 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 17:12:09:129 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 17:13:04:134 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 17:13:05:135 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 17:13:07:137 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 17:20:27:2027 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 17:20:27:2027 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 17:20:30:2030 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 17:22:17:2217 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 17:22:17:2217 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 17:22:19:2219 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-18 17:25:32:2532 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-18 17:25:33:2533 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-18 17:25:35:2535 [32minfo[39m: [32mMongoDB Database connected successfully[39m

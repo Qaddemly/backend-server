@@ -3,6 +3,7 @@ import {
     CreateDateColumn,
     Entity,
     JoinColumn,
+    ManyToMany,
     ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
@@ -10,7 +11,7 @@ import {
 import { Job } from './Job';
 import { Resume } from './Resume';
 import { Account } from './Account';
-import { JobApplicationState } from '../enums/jobApplicationState';
+import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
 
 @Entity()
 export class JobApplication {
@@ -46,13 +47,10 @@ export class JobApplication {
 
     @Column({
         type: 'enum',
-        enum: JobApplicationState,
-        default: JobApplicationState.PENDING,
+        enum: JobApplicationStateEnum,
+        default: JobApplicationStateEnum.PENDING,
     })
-    jop_application_state: JobApplicationState;
-
-    @Column({ type: 'boolean', default: false })
-    is_archived: boolean;
+    jop_application_state: JobApplicationStateEnum;
 
     @Column()
     @CreateDateColumn({ type: 'timestamptz' })

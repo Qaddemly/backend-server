@@ -427,7 +427,7 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
 
 export const getAllJobsApplicationsForJobService = async (req: Request) => {
     const userId = Number(req.user.id);
-    const jobId = Number(req.params.id);
+    const jobId = Number(req.params.jobId);
     const job = await JobRepository.getJobWithBusiness(jobId);
     if (!job) {
         throw new AppError('Job not found', 404);
@@ -444,7 +444,6 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
             HrRole.HR,
             HrRole.RECRUITER,
             HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
             HrRole.OWNER,
         ]);
     if (!isAllowedToShowAllApplications) {
