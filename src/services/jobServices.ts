@@ -327,15 +327,15 @@ export const applyToJobService = async (req: Request) => {
     if (job.status != JobStatus.OPENED) {
         throw new AppError('job is no longer available ', 400);
     }
-    const business = await BusinessRepository.findOneBy({
-        id: job.business.id,
-    });
-    if (!business) {
-        throw new AppError('Business not found', 404);
-    }
+    // const business = await BusinessRepository.findOneBy({
+    //     id: job.business.id,
+    // });
+    // if (!business) {
+    //     throw new AppError('Business not found', 404);
+    // }
     const isNotAllowedToApplyJob = await HrEmployeeRepository.checkPermission(
         userId,
-        business.id,
+        job.business.id,
         [
             HrRole.SUPER_ADMIN,
             HrRole.HR,
