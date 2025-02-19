@@ -88,7 +88,7 @@ jobRouter.delete(
 );
 
 jobRouter.post(
-    '/applyToJob/:id',
+    '/applyToJob/:jobId',
     protect,
     validateRequestMiddleware(idJobValidator),
     validateRequestMiddleware(applyToJobValidator),

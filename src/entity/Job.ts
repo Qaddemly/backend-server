@@ -71,6 +71,9 @@ export class Job {
     @Column('int')
     experience: number;
 
+    @Column({ name: 'business_id' })
+    business_id: number;
+
     @Index('job_index_on_business_id')
     @ManyToOne(() => Business, (business) => business.jobs, {
         onDelete: 'CASCADE',

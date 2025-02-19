@@ -19,6 +19,12 @@ import {
 } from '../utils/pagination/typeorm-paginate';
 import { JobStatus } from '../enums/jobStatus';
 import { Not } from 'typeorm';
+import { JobApplicationState } from '../entity/JobApplicationStates';
+import { AccountArchivedJobApplications } from '../entity/AccountArchivedJobApplications';
+import { Account } from '../entity/Account';
+import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
+import { JobApplicationStatesRepository } from '../Repository/jobApplicationStatesRepository';
+import { AccountArchivedJobApplicationsRepository } from '../Repository/accountArchivedJobApplicationsRepository';
 import { AccountSavedJobsRepository } from '../Repository/accountSavedJobRepository';
 import { TypeOrmErrors } from '../enums/typeOrmErrors';
 import { AccountSavedJobs } from '../entity/AccountSavedJobs';
@@ -303,6 +309,7 @@ export const getAllUserSavedJobsService = async (req: Request) => {
     }
 };
 
+
 export const applyToJobService = async (
     userId: number,
     jobId: number,
@@ -340,6 +347,7 @@ export const applyToJobService = async (
     if (isNotAllowedToApplyJob) {
         throw new AppError('you do not have permission to that action', 403);
     }
+
     const jobApplication =
         await JobApplicationRepository.findOneByAccountIdAndJobId(
             userId,
@@ -354,6 +362,20 @@ export const applyToJobService = async (
             jobId,
             resumeId,
         );
+    const jobApplicationState = new JobApplicationState();
+    jobApplicationState.job_application_id = newJobApplication.id;
+    jobApplicationState.job = { id: jobId } as Job;
+    jobApplicationState.state = JobApplicationStateEnum.PENDING;
+    await JobApplicationStatesRepository.save(jobApplicationState);
+
+    const accountArchivedJobApplication = new AccountArchivedJobApplications();
+    accountArchivedJobApplication.account = { id: userId } as Account;
+    accountArchivedJobApplication.job_application_id = newJobApplication.id;
+    accountArchivedJobApplication.is_archived = false;
+    await AccountArchivedJobApplicationsRepository.save(
+        accountArchivedJobApplication,
+    );
+
     return newJobApplication;
 };
 
@@ -566,4 +588,8 @@ export const changeJobStatus = async (req: Request, status: JobStatus) => {
     job.status = status;
     await JobRepository.save(job);
     return job;
+};
+
+export const getAllJobs = async () => {
+    return await JobRepository.find();
 };

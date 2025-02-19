@@ -23,9 +23,13 @@ export class JobApplicationState {
     @JoinColumn({ name: 'job_application_id' }) // Links to JobApplication
     job_application: JobApplication;
 
+    @Column({ name: 'job_id' })
+    job_id: number;
+
     @ManyToOne(() => Job, (job) => job.job_application_states, {
         onDelete: 'CASCADE',
     })
+    @JoinColumn({ name: 'job_id' })
     job: Job;
 
     @Column({

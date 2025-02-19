@@ -29,6 +29,8 @@ import {
     PaginateConfig,
     PaginationType,
 } from '../utils/pagination/typeorm-paginate';
+import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
+import { JobApplicationStatesRepository } from '../Repository/jobApplicationStatesRepository';
 
 /**
  * TODO: mark the Account that created the business as the owner.
@@ -578,4 +580,21 @@ export const getAllBusinessWithSearchAndFilterService = async (
         console.log(err);
         throw new AppError('Error in getting jobs', 400);
     }
+};
+export const updateJobApplicationStatusService = async (
+    jobId: number,
+    applicationId: number,
+    status: JobApplicationStateEnum,
+) => {
+    const jobApplicationStatus = await JobApplicationStatesRepository.findOneBy(
+        {
+            job_application_id: applicationId,
+            job_id: jobId,
+        },
+    );
+    if (!jobApplicationStatus) {
+        throw new AppError('Job Application not found', 404);
+    }
+    jobApplicationStatus.state = status;
+    return await JobApplicationStatesRepository.save(jobApplicationStatus);
 };

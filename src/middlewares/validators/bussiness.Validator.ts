@@ -7,6 +7,7 @@ import { LocationType } from '../../enums/locationType';
 import { HrRole } from '../../enums/HrRole';
 import { CountryCode } from '../../enums/countryCode';
 import { NextFunction, Request } from 'express';
+import { JobApplicationStateEnum } from '../../enums/jobApplicationStateEnum';
 export const businessCreationValidator: ValidationChain[] = [
     body('name')
         .trim()
@@ -261,4 +262,17 @@ export const businessUpdatePhoneNumberValidator: ValidationChain[] = [
 ];
 export const searchAndFilterValidator: ValidationChain[] = [
     query('search').notEmpty().withMessage('search cant be empty'),
+];
+export const updateJobStatusValidator: ValidationChain[] = [
+    body('status')
+        .trim()
+        .notEmpty()
+        .withMessage('status cannot be empty')
+        .custom((val) => {
+            console.log(val);
+            console.log(JobApplicationStateEnum);
+            console.log(val in JobApplicationStateEnum);
+            if (val in JobApplicationStateEnum) return val;
+            else throw new Error('invalid status');
+        }),
 ];

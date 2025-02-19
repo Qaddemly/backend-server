@@ -15,6 +15,7 @@ import {
     checkDeleteHr,
     getAllHrQueryValidator,
     searchAndFilterValidator,
+    updateJobStatusValidator,
 } from '../middlewares/validators/bussiness.Validator';
 import {
     addHrToBusiness,
@@ -28,6 +29,7 @@ import {
     updateBusiness,
     updateHrRole,
     checkRoleInBusiness,
+    updateJobApplicationStatus,
 } from '../controllers/businessController';
 import { getAllPhonesOfBusiness } from '../services/businessServices';
 import { idJobValidator } from '../middlewares/validators/jobValidator';
@@ -175,6 +177,14 @@ businessRouter.get(
     validateRequestMiddleware(idJobValidator),
     getAllJobApplicationsToJob,
 );
+
+businessRouter.put(
+    '/myBusiness/dashboard/job/:jobId/applications/:applicationId',
+    protect,
+    validateRequestMiddleware(updateJobStatusValidator),
+    updateJobApplicationStatus,
+);
+
 // jobRouter.get(
 //     '/allJobApplicationsToOneJob/:id',
 //     protect,

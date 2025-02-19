@@ -23,6 +23,7 @@ export class AccountArchivedJobApplications {
     @ManyToOne(() => Account, (account) => account.archived_job_applications, {
         onDelete: 'CASCADE',
     })
+    @JoinColumn({ name: 'account_id' })
     account: Account;
 
     @Column('boolean')
