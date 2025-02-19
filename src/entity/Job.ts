@@ -19,6 +19,7 @@ import { JobStatus } from '../enums/jobStatus';
 import { Address } from './Address';
 import { Country } from '../enums/country';
 import { JobApplicationState } from './JobApplicationStates';
+import { AccountSavedJobs } from './AccountSavedJobs';
 
 @Entity()
 export class Job {
@@ -88,17 +89,18 @@ export class Job {
     })
     job_applications: JobApplication[];
 
-    @ManyToMany(() => Account, (account) => account.saved_jobs, {
-        cascade: true,
-    })
-    saved_by_accounts: Account[];
-
     @OneToMany(
         () => JobApplicationState,
         (business_job_application_state) => business_job_application_state.job,
         { cascade: true },
     )
     job_application_states: JobApplicationState[];
+    @OneToMany(
+        () => AccountSavedJobs,
+        (account_saved_jobs) => account_saved_jobs.job,
+        { cascade: true },
+    )
+    saved_jobs: AccountSavedJobs[];
 
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
