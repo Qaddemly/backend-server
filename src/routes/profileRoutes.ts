@@ -33,6 +33,10 @@ import {
     getOneCertificate,
     getMyALLCertificate,
     geALLCertificatesByUserId,
+    getUserInfoAndJobs,
+    getAllArchivedApplicationsOfUser,
+    archiveJobApplication,
+    getAllDetailsAboutJobApplication,
 } from '../controllers/profileController';
 import {
     protect,
@@ -243,37 +247,36 @@ profileRouter.delete(
     deleteCertificate,
 );
 
-/**
- * Get All Job Applications of logged-in user
- * */
-profileRouter.get('/jobApplication', protect);
-
-/**
- * Get Details of certain job application (Joins)
- * */
-
-profileRouter.get('/jobApplication/:id', protect);
+profileRouter.get(
+    '/jobApplication/:id',
+    protect,
+    getAllDetailsAboutJobApplication,
+);
 
 /**
  * Get All Archived Job Applications of logged-in user
  * */
-profileRouter.get('/jobApplication/archived', protect);
-
-/**
- *  Get Details of Archived Job Applications of logged-in user
- * */
-profileRouter.get('/jobApplication/archived/:id', protect);
+profileRouter.get(
+    '/jobApplication/archived/all',
+    protect,
+    getAllArchivedApplicationsOfUser,
+);
 
 /**
  * Make Job Application Archived or Unarchived (Toggle) based on query params
  * */
-profileRouter.put('/jobApplication/archived/:id', protect);
+profileRouter.put(
+    '/jobApplication/archived/:id',
+    protect,
+    archiveJobApplication,
+);
 
 /**
  * Delete Job Application
+ *
+ * Make No sense to delete job application, but we can make it archived
  * */
-profileRouter.delete('/jobApplication/:id', protect);
-
+// profileRouter.delete('/jobApplication/:id', protect);
 
 profileRouter.get(
     '/get-one-certificate/:id',
@@ -286,5 +289,7 @@ profileRouter.get(
     validateRequestMiddleware(idValidator),
     geALLCertificatesByUserId,
 );
+
+profileRouter.get('/test', protect, getUserInfoAndJobs);
 
 export default profileRouter;

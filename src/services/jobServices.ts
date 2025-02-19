@@ -19,6 +19,12 @@ import {
 } from '../utils/pagination/typeorm-paginate';
 import { JobStatus } from '../enums/jobStatus';
 import { Not } from 'typeorm';
+import { JobApplicationState } from '../entity/JobApplicationStates';
+import { AccountArchivedJobApplications } from '../entity/AccountArchivedJobApplications';
+import { Account } from '../entity/Account';
+import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
+import { JobApplicationStatesRepository } from '../Repository/jobApplicationStatesRepository';
+import { AccountArchivedJobApplicationsRepository } from '../Repository/accountArchivedJobApplicationsRepository';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -309,7 +315,7 @@ export const getAllUserSavedJobsService = async (req: Request) => {
 
 export const applyToJobService = async (req: Request) => {
     const userId = Number(req.user.id);
-    const jobId = Number(req.params.id);
+    const jobId = Number(req.params.jobId);
     const { resume_id } = req.body;
     if (resume_id) {
         const resume = await ResumeRepository.findOneBy({
@@ -327,27 +333,23 @@ export const applyToJobService = async (req: Request) => {
     if (job.status != JobStatus.OPENED) {
         throw new AppError('job is no longer available ', 400);
     }
-    // const business = await BusinessRepository.findOneBy({
-    //     id: job.business.id,
-    // });
-    // if (!business) {
-    //     throw new AppError('Business not found', 404);
+
+    // const isNotAllowedToApplyJob = await HrEmployeeRepository.checkPermission(
+    //     userId,
+    //     job.business.id,
+    //     [
+    //         HrRole.SUPER_ADMIN,
+    //         HrRole.HR,
+    //         HrRole.RECRUITER,
+    //         HrRole.HIRING_MANAGER,
+    //         HrRole.SUPER_ADMIN,
+    //         HrRole.OWNER,
+    //     ],
+    // );
+    // if (isNotAllowedToApplyJob) {
+    //     throw new AppError('you do not have permission to that action', 403);
     // }
-    const isNotAllowedToApplyJob = await HrEmployeeRepository.checkPermission(
-        userId,
-        job.business.id,
-        [
-            HrRole.SUPER_ADMIN,
-            HrRole.HR,
-            HrRole.RECRUITER,
-            HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
-            HrRole.OWNER,
-        ],
-    );
-    if (isNotAllowedToApplyJob) {
-        throw new AppError('you do not have permission to that action', 403);
-    }
+
     const jobApplication =
         await JobApplicationRepository.findOneByAccountIdAndJobId(
             userId,
@@ -362,6 +364,20 @@ export const applyToJobService = async (req: Request) => {
             jobId,
             resume_id,
         );
+    const jobApplicationState = new JobApplicationState();
+    jobApplicationState.job_application_id = newJobApplication.id;
+    jobApplicationState.job = { id: jobId } as Job;
+    jobApplicationState.state = JobApplicationStateEnum.PENDING;
+    await JobApplicationStatesRepository.save(jobApplicationState);
+
+    const accountArchivedJobApplication = new AccountArchivedJobApplications();
+    accountArchivedJobApplication.account = { id: userId } as Account;
+    accountArchivedJobApplication.job_application_id = newJobApplication.id;
+    accountArchivedJobApplication.is_archived = false;
+    await AccountArchivedJobApplicationsRepository.save(
+        accountArchivedJobApplication,
+    );
+
     return newJobApplication;
     // const account =
     //     await AccountRepository.getAccountWithJobApplications(userId);
@@ -566,4 +582,8 @@ export const changeJobStatus = async (req: Request, status: JobStatus) => {
     job.status = status;
     await JobRepository.save(job);
     return job;
+};
+
+export const getAllJobs = async () => {
+    return await JobRepository.find();
 };

@@ -32,6 +32,11 @@ import { CertificateRepository } from '../Repository/certificateRepository';
 import { uploadSingleImage } from '../middlewares/upload.middleWare';
 import { expressFiles } from '../types/types';
 import sharp from 'sharp';
+import { JobApplication } from '../entity/JobApplication';
+import { JobApplicationRepository } from '../Repository/jobApplicationRepository';
+import { AccountArchivedJobApplicationsRepository } from '../Repository/accountArchivedJobApplicationsRepository';
+import { JobApplicationStatesRepository } from '../Repository/jobApplicationStatesRepository';
+import { JobRepository } from '../Repository/jobRepository';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -588,3 +593,91 @@ export const resizeCertificateImage = catchAsync(
         }
     },
 );
+
+export const getAllArchivedApplicationsOfUserService = async (
+    userId: number,
+) => {
+    return await JobApplicationRepository.getAllArchivedApplications(userId);
+};
+
+export const archiveJobApplicationService = async (
+    jobApplicationId: number,
+    userId: number,
+    archive: boolean,
+) => {
+    const jobApplicationArchive =
+        await AccountArchivedJobApplicationsRepository.findOneBy({
+            job_application_id: jobApplicationId,
+            account: { id: userId },
+        });
+    if (!jobApplicationArchive) {
+        throw new AppError('Job Application not found', 404);
+    }
+    console.log(archive, jobApplicationArchive.is_archived);
+    if (
+        (archive && jobApplicationArchive.is_archived) ||
+        (!archive && !jobApplicationArchive.is_archived)
+    ) {
+        throw new AppError('Job Application already in the desired state', 400);
+    }
+    jobApplicationArchive.is_archived = archive;
+    return await AccountArchivedJobApplicationsRepository.save(
+        jobApplicationArchive,
+    );
+};
+
+export const getAllDetailsAboutJobApplicationService = async (
+    userId: number,
+    jobApplicationId: number,
+) => {
+    const jobApplication = await JobApplicationRepository.findOneBy({
+        id: jobApplicationId,
+        account: { id: userId },
+    });
+    if (!jobApplication) {
+        throw new AppError('Job Application not found', 404);
+    }
+    const isArchived = await AccountArchivedJobApplicationsRepository.findOneBy(
+        {
+            job_application_id: jobApplicationId,
+            account: { id: userId },
+        },
+    );
+    const status = await JobApplicationStatesRepository.findOneBy({
+        job_application_id: jobApplicationId,
+    });
+    const job = await JobRepository.findOneBy({ id: jobApplication.job_id });
+    return {
+        ...jobApplication,
+        is_archived: isArchived.is_archived,
+        status: status.state,
+        job,
+    };
+};
+
+// For AI
+export const getUserInfo = async (userId: number) => {
+    const user = await AccountRepository.findOneBy({ id: userId });
+
+    const skills = await SkillRepository.find({
+        where: { account: { id: userId } },
+        select: ['name'],
+    });
+    const educations = await EducationRepository.find({
+        where: { account: { id: userId } },
+    });
+    const experiences = await ExperienceRepository.find({
+        where: { account: { id: userId } },
+    });
+
+    return {
+        id: user.id,
+        country: user.address.country,
+        city: user.address.city,
+        about_me: user.about_me,
+        subtitle: user.subtitle,
+        skills,
+        educations,
+        experiences,
+    };
+};

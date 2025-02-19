@@ -34,6 +34,10 @@ import {
     getOneCertificateService,
     getAllCertificatesOfCurrentUserService,
     getAllCertificatesByUserIdService,
+    getUserInfo,
+    getAllArchivedApplicationsOfUserService,
+    archiveJobApplicationService,
+    getAllDetailsAboutJobApplicationService,
 } from '../services/profileServices';
 import catchAsync from 'express-async-handler';
 import {
@@ -42,7 +46,7 @@ import {
     updateProjectDTO,
     updateVolunteeringDTO,
 } from '../dtos/userDto';
-import { interfaces } from 'inversify';
+import { getAllJobs } from '../services/jobServices';
 
 export const deleteMe = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
@@ -462,6 +466,70 @@ export const deleteCertificate = catchAsync(
         try {
             const certificate = await deleteCertificateService(req);
             res.status(204).json({});
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllArchivedApplicationsOfUser = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const jobApplications = await getAllArchivedApplicationsOfUserService(
+            req.user.id,
+        );
+        res.status(200).json({
+            success: true,
+            jobApplications,
+        });
+    },
+);
+
+export const archiveJobApplication = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const jobApplication = await archiveJobApplicationService(
+                Number(req.params.id),
+                req.user.id,
+                req.query.archive === 'true',
+            );
+            res.status(200).json({
+                success: true,
+                jobApplication,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllDetailsAboutJobApplication = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const jobApplication =
+                await getAllDetailsAboutJobApplicationService(
+                    req.user.id,
+                    Number(req.params.id),
+                );
+            res.status(200).json({
+                success: true,
+                jobApplication,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getUserInfoAndJobs = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const user = await getUserInfo(req.user.id);
+        const jobs = await getAllJobs();
+        try {
+            res.status(200).json({
+                success: true,
+                user,
+                jobs,
+            });
         } catch (err) {
             return next(err);
         }

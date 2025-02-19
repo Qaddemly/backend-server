@@ -1,0 +1,42 @@
+2025-02-18 23:39:52:3952 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 13:01:00:10 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-19 13:03:32:332 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 13:03:48:348 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 13:07:04:74 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 13:08:58:858 [31merror[39m: [31myou do not have permission to that action[39m
+2025-02-19 13:10:17:1017 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-19 13:10:39:1039 [31merror[39m: [31mJob not found[39m
+2025-02-19 13:50:21:5021 [31merror[39m: [31mJob Application already in the desired state[39m
+2025-02-19 13:50:40:5040 [31merror[39m: [31mJob Application already in the desired state[39m
+2025-02-19 13:50:43:5043 [31merror[39m: [31mJob Application already in the desired state[39m
+2025-02-19 13:50:54:5054 [31merror[39m: [31mJob Application already in the desired state[39m
+2025-02-19 13:53:11:5311 [31merror[39m: [31mJob Application already in the desired state[39m
+2025-02-19 13:53:22:5322 [31merror[39m: [31mJob Application already in the desired state[39m
+2025-02-19 13:53:25:5325 [31merror[39m: [31mJob Application already in the desired state[39m
+2025-02-19 13:55:45:5545 [31merror[39m: [31mJob Application already in the desired state[39m
+2025-02-19 13:57:41:5741 [31merror[39m: [31mJob Application already in the desired state[39m
+2025-02-19 14:06:46:646 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-19 14:07:23:723 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-19 14:16:36:1636 [31merror[39m: [31mPostgres Database connection failed column "resume_id" of relation "job_application" contains null values[39m
+2025-02-19 14:17:24:1724 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-19 14:17:30:1730 [31merror[39m: [31mDriver not Connected[39m
+2025-02-19 14:17:59:1759 [31merror[39m: [31mPostgres Database connection failed column "resume_id" of relation "job_application" contains null values[39m
+2025-02-19 14:18:46:1846 [31merror[39m: [31mError: Only PDF, DOC, and DOCX files are allowed for the resume![39m
+2025-02-19 14:20:52:2052 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-19 14:22:01:221 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:22:40:2240 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:24:17:2417 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:25:25:2525 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:25:41:2541 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:27:27:2727 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:28:08:288 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:29:35:2935 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:31:26:3126 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:34:22:3422 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:35:38:3538 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:36:11:3611 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:37:17:3717 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:38:46:3846 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:40:51:4051 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:49:28:4928 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 14:49:55:4955 [31merror[39m: [31mJob Application already in the desired state[39m
