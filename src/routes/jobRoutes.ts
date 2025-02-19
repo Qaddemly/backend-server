@@ -6,6 +6,7 @@ import {
     getAllJobs,
     getAllUserJobApplications,
     getAllUserSavedJobs,
+    getOneJobApplication,
     getOneJob,
     makeJobArchived,
     makeJobClosed,

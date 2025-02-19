@@ -8,7 +8,9 @@ import {
     getAllJobsSearchWithFilterService,
     getAllUserJobsApplicationsService,
     getAllUserSavedJobsService,
+    getOneJobApplicationService,
     getOneJobService,
+    getOneUserJobApplicationService,
     removeSavedJobFromUserService,
     saveJobToUserService,
     updateJobService,
@@ -211,6 +213,44 @@ export const getAllJobs = catchAsync(
             res.status(200).json({
                 success: true,
                 jobs,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getOneUserJobApplication = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const accountId = Number(req.user.id);
+            const jobApplicationId = Number(req.params.id);
+            const jobApplication = await getOneUserJobApplicationService(
+                accountId,
+                jobApplicationId,
+            );
+            res.status(200).json({
+                success: true,
+                jobApplication,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getOneJobApplication = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const accountId = Number(req.user.id);
+            const jobApplicationId = Number(req.params.id);
+            const jobApplication = await getOneJobApplicationService(
+                accountId,
+                jobApplicationId,
+            );
+            res.status(200).json({
+                success: true,
+                jobApplication,
             });
         } catch (err) {
             return next(err);

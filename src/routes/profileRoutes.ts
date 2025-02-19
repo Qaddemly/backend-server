@@ -72,6 +72,7 @@ import {
 import {
     getAllUserJobApplications,
     getAllUserSavedJobs,
+    getOneUserJobApplication,
 } from '../controllers/jobController';
 
 const profileRouter = Router();
@@ -256,7 +257,7 @@ profileRouter.get('/jobApplication', protect);
  * Get Details of certain job application (Joins)
  * */
 
-profileRouter.get('/jobApplication/:id', protect);
+profileRouter.get('/jobApplication/:id', protect, getOneUserJobApplication);
 
 /**
  * Get All Archived Job Applications of logged-in user

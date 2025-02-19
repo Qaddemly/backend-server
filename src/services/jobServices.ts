@@ -366,7 +366,7 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
             sortableColumns: ['created_at'],
             //filterableColumns:{id:5},
             filterableColumns: {
-                jop_application_state: true,
+                jop_application_state: [FilterOperator.EQ],
             },
             relations: ['job', 'resume'],
             //where: { job: job },
@@ -390,6 +390,46 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
     }
 };
 
+export const getOneUserJobApplicationService = async (
+    accountId: number,
+    jobApplicationId: number,
+) => {
+    const jobApplication =
+        await JobApplicationRepository.getOneJobApplication(jobApplicationId);
+
+    if (!jobApplication || jobApplication.account.id !== accountId) {
+        throw new AppError('Job Application not found', 404);
+    }
+    return jobApplication;
+};
+
+export const getOneJobApplicationService = async (
+    accountId: number,
+    jobApplicationId: number,
+) => {
+    const jobApplication =
+        await JobApplicationRepository.getOneJobApplication(jobApplicationId);
+
+    if (!jobApplication) {
+        throw new AppError('Job Application not found', 404);
+    }
+    const isAllowedToShowAllApplications =
+        await HrEmployeeRepository.checkPermission(
+            accountId,
+            jobApplication.job.business.id,
+            [
+                HrRole.SUPER_ADMIN,
+                HrRole.HR,
+                HrRole.RECRUITER,
+                HrRole.HIRING_MANAGER,
+                HrRole.OWNER,
+            ],
+        );
+    if (!isAllowedToShowAllApplications) {
+        throw new AppError('you are not allowed to do that action', 403);
+    }
+    return jobApplication;
+};
 export const getAllJobsApplicationsForJobService = async (req: Request) => {
     const userId = Number(req.user.id);
     const jobId = Number(req.params.id);
@@ -421,6 +461,7 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
             ],
             sortableColumns: ['created_at'],
             //filterableColumns:{id:5},
+            filterableColumns: { jop_application_state: [FilterOperator.EQ] },
             relations: ['job', 'resume', 'account'],
             where: { job: { id: job.id } },
             defaultSortBy: [['created_at', 'ASC']],
