@@ -8,7 +8,9 @@ import {
     getAllJobsSearchWithFilterService,
     getAllUserJobsApplicationsService,
     getAllUserSavedJobsService,
+    getOneJobApplicationService,
     getOneJobService,
+    getOneUserJobApplicationService,
     removeSavedJobFromUserService,
     saveJobToUserService,
     updateJobService,
@@ -109,7 +111,9 @@ export const makeJobArchived = catchAsync(
 export const saveJobToUser = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const savedJobs = await saveJobToUserService(req);
+            const userId = Number(req.user.id);
+            const jobId = Number(req.params.id);
+            await saveJobToUserService(userId, jobId);
             res.status(200).json({
                 success: true,
                 message: 'job saved successfully',
@@ -123,7 +127,9 @@ export const saveJobToUser = catchAsync(
 export const unSaveJobFromUser = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const user = await removeSavedJobFromUserService(req);
+            const userId = Number(req.user.id);
+            const jobId = Number(req.params.id);
+            removeSavedJobFromUserService(userId, jobId);
             res.status(200).json({
                 success: true,
                 message: 'job unsaved successfully',
@@ -151,7 +157,14 @@ export const getAllUserSavedJobs = catchAsync(
 export const applyToJob = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const jobApplication = await applyToJobService(req);
+            const userId = Number(req.user.id);
+            const resumeId = Number(req.body.resume_id);
+            const jobId = Number(req.params.id);
+            const jobApplication = await applyToJobService(
+                userId,
+                jobId,
+                resumeId,
+            );
             res.status(200).json({
                 success: true,
                 message: 'congrats your application is submitted successfully ',
@@ -200,6 +213,44 @@ export const getAllJobs = catchAsync(
             res.status(200).json({
                 success: true,
                 jobs,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getOneUserJobApplication = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const accountId = Number(req.user.id);
+            const jobApplicationId = Number(req.params.id);
+            const jobApplication = await getOneUserJobApplicationService(
+                accountId,
+                jobApplicationId,
+            );
+            res.status(200).json({
+                success: true,
+                jobApplication,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getOneJobApplication = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const accountId = Number(req.user.id);
+            const jobApplicationId = Number(req.params.id);
+            const jobApplication = await getOneJobApplicationService(
+                accountId,
+                jobApplicationId,
+            );
+            res.status(200).json({
+                success: true,
+                jobApplication,
             });
         } catch (err) {
             return next(err);

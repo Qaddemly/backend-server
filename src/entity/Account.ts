@@ -29,6 +29,7 @@ import { Certificate } from './Certificate';
 import { AccountProject } from './AccountProject';
 import { AccountVolunteering } from './AccountVolunteering';
 import { AccountArchivedJobApplications } from './AccountArchivedJobApplications';
+import { AccountSavedJobs } from './AccountSavedJobs';
 
 @Entity()
 export class Account {
@@ -107,13 +108,12 @@ export class Account {
     )
     job_applications: JobApplication[];
 
-    @ManyToMany(() => Job, (job) => job.saved_by_accounts)
-    @JoinTable({
-        name: 'account_saved_jobs',
-        joinColumn: { name: 'account_id', referencedColumnName: 'id' },
-        inverseJoinColumn: { name: 'job_id', referencedColumnName: 'id' },
-    })
-    saved_jobs: Job[];
+    @OneToMany(
+        () => AccountSavedJobs,
+        (account_saved_jobs) => account_saved_jobs.account,
+        { cascade: true },
+    )
+    saved_jobs: AccountSavedJobs[];
 
     @OneToMany(
         () => FollowBusiness,

@@ -31,7 +31,10 @@ import {
 } from '../controllers/businessController';
 import { getAllPhonesOfBusiness } from '../services/businessServices';
 import { idJobValidator } from '../middlewares/validators/jobValidator';
-import { getAllJobApplicationsToJob } from '../controllers/jobController';
+import {
+    getAllJobApplicationsToJob,
+    getOneJobApplication,
+} from '../controllers/jobController';
 import jobRouter from './jobRoutes';
 
 export const businessRouter = express.Router();
@@ -189,4 +192,17 @@ businessRouter.get(
     '/searchAndFilter',
     validateRequestMiddleware(searchAndFilterValidator),
     businessController.getAllBusinessWithSearchAndFilter,
+);
+
+businessRouter.get(
+    '/jobApplication/getAllJobApplications/job/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    getAllJobApplicationsToJob,
+);
+businessRouter.get(
+    '/jobApplication/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    getOneJobApplication,
 );

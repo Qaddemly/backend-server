@@ -27,6 +27,57 @@ class JobApplicationRepositoryClass extends Repository<JobApplication> {
         );
         return result[0];
     }
+    async getOneJobApplication(jobApplicationId: number) {
+        const jobApplication = this.createQueryBuilder('ja')
+            .select([
+                'ja.id',
+                'ja.jop_application_state',
+                'ja.created_at',
+                'ja.updated_at',
+                // Account fields
+                'a.id',
+                'a.address.country',
+                'a.address.city',
+                'a.phone.number',
+                'a.phone.country_code',
+                'a.first_name',
+                'a.last_name',
+                'a.email',
+                'a.profile_picture',
+                'a.about_me',
+                'a.date_of_birth',
+                'a.country',
+                'a.country_code',
+                'a.city',
+                'a.number',
+                'a.subtitle',
+                // Job fields
+                'j',
+                // Resume fields
+                'resume',
+                // Education fields
+                'edu',
+                // Skills fields
+                'skill.name',
+                // Certificates fields
+                'cert',
+                // Projects fields
+                'proj',
+                'bus.id',
+            ])
+            .leftJoin('ja.account', 'a') // LEFT JOIN Account
+            .leftJoin('ja.job', 'j') // LEFT JOIN Job
+            .leftJoin('ja.resume', 'resume') // LEFT JOIN Resume
+            // Join related entities inside Account
+            .leftJoin('a.educations', 'edu') // Education
+            .leftJoin('a.skills', 'skill') // Skills
+            .leftJoin('a.certificates', 'cert') // Certificates
+            .leftJoin('a.projects', 'proj') // Projects
+            .leftJoin('j.business', 'bus') // Business
+            .where('ja.id = :id', { id: jobApplicationId })
+            .getOne();
+        return jobApplication;
+    }
 }
 
 export const JobApplicationRepository = AppDataSource.getRepository(
