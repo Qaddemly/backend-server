@@ -40,3 +40,13 @@
 2025-02-19 14:40:51:4051 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
 2025-02-19 14:49:28:4928 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
 2025-02-19 14:49:55:4955 [31merror[39m: [31mJob Application already in the desired state[39m
+2025-02-19 17:37:53:3753 [31merror[39m: [31mJob Application not found[39m
+2025-02-19 17:38:10:3810 [31merror[39m: [31minvalid input value for enum job_application_state_state_enum: "UNDER_REVIEW"[39m
+2025-02-19 17:39:02:392 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 17:39:54:3954 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 17:42:35:4235 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 17:44:19:4419 [31merror[39m: [31mPostgres Database connection failed invalid input value for enum job_application_state_state_enum: "pending"[39m
+2025-02-19 17:46:10:4610 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-19 17:46:15:4615 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-19 17:47:18:4718 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 17:47:24:4724 [31merror[39m: [31mJob Application not found[39m

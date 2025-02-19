@@ -334,21 +334,21 @@ export const applyToJobService = async (req: Request) => {
         throw new AppError('job is no longer available ', 400);
     }
 
-    // const isNotAllowedToApplyJob = await HrEmployeeRepository.checkPermission(
-    //     userId,
-    //     job.business.id,
-    //     [
-    //         HrRole.SUPER_ADMIN,
-    //         HrRole.HR,
-    //         HrRole.RECRUITER,
-    //         HrRole.HIRING_MANAGER,
-    //         HrRole.SUPER_ADMIN,
-    //         HrRole.OWNER,
-    //     ],
-    // );
-    // if (isNotAllowedToApplyJob) {
-    //     throw new AppError('you do not have permission to that action', 403);
-    // }
+    const isNotAllowedToApplyJob = await HrEmployeeRepository.checkPermission(
+        userId,
+        job.business.id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (isNotAllowedToApplyJob) {
+        throw new AppError('you do not have permission to that action', 403);
+    }
 
     const jobApplication =
         await JobApplicationRepository.findOneByAccountIdAndJobId(

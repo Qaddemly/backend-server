@@ -363,3 +363,75 @@
 [35m[39m
 2025-02-19 15:02:32:232 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/16 200 550 - 543.785 ms[39m
 [35m[39m
+2025-02-19 16:57:37:5737 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-19 16:57:38:5738 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-19 16:57:39:5739 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-19 17:34:16:3416 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-19 17:34:16:3416 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-19 17:34:18:3418 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-19 17:36:00:360 [35mhttp[39m: [35mGET /api/v1/myBusiness/dashboard/job/1/applications/14 404 90 - 387.732 ms[39m
+[35m[39m
+2025-02-19 17:36:11:3611 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/job/1/applications/14 404 99 - 134.194 ms[39m
+[35m[39m
+2025-02-19 17:36:31:3631 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/job/1/applications/14 404 99 - 135.567 ms[39m
+[35m[39m
+2025-02-19 17:37:53:3753 [31merror[39m: [31mJob Application not found[39m
+2025-02-19 17:37:53:3753 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/14 404 836 - 728.434 ms[39m
+[35m[39m
+2025-02-19 17:38:10:3810 [31merror[39m: [31minvalid input value for enum job_application_state_state_enum: "UNDER_REVIEW"[39m
+2025-02-19 17:38:10:3810 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/11 500 1405 - 510.113 ms[39m
+[35m[39m
+2025-02-19 17:38:56:3856 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-19 17:38:56:3856 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-19 17:38:58:3858 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-19 17:39:02:392 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 17:39:02:392 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/11 400 169 - 379.648 ms[39m
+[35m[39m
+2025-02-19 17:39:54:3954 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 17:39:54:3954 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/11 400 165 - 380.930 ms[39m
+[35m[39m
+2025-02-19 17:41:37:4137 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-19 17:41:38:4138 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-19 17:42:26:4226 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-19 17:42:26:4226 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-19 17:42:31:4231 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-19 17:42:35:4235 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 17:42:35:4235 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/11 400 169 - 400.472 ms[39m
+[35m[39m
+2025-02-19 17:43:22:4322 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-19 17:43:22:4322 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-19 17:43:23:4323 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-19 17:44:18:4418 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-19 17:44:19:4419 [31merror[39m: [31mPostgres Database connection failed invalid input value for enum job_application_state_state_enum: "pending"[39m
+2025-02-19 17:44:20:4420 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-19 17:46:03:463 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-19 17:46:04:464 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-19 17:46:06:466 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-19 17:46:10:4610 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-19 17:46:10:4610 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/1 409 839 - 390.431 ms[39m
+[35m[39m
+2025-02-19 17:46:15:4615 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-19 17:46:15:4615 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/2 409 839 - 329.631 ms[39m
+[35m[39m
+2025-02-19 17:47:01:471 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/1 200 231 - 534.012 ms[39m
+[35m[39m
+2025-02-19 17:47:03:473 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/2 200 231 - 335.262 ms[39m
+[35m[39m
+2025-02-19 17:47:05:475 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/3 200 231 - 324.615 ms[39m
+[35m[39m
+2025-02-19 17:47:07:477 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/4 200 231 - 349.930 ms[39m
+[35m[39m
+2025-02-19 17:47:09:479 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/5 200 231 - 325.060 ms[39m
+[35m[39m
+2025-02-19 17:47:18:4718 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 17:47:18:4718 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/11 400 169 - 329.475 ms[39m
+[35m[39m
+2025-02-19 17:47:24:4724 [31merror[39m: [31mJob Application not found[39m
+2025-02-19 17:47:24:4724 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/11 404 836 - 337.484 ms[39m
+[35m[39m
+2025-02-19 17:47:35:4735 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/17 200 72 - 495.171 ms[39m
+[35m[39m
+2025-02-19 17:47:45:4745 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/17 200 72 - 440.503 ms[39m
+[35m[39m
+2025-02-19 17:48:05:485 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/17 200 72 - 709.111 ms[39m
+[35m[39m
