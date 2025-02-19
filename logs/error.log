@@ -28,3 +28,13 @@
 2025-02-19 00:54:46:5446 [31merror[39m: [31mPostgres Database connection failed column "job_id" is in a primary key[39m
 2025-02-19 00:57:38:5738 [31merror[39m: [31mJob already saved[39m
 2025-02-19 01:01:55:155 [31merror[39m: [31mJob not found[39m
+2025-02-19 01:21:31:2131 [31merror[39m: [31mResume not found[39m
+2025-02-19 01:23:05:235 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-19 01:40:25:4025 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-19 01:40:30:4030 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-19 01:52:43:5243 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-19 01:54:08:548 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-19 01:59:04:594 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 02:00:40:040 [31merror[39m: [31mvalidationErrors[39m
+2025-02-19 02:14:13:1413 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-19 02:14:45:1445 [31merror[39m: [31mError in getting job_applications[39m

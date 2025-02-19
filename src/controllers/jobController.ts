@@ -155,7 +155,14 @@ export const getAllUserSavedJobs = catchAsync(
 export const applyToJob = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const jobApplication = await applyToJobService(req);
+            const userId = Number(req.user.id);
+            const resumeId = Number(req.body.resume_id);
+            const jobId = Number(req.params.id);
+            const jobApplication = await applyToJobService(
+                userId,
+                jobId,
+                resumeId,
+            );
             res.status(200).json({
                 success: true,
                 message: 'congrats your application is submitted successfully ',

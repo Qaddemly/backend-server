@@ -303,13 +303,14 @@ export const getAllUserSavedJobsService = async (req: Request) => {
     }
 };
 
-export const applyToJobService = async (req: Request) => {
-    const userId = Number(req.user.id);
-    const jobId = Number(req.params.id);
-    const { resume_id } = req.body;
-    if (resume_id) {
+export const applyToJobService = async (
+    userId: number,
+    jobId: number,
+    resumeId: number,
+) => {
+    if (resumeId) {
         const resume = await ResumeRepository.findOneBy({
-            id: resume_id,
+            id: resumeId,
             account: { id: userId },
         });
         if (!resume) {
@@ -323,12 +324,7 @@ export const applyToJobService = async (req: Request) => {
     if (job.status != JobStatus.OPENED) {
         throw new AppError('job is no longer available ', 400);
     }
-    // const business = await BusinessRepository.findOneBy({
-    //     id: job.business.id,
-    // });
-    // if (!business) {
-    //     throw new AppError('Business not found', 404);
-    // }
+
     const isNotAllowedToApplyJob = await HrEmployeeRepository.checkPermission(
         userId,
         job.business.id,
@@ -356,37 +352,11 @@ export const applyToJobService = async (req: Request) => {
         await JobApplicationRepository.createJobApplication(
             userId,
             jobId,
-            resume_id,
+            resumeId,
         );
     return newJobApplication;
-    // const account =
-    //     await AccountRepository.getAccountWithJobApplications(userId);
-    // const isJobAlreadyApplied = account.job_applications.some(
-    //     (jobApplication) => jobApplication.job.id === jobId,
-    // );
-    // if (isJobAlreadyApplied) {
-    //     throw new AppError('you have already applied to that job', 409);
-    // }
-    // const jobApplication = new JobApplication();
-    // jobApplication.job = job; // Associate job with the application
-    // jobApplication.resume = resume;
-    // account.job_applications.push(jobApplication);
-
-    // // Save the new job application
-    // await JobApplicationRepository.save(jobApplication);
-
-    // const savedUser = await AccountRepository.save(account);
-    // return jobApplication;
 };
 
-// export const getAllUserJobsApplicationsService = async (req: Request) => {
-//     const userId = Number(req.user.id);
-
-//     const account =
-//         await AccountRepository.getAccountWithJobApplications(userId);
-
-//     return account.job_applications;
-// };
 export const getAllUserJobsApplicationsService = async (req: Request) => {
     const userId = Number(req.user.id);
     try {
@@ -395,19 +365,18 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
             searchableColumns: ['job.title'],
             sortableColumns: ['created_at'],
             //filterableColumns:{id:5},
-            relations: ['job'],
+            filterableColumns: {
+                jop_application_state: true,
+            },
+            relations: ['job', 'resume'],
             //where: { job: job },
             defaultSortBy: [['created_at', 'DESC']],
             maxLimit: 20,
             defaultLimit: transformedQuery.limit,
-            //where: { resume: { account: account } },
+            where: { account: { id: userId } },
             paginationType: PaginationType.TAKE_AND_SKIP,
         };
-        const queryBuilder = JobApplicationRepository.createQueryBuilder(
-            'job_application',
-        )
-            .innerJoinAndSelect('job_application.resume', 'resume')
-            .where('resume.accountId = :accountId', { accountId: userId });
+        const queryBuilder = JobApplicationRepository;
 
         const job_applications = await paginate<JobApplication>(
             transformedQuery,
@@ -423,19 +392,14 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
 
 export const getAllJobsApplicationsForJobService = async (req: Request) => {
     const userId = Number(req.user.id);
-    const jobId = Number(req.params.jobId);
+    const jobId = Number(req.params.id);
     const job = await JobRepository.getJobWithBusiness(jobId);
     if (!job) {
         throw new AppError('Job not found', 404);
     }
-    const business = await BusinessRepository.findOneBy({
-        id: job.business.id,
-    });
-    if (!business) {
-        throw new AppError('Business not found', 404);
-    }
+
     const isAllowedToShowAllApplications =
-        await HrEmployeeRepository.checkPermission(userId, business.id, [
+        await HrEmployeeRepository.checkPermission(userId, job.business.id, [
             HrRole.SUPER_ADMIN,
             HrRole.HR,
             HrRole.RECRUITER,
@@ -451,22 +415,21 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
         //console.log('transformedQuery', transformedQuery);
         const paginateConfig: PaginateConfig<JobApplication> = {
             searchableColumns: [
-                'resume.account.first_name',
-                'resume.account.last_name',
+                'account.first_name',
+                'account.last_name',
+                'job.title',
             ],
             sortableColumns: ['created_at'],
             //filterableColumns:{id:5},
-            relations: ['job', 'resume', 'resume.account'],
-            //where: { job: job },
+            relations: ['job', 'resume', 'account'],
+            where: { job: { id: job.id } },
             defaultSortBy: [['created_at', 'ASC']],
             maxLimit: 20,
             defaultLimit: transformedQuery.limit,
 
             paginationType: PaginationType.TAKE_AND_SKIP,
         };
-        const queryBuilder = JobApplicationRepository.createQueryBuilder(
-            'job_application',
-        ).where({ job: { id: jobId } });
+        const queryBuilder = JobApplicationRepository;
 
         const job_applications = await paginate<JobApplication>(
             transformedQuery,

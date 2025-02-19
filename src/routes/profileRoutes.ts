@@ -291,5 +291,10 @@ profileRouter.get(
 );
 
 profileRouter.get('/job/mySavedJobs', protect, getAllUserSavedJobs);
+profileRouter.get(
+    '/jobApplication/myAllJobApplications',
+    protect,
+    getAllUserJobApplications,
+);
 
 export default profileRouter;

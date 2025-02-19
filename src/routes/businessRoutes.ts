@@ -190,3 +190,10 @@ businessRouter.get(
     validateRequestMiddleware(searchAndFilterValidator),
     businessController.getAllBusinessWithSearchAndFilter,
 );
+
+businessRouter.get(
+    '/jobApplication/getAllJobApplications/job/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    getAllJobApplicationsToJob,
+);

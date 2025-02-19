@@ -86,9 +86,6 @@ jobRouter.delete(
     unSaveJobFromUser,
 );
 
-jobRouter.get('/allUserSavedJobs', protect, getAllUserSavedJobs);
-jobRouter.get('/allUserJobApplications', protect, getAllUserJobApplications);
-
 jobRouter.post(
     '/applyToJob/:id',
     protect,
