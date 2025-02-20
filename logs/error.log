@@ -19,3 +19,27 @@
 2025-02-20 17:44:57:4457 [31merror[39m: [31myou have already applied to that job[39m
 2025-02-20 17:45:02:452 [31merror[39m: [31mJob not found[39m
 2025-02-20 17:46:33:4633 [31merror[39m: [31mJob not found[39m
+2025-02-20 20:20:17:2017 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:20:57:2057 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:22:32:2232 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:23:11:2311 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:24:23:2423 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:32:06:326 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:34:54:3454 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:37:43:3743 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:44:58:4458 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:48:39:4839 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:51:09:519 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:51:36:5136 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:52:43:5243 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 20:53:43:5343 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 21:01:02:12 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-20 21:13:22:1322 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 21:13:35:1335 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 21:19:02:192 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-20 21:25:40:2540 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 21:29:17:2917 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 21:35:07:357 [31merror[39m: [31mvalue "514514845045" is out of range for type integer[39m
+2025-02-20 21:35:14:3514 [31merror[39m: [31mJob not found[39m
+2025-02-20 21:36:07:367 [31merror[39m: [31mvalidationErrors[39m
+2025-02-20 21:36:31:3631 [31merror[39m: [31mError in getting job_applications[39m
