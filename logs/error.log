@@ -57,3 +57,7 @@
 2025-02-19 20:22:16:2216 [31merror[39m: [31myou are not allowed to do that action[39m
 2025-02-19 20:24:55:2455 [31merror[39m: [31mJob Application not found[39m
 2025-02-19 20:25:43:2543 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-20 16:30:54:3054 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-20 16:34:27:3427 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-20 16:34:36:3436 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-20 16:34:50:3450 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
