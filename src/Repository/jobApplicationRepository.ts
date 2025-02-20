@@ -27,6 +27,15 @@ class JobApplicationRepositoryClass extends Repository<JobApplication> {
         );
         return result[0];
     }
+
+    async getAllArchivedApplications(accountId: number) {
+        return await this.query(
+            `select * from job_application join account_archived_job_applications
+                on job_application.id = account_archived_job_applications.job_application_id
+                AND job_application.account_id = ${accountId}
+                AND account_archived_job_applications.is_archived = true`,
+        );
+    }
     async getOneJobApplication(jobApplicationId: number) {
         const jobApplication = this.createQueryBuilder('ja')
             .select([

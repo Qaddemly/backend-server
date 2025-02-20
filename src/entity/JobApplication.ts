@@ -5,6 +5,7 @@ import {
     JoinColumn,
     ManyToMany,
     ManyToOne,
+    OneToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
@@ -12,11 +13,15 @@ import { Job } from './Job';
 import { Resume } from './Resume';
 import { Account } from './Account';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
+import { JobApplicationState } from './JobApplicationStates';
 
 @Entity()
 export class JobApplication {
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column({ name: 'job_id' })
+    job_id: number;
 
     @ManyToOne(() => Job, (job) => job.job_applications, {
         onDelete: 'CASCADE',
@@ -27,6 +32,9 @@ export class JobApplication {
     })
     job: Job;
 
+    @Column({ name: 'account_id' })
+    account_id: number;
+
     @ManyToOne(() => Account, (account) => account.job_applications, {
         onDelete: 'CASCADE',
     })
@@ -36,6 +44,9 @@ export class JobApplication {
     })
     account: Account;
 
+    @Column({ name: 'resume_id', nullable: true })
+    resume_id: number;
+
     @ManyToOne(() => Resume, (resume) => resume.job_applications, {
         onDelete: 'CASCADE',
     })
@@ -44,13 +55,8 @@ export class JobApplication {
         foreignKeyConstraintName: 'FK_JOB_APPLICATION_RESUME',
     })
     resume: Resume;
-
-    @Column({
-        type: 'enum',
-        enum: JobApplicationStateEnum,
-        default: JobApplicationStateEnum.PENDING,
-    })
-    jop_application_state: JobApplicationStateEnum;
+    @OneToOne(() => JobApplicationState, (jas) => jas.job_application)
+    job_application_state: JobApplicationState;
 
     @Column()
     @CreateDateColumn({ type: 'timestamptz' })

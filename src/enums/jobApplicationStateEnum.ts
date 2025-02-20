@@ -1,7 +1,7 @@
 export enum JobApplicationStateEnum {
-    PENDING = 'pending',
-    REJECTED = 'rejected',
-    UNDER_REVIEW = 'underReview',
-    UNDER_CONSIDERATION = 'underConsideration',
-    ACCEPTED = 'accepted',
+    PENDING = 'PENDING',
+    REJECTED = 'REJECTED',
+    UNDER_REVIEW = 'UNDER_REVIEW',
+    UNDER_CONSIDERATION = 'UNDER_CONSIDERATION',
+    ACCEPTED = 'ACCEPTED',
 }

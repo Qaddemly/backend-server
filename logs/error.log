@@ -1,63 +1,21 @@
-2025-02-18 20:27:36:2736 [31merror[39m: [31mPostgres Database connection failed column "country" of relation "job" contains null values[39m
-2025-02-18 20:28:38:2838 [31merror[39m: [31mPostgres Database connection failed column "country" of relation "job" contains null values[39m
-2025-02-18 20:35:56:3556 [31merror[39m: [31mPostgres Database connection failed insert or update on table "job_application" violates foreign key constraint "FK_JOB_APPLICATION_JOB"[39m
-2025-02-18 20:45:19:4519 [31merror[39m: [31mvalidationErrors[39m
-2025-02-18 20:45:37:4537 [31merror[39m: [31mvalidationErrors[39m
-2025-02-18 20:49:56:4956 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
-2025-02-18 20:50:54:5054 [31merror[39m: [31mJob already saved[39m
-2025-02-18 20:55:44:5544 [31merror[39m: [31mPostgres Database connection failed column "job_application_id" of relation "account_saved_jobs" contains null values[39m
-2025-02-18 20:58:07:587 [31merror[39m: [31mPostgres Database connection failed column "job_application_id" of relation "account_saved_jobs" contains null values[39m
-2025-02-18 21:46:34:4634 [31merror[39m: [31mFailed to save job to user[39m
-2025-02-18 22:29:13:2913 [31merror[39m: [31mFailed to save job to user[39m
-2025-02-18 22:31:35:3135 [31merror[39m: [31mJob already saved[39m
-2025-02-18 22:45:06:456 [31merror[39m: [31mJob already not saved[39m
-2025-02-18 22:45:14:4514 [31merror[39m: [31mJob already saved[39m
-2025-02-18 22:45:25:4525 [31merror[39m: [31mJob already not saved[39m
-2025-02-18 23:52:56:5256 [31merror[39m: [31mError in getting jobs[39m
-2025-02-18 23:56:51:5651 [31merror[39m: [31mError in getting jobs[39m
-2025-02-18 23:57:21:5721 [31merror[39m: [31mError in getting jobs[39m
-2025-02-19 00:07:24:724 [31merror[39m: [31mError in getting jobs[39m
-2025-02-19 00:17:25:1725 [31merror[39m: [31mError in getting jobs[39m
-2025-02-19 00:18:29:1829 [31merror[39m: [31mError in getting jobs[39m
-2025-02-19 00:25:06:256 [31merror[39m: [31mError in getting jobs[39m
-2025-02-19 00:25:37:2537 [31merror[39m: [31mError in getting jobs[39m
-2025-02-19 00:26:06:266 [31merror[39m: [31mError in getting jobs[39m
-2025-02-19 00:28:44:2844 [31merror[39m: [31mError in getting jobs[39m
-2025-02-19 00:29:14:2914 [31merror[39m: [31mError in getting jobs[39m
-2025-02-19 00:45:04:454 [31merror[39m: [31mError in getting jobs[39m
-2025-02-19 00:54:46:5446 [31merror[39m: [31mPostgres Database connection failed column "job_id" is in a primary key[39m
-2025-02-19 00:57:38:5738 [31merror[39m: [31mJob already saved[39m
-2025-02-19 01:01:55:155 [31merror[39m: [31mJob not found[39m
-2025-02-19 01:21:31:2131 [31merror[39m: [31mResume not found[39m
-2025-02-19 01:23:05:235 [31merror[39m: [31myou have already applied to that job[39m
-2025-02-19 01:40:25:4025 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-19 01:40:30:4030 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-19 01:52:43:5243 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
-2025-02-19 01:54:08:548 [31merror[39m: [31myou are not allowed to do that action[39m
-2025-02-19 01:59:04:594 [31merror[39m: [31mvalidationErrors[39m
-2025-02-19 02:00:40:040 [31merror[39m: [31mvalidationErrors[39m
-2025-02-19 02:14:13:1413 [31merror[39m: [31mError in getting job_applications[39m
-2025-02-19 02:14:45:1445 [31merror[39m: [31mError in getting job_applications[39m
-2025-02-19 13:48:31:4831 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-19 13:51:23:5123 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-19 13:52:03:523 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-19 13:52:09:529 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-19 13:53:39:5339 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-19 13:54:03:543 [31merror[39m: [31mUnexpected field[39m
-2025-02-19 13:56:04:564 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-19 14:04:53:453 [31merror[39m: [31mError in getting job_applications[39m
-2025-02-19 15:11:01:111 [31merror[39m: [31myou are not logged in please login to access this route[39m
-2025-02-19 15:11:16:1116 [31merror[39m: [31mError in getting job_applications[39m
-2025-02-19 19:37:24:3724 [31merror[39m: [31mcolumn r.file_url does not exist[39m
-2025-02-19 19:48:28:4828 [31merror[39m: [31mcolumn resume.file_url does not exist[39m
-2025-02-19 19:54:30:5430 [31merror[39m: [31mcolumn a.address does not exist[39m
-2025-02-19 20:10:06:106 [31merror[39m: [31mJob Application not found[39m
-2025-02-19 20:13:14:1314 [31merror[39m: [31mJob Application not found[39m
-2025-02-19 20:19:36:1936 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
-2025-02-19 20:22:16:2216 [31merror[39m: [31myou are not allowed to do that action[39m
-2025-02-19 20:24:55:2455 [31merror[39m: [31mJob Application not found[39m
-2025-02-19 20:25:43:2543 [31merror[39m: [31myou are not allowed to do that action[39m
-2025-02-20 16:30:54:3054 [31merror[39m: [31myou are not allowed to do that action[39m
-2025-02-20 16:34:27:3427 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
-2025-02-20 16:34:36:3436 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
-2025-02-20 16:34:50:3450 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-20 16:42:36:4236 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-20 16:43:25:4325 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 16:47:57:4757 [31merror[39m: [31mvalidationErrors[39m
+2025-02-20 16:48:04:484 [31merror[39m: [31mvalidationErrors[39m
+2025-02-20 16:51:44:5144 [31merror[39m: [31mcolumn ja.jop_application_state does not exist[39m
+2025-02-20 16:56:27:5627 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 16:56:33:5633 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 16:57:40:5740 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:12:11:1211 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:15:03:153 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:16:01:161 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:18:27:1827 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:19:56:1956 [31merror[39m: [31mCannot read properties of null (reading 'is_archived')[39m
+2025-02-20 17:23:43:2343 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:26:28:2628 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:29:16:2916 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:38:42:3842 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:40:27:4027 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:44:57:4457 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-20 17:45:02:452 [31merror[39m: [31mJob not found[39m
+2025-02-20 17:46:33:4633 [31merror[39m: [31mJob not found[39m
