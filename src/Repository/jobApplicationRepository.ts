@@ -35,6 +35,7 @@ class JobApplicationRepositoryClass extends Repository<JobApplication> {
                 AND job_application.account_id = ${accountId}
                 AND account_archived_job_applications.is_archived = true`,
         );
+    }
     async getOneJobApplication(jobApplicationId: number) {
         const jobApplication = this.createQueryBuilder('ja')
             .select([

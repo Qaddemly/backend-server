@@ -1,0 +1,21 @@
+2025-02-20 16:42:36:4236 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-20 16:43:25:4325 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 16:47:57:4757 [31merror[39m: [31mvalidationErrors[39m
+2025-02-20 16:48:04:484 [31merror[39m: [31mvalidationErrors[39m
+2025-02-20 16:51:44:5144 [31merror[39m: [31mcolumn ja.jop_application_state does not exist[39m
+2025-02-20 16:56:27:5627 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 16:56:33:5633 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 16:57:40:5740 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:12:11:1211 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:15:03:153 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:16:01:161 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:18:27:1827 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:19:56:1956 [31merror[39m: [31mCannot read properties of null (reading 'is_archived')[39m
+2025-02-20 17:23:43:2343 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:26:28:2628 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:29:16:2916 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:38:42:3842 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:40:27:4027 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:44:57:4457 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-20 17:45:02:452 [31merror[39m: [31mJob not found[39m
+2025-02-20 17:46:33:4633 [31merror[39m: [31mJob not found[39m

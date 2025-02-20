@@ -309,7 +309,6 @@ export const getAllUserSavedJobsService = async (req: Request) => {
     }
 };
 
-
 export const applyToJobService = async (
     userId: number,
     jobId: number,
@@ -390,7 +389,7 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
             filterableColumns: {
                 jop_application_state: [FilterOperator.EQ],
             },
-            relations: ['job', 'resume'],
+            //relations: ['job', 'resume', 'job_application_state'],
             //where: { job: job },
             defaultSortBy: [['created_at', 'DESC']],
             maxLimit: 20,
@@ -398,8 +397,18 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
             where: { account: { id: userId } },
             paginationType: PaginationType.TAKE_AND_SKIP,
         };
-        const queryBuilder = JobApplicationRepository;
+        const queryBuilder = JobApplicationRepository.createQueryBuilder('ja')
+            .select(['ja.id', 'ja.created_at', 'ja.updated_at'])
+            .leftJoinAndSelect('ja.resume', 'resume')
+            .leftJoinAndSelect('ja.job', 'job')
+            .leftJoinAndSelect('ja.account', 'account')
+            .leftJoinAndSelect(
+                'ja.job_application_state',
+                'job_application_state',
+            )
 
+            .where('account.id = :id', { id: userId });
+        //   console.log(await queryBuilder.getRawMany());
         const job_applications = await paginate<JobApplication>(
             transformedQuery,
             queryBuilder,

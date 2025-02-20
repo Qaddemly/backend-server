@@ -251,6 +251,11 @@ profileRouter.delete(
     validateRequestMiddleware(idValidator),
     deleteCertificate,
 );
+profileRouter.get(
+    '/jobApplication/myAllJobApplications',
+    protect,
+    getAllUserJobApplications,
+);
 
 profileRouter.get(
     '/jobApplication/:id',
@@ -293,7 +298,6 @@ profileRouter.put(
  * */
 // profileRouter.delete('/jobApplication/:id', protect);
 
-
 profileRouter.get(
     '/get-one-certificate/:id',
     validateRequestMiddleware(idValidator),
@@ -308,10 +312,5 @@ profileRouter.get(
 
 profileRouter.get('/test', protect, getUserInfoAndJobs);
 profileRouter.get('/job/mySavedJobs', protect, getAllUserSavedJobs);
-profileRouter.get(
-    '/jobApplication/myAllJobApplications',
-    protect,
-    getAllUserJobApplications,
-);
 
 export default profileRouter;

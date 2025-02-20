@@ -5,6 +5,7 @@ import {
     JoinColumn,
     ManyToMany,
     ManyToOne,
+    OneToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
@@ -12,6 +13,7 @@ import { Job } from './Job';
 import { Resume } from './Resume';
 import { Account } from './Account';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
+import { JobApplicationState } from './JobApplicationStates';
 
 @Entity()
 export class JobApplication {
@@ -53,6 +55,8 @@ export class JobApplication {
         foreignKeyConstraintName: 'FK_JOB_APPLICATION_RESUME',
     })
     resume: Resume;
+    @OneToOne(() => JobApplicationState, (jas) => jas.job_application)
+    job_application_state: JobApplicationState;
 
     @Column()
     @CreateDateColumn({ type: 'timestamptz' })

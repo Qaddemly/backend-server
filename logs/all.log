@@ -1,0 +1,197 @@
+2025-02-20 16:41:59:4159 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:42:00:420 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:42:01:421 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:42:33:4233 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:42:34:4234 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:42:35:4235 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:42:36:4236 [31merror[39m: [31minvalid input syntax for type integer: "NaN"[39m
+2025-02-20 16:42:36:4236 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications?filter.jop_application_state=accepted 500 1190 - 2915.458 ms[39m
+[35m[39m
+2025-02-20 16:43:16:4316 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:43:16:4316 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:43:17:4317 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:43:25:4325 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 16:43:25:4325 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications?filter.jop_application_state=accepted 400 688 - 636.017 ms[39m
+[35m[39m
+2025-02-20 16:43:45:4345 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 1142 - 478.982 ms[39m
+[35m[39m
+2025-02-20 16:46:15:4615 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:46:16:4616 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:46:17:4617 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:47:21:4721 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 945 - 2474.226 ms[39m
+[35m[39m
+2025-02-20 16:47:57:4757 [31merror[39m: [31mvalidationErrors[39m
+2025-02-20 16:47:57:4757 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/1000 400 152 - 341.418 ms[39m
+[35m[39m
+2025-02-20 16:48:04:484 [31merror[39m: [31mvalidationErrors[39m
+2025-02-20 16:48:04:484 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/1000 400 152 - 300.138 ms[39m
+[35m[39m
+2025-02-20 16:48:42:4842 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:48:42:4842 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:48:44:4844 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:48:47:4847 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/1000 200 233 - 464.066 ms[39m
+[35m[39m
+2025-02-20 16:50:42:5042 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:50:43:5043 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:50:44:5044 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:51:44:5144 [31merror[39m: [31mcolumn ja.jop_application_state does not exist[39m
+2025-02-20 16:51:44:5144 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/12 500 1036 - 474.268 ms[39m
+[35m[39m
+2025-02-20 16:52:30:5230 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:52:30:5230 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:52:32:5232 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:54:23:5423 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:54:23:5423 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:54:24:5424 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:54:44:5444 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:54:44:5444 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:54:45:5445 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:56:09:569 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:56:10:5610 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:56:11:5611 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:56:27:5627 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 16:56:27:5627 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications?filter.jop_application_state=accepted 400 1053 - 569.245 ms[39m
+[35m[39m
+2025-02-20 16:56:33:5633 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 16:56:33:5633 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 1053 - 311.964 ms[39m
+[35m[39m
+2025-02-20 16:57:35:5735 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 16:57:36:5736 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 16:57:37:5737 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 16:57:40:5740 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 16:57:40:5740 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 1053 - 485.662 ms[39m
+[35m[39m
+2025-02-20 17:11:57:1157 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:11:58:1158 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:11:59:1159 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:12:11:1211 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:12:11:1211 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 1053 - 688.299 ms[39m
+[35m[39m
+2025-02-20 17:14:53:1453 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:14:53:1453 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:14:54:1454 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:15:03:153 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:15:03:153 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 688 - 460.313 ms[39m
+[35m[39m
+2025-02-20 17:15:57:1557 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:15:57:1557 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:15:58:1558 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:16:01:161 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:16:01:161 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 688 - 389.589 ms[39m
+[35m[39m
+2025-02-20 17:18:23:1823 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:18:24:1824 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:18:25:1825 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:18:27:1827 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:18:27:1827 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 688 - 385.664 ms[39m
+[35m[39m
+2025-02-20 17:19:56:1956 [31merror[39m: [31mCannot read properties of null (reading 'is_archived')[39m
+2025-02-20 17:19:56:1956 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/11 500 643 - 378.847 ms[39m
+[35m[39m
+2025-02-20 17:20:03:203 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/12 200 574 - 325.530 ms[39m
+[35m[39m
+2025-02-20 17:23:43:2343 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:23:43:2343 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 688 - 370.750 ms[39m
+[35m[39m
+2025-02-20 17:24:50:2450 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:24:50:2450 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:24:51:2451 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:24:56:2456 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 2328 - 386.873 ms[39m
+[35m[39m
+2025-02-20 17:25:57:2557 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 2328 - 390.040 ms[39m
+[35m[39m
+2025-02-20 17:26:18:2618 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:26:19:2619 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:26:20:2620 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:26:28:2628 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:26:28:2628 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 688 - 381.599 ms[39m
+[35m[39m
+2025-02-20 17:27:30:2730 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:27:31:2731 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:27:32:2732 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:27:36:2736 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 2328 - 393.608 ms[39m
+[35m[39m
+2025-02-20 17:29:10:2910 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:29:11:2911 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:29:12:2912 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:29:16:2916 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:29:16:2916 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 688 - 410.524 ms[39m
+[35m[39m
+2025-02-20 17:29:42:2942 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:29:43:2943 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:29:44:2944 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:29:48:2948 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 2328 - 402.471 ms[39m
+[35m[39m
+2025-02-20 17:37:49:3749 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:37:49:3749 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:37:50:3750 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:37:59:3759 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 2328 - 642.954 ms[39m
+[35m[39m
+2025-02-20 17:38:37:3837 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:38:38:3838 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:38:39:3839 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:38:42:3842 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:38:42:3842 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 688 - 400.140 ms[39m
+[35m[39m
+2025-02-20 17:39:18:3918 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:39:19:3919 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:39:20:3920 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:40:05:405 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:40:05:405 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:40:06:406 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:40:20:4020 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:40:20:4020 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:40:21:4021 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:40:27:4027 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-20 17:40:27:4027 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 400 688 - 358.280 ms[39m
+[35m[39m
+2025-02-20 17:40:59:4059 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:41:00:410 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:41:01:411 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:43:19:4319 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:43:20:4320 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:43:21:4321 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:43:24:4324 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 2439 - 376.070 ms[39m
+[35m[39m
+2025-02-20 17:44:25:4425 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:44:25:4425 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:44:26:4426 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:44:31:4431 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 2439 - 385.283 ms[39m
+[35m[39m
+2025-02-20 17:44:50:4450 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/12 200 574 - 404.072 ms[39m
+[35m[39m
+2025-02-20 17:44:57:4457 [31merror[39m: [31myou have already applied to that job[39m
+2025-02-20 17:44:57:4457 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/1000 409 694 - 547.436 ms[39m
+[35m[39m
+2025-02-20 17:45:02:452 [31merror[39m: [31mJob not found[39m
+2025-02-20 17:45:02:452 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/10000 404 648 - 332.496 ms[39m
+[35m[39m
+2025-02-20 17:45:08:458 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/120 200 232 - 470.213 ms[39m
+[35m[39m
+2025-02-20 17:45:13:4513 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/126 200 232 - 467.627 ms[39m
+[35m[39m
+2025-02-20 17:46:04:464 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:46:05:465 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:46:06:466 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:46:19:4619 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:46:20:4620 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:46:23:4623 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:46:30:4630 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/1267 200 233 - 663.711 ms[39m
+[35m[39m
+2025-02-20 17:46:33:4633 [31merror[39m: [31mJob not found[39m
+2025-02-20 17:46:33:4633 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/12676 404 648 - 339.229 ms[39m
+[35m[39m
+2025-02-20 17:46:40:4640 [35mhttp[39m: [35mPOST /api/v1/job/applyToJob/933 200 232 - 486.583 ms[39m
+[35m[39m
+2025-02-20 17:46:50:4650 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 936 - 1118.128 ms[39m
+[35m[39m
+2025-02-20 17:47:32:4732 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:47:33:4733 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:47:34:4734 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:47:37:4737 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 7909 - 395.718 ms[39m
+[35m[39m
+2025-02-20 17:48:13:4813 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-20 17:48:13:4813 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-20 17:48:15:4815 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-20 17:48:18:4818 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications 200 7643 - 378.133 ms[39m
+[35m[39m
