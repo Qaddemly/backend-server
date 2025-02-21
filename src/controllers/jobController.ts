@@ -9,6 +9,7 @@ import {
     getAllUserJobsApplicationsService,
     getAllUserSavedJobsService,
     getOneJobService,
+    getRecommendedJobsForUserService,
     removeSavedJobFromUserService,
     saveJobToUserService,
     updateJobService,
@@ -206,3 +207,11 @@ export const getAllJobs = catchAsync(
         }
     },
 );
+
+export const getRecommendedJobsForUser = catchAsync(async (req, res, next) => {
+    const recommendedJobs = await getRecommendedJobsForUserService(req.user.id);
+    res.status(200).json({
+        success: true,
+        recommendedJobs,
+    });
+});

@@ -7,6 +7,7 @@ import {
     getAllUserJobApplications,
     getAllUserSavedJobs,
     getOneJob,
+    getRecommendedJobsForUser,
     makeJobArchived,
     makeJobClosed,
     makeJobOpened,
@@ -103,5 +104,7 @@ jobRouter.get(
 
     getAllJobs,
 );
+
+jobRouter.get('/recommendedJobsForUser', protect, getRecommendedJobsForUser);
 
 export default jobRouter;

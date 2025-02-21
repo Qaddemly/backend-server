@@ -12,6 +12,8 @@ import { ResumeRepository } from '../Repository/resumeRepository';
 import { JobApplicationRepository } from '../Repository/jobApplicationRepository';
 import { Paginate } from '../utils/pagination/decorator';
 import { FilterOperator } from '../utils/pagination/filter';
+import axios from 'axios';
+
 import {
     paginate,
     PaginateConfig,
@@ -25,6 +27,7 @@ import { Account } from '../entity/Account';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
 import { JobApplicationStatesRepository } from '../Repository/jobApplicationStatesRepository';
 import { AccountArchivedJobApplicationsRepository } from '../Repository/accountArchivedJobApplicationsRepository';
+import { getUserInfoToRecommendJobs } from './profileServices';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -582,6 +585,22 @@ export const changeJobStatus = async (req: Request, status: JobStatus) => {
     job.status = status;
     await JobRepository.save(job);
     return job;
+};
+
+export const getRecommendedJobsForUserService = async (userId: number) => {
+    const userInfo = await getUserInfoToRecommendJobs(userId);
+    const jobs = await JobRepository.find();
+
+    try {
+        const response = await axios.post('http://localhost:8001/recommend', {
+            user: userInfo,
+            jobs,
+        });
+        console.log('response', response.data);
+        return response.data;
+    } catch (e) {
+        throw new AppError('Error in getting recommended jobs', 400);
+    }
 };
 
 export const getAllJobs = async () => {
