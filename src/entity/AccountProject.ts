@@ -15,13 +15,16 @@ export class AccountProject {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ name: 'account_id' })
+    account_id: number;
+
     @Index('account_project_idx')
     @ManyToOne(() => Account, (account) => account.projects, {
         onDelete: 'CASCADE',
     })
     @JoinColumn({
         name: 'account_id',
-        foreignKeyConstraintName: 'FK_HR_EMPLOYEE_ACCOUNT',
+        foreignKeyConstraintName: 'FK_ACCOUNT_PROJECT',
     })
     account: Account;
 

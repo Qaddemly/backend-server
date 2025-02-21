@@ -3,6 +3,7 @@ import {
     CreateDateColumn,
     Entity,
     Index,
+    JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
@@ -14,9 +15,16 @@ export class AccountVolunteering {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ name: 'account_id' })
+    account_id: number;
+
     @Index('account_volunteering_idx')
     @ManyToOne(() => Account, (account) => account.volunteering, {
         onDelete: 'CASCADE',
+    })
+    @JoinColumn({
+        name: 'account_id',
+        foreignKeyConstraintName: 'FK_ACCOUNT_VOLUNTEERING',
     })
     account: Account;
 
