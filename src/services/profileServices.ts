@@ -656,7 +656,7 @@ export const getAllDetailsAboutJobApplicationService = async (
 };
 
 // For AI
-export const getUserInfo = async (userId: number) => {
+export const getUserInfoToRecommendJobs = async (userId: number) => {
     const user = await AccountRepository.findOneBy({ id: userId });
 
     const skills = await SkillRepository.find({

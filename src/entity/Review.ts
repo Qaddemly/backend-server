@@ -22,6 +22,9 @@ export class Review {
     @Column('integer')
     rating: number;
 
+    @Column({ name: 'business_id' })
+    business_id: number;
+
     @Index('review_idx_on_business_id')
     @ManyToOne(() => Business, (business) => business.reviews, {
         onDelete: 'CASCADE',
@@ -31,6 +34,9 @@ export class Review {
         foreignKeyConstraintName: 'FK_REVIEW_BUSINESS',
     })
     business: Business;
+
+    @Column({ name: 'account_id' })
+    account_id: number;
 
     @Index('review_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.reviews, {

@@ -21,6 +21,10 @@ export class Certificate {
     end_date: Date;
     @Column()
     media: string;
+
+    @Column({ name: 'account_id' })
+    account_id: number;
+
     @ManyToOne(() => Account, (account) => account.certificates, {
         onDelete: 'CASCADE',
     })

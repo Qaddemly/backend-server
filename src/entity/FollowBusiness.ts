@@ -1,4 +1,5 @@
 import {
+    Column,
     Entity,
     Index,
     JoinColumn,
@@ -13,6 +14,9 @@ export class FollowBusiness {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ name: 'business_id' })
+    business_id: number;
+
     @Index('follow_business_idx_on_business_id')
     @ManyToOne(() => Business, (business) => business.followers, {
         onDelete: 'CASCADE',
@@ -23,6 +27,9 @@ export class FollowBusiness {
         foreignKeyConstraintName: 'FK_FOLLOW_BUSINESS_BUSINESS',
     })
     business: Business;
+
+    @Column({ name: 'account_id' })
+    account_id: number;
 
     @Index('follow_business_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.follow_businesses, {

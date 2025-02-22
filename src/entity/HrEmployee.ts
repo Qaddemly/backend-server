@@ -17,6 +17,9 @@ export class HrEmployee {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ name: 'business_id' })
+    business_id: number;
+
     @Index('hr_employee_idx_on_business_id')
     @ManyToOne(() => Business, (business) => business.hr_employees, {
         onDelete: 'CASCADE',
@@ -26,6 +29,9 @@ export class HrEmployee {
         foreignKeyConstraintName: 'FK_HR_EMPLOYEE_BUSINESS',
     })
     business: Business;
+
+    @Column({ name: 'account_id' })
+    account_id: number;
 
     @Index('hr_employee_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.business_roles, {
