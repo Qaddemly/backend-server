@@ -24,7 +24,7 @@ import {
     idJobValidator,
     updateJobValidator,
 } from '../middlewares/validators/jobValidator';
-import { getAllJobsApplicationsForJobService } from '../services/jobServices';
+import { getAllJobsApplicationsForJobService, loadJobsFromCSV } from '../services/jobServices';
 
 const jobRouter = express.Router();
 
@@ -104,5 +104,10 @@ jobRouter.get(
 );
 
 jobRouter.get('/recommendedJobsForUser', protect, getRecommendedJobsForUser);
+
+jobRouter.post('/loadJobsFromCSV', protect, async (req, res) => {
+    await loadJobsFromCSV();
+    res.send('Loading jobs from CSV');
+})
 
 export default jobRouter;

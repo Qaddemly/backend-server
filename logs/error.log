@@ -1,0 +1,2 @@
+2025-02-22 15:17:53:1753 [31merror[39m: [31mPostgres Database connection failed column "job_id" is in a primary key[39m
+2025-02-22 15:59:02:592 [31merror[39m: [31mError in getting recommended jobs[39m

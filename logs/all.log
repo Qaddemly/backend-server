@@ -467,3 +467,62 @@
 2025-02-21 17:07:26:726 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2025-02-21 17:07:28:728 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 200 1409 - 615.719 ms[39m
 [35m[39m
+2025-02-22 15:17:52:1752 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:17:53:1753 [31merror[39m: [31mPostgres Database connection failed column "job_id" is in a primary key[39m
+2025-02-22 15:17:54:1754 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:18:38:1838 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:18:38:1838 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:18:39:1839 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:23:41:2341 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:23:42:2342 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:23:43:2343 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:24:52:2452 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:24:52:2452 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:24:53:2453 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:42:20:4220 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:42:21:4221 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:42:22:4222 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:42:30:4230 [35mhttp[39m: [35mPOST /api/v1/job/loadJobsFromCSV 200 21 - 510.132 ms[39m
+[35m[39m
+2025-02-22 15:45:40:4540 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:45:41:4541 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:45:42:4542 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:45:45:4545 [35mhttp[39m: [35mPOST /api/v1/job/loadJobsFromCSV 200 21 - 352.064 ms[39m
+[35m[39m
+2025-02-22 15:46:50:4650 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:46:51:4651 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:46:52:4652 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:46:53:4653 [35mhttp[39m: [35mPOST /api/v1/job/loadJobsFromCSV 200 21 - 345.522 ms[39m
+[35m[39m
+2025-02-22 15:48:22:4822 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:48:24:4824 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:48:25:4825 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:48:57:4857 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:48:58:4858 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:49:00:490 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:49:01:491 [35mhttp[39m: [35mPOST /api/v1/job/loadJobsFromCSV 200 21 - 493.743 ms[39m
+[35m[39m
+2025-02-22 15:52:06:526 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:52:06:526 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:52:07:527 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:52:10:5210 [35mhttp[39m: [35mPOST /api/v1/job/loadJobsFromCSV 200 21 - 364.523 ms[39m
+[35m[39m
+2025-02-22 15:54:08:548 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:54:09:549 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:54:11:5411 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:54:18:5418 [35mhttp[39m: [35mPOST /api/v1/job/loadJobsFromCSV 200 21 - 520.740 ms[39m
+[35m[39m
+2025-02-22 15:58:40:5840 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 15:58:40:5840 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 15:58:42:5842 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 15:58:47:5847 [35mhttp[39m: [35mPOST /api/v1/user/addNewExperience 201 266 - 480.649 ms[39m
+[35m[39m
+2025-02-22 15:58:51:5851 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 200 202 - 318.311 ms[39m
+[35m[39m
+2025-02-22 15:58:54:5854 [35mhttp[39m: [35mPOST /api/v1/user/addNewSkill 201 330 - 322.528 ms[39m
+[35m[39m
+2025-02-22 15:59:02:592 [31merror[39m: [31mError in getting recommended jobs[39m
+2025-02-22 15:59:02:592 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 400 833 - 513.038 ms[39m
+[35m[39m
+2025-02-22 16:00:20:020 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 200 24910 - 1547.495 ms[39m
+[35m[39m
