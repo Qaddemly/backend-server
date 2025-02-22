@@ -11,5 +11,7 @@ src/uploads/
 logs/all.log
 logs/error.log
 
+job_descriptions.csv
+
 dist/
 .env

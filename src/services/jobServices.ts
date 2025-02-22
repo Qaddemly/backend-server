@@ -12,6 +12,8 @@ import { ResumeRepository } from '../Repository/resumeRepository';
 import { JobApplicationRepository } from '../Repository/jobApplicationRepository';
 import { Paginate } from '../utils/pagination/decorator';
 import { FilterOperator } from '../utils/pagination/filter';
+import csvParser from 'csv-parser';
+
 import axios from 'axios';
 
 import {
@@ -31,6 +33,10 @@ import { getUserInfoToRecommendJobs } from './profileServices';
 import { AccountSavedJobsRepository } from '../Repository/accountSavedJobRepository';
 import { TypeOrmErrors } from '../enums/typeOrmErrors';
 import { AccountSavedJobs } from '../entity/AccountSavedJobs';
+import { EmploymentType } from '../enums/employmentType';
+import fs from 'fs';
+import { Country } from '../enums/country';
+import path from 'path';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -674,4 +680,87 @@ export const getRecommendedJobsForUserService = async (userId: number) => {
 
 export const getAllJobs = async () => {
     return await JobRepository.find();
+};
+
+export const loadJobsFromCSV = async () => {
+    const mapEmploymentType = (workType: string): EmploymentType => {
+        const employmentTypeMap: Record<string, EmploymentType> = {
+            'Full-Time': EmploymentType.FullTime,
+            'Part-Time': EmploymentType.PartTime,
+            Contract: EmploymentType.Contract,
+            Intern: EmploymentType.Internship,
+            Temporary: EmploymentType.Seasonal, // Assuming "Temporary" maps to "Seasonal"
+        };
+
+        // Default to FullTime if no match is found
+        return employmentTypeMap[workType] || EmploymentType.FullTime;
+    };
+
+    const parseSalary = (salaryRange: string): number => {
+        // Remove commas and dollar signs
+        const cleanedRange = salaryRange.replace(/[,\$]/g, '');
+
+        // Check if the range contains a hyphen
+        if (cleanedRange.includes('-')) {
+            const [minStr, maxStr] = cleanedRange.split('-');
+            const min =
+                parseFloat(minStr.replace('K', '')) *
+                (minStr.includes('K') ? 1000 : 1);
+            const max =
+                parseFloat(maxStr.replace('K', '')) *
+                (maxStr.includes('K') ? 1000 : 1);
+            return (min + max) / 2;
+        } else {
+            // Handle single value (e.g., "$59K" or "$59000")
+            return (
+                parseFloat(cleanedRange.replace('K', '')) *
+                (cleanedRange.includes('K') ? 1000 : 1)
+            );
+        }
+    };
+
+    const parseExperience = (experience: string): number => {
+        // Extract all numbers from the string
+        const numbers = experience.match(/\d+/g)?.map(Number) || [0];
+
+        // Handle single value (e.g., "5 Years" or "5+ Years")
+        if (numbers.length === 1) {
+            return numbers[0];
+        }
+
+        // Calculate the average of the range
+        const sum = numbers.reduce((a, b) => a + b, 0);
+        return sum / numbers.length;
+    };
+
+    fs.createReadStream(path.join(__dirname, '../../job_descriptions.csv'))
+        .pipe(csvParser())
+        .on('data', async (data) => {
+            try {
+                const job = new Job();
+
+                job.title = data['Job Title'];
+                job.description = `${data['Job Description']}\n\nResponsibilities: ${data['Responsibilities']}\n\nQualifications: ${data['Qualifications']}`;
+                job.country = Country[data['Country'] as keyof typeof Country];
+                job.city = data['location'];
+                job.skills = [data['skills']];
+                job.salary = parseSalary(data['Salary Range']);
+                job.employee_type = mapEmploymentType(data['Work Type']);
+                job.experience = parseExperience(data['Experience']);
+                job.keywords = [data['Job Title'], data['skills']];
+                job.business_id = 1;
+                job.status = JobStatus.OPENED;
+                console.log('job', job);
+                await JobRepository.save(job);
+            } catch (e) {
+                console.log('Error saving job');
+            }
+        })
+        .on('end', async () => {
+            try {
+                console.log(`Successfully imported jobs`);
+            } catch (error) {
+                console.error('Error saving jobs:', error);
+            }
+        });
 };
