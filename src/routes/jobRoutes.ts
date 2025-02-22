@@ -6,6 +6,7 @@ import {
     getAllJobs,
     getAllUserJobApplications,
     getAllUserSavedJobs,
+    getOneJobApplication,
     getOneJob,
     getRecommendedJobsForUser,
     makeJobArchived,
@@ -86,9 +87,6 @@ jobRouter.delete(
     validateRequestMiddleware(idJobValidator),
     unSaveJobFromUser,
 );
-
-jobRouter.get('/allUserSavedJobs', protect, getAllUserSavedJobs);
-jobRouter.get('/allUserJobApplications', protect, getAllUserJobApplications);
 
 jobRouter.post(
     '/applyToJob/:jobId',

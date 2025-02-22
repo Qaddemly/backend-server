@@ -73,6 +73,11 @@ import {
     resizeCertificateImage,
     uploadCertificateImage,
 } from '../services/profileServices';
+import {
+    getAllUserJobApplications,
+    getAllUserSavedJobs,
+    getOneUserJobApplication,
+} from '../controllers/jobController';
 
 const profileRouter = Router();
 
@@ -252,6 +257,16 @@ profileRouter.get(
     protect,
     getAllDetailsAboutJobApplication,
 );
+/**
+ * Get All Job Applications of logged-in user
+ * */
+profileRouter.get('/jobApplication', protect);
+
+/**
+ * Get Details of certain job application (Joins)
+ * */
+
+//profileRouter.get('/jobApplication/:id', protect, getOneUserJobApplication);
 
 /**
  * Get All Archived Job Applications of logged-in user
@@ -278,6 +293,7 @@ profileRouter.put(
  * */
 // profileRouter.delete('/jobApplication/:id', protect);
 
+
 profileRouter.get(
     '/get-one-certificate/:id',
     validateRequestMiddleware(idValidator),
@@ -291,5 +307,11 @@ profileRouter.get(
 );
 
 profileRouter.get('/test', protect, getUserInfoAndJobs);
+profileRouter.get('/job/mySavedJobs', protect, getAllUserSavedJobs);
+profileRouter.get(
+    '/jobApplication/myAllJobApplications',
+    protect,
+    getAllUserJobApplications,
+);
 
 export default profileRouter;
