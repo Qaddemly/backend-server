@@ -32,7 +32,7 @@ export class Education {
     })
     @JoinColumn({
         name: 'account_id',
-        foreignKeyConstraintName: 'FK_EXPERIENCE_ACCOUNT',
+        foreignKeyConstraintName: 'FK_EDUCATION_ACCOUNT',
     })
     account: Account;
 }

@@ -340,21 +340,21 @@ export const applyToJobService = async (
         throw new AppError('job is no longer available ', 400);
     }
 
-    const isNotAllowedToApplyJob = await HrEmployeeRepository.checkPermission(
-        userId,
-        job.business.id,
-        [
-            HrRole.SUPER_ADMIN,
-            HrRole.HR,
-            HrRole.RECRUITER,
-            HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
-            HrRole.OWNER,
-        ],
-    );
-    if (isNotAllowedToApplyJob) {
-        throw new AppError('you do not have permission to that action', 403);
-    }
+    // const isNotAllowedToApplyJob = await HrEmployeeRepository.checkPermission(
+    //     userId,
+    //     job.business.id,
+    //     [
+    //         HrRole.SUPER_ADMIN,
+    //         HrRole.HR,
+    //         HrRole.RECRUITER,
+    //         HrRole.HIRING_MANAGER,
+    //         HrRole.SUPER_ADMIN,
+    //         HrRole.OWNER,
+    //     ],
+    // );
+    // if (isNotAllowedToApplyJob) {
+    //     throw new AppError('you do not have permission to that action', 403);
+    // }
 
     const jobApplication =
         await JobApplicationRepository.findOneByAccountIdAndJobId(
@@ -664,7 +664,11 @@ export const changeJobStatus = async (req: Request, status: JobStatus) => {
 
 export const getRecommendedJobsForUserService = async (userId: number) => {
     const userInfo = await getUserInfoToRecommendJobs(userId);
-    const jobs = await JobRepository.find();
+    const jobs = await JobRepository.find({
+        where: { status: JobStatus.OPENED },
+    });
+
+    const recommendedJobs: Job[] = [];
 
     try {
         const response = await axios.post('http://localhost:8001/recommend', {
@@ -672,7 +676,23 @@ export const getRecommendedJobsForUserService = async (userId: number) => {
             jobs,
         });
         console.log('response', response.data);
-        return response.data;
+
+        // @ts-ignore
+        for (let i = 0; i < response.data.length; i++) {
+            // @ts-ignore
+            // const job = await JobRepository.findOne({
+            //     // @ts-ignore
+            //     where: { id: response.data[i].id },
+            // });
+            const job = await JobRepository.createQueryBuilder('job')
+                .where('job.id = :id', { id: response.data[i].id })
+                .leftJoinAndSelect('job.business', 'business')
+                .getOne();
+
+            recommendedJobs.push(job);
+        }
+
+        return recommendedJobs;
     } catch (e) {
         throw new AppError('Error in getting recommended jobs', 400);
     }
