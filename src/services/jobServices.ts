@@ -396,18 +396,49 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
             sortableColumns: ['created_at'],
             //filterableColumns:{id:5},
             filterableColumns: {
-                jop_application_state: [FilterOperator.EQ],
+                'job_application_state.state': [FilterOperator.EQ],
             },
-            relations: ['job', 'resume'],
+            relations: ['job', 'job_application_state'],
             //where: { job: job },
+
             defaultSortBy: [['created_at', 'DESC']],
             maxLimit: 20,
             defaultLimit: transformedQuery.limit,
             where: { account: { id: userId } },
             paginationType: PaginationType.TAKE_AND_SKIP,
         };
-        const queryBuilder = JobApplicationRepository;
+        const queryBuilder = JobApplicationRepository.createQueryBuilder('ja')
+            .select([
+                'ja.id',
+                'ja.created_at',
+                'ja.updated_at',
+                // Account fields
+                'a.id',
+                'a.address.country',
+                'a.address.city',
+                'a.phone.number',
+                'a.phone.country_code',
+                'a.first_name',
+                'a.last_name',
+                'a.email',
+                'a.profile_picture',
+                'a.about_me',
+                'a.date_of_birth',
+                'a.country',
+                'a.country_code',
+                'a.city',
+                'a.number',
+                'a.subtitle',
+                // Job fields
+                // Resume fields
+                'resume',
+                //'bus.address',
+            ])
+            .leftJoin('ja.account', 'a') // LEFT JOIN Account
+            .leftJoin('ja.resume', 'resume') // LEFT JOIN Account
 
+            .where('a.id = :id', { id: userId });
+        //   console.log(await queryBuilder.getRawMany());
         const job_applications = await paginate<JobApplication>(
             transformedQuery,
             queryBuilder,
@@ -487,20 +518,53 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
             searchableColumns: [
                 'account.first_name',
                 'account.last_name',
-                'job.title',
+                'account.email',
             ],
             sortableColumns: ['created_at'],
             //filterableColumns:{id:5},
-            filterableColumns: { jop_application_state: [FilterOperator.EQ] },
-            relations: ['job', 'resume', 'account'],
-            where: { job: { id: job.id } },
+            filterableColumns: {
+                'job_application_state.state': [FilterOperator.EQ],
+            },
+
+            relations: ['account', 'job', 'job_application_state'],
+            where: { job: { id: jobId } },
             defaultSortBy: [['created_at', 'ASC']],
             maxLimit: 20,
             defaultLimit: transformedQuery.limit,
 
             paginationType: PaginationType.TAKE_AND_SKIP,
         };
-        const queryBuilder = JobApplicationRepository;
+        const queryBuilder = JobApplicationRepository.createQueryBuilder('ja')
+            .select([
+                'ja.id',
+                'ja.created_at',
+                'ja.updated_at',
+                // Account fields
+                // 'a.id',
+                // 'a.address.country',
+                // 'a.address.city',
+                // 'a.phone.number',
+                // 'a.phone.country_code',
+                // 'a.first_name',
+                // 'a.last_name',
+                // 'a.email',
+                // 'a.profile_picture',
+                // 'a.about_me',
+                // 'a.date_of_birth',
+                // 'a.country',
+                // 'a.country_code',
+                // 'a.city',
+                // 'a.number',
+                // 'a.subtitle',
+                // Job fields
+                // Resume fields
+                'resume',
+                //'bus.address',
+            ])
+            // .leftJoin('ja.account', 'a') // LEFT JOIN Account
+            .leftJoin('ja.resume', 'resume') // LEFT JOIN Account
+            .leftJoin('ja.job', 'job') // LEFT JOIN Job
+            .where('job.id = :id', { id: jobId });
 
         const job_applications = await paginate<JobApplication>(
             transformedQuery,
