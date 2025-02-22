@@ -312,7 +312,6 @@ export const getAllUserSavedJobsService = async (req: Request) => {
     }
 };
 
-
 export const applyToJobService = async (
     userId: number,
     jobId: number,
