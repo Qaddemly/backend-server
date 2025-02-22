@@ -8,6 +8,7 @@ class AccountRepositoryClass extends Repository<Account> {
         const account = await this.createQueryBuilder('account')
             // Join related entities
             .leftJoinAndSelect('account.experiences', 'experience') // Join experiences
+            .leftJoinAndSelect('account.educations', 'education') // Join education
             //.leftJoinAndSelect('account.education', 'education') // Join education
             .leftJoinAndSelect('account.skills', 'skill') // Join skills
             .leftJoinAndSelect('account.languages', 'language') // Join languages

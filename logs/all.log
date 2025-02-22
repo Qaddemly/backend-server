@@ -526,3 +526,45 @@
 [35m[39m
 2025-02-22 16:00:20:020 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 200 24910 - 1547.495 ms[39m
 [35m[39m
+2025-02-22 21:50:30:5030 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 21:50:30:5030 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 21:50:32:5032 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 21:52:36:5236 [31merror[39m: [31mRelation with property path education in entity was not found.[39m
+2025-02-22 21:52:36:5236 [35mhttp[39m: [35mGET /api/v1/auth/getMe 500 1801 - 513.900 ms[39m
+[35m[39m
+2025-02-22 21:54:45:5445 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 21:54:46:5446 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 21:54:47:5447 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 21:54:49:5449 [31merror[39m: [31mRelation with property path education in entity was not found.[39m
+2025-02-22 21:54:49:5449 [35mhttp[39m: [35mGET /api/v1/auth/getMe 500 1801 - 361.032 ms[39m
+[35m[39m
+2025-02-22 21:55:52:5552 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 21:55:52:5552 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 21:55:53:5553 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 21:55:54:5554 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 5043 - 500.146 ms[39m
+[35m[39m
+2025-02-22 22:02:48:248 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 22:02:49:249 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 22:02:50:250 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 22:02:54:254 [31merror[39m: [31mError in getting recommended jobs[39m
+2025-02-22 22:02:54:254 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 400 833 - 776.773 ms[39m
+[35m[39m
+2025-02-22 22:04:04:44 [31merror[39m: [31mError in getting recommended jobs[39m
+2025-02-22 22:04:04:44 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 400 833 - 1957.284 ms[39m
+[35m[39m
+2025-02-22 22:05:23:523 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 22:05:23:523 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 22:05:25:525 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 22:05:29:529 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 200 26416 - 1203.326 ms[39m
+[35m[39m
+2025-02-22 22:07:33:733 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 22:07:33:733 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 22:07:36:736 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 22:07:39:739 [31merror[39m: [31mError in getting recommended jobs[39m
+2025-02-22 22:07:39:739 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 400 833 - 1105.150 ms[39m
+[35m[39m
+2025-02-22 22:11:14:1114 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 22:11:15:1115 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 22:11:17:1117 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 22:11:19:1119 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 200 37236 - 1140.384 ms[39m
+[35m[39m
