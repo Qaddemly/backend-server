@@ -568,3 +568,23 @@
 2025-02-22 22:11:17:1117 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2025-02-22 22:11:19:1119 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 200 37236 - 1140.384 ms[39m
 [35m[39m
+2025-02-22 22:47:52:4752 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-22 22:47:53:4753 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-22 22:47:54:4754 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-22 22:47:57:4757 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 200 37236 - 1298.137 ms[39m
+[35m[39m
+2025-02-23 14:17:01:171 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-23 14:17:02:172 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-23 14:17:03:173 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-23 14:17:26:1726 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 5043 - 1054.633 ms[39m
+[35m[39m
+2025-02-23 14:17:30:1730 [35mhttp[39m: [35mGET /api/v1/auth/getMe 200 5043 - 552.743 ms[39m
+[35m[39m
+2025-02-24 00:39:27:3927 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 00:39:27:3927 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 00:39:27:3927 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 00:39:28:3928 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 00:40:31:4031 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 00:40:31:4031 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 00:40:31:4031 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 00:40:33:4033 [32minfo[39m: [32mMongoDB Database connected successfully[39m
