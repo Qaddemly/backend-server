@@ -55,7 +55,8 @@ export const createBusiness = async (
     console.log(`Are you here ?`);
     const business = new Business();
     business.name = createBusinessDto.name;
-    business.logo = createBusinessDto.logo;
+    business.logo =
+        'http://localhost:8000/uploads/businesses/' + createBusinessDto.logo;
     business.CEO = createBusinessDto.CEO;
     business.founder = createBusinessDto.founder;
     business.founded = createBusinessDto.founded;

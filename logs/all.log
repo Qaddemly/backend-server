@@ -650,3 +650,14 @@
 [35m[39m
 2025-02-24 00:52:53:5253 [35mhttp[39m: [35mGET /api/v1/job/recommendedJobsForUser 200 37236 - 302.253 ms[39m
 [35m[39m
+2025-02-24 00:57:55:5755 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 00:57:55:5755 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 00:57:56:5756 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 00:57:57:5757 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 00:58:03:583 [32minfo[39m: [32mBusiness 5 created successfully[39m
+2025-02-24 00:58:03:583 [35mhttp[39m: [35mPOST /api/v1/business 201 591 - 675.979 ms[39m
+[35m[39m
+2025-02-24 00:58:27:5827 [35mhttp[39m: [35mGET /uploads/businesses/business-logo-Vodafone%20Haha-1740351483040.jpeg 200 8570 - 11.925 ms[39m
+[35m[39m
+2025-02-24 00:58:28:5828 [35mhttp[39m: [35mGET /favicon.ico 404 52 - 157.635 ms[39m
+[35m[39m
