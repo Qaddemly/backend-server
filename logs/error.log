@@ -5,3 +5,7 @@
 2025-02-22 22:02:54:254 [31merror[39m: [31mError in getting recommended jobs[39m
 2025-02-22 22:04:04:44 [31merror[39m: [31mError in getting recommended jobs[39m
 2025-02-22 22:07:39:739 [31merror[39m: [31mError in getting recommended jobs[39m
+2025-02-24 00:44:54:4454 [31merror[39m: [31mError in getting recommended jobs[39m
+2025-02-24 00:49:53:4953 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-24 00:49:57:4957 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
+2025-02-24 00:50:00:500 [31merror[39m: [31mCannot read properties of undefined (reading 'id')[39m
