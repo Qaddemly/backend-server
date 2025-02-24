@@ -187,7 +187,11 @@ export const businessUpdateValidator: ValidationChain[] = [
 ];
 
 export const checkCreateOrUpdateHr: ValidationChain[] = [
-    body('account_email').trim().isEmail().withMessage('invalid email address'),
+    body('account_email')
+        .trim()
+        .isEmail()
+        .withMessage('invalid email address')
+        .toLowerCase(),
     body('role').custom((val) => {
         if (val in HrRole) {
             return val;

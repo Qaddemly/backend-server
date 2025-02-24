@@ -1005,3 +1005,13 @@
 [35m[39m
 2025-02-24 17:49:31:4931 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/1 201 54 - 335.893 ms[39m
 [35m[39m
+2025-02-24 17:51:52:5152 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 17:51:53:5153 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 17:51:53:5153 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 17:51:54:5154 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 17:52:31:5231 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/1 201 54 - 478.026 ms[39m
+[35m[39m
+2025-02-24 17:52:40:5240 [31merror[39m: [31mUser already has role in business[39m
+2025-02-24 17:52:40:5240 [31merror[39m: [31mUser already has role in business[39m
+2025-02-24 17:52:40:5240 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/1 400 852 - 407.296 ms[39m
+[35m[39m
