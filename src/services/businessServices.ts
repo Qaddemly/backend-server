@@ -94,7 +94,7 @@ export const createBusiness = async (
         }
     }
     Logger.info(`Business ${saved_business.id} created successfully`);
-    return getBusinessDto(saved_business);
+    return saved_business;
 };
 
 /**
@@ -113,20 +113,24 @@ export const updateBusiness = async (
         businessId,
     );
     Logger.info(`Business ${businessId} updated successfully`);
-    return getBusinessDto(business);
+    return business;
 };
 
 export const getBusinessesThatUserHasRoleIn = async (accountId: number) => {
     return await BusinessRepository.getBusinessOfAccount(accountId);
 };
 
-export const getBusinessById = async (businessId: number) => {
+export const getBusinessById = async (businessId: number, userId: number) => {
     const business = await BusinessRepository.findOneBy({ id: businessId });
+    const ifFollowedByLoggedInUser = await FollowBusinessRepository.findOneBy({
+        business_id: businessId,
+        account_id: userId,
+    });
     if (!business) {
         Logger.error('Business not found');
         throw new AppError('Business not found', 404);
     }
-    return getBusinessDto(business);
+    return { business, ifFollowedByLoggedInUser };
 };
 export const getFiveReviewsOfBusiness = async (businessId: number) => {
     const business = await BusinessRepository.findOneBy({ id: businessId });

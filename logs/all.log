@@ -1105,3 +1105,40 @@
 2025-02-24 20:17:28:1728 [31merror[39m: [31mError in getting job_applications[39m
 2025-02-24 20:17:28:1728 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/1 400 833 - 722.125 ms[39m
 [35m[39m
+2025-02-24 20:21:52:2152 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 20:21:52:2152 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 20:21:52:2152 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 20:21:56:2156 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 20:22:01:221 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/1 200 131 - 425.247 ms[39m
+[35m[39m
+2025-02-24 20:42:49:4249 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 541 - 616.169 ms[39m
+[35m[39m
+2025-02-24 20:48:10:4810 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 20:48:10:4810 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 20:48:10:4810 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 20:48:12:4812 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 20:48:14:4814 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 594 - 371.774 ms[39m
+[35m[39m
+2025-02-24 20:49:03:493 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 20:49:04:494 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 20:49:04:494 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 20:49:05:495 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 20:58:08:588 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 20:58:08:588 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 20:58:09:589 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 20:58:10:5810 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 20:58:14:5814 [32minfo[39m: [32mBusiness 2 created successfully[39m
+2025-02-24 20:58:14:5814 [35mhttp[39m: [35mPOST /api/v1/business 201 646 - 677.210 ms[39m
+[35m[39m
+2025-02-24 20:58:17:5817 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 639 - 394.127 ms[39m
+[35m[39m
+2025-02-24 21:00:16:016 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 21:00:16:016 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 21:00:16:016 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 21:00:17:017 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 21:00:21:021 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 626 - 367.255 ms[39m
+[35m[39m
+2025-02-24 21:00:42:042 [35mhttp[39m: [35mPOST /api/v1/account/followBusiness/1 201 63 - 682.824 ms[39m
+[35m[39m
+2025-02-24 21:00:46:046 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 654 - 291.668 ms[39m
+[35m[39m
