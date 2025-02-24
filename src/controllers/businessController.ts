@@ -404,13 +404,13 @@ export const deletePhoneNumberOfBusiness = catchAsync(
 export const getAllBusinessWithSearchAndFilter = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const jobs =
+            const businesses =
                 await businessServices.getAllBusinessWithSearchAndFilterService(
                     req,
                 );
             res.status(200).json({
                 success: true,
-                jobs,
+                businesses,
             });
         } catch (err) {
             return next(err);

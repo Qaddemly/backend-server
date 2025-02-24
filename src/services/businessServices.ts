@@ -571,9 +571,9 @@ export const getAllBusinessWithSearchAndFilterService = async (
                     FilterOperator.LT,
                     FilterOperator.LTE,
                 ],
-                'address.country': [FilterOperator.IN],
-                location_type: [FilterOperator.IN],
-                industry: [FilterOperator.IN],
+                'address.country': [FilterOperator.EQ],
+                location_type: [FilterOperator.EQ],
+                industry: [FilterOperator.EQ],
             },
             //relations: ['business'],
             defaultSortBy: [['reviewsRatingsAverage', 'DESC']],
@@ -584,15 +584,15 @@ export const getAllBusinessWithSearchAndFilterService = async (
         };
         const queryBuilder = BusinessRepository.createQueryBuilder('business');
 
-        const jobs = await paginate<Business>(
+        const businesses = await paginate<Business>(
             transformedQuery,
             queryBuilder,
             paginateConfig,
         );
-        return jobs;
+        return businesses;
     } catch (err) {
         console.log(err);
-        throw new AppError('Error in getting jobs', 400);
+        throw new AppError('Error in getting businesses', 400);
     }
 };
 export const updateJobApplicationStatusService = async (
