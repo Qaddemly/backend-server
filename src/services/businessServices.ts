@@ -237,7 +237,16 @@ export const getAllHrOfBusiness = async (
     filterObject: { role: HrRole; name: string; email: string },
 ) => {
     const queryBuilder = HrEmployeeRepository.createQueryBuilder('hr_employee')
-        .leftJoinAndSelect('hr_employee.account', 'account')
+        .leftJoin('hr_employee.account', 'account')
+        .addSelect([
+            'account.id',
+            'account.first_name',
+            'account.last_name',
+            'account.email',
+            'account.subtitle',
+            'account.profile_picture',
+            'account.about_me',
+        ])
         .where('hr_employee.business = :businessId', { businessId });
 
     if (filterObject.role) {
