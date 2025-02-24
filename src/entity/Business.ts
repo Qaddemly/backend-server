@@ -18,7 +18,6 @@ import { JobApplicationState } from './JobApplicationStates';
 
 @Entity()
 export class Business {
-    @Index('business_idx_on_id', { unique: true })
     @PrimaryGeneratedColumn()
     id: number;
 

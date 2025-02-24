@@ -10,7 +10,6 @@ import { CountryCode } from '../enums/countryCode';
 
 @Entity()
 export class BusinessPhone {
-    @Index('business_phone_idx_on_id', { unique: true })
     @PrimaryGeneratedColumn()
     id: number;
 

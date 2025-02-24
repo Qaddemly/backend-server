@@ -23,7 +23,6 @@ import { AccountSavedJobs } from './AccountSavedJobs';
 
 @Entity()
 export class Job {
-    @Index('job_idx_on_id', { unique: true })
     @PrimaryGeneratedColumn()
     id: number;
 
