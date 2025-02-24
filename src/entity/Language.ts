@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Language as Lang } from '../enums/language';
 import { Account } from './Account';
-@Entity()
+@Entity({ name: 'account_language' })
 export class Language {
     @PrimaryGeneratedColumn()
     id: number;

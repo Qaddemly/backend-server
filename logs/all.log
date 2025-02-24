@@ -770,3 +770,238 @@
 2025-02-24 02:07:21:721 [31merror[39m: [31mUser not found[39m
 2025-02-24 02:07:21:721 [35mhttp[39m: [35mGET /api/v1/user/basicInfo/11 404 811 - 361.306 ms[39m
 [35m[39m
+2025-02-24 13:58:19:5819 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 13:58:19:5819 [31merror[39m: [31mRedis connection failed[39m
+2025-02-24 13:58:19:5819 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 13:58:20:5820 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 14:02:42:242 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 14:02:42:242 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 14:02:43:243 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 14:02:44:244 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 14:05:56:556 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 14:05:56:556 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 14:05:56:556 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 14:05:57:557 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 14:08:07:87 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 14:08:07:87 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 14:08:07:87 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 14:08:08:88 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 14:15:11:1511 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 14:15:11:1511 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 14:15:11:1511 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 14:15:12:1512 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 14:17:01:171 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 14:17:02:172 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 14:17:02:172 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 14:17:03:173 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 14:40:41:4041 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 14:40:41:4041 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 14:40:42:4042 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 14:40:43:4043 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 16:25:52:2552 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 16:25:52:2552 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 16:25:53:2553 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 16:25:54:2554 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 16:27:14:2714 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 16:27:14:2714 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 16:27:14:2714 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 16:27:16:2716 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 16:30:03:303 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 16:30:03:303 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 16:30:03:303 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 16:30:05:305 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 16:46:35:4635 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 16:46:35:4635 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 16:46:35:4635 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 16:46:36:4636 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 16:49:22:4922 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 16:49:22:4922 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 16:49:22:4922 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 16:49:24:4924 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 17:03:24:324 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 17:03:24:324 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 17:03:25:325 [31merror[39m: [31mPostgres Database connection failed relation "experience_idx_on_account_id" already exists[39m
+2025-02-24 17:03:26:326 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 17:04:20:420 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 17:04:20:420 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 17:04:20:420 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 17:04:22:422 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 17:06:49:649 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 17:06:49:649 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 17:06:50:650 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 17:06:51:651 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 17:22:57:2257 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 17:22:57:2257 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 17:22:58:2258 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 17:22:59:2259 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 17:36:10:3610 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 17:36:11:3611 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 17:36:11:3611 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 17:36:12:3612 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 17:36:58:3658 [31merror[39m: [31maccountTempData is already exists , please delete accountTempData for accountId 1[39m
+2025-02-24 17:36:58:3658 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 932 - 1419.534 ms[39m
+[35m[39m
+2025-02-24 17:39:50:3950 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 17:39:51:3951 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 17:39:51:3951 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 17:39:52:3952 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 17:39:57:3957 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2680.296 ms[39m
+[35m[39m
+2025-02-24 17:40:27:4027 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:40:27:4027 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 401 874 - 709.743 ms[39m
+[35m[39m
+2025-02-24 17:40:35:4035 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 162 - 2371.137 ms[39m
+[35m[39m
+2025-02-24 17:41:15:4115 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 838 - 1258.920 ms[39m
+[35m[39m
+2025-02-24 17:41:18:4118 [31merror[39m: [31mvalidationErrors[39m
+2025-02-24 17:41:18:4118 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 270 - 321.627 ms[39m
+[35m[39m
+2025-02-24 17:42:09:429 [31merror[39m: [31mvalidationErrors[39m
+2025-02-24 17:42:09:429 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 195 - 378.440 ms[39m
+[35m[39m
+2025-02-24 17:42:22:4222 [31merror[39m: [31mvalidationErrors[39m
+2025-02-24 17:42:22:4222 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 168 - 398.788 ms[39m
+[35m[39m
+2025-02-24 17:42:37:4237 [31merror[39m: [31mvalidationErrors[39m
+2025-02-24 17:42:37:4237 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 186 - 477.906 ms[39m
+[35m[39m
+2025-02-24 17:42:49:4249 [31merror[39m: [31mvalidationErrors[39m
+2025-02-24 17:42:49:4249 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 315 - 391.424 ms[39m
+[35m[39m
+2025-02-24 17:43:03:433 [31merror[39m: [31mvalidationErrors[39m
+2025-02-24 17:43:03:433 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 185 - 502.977 ms[39m
+[35m[39m
+2025-02-24 17:43:18:4318 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 201 1125 - 561.117 ms[39m
+[35m[39m
+2025-02-24 17:44:39:4439 [32minfo[39m: [32mBusiness 1 created successfully[39m
+2025-02-24 17:44:39:4439 [35mhttp[39m: [35mPOST /api/v1/business 201 591 - 609.791 ms[39m
+[35m[39m
+2025-02-24 17:44:46:4446 [31merror[39m: [31mUSER must be SUPER_ADMIN or OWNER to access this endpoint[39m
+2025-02-24 17:44:46:4446 [31merror[39m: [31mAccess denied[39m
+2025-02-24 17:44:46:4446 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001 403 812 - 313.907 ms[39m
+[35m[39m
+2025-02-24 17:44:54:4454 [32minfo[39m: [32mBusiness 1 updated successfully[39m
+2025-02-24 17:44:54:4454 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/1 200 597 - 320.177 ms[39m
+[35m[39m
+2025-02-24 17:44:59:4459 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/followers/1 200 35 - 487.015 ms[39m
+[35m[39m
+2025-02-24 17:45:05:455 [31merror[39m: [31mvalidationErrors[39m
+2025-02-24 17:45:05:455 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/1/phone 400 278 - 308.587 ms[39m
+[35m[39m
+2025-02-24 17:45:18:4518 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/1/phone 201 719 - 402.607 ms[39m
+[35m[39m
+2025-02-24 17:46:14:4614 [35mhttp[39m: [35mGET /api/v1/auth/googleAuth 302 0 - 148.618 ms[39m
+[35m[39m
+2025-02-24 17:46:15:4615 [31merror[39m: [31mvalidationErrors[39m
+2025-02-24 17:46:15:4615 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 400 179 - 244.139 ms[39m
+[35m[39m
+2025-02-24 17:46:16:4616 [31merror[39m: [31mCannot read properties of null (reading 'accountId')[39m
+2025-02-24 17:46:16:4616 [35mhttp[39m: [35mPUT /api/v1/auth/resendActivateCode/6b46f3164a2d1b17addedfb19734a73c0ef8693443d643e4291b72e1528ba2f2 500 743 - 305.202 ms[39m
+[35m[39m
+2025-02-24 17:46:16:4616 [31merror[39m: [31muser not found or token expired[39m
+2025-02-24 17:46:16:4616 [35mhttp[39m: [35mPUT /api/v1/auth/activateEmail/6b46f3164a2d1b17addedfb19734a73c0ef8693443d643e4291b72e1528ba2f2 404 833 - 310.191 ms[39m
+[35m[39m
+2025-02-24 17:46:17:4617 [31merror[39m: [31myou already complete your data[39m
+2025-02-24 17:46:17:4617 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 1303 - 319.163 ms[39m
+[35m[39m
+2025-02-24 17:46:18:4618 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 847 - 979.806 ms[39m
+[35m[39m
+2025-02-24 17:46:18:4618 [31merror[39m: [31mno user found with this email[39m
+2025-02-24 17:46:18:4618 [35mhttp[39m: [35mPOST /api/v1/auth/forgetMyPassword 404 829 - 152.075 ms[39m
+[35m[39m
+2025-02-24 17:46:18:4618 [31merror[39m: [31muserTempData belong to that token does not exist[39m
+2025-02-24 17:46:18:4618 [35mhttp[39m: [35mPUT /api/v1/auth/resendForgetPassCode/a818f384985247c31e3f8b3d28a1d45781a3afe8e600d17f337dc801092c3b4b 400 867 - 345.844 ms[39m
+[35m[39m
+2025-02-24 17:46:19:4619 [31merror[39m: [31mno user founded with reset token[39m
+2025-02-24 17:46:19:4619 [35mhttp[39m: [35mPUT /api/v1/auth/verifyForgetPassCode/a818f384985247c31e3f8b3d28a1d45781a3afe8e600d17f337dc801092c3b4b 404 835 - 300.620 ms[39m
+[35m[39m
+2025-02-24 17:46:19:4619 [31merror[39m: [31mvalidationErrors[39m
+2025-02-24 17:46:19:4619 [35mhttp[39m: [35mPOST /api/v1/auth/resetMyPassword/f82b14dc7335c5876051ae95cd678c3a4da0c5e02ca2bc88361732d96eca2cb5 400 198 - 148.505 ms[39m
+[35m[39m
+2025-02-24 17:46:21:4621 [35mhttp[39m: [35mPUT /api/v1/auth/changeMyPassword/ 200 80 - 1806.677 ms[39m
+[35m[39m
+2025-02-24 17:46:21:4621 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:21:4621 [35mhttp[39m: [35mPOST /api/v1/auth/logout 401 1312 - 177.316 ms[39m
+[35m[39m
+2025-02-24 17:46:21:4621 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:21:4621 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/1 401 1312 - 170.907 ms[39m
+[35m[39m
+2025-02-24 17:46:21:4621 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:21:4621 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/followers/1 401 1312 - 181.302 ms[39m
+[35m[39m
+2025-02-24 17:46:22:4622 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:22:4622 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/1/phone 401 1312 - 149.284 ms[39m
+[35m[39m
+2025-02-24 17:46:22:4622 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:22:4622 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/50001/phone/465 401 1312 - 151.585 ms[39m
+[35m[39m
+2025-02-24 17:46:22:4622 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:22:4622 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/settings/50001/phone/1045 401 1312 - 149.998 ms[39m
+[35m[39m
+2025-02-24 17:46:22:4622 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:22:4622 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/settings/46565654/phone 401 1312 - 149.273 ms[39m
+[35m[39m
+2025-02-24 17:46:23:4623 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:23:4623 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 401 1312 - 193.382 ms[39m
+[35m[39m
+2025-02-24 17:46:23:4623 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:23:4623 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/hr/all/50001?role=HR&name=esla 401 1312 - 150.850 ms[39m
+[35m[39m
+2025-02-24 17:46:23:4623 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:23:4623 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/50001 401 1312 - 151.677 ms[39m
+[35m[39m
+2025-02-24 17:46:23:4623 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:23:4623 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/50001 401 1312 - 152.563 ms[39m
+[35m[39m
+2025-02-24 17:46:23:4623 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:23:4623 [35mhttp[39m: [35mPOST /api/v1/job/postJob 401 1312 - 149.172 ms[39m
+[35m[39m
+2025-02-24 17:46:24:4624 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:24:4624 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/1 401 1312 - 151.713 ms[39m
+[35m[39m
+2025-02-24 17:46:24:4624 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:24:4624 [35mhttp[39m: [35mPUT /api/v1/job/makeJobClosed/13 401 1312 - 152.535 ms[39m
+[35m[39m
+2025-02-24 17:46:24:4624 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:24:4624 [35mhttp[39m: [35mPUT /api/v1/job/makeJobOpened/130 401 1312 - 149.165 ms[39m
+[35m[39m
+2025-02-24 17:46:24:4624 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:24:4624 [35mhttp[39m: [35mPUT /api/v1/job/makeJobArchived/13 401 1312 - 194.955 ms[39m
+[35m[39m
+2025-02-24 17:46:25:4625 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:25:4625 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/12?sortBy=created_at:DESC 401 1312 - 157.037 ms[39m
+[35m[39m
+2025-02-24 17:46:25:4625 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:25:4625 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/job/1/applications/17 401 1312 - 149.196 ms[39m
+[35m[39m
+2025-02-24 17:46:39:4639 [31merror[39m: [31myou are not logged in please login to access this route[39m
+2025-02-24 17:46:39:4639 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/settings/1/phone 401 1312 - 158.190 ms[39m
+[35m[39m
+2025-02-24 17:46:55:4655 [31merror[39m: [31memail or password is incorrect[39m
+2025-02-24 17:46:55:4655 [35mhttp[39m: [35mPOST /api/v1/auth/login 400 755 - 718.010 ms[39m
+[35m[39m
+2025-02-24 17:47:06:476 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 847 - 1205.437 ms[39m
+[35m[39m
+2025-02-24 17:47:39:4739 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/settings/1/phone/1 200 145 - 387.026 ms[39m
+[35m[39m
+2025-02-24 17:47:50:4750 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/settings/1/phone 200 108 - 392.747 ms[39m
+[35m[39m
+2025-02-24 17:47:54:4754 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/settings/1/phone/1 200 66 - 331.717 ms[39m
+[35m[39m
+2025-02-24 17:48:31:4831 [35mhttp[39m: [35mPOST /api/v1/auth/signUp 201 173 - 2384.411 ms[39m
+[35m[39m
+2025-02-24 17:49:01:491 [31merror[39m: [31mAccount not found[39m
+2025-02-24 17:49:01:491 [31merror[39m: [31mAccount not found[39m
+2025-02-24 17:49:01:491 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 671.156 ms[39m
+[35m[39m
+2025-02-24 17:49:15:4915 [31merror[39m: [31mAccount not found[39m
+2025-02-24 17:49:15:4915 [31merror[39m: [31mAccount not found[39m
+2025-02-24 17:49:15:4915 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 404 820 - 608.301 ms[39m
+[35m[39m
+2025-02-24 17:49:26:4926 [31merror[39m: [31mBusiness not found[39m
+2025-02-24 17:49:26:4926 [31merror[39m: [31mBusiness not found[39m
+2025-02-24 17:49:26:4926 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/50001 404 822 - 394.743 ms[39m
+[35m[39m
+2025-02-24 17:49:31:4931 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/1 201 54 - 335.893 ms[39m
+[35m[39m

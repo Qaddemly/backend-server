@@ -5,6 +5,7 @@ import {
     Index,
     JoinColumn,
     ManyToOne,
+    PrimaryColumn,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
@@ -14,10 +15,16 @@ import { HrRole } from '../enums/HrRole';
 
 @Entity()
 export class HrEmployee {
-    @PrimaryGeneratedColumn()
-    id: number;
+    /**
+     * a composite index is created on (account_id, business_id)
+     * It's effective when querying account_id only or both together
+     * It's not effective if querying business_id only
+     * So We need to create another idx on business_id
+     *  **/
+    @PrimaryColumn({ name: 'account_id' })
+    account_id: number;
 
-    @Column({ name: 'business_id' })
+    @PrimaryColumn({ name: 'business_id' })
     business_id: number;
 
     @Index('hr_employee_idx_on_business_id')
@@ -30,10 +37,6 @@ export class HrEmployee {
     })
     business: Business;
 
-    @Column({ name: 'account_id' })
-    account_id: number;
-
-    @Index('hr_employee_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.business_roles, {
         onDelete: 'CASCADE',
     })

@@ -7,6 +7,7 @@ import {
     ManyToMany,
     ManyToOne,
     OneToMany,
+    OneToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
@@ -94,12 +95,12 @@ export class Job {
         { cascade: true },
     )
     job_application_states: JobApplicationState[];
+
     @OneToMany(
         () => AccountSavedJobs,
-        (account_saved_jobs) => account_saved_jobs.job,
-        { cascade: true },
+        (accountSavedJobs) => accountSavedJobs.job,
     )
-    saved_jobs: AccountSavedJobs[];
+    savedByAccounts: AccountSavedJobs[];
 
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;

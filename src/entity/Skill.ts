@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Account } from './Account';
 
-@Entity()
+@Entity({ name: 'account_skill' })
 export class Skill {
     @PrimaryGeneratedColumn()
     id: number;

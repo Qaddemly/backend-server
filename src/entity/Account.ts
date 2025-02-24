@@ -42,6 +42,7 @@ export class Account {
     @Column({ type: 'text' })
     last_name: string;
 
+    // This Index for searching for user using email in (Adding new HR to business)
     @Index('account_idx_on_email', { unique: true })
     @Column({ type: 'text', unique: true })
     email: string;
@@ -61,12 +62,12 @@ export class Account {
     @Column(() => Phone, { prefix: false })
     phone: Phone;
 
-    @Column('text', { nullable: true })
-    resume: string;
     @Column({ nullable: true })
     about_me: string;
+
     @Column({ nullable: true })
     subtitle: string;
+
     @Column({ type: 'text', array: true, nullable: true })
     links: string[];
 
@@ -83,10 +84,12 @@ export class Account {
         cascade: true,
     })
     experiences: Experience[];
+
     @OneToMany(() => Education, (education) => education.account, {
         cascade: true,
     })
     educations: Education[];
+
     @OneToMany(() => Language, (language) => language.account, {
         cascade: true,
     })
@@ -109,7 +112,7 @@ export class Account {
 
     @OneToMany(
         () => AccountSavedJobs,
-        (account_saved_jobs) => account_saved_jobs.account,
+        (accountSavedJobs) => accountSavedJobs.account,
         { cascade: true },
     )
     saved_jobs: AccountSavedJobs[];
