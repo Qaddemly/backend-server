@@ -28,10 +28,10 @@ export class JobApplication {
      * It's not effective if querying job_id only
      * So We need to create another idx on job_id
      * */
-    @PrimaryColumn({ name: 'account_id' })
+    @Column({ name: 'account_id' })
     account_id: number;
 
-    @PrimaryColumn({ name: 'job_id' })
+    @Column({ name: 'job_id' })
     job_id: number;
 
     @Index('job_application_idx_on_job_id')
@@ -44,6 +44,7 @@ export class JobApplication {
     })
     job: Job;
 
+    @Index('job_application_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.job_applications, {
         onDelete: 'CASCADE',
     })

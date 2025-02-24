@@ -65,3 +65,11 @@
 2025-02-24 17:52:40:5240 [31merror[39m: [31mUser already has role in business[39m
 2025-02-24 18:03:36:336 [31merror[39m: [31mAccount not found[39m
 2025-02-24 18:03:36:336 [31merror[39m: [31mAccount not found[39m
+2025-02-24 18:06:19:619 [31merror[39m: [31mBusiness with that id not found[39m
+2025-02-24 18:06:40:640 [31merror[39m: [31mJob not found[39m
+2025-02-24 18:07:06:76 [31merror[39m: [31mJob is already Closed[39m
+2025-02-24 18:07:21:721 [31merror[39m: [31mJob not found[39m
+2025-02-24 18:07:27:727 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-24 18:10:00:100 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-24 20:15:54:1554 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-24 20:17:28:1728 [31merror[39m: [31mError in getting job_applications[39m

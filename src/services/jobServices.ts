@@ -31,7 +31,6 @@ import { JobApplicationStatesRepository } from '../Repository/jobApplicationStat
 import { AccountArchivedJobApplicationsRepository } from '../Repository/accountArchivedJobApplicationsRepository';
 import { getUserInfoToRecommendJobs } from './profileServices';
 import { AccountSavedJobsRepository } from '../Repository/accountSavedJobRepository';
-import { TypeOrmErrors } from '../enums/typeOrmErrors';
 import { AccountSavedJobs } from '../entity/AccountSavedJobs';
 import { EmploymentType } from '../enums/employmentType';
 import fs from 'fs';
@@ -574,6 +573,7 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
         );
         return job_applications;
     } catch (err) {
+        console.log(err);
         throw new AppError('Error in getting job_applications', 400);
     }
 };

@@ -1051,3 +1051,57 @@
 2025-02-24 18:04:33:433 [32minfo[39m: [32mMongoDB Database connected successfully[39m
 2025-02-24 18:04:34:434 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/1 200 56 - 400.885 ms[39m
 [35m[39m
+2025-02-24 18:05:34:534 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 18:05:34:534 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 18:05:35:535 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 18:05:36:536 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 18:05:50:550 [35mhttp[39m: [35mPOST /api/v1/business/myBusiness/dashboard/hr/1 201 54 - 449.224 ms[39m
+[35m[39m
+2025-02-24 18:05:59:559 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/1 200 61 - 298.296 ms[39m
+[35m[39m
+2025-02-24 18:06:04:64 [35mhttp[39m: [35mPUT /api/v1/business/myBusiness/dashboard/hr/1 200 61 - 282.041 ms[39m
+[35m[39m
+2025-02-24 18:06:19:619 [31merror[39m: [31mBusiness with that id not found[39m
+2025-02-24 18:06:19:619 [35mhttp[39m: [35mPOST /api/v1/job/postJob 404 828 - 382.170 ms[39m
+[35m[39m
+2025-02-24 18:06:27:627 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 990 - 333.509 ms[39m
+[35m[39m
+2025-02-24 18:06:33:633 [35mhttp[39m: [35mPUT /api/v1/job/updateJob/1 200 354 - 285.272 ms[39m
+[35m[39m
+2025-02-24 18:06:40:640 [31merror[39m: [31mJob not found[39m
+2025-02-24 18:06:40:640 [35mhttp[39m: [35mPUT /api/v1/job/makeJobClosed/13 404 793 - 294.937 ms[39m
+[35m[39m
+2025-02-24 18:06:45:645 [35mhttp[39m: [35mPUT /api/v1/job/makeJobClosed/1 200 52 - 287.718 ms[39m
+[35m[39m
+2025-02-24 18:06:53:653 [35mhttp[39m: [35mPUT /api/v1/job/makeJobOpened/1 200 52 - 283.772 ms[39m
+[35m[39m
+2025-02-24 18:06:58:658 [35mhttp[39m: [35mPUT /api/v1/job/makeJobArchived/1 200 54 - 283.451 ms[39m
+[35m[39m
+2025-02-24 18:07:04:74 [35mhttp[39m: [35mPUT /api/v1/job/makeJobClosed/1 200 52 - 276.061 ms[39m
+[35m[39m
+2025-02-24 18:07:06:76 [31merror[39m: [31mJob is already Closed[39m
+2025-02-24 18:07:06:76 [35mhttp[39m: [35mPUT /api/v1/job/makeJobClosed/1 409 809 - 278.037 ms[39m
+[35m[39m
+2025-02-24 18:07:21:721 [31merror[39m: [31mJob not found[39m
+2025-02-24 18:07:21:721 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/12?sortBy=created_at:DESC 404 793 - 453.497 ms[39m
+[35m[39m
+2025-02-24 18:07:27:727 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-24 18:07:27:727 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/1?sortBy=created_at:DESC 400 833 - 296.477 ms[39m
+[35m[39m
+2025-02-24 18:10:00:100 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-24 18:10:00:100 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/1 400 833 - 600.600 ms[39m
+[35m[39m
+2025-02-24 20:15:39:1539 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 20:15:39:1539 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 20:15:40:1540 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 20:15:50:1550 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 20:15:54:1554 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-24 20:15:54:1554 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/1 400 833 - 662.490 ms[39m
+[35m[39m
+2025-02-24 20:17:21:1721 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 20:17:21:1721 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 20:17:21:1721 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 20:17:26:1726 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 20:17:28:1728 [31merror[39m: [31mError in getting job_applications[39m
+2025-02-24 20:17:28:1728 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/1 400 833 - 722.125 ms[39m
+[35m[39m
