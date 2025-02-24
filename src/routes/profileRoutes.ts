@@ -37,6 +37,16 @@ import {
     getAllArchivedApplicationsOfUser,
     archiveJobApplication,
     getAllDetailsAboutJobApplication,
+    getExperiencesOfUserById,
+    getSkillsOfLoggedInUser,
+    getEducationsOfLoggedInUser,
+    getEducationsOfUserById,
+    getExperiencesOfLoggedInUser,
+    getSkillsOfUserById,
+    getLanguagesOfLoggedInUser,
+    getLanguagesOfUserById,
+    getBasicInfoOfLoggedInUser,
+    getBasicInfoOfUserById,
 } from '../controllers/profileController';
 import {
     protect,
@@ -251,6 +261,22 @@ profileRouter.delete(
     validateRequestMiddleware(idValidator),
     deleteCertificate,
 );
+
+profileRouter.get('/myBasicInfo', protect, getBasicInfoOfLoggedInUser);
+profileRouter.get('/basicInfo/:userId', protect, getBasicInfoOfUserById);
+
+profileRouter.get('/myEducations', protect, getEducationsOfLoggedInUser);
+profileRouter.get('/educations/:userId', protect, getEducationsOfUserById);
+
+profileRouter.get('/myExperiences', protect, getExperiencesOfLoggedInUser);
+profileRouter.get('/experiences/:userId', protect, getExperiencesOfUserById);
+
+profileRouter.get('/mySkills', protect, getSkillsOfLoggedInUser);
+profileRouter.get('/skills/:userId', protect, getSkillsOfUserById);
+
+profileRouter.get('/myLanguages', protect, getLanguagesOfLoggedInUser);
+profileRouter.get('/languages/:userId', protect, getLanguagesOfUserById);
+
 profileRouter.get(
     '/jobApplication/myAllJobApplications',
     protect,

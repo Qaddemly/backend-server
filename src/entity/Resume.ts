@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Account } from './Account';
 import { JobApplication } from './JobApplication';
-@Entity()
+@Entity({ name: 'account_resume_file' })
 export class Resume {
     @PrimaryGeneratedColumn()
     id: number;

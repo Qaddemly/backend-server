@@ -7,6 +7,7 @@ import {
     ManyToMany,
     ManyToOne,
     OneToMany,
+    OneToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
@@ -23,7 +24,6 @@ import { AccountSavedJobs } from './AccountSavedJobs';
 
 @Entity()
 export class Job {
-    @Index('job_idx_on_id', { unique: true })
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -36,10 +36,11 @@ export class Job {
     @Column({
         type: 'enum',
         enum: Country,
+        nullable: true,
     })
     country: Country;
 
-    @Column('text')
+    @Column('text', { nullable: true })
     city: string;
 
     @Column({
@@ -95,12 +96,12 @@ export class Job {
         { cascade: true },
     )
     job_application_states: JobApplicationState[];
+
     @OneToMany(
         () => AccountSavedJobs,
-        (account_saved_jobs) => account_saved_jobs.job,
-        { cascade: true },
+        (accountSavedJobs) => accountSavedJobs.job,
     )
-    saved_jobs: AccountSavedJobs[];
+    savedByAccounts: AccountSavedJobs[];
 
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;

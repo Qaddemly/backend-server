@@ -18,7 +18,7 @@ export class AccountVolunteering {
     @Column({ name: 'account_id' })
     account_id: number;
 
-    @Index('account_volunteering_idx')
+    @Index('volunteering_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.volunteering, {
         onDelete: 'CASCADE',
     })

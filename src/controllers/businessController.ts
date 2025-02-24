@@ -48,10 +48,11 @@ export const getBusinessById = catchAsync(
     async (req: Request<{ businessId: string }>, res: Response) => {
         const business = await businessServices.getBusinessById(
             Number(req.params.businessId),
+            req.user.id,
         );
         res.status(200).json({
             status: 'success',
-            business,
+            ...business,
         });
     },
 );

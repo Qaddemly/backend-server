@@ -31,12 +31,12 @@ import { JobApplicationStatesRepository } from '../Repository/jobApplicationStat
 import { AccountArchivedJobApplicationsRepository } from '../Repository/accountArchivedJobApplicationsRepository';
 import { getUserInfoToRecommendJobs } from './profileServices';
 import { AccountSavedJobsRepository } from '../Repository/accountSavedJobRepository';
-import { TypeOrmErrors } from '../enums/typeOrmErrors';
 import { AccountSavedJobs } from '../entity/AccountSavedJobs';
 import { EmploymentType } from '../enums/employmentType';
 import fs from 'fs';
 import { Country } from '../enums/country';
 import path from 'path';
+import { redisClient } from '../config/redis';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -573,6 +573,7 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
         );
         return job_applications;
     } catch (err) {
+        console.log(err);
         throw new AppError('Error in getting job_applications', 400);
     }
 };
@@ -663,6 +664,12 @@ export const changeJobStatus = async (req: Request, status: JobStatus) => {
 };
 
 export const getRecommendedJobsForUserService = async (userId: number) => {
+    const isCached = await redisClient.get(`recommendedJobs:${userId}`);
+
+    if (isCached) {
+        return JSON.parse(isCached);
+    }
+
     const userInfo = await getUserInfoToRecommendJobs(userId);
     const jobs = await JobRepository.find({
         where: { status: JobStatus.OPENED },
@@ -691,7 +698,12 @@ export const getRecommendedJobsForUserService = async (userId: number) => {
 
             recommendedJobs.push(job);
         }
-
+        // Set expiration time for 3 hours
+        await redisClient.set(
+            `recommendedJobs:${userId}`,
+            JSON.stringify(recommendedJobs),
+            { EX: 3 * 60 * 60 },
+        );
         return recommendedJobs;
     } catch (e) {
         throw new AppError('Error in getting recommended jobs', 400);

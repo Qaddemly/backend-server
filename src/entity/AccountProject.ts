@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { Account } from './Account';
 
-@Entity()
+@Entity({ name: 'account_project' })
 export class AccountProject {
     @PrimaryGeneratedColumn()
     id: number;
@@ -18,7 +18,7 @@ export class AccountProject {
     @Column({ name: 'account_id' })
     account_id: number;
 
-    @Index('account_project_idx')
+    @Index('projects_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.projects, {
         onDelete: 'CASCADE',
     })
