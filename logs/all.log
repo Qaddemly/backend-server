@@ -1142,3 +1142,13 @@
 [35m[39m
 2025-02-24 21:00:46:046 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 654 - 291.668 ms[39m
 [35m[39m
+2025-02-24 21:05:01:51 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 21:05:01:51 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 21:05:02:52 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 21:05:03:53 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 21:05:13:513 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 990 - 843.067 ms[39m
+[35m[39m
+2025-02-24 21:05:20:520 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 987 - 300.343 ms[39m
+[35m[39m
+2025-02-24 21:05:26:526 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 984 - 377.763 ms[39m
+[35m[39m

@@ -36,10 +36,11 @@ export class Job {
     @Column({
         type: 'enum',
         enum: Country,
+        nullable: true,
     })
     country: Country;
 
-    @Column('text')
+    @Column('text', { nullable: true })
     city: string;
 
     @Column({
