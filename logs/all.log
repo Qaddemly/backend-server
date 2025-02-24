@@ -661,3 +661,112 @@
 [35m[39m
 2025-02-24 00:58:28:5828 [35mhttp[39m: [35mGET /favicon.ico 404 52 - 157.635 ms[39m
 [35m[39m
+2025-02-24 01:10:16:1016 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:10:16:1016 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:10:16:1016 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:10:18:1018 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:10:20:1020 [35mhttp[39m: [35mGET /api/v1/user/myEducations 200 32 - 471.115 ms[39m
+[35m[39m
+2025-02-24 01:10:27:1027 [35mhttp[39m: [35mPOST /api/v1/user/addEducation 200 202 - 597.267 ms[39m
+[35m[39m
+2025-02-24 01:10:30:1030 [35mhttp[39m: [35mGET /api/v1/user/myEducations 200 32 - 272.893 ms[39m
+[35m[39m
+2025-02-24 01:11:49:1149 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:11:49:1149 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:11:50:1150 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:11:51:1151 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:12:36:1236 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:12:36:1236 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:12:36:1236 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:12:37:1237 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:12:45:1245 [35mhttp[39m: [35mGET /api/v1/user/myEducations 200 32 - 336.078 ms[39m
+[35m[39m
+2025-02-24 01:14:30:1430 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:14:30:1430 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:14:30:1430 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:14:31:1431 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:15:21:1521 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:15:21:1521 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:15:22:1522 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:15:23:1523 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:16:26:1626 [35mhttp[39m: [35mGET /api/v1/user/myEducations 200 453 - 621.384 ms[39m
+[35m[39m
+2025-02-24 01:18:47:1847 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:18:47:1847 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:18:47:1847 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:18:48:1848 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:18:51:1851 [35mhttp[39m: [35mGET /api/v1/user/educations/1 200 453 - 347.986 ms[39m
+[35m[39m
+2025-02-24 01:31:57:3157 [31merror[39m: [31mUser not found[39m
+2025-02-24 01:31:57:3157 [35mhttp[39m: [35mGET /api/v1/user/educations/16 404 814 - 692.443 ms[39m
+[35m[39m
+2025-02-24 01:34:23:3423 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:34:23:3423 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:34:23:3423 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:34:25:3425 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:34:27:3427 [35mhttp[39m: [35mGET /api/v1/user/myExperiences 200 712 - 355.179 ms[39m
+[35m[39m
+2025-02-24 01:37:02:372 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:37:02:372 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:37:02:372 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:37:04:374 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:37:07:377 [35mhttp[39m: [35mGET /api/v1/user/experiences/1 200 712 - 363.886 ms[39m
+[35m[39m
+2025-02-24 01:37:39:3739 [35mhttp[39m: [35mGET /api/v1/user/experiences/16 200 33 - 493.282 ms[39m
+[35m[39m
+2025-02-24 01:38:30:3830 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:38:30:3830 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:38:30:3830 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:38:32:3832 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:38:41:3841 [31merror[39m: [31mUser not found[39m
+2025-02-24 01:38:41:3841 [35mhttp[39m: [35mGET /api/v1/user/experiences/16 404 814 - 406.749 ms[39m
+[35m[39m
+2025-02-24 01:44:39:4439 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:44:39:4439 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:44:40:4440 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:44:41:4441 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:44:55:4455 [35mhttp[39m: [35mGET /api/v1/user/mySkills 200 452 - 681.592 ms[39m
+[35m[39m
+2025-02-24 01:45:34:4534 [35mhttp[39m: [35mGET /api/v1/user/skills/1 200 452 - 451.175 ms[39m
+[35m[39m
+2025-02-24 01:46:10:4610 [31merror[39m: [31mUser not found[39m
+2025-02-24 01:46:10:4610 [35mhttp[39m: [35mGET /api/v1/user/skills/16 404 811 - 352.484 ms[39m
+[35m[39m
+2025-02-24 01:46:27:4627 [35mhttp[39m: [35mGET /api/v1/user/myLanguages 200 31 - 459.633 ms[39m
+[35m[39m
+2025-02-24 01:47:25:4725 [35mhttp[39m: [35mGET /api/v1/user/myLanguages 200 111 - 346.737 ms[39m
+[35m[39m
+2025-02-24 01:47:56:4756 [35mhttp[39m: [35mGET /api/v1/user/languages/1 200 111 - 347.261 ms[39m
+[35m[39m
+2025-02-24 01:48:25:4825 [31merror[39m: [31mUser not found[39m
+2025-02-24 01:48:25:4825 [35mhttp[39m: [35mGET /api/v1/user/languages/11 404 811 - 346.561 ms[39m
+[35m[39m
+2025-02-24 01:52:57:5257 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:52:58:5258 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:52:58:5258 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:52:59:5259 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:59:34:5934 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 01:59:34:5934 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 01:59:35:5935 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 01:59:36:5936 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 01:59:57:5957 [35mhttp[39m: [35mGET /api/v1/user/myBasicInfo 200 363 - 725.665 ms[39m
+[35m[39m
+2025-02-24 02:03:08:38 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 02:03:08:38 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 02:03:08:38 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 02:03:09:39 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 02:03:12:312 [35mhttp[39m: [35mGET /api/v1/user/myBasicInfo 200 414 - 351.005 ms[39m
+[35m[39m
+2025-02-24 02:06:28:628 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 02:06:28:628 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 02:06:28:628 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 02:06:29:629 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 02:06:49:649 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 02:06:49:649 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 02:06:50:650 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 02:06:51:651 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 02:06:52:652 [35mhttp[39m: [35mGET /api/v1/user/basicInfo/1 200 414 - 325.061 ms[39m
+[35m[39m
+2025-02-24 02:07:21:721 [31merror[39m: [31mUser not found[39m
+2025-02-24 02:07:21:721 [35mhttp[39m: [35mGET /api/v1/user/basicInfo/11 404 811 - 361.306 ms[39m
+[35m[39m

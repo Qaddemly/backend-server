@@ -12,6 +12,9 @@ export class Language {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ name: 'account_id' })
+    account_id: number;
+
     @ManyToOne(() => Account, (account) => account.languages, {
         onDelete: 'CASCADE',
     })

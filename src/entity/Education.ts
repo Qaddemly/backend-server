@@ -27,6 +27,10 @@ export class Education {
 
     @Column('date')
     end_date: Date;
+
+    @Column({ name: 'account_id' })
+    account_id: number;
+
     @ManyToOne(() => Account, (account) => account.educations, {
         onDelete: 'CASCADE',
     })
