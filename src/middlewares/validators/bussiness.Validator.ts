@@ -202,7 +202,11 @@ export const checkCreateOrUpdateHr: ValidationChain[] = [
 ];
 
 export const checkDeleteHr: ValidationChain[] = [
-    body('account_email').trim().isEmail().withMessage('invalid email address'),
+    body('account_email')
+        .trim()
+        .isEmail()
+        .withMessage('invalid email address')
+        .toLowerCase(),
 ];
 
 export const getAllHrQueryValidator: ValidationChain[] = [

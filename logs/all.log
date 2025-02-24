@@ -1045,3 +1045,9 @@
 2025-02-24 18:03:36:336 [31merror[39m: [31mAccount not found[39m
 2025-02-24 18:03:36:336 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/1 404 820 - 386.616 ms[39m
 [35m[39m
+2025-02-24 18:04:31:431 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 18:04:31:431 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-24 18:04:31:431 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 18:04:33:433 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 18:04:34:434 [35mhttp[39m: [35mDELETE /api/v1/business/myBusiness/dashboard/hr/1 200 56 - 400.885 ms[39m
+[35m[39m
