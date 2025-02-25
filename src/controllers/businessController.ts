@@ -452,3 +452,17 @@ export const getAllJobsFromDashboard = catchAsync(
         }
     },
 );
+
+export const getNumberOfBusinesses = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const count = await businessServices.getNumberOfBusinessService();
+            res.status(200).json({
+                success: true,
+                count,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);

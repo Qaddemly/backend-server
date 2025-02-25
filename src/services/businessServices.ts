@@ -625,3 +625,8 @@ export const getAllJobsFromDashboard = async (
         business_id: businessId,
     });
 };
+
+export const getNumberOfBusinessService = async () => {
+    const count = await JobRepository.createQueryBuilder('business').getCount();
+    return count;
+};

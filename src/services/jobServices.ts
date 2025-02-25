@@ -799,3 +799,22 @@ export const loadJobsFromCSV = async () => {
             }
         });
 };
+
+export const getNumberOfActiveJobsService = async () => {
+    const count = await JobRepository.createQueryBuilder('job')
+        .where('job.status != :archivedStatus', {
+            archivedStatus: JobStatus.ARCHIVED,
+        })
+        .getCount();
+    return count;
+};
+
+export const getNumberOfNewlyPostedJobsService = async () => {
+    const count = await JobRepository.createQueryBuilder('job')
+        .where('job.status != :archivedStatus', {
+            archivedStatus: JobStatus.ARCHIVED,
+        })
+        .andWhere("job.created_at >= NOW() - INTERVAL '1 hour'")
+        .getCount();
+    return count;
+};
