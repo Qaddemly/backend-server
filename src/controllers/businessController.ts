@@ -6,6 +6,7 @@ import * as businessServices from './../services/businessServices';
 import { HrRole } from '../enums/HrRole';
 import { HrDashboardUserInfo } from '../types/request';
 import { CountryCode } from '../enums/countryCode';
+import { JobStatus } from '../enums/jobStatus';
 
 declare module 'express-serve-static-core' {
     interface Request {
@@ -429,6 +430,22 @@ export const updateJobApplicationStatus = catchAsync(
             res.status(200).json({
                 success: true,
                 message: 'Job application status updated successfully',
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+export const getAllJobsFromDashboard = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const jobs = await businessServices.getAllJobsFromDashboard(
+                Number(req.params.businessId),
+                req.query.status as JobStatus,
+            );
+            res.status(200).json({
+                success: true,
+                jobs,
             });
         } catch (err) {
             return next(err);
