@@ -1,9 +1,5 @@
 import { Business } from '../entity/Business';
-import {
-    CreateBusinessDto,
-    getBusinessDto,
-    UpdateBusinessDTO,
-} from '../dtos/businessDto';
+import { CreateBusinessDto, UpdateBusinessDTO } from '../dtos/businessDto';
 import { BusinessRepository } from '../Repository/businessRepository';
 import { AccountRepository } from '../Repository/accountRepository';
 import { HrEmployee } from '../entity/HrEmployee';
@@ -17,7 +13,6 @@ import { JobRepository } from '../Repository/jobRepository';
 import { FollowBusinessRepository } from '../Repository/followBusinessRepository';
 import { BusinessPhone } from '../entity/BusinessPhone';
 import { BusinessPhoneRepository } from '../Repository/businessPhoneRepository';
-import exp from 'node:constants';
 
 import { CountryCode } from '../enums/countryCode';
 
@@ -31,6 +26,7 @@ import {
 } from '../utils/pagination/typeorm-paginate';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
 import { JobApplicationStatesRepository } from '../Repository/jobApplicationStatesRepository';
+import { JobStatus } from '../enums/jobStatus';
 
 /**
  * TODO: mark the Account that created the business as the owner.
@@ -614,4 +610,18 @@ export const updateJobApplicationStatusService = async (
     }
     jobApplicationStatus.state = status;
     return await JobApplicationStatesRepository.save(jobApplicationStatus);
+};
+export const getAllJobsFromDashboard = async (
+    businessId: number,
+    status?: JobStatus,
+) => {
+    if (status) {
+        return await JobRepository.findBy({
+            business_id: businessId,
+            status: status,
+        });
+    }
+    return await JobRepository.findBy({
+        business_id: businessId,
+    });
 };
