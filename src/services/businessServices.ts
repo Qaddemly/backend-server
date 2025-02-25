@@ -162,7 +162,10 @@ export const getAllJobsOfBusiness = async (businessId: number) => {
         Logger.error('Business not found');
         throw new AppError('Business not found', 404);
     }
-    return await JobRepository.getAllJobsOfBusiness(businessId);
+    // return await JobRepository.getAllJobsOfBusiness(businessId);
+    return await JobRepository.createQueryBuilder('job')
+        .leftJoinAndSelect('job.business', 'business')
+        .getMany();
 };
 export const addHrToBusiness = async (
     businessId: number,
