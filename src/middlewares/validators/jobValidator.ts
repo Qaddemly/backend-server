@@ -32,6 +32,7 @@ export const createJobValidator: ValidationChain[] = [
         }),
 
     body('country')
+        .optional()
         .trim()
         .notEmpty()
         .withMessage('country cannot be empty')
@@ -40,6 +41,7 @@ export const createJobValidator: ValidationChain[] = [
             else throw new Error('Invalid country');
         }),
     body('city')
+        .optional()
         .trim()
         .notEmpty()
         .withMessage('city cannot be empty')

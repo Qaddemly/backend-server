@@ -7,10 +7,13 @@ import {
 } from 'typeorm';
 import { Account } from './Account';
 
-@Entity()
+@Entity({ name: 'account_skill' })
 export class Skill {
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column({ name: 'account_id' })
+    account_id: number;
 
     @ManyToOne(() => Account, (account) => account.skills, {
         onDelete: 'CASCADE',

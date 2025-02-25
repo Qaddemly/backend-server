@@ -1,6 +1,7 @@
 import {
     Column,
     Entity,
+    Index,
     JoinColumn,
     ManyToOne,
     OneToOne,
@@ -9,7 +10,7 @@ import {
 } from 'typeorm';
 import { Account } from './Account';
 
-@Entity()
+@Entity({ name: 'account_education' })
 export class Education {
     @PrimaryGeneratedColumn()
     id: number;
@@ -27,6 +28,11 @@ export class Education {
 
     @Column('date')
     end_date: Date;
+
+    @Column({ name: 'account_id' })
+    account_id: number;
+
+    @Index('education_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.educations, {
         onDelete: 'CASCADE',
     })

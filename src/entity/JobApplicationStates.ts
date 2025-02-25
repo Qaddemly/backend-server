@@ -1,6 +1,7 @@
 import {
     Column,
     Entity,
+    Index,
     JoinColumn,
     ManyToOne,
     OneToMany,
@@ -28,6 +29,7 @@ export class JobApplicationState {
     @Column({ name: 'job_id' })
     job_id: number;
 
+    @Index('job_application_state_idx_on_job_id')
     @ManyToOne(() => Job, (job) => job.job_application_states, {
         onDelete: 'CASCADE',
     })

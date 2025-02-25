@@ -31,12 +31,12 @@ import { JobApplicationStatesRepository } from '../Repository/jobApplicationStat
 import { AccountArchivedJobApplicationsRepository } from '../Repository/accountArchivedJobApplicationsRepository';
 import { getUserInfoToRecommendJobs } from './profileServices';
 import { AccountSavedJobsRepository } from '../Repository/accountSavedJobRepository';
-import { TypeOrmErrors } from '../enums/typeOrmErrors';
 import { AccountSavedJobs } from '../entity/AccountSavedJobs';
 import { EmploymentType } from '../enums/employmentType';
 import fs from 'fs';
 import { Country } from '../enums/country';
 import path from 'path';
+import { redisClient } from '../config/redis';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -435,9 +435,11 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
                 //'bus.address',
             ])
             .leftJoin('ja.account', 'a') // LEFT JOIN Account
-            .leftJoin('ja.resume', 'resume') // LEFT JOIN Account
 
-            .where('a.id = :id', { id: userId });
+            .leftJoin('ja.resume', 'resume') // LEFT JOIN Account
+            .leftJoin('ja.archived_job_application', 'archived_job_application')
+            .where('a.id = :id', { id: userId })
+            .andWhere('archived_job_application.is_archived = false');
         //   console.log(await queryBuilder.getRawMany());
         const job_applications = await paginate<JobApplication>(
             transformedQuery,
@@ -573,6 +575,7 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
         );
         return job_applications;
     } catch (err) {
+        console.log(err);
         throw new AppError('Error in getting job_applications', 400);
     }
 };
@@ -584,8 +587,9 @@ export const getAllJobsSearchWithFilterService = async (req: Request) => {
         //console.log('transformedQuery', transformedQuery);
         const paginateConfig: PaginateConfig<Job> = {
             searchableColumns: ['title', 'business.name', 'description'],
-            sortableColumns: ['salary'],
+            sortableColumns: ['salary', 'created_at'],
             filterableColumns: {
+                country: [FilterOperator.EQ],
                 salary: [
                     FilterOperator.EQ,
                     FilterOperator.GTE,
@@ -663,6 +667,12 @@ export const changeJobStatus = async (req: Request, status: JobStatus) => {
 };
 
 export const getRecommendedJobsForUserService = async (userId: number) => {
+    const isCached = await redisClient.get(`recommendedJobs:${userId}`);
+
+    if (isCached) {
+        return JSON.parse(isCached);
+    }
+
     const userInfo = await getUserInfoToRecommendJobs(userId);
     const jobs = await JobRepository.find({
         where: { status: JobStatus.OPENED },
@@ -691,7 +701,12 @@ export const getRecommendedJobsForUserService = async (userId: number) => {
 
             recommendedJobs.push(job);
         }
-
+        // Set expiration time for 3 hours
+        await redisClient.set(
+            `recommendedJobs:${userId}`,
+            JSON.stringify(recommendedJobs),
+            { EX: 3 * 60 * 60 },
+        );
         return recommendedJobs;
     } catch (e) {
         throw new AppError('Error in getting recommended jobs', 400);

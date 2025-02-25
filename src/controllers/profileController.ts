@@ -38,6 +38,15 @@ import {
     getAllArchivedApplicationsOfUserService,
     archiveJobApplicationService,
     getAllDetailsAboutJobApplicationService,
+    getAllEducationsOfLoggedInUserService,
+    getAllEducationsOfUserByIdService,
+    getExperiencesOfLoggedInUserService,
+    getExperiencesOfUserByIdService,
+    getSkillsOfLoggedInUserService,
+    getSkillsOfUserByIdService,
+    getLanguagesOfUserByIdService,
+    getLanguagesOfLoggedInUserService,
+    getBasicInfoOfUserByIdService,
 } from '../services/profileServices';
 import catchAsync from 'express-async-handler';
 import {
@@ -520,6 +529,23 @@ export const getAllDetailsAboutJobApplication = catchAsync(
     },
 );
 
+export const getBasicInfoOfLoggedInUser = catchAsync(async (req, res, next) => {
+    const basicInfo = await getBasicInfoOfUserByIdService(req.user.id);
+    res.status(200).json({
+        success: true,
+        basicInfo,
+    });
+});
+export const getBasicInfoOfUserById = catchAsync(async (req, res, next) => {
+    const basicInfo = await getBasicInfoOfUserByIdService(
+        Number(req.params.userId),
+    );
+    res.status(200).json({
+        success: true,
+        basicInfo,
+    });
+});
+
 export const getUserInfoAndJobs = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         const user = await getUserInfoToRecommendJobs(req.user.id);
@@ -533,5 +559,89 @@ export const getUserInfoAndJobs = catchAsync(
         } catch (err) {
             return next(err);
         }
+    },
+);
+export const getEducationsOfLoggedInUser = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const educations = await getAllEducationsOfLoggedInUserService(
+            req.user.id,
+        );
+        res.status(200).json({
+            success: true,
+            educations,
+        });
+    },
+);
+export const getEducationsOfUserById = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const educations = await getAllEducationsOfUserByIdService(
+            Number(req.params.userId),
+        );
+        res.status(200).json({
+            success: true,
+            educations,
+        });
+    },
+);
+export const getExperiencesOfLoggedInUser = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const experiences = await getExperiencesOfLoggedInUserService(
+            req.user.id,
+        );
+        res.status(200).json({
+            success: true,
+            experiences,
+        });
+    },
+);
+export const getExperiencesOfUserById = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const experiences = await getExperiencesOfUserByIdService(
+            Number(req.params.userId),
+        );
+        res.status(200).json({
+            success: true,
+            experiences,
+        });
+    },
+);
+export const getSkillsOfLoggedInUser = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const skills = await getSkillsOfLoggedInUserService(req.user.id);
+        res.status(200).json({
+            success: true,
+            skills,
+        });
+    },
+);
+export const getSkillsOfUserById = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const skills = await getSkillsOfUserByIdService(
+            Number(req.params.userId),
+        );
+        res.status(200).json({
+            success: true,
+            skills,
+        });
+    },
+);
+export const getLanguagesOfLoggedInUser = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const languages = await getLanguagesOfLoggedInUserService(req.user.id);
+        res.status(200).json({
+            success: true,
+            languages,
+        });
+    },
+);
+export const getLanguagesOfUserById = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const languages = await getLanguagesOfUserByIdService(
+            Number(req.params.userId),
+        );
+        res.status(200).json({
+            success: true,
+            languages,
+        });
     },
 );

@@ -1,6 +1,7 @@
 import {
     Column,
     Entity,
+    Index,
     JoinColumn,
     ManyToOne,
     OneToMany,
@@ -20,6 +21,8 @@ export class AccountArchivedJobApplications {
     @JoinColumn({ name: 'job_application_id' }) // Links to JobApplication
     job_application: JobApplication;
 
+    // To Get ALl Archived Job Applications of an Account quickly
+    @Index('archived_job_applications_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.archived_job_applications, {
         onDelete: 'CASCADE',
     })

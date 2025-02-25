@@ -566,6 +566,76 @@ export const getAllCertificatesByUserIdService = async (req: Request) => {
     return certificates;
 };
 
+export const getBasicInfoOfUserByIdService = async (userId: number) => {
+    const account = await AccountRepository.findOne({
+        where: { id: userId },
+        select: {
+            id: true,
+            first_name: true,
+            last_name: true,
+            email: true,
+            date_of_birth: true,
+            profile_picture: true,
+            address: {
+                country: true,
+                city: true,
+            },
+            phone: {
+                country_code: true,
+                number: true,
+            },
+            about_me: true,
+            subtitle: true,
+            links: true,
+        },
+    });
+    if (!account) {
+        throw new AppError('User not found', 404);
+    }
+    return account;
+};
+
+export const getAllEducationsOfLoggedInUserService = async (userId: number) => {
+    return await EducationRepository.findBy({ account_id: userId });
+};
+export const getAllEducationsOfUserByIdService = async (userId: number) => {
+    const user = await AccountRepository.findOneBy({ id: userId });
+    if (!user) {
+        throw new AppError('User not found', 404);
+    }
+    return await EducationRepository.findBy({ account_id: userId });
+};
+export const getExperiencesOfLoggedInUserService = async (userId: number) => {
+    return await ExperienceRepository.findBy({ account_id: userId });
+};
+export const getExperiencesOfUserByIdService = async (userId: number) => {
+    const user = await AccountRepository.findOneBy({ id: userId });
+    if (!user) {
+        throw new AppError('User not found', 404);
+    }
+    return await ExperienceRepository.findBy({ account_id: userId });
+};
+export const getSkillsOfLoggedInUserService = async (userId: number) => {
+    return await SkillRepository.findBy({ account_id: userId });
+};
+export const getSkillsOfUserByIdService = async (userId: number) => {
+    const user = await AccountRepository.findOneBy({ id: userId });
+    if (!user) {
+        throw new AppError('User not found', 404);
+    }
+    return await SkillRepository.findBy({ account_id: userId });
+};
+export const getLanguagesOfLoggedInUserService = async (userId: number) => {
+    return await LanguageRepository.findBy({ account_id: userId });
+};
+export const getLanguagesOfUserByIdService = async (userId: number) => {
+    const user = await AccountRepository.findOneBy({ id: userId });
+    if (!user) {
+        throw new AppError('User not found', 404);
+    }
+    return await LanguageRepository.findBy({ account_id: userId });
+};
+
 export const uploadCertificateImage = uploadSingleImage('media');
 export const resizeCertificateImage = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {

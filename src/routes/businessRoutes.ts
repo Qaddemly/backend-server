@@ -200,7 +200,6 @@ businessRouter.put(
 
 businessRouter.get(
     '/searchAndFilter',
-    validateRequestMiddleware(searchAndFilterValidator),
     businessController.getAllBusinessWithSearchAndFilter,
 );
 

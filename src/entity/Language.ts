@@ -7,10 +7,13 @@ import {
 } from 'typeorm';
 import { Language as Lang } from '../enums/language';
 import { Account } from './Account';
-@Entity()
+@Entity({ name: 'account_language' })
 export class Language {
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column({ name: 'account_id' })
+    account_id: number;
 
     @ManyToOne(() => Account, (account) => account.languages, {
         onDelete: 'CASCADE',

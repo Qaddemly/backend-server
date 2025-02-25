@@ -2,10 +2,12 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    Index,
     JoinColumn,
     ManyToMany,
     ManyToOne,
     OneToOne,
+    PrimaryColumn,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
@@ -14,15 +16,26 @@ import { Resume } from './Resume';
 import { Account } from './Account';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
 import { JobApplicationState } from './JobApplicationStates';
+import { AccountArchivedJobApplications } from './AccountArchivedJobApplications';
 
 @Entity()
 export class JobApplication {
     @PrimaryGeneratedColumn()
     id: number;
 
+    /**
+     * Composite primary key (account_id, job_id)
+     * It's effective when querying account_id only or both together
+     * It's not effective if querying job_id only
+     * So We need to create another idx on job_id
+     * */
+    @Column({ name: 'account_id' })
+    account_id: number;
+
     @Column({ name: 'job_id' })
     job_id: number;
 
+    @Index('job_application_idx_on_job_id')
     @ManyToOne(() => Job, (job) => job.job_applications, {
         onDelete: 'CASCADE',
     })
@@ -32,9 +45,7 @@ export class JobApplication {
     })
     job: Job;
 
-    @Column({ name: 'account_id' })
-    account_id: number;
-
+    @Index('job_application_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.job_applications, {
         onDelete: 'CASCADE',
     })
@@ -55,10 +66,19 @@ export class JobApplication {
         foreignKeyConstraintName: 'FK_JOB_APPLICATION_RESUME',
     })
     resume: Resume;
+
     @OneToOne(() => JobApplicationState, (jas) => jas.job_application)
     job_application_state: JobApplicationState;
+    //make relation
+    @OneToOne(
+        () => AccountArchivedJobApplications,
+        (archived) => archived.job_application,
+        {
+            cascade: true,
+        },
+    )
+    archived_job_application: AccountArchivedJobApplications;
 
-    @Column()
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 

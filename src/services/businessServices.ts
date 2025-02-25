@@ -55,7 +55,8 @@ export const createBusiness = async (
     console.log(`Are you here ?`);
     const business = new Business();
     business.name = createBusinessDto.name;
-    business.logo = createBusinessDto.logo;
+    business.logo =
+        'http://localhost:8000/uploads/businesses/' + createBusinessDto.logo;
     business.CEO = createBusinessDto.CEO;
     business.founder = createBusinessDto.founder;
     business.founded = createBusinessDto.founded;
@@ -93,7 +94,7 @@ export const createBusiness = async (
         }
     }
     Logger.info(`Business ${saved_business.id} created successfully`);
-    return getBusinessDto(saved_business);
+    return saved_business;
 };
 
 /**
@@ -112,20 +113,24 @@ export const updateBusiness = async (
         businessId,
     );
     Logger.info(`Business ${businessId} updated successfully`);
-    return getBusinessDto(business);
+    return business;
 };
 
 export const getBusinessesThatUserHasRoleIn = async (accountId: number) => {
     return await BusinessRepository.getBusinessOfAccount(accountId);
 };
 
-export const getBusinessById = async (businessId: number) => {
+export const getBusinessById = async (businessId: number, userId: number) => {
     const business = await BusinessRepository.findOneBy({ id: businessId });
+    const ifFollowedByLoggedInUser = await FollowBusinessRepository.findOneBy({
+        business_id: businessId,
+        account_id: userId,
+    });
     if (!business) {
         Logger.error('Business not found');
         throw new AppError('Business not found', 404);
     }
-    return getBusinessDto(business);
+    return { business, ifFollowedByLoggedInUser };
 };
 export const getFiveReviewsOfBusiness = async (businessId: number) => {
     const business = await BusinessRepository.findOneBy({ id: businessId });
@@ -236,7 +241,16 @@ export const getAllHrOfBusiness = async (
     filterObject: { role: HrRole; name: string; email: string },
 ) => {
     const queryBuilder = HrEmployeeRepository.createQueryBuilder('hr_employee')
-        .leftJoinAndSelect('hr_employee.account', 'account')
+        .leftJoin('hr_employee.account', 'account')
+        .addSelect([
+            'account.id',
+            'account.first_name',
+            'account.last_name',
+            'account.email',
+            'account.subtitle',
+            'account.profile_picture',
+            'account.about_me',
+        ])
         .where('hr_employee.business = :businessId', { businessId });
 
     if (filterObject.role) {
@@ -548,7 +562,7 @@ export const getAllBusinessWithSearchAndFilterService = async (
         //console.log('transformedQuery', transformedQuery);
         const paginateConfig: PaginateConfig<Business> = {
             searchableColumns: ['name'],
-            sortableColumns: ['id'],
+            sortableColumns: ['created_at', 'reviewsRatingsAverage'],
             filterableColumns: {
                 reviewsRatingsAverage: [
                     FilterOperator.EQ,

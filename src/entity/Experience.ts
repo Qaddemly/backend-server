@@ -1,6 +1,7 @@
 import {
     Column,
     Entity,
+    Index,
     JoinColumn,
     ManyToMany,
     ManyToOne,
@@ -11,11 +12,15 @@ import { EmploymentType } from '../enums/employmentType';
 import { LocationType } from '../enums/locationType';
 import { Account } from './Account';
 
-@Entity()
+@Entity({ name: 'account_experience' })
 export class Experience {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ name: 'account_id' })
+    account_id: number;
+
+    @Index('experience_idx_on_account_id')
     @ManyToOne(() => Account, (account) => account.experiences, {
         onDelete: 'CASCADE',
     })
