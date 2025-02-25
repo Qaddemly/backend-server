@@ -435,9 +435,11 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
                 //'bus.address',
             ])
             .leftJoin('ja.account', 'a') // LEFT JOIN Account
-            .leftJoin('ja.resume', 'resume') // LEFT JOIN Account
 
-            .where('a.id = :id', { id: userId });
+            .leftJoin('ja.resume', 'resume') // LEFT JOIN Account
+            .leftJoin('ja.archived_job_application', 'archived_job_application')
+            .where('a.id = :id', { id: userId })
+            .andWhere('archived_job_application.is_archived = false');
         //   console.log(await queryBuilder.getRawMany());
         const job_applications = await paginate<JobApplication>(
             transformedQuery,
@@ -585,8 +587,9 @@ export const getAllJobsSearchWithFilterService = async (req: Request) => {
         //console.log('transformedQuery', transformedQuery);
         const paginateConfig: PaginateConfig<Job> = {
             searchableColumns: ['title', 'business.name', 'description'],
-            sortableColumns: ['salary'],
+            sortableColumns: ['salary', 'created_at'],
             filterableColumns: {
+                country: [FilterOperator.EQ],
                 salary: [
                     FilterOperator.EQ,
                     FilterOperator.GTE,
@@ -795,4 +798,23 @@ export const loadJobsFromCSV = async () => {
                 console.error('Error saving jobs:', error);
             }
         });
+};
+
+export const getNumberOfActiveJobsService = async () => {
+    const count = await JobRepository.createQueryBuilder('job')
+        .where('job.status != :archivedStatus', {
+            archivedStatus: JobStatus.ARCHIVED,
+        })
+        .getCount();
+    return count;
+};
+
+export const getNumberOfNewlyPostedJobsService = async () => {
+    const count = await JobRepository.createQueryBuilder('job')
+        .where('job.status != :archivedStatus', {
+            archivedStatus: JobStatus.ARCHIVED,
+        })
+        .andWhere("job.created_at >= NOW() - INTERVAL '1 hour'")
+        .getCount();
+    return count;
 };

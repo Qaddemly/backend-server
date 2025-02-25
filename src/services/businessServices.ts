@@ -561,7 +561,7 @@ export const getAllBusinessWithSearchAndFilterService = async (
         //console.log('transformedQuery', transformedQuery);
         const paginateConfig: PaginateConfig<Business> = {
             searchableColumns: ['name'],
-            sortableColumns: ['id'],
+            sortableColumns: ['created_at', 'reviewsRatingsAverage'],
             filterableColumns: {
                 reviewsRatingsAverage: [
                     FilterOperator.EQ,
@@ -624,4 +624,9 @@ export const getAllJobsFromDashboard = async (
     return await JobRepository.findBy({
         business_id: businessId,
     });
+};
+
+export const getNumberOfBusinessService = async () => {
+    const count = await JobRepository.createQueryBuilder('business').getCount();
+    return count;
 };

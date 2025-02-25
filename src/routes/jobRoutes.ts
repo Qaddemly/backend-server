@@ -15,6 +15,8 @@ import {
     saveJobToUser,
     unSaveJobFromUser,
     updateOneJob,
+    getNumberOfActiveJobs,
+    getNumberOfNewlyPostedJobs,
 } from '../controllers/jobController';
 import { protect, protectOptional } from '../services/authServices';
 import validateRequestMiddleware from '../middlewares/validator';
@@ -24,7 +26,10 @@ import {
     idJobValidator,
     updateJobValidator,
 } from '../middlewares/validators/jobValidator';
-import { getAllJobsApplicationsForJobService, loadJobsFromCSV } from '../services/jobServices';
+import {
+    getAllJobsApplicationsForJobService,
+    loadJobsFromCSV,
+} from '../services/jobServices';
 
 const jobRouter = express.Router();
 
@@ -108,6 +113,6 @@ jobRouter.get('/recommendedJobsForUser', protect, getRecommendedJobsForUser);
 jobRouter.post('/loadJobsFromCSV', protect, async (req, res) => {
     await loadJobsFromCSV();
     res.send('Loading jobs from CSV');
-})
+});
 
 export default jobRouter;

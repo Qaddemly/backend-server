@@ -16,6 +16,7 @@ import { Resume } from './Resume';
 import { Account } from './Account';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
 import { JobApplicationState } from './JobApplicationStates';
+import { AccountArchivedJobApplications } from './AccountArchivedJobApplications';
 
 @Entity()
 export class JobApplication {
@@ -68,6 +69,15 @@ export class JobApplication {
 
     @OneToOne(() => JobApplicationState, (jas) => jas.job_application)
     job_application_state: JobApplicationState;
+    //make relation
+    @OneToOne(
+        () => AccountArchivedJobApplications,
+        (archived) => archived.job_application,
+        {
+            cascade: true,
+        },
+    )
+    archived_job_application: AccountArchivedJobApplications;
 
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
