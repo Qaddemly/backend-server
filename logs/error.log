@@ -11,3 +11,8 @@
 2025-02-24 17:02:07:27 [31merror[39m: [31mvalidationErrors[39m
 2025-02-24 17:46:20:4620 [31merror[39m: [31mvalidationErrors[39m
 2025-02-24 17:50:25:5025 [31merror[39m: [31mError in getting businesses[39m
+2025-02-24 18:18:58:1858 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-02-24 18:19:04:194 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-02-24 18:19:21:1921 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-02-24 18:20:05:205 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-24 18:20:37:2037 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m

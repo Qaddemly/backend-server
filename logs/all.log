@@ -677,3 +677,35 @@
 2025-02-24 17:50:25:5025 [31merror[39m: [31mError in getting businesses[39m
 2025-02-24 17:50:25:5025 [35mhttp[39m: [35mGET /api/v1/business/searchAndFilter?limit=6&page=af&search=business 400 695 - 343.104 ms[39m
 [35m[39m
+2025-02-24 18:16:54:1654 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-24 18:16:55:1655 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-24 18:16:56:1656 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-24 18:17:21:1721 [35mhttp[39m: [35mGET /api/v1/user/job/mySavedJobs 200 575 - 904.764 ms[39m
+[35m[39m
+2025-02-24 18:18:46:1846 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 867 - 1333.225 ms[39m
+[35m[39m
+2025-02-24 18:18:58:1858 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-02-24 18:18:58:1858 [35mhttp[39m: [35mPOST /api/v1/auth/login 500 635 - 730.228 ms[39m
+[35m[39m
+2025-02-24 18:19:04:194 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-02-24 18:19:04:194 [35mhttp[39m: [35mPOST /api/v1/auth/login 500 635 - 583.672 ms[39m
+[35m[39m
+2025-02-24 18:19:21:1921 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-02-24 18:19:21:1921 [35mhttp[39m: [35mPOST /api/v1/auth/login 500 635 - 720.033 ms[39m
+[35m[39m
+2025-02-24 18:19:32:1932 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 945 - 796.483 ms[39m
+[35m[39m
+2025-02-24 18:19:39:1939 [35mhttp[39m: [35mGET /api/v1/user/jobApplication/myAllJobApplications?search=google 200 1144 - 549.464 ms[39m
+[35m[39m
+2025-02-24 18:20:05:205 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-24 18:20:05:205 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/1000?filter.job_application_state.state=ACCEPTED 403 696 - 538.780 ms[39m
+[35m[39m
+2025-02-24 18:20:37:2037 [31merror[39m: [31mCannot read properties of null (reading 'refreshTokens')[39m
+2025-02-24 18:20:37:2037 [35mhttp[39m: [35mPOST /api/v1/auth/login 500 635 - 621.607 ms[39m
+[35m[39m
+2025-02-24 18:20:45:2045 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 1007 - 1046.944 ms[39m
+[35m[39m
+2025-02-24 18:20:53:2053 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/1000?filter.job_application_state.state=ACCEPTED 200 3716 - 497.276 ms[39m
+[35m[39m
+2025-02-24 18:21:16:2116 [35mhttp[39m: [35mGET /api/v1/business/jobApplication/getAllJobApplications/job/1000?sortBy=created_at:DESC 200 5970 - 502.980 ms[39m
+[35m[39m
