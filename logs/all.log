@@ -1,0 +1,31 @@
+2025-02-25 14:54:40:5440 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-25 14:54:40:5440 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-25 14:54:40:5440 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-25 14:54:41:5441 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-25 14:54:46:5446 [35mhttp[39m: [35mGET /api/v1/business/profile/1 200 654 - 389.296 ms[39m
+[35m[39m
+2025-02-25 14:55:49:5549 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 200 30 - 393.298 ms[39m
+[35m[39m
+2025-02-25 14:56:22:5622 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-25 14:56:22:5622 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-25 14:56:23:5623 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-25 14:56:24:5624 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-25 14:56:37:5637 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 200 3713 - 443.496 ms[39m
+[35m[39m
+2025-02-25 17:52:06:526 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-25 17:52:06:526 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-25 17:52:06:526 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-25 17:52:07:527 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-25 17:52:31:5231 [35mhttp[39m: [35mGET /api/v1/myBusiness/dashboard/jobs/1 404 75 - 220.211 ms[39m
+[35m[39m
+2025-02-25 17:52:48:5248 [31merror[39m: [31mCannot set properties of undefined (setting 'authenticatedUserRole')[39m
+2025-02-25 17:52:48:5248 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/jobs/1 500 811 - 731.943 ms[39m
+[35m[39m
+2025-02-25 17:53:59:5359 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-25 17:53:59:5359 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-25 17:53:59:5359 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-25 17:54:01:541 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-25 17:54:03:543 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/jobs/1 200 1413 - 354.892 ms[39m
+[35m[39m
+2025-02-25 17:54:20:5420 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/jobs/1?status=Closed 200 357 - 472.327 ms[39m
+[35m[39m

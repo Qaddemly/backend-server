@@ -121,6 +121,13 @@ businessRouter.get(
     validateRequestMiddleware(getAllHrQueryValidator),
     businessController.getAllHrOfBusiness,
 );
+
+businessRouter.get(
+    '/myBusiness/dashboard/jobs/:businessId',
+    protect,
+    checkRoleInBusiness,
+    businessController.getAllJobsFromDashboard,
+);
 //-----------------------------
 
 businessRouter.put(
