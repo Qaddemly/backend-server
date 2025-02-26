@@ -818,3 +818,56 @@ export const getNumberOfNewlyPostedJobsService = async () => {
         .getCount();
     return count;
 };
+
+export const getAllArchivedJobsService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const businessId = Number(req.params.id);
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        throw new AppError('business not found', 404);
+    }
+
+    const isAllowedToShowAllApplications =
+        await HrEmployeeRepository.checkPermission(userId, business.id, [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.OWNER,
+        ]);
+    if (!isAllowedToShowAllApplications) {
+        throw new AppError('you are not allowed to do that action', 403);
+    }
+    try {
+        //console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        //console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<Job> = {
+            searchableColumns: ['title', 'business.name', 'description'],
+            sortableColumns: ['created_at'],
+            filterableColumns: {
+                location_type: [FilterOperator.IN, FilterOperator.ILIKE],
+                employee_type: [FilterOperator.IN, FilterOperator.CONTAINS],
+            },
+            relations: ['business'],
+            defaultSortBy: [['created_at', 'DESC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = JobRepository.createQueryBuilder('job').where({
+            status: JobStatus.ARCHIVED, // Excludes ARCHIVED
+            business,
+        });
+
+        const jobs = await paginate<Job>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+        return jobs;
+    } catch (err) {
+        throw new AppError('Error in getting jobs', 400);
+    }
+};

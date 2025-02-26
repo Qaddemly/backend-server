@@ -19,3 +19,32 @@
 2025-02-25 21:19:41:1941 [31merror[39m: [31myou already complete your data[39m
 2025-02-25 21:20:43:2043 [31merror[39m: [31myou already complete your data[39m
 2025-02-25 21:23:21:2321 [31merror[39m: [31myou already complete your data[39m
+2025-02-26 01:44:36:4436 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:49:50:4950 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:57:06:576 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:57:43:5743 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:59:04:594 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:59:18:5918 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:00:03:03 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:00:46:046 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:01:52:152 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:02:28:228 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:04:14:414 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:04:35:435 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:04:54:454 [31merror[39m: [31mError in getting jobs[39m
+2025-02-26 02:05:26:526 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:05:30:530 [31merror[39m: [31mError in getting jobs[39m
+2025-02-26 02:06:51:651 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:08:52:852 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:13:23:1323 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 20:20:54:2054 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 20:21:22:2122 [31merror[39m: [31myou do not have permission to do that action[39m
+2025-02-26 20:24:51:2451 [31merror[39m: [31mBusiness not found[39m
+2025-02-26 20:24:51:2451 [31merror[39m: [31mBusiness not found[39m
+2025-02-26 20:25:57:2557 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 20:49:17:4917 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-26 20:49:17:4917 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-26 20:51:03:513 [31merror[39m: [31mbusiness not found[39m
+2025-02-26 20:52:51:5251 [31merror[39m: [31mJob is already Archived[39m
+2025-02-26 21:07:35:735 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-26 21:08:01:81 [31merror[39m: [31myou are not allowed to do that action[39m

@@ -4,6 +4,7 @@ import {
     applyToJobService,
     changeJobStatus,
     createJobService,
+    getAllArchivedJobsService,
     getAllJobsApplicationsForJobService,
     getAllJobsSearchWithFilterService,
     getAllUserJobsApplicationsService,
@@ -290,6 +291,20 @@ export const getNumberOfNewlyPostedJobs = catchAsync(
             res.status(200).json({
                 success: true,
                 count,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllArchivedJobs = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const jobs = await getAllArchivedJobsService(req);
+            res.status(200).json({
+                success: true,
+                jobs,
             });
         } catch (err) {
             return next(err);

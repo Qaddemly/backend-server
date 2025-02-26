@@ -429,3 +429,242 @@
 2025-02-25 21:23:21:2321 [31merror[39m: [31myou already complete your data[39m
 2025-02-25 21:23:21:2321 [35mhttp[39m: [35mPUT /api/v1/auth/completeRegistration 400 1042 - 370.660 ms[39m
 [35m[39m
+2025-02-26 01:44:36:4436 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 01:44:36:4436 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:44:36:4436 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 01:44:38:4438 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 01:46:02:462 [35mhttp[39m: [35mGET /api/v1/stats/getNumberOfActiveJobs 200 30 - 259.817 ms[39m
+[35m[39m
+2025-02-26 01:47:25:4725 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.country=Egypt&filter.date_posted=past%2024%20hours 200 20596 - 574.941 ms[39m
+[35m[39m
+2025-02-26 01:49:50:4950 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 01:49:50:4950 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:49:50:4950 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 01:49:52:4952 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 01:57:06:576 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 01:57:06:576 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:57:06:576 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 01:57:07:577 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 01:57:43:5743 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 01:57:43:5743 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:57:43:5743 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 01:57:44:5744 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 01:59:04:594 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 01:59:04:594 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:59:04:594 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 01:59:05:595 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 01:59:18:5918 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 01:59:18:5918 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 01:59:19:5919 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 01:59:20:5920 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:00:03:03 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 02:00:03:03 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:00:04:04 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 02:00:05:05 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:00:46:046 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 02:00:46:046 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:00:46:046 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 02:00:48:048 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:01:52:152 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 02:01:52:152 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:01:52:152 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 02:01:54:154 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:02:28:228 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 02:02:28:228 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:02:28:228 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 02:02:30:230 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:04:14:414 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 02:04:14:414 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:04:14:414 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 02:04:15:415 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:04:35:435 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 02:04:35:435 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:04:35:435 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 02:04:36:436 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:04:54:454 [31merror[39m: [31mError in getting jobs[39m
+2025-02-26 02:04:54:454 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.country=Egypt&filter.date_posted=Past24Hours 400 664 - 237.266 ms[39m
+[35m[39m
+2025-02-26 02:05:26:526 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 02:05:26:526 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:05:26:526 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 02:05:27:527 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:05:30:530 [31merror[39m: [31mError in getting jobs[39m
+2025-02-26 02:05:30:530 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.country=Egypt&filter.date_posted=Past24Hours 400 664 - 289.894 ms[39m
+[35m[39m
+2025-02-26 02:06:51:651 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 02:06:51:651 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:06:52:652 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 02:06:53:653 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:06:56:656 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.country=Egypt&filter.date_posted=Past24Hours 200 20594 - 361.567 ms[39m
+[35m[39m
+2025-02-26 02:07:51:751 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.country=Egypt&filter.date_posted=PastMonth 200 20592 - 264.016 ms[39m
+[35m[39m
+2025-02-26 02:08:52:852 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 02:08:52:852 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:08:52:852 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 02:08:54:854 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:09:10:910 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.country=Egypt&filter.date_posted=PastMonth 200 175 - 441.979 ms[39m
+[35m[39m
+2025-02-26 02:10:30:1030 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.country=Egypt&filter.date_posted=PastMonth 200 175 - 429.601 ms[39m
+[35m[39m
+2025-02-26 02:10:36:1036 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs?filter.date_posted=PastMonth 200 1161 - 291.248 ms[39m
+[35m[39m
+2025-02-26 02:13:23:1323 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 02:13:23:1323 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 02:13:23:1323 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 02:13:25:1325 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 02:13:30:1330 [35mhttp[39m: [35mGET /api/v1/job/getAllJobs 200 20410 - 212.428 ms[39m
+[35m[39m
+2025-02-26 20:20:54:2054 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 20:20:54:2054 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 20:20:55:2055 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 20:20:57:2057 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 20:21:15:2115 [35mhttp[39m: [35mPUT /api/v1/job/makeJobArchived/ 404 68 - 15.662 ms[39m
+[35m[39m
+2025-02-26 20:21:22:2122 [31merror[39m: [31myou do not have permission to do that action[39m
+2025-02-26 20:21:22:2122 [35mhttp[39m: [35mPUT /api/v1/job/makeJobArchived/20 403 710 - 806.289 ms[39m
+[35m[39m
+2025-02-26 20:24:27:2427 [35mhttp[39m: [35mPOST /api/v1/auth/login 200 950 - 1492.218 ms[39m
+[35m[39m
+2025-02-26 20:24:51:2451 [31merror[39m: [31mBusiness not found[39m
+2025-02-26 20:24:51:2451 [31merror[39m: [31mBusiness not found[39m
+2025-02-26 20:24:51:2451 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/1 404 677 - 500.654 ms[39m
+[35m[39m
+2025-02-26 20:25:07:257 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/100 200 102799775 - 10706.808 ms[39m
+[35m[39m
+2025-02-26 20:25:21:2521 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/100 200 102799775 - 7712.273 ms[39m
+[35m[39m
+2025-02-26 20:25:57:2557 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 20:25:57:2557 [31merror[39m: [31mRedis connection failed connect ECONNREFUSED 127.0.0.1:6379[39m
+2025-02-26 20:25:58:2558 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 20:25:59:2559 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 20:26:14:2614 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/100 200 102799775 - 10322.371 ms[39m
+[35m[39m
+2025-02-26 20:26:38:2638 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/100 200 102799775 - 8777.545 ms[39m
+[35m[39m
+2025-02-26 20:27:11:2711 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 20:27:11:2711 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 20:27:11:2711 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 20:27:12:2712 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 20:27:24:2724 [35mhttp[39m: [35mGET /api/v1/business/profile/jobs/100 200 102799775 - 7608.840 ms[39m
+[35m[39m
+2025-02-26 20:27:26:2726 [35mhttp[39m: [35mGET /api/v1/business/searchAndFilter?filter.address.country=Rwanda&filter.location_type=Onsite 200 11086 - 234.760 ms[39m
+[35m[39m
+2025-02-26 20:30:51:3051 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 20:30:51:3051 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 20:30:51:3051 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 20:30:55:3055 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 20:33:09:339 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 20:33:09:339 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 20:33:09:339 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 20:33:11:3311 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 20:34:02:342 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 20:34:02:342 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 20:34:02:342 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 20:34:04:344 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 20:35:06:356 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 20:35:06:356 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 20:35:06:356 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 20:35:10:3510 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 20:36:34:3634 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 20:36:34:3634 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 20:36:34:3634 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 20:36:37:3637 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 20:37:10:3710 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 20:37:10:3710 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 20:37:11:3711 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 20:37:12:3712 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 20:49:13:4913 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 20:49:13:4913 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 20:49:13:4913 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 20:49:15:4915 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 20:49:17:4917 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-26 20:49:17:4917 [31merror[39m: [31mUser does not have role in business[39m
+2025-02-26 20:49:17:4917 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/jobs/1?status=Closed 403 732 - 1551.400 ms[39m
+[35m[39m
+2025-02-26 20:49:41:4941 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/jobs/3952?status=Closed 200 960 - 736.704 ms[39m
+[35m[39m
+2025-02-26 20:51:03:513 [31merror[39m: [31mbusiness not found[39m
+2025-02-26 20:51:03:513 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/AllArchivedJobs/5 404 658 - 701.386 ms[39m
+[35m[39m
+2025-02-26 20:51:32:5132 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/AllArchivedJobs/3952 200 2177 - 338.575 ms[39m
+[35m[39m
+2025-02-26 20:52:34:5234 [35mhttp[39m: [35mPOST /api/v1/job/postJob 201 995 - 798.029 ms[39m
+[35m[39m
+2025-02-26 20:52:49:5249 [35mhttp[39m: [35mPUT /api/v1/job/makeJobArchived/100002 200 54 - 338.187 ms[39m
+[35m[39m
+2025-02-26 20:52:51:5251 [31merror[39m: [31mJob is already Archived[39m
+2025-02-26 20:52:51:5251 [35mhttp[39m: [35mPUT /api/v1/job/makeJobArchived/100002 409 668 - 281.516 ms[39m
+[35m[39m
+2025-02-26 20:53:03:533 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/AllArchivedJobs/3952 200 3113 - 667.541 ms[39m
+[35m[39m
+2025-02-26 20:53:32:5332 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/AllArchivedJobs/3952?search=marketing 200 1127 - 951.930 ms[39m
+[35m[39m
+2025-02-26 20:54:02:542 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/AllArchivedJobs/3952?limit=1&page=2 200 1182 - 340.243 ms[39m
+[35m[39m
+2025-02-26 20:54:26:5426 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/AllArchivedJobs/3952?limit=1&page=3 200 1071 - 323.821 ms[39m
+[35m[39m
+2025-02-26 20:54:50:5450 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/AllArchivedJobs/3952?sortBy=created_at:DESC 200 3134 - 824.044 ms[39m
+[35m[39m
+2025-02-26 20:55:38:5538 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/AllArchivedJobs/3952?sortBy=created_at:ASC 200 3133 - 741.571 ms[39m
+[35m[39m
+2025-02-26 20:56:30:5630 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/AllArchivedJobs/3952?search=marketing&limit=1&page=3 200 208 - 736.386 ms[39m
+[35m[39m
+2025-02-26 20:56:41:5641 [35mhttp[39m: [35mGET /api/v1/business/myBusiness/dashboard/AllArchivedJobs/3952?search=marketing&limit=1&page=1 200 1126 - 395.050 ms[39m
+[35m[39m
+2025-02-26 21:00:01:01 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 21:00:01:01 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 21:00:01:01 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 21:00:03:03 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 21:02:31:231 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 21:02:31:231 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 21:02:31:231 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 21:02:32:232 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 21:04:08:48 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 21:04:08:48 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 21:04:08:48 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 21:04:10:410 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 21:05:31:531 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 21:05:31:531 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 21:05:31:531 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 21:05:33:533 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 21:05:57:557 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 21:05:57:557 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 21:05:57:557 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 21:06:00:60 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 21:06:33:633 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 21:06:33:633 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 21:06:34:634 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 21:06:36:636 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 21:07:23:723 [35mhttp[39m: [35mGET /api/v1/profile/getAllJobs/50 404 69 - 172.210 ms[39m
+[35m[39m
+2025-02-26 21:07:35:735 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-26 21:07:35:735 [35mhttp[39m: [35mGET /api/v1/business/profile/getAllJobs/50 403 715 - 830.547 ms[39m
+[35m[39m
+2025-02-26 21:07:58:758 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 21:07:58:758 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 21:07:59:759 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 21:08:00:80 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 21:08:01:81 [31merror[39m: [31myou are not allowed to do that action[39m
+2025-02-26 21:08:01:81 [35mhttp[39m: [35mGET /api/v1/business/profile/getAllJobs/50 403 715 - 1429.560 ms[39m
+[35m[39m
+2025-02-26 21:08:07:87 [35mhttp[39m: [35mGET /api/v1/business/profile/getAllJobs/3952 200 5162 - 298.095 ms[39m
+[35m[39m
+2025-02-26 21:12:02:122 [32minfo[39m: [32mServer is running on port 8000[39m
+2025-02-26 21:12:02:122 [32minfo[39m: [32mRedis connected successfully[39m
+2025-02-26 21:12:02:122 [32minfo[39m: [32mPostgres Database connected successfully[39m
+2025-02-26 21:12:05:125 [32minfo[39m: [32mMongoDB Database connected successfully[39m
+2025-02-26 21:13:29:1329 [35mhttp[39m: [35mGET /api/v1/business/profile/getAllJobs/3952?search=marketing 200 1123 - 753.393 ms[39m
+[35m[39m
+2025-02-26 21:14:06:146 [35mhttp[39m: [35mGET /api/v1/business/profile/getAllJobs/3952?search=marketing&filter.status=Closed 200 225 - 345.353 ms[39m
+[35m[39m
+2025-02-26 21:14:12:1412 [35mhttp[39m: [35mGET /api/v1/business/profile/getAllJobs/3952?filter.status=Closed 200 2203 - 659.481 ms[39m
+[35m[39m
+2025-02-26 21:14:59:1459 [35mhttp[39m: [35mGET /api/v1/business/profile/getAllJobs/3952?filter.status=Opened 200 3140 - 352.644 ms[39m
+[35m[39m
+2025-02-26 21:15:34:1534 [35mhttp[39m: [35mGET /api/v1/business/profile/getAllJobs/3952?page=2&limit=2 200 2203 - 340.617 ms[39m
+[35m[39m
+2025-02-26 21:16:08:168 [35mhttp[39m: [35mGET /api/v1/business/profile/getAllJobs/3952?sortBy=created_at:DESC 200 5183 - 337.379 ms[39m
+[35m[39m
+2025-02-26 21:16:52:1652 [35mhttp[39m: [35mGET /api/v1/business/profile/getAllJobs/3952?sortBy=created_at:ASC 200 5182 - 331.205 ms[39m
+[35m[39m
