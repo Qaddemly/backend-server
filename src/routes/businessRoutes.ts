@@ -34,6 +34,7 @@ import {
 import { getAllPhonesOfBusiness } from '../services/businessServices';
 import { idJobValidator } from '../middlewares/validators/jobValidator';
 import {
+    getAllArchivedJobs,
     getAllJobApplicationsToJob,
     getOneJobApplication,
 } from '../controllers/jobController';
@@ -81,6 +82,14 @@ businessRouter.get(
     protect,
     businessController.getAllJobsOfBusiness,
 );
+
+businessRouter.get(
+    '/profile/getAllJobs/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    businessController.getAllJobsForBusiness,
+);
+
 businessRouter.get(
     '/profile/followersNumber/:businessId',
     protect,
@@ -207,7 +216,6 @@ businessRouter.put(
 
 businessRouter.get(
     '/searchAndFilter',
-    validateRequestMiddleware(searchAndFilterValidator),
     businessController.getAllBusinessWithSearchAndFilter,
 );
 
@@ -222,4 +230,11 @@ businessRouter.get(
     protect,
     validateRequestMiddleware(idJobValidator),
     getOneJobApplication,
+);
+
+businessRouter.get(
+    '/myBusiness/dashboard/AllArchivedJobs/:id',
+    protect,
+    validateRequestMiddleware(idJobValidator),
+    getAllArchivedJobs,
 );

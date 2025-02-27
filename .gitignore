@@ -12,6 +12,6 @@ logs/all.log
 logs/error.log
 
 job_descriptions.csv
-
+ownSqlStatements.sql
 dist/
 .env

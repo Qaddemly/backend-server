@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import catchAsync from 'express-async-handler';
 
 import * as accountServices from '../services/accountServices';
@@ -40,5 +40,19 @@ export const getFollowedBusinesses = catchAsync(
             followedBusinesses: followedBusinesses.length,
             data: followedBusinesses,
         });
+    },
+);
+
+export const getNumberOfUsers = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const count = await accountServices.getNumberOfUsersService();
+            res.status(200).json({
+                success: true,
+                count,
+            });
+        } catch (err) {
+            return next(err);
+        }
     },
 );

@@ -27,6 +27,8 @@ import {
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
 import { JobApplicationStatesRepository } from '../Repository/jobApplicationStatesRepository';
 import { JobStatus } from '../enums/jobStatus';
+import { Job } from '../entity/Job';
+import { Not } from 'typeorm';
 
 /**
  * TODO: mark the Account that created the business as the owner.
@@ -163,6 +165,61 @@ export const getAllJobsOfBusiness = async (businessId: number) => {
         .leftJoinAndSelect('job.business', 'business')
         .getMany();
 };
+
+export const getAllJobsForBusinessService = async (req: Request) => {
+    const userId = Number(req.user.id);
+    const businessId = Number(req.params.id);
+    const business = await BusinessRepository.findOneBy({ id: businessId });
+    if (!business) {
+        throw new AppError('business not found', 404);
+    }
+
+    const isAllowedToShowAllApplications =
+        await HrEmployeeRepository.checkPermission(userId, business.id, [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.OWNER,
+        ]);
+    if (!isAllowedToShowAllApplications) {
+        throw new AppError('you are not allowed to do that action', 403);
+    }
+    try {
+        //console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        //console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<Job> = {
+            searchableColumns: ['title', 'business.name', 'description'],
+            sortableColumns: ['created_at'],
+            filterableColumns: {
+                status: [FilterOperator.EQ],
+                location_type: [FilterOperator.IN, FilterOperator.ILIKE],
+                employee_type: [FilterOperator.IN, FilterOperator.CONTAINS],
+            },
+            relations: ['business'],
+            defaultSortBy: [['created_at', 'DESC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder = JobRepository.createQueryBuilder('job').where({
+            status: Not(JobStatus.ARCHIVED), // Excludes ARCHIVED
+            business,
+        });
+
+        const jobs = await paginate<Job>(
+            transformedQuery,
+            queryBuilder,
+            paginateConfig,
+        );
+        return jobs;
+    } catch (err) {
+        throw new AppError('Error in getting jobs', 400);
+    }
+};
+
 export const addHrToBusiness = async (
     businessId: number,
     toBeAddedAccountId: number,
@@ -561,7 +618,7 @@ export const getAllBusinessWithSearchAndFilterService = async (
         //console.log('transformedQuery', transformedQuery);
         const paginateConfig: PaginateConfig<Business> = {
             searchableColumns: ['name'],
-            sortableColumns: ['id'],
+            sortableColumns: ['created_at', 'reviewsRatingsAverage'],
             filterableColumns: {
                 reviewsRatingsAverage: [
                     FilterOperator.EQ,
@@ -624,4 +681,9 @@ export const getAllJobsFromDashboard = async (
     return await JobRepository.findBy({
         business_id: businessId,
     });
+};
+
+export const getNumberOfBusinessService = async () => {
+    const count = await JobRepository.createQueryBuilder('business').getCount();
+    return count;
 };

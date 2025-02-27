@@ -4,10 +4,13 @@ import {
     applyToJobService,
     changeJobStatus,
     createJobService,
+    getAllArchivedJobsService,
     getAllJobsApplicationsForJobService,
     getAllJobsSearchWithFilterService,
     getAllUserJobsApplicationsService,
     getAllUserSavedJobsService,
+    getNumberOfActiveJobsService,
+    getNumberOfNewlyPostedJobsService,
     getOneJobApplicationService,
     getOneJobService,
     getOneUserJobApplicationService,
@@ -260,6 +263,48 @@ export const getOneJobApplication = catchAsync(
             res.status(200).json({
                 success: true,
                 jobApplication,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getNumberOfActiveJobs = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const count = await getNumberOfActiveJobsService();
+            res.status(200).json({
+                success: true,
+                count,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getNumberOfNewlyPostedJobs = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const count = await getNumberOfNewlyPostedJobsService();
+            res.status(200).json({
+                success: true,
+                count,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllArchivedJobs = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const jobs = await getAllArchivedJobsService(req);
+            res.status(200).json({
+                success: true,
+                jobs,
             });
         } catch (err) {
             return next(err);
