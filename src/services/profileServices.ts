@@ -307,40 +307,50 @@ export const deleteMeService = async (req: Request) => {
 };
 
 export const updateAccountBasicInfoService = async (req: Request) => {
-    const {
-        address,
-        first_name,
-        last_name,
-        email,
-        phone,
-        date_of_birth,
-        profile_picture,
-        links,
-        about_me,
-        subtitle,
-    } = req.body;
-    const userId = req.user.id;
+    const account = await AccountRepository.findOneBy({ id: req.user.id });
+    if (!account) {
+        throw new AppError('No account found with that ID', 404);
+    }
+    const updateData = req.body;
+    for (const key in updateData) {
+        if (key === 'phone') {
+            if (updateData[key].country_code)
+                account.phone.country_code = updateData[key].country_code;
+            if (updateData[key].number)
+                account.phone.number = updateData[key].number;
+        } else if (key === 'address') {
+            if (updateData[key].country)
+                account.address.country = updateData[key].country;
+            if (updateData[key].city)
+                account.address.city = updateData[key].city;
+        } else if (key === 'links') {
+            if (updateData[key].linkedin)
+                account.links.linkedin = updateData[key].linkedin;
+            if (updateData[key].github)
+                account.links.github = updateData[key].github;
+            if (updateData[key].portfolio)
+                account.links.portfolio = updateData[key].portfolio;
+            if (updateData[key].twitter)
+                account.links.twitter = updateData[key].twitter;
+            if (updateData[key].facebook)
+                account.links.facebook = updateData[key].facebook;
+            if (updateData[key].instagram)
+                account.links.instagram = updateData[key].instagram;
+            if (updateData[key].youtube)
+                account.links.youtube = updateData[key].youtube;
+            if (updateData[key].website)
+                account.links.website = updateData[key].website;
+        } else {
+            account[key] = updateData[key];
+        }
+    }
 
-    const updatedUser = await AccountRepository.updateUserBasicInfo(
-        req.body,
-        userId,
-    );
-    const returnedUser = { ...updatedUser };
-    (returnedUser as Account).address = {
-        country: updatedUser.country,
-        city: updatedUser.city,
-    };
-    delete returnedUser.country;
-    delete returnedUser.city;
-    (returnedUser as Account).phone = {
-        country_code: updatedUser.country_code,
-        number: updatedUser.number,
-    };
-    delete returnedUser.country_code;
-    delete returnedUser.number;
+    const { password, password_changed_at, is_activated, ...savedAccount } =
+        await AccountRepository.save(account);
 
-    return returnedUser;
+    return savedAccount;
 };
+
 /**
  * Phone
  * */
@@ -586,7 +596,16 @@ export const getBasicInfoOfUserByIdService = async (userId: number) => {
             },
             about_me: true,
             subtitle: true,
-            links: true,
+            links: {
+                linkedin: true,
+                github: true,
+                portfolio: true,
+                twitter: true,
+                facebook: true,
+                instagram: true,
+                youtube: true,
+                website: true,
+            },
         },
     });
     if (!account) {

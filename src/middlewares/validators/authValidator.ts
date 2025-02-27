@@ -193,6 +193,17 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
             if (value in Language) return value;
             else throw new Error('Invalid language');
         }),
+    body('about_me').optional().isString(),
+    body('subtitle').optional().isString(),
+    body('links')
+        .optional()
+        .isObject()
+        .withMessage('Each link must be an object'),
+    body('links.*')
+        .optional()
+        .trim()
+        .isURL()
+        .withMessage('Each link must be a valid URL'),
 ];
 
 export const userUpdateValidator: ValidationChain[] = [

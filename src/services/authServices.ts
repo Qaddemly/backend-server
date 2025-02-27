@@ -812,6 +812,7 @@ export const updateUserAfterSignUpFirstStep = async (
         );
         userJson.resumes = newResumes;
     }
+
     await AccountRepository.save(user);
     return userJson;
 };

@@ -30,6 +30,7 @@ import { AccountProject } from './AccountProject';
 import { AccountVolunteering } from './AccountVolunteering';
 import { AccountArchivedJobApplications } from './AccountArchivedJobApplications';
 import { AccountSavedJobs } from './AccountSavedJobs';
+import { AccountLinks } from './AccountLinks';
 
 @Entity()
 export class Account {
@@ -68,8 +69,8 @@ export class Account {
     @Column({ nullable: true })
     subtitle: string;
 
-    @Column({ type: 'text', array: true, nullable: true })
-    links: string[];
+    @Column(() => AccountLinks, { prefix: false })
+    links: AccountLinks;
 
     @Column({
         type: 'timestamptz',
