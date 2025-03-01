@@ -564,16 +564,12 @@ export const getOneCertificateService = async (req: Request) => {
 
 export const getAllCertificatesOfCurrentUserService = async (req: Request) => {
     const userId = Number(req.user.id);
-    const certificates =
-        await CertificateRepository.getAllCertificatesByAccountId(userId);
-    return certificates;
+    return await CertificateRepository.findBy({ account_id: userId });
 };
 
 export const getAllCertificatesByUserIdService = async (req: Request) => {
     const userId = Number(req.params.id);
-    const certificates =
-        await CertificateRepository.getAllCertificatesByAccountId(userId);
-    return certificates;
+    return await CertificateRepository.findBy({ account_id: userId });
 };
 
 export const getBasicInfoOfUserByIdService = async (userId: number) => {
