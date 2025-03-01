@@ -1,9 +1,9 @@
-import { Address } from '../entity/Address';
-import { Education } from '../entity/Education';
-import { Experience } from '../entity/Experience';
-import { Language } from '../entity/Language';
-import { Phone } from '../entity/Phone';
-export const returningExperiences = (experience_: Experience) => {
+import { Address } from '../entity/General/Address';
+import { AccountEducation } from '../entity/Account/AccountEducation';
+import { AccountExperience } from '../entity/Account/AccountExperience';
+import { AccountLanguage } from '../entity/Account/AccountLanguage';
+import { Phone } from '../entity/General/Phone';
+export const returningExperiences = (experience_: AccountExperience) => {
     const experienceJson = {
         companyName: experience_.company_name,
         employmentType: experience_.employment_type,
@@ -16,7 +16,7 @@ export const returningExperiences = (experience_: Experience) => {
     };
     return experienceJson;
 };
-export const returningEducation = (education_: Education) => {
+export const returningEducation = (education_: AccountEducation) => {
     const educationJson = {
         university: education_.university,
         fieldOfStudy: education_.field_of_study,
@@ -26,7 +26,7 @@ export const returningEducation = (education_: Education) => {
     };
     return educationJson;
 };
-export const returningLanguage = (language_: Language) => {
+export const returningLanguage = (language_: AccountLanguage) => {
     const languageJson = language_.name;
     return languageJson;
 };

@@ -1,8 +1,8 @@
 import { LocationType } from '../enums/locationType';
-import { Account } from '../entity/Account';
-import { Address } from '../entity/Address';
-import { Business } from '../entity/Business';
-import { BusinessPhone } from '../entity/BusinessPhone';
+import { Account } from '../entity/Account/Account';
+import { Address } from '../entity/General/Address';
+import { Business } from '../entity/Business/Business';
+import { BusinessPhone } from '../entity/Business/BusinessPhone';
 
 export interface CreateBusinessDto {
     name: string;

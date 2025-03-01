@@ -5,7 +5,7 @@ import { LocationType } from '../../enums/locationType';
 import { Language } from '../../enums/language';
 import { CountryCode } from '../../enums/countryCode';
 import { Country } from '../../enums/country';
-import { AccountRepository } from '../../Repository/accountRepository';
+import { AccountRepository } from '../../Repository/Account/accountRepository';
 
 export const idValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),

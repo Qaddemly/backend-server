@@ -1,18 +1,18 @@
-import { Business } from '../entity/Business';
+import { Business } from '../entity/Business/Business';
 import { CreateBusinessDto, UpdateBusinessDTO } from '../dtos/businessDto';
-import { BusinessRepository } from '../Repository/businessRepository';
-import { AccountRepository } from '../Repository/accountRepository';
-import { HrEmployee } from '../entity/HrEmployee';
+import { BusinessRepository } from '../Repository/Business/businessRepository';
+import { AccountRepository } from '../Repository/Account/accountRepository';
+import { HrEmployee } from '../entity/Business/HrEmployee';
 import { HrRole, HrRolePriority } from '../enums/HrRole';
-import { Address } from '../entity/Address';
+import { Address } from '../entity/General/Address';
 import AppError from '../utils/appError';
-import { HrEmployeeRepository } from '../Repository/hrEmployeeRepository';
+import { HrEmployeeRepository } from '../Repository/Business/hrEmployeeRepository';
 import { Logger } from '../utils/logger';
-import { ReviewRepository } from '../Repository/reviewRepository';
-import { JobRepository } from '../Repository/jobRepository';
-import { FollowBusinessRepository } from '../Repository/followBusinessRepository';
-import { BusinessPhone } from '../entity/BusinessPhone';
-import { BusinessPhoneRepository } from '../Repository/businessPhoneRepository';
+import { ReviewRepository } from '../Repository/General/reviewRepository';
+import { JobRepository } from '../Repository/Job/jobRepository';
+import { FollowBusinessRepository } from '../Repository/General/followBusinessRepository';
+import { BusinessPhone } from '../entity/Business/BusinessPhone';
+import { BusinessPhoneRepository } from '../Repository/Business/businessPhoneRepository';
 
 import { CountryCode } from '../enums/countryCode';
 
@@ -25,7 +25,7 @@ import {
     PaginationType,
 } from '../utils/pagination/typeorm-paginate';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
-import { JobApplicationStatesRepository } from '../Repository/jobApplicationStatesRepository';
+import { JobApplicationStatesRepository } from '../Repository/Job/jobApplicationStatesRepository';
 import { JobStatus } from '../enums/jobStatus';
 
 /**

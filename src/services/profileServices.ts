@@ -1,20 +1,20 @@
 import { NextFunction, Request, Response } from 'express';
 import catchAsync from 'express-async-handler';
 import AppError from '../utils/appError';
-import { ExperienceRepository } from '../Repository/experineceRepository';
+import { ExperienceRepository } from '../Repository/Account/experineceRepository';
 import { updateExperienceData } from '../types/documentTypes';
-import { Experience } from '../entity/Experience';
-import { AccountRepository } from '../Repository/accountRepository';
-import { Account } from '../entity/Account';
+import { AccountExperience } from '../entity/Account/AccountExperience';
+import { AccountRepository } from '../Repository/Account/accountRepository';
+import { Account } from '../entity/Account/Account';
 import AccountTempData from '../models/accountModel';
-import { Skill } from '../entity/Skill';
-import { SkillRepository } from '../Repository/skillRepository';
-import { Language } from '../entity/Language';
-import { LanguageRepository } from '../Repository/languageRepository';
-import { EducationRepository } from '../Repository/educationRepository';
-import { Education } from '../entity/Education';
-import { Resume } from '../entity/Resume';
-import { ResumeRepository } from '../Repository/resumeRepository';
+import { AccountSkill } from '../entity/Account/AccountSkill';
+import { SkillRepository } from '../Repository/Account/skillRepository';
+import { AccountLanguage } from '../entity/Account/AccountLanguage';
+import { LanguageRepository } from '../Repository/Account/languageRepository';
+import { EducationRepository } from '../Repository/Account/educationRepository';
+import { AccountEducation } from '../entity/Account/AccountEducation';
+import { AccountResume } from '../entity/Account/AccountResume';
+import { ResumeRepository } from '../Repository/Account/resumeRepository';
 import fs from 'fs';
 import path from 'path';
 
@@ -24,19 +24,19 @@ import {
     updateProjectDTO,
     updateVolunteeringDTO,
 } from '../dtos/userDto';
-import { AccountProjectRepository } from '../Repository/accountProjectRepository';
-import { AccountProject } from '../entity/AccountProject';
-import { AccountVolunteering } from '../entity/AccountVolunteering';
-import { AccountVolunteeringRepository } from '../Repository/accountVolunteeringRepository';
-import { CertificateRepository } from '../Repository/certificateRepository';
+import { AccountProjectRepository } from '../Repository/Account/accountProjectRepository';
+import { AccountProject } from '../entity/Account/AccountProject';
+import { AccountVolunteering } from '../entity/Account/AccountVolunteering';
+import { AccountVolunteeringRepository } from '../Repository/Account/accountVolunteeringRepository';
+import { CertificateRepository } from '../Repository/Account/certificateRepository';
 import { uploadSingleImage } from '../middlewares/upload.middleWare';
 import { expressFiles } from '../types/types';
 import sharp from 'sharp';
-import { JobApplication } from '../entity/JobApplication';
-import { JobApplicationRepository } from '../Repository/jobApplicationRepository';
-import { AccountArchivedJobApplicationsRepository } from '../Repository/accountArchivedJobApplicationsRepository';
-import { JobApplicationStatesRepository } from '../Repository/jobApplicationStatesRepository';
-import { JobRepository } from '../Repository/jobRepository';
+import { JobApplication } from '../entity/Job/JobApplication';
+import { JobApplicationRepository } from '../Repository/Job/jobApplicationRepository';
+import { AccountArchivedJobApplicationsRepository } from '../Repository/Job/accountArchivedJobApplicationsRepository';
+import { JobApplicationStatesRepository } from '../Repository/Job/jobApplicationStatesRepository';
+import { JobRepository } from '../Repository/Job/jobRepository';
 
 export const updateUserOneExperienceService = async (req: Request) => {
     const userId = req.user.id;
@@ -92,7 +92,7 @@ export const createUserOneExperienceService = async (req: Request) => {
     } = req.body;
 
     const user = await AccountRepository.findOneBy({ id: userId });
-    const experience = new Experience();
+    const experience = new AccountExperience();
     experience.account = user;
     experience.job_title = jobTitle;
     experience.employment_type = employmentType;
@@ -163,7 +163,7 @@ export const createUserOneEducationService = async (req: Request) => {
     // } = req.body;
 
     // const user = await AccountRepository.findOneBy({ id: userId });
-    // const education = new Education();
+    // const education = new AccountEducation();
     // // education.account_id = userId;
     // education.gpa = gpa;
     // education.university = university;
@@ -249,7 +249,7 @@ export const addUserOneResumeService = async (req: Request) => {
     }
 
     const user = await AccountRepository.findOneBy({ id: userId });
-    const newResume = new Resume();
+    const newResume = new AccountResume();
     newResume.account = user;
     newResume.url = resumes[0].url;
     newResume.name = resumes[0].name;

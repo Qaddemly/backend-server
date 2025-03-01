@@ -1,12 +1,12 @@
 import { CreateReviewDTO } from '../dtos/reviewDto';
-import { BusinessRepository } from '../Repository/businessRepository';
+import { BusinessRepository } from '../Repository/Business/businessRepository';
 import { Logger } from '../utils/logger';
-import { ReviewRepository } from '../Repository/reviewRepository';
+import { ReviewRepository } from '../Repository/General/reviewRepository';
 import { Request } from 'express';
 import AppError from '../utils/appError';
-import { Business } from '../entity/Business';
+import { Business } from '../entity/Business/Business';
 import { CalculationAvgOn } from '../enums/calculatingAvg';
-import { Review } from '../entity/Review';
+import { Review } from '../entity/General/Review';
 
 export const createReview = async (
     req: Request,

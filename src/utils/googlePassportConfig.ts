@@ -1,8 +1,8 @@
 import passport from 'passport';
 import GoogleStrategy from 'passport-google-oauth20';
 import AccountTempData from '../models/accountModel';
-import { AccountRepository } from '../Repository/accountRepository';
-import { Account } from '../entity/Account';
+import { AccountRepository } from '../Repository/Account/accountRepository';
+import { Account } from '../entity/Account/Account';
 declare global {
     namespace Express {
         interface User {

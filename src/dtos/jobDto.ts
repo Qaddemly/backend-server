@@ -1,4 +1,4 @@
-import { Address } from '../entity/Address';
+import { Address } from '../entity/General/Address';
 import { EmploymentType } from '../enums/employmentType';
 import { LocationType } from '../enums/locationType';
 import { Country } from '../enums/country';
