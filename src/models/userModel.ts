@@ -172,7 +172,7 @@ const userSchema = new mongoose.Schema<userDoc>(
             type: [String],
         },
         // languages: {
-        //     type: [Language],
+        //     type: [AccountLanguage],
         // },
         resume: {
             type: String,

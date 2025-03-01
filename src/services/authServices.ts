@@ -30,26 +30,26 @@ import { UserType } from '../types/documentTypes';
 import { uploadProfilePicAndResume } from '../middlewares/upload.middleWare';
 import sharp from 'sharp';
 import { expressFiles } from '../types/types';
-import { AccountRepository } from '../Repository/accountRepository';
+import { AccountRepository } from '../Repository/Account/accountRepository';
 import AccountTempData from '../models/accountModel';
-import { Account } from '../entity/Account';
-import { EducationRepository } from '../Repository/educationRepository';
-import { Education } from '../entity/Education';
-import { Skill } from '../entity/Skill';
-import { SkillRepository } from '../Repository/skillRepository';
-import { Experience } from '../entity/Experience';
-import { ExperienceRepository } from '../Repository/experineceRepository';
+import { Account } from '../entity/Account/Account';
+import { EducationRepository } from '../Repository/Account/educationRepository';
+import { AccountEducation } from '../entity/Account/AccountEducation';
+import { AccountSkill } from '../entity/Account/AccountSkill';
+import { SkillRepository } from '../Repository/Account/skillRepository';
+import { AccountExperience } from '../entity/Account/AccountExperience';
+import { ExperienceRepository } from '../Repository/Account/experineceRepository';
 import {
     returningEducation,
     returningExperiences,
     returningLanguage,
     returningPhone,
 } from '../utils/returningFieldAsInMongoDb';
-import { Language } from '../entity/Language';
-import { LanguageRepository } from '../Repository/languageRepository';
+import { AccountLanguage } from '../entity/Account/AccountLanguage';
+import { LanguageRepository } from '../Repository/Account/languageRepository';
 import { Logger } from '../utils/logger';
-import { Resume } from '../entity/Resume';
-import { ResumeRepository } from '../Repository/resumeRepository';
+import { AccountResume } from '../entity/Account/AccountResume';
+import { ResumeRepository } from '../Repository/Account/resumeRepository';
 import { AccessMode } from '../enums/accessMode';
 
 export const createUserForSignUp = async (reqBody: signUpBody) => {
@@ -822,6 +822,7 @@ export const updateUserAfterSignUpFirstStep = async (
         );
         userJson.resumes = newResumes;
     }
+
     await AccountRepository.save(user);
     return userJson;
 };
@@ -895,7 +896,7 @@ export const updateUserAfterSignUpFirstStep = async (
 //     const userJson: { [key: string]: any } = { ...user };
 
 //     if (education) {
-//         const education_ = new Education();
+//         const education_ = new AccountEducation();
 //         education_.account = user; // Associate with the user's ID
 //         education_.university = education.university;
 //         education_.field_of_study = education.fieldOfStudy;
@@ -909,7 +910,7 @@ export const updateUserAfterSignUpFirstStep = async (
 //     }
 //     if (skills) {
 //         const newSkills = skills.map((skillData) => {
-//             const skill = new Skill();
+//             const skill = new AccountSkill();
 //             skill.name = skillData;
 //             skill.account = user; // Link the skill to the account
 //             return skill;
@@ -923,7 +924,7 @@ export const updateUserAfterSignUpFirstStep = async (
 //     }
 //     if (experience) {
 //         const newExperience = experience.map((experience) => {
-//             const experience_ = new Experience();
+//             const experience_ = new AccountExperience();
 //             //experience_.account = user;
 //             experience_.job_title = experience.jobTitle;
 //             experience_.employment_type = experience.employmentType;
@@ -947,7 +948,7 @@ export const updateUserAfterSignUpFirstStep = async (
 
 //     if (languages) {
 //         const newLanguage = languages.map((lang) => {
-//             const language_ = new Language();
+//             const language_ = new AccountLanguage();
 //             language_.account = user;
 //             language_.name = lang;
 
@@ -955,7 +956,7 @@ export const updateUserAfterSignUpFirstStep = async (
 //             return language_;
 //         });
 
-//         // Save the Language
+//         // Save the AccountLanguage
 //         const savedLanguage = await LanguageRepository.save(newLanguage);
 //         savedLanguage.map((resumeData) => {
 //             delete resumeData.account;
@@ -965,7 +966,7 @@ export const updateUserAfterSignUpFirstStep = async (
 //     if (resumes) {
 //         const arrayResumes: any = [];
 //         const newResumes = resumes.map((resumeData) => {
-//             const resume_ = new Resume();
+//             const resume_ = new AccountResume();
 //             resume_.url = resumeData;
 //             resume_.account = user;
 //             arrayResumes.push(resume_);
@@ -1022,7 +1023,7 @@ export const updateUserAfterSignUpFirstStep = async (
 //             account_id: user.id,
 //         });
 //         if (!foundedEducation) {
-//             const education_ = new Education();
+//             const education_ = new AccountEducation();
 //             education_.account_id = userId; // Associate with the user's ID
 //             education_.university = education.university;
 //             education_.field_of_study = education.fieldOfStudy;
@@ -1067,7 +1068,7 @@ export const updateUserAfterSignUpFirstStep = async (
 
 //         const arraySkills: any = [];
 //         const newSkills = skills.map((skillData) => {
-//             const skill = new Skill();
+//             const skill = new AccountSkill();
 //             skill.name = skillData;
 //             arraySkills.push(skill.name);
 //             skill.account = user; // Link the skill to the account
@@ -1088,7 +1089,7 @@ export const updateUserAfterSignUpFirstStep = async (
 //         await ExperienceRepository.deleteAllExperience(user.id);
 
 //         const newExperience = experience.map((experience) => {
-//             const experience_ = new Experience();
+//             const experience_ = new AccountExperience();
 //             //experience_.account = user;
 //             experience_.job_title = experience.jobTitle;
 //             experience_.employment_type = experience.employmentType;
@@ -1118,7 +1119,7 @@ export const updateUserAfterSignUpFirstStep = async (
 //         await LanguageRepository.deleteAllLanguages(user.id);
 
 //         const newLanguage = languages.map((lang) => {
-//             const language_ = new Language();
+//             const language_ = new AccountLanguage();
 //             language_.account = user;
 //             language_.name = lang;
 
@@ -1127,7 +1128,7 @@ export const updateUserAfterSignUpFirstStep = async (
 //             return language_;
 //         });
 
-//         // Save the Language
+//         // Save the AccountLanguage
 //         const savedLanguage = await LanguageRepository.save(newLanguage);
 //         userJson.languages = arrayLanguage;
 //     } else {

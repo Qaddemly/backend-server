@@ -1,15 +1,15 @@
 import { Request } from 'express';
 import { CreateJobBodyBTO } from '../dtos/jobDto';
-import { BusinessRepository } from '../Repository/businessRepository';
+import { BusinessRepository } from '../Repository/Business/businessRepository';
 import AppError from '../utils/appError';
-import { Job } from '../entity/Job';
-import { JobRepository } from '../Repository/jobRepository';
-import { HrEmployeeRepository } from '../Repository/hrEmployeeRepository';
+import { Job } from '../entity/Job/Job';
+import { JobRepository } from '../Repository/Job/jobRepository';
+import { HrEmployeeRepository } from '../Repository/Business/hrEmployeeRepository';
 import { HrRole } from '../enums/HrRole';
-import { AccountRepository } from '../Repository/accountRepository';
-import { JobApplication } from '../entity/JobApplication';
-import { ResumeRepository } from '../Repository/resumeRepository';
-import { JobApplicationRepository } from '../Repository/jobApplicationRepository';
+import { AccountRepository } from '../Repository/Account/accountRepository';
+import { JobApplication } from '../entity/Job/JobApplication';
+import { ResumeRepository } from '../Repository/Account/resumeRepository';
+import { JobApplicationRepository } from '../Repository/Job/jobApplicationRepository';
 import { Paginate } from '../utils/pagination/decorator';
 import { FilterOperator } from '../utils/pagination/filter';
 import csvParser from 'csv-parser';
@@ -23,15 +23,15 @@ import {
 } from '../utils/pagination/typeorm-paginate';
 import { JobStatus } from '../enums/jobStatus';
 import { Not } from 'typeorm';
-import { JobApplicationState } from '../entity/JobApplicationStates';
-import { AccountArchivedJobApplications } from '../entity/AccountArchivedJobApplications';
-import { Account } from '../entity/Account';
+import { JobApplicationState } from '../entity/Job/JobApplicationStates';
+import { AccountArchivedJobApplications } from '../entity/Job/AccountArchivedJobApplications';
+import { Account } from '../entity/Account/Account';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
-import { JobApplicationStatesRepository } from '../Repository/jobApplicationStatesRepository';
-import { AccountArchivedJobApplicationsRepository } from '../Repository/accountArchivedJobApplicationsRepository';
+import { JobApplicationStatesRepository } from '../Repository/Job/jobApplicationStatesRepository';
+import { AccountArchivedJobApplicationsRepository } from '../Repository/Job/accountArchivedJobApplicationsRepository';
 import { getUserInfoToRecommendJobs } from './profileServices';
-import { AccountSavedJobsRepository } from '../Repository/accountSavedJobRepository';
-import { AccountSavedJobs } from '../entity/AccountSavedJobs';
+import { AccountSavedJobsRepository } from '../Repository/Job/accountSavedJobRepository';
+import { AccountSavedJobs } from '../entity/Job/AccountSavedJobs';
 import { EmploymentType } from '../enums/employmentType';
 import fs from 'fs';
 import { Country } from '../enums/country';
@@ -329,7 +329,7 @@ export const applyToJobService = async (
             account: { id: userId },
         });
         if (!resume) {
-            throw new AppError('Resume not found', 404);
+            throw new AppError('AccountResume not found', 404);
         }
     }
     const job = await JobRepository.getJobWithBusiness(jobId);
@@ -430,7 +430,7 @@ export const getAllUserJobsApplicationsService = async (req: Request) => {
                 'a.number',
                 'a.subtitle',
                 // Job fields
-                // Resume fields
+                // AccountResume fields
                 'resume',
                 //'bus.address',
             ])
@@ -559,7 +559,7 @@ export const getAllJobsApplicationsForJobService = async (req: Request) => {
                 // 'a.number',
                 // 'a.subtitle',
                 // Job fields
-                // Resume fields
+                // AccountResume fields
                 'resume',
                 //'bus.address',
             ])

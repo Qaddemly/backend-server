@@ -5,7 +5,7 @@ import { LocationType } from '../../enums/locationType';
 import { Language } from '../../enums/language';
 import { CountryCode } from '../../enums/countryCode';
 import { Country } from '../../enums/country';
-import { AccountRepository } from '../../Repository/accountRepository';
+import { AccountRepository } from '../../Repository/Account/accountRepository';
 
 export const idValidator: ValidationChain[] = [
     param('id').isInt().withMessage('id must be an integer'),
@@ -353,15 +353,17 @@ export const updateUserBasicInfoValidator: ValidationChain[] = [
         .withMessage('City cannot be empty')
         .isAlpha()
         .withMessage('City must be a string of alphabets'),
+
     body('links')
-        .optional({ nullable: true })
-        .isArray({ min: 0 })
-        .withMessage('links must be an array of strings'),
+        .optional()
+        .isObject()
+        .withMessage('Each link must be an object'),
     body('links.*')
         .optional()
+        .trim()
         .isURL()
-        .withMessage('Each link must be a valid URL')
-        .trim(),
+        .withMessage('Each link must be a valid URL'),
+
     body('about_me')
         .optional({ nullable: true })
         .isString()

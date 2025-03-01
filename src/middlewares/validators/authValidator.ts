@@ -5,7 +5,7 @@ import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
 import { Language } from '../../enums/language';
 import User from '../../models/userModel';
-import { AccountRepository } from '../../Repository/accountRepository';
+import { AccountRepository } from '../../Repository/Account/accountRepository';
 
 export const userCreationValidatorStepOne: ValidationChain[] = [
     body('email')
@@ -120,7 +120,7 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
     body('experience.*')
         .if(body('experience').exists())
         .isObject()
-        .withMessage('Experience must be an object'),
+        .withMessage('AccountExperience must be an object'),
     body('experience.*.job_title')
         .if(body('experience').exists())
         .trim()
@@ -182,17 +182,28 @@ export const userCreationValidatorStepTwo: ValidationChain[] = [
         .if(body('skills').exists())
         .trim()
         .notEmpty()
-        .withMessage('Skill cannot be empty'),
+        .withMessage('AccountSkill cannot be empty'),
     body('languages').optional().isArray(),
     body('languages.*')
         .if(body('languages').exists())
         .trim()
         .notEmpty()
-        .withMessage('Language cannot be empty')
+        .withMessage('AccountLanguage cannot be empty')
         .custom((value) => {
             if (value in Language) return value;
             else throw new Error('Invalid language');
         }),
+    body('about_me').optional().isString(),
+    body('subtitle').optional().isString(),
+    body('links')
+        .optional()
+        .isObject()
+        .withMessage('Each link must be an object'),
+    body('links.*')
+        .optional()
+        .trim()
+        .isURL()
+        .withMessage('Each link must be a valid URL'),
 ];
 
 export const userUpdateValidator: ValidationChain[] = [
@@ -290,7 +301,7 @@ export const userUpdateValidator: ValidationChain[] = [
     body('experience.*')
         .optional()
         .isObject()
-        .withMessage('Experience must be an object'),
+        .withMessage('AccountExperience must be an object'),
     body('experience.*.jobTitle')
         .optional()
         .trim()
@@ -348,13 +359,13 @@ export const userUpdateValidator: ValidationChain[] = [
         .optional()
         .trim()
         .notEmpty()
-        .withMessage('Skill cannot be empty'),
+        .withMessage('AccountSkill cannot be empty'),
     body('languages').optional().isArray(),
     body('languages.*')
         .optional()
         .trim()
         .notEmpty()
-        .withMessage('Language cannot be empty')
+        .withMessage('AccountLanguage cannot be empty')
         .custom((value) => {
             if (value in Language) return value;
             else throw new Error('Invalid language');

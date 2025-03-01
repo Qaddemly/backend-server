@@ -1,7 +1,7 @@
-import { AccountRepository } from '../Repository/accountRepository';
-import { FollowBusiness } from '../entity/FollowBusiness';
-import { BusinessRepository } from '../Repository/businessRepository';
-import { FollowBusinessRepository } from '../Repository/followBusinessRepository';
+import { AccountRepository } from '../Repository/Account/accountRepository';
+import { FollowBusiness } from '../entity/General/FollowBusiness';
+import { BusinessRepository } from '../Repository/Business/businessRepository';
+import { FollowBusinessRepository } from '../Repository/General/followBusinessRepository';
 
 export const followBusiness = async (accountId: number, businessId: number) => {
     const account = await AccountRepository.findOneBy({ id: accountId });

@@ -26,7 +26,7 @@ SELECT
     'Onsite'::business_location_type_enum AS location_type,
     'Description for business ' || g AS description,
     floor(random() * 1000 + 1) AS company_size,
-    (ARRAY['Technology', 'Healthcare', 'Finance', 'Education', 'Retail'])[floor(random() * 5 + 1)] AS industry,
+    (ARRAY['Technology', 'Healthcare', 'Finance', 'AccountEducation', 'Retail'])[floor(random() * 5 + 1)] AS industry,
     'https://www.business' || g || '.com' AS website,
     'HQ Address ' || g AS headquarter,
     'contact' || g || '@business.com' AS email,

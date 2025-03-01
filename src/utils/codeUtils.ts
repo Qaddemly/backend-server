@@ -2,7 +2,7 @@ import crypto from 'crypto';
 import { userDocument, UserType } from '../types/documentTypes';
 import { NextFunction, Response } from 'express';
 import { sendingCodeToEmail } from './email';
-import { AccountRepository } from '../Repository/accountRepository';
+import { AccountRepository } from '../Repository/Account/accountRepository';
 // create general code for activation or resetting password
 const createCode = (): string => {
     const code = Math.floor(100000 + Math.random() * 900000).toString();
