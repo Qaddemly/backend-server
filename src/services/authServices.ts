@@ -724,6 +724,9 @@ export const updateUserAfterSignUpFirstStep = async (
         languages,
         profile_picture,
         resumes,
+        links,
+        about_me,
+        subtitle,
     } = req.body;
     //const userTempData = await AccountTempData.findOne({ accountId: userId });
     // console.log(user);
@@ -734,10 +737,14 @@ export const updateUserAfterSignUpFirstStep = async (
         user.phone.country_code ||
         user.phone.number ||
         user.profile_picture ||
-        user.date_of_birth
+        user.date_of_birth ||
+        user.links ||
+        user.about_me ||
+        user.subtitle
     ) {
         throw new AppError('you already complete your data', 400);
     }
+
     const foundedEducation = await EducationRepository.findOneBy({
         account: { id: userId },
     });
@@ -776,6 +783,9 @@ export const updateUserAfterSignUpFirstStep = async (
     user.phone.number = phone.number;
     user.profile_picture = profile_picture;
     user.date_of_birth = date_of_birth;
+    user.links = links;
+    user.about_me = about_me;
+    user.subtitle = subtitle;
     const userJson: { [key: string]: any } = { ...user };
 
     if (education) {

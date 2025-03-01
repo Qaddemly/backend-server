@@ -120,6 +120,16 @@ export const getAllJobsOfBusiness = catchAsync(
     },
 );
 
+export const getAllJobsForBusiness = catchAsync(
+    async (req: Request<{ businessId: string }>, res: Response) => {
+        const jobs = await businessServices.getAllJobsForBusinessService(req);
+        res.status(200).json({
+            status: 'success',
+            jobs,
+        });
+    },
+);
+
 export const getFollowersOfBusiness = catchAsync(
     async (req: Request, res: Response) => {
         const followers = await businessServices.getFollowersOfBusiness(
@@ -446,6 +456,20 @@ export const getAllJobsFromDashboard = catchAsync(
             res.status(200).json({
                 success: true,
                 jobs,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getNumberOfBusinesses = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const count = await businessServices.getNumberOfBusinessService();
+            res.status(200).json({
+                success: true,
+                count,
             });
         } catch (err) {
             return next(err);

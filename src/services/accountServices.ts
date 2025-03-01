@@ -63,3 +63,9 @@ export const unfollowBusiness = async (
         businessId,
     );
 };
+
+export const getNumberOfUsersService = async () => {
+    const count =
+        await AccountRepository.createQueryBuilder('account').getCount();
+    return count;
+};
