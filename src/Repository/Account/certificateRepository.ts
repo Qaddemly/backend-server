@@ -29,13 +29,13 @@ class CertificateRepositoryClass extends Repository<AccountCertificate> {
     }
     async getOneCertificate(certificateId: number) {
         const result = await this.query(
-            `select * from certificate where id =${certificateId}`,
+            `select * from account_certificate where id =${certificateId}`,
         );
         return result[0];
     }
     async getAllCertificatesByAccountId(accountId: number) {
         const result = await this.query(
-            `select * from certificate where account_id = ${accountId}`,
+            `select * from account_certificate where account_id = ${accountId}`,
         );
         return result;
     }
