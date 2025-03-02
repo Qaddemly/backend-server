@@ -9,7 +9,7 @@ class CertificateRepositoryClass extends Repository<AccountCertificate> {
         createCertificateDto: createCertificateDto,
     ) {
         const result = await this.query(
-            `insert into certificate (account_id,title,issuing_organization,start_date,end_date,media) values (${account_id},'${createCertificateDto.title}','${createCertificateDto.issuing_organization}','${createCertificateDto.start_date}','${createCertificateDto.end_date}','${createCertificateDto.media}') returning *`,
+            `insert into account_certificate (account_id,title,issuing_organization,start_date,end_date,media) values (${account_id},'${createCertificateDto.title}','${createCertificateDto.issuing_organization}','${createCertificateDto.start_date}','${createCertificateDto.end_date}','${createCertificateDto.media}') returning *`,
         );
         return result[0];
     }
