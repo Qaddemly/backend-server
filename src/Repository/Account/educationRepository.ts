@@ -30,7 +30,8 @@ class EducationRepositoryClass extends Repository<AccountEducation> {
         account_id: number,
         education: EducationType | any,
     ) {
-        return await this.query(`insert into education(account_id,university,
+        return await this
+            .query(`insert into account_education(account_id,university,
     field_of_study,
     gpa,
     start_date,

@@ -21,7 +21,7 @@ class SkillRepositoryClass extends Repository<AccountSkill> {
     }
     async deleteSkills(account_id: number, skillsId: number[]) {
         const foundedSkills = await SkillRepository.query(`
-                    select * from skill where id in (${skillsId.map((skill) => `${skill}`).join(', ')}) and account_id=${account_id}  `);
+                    select * from account_skill where id in (${skillsId.map((skill) => `${skill}`).join(', ')}) and account_id=${account_id}  `);
         if (foundedSkills.length != skillsId.length) {
             throw new AppError('error while deleting skills', 400);
         }

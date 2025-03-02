@@ -217,7 +217,7 @@ export const createUserOneOrMoreLanguageService = async (req: Request) => {
 
     let { languages } = req.body;
     const foundedLanguages =
-        await LanguageRepository.query(`select * from language where
+        await LanguageRepository.query(`select * from account_language where
         name in (${languages.map((lang) => `'${lang}'`).join(', ')}) and account_id=${userId}  `);
     if (foundedLanguages.length != 0) {
         throw new AppError('some languages already added', 400);

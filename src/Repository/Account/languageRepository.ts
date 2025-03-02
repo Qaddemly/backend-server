@@ -24,7 +24,7 @@ class LanguageRepositoryClass extends Repository<AccountLanguage> {
 
     async deleteLanguages(account_id: number, languagesId: number[]) {
         const foundedLanguages = await LanguageRepository.query(`
-                select * from language where id in (${languagesId.map((lang) => `${lang}`).join(', ')}) and account_id=${account_id}  `);
+                select * from account_language where id in (${languagesId.map((lang) => `${lang}`).join(', ')}) and account_id=${account_id}  `);
         if (foundedLanguages.length != languagesId.length) {
             throw new AppError('error while deleting languages', 400);
         }

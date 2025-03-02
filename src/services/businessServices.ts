@@ -27,7 +27,7 @@ import {
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
 import { JobApplicationStatesRepository } from '../Repository/Job/jobApplicationStatesRepository';
 import { JobStatus } from '../enums/jobStatus';
-import { Job } from '../entity/Job';
+import { Job } from '../entity/Job/Job';
 import { Not } from 'typeorm';
 
 /**
