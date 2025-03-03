@@ -33,7 +33,7 @@ export class ResumeTemplateExperience {
     @Column({ type: 'date', nullable: true })
     end_date: Date;
 
-    @Column({ type: 'boolean', nullable: true })
+    @Column({ type: 'boolean', nullable: true, default: false })
     is_current: boolean;
 
     @Column({ type: 'text', nullable: true })

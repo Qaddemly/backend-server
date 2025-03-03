@@ -1,5 +1,6 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     Index,
     JoinColumn,
@@ -85,4 +86,10 @@ export class ResumeTemplate {
         },
     )
     custom_sections: ResumeCustomSection[];
+
+    @CreateDateColumn({ name: 'created_at' })
+    created_at: Date;
+
+    @CreateDateColumn({ name: 'updated_at' })
+    updated_at: Date;
 }
