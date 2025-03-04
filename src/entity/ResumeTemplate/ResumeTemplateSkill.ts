@@ -8,7 +8,7 @@ export class ResumeTemplateSkill {
     @Column({ nullable: false })
     name: string;
     @Column({ nullable: true })
-    description: string;
+    Information: string;
     @Column({ type: 'enum', enum: SkillLevel })
     level: SkillLevel;
 }

@@ -8,6 +8,7 @@ import { accountRouter } from './accountRoutes';
 import jobRouter from './jobRoutes';
 import { reviewRouter } from './reviewRoutes';
 import statsRouter from './statsRoutes';
+import resumeTemplateRouter from './resumeTemplateRoutes';
 
 const mountRoutes = (app: Express) => {
     const prefixUrl = '/api/v1';
@@ -19,6 +20,7 @@ const mountRoutes = (app: Express) => {
     app.use('/api/v1/business', businessRouter);
     app.use('/api/v1/review', reviewRouter);
     app.use('/api/v1/stats', statsRouter);
+    app.use('/api/v1/resumeTemplate', resumeTemplateRouter);
 };
 
 export default mountRoutes;

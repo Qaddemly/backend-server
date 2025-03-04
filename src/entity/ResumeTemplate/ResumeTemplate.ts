@@ -5,9 +5,11 @@ import {
     JoinColumn,
     ManyToMany,
     ManyToOne,
+    OneToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Account } from '../Account/Account';
+import { ResumeTemplatePersonalInfo } from './ResumeTemplatePersonalInfo';
 
 @Entity()
 export class ResumeTemplate {
@@ -34,4 +36,9 @@ export class ResumeTemplate {
         foreignKeyConstraintName: 'FK_ACCOUNT_RESUME_TEMPLATE',
     })
     account: Account;
+    @OneToOne(
+        () => ResumeTemplatePersonalInfo,
+        (personaInfo) => personaInfo.resumeTemplate,
+    )
+    personalInfo: ResumeTemplatePersonalInfo;
 }
