@@ -1,13 +1,22 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     Index,
     JoinColumn,
     ManyToMany,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Account } from '../Account/Account';
+import { ResumeTemplateExperience } from './ResumeTemplateExperience';
+import { ResumeLanguage } from './ResumeLanguage';
+import { ResumeInterest } from './ResumeInterest';
+import { ResumeCourse } from './ResumeCourse';
+import { ResumeOrganization } from './ResumeOrganization';
+import { ResumeReference } from './ResumeReference';
+import { ResumeCustomSection } from './ResumeCustomSection';
 
 @Entity()
 export class ResumeTemplate {
@@ -17,15 +26,6 @@ export class ResumeTemplate {
     @Column({ name: 'account_id' })
     account_id: number;
 
-    // @Index('projects_idx_on_account_id')
-    // @ManyToOne(() => Account, (account) => account.projects, {
-    //     onDelete: 'CASCADE',
-    // })
-    // @JoinColumn({
-    //     name: 'account_id',
-    //     foreignKeyConstraintName: 'FK_ACCOUNT_PROJECT',
-    // })
-
     @ManyToOne(() => Account, (account) => account.resume_templates, {
         onDelete: 'CASCADE',
     })
@@ -34,4 +34,62 @@ export class ResumeTemplate {
         foreignKeyConstraintName: 'FK_ACCOUNT_RESUME_TEMPLATE',
     })
     account: Account;
+
+    @Column({ type: 'text', nullable: true })
+    profile: string;
+
+    @OneToMany(
+        () => ResumeTemplateExperience,
+        (experience) => experience.resume_template,
+        { cascade: true },
+    )
+    experiences: ResumeTemplateExperience[];
+
+    @OneToMany(() => ResumeLanguage, (language) => language.resume_template, {
+        cascade: true,
+    })
+    languages: ResumeLanguage[];
+
+    @OneToMany(() => ResumeInterest, (interest) => interest.resume_template, {
+        cascade: true,
+    })
+    interests: ResumeInterest[];
+
+    @OneToMany(() => ResumeCourse, (course) => course.resume_template, {
+        cascade: true,
+    })
+    courses: ResumeCourse[];
+
+    @OneToMany(
+        () => ResumeOrganization,
+        (organization) => organization.resume_template,
+        {
+            cascade: true,
+        },
+    )
+    organizations: ResumeOrganization[];
+
+    @OneToMany(
+        () => ResumeReference,
+        (reference) => reference.resume_template,
+        {
+            cascade: true,
+        },
+    )
+    references: ResumeReference[];
+
+    @OneToMany(
+        () => ResumeCustomSection,
+        (custom_section) => custom_section.resume_template,
+        {
+            cascade: true,
+        },
+    )
+    custom_sections: ResumeCustomSection[];
+
+    @CreateDateColumn({ name: 'created_at' })
+    created_at: Date;
+
+    @CreateDateColumn({ name: 'updated_at' })
+    updated_at: Date;
 }
