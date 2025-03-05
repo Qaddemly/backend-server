@@ -8,6 +8,7 @@ import { accountRouter } from './accountRoutes';
 import jobRouter from './jobRoutes';
 import { reviewRouter } from './reviewRoutes';
 import statsRouter from './statsRoutes';
+
 import { resumeTemplateRouter } from './resumeTemplateRoutes';
 
 const mountRoutes = (app: Express) => {

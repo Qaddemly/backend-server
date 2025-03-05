@@ -2,6 +2,12 @@ import { body, param, ValidationChain } from 'express-validator';
 import { optional } from 'inversify';
 import { LanguageLevel } from '../../enums/languageLevel';
 
+export const resumeTemplateIdValidator: ValidationChain[] = [
+    param('resumeTemplateId')
+        .isInt()
+        .withMessage('resumeTemplateId must be an integer'),
+];
+
 export const updateResumeTemplateProfileValidator: ValidationChain[] = [
     body('profile')
         .trim()

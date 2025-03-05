@@ -2,13 +2,15 @@ import {
     Column,
     CreateDateColumn,
     Entity,
-    Index,
     JoinColumn,
-    ManyToMany,
     ManyToOne,
     OneToMany,
+    OneToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
+import { ResumeTemplatePersonalInfo } from './ResumeTemplatePersonalInfo';
+import { ResumeTemplateSkill } from './ResumeTemplateSkill';
+
 import { Account } from '../Account/Account';
 import { ResumeTemplateExperience } from './ResumeTemplateExperience';
 import { ResumeLanguage } from './ResumeLanguage';
@@ -34,6 +36,13 @@ export class ResumeTemplate {
         foreignKeyConstraintName: 'FK_ACCOUNT_RESUME_TEMPLATE',
     })
     account: Account;
+    @OneToOne(
+        () => ResumeTemplatePersonalInfo,
+        (personaInfo) => personaInfo.resumeTemplate,
+    )
+    personalInfo: ResumeTemplatePersonalInfo;
+    @OneToMany(() => ResumeTemplateSkill, (skill) => skill.resumeTemplate)
+    skills: ResumeTemplateSkill[];
 
     @Column({ type: 'text', nullable: true })
     profile: string;
