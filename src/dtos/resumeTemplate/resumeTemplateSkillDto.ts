@@ -1,23 +1,15 @@
-export interface CreateSkillBody {
-    full_name?: string;
-    job_title?: string;
-    email?: string;
-    phone_number?: string;
-    address?: string;
-    picture?: string;
-    personal_information?: { [key: string]: any };
-    links?: { [key: string]: any };
+import { SkillLevel } from '../../enums/skillLevel';
+
+export interface CreateSkillContentBody {
+    name: string;
+    information?: string;
+    level?: SkillLevel;
     [key: string]: any;
 }
 
-export interface UpdateSkillBody {
-    full_name?: string;
-    job_title?: string;
-    email?: string;
-    phone_number?: string;
-    address?: string;
-    picture?: string;
-    personal_information?: { [key: string]: any };
-    links?: { [key: string]: any };
+export interface UpdateSkillContentBody {
+    name?: string;
+    information?: string;
+    level?: SkillLevel;
     [key: string]: any;
 }

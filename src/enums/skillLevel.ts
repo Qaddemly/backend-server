@@ -1,7 +1,7 @@
 export enum SkillLevel {
     BEGINNER = 'Beginner',
     AMATEUR = 'Amateur',
-    COMPONENT = 'COMPONENT',
+    COMPONENT = 'Component',
     PROFICIENT = 'Proficient',
     EXPERT = 'Expert',
 }

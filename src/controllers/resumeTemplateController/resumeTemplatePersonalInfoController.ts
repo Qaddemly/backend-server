@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import AppError from '../utils/appError';
 
 import catchAsync from 'express-async-handler';
 import {
@@ -7,7 +6,7 @@ import {
     deleteOnePersonalInfoContentService,
     getOnePersonalInfoContentService,
     updateOnePersonalInfoContentService,
-} from '../services/resumeTemplateServices/resumeTemplatePersonalInfoServices';
+} from '../../services/resumeTemplateServices/resumeTemplatePersonalInfoServices';
 
 export const createPersonaInfoContent = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {

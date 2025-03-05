@@ -5,11 +5,13 @@ import {
     JoinColumn,
     ManyToMany,
     ManyToOne,
+    OneToMany,
     OneToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Account } from '../Account/Account';
 import { ResumeTemplatePersonalInfo } from './ResumeTemplatePersonalInfo';
+import { ResumeTemplateSkill } from './ResumeTemplateSkill';
 
 @Entity()
 export class ResumeTemplate {
@@ -41,4 +43,6 @@ export class ResumeTemplate {
         (personaInfo) => personaInfo.resumeTemplate,
     )
     personalInfo: ResumeTemplatePersonalInfo;
+    @OneToMany(() => ResumeTemplateSkill, (skill) => skill.resumeTemplate)
+    skills: ResumeTemplateSkill[];
 }

@@ -1,50 +1,81 @@
 import express from 'express';
 import { protect } from '../services/authServices';
-import {
-    createPersonaInfoContent,
-    deleteOnePersonaInfoContent,
-    getOnePersonaInfoContent,
-    updateOnePersonaInfoContent,
-} from '../controllers/resumeTemplateController';
+import * as personaInfoContentController from '../controllers/resumeTemplateController/resumeTemplatePersonalInfoController';
+import * as skillContentController from '../controllers/resumeTemplateController/resumeTemplateSkillController';
 import validateRequestMiddleware from '../middlewares/validator';
-import {
-    createPersonalInfoValidator,
-    deletePersonalInfoValidator,
-    getOnePersonalInfoValidator,
-    updatePersonalInfoValidator,
-} from '../middlewares/validators/resumeTemplate/perosnalInfoValidator';
-import {
-    resizePersonalInfoImage,
-    uploadPersonalInfoImage,
-} from '../services/resumeTemplateServices/resumeTemplatePersonalInfoServices';
+import * as personalInfoValidator from '../middlewares/validators/resumeTemplateValidator/personalInfoValidator';
+import * as skillValidator from '../middlewares/validators/resumeTemplateValidator/skillValidator';
+
+import * as personaInfoContentService from '../services/resumeTemplateServices/resumeTemplatePersonalInfoServices';
 
 export const resumeTemplateRouter = express.Router();
 resumeTemplateRouter.post(
     '/:resumeTemplateId/PersonalInfo',
     protect,
-    uploadPersonalInfoImage,
-    validateRequestMiddleware(createPersonalInfoValidator),
-    resizePersonalInfoImage,
-    createPersonaInfoContent,
+    personaInfoContentService.uploadPersonalInfoImage,
+    validateRequestMiddleware(
+        personalInfoValidator.createPersonalInfoValidator,
+    ),
+    personaInfoContentService.resizePersonalInfoImage,
+    personaInfoContentController.createPersonaInfoContent,
 );
 resumeTemplateRouter.get(
     '/:resumeTemplateId/PersonalInfo/:personaInfoContentId',
     protect,
-    validateRequestMiddleware(getOnePersonalInfoValidator),
-    getOnePersonaInfoContent,
+    validateRequestMiddleware(
+        personalInfoValidator.getOnePersonalInfoValidator,
+    ),
+    personaInfoContentController.getOnePersonaInfoContent,
 );
 resumeTemplateRouter.put(
     '/:resumeTemplateId/PersonalInfo/:personaInfoContentId',
     protect,
-    uploadPersonalInfoImage,
-    validateRequestMiddleware(updatePersonalInfoValidator),
-    resizePersonalInfoImage,
-    updateOnePersonaInfoContent,
+    personaInfoContentService.uploadPersonalInfoImage,
+    validateRequestMiddleware(
+        personalInfoValidator.updatePersonalInfoValidator,
+    ),
+    personaInfoContentService.resizePersonalInfoImage,
+    personaInfoContentController.updateOnePersonaInfoContent,
 );
 resumeTemplateRouter.delete(
     '/:resumeTemplateId/PersonalInfo/:personaInfoContentId',
     protect,
-    validateRequestMiddleware(deletePersonalInfoValidator),
-    deleteOnePersonaInfoContent,
+    validateRequestMiddleware(
+        personalInfoValidator.deletePersonalInfoValidator,
+    ),
+    personaInfoContentController.deleteOnePersonaInfoContent,
 );
+//////////////////////////////////////////////////////////////
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/skill',
+    protect,
+    validateRequestMiddleware(skillValidator.createSkillValidator),
+    skillContentController.createSkillContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/skill',
+    protect,
+    skillContentController.getAllSkillsContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/skill/:skillContentId',
+    protect,
+    validateRequestMiddleware(skillValidator.getOneSkillValidator),
+    skillContentController.getOneSkillContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/skill/:skillContentId',
+    protect,
+    validateRequestMiddleware(skillValidator.updateSkillValidator),
+    skillContentController.updateOneSkillContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/skill/:skillContentId',
+    protect,
+    validateRequestMiddleware(skillValidator.deleteSkillValidator),
+    skillContentController.deleteOneSkillContent,
+);
+///////////////////////////////////////////////////
 export default resumeTemplateRouter;
