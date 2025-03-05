@@ -42,7 +42,7 @@ export const getOneSkillValidator: ValidationChain[] = [
 
 export const updateSkillValidator: ValidationChain[] = [
     resumeTemplateIdValidator[0],
-    getOneSkillValidator[0],
+    skillIdValidator[0],
     body('name')
         .optional()
         .notEmpty()

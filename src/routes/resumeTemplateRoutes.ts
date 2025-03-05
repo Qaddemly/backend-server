@@ -4,9 +4,11 @@ import * as personaInfoContentController from '../controllers/resumeTemplateCont
 import * as skillContentController from '../controllers/resumeTemplateController/resumeTemplateSkillController';
 import * as personalInfoValidator from '../middlewares/validators/resumeTemplateValidator/personalInfoValidator';
 import * as skillValidator from '../middlewares/validators/resumeTemplateValidator/skillValidator';
+import * as educationValidator from '../middlewares/validators/resumeTemplateValidator/educationValidator';
 
 import * as personaInfoContentService from '../services/resumeTemplateServices/resumeTemplatePersonalInfoServices';
 import * as resumeTemplateController from './../controllers/resumeTemplateController';
+import * as educationContentController from '../controllers/resumeTemplateController/resumeTemplateEducationController';
 
 import validateRequestMiddleware from '../middlewares/validator';
 import {
@@ -388,5 +390,39 @@ resumeTemplateRouter.delete(
     protect,
     validateRequestMiddleware(skillValidator.deleteSkillValidator),
     skillContentController.deleteOneSkillContent,
+);
+///////////////////////////////////////////////////
+
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/education',
+    protect,
+    validateRequestMiddleware(educationValidator.createEducationValidator),
+    educationContentController.createEducationContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/education',
+    protect,
+    validateRequestMiddleware(educationValidator.getAllEducationsValidator),
+    educationContentController.getAllEducationsContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/education/:educationContentId',
+    protect,
+    validateRequestMiddleware(educationValidator.getOneEducationValidator),
+    educationContentController.getOneEducationContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/education/:educationContentId',
+    protect,
+    validateRequestMiddleware(educationValidator.updateEducationValidator),
+    educationContentController.updateOneEducationContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/education/:educationContentId',
+    protect,
+    validateRequestMiddleware(educationValidator.deleteEducationValidator),
+    educationContentController.deleteOneEducationContent,
 );
 ///////////////////////////////////////////////////

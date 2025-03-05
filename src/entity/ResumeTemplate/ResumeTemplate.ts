@@ -19,6 +19,7 @@ import { ResumeCourse } from './ResumeCourse';
 import { ResumeOrganization } from './ResumeOrganization';
 import { ResumeReference } from './ResumeReference';
 import { ResumeCustomSection } from './ResumeCustomSection';
+import { ResumeTemplateEducation } from './ResumeTemplateEducation';
 
 @Entity()
 export class ResumeTemplate {
@@ -43,6 +44,11 @@ export class ResumeTemplate {
     personalInfo: ResumeTemplatePersonalInfo;
     @OneToMany(() => ResumeTemplateSkill, (skill) => skill.resumeTemplate)
     skills: ResumeTemplateSkill[];
+    @OneToMany(
+        () => ResumeTemplateEducation,
+        (education) => education.resumeTemplate,
+    )
+    educations: ResumeTemplateEducation[];
 
     @Column({ type: 'text', nullable: true })
     profile: string;

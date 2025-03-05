@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm';
+import { ResumeTemplate } from './ResumeTemplate';
 
 @Entity()
 export class ResumeTemplateEducation {
@@ -14,12 +23,33 @@ export class ResumeTemplateEducation {
     city: string;
     @Column({ nullable: true })
     country: string;
-    @Column({ nullable: true })
-    start_date: Date;
-    @Column({ nullable: true })
-    end_date: Date;
-    @Column({ nullable: true })
-    current_study: Date;
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
+    start_date: string;
+
+    @Column({ type: 'varchar', nullable: true })
+    end_date: string;
+
+    @Column({ default: false })
+    is_current: boolean;
+
+    @Column({ type: 'text', nullable: true })
     description: string;
+
+    @ManyToOne(
+        () => ResumeTemplate,
+        (resumeTemplate) => resumeTemplate.educations,
+        {
+            onDelete: 'CASCADE',
+        },
+    )
+    @JoinColumn({
+        name: 'resume_template_id',
+    })
+    resumeTemplate: ResumeTemplate;
+
+    @CreateDateColumn()
+    created_at: Date;
+
+    @UpdateDateColumn()
+    updated_at: Date;
 }

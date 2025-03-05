@@ -51,7 +51,7 @@ export const getOnePersonalInfoValidator: ValidationChain[] = [
 
 export const updatePersonalInfoValidator: ValidationChain[] = [
     resumeTemplateIdValidator[0],
-    getOnePersonalInfoValidator[0],
+    personalInfoIdValidator[0],
     body('full_name')
         .optional()
         .notEmpty()
