@@ -1,318 +1,316 @@
 import express from 'express';
 import { protect } from '../services/authServices';
-import {
-    createCourseOfResumeTemplate,
-    createCustomSectionOfResumeTemplate,
-    createExperienceOfResumeTemplate,
-    createInterestOfResumeTemplate,
-    createLanguageOfResumeTemplate,
-    createOrganizationOfResumeTemplate,
-    createReferenceOfResumeTemplate,
-    createResumeTemplate,
-    deleteCourseOfResumeTemplate,
-    deleteCustomSectionOfResumeTemplate,
-    deleteExperienceOfResumeTemplate,
-    deleteInterestOfResumeTemplate,
-    deleteLanguageOfResumeTemplate,
-    deleteOrganizationOfResumeTemplate,
-    deleteReferenceOfResumeTemplate,
-    deleteResumeTemplate,
-    getAllCoursesOfResumeTemplate,
-    getAllCustomSectionsOfResumeTemplate,
-    getAllExperiencesOfResumeTemplate,
-    getAllInterestsOfResumeTemplate,
-    getAllLanguagesOfResumeTemplate,
-    getAllOrganizationsOfResumeTemplate,
-    getAllReferencesOfResumeTemplate,
-    getAllResumeTemplatesOfUser,
-    getCourseOfResumeTemplate,
-    getCustomSectionOfResumeTemplate,
-    getExperienceOfResumeTemplate,
-    getInterestOfResumeTemplate,
-    getLanguageOfResumeTemplate,
-    getOrganizationOfResumeTemplate,
-    getReferenceOfResumeTemplate,
-    getResumeTemplatesById,
-    isUserOwnsThisResume,
-    updateCourseOfResumeTemplate,
-    updateCustomSectionOfResumeTemplate,
-    updateExperienceOfResumeTemplate,
-    updateInterestOfResumeTemplate,
-    updateLanguageOfResumeTemplate,
-    updateOrganizationOfResumeTemplate,
-    updateProfileOfResumeTemplate,
-    updateReferenceOfResumeTemplate,
-} from '../controllers/resumeTemplateController';
+
+import * as resumeTemplateController from './../controllers/resumeTemplateController';
+
 import validateRequestMiddleware from '../middlewares/validator';
 import {
+    createOrUpdateLanguageOfResumeTemplateValidator,
     createOrUpdateExperienceOfResumeTemplateValidator,
     updateResumeTemplateProfileValidator,
+    createOrUpdateInterestOfResumeTemplateValidator,
+    createCourseOfResumeTemplateValidator,
+    createOrganizationOfResumeTemplateValidator,
+    createCustomSectionOfResumeTemplateValidator,
+    createOrUpdateReferenceOfResumeTemplateValidator,
+    updateCustomSectionOfResumeTemplateValidator,
+    updateOrganizationOfResumeTemplateValidator,
+    updateCourseOfResumeTemplateValidator,
 } from '../middlewares/validators/resumeTemplateValidator';
+import { getAllOrganizationsOfResumeTemplate } from '../controllers/resumeTemplateController';
 
 export const resumeTemplateRouter = express.Router();
 
-resumeTemplateRouter.get('/', protect, getAllResumeTemplatesOfUser);
+resumeTemplateRouter.get(
+    '/',
+    protect,
+    resumeTemplateController.getAllResumeTemplatesOfUser,
+);
 
-resumeTemplateRouter.get('/:id', protect, getResumeTemplatesById);
+resumeTemplateRouter.get(
+    '/:id',
+    protect,
+    resumeTemplateController.getResumeTemplatesById,
+);
 
-resumeTemplateRouter.post('/', protect, createResumeTemplate);
+resumeTemplateRouter.post(
+    '/',
+    protect,
+    resumeTemplateController.createResumeTemplate,
+);
 
-resumeTemplateRouter.delete('/:id', protect, deleteResumeTemplate);
+resumeTemplateRouter.delete(
+    '/:id',
+    protect,
+    resumeTemplateController.deleteResumeTemplate,
+);
 
 resumeTemplateRouter.put(
     '/:id/profile',
     protect,
-    isUserOwnsThisResume,
+    resumeTemplateController.isUserOwnsThisResume,
     validateRequestMiddleware(updateResumeTemplateProfileValidator),
-    updateProfileOfResumeTemplate,
+    resumeTemplateController.updateProfileOfResumeTemplate,
 );
 
 resumeTemplateRouter.post(
     '/:id/experience',
     protect,
-    isUserOwnsThisResume,
+    resumeTemplateController.isUserOwnsThisResume,
     validateRequestMiddleware(
         createOrUpdateExperienceOfResumeTemplateValidator,
     ),
-    createExperienceOfResumeTemplate,
+    resumeTemplateController.createExperienceOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/experience/:experienceId',
     protect,
-    isUserOwnsThisResume,
-    getExperienceOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getExperienceOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/experience',
     protect,
-    isUserOwnsThisResume,
-    getAllExperiencesOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getAllExperiencesOfResumeTemplate,
 );
 
 resumeTemplateRouter.put(
     '/:id/experience/:experienceId',
     protect,
-    isUserOwnsThisResume,
+    resumeTemplateController.isUserOwnsThisResume,
     validateRequestMiddleware(
         createOrUpdateExperienceOfResumeTemplateValidator,
     ),
-    updateExperienceOfResumeTemplate,
+    resumeTemplateController.updateExperienceOfResumeTemplate,
 );
 
 resumeTemplateRouter.delete(
     '/:id/experience/:experienceId',
     protect,
-    isUserOwnsThisResume,
-    deleteExperienceOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.deleteExperienceOfResumeTemplate,
 );
 
 resumeTemplateRouter.post(
     '/:id/language',
     protect,
-    isUserOwnsThisResume,
-    createLanguageOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(createOrUpdateLanguageOfResumeTemplateValidator),
+    resumeTemplateController.createLanguageOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/language/:languageId',
     protect,
-    isUserOwnsThisResume,
-    getLanguageOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getLanguageOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/language',
     protect,
-    isUserOwnsThisResume,
-    getAllLanguagesOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getAllLanguagesOfResumeTemplate,
 );
 
 resumeTemplateRouter.put(
     '/:id/language/:languageId',
     protect,
-    isUserOwnsThisResume,
-    updateLanguageOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(createOrUpdateLanguageOfResumeTemplateValidator),
+    resumeTemplateController.updateLanguageOfResumeTemplate,
 );
 
 resumeTemplateRouter.delete(
     '/:id/language/:languageId',
     protect,
-    isUserOwnsThisResume,
-    deleteLanguageOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.deleteLanguageOfResumeTemplate,
 );
 
 resumeTemplateRouter.post(
     '/:id/interest',
     protect,
-    isUserOwnsThisResume,
-    createInterestOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(createOrUpdateInterestOfResumeTemplateValidator),
+    resumeTemplateController.createInterestOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/interest/:interestId',
     protect,
-    isUserOwnsThisResume,
-    getInterestOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getInterestOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/interest',
     protect,
-    isUserOwnsThisResume,
-    getAllInterestsOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getAllInterestsOfResumeTemplate,
 );
 
 resumeTemplateRouter.put(
     '/:id/interest/:interestId',
     protect,
-    isUserOwnsThisResume,
-    updateInterestOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(createOrUpdateInterestOfResumeTemplateValidator),
+    resumeTemplateController.updateInterestOfResumeTemplate,
 );
 
 resumeTemplateRouter.delete(
     '/:id/interest/:interestId',
     protect,
-    isUserOwnsThisResume,
-    deleteInterestOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.deleteInterestOfResumeTemplate,
 );
 
 resumeTemplateRouter.post(
     '/:id/course',
     protect,
-    isUserOwnsThisResume,
-    createCourseOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(createCourseOfResumeTemplateValidator),
+    resumeTemplateController.createCourseOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/course/:courseId',
     protect,
-    isUserOwnsThisResume,
-    getCourseOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getCourseOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/course',
     protect,
-    isUserOwnsThisResume,
-    getAllCoursesOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getAllCoursesOfResumeTemplate,
 );
 
 resumeTemplateRouter.put(
     '/:id/course/:courseId',
     protect,
-    isUserOwnsThisResume,
-    updateCourseOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(updateCourseOfResumeTemplateValidator),
+    resumeTemplateController.updateCourseOfResumeTemplate,
 );
 
 resumeTemplateRouter.delete(
     '/:id/course/:courseId',
     protect,
-    isUserOwnsThisResume,
-    deleteCourseOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.deleteCourseOfResumeTemplate,
 );
 
 resumeTemplateRouter.post(
     '/:id/organization',
     protect,
-    isUserOwnsThisResume,
-    createOrganizationOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(createOrganizationOfResumeTemplateValidator),
+    resumeTemplateController.createOrganizationOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/organization/:organizationId',
     protect,
-    isUserOwnsThisResume,
-    getOrganizationOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getOrganizationOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/organization',
     protect,
-    isUserOwnsThisResume,
-    getAllOrganizationsOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getAllOrganizationsOfResumeTemplate,
 );
 
 resumeTemplateRouter.put(
     '/:id/organization/:organizationId',
     protect,
-    isUserOwnsThisResume,
-    updateOrganizationOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(updateOrganizationOfResumeTemplateValidator),
+    resumeTemplateController.updateOrganizationOfResumeTemplate,
 );
 
 resumeTemplateRouter.delete(
     '/:id/organization/:organizationId',
     protect,
-    isUserOwnsThisResume,
-    deleteOrganizationOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.deleteOrganizationOfResumeTemplate,
 );
 
 resumeTemplateRouter.post(
     '/:id/reference',
     protect,
-    isUserOwnsThisResume,
-    createReferenceOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(createOrUpdateReferenceOfResumeTemplateValidator),
+    resumeTemplateController.createReferenceOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/reference/:referenceId',
     protect,
-    getReferenceOfResumeTemplate,
+    resumeTemplateController.getReferenceOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/reference',
     protect,
-    isUserOwnsThisResume,
-    getAllReferencesOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getAllReferencesOfResumeTemplate,
 );
 
 resumeTemplateRouter.put(
     '/:id/reference/:referenceId',
     protect,
-    isUserOwnsThisResume,
-    updateReferenceOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(createOrUpdateReferenceOfResumeTemplateValidator),
+    resumeTemplateController.updateReferenceOfResumeTemplate,
 );
 
 resumeTemplateRouter.delete(
     '/:id/reference/:referenceId',
     protect,
-    isUserOwnsThisResume,
-    deleteReferenceOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.deleteReferenceOfResumeTemplate,
 );
 
 resumeTemplateRouter.post(
     '/:id/customSection',
     protect,
-    isUserOwnsThisResume,
-    createCustomSectionOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(createCustomSectionOfResumeTemplateValidator),
+    resumeTemplateController.createCustomSectionOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/customSection/:customSectionId',
     protect,
-    isUserOwnsThisResume,
-    getCustomSectionOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getCustomSectionOfResumeTemplate,
 );
 
 resumeTemplateRouter.get(
     '/:id/customSection',
     protect,
-    isUserOwnsThisResume,
-    getAllCustomSectionsOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.getAllCustomSectionsOfResumeTemplate,
 );
 
 resumeTemplateRouter.put(
     '/:id/customSection/:customSectionId',
     protect,
-    isUserOwnsThisResume,
-    updateCustomSectionOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    validateRequestMiddleware(updateCustomSectionOfResumeTemplateValidator),
+    resumeTemplateController.updateCustomSectionOfResumeTemplate,
 );
 
 resumeTemplateRouter.delete(
     '/:id/customSection/:customSectionId',
     protect,
-    isUserOwnsThisResume,
-    deleteCustomSectionOfResumeTemplate,
+    resumeTemplateController.isUserOwnsThisResume,
+    resumeTemplateController.deleteCustomSectionOfResumeTemplate,
 );
