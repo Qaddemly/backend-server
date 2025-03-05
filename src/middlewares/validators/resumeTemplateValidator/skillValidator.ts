@@ -1,5 +1,5 @@
 import { body, param, ValidationChain } from 'express-validator';
-import { resumeTemplateIdValidator } from './resumeTemplateValidator';
+import { resumeTemplateIdValidator } from '../resumeTemplateValidator';
 import { SkillLevel } from '../../../enums/skillLevel';
 
 export const createSkillValidator: ValidationChain[] = [
@@ -29,6 +29,10 @@ export const skillIdValidator: ValidationChain[] = [
     param('skillContentId')
         .isInt()
         .withMessage('skillContentId must be an integer'),
+];
+
+export const getAllSkillsValidator: ValidationChain[] = [
+    resumeTemplateIdValidator[0],
 ];
 
 export const getOneSkillValidator: ValidationChain[] = [

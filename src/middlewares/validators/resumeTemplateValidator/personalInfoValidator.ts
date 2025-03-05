@@ -1,5 +1,5 @@
 import { body, param, ValidationChain } from 'express-validator';
-import { resumeTemplateIdValidator } from './resumeTemplateValidator';
+import { resumeTemplateIdValidator } from '../resumeTemplateValidator';
 
 export const createPersonalInfoValidator: ValidationChain[] = [
     resumeTemplateIdValidator[0],

@@ -98,7 +98,7 @@ export const deleteOneSkillContentService = async (
     accountId: number,
     skillContentId: number,
 ) => {
-    const skillContent = await ResumeTemplatePersonalInfoRepository.findOne({
+    const skillContent = await ResumeTemplateSkillRepository.findOne({
         where: {
             id: skillContentId,
             resumeTemplate: {
@@ -110,5 +110,5 @@ export const deleteOneSkillContentService = async (
     if (!skillContent) {
         throw new AppError('skill Content not found', 404);
     }
-    await ResumeTemplatePersonalInfoRepository.remove(skillContent);
+    await ResumeTemplateSkillRepository.remove(skillContent);
 };
