@@ -5,10 +5,12 @@ import * as skillContentController from '../controllers/resumeTemplateController
 import * as personalInfoValidator from '../middlewares/validators/resumeTemplateValidator/personalInfoValidator';
 import * as skillValidator from '../middlewares/validators/resumeTemplateValidator/skillValidator';
 import * as educationValidator from '../middlewares/validators/resumeTemplateValidator/educationValidator';
+import * as certificateValidator from '../middlewares/validators/resumeTemplateValidator/certificateValidator';
 
 import * as personaInfoContentService from '../services/resumeTemplateServices/resumeTemplatePersonalInfoServices';
 import * as resumeTemplateController from './../controllers/resumeTemplateController';
 import * as educationContentController from '../controllers/resumeTemplateController/resumeTemplateEducationController';
+import * as certificateContentController from '../controllers/resumeTemplateController/resumeTemplateCertificateController';
 
 import validateRequestMiddleware from '../middlewares/validator';
 import {
@@ -424,5 +426,39 @@ resumeTemplateRouter.delete(
     protect,
     validateRequestMiddleware(educationValidator.deleteEducationValidator),
     educationContentController.deleteOneEducationContent,
+);
+///////////////////////////////////////////////////
+
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/certificate',
+    protect,
+    validateRequestMiddleware(certificateValidator.createCertificateValidator),
+    certificateContentController.createCertificateContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/certificate',
+    protect,
+    validateRequestMiddleware(certificateValidator.getAllCertificatesValidator),
+    certificateContentController.getAllCertificatesContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/certificate/:certificateContentId',
+    protect,
+    validateRequestMiddleware(certificateValidator.getOneCertificateValidator),
+    certificateContentController.getOneCertificateContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/certificate/:certificateContentId',
+    protect,
+    validateRequestMiddleware(certificateValidator.updateCertificateValidator),
+    certificateContentController.updateOneCertificateContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/certificate/:certificateContentId',
+    protect,
+    validateRequestMiddleware(certificateValidator.deleteCertificateValidator),
+    certificateContentController.deleteOneCertificateContent,
 );
 ///////////////////////////////////////////////////
