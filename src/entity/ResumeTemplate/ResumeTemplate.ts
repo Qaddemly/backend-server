@@ -23,6 +23,7 @@ import { ResumeTemplateEducation } from './ResumeTemplateEducation';
 import { ResumeTemplateCertificate } from './ResumeTemplateCertificate';
 import { ResumeTemplateAward } from './ResumeTemplateAward';
 import { ResumeTemplatePublication } from './ResumeTemplatePublication';
+import { ResumeTemplateProject } from './ResumeTemplateProject';
 
 @Entity()
 export class ResumeTemplate {
@@ -64,6 +65,8 @@ export class ResumeTemplate {
         (publication) => publication.resumeTemplate,
     )
     publications: ResumeTemplatePublication[];
+    @OneToMany(() => ResumeTemplateProject, (project) => project.resumeTemplate)
+    projects: ResumeTemplateProject[];
     @Column({ type: 'text', nullable: true })
     profile: string;
 

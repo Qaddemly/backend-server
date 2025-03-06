@@ -8,6 +8,7 @@ import * as educationValidator from '../middlewares/validators/resumeTemplateVal
 import * as certificateValidator from '../middlewares/validators/resumeTemplateValidator/certificateValidator';
 import * as awardValidator from '../middlewares/validators/resumeTemplateValidator/awardValidator';
 import * as publicationValidator from '../middlewares/validators/resumeTemplateValidator/publicationValidator';
+import * as projectValidator from '../middlewares/validators/resumeTemplateValidator/projectValidator';
 
 import * as personaInfoContentService from '../services/resumeTemplateServices/resumeTemplatePersonalInfoServices';
 import * as resumeTemplateController from './../controllers/resumeTemplateController';
@@ -15,6 +16,7 @@ import * as educationContentController from '../controllers/resumeTemplateContro
 import * as certificateContentController from '../controllers/resumeTemplateController/resumeTemplateCertificateController';
 import * as awardContentController from '../controllers/resumeTemplateController/resumeTemplateAwardController';
 import * as publicationContentController from '../controllers/resumeTemplateController/resumeTemplatePublicationController';
+import * as projectContentController from '../controllers/resumeTemplateController/resumeTemplateProjectController';
 
 import validateRequestMiddleware from '../middlewares/validator';
 import {
@@ -532,6 +534,41 @@ resumeTemplateRouter.delete(
     protect,
     validateRequestMiddleware(publicationValidator.deletePublicationValidator),
     publicationContentController.deleteOnePublicationContent,
+);
+
+////////////////////////////////////////////////////////////////////////////////////
+
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/project',
+    protect,
+    validateRequestMiddleware(projectValidator.createProjectValidator),
+    projectContentController.createProjectContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/project',
+    protect,
+    validateRequestMiddleware(projectValidator.getAllProjectsValidator),
+    projectContentController.getAllProjectsContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/project/:projectContentId',
+    protect,
+    validateRequestMiddleware(projectValidator.getOneProjectValidator),
+    projectContentController.getOneProjectContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/project/:projectContentId',
+    protect,
+    validateRequestMiddleware(projectValidator.updateProjectValidator),
+    projectContentController.updateOneProjectContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/project/:projectContentId',
+    protect,
+    validateRequestMiddleware(projectValidator.deleteProjectValidator),
+    projectContentController.deleteOneProjectContent,
 );
 
 ////////////////////////////////////////////////////////////////////////////////////
