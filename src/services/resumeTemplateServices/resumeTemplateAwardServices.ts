@@ -19,15 +19,17 @@ export const createAwardContentService = async (
         throw new AppError('Resume Template not found', 404);
     }
     let date = null;
-    if (data.date.year) {
-        date = `${data.date.year}`;
-    }
-    if (data.date.year && data.date.month) {
-        date = `${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
-    }
+    if (data.date) {
+        if (data.date.year) {
+            date = `${data.date.year}`;
+        }
+        if (data.date.year && data.date.month) {
+            date = `${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
+        }
 
-    if (data.date.year && data.date.month && data.date.day) {
-        date = `${data.date.day.toString().padStart(2, '0')}/${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
+        if (data.date.year && data.date.month && data.date.day) {
+            date = `${data.date.day.toString().padStart(2, '0')}/${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
+        }
     }
 
     const newAwardContent = ResumeTemplateAwardRepository.create({
@@ -99,15 +101,14 @@ export const updateOneAwardContentService = async (
         throw new AppError('award Content not found', 404);
     }
     let date = null;
-    if (data.date.year) {
-        date = `${data.date.year}`;
-    }
-    if (data.date.year && data.date.month) {
-        date = `${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
-    }
-
-    if (data.date.year && data.date.month && data.date.day) {
-        date = `${data.date.day.toString().padStart(2, '0')}/${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
+    if (data.date) {
+        if (data.date.year && !data.date.month) {
+            date = `${data.date.year}`;
+        } else if (data.date.year && data.date.month && !data.date.day) {
+            date = `${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
+        } else if (data.date.year && data.date.month && data.date.day) {
+            date = `${data.date.day.toString().padStart(2, '0')}/${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
+        } else awardContent.date = null;
     }
     awardContent.award = data.award || awardContent.award;
     awardContent.award_url = data.award_url || awardContent.award_url;
