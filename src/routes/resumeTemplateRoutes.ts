@@ -7,12 +7,14 @@ import * as skillValidator from '../middlewares/validators/resumeTemplateValidat
 import * as educationValidator from '../middlewares/validators/resumeTemplateValidator/educationValidator';
 import * as certificateValidator from '../middlewares/validators/resumeTemplateValidator/certificateValidator';
 import * as awardValidator from '../middlewares/validators/resumeTemplateValidator/awardValidator';
+import * as publicationValidator from '../middlewares/validators/resumeTemplateValidator/publicationValidator';
 
 import * as personaInfoContentService from '../services/resumeTemplateServices/resumeTemplatePersonalInfoServices';
 import * as resumeTemplateController from './../controllers/resumeTemplateController';
 import * as educationContentController from '../controllers/resumeTemplateController/resumeTemplateEducationController';
 import * as certificateContentController from '../controllers/resumeTemplateController/resumeTemplateCertificateController';
 import * as awardContentController from '../controllers/resumeTemplateController/resumeTemplateAwardController';
+import * as publicationContentController from '../controllers/resumeTemplateController/resumeTemplatePublicationController';
 
 import validateRequestMiddleware from '../middlewares/validator';
 import {
@@ -498,3 +500,38 @@ resumeTemplateRouter.delete(
     awardContentController.deleteOneAwardContent,
 );
 ///////////////////////////////////////////////////
+
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/publication',
+    protect,
+    validateRequestMiddleware(publicationValidator.createPublicationValidator),
+    publicationContentController.createPublicationContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/publication',
+    protect,
+    validateRequestMiddleware(publicationValidator.getAllPublicationsValidator),
+    publicationContentController.getAllPublicationsContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/publication/:publicationContentId',
+    protect,
+    validateRequestMiddleware(publicationValidator.getOnePublicationValidator),
+    publicationContentController.getOnePublicationContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/publication/:publicationContentId',
+    protect,
+    validateRequestMiddleware(publicationValidator.updatePublicationValidator),
+    publicationContentController.updateOnePublicationContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/publication/:publicationContentId',
+    protect,
+    validateRequestMiddleware(publicationValidator.deletePublicationValidator),
+    publicationContentController.deleteOnePublicationContent,
+);
+
+////////////////////////////////////////////////////////////////////////////////////

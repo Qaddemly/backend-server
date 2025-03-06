@@ -22,6 +22,7 @@ import { ResumeCustomSection } from './ResumeCustomSection';
 import { ResumeTemplateEducation } from './ResumeTemplateEducation';
 import { ResumeTemplateCertificate } from './ResumeTemplateCertificate';
 import { ResumeTemplateAward } from './ResumeTemplateAward';
+import { ResumeTemplatePublication } from './ResumeTemplatePublication';
 
 @Entity()
 export class ResumeTemplate {
@@ -58,6 +59,11 @@ export class ResumeTemplate {
     certificates: ResumeTemplateCertificate[];
     @OneToMany(() => ResumeTemplateAward, (award) => award.resumeTemplate)
     awards: ResumeTemplateAward[];
+    @OneToMany(
+        () => ResumeTemplatePublication,
+        (publication) => publication.resumeTemplate,
+    )
+    publications: ResumeTemplatePublication[];
     @Column({ type: 'text', nullable: true })
     profile: string;
 
