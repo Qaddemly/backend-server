@@ -21,6 +21,7 @@ import { ResumeReference } from './ResumeReference';
 import { ResumeCustomSection } from './ResumeCustomSection';
 import { ResumeTemplateEducation } from './ResumeTemplateEducation';
 import { ResumeTemplateCertificate } from './ResumeTemplateCertificate';
+import { ResumeTemplateAward } from './ResumeTemplateAward';
 
 @Entity()
 export class ResumeTemplate {
@@ -55,6 +56,8 @@ export class ResumeTemplate {
         (certificate) => certificate.resumeTemplate,
     )
     certificates: ResumeTemplateCertificate[];
+    @OneToMany(() => ResumeTemplateAward, (award) => award.resumeTemplate)
+    awards: ResumeTemplateAward[];
     @Column({ type: 'text', nullable: true })
     profile: string;
 

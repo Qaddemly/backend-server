@@ -6,11 +6,13 @@ import * as personalInfoValidator from '../middlewares/validators/resumeTemplate
 import * as skillValidator from '../middlewares/validators/resumeTemplateValidator/skillValidator';
 import * as educationValidator from '../middlewares/validators/resumeTemplateValidator/educationValidator';
 import * as certificateValidator from '../middlewares/validators/resumeTemplateValidator/certificateValidator';
+import * as awardValidator from '../middlewares/validators/resumeTemplateValidator/awardValidator';
 
 import * as personaInfoContentService from '../services/resumeTemplateServices/resumeTemplatePersonalInfoServices';
 import * as resumeTemplateController from './../controllers/resumeTemplateController';
 import * as educationContentController from '../controllers/resumeTemplateController/resumeTemplateEducationController';
 import * as certificateContentController from '../controllers/resumeTemplateController/resumeTemplateCertificateController';
+import * as awardContentController from '../controllers/resumeTemplateController/resumeTemplateAwardController';
 
 import validateRequestMiddleware from '../middlewares/validator';
 import {
@@ -460,5 +462,39 @@ resumeTemplateRouter.delete(
     protect,
     validateRequestMiddleware(certificateValidator.deleteCertificateValidator),
     certificateContentController.deleteOneCertificateContent,
+);
+///////////////////////////////////////////////////
+
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/award',
+    protect,
+    validateRequestMiddleware(awardValidator.createAwardValidator),
+    awardContentController.createAwardContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/award',
+    protect,
+    validateRequestMiddleware(awardValidator.getAllAwardsValidator),
+    awardContentController.getAllAwardsContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/award/:awardContentId',
+    protect,
+    validateRequestMiddleware(awardValidator.getOneAwardValidator),
+    awardContentController.getOneAwardContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/award/:awardContentId',
+    protect,
+    validateRequestMiddleware(awardValidator.updateAwardValidator),
+    awardContentController.updateOneAwardContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/award/:awardContentId',
+    protect,
+    validateRequestMiddleware(awardValidator.deleteAwardValidator),
+    awardContentController.deleteOneAwardContent,
 );
 ///////////////////////////////////////////////////
