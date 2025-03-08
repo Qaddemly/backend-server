@@ -23,6 +23,9 @@ export class ResumeTemplate {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ type: 'text', nullable: true })
+    name: string;
+
     @Column({ name: 'account_id' })
     account_id: number;
 

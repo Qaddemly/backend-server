@@ -41,6 +41,7 @@ export const getResumeTemplatesById = async (
 export const createResumeTemplate = async (userId: number, data: any) => {
     const resumeTemplate = new ResumeTemplate();
     resumeTemplate.account_id = userId;
+    resumeTemplate.name = data.name;
     return await ResumeTemplateRepository.save(resumeTemplate);
 };
 export const deleteResumeTemplate = async (
