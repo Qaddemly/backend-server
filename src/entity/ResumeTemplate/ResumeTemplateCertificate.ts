@@ -7,37 +7,22 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
+import { SkillLevel } from '../../enums/skillLevel';
 import { ResumeTemplate } from './ResumeTemplate';
 
 @Entity()
-export class ResumeTemplateEducation {
+export class ResumeTemplateCertificate {
     @PrimaryGeneratedColumn()
     id: number;
+    @Column({ nullable: false })
+    certificate: string;
     @Column({ nullable: true })
-    degree: string;
+    certificate_url: string;
     @Column({ nullable: true })
-    school: string;
-    @Column({ nullable: true })
-    school_link: string;
-    @Column({ nullable: true })
-    city: string;
-    @Column({ nullable: true })
-    country: string;
-    @Column({ type: 'varchar', nullable: true })
-    start_date: string;
-
-    @Column({ type: 'varchar', nullable: true })
-    end_date: string;
-
-    @Column({ default: false })
-    is_current: boolean;
-
-    @Column({ type: 'text', nullable: true })
-    description: string;
-
+    additional_information: string;
     @ManyToOne(
         () => ResumeTemplate,
-        (resumeTemplate) => resumeTemplate.educations,
+        (resumeTemplate) => resumeTemplate.certificates,
         {
             onDelete: 'CASCADE',
         },
@@ -46,10 +31,8 @@ export class ResumeTemplateEducation {
         name: 'resume_template_id',
     })
     resumeTemplate: ResumeTemplate;
-
     @CreateDateColumn()
     created_at: Date;
-
     @UpdateDateColumn()
     updated_at: Date;
 }

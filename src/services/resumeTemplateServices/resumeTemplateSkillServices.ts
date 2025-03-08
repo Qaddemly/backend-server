@@ -18,7 +18,6 @@ export const createSkillContentService = async (
     if (!resumeTemplate) {
         throw new AppError('Resume Template not found', 404);
     }
-    data;
 
     const newSkillContent = ResumeTemplateSkillRepository.create({
         name: data.name,

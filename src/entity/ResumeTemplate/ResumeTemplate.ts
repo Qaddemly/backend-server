@@ -19,6 +19,11 @@ import { ResumeCourse } from './ResumeCourse';
 import { ResumeOrganization } from './ResumeOrganization';
 import { ResumeReference } from './ResumeReference';
 import { ResumeCustomSection } from './ResumeCustomSection';
+import { ResumeTemplateEducation } from './ResumeTemplateEducation';
+import { ResumeTemplateCertificate } from './ResumeTemplateCertificate';
+import { ResumeTemplateAward } from './ResumeTemplateAward';
+import { ResumeTemplatePublication } from './ResumeTemplatePublication';
+import { ResumeTemplateProject } from './ResumeTemplateProject';
 
 @Entity()
 export class ResumeTemplate {
@@ -43,7 +48,25 @@ export class ResumeTemplate {
     personalInfo: ResumeTemplatePersonalInfo;
     @OneToMany(() => ResumeTemplateSkill, (skill) => skill.resumeTemplate)
     skills: ResumeTemplateSkill[];
-
+    @OneToMany(
+        () => ResumeTemplateEducation,
+        (education) => education.resumeTemplate,
+    )
+    educations: ResumeTemplateEducation[];
+    @OneToMany(
+        () => ResumeTemplateCertificate,
+        (certificate) => certificate.resumeTemplate,
+    )
+    certificates: ResumeTemplateCertificate[];
+    @OneToMany(() => ResumeTemplateAward, (award) => award.resumeTemplate)
+    awards: ResumeTemplateAward[];
+    @OneToMany(
+        () => ResumeTemplatePublication,
+        (publication) => publication.resumeTemplate,
+    )
+    publications: ResumeTemplatePublication[];
+    @OneToMany(() => ResumeTemplateProject, (project) => project.resumeTemplate)
+    projects: ResumeTemplateProject[];
     @Column({ type: 'text', nullable: true })
     profile: string;
 

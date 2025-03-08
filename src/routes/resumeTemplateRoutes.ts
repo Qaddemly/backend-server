@@ -4,9 +4,19 @@ import * as personaInfoContentController from '../controllers/resumeTemplateCont
 import * as skillContentController from '../controllers/resumeTemplateController/resumeTemplateSkillController';
 import * as personalInfoValidator from '../middlewares/validators/resumeTemplateValidator/personalInfoValidator';
 import * as skillValidator from '../middlewares/validators/resumeTemplateValidator/skillValidator';
+import * as educationValidator from '../middlewares/validators/resumeTemplateValidator/educationValidator';
+import * as certificateValidator from '../middlewares/validators/resumeTemplateValidator/certificateValidator';
+import * as awardValidator from '../middlewares/validators/resumeTemplateValidator/awardValidator';
+import * as publicationValidator from '../middlewares/validators/resumeTemplateValidator/publicationValidator';
+import * as projectValidator from '../middlewares/validators/resumeTemplateValidator/projectValidator';
 
 import * as personaInfoContentService from '../services/resumeTemplateServices/resumeTemplatePersonalInfoServices';
 import * as resumeTemplateController from './../controllers/resumeTemplateController';
+import * as educationContentController from '../controllers/resumeTemplateController/resumeTemplateEducationController';
+import * as certificateContentController from '../controllers/resumeTemplateController/resumeTemplateCertificateController';
+import * as awardContentController from '../controllers/resumeTemplateController/resumeTemplateAwardController';
+import * as publicationContentController from '../controllers/resumeTemplateController/resumeTemplatePublicationController';
+import * as projectContentController from '../controllers/resumeTemplateController/resumeTemplateProjectController';
 
 import validateRequestMiddleware from '../middlewares/validator';
 import {
@@ -390,3 +400,175 @@ resumeTemplateRouter.delete(
     skillContentController.deleteOneSkillContent,
 );
 ///////////////////////////////////////////////////
+
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/education',
+    protect,
+    validateRequestMiddleware(educationValidator.createEducationValidator),
+    educationContentController.createEducationContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/education',
+    protect,
+    validateRequestMiddleware(educationValidator.getAllEducationsValidator),
+    educationContentController.getAllEducationsContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/education/:educationContentId',
+    protect,
+    validateRequestMiddleware(educationValidator.getOneEducationValidator),
+    educationContentController.getOneEducationContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/education/:educationContentId',
+    protect,
+    validateRequestMiddleware(educationValidator.updateEducationValidator),
+    educationContentController.updateOneEducationContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/education/:educationContentId',
+    protect,
+    validateRequestMiddleware(educationValidator.deleteEducationValidator),
+    educationContentController.deleteOneEducationContent,
+);
+///////////////////////////////////////////////////
+
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/certificate',
+    protect,
+    validateRequestMiddleware(certificateValidator.createCertificateValidator),
+    certificateContentController.createCertificateContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/certificate',
+    protect,
+    validateRequestMiddleware(certificateValidator.getAllCertificatesValidator),
+    certificateContentController.getAllCertificatesContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/certificate/:certificateContentId',
+    protect,
+    validateRequestMiddleware(certificateValidator.getOneCertificateValidator),
+    certificateContentController.getOneCertificateContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/certificate/:certificateContentId',
+    protect,
+    validateRequestMiddleware(certificateValidator.updateCertificateValidator),
+    certificateContentController.updateOneCertificateContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/certificate/:certificateContentId',
+    protect,
+    validateRequestMiddleware(certificateValidator.deleteCertificateValidator),
+    certificateContentController.deleteOneCertificateContent,
+);
+///////////////////////////////////////////////////
+
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/award',
+    protect,
+    validateRequestMiddleware(awardValidator.createAwardValidator),
+    awardContentController.createAwardContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/award',
+    protect,
+    validateRequestMiddleware(awardValidator.getAllAwardsValidator),
+    awardContentController.getAllAwardsContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/award/:awardContentId',
+    protect,
+    validateRequestMiddleware(awardValidator.getOneAwardValidator),
+    awardContentController.getOneAwardContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/award/:awardContentId',
+    protect,
+    validateRequestMiddleware(awardValidator.updateAwardValidator),
+    awardContentController.updateOneAwardContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/award/:awardContentId',
+    protect,
+    validateRequestMiddleware(awardValidator.deleteAwardValidator),
+    awardContentController.deleteOneAwardContent,
+);
+///////////////////////////////////////////////////
+
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/publication',
+    protect,
+    validateRequestMiddleware(publicationValidator.createPublicationValidator),
+    publicationContentController.createPublicationContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/publication',
+    protect,
+    validateRequestMiddleware(publicationValidator.getAllPublicationsValidator),
+    publicationContentController.getAllPublicationsContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/publication/:publicationContentId',
+    protect,
+    validateRequestMiddleware(publicationValidator.getOnePublicationValidator),
+    publicationContentController.getOnePublicationContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/publication/:publicationContentId',
+    protect,
+    validateRequestMiddleware(publicationValidator.updatePublicationValidator),
+    publicationContentController.updateOnePublicationContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/publication/:publicationContentId',
+    protect,
+    validateRequestMiddleware(publicationValidator.deletePublicationValidator),
+    publicationContentController.deleteOnePublicationContent,
+);
+
+////////////////////////////////////////////////////////////////////////////////////
+
+resumeTemplateRouter.post(
+    '/:resumeTemplateId/project',
+    protect,
+    validateRequestMiddleware(projectValidator.createProjectValidator),
+    projectContentController.createProjectContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/project',
+    protect,
+    validateRequestMiddleware(projectValidator.getAllProjectsValidator),
+    projectContentController.getAllProjectsContent,
+);
+resumeTemplateRouter.get(
+    '/:resumeTemplateId/project/:projectContentId',
+    protect,
+    validateRequestMiddleware(projectValidator.getOneProjectValidator),
+    projectContentController.getOneProjectContent,
+);
+
+resumeTemplateRouter.put(
+    '/:resumeTemplateId/project/:projectContentId',
+    protect,
+    validateRequestMiddleware(projectValidator.updateProjectValidator),
+    projectContentController.updateOneProjectContent,
+);
+
+resumeTemplateRouter.delete(
+    '/:resumeTemplateId/project/:projectContentId',
+    protect,
+    validateRequestMiddleware(projectValidator.deleteProjectValidator),
+    projectContentController.deleteOneProjectContent,
+);
+
+////////////////////////////////////////////////////////////////////////////////////

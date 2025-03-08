@@ -10,19 +10,16 @@ import {
 import { ResumeTemplate } from './ResumeTemplate';
 
 @Entity()
-export class ResumeTemplateEducation {
+export class ResumeTemplateProject {
     @PrimaryGeneratedColumn()
     id: number;
+    @Column({ nullable: false })
+    title: string;
     @Column({ nullable: true })
-    degree: string;
+    subtitle: string;
     @Column({ nullable: true })
-    school: string;
-    @Column({ nullable: true })
-    school_link: string;
-    @Column({ nullable: true })
-    city: string;
-    @Column({ nullable: true })
-    country: string;
+    project_link: string;
+
     @Column({ type: 'varchar', nullable: true })
     start_date: string;
 
@@ -37,7 +34,7 @@ export class ResumeTemplateEducation {
 
     @ManyToOne(
         () => ResumeTemplate,
-        (resumeTemplate) => resumeTemplate.educations,
+        (resumeTemplate) => resumeTemplate.projects,
         {
             onDelete: 'CASCADE',
         },
