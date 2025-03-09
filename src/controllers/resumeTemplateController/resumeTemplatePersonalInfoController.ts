@@ -36,13 +36,13 @@ export const getOnePersonaInfoContent = catchAsync(
         try {
             const accountId = req.user.id;
             const resumeTemplateId = Number(req.params.resumeTemplateId);
-            const personaInfoContentId = Number(
-                req.params.personaInfoContentId,
-            );
+            // const personaInfoContentId = Number(
+            //     req.params.personaInfoContentId,
+            // );
             const personaInfoContent = await getOnePersonalInfoContentService(
                 resumeTemplateId,
                 accountId,
-                personaInfoContentId,
+                //personaInfoContentId,
             );
             res.status(200).json({
                 success: true,

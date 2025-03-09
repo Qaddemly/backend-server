@@ -341,7 +341,7 @@ resumeTemplateRouter.post(
     personaInfoContentController.createPersonaInfoContent,
 );
 resumeTemplateRouter.get(
-    '/:resumeTemplateId/PersonalInfo/:personaInfoContentId',
+    '/:resumeTemplateId/PersonalInfo',
     protect,
     validateRequestMiddleware(
         personalInfoValidator.getOnePersonalInfoValidator,

@@ -75,12 +75,12 @@ export const createPersonalInfoContentService = async (
 export const getOnePersonalInfoContentService = async (
     resumeTemplateId: number,
     accountId: number,
-    personaInfoContentId: number,
+    //personaInfoContentId: number,
 ) => {
     const personalInfoContent =
         await ResumeTemplatePersonalInfoRepository.findOne({
             where: {
-                id: personaInfoContentId,
+                // id: personaInfoContentId,
                 resumeTemplate: {
                     id: resumeTemplateId,
                     account_id: accountId,
