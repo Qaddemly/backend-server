@@ -46,7 +46,6 @@ export const personalInfoIdValidator: ValidationChain[] = [
 
 export const getOnePersonalInfoValidator: ValidationChain[] = [
     resumeTemplateIdValidator[0],
-    personalInfoIdValidator[0],
 ];
 
 export const updatePersonalInfoValidator: ValidationChain[] = [
