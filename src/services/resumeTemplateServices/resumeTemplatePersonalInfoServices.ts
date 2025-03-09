@@ -51,7 +51,12 @@ export const createPersonalInfoContentService = async (
     data;
     const personalInfoContent =
         await ResumeTemplatePersonalInfoRepository.findOne({
-            where: { resumeTemplate },
+            where: {
+                resumeTemplate: {
+                    id: resumeTemplate.id,
+                    account_id: accountId,
+                },
+            },
         });
     if (personalInfoContent) {
         throw new AppError('Personal Info Content already exists', 400);
