@@ -16,8 +16,8 @@ export class ResumeTemplateSkill {
     name: string;
     @Column({ nullable: true })
     information: string;
-    @Column({ type: 'enum', enum: SkillLevel, nullable: true })
-    level: SkillLevel;
+    @Column({ nullable: true })
+    level: string;
     @ManyToOne(
         () => ResumeTemplate,
         (resumeTemplate) => resumeTemplate.skills,

@@ -15,14 +15,15 @@ export const createSkillValidator: ValidationChain[] = [
         .withMessage('information cant be empty')
         .isString()
         .withMessage('invalid information'),
-    body('level')
-        .optional()
-        .notEmpty()
-        .withMessage('level cant be empty')
-        .isIn(Object.values(SkillLevel))
-        .withMessage(
-            `level must be one of: ${Object.values(SkillLevel).join(', ')}`,
-        ),
+    // body('level')
+    //     .optional()
+    //     .notEmpty()
+    //     .withMessage('level cant be empty')
+    //     .isIn(Object.values(SkillLevel))
+    //     .withMessage(
+    //         `level must be one of: ${Object.values(SkillLevel).join(', ')}`,
+    //     ),
+    body('level').optional().isString().withMessage('invalid level'),
 ];
 
 export const skillIdValidator: ValidationChain[] = [
@@ -55,14 +56,15 @@ export const updateSkillValidator: ValidationChain[] = [
         .withMessage('information cant be empty')
         .isString()
         .withMessage('invalid information'),
-    body('level')
-        .optional()
-        .notEmpty()
-        .withMessage('level cant be empty')
-        .isIn(Object.values(SkillLevel))
-        .withMessage(
-            `level must be one of: ${Object.values(SkillLevel).join(', ')}`,
-        ),
+    // body('level')
+    //     .optional()
+    //     .notEmpty()
+    //     .withMessage('level cant be empty')
+    //     .isIn(Object.values(SkillLevel))
+    //     .withMessage(
+    //         `level must be one of: ${Object.values(SkillLevel).join(', ')}`,
+    //     ),
+    body('level').optional().isString().withMessage('invalid level'),
 ];
 
 export const deleteSkillValidator: ValidationChain[] = [
