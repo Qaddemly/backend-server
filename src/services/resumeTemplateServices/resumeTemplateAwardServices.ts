@@ -18,25 +18,25 @@ export const createAwardContentService = async (
     if (!resumeTemplate) {
         throw new AppError('Resume Template not found', 404);
     }
-    let date = null;
-    if (data.date) {
-        if (data.date.year) {
-            date = `${data.date.year}`;
-        }
-        if (data.date.year && data.date.month) {
-            date = `${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
-        }
+    // let date = null;
+    // if (data.date) {
+    //     if (data.date.year) {
+    //         date = `${data.date.year}`;
+    //     }
+    //     if (data.date.year && data.date.month) {
+    //         date = `${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
+    //     }
 
-        if (data.date.year && data.date.month && data.date.day) {
-            date = `${data.date.day.toString().padStart(2, '0')}/${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
-        }
-    }
+    //     if (data.date.year && data.date.month && data.date.day) {
+    //         date = `${data.date.day.toString().padStart(2, '0')}/${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
+    //     }
+    // }
 
     const newAwardContent = ResumeTemplateAwardRepository.create({
         award: data.award,
         award_url: data.award_url,
         issuer: data.issuer,
-        date,
+        date: data.date,
         description: data.description,
         resumeTemplate,
     });
@@ -100,20 +100,20 @@ export const updateOneAwardContentService = async (
     if (!awardContent) {
         throw new AppError('award Content not found', 404);
     }
-    let date = null;
-    if (data.date) {
-        if (data.date.year && !data.date.month) {
-            date = `${data.date.year}`;
-        } else if (data.date.year && data.date.month && !data.date.day) {
-            date = `${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
-        } else if (data.date.year && data.date.month && data.date.day) {
-            date = `${data.date.day.toString().padStart(2, '0')}/${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
-        } else awardContent.date = null;
-    }
+    // let date = null;
+    // if (data.date) {
+    //     if (data.date.year && !data.date.month) {
+    //         date = `${data.date.year}`;
+    //     } else if (data.date.year && data.date.month && !data.date.day) {
+    //         date = `${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
+    //     } else if (data.date.year && data.date.month && data.date.day) {
+    //         date = `${data.date.day.toString().padStart(2, '0')}/${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
+    //     } else awardContent.date = null;
+    // }
     awardContent.award = data.award || awardContent.award;
     awardContent.award_url = data.award_url || awardContent.award_url;
     awardContent.issuer = data.issuer || awardContent.issuer;
-    awardContent.date = date || awardContent.date;
+    awardContent.date = data.date || awardContent.date;
     awardContent.description = data.description || awardContent.description;
 
     return await ResumeTemplateAwardRepository.save(awardContent);

@@ -3,10 +3,8 @@ export interface CreateProjectContentBody {
     project_link?: string;
     subtitle?: string;
 
-    start_month?: number;
-    end_month?: number;
-    start_year?: number;
-    end_year?: number;
+    start_date?: Date;
+    end_date?: Date;
 
     is_current?: boolean;
 
@@ -20,10 +18,8 @@ export interface UpdateProjectContentBody {
     project_link?: string;
     subtitle?: string;
 
-    start_month?: number;
-    end_month?: number;
-    start_year?: number;
-    end_year?: number;
+    start_date?: Date;
+    end_date?: Date;
 
     is_current?: boolean;
 

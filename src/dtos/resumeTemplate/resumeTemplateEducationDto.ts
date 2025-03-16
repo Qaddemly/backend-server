@@ -4,10 +4,8 @@ export interface CreateEducationContentBody {
     degree?: string;
     city?: string;
     country?: string;
-    start_month?: number;
-    end_month?: number;
-    start_year?: number;
-    end_year?: number;
+    start_date?: Date;
+    end_date?: Date;
 
     is_current?: boolean;
 
@@ -22,10 +20,8 @@ export interface UpdateEducationContentBody {
     degree?: string;
     city?: string;
     country?: string;
-    start_month?: number;
-    end_month?: number;
-    start_year?: number;
-    end_year?: number;
+    start_date?: Date;
+    end_date?: Date;
 
     is_current?: boolean;
 

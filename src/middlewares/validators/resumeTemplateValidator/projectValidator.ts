@@ -24,20 +24,8 @@ export const createProjectValidator: ValidationChain[] = [
         .isInt({ min: 1900, max: new Date().getFullYear() })
         .withMessage('Start year must be a valid year'),
 
-    body('start_month')
-        .optional()
-        .isInt({ min: 1, max: 12 })
-        .withMessage('Start month must be between 1 and 12'),
-
-    body('end_year')
-        .optional()
-        .isInt({ min: 1900, max: new Date().getFullYear() })
-        .withMessage('End year must be a valid year'),
-
-    body('end_month')
-        .optional()
-        .isInt({ min: 1, max: 12 })
-        .withMessage('End month must be between 1 and 12'),
+    body('start_date').isDate().withMessage('invalid start date'),
+    body('end_date').isDate().withMessage('invalid end date'),
     body('description')
         .optional()
         .isString()
@@ -71,25 +59,8 @@ export const updateProjectValidator: ValidationChain[] = [
         .isBoolean()
         .withMessage('is_current must be a boolean'),
 
-    body('start_year')
-        .optional()
-        .isInt({ min: 1900, max: new Date().getFullYear() })
-        .withMessage('Start year must be a valid year'),
-
-    body('start_month')
-        .optional()
-        .isInt({ min: 1, max: 12 })
-        .withMessage('Start month must be between 1 and 12'),
-
-    body('end_year')
-        .optional()
-        .isInt({ min: 1900, max: new Date().getFullYear() })
-        .withMessage('End year must be a valid year'),
-
-    body('end_month')
-        .optional()
-        .isInt({ min: 1, max: 12 })
-        .withMessage('End month must be between 1 and 12'),
+    body('start_date').optional().isDate().withMessage('invalid start date'),
+    body('end_date').optional().isDate().withMessage('invalid end date'),
     body('description')
         .optional()
         .isString()

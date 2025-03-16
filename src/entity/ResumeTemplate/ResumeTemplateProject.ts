@@ -20,11 +20,11 @@ export class ResumeTemplateProject {
     @Column({ nullable: true })
     project_link: string;
 
-    @Column({ type: 'varchar', nullable: true })
-    start_date: string;
+    @Column({ type: 'date', nullable: true })
+    start_date: Date;
 
-    @Column({ type: 'varchar', nullable: true })
-    end_date: string;
+    @Column({ type: 'date', nullable: true })
+    end_date: Date;
 
     @Column({ default: false })
     is_current: boolean;
