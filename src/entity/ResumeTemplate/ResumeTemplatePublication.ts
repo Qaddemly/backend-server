@@ -19,8 +19,8 @@ export class ResumeTemplatePublication {
     publication_url: string;
     @Column({ nullable: true })
     publisher: string;
-    @Column({ type: 'varchar', nullable: true })
-    date: string;
+    @Column({ type: 'date', nullable: true })
+    date: Date;
     @Column({ nullable: true })
     description: string;
     @ManyToOne(

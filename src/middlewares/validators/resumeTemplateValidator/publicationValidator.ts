@@ -14,19 +14,7 @@ export const createPublicationValidator: ValidationChain[] = [
         .isString()
         .withMessage('invalid publication_link'),
     body('publisher').optional().isString().withMessage('invalid publisher'),
-    body('date.day')
-        .optional()
-        .isInt({ min: 1, max: 31 })
-        .withMessage('invalid day'),
-    body('date.month')
-        .optional()
-        .isInt({ min: 1, max: 12 })
-        .withMessage('Start month must be between 1 and 12'),
-
-    body('date.year')
-        .optional()
-        .isInt({ min: 1900, max: new Date().getFullYear() })
-        .withMessage('End year must be a valid year'),
+    body('date').optional().isDate().withMessage('invalid date'),
 
     body('description')
         .optional()
@@ -63,19 +51,7 @@ export const updatePublicationValidator: ValidationChain[] = [
         .isString()
         .withMessage('invalid publication_link'),
     body('publisher').optional().isString().withMessage('invalid publisher'),
-    body('date.day')
-        .optional()
-        .isInt({ min: 1, max: 31 })
-        .withMessage('invalid day'),
-    body('date.month')
-        .optional()
-        .isInt({ min: 1, max: 12 })
-        .withMessage('Start month must be between 1 and 12'),
-
-    body('date.year')
-        .optional()
-        .isInt({ min: 1900, max: new Date().getFullYear() })
-        .withMessage('End year must be a valid year'),
+    body('date').optional().isDate().withMessage('invalid date'),
 
     body('description')
         .optional()

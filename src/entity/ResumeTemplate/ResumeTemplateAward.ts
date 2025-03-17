@@ -20,8 +20,8 @@ export class ResumeTemplateAward {
     award_url: string;
     @Column({ nullable: true })
     issuer: string;
-    @Column({ type: 'varchar', nullable: true })
-    date: string;
+    @Column({ type: 'date', nullable: true })
+    date: Date;
     @Column({ nullable: true })
     description: string;
     @ManyToOne(

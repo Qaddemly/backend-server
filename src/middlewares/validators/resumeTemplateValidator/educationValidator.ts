@@ -17,25 +17,8 @@ export const createEducationValidator: ValidationChain[] = [
         .isBoolean()
         .withMessage('is_current must be a boolean'),
 
-    body('start_year')
-        .optional()
-        .isInt({ min: 1900, max: new Date().getFullYear() })
-        .withMessage('Start year must be a valid year'),
-
-    body('start_month')
-        .optional()
-        .isInt({ min: 1, max: 12 })
-        .withMessage('Start month must be between 1 and 12'),
-
-    body('end_year')
-        .optional()
-        .isInt({ min: 1900, max: new Date().getFullYear() })
-        .withMessage('End year must be a valid year'),
-
-    body('end_month')
-        .optional()
-        .isInt({ min: 1, max: 12 })
-        .withMessage('End month must be between 1 and 12'),
+    body('start_date').optional().isDate().withMessage('invalid start_date'),
+    body('end_date').optional().isDate().withMessage('invalid end_date'),
     body('description')
         .optional()
         .isString()
@@ -74,25 +57,8 @@ export const updateEducationValidator: ValidationChain[] = [
         .isBoolean()
         .withMessage('is_current must be a boolean'),
 
-    body('start_year')
-        .optional()
-        .isInt({ min: 1900, max: new Date().getFullYear() })
-        .withMessage('Start year must be a valid year'),
-
-    body('start_month')
-        .optional()
-        .isInt({ min: 1, max: 12 })
-        .withMessage('Start month must be between 1 and 12'),
-
-    body('end_year')
-        .optional()
-        .isInt({ min: 1900, max: new Date().getFullYear() })
-        .withMessage('End year must be a valid year'),
-
-    body('end_month')
-        .optional()
-        .isInt({ min: 1, max: 12 })
-        .withMessage('End month must be between 1 and 12'),
+    body('start_date').optional().isDate().withMessage('invalid start_date'),
+    body('end_date').optional().isDate().withMessage('invalid end_date'),
     body('description')
         .optional()
         .isString()

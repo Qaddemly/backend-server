@@ -23,22 +23,15 @@ export const createEducationContentService = async (
     if (!resumeTemplate) {
         throw new AppError('Resume Template not found', 404);
     }
-    let start_date = null;
-    let end_date = null;
-    if (data.start_year && data.start_month) {
-        start_date = `${data.start_month.toString().padStart(2, '0')}/${data.start_year}`;
-    }
-    if (data.end_year && data.end_month) {
-        end_date = `${data.end_month.toString().padStart(2, '0')}/${data.end_year}`;
-    }
+
     const newEducationContent = ResumeTemplateEducationRepository.create({
         school: data.school,
         school_link: data.school_link,
         degree: data.degree,
         city: data.city,
         country: data.country,
-        start_date: start_date,
-        end_date: end_date,
+        start_date: data.start_date,
+        end_date: data.end_date,
         is_current: data.is_current,
         description: data.description,
         resumeTemplate: resumeTemplate,
@@ -103,22 +96,16 @@ export const updateOneEducationContentService = async (
     if (!educationContent) {
         throw new AppError('education Content not found', 404);
     }
-    let start_date = null;
-    let end_date = null;
-    if (data.start_year && data.start_month) {
-        start_date = `${data.start_month.toString().padStart(2, '0')}/${data.start_year}`;
-    }
-    if (data.end_year && data.end_month) {
-        end_date = `${data.end_month.toString().padStart(2, '0')}/${data.end_year}`;
-    }
+
     educationContent.school = data.school || educationContent.school;
     educationContent.school_link =
         data.school_link || educationContent.school_link;
     educationContent.degree = data.degree || educationContent.degree;
     educationContent.city = data.city || educationContent.city;
     educationContent.country = data.country || educationContent.country;
-    educationContent.start_date = start_date || educationContent.start_date;
-    educationContent.end_date = end_date || educationContent.end_date;
+    educationContent.start_date =
+        data.start_date || educationContent.start_date;
+    educationContent.end_date = data.end_date || educationContent.end_date;
     educationContent.is_current =
         data.is_current || educationContent.is_current;
     educationContent.description =

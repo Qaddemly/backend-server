@@ -4,7 +4,7 @@ export interface CreatePublicationContentBody {
     title?: string;
     publication_url?: string;
     publisher?: string;
-    date: { day?: number; month?: number; year?: number };
+    date: Date;
     description?: string;
     [key: string]: any;
 }
@@ -14,6 +14,6 @@ export interface UpdatePublicationContentBody {
     publication_url?: string;
     publisher?: string;
     description?: string;
-    date: { day?: number; month?: number; year?: number };
+    date: Date;
     [key: string]: any;
 }

@@ -4,7 +4,7 @@ export interface CreateAwardContentBody {
     award: string;
     award_url?: string;
     issuer?: string;
-    date: { day?: number; month?: number; year?: number };
+    date: Date;
     description?: string;
     [key: string]: any;
 }
@@ -14,6 +14,6 @@ export interface UpdateAwardContentBody {
     award_url?: string;
     issuer?: string;
     description?: string;
-    date: { day?: number; month?: number; year?: number };
+    date: Date;
     [key: string]: any;
 }

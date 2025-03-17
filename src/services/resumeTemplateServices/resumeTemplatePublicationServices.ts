@@ -18,25 +18,12 @@ export const createPublicationContentService = async (
     if (!resumeTemplate) {
         throw new AppError('Resume Template not found', 404);
     }
-    let date = null;
-    if (data.date) {
-        if (data.date.year) {
-            date = `${data.date.year}`;
-        }
-        if (data.date.year && data.date.month) {
-            date = `${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
-        }
-
-        if (data.date.year && data.date.month && data.date.day) {
-            date = `${data.date.day.toString().padStart(2, '0')}/${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
-        }
-    }
 
     const newPublicationContent = ResumeTemplatePublicationRepository.create({
         title: data.title,
         publication_url: data.publication_url,
         publisher: data.publisher,
-        date,
+        date: data.date,
         description: data.description,
         resumeTemplate,
     });
@@ -104,22 +91,13 @@ export const updateOnePublicationContentService = async (
     if (!publicationContent) {
         throw new AppError('publication Content not found', 404);
     }
-    let date = null;
-    if (data.date) {
-        if (data.date.year && !data.date.month) {
-            date = `${data.date.year}`;
-        } else if (data.date.year && data.date.month && !data.date.day) {
-            date = `${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
-        } else if (data.date.year && data.date.month && data.date.day) {
-            date = `${data.date.day.toString().padStart(2, '0')}/${data.date.month.toString().padStart(2, '0')}/${data.date.year}`;
-        } else publicationContent.date = null;
-    }
+
     publicationContent.title = data.title || publicationContent.title;
     publicationContent.publication_url =
         data.publication_url || publicationContent.publication_url;
     publicationContent.publisher =
         data.publisher || publicationContent.publisher;
-    publicationContent.date = date || publicationContent.date;
+    publicationContent.date = data.date || publicationContent.date;
     publicationContent.description =
         data.description || publicationContent.description;
 
