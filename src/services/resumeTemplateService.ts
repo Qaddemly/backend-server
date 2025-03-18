@@ -22,7 +22,10 @@ import { ResumeCustomSection } from '../entity/ResumeTemplate/ResumeCustomSectio
 import { ResumeReference } from '../entity/ResumeTemplate/ResumeReference';
 
 export const getAllResumeTemplatesOfUser = async (userId: number) => {
-    return await ResumeTemplateRepository.findBy({ account_id: userId });
+    return await ResumeTemplateRepository.find({
+        where: { account_id: userId },
+        relations: ['personalInfo'],
+    });
 };
 
 export const getResumeTemplatesById = async (
