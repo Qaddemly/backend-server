@@ -13,6 +13,8 @@ import mountRoutes from './routes';
 import { businessRouter } from './routes/businessRoutes';
 import { morganMiddleware } from './utils/logger';
 import { HrRole } from './enums/HrRole';
+import { setUpSSEevents } from './controllers/notificationController';
+import './events/eventListener'; // Load event listeners
 
 const app = express();
 
@@ -44,6 +46,7 @@ app.use(express.json());
 //mount Routes
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 mountRoutes(app);
+app.get('/events', setUpSSEevents);
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
     res.status(404).json({
         success: false,

@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../../data-source';
 import { Job } from '../../entity/Job/Job';
-import { updateJobQueryData } from '../../dtos/jobDto';
+import { UpdateJobBodyBTO, updateJobQueryData } from '../../dtos/jobDto';
 
 class JobRepositoryClass extends Repository<Job> {
     async getSixJobsOfBusiness(businessId: number) {
@@ -52,7 +52,7 @@ class JobRepositoryClass extends Repository<Job> {
         };
     }
 
-    async updateOneJob(jonId: number, updateData: updateJobQueryData) {
+    async updateOneJob(jonId: number, updateData: UpdateJobBodyBTO) {
         const job = await this.createQueryBuilder('job')
             .update(Job)
             .set(updateData)

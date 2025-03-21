@@ -37,6 +37,8 @@ import fs from 'fs';
 import { Country } from '../enums/country';
 import path from 'path';
 import { redisClient } from '../config/redis';
+import { sendJobNotification } from './notificationServices';
+import { eventEmitter } from '../events/eventEmitter';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -44,8 +46,8 @@ export const createJobService = async (
     const {
         title,
         description,
-        country,
-        city,
+
+        location,
         location_type,
         skills,
         salary,
@@ -77,8 +79,8 @@ export const createJobService = async (
     const newJob = new Job();
     newJob.title = title;
     newJob.description = description;
-    newJob.country = country;
-    newJob.city = city;
+    newJob.country = location.country;
+    newJob.city = location.city;
     newJob.location_type = location_type;
     newJob.skills = skills;
     newJob.salary = salary;
@@ -87,6 +89,8 @@ export const createJobService = async (
     newJob.experience = experience;
     newJob.business = business;
     console.log('newJob', newJob);
+    //await sendJobNotification(newJob);
+    eventEmitter.emit('sendNotification', newJob);
     return await JobRepository.save(newJob);
 };
 
@@ -116,8 +120,7 @@ export const updateJobService = async (
     const {
         title,
         description,
-        country,
-        city,
+        location,
         location_type,
         skills,
         salary,
@@ -153,8 +156,8 @@ export const updateJobService = async (
     const job = await JobRepository.updateOneJob(jobId, {
         title: title,
         description: description,
-        country: country,
-        city: city,
+        country: location.country,
+        city: location.city,
         location_type: location_type,
         skills: skills,
         salary: salary,
