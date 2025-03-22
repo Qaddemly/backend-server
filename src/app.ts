@@ -15,6 +15,8 @@ import { morganMiddleware } from './utils/logger';
 import { HrRole } from './enums/HrRole';
 import { setUpSSEevents } from './controllers/notificationController';
 import './events/eventListener'; // Load event listeners
+import { connectRabbitMQ } from './config/rabbitMQ';
+import consumeNotifications from './events/notificationConsumer';
 
 const app = express();
 
@@ -47,6 +49,9 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 mountRoutes(app);
 app.get('/events', setUpSSEevents);
+// connectRabbitMQ().then(() => {
+//     consumeNotifications();
+// });
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
     res.status(404).json({
         success: false,

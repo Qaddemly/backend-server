@@ -39,6 +39,7 @@ import path from 'path';
 import { redisClient } from '../config/redis';
 import { sendJobNotification } from './notificationServices';
 import { eventEmitter } from '../events/eventEmitter';
+import { publishToQueue } from '../config/rabbitMQ';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -88,10 +89,12 @@ export const createJobService = async (
     newJob.keywords = keywords;
     newJob.experience = experience;
     newJob.business = business;
-    console.log('newJob', newJob);
     //await sendJobNotification(newJob);
-    eventEmitter.emit('sendNotification', newJob);
-    return await JobRepository.save(newJob);
+    const job = await JobRepository.save(newJob);
+    eventEmitter.emit('sendJobPostedNotification', newJob);
+    //await publishToQueue('send_notification', { jobId: newJob.id });
+
+    return job;
 };
 
 export const getOneJobService = async (req: Request) => {
