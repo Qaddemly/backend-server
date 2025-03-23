@@ -33,6 +33,7 @@ export class ResumeTemplatePersonalInfo {
     @OneToOne(
         () => ResumeTemplate,
         (resumeTemplate) => resumeTemplate.personalInfo,
+        { onDelete: 'CASCADE' },
     )
     @JoinColumn({ name: 'resume_template_id' })
     resumeTemplate: ResumeTemplate;
