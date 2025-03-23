@@ -6,6 +6,7 @@ export interface NotificationDoc extends mongoose.Document {
     type: string;
     isRead: boolean;
     isSent: boolean;
+    isSeen: boolean;
     jobId?: number;
     businessId?: number;
     jobApplicationId?: number;
@@ -23,6 +24,7 @@ const notificationSchema = new mongoose.Schema<NotificationDoc>(
             required: true,
         },
         isRead: { type: Boolean, default: false },
+        isSeen: { type: Boolean, default: false },
         jobId: Number,
         businessId: Number,
         jobApplicationId: Number,

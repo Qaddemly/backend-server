@@ -17,33 +17,70 @@ export const sendJobNotification = async (job: Job) => {
         where: { business_id: job.business_id },
     });
     //2- create notification for each account
-    for (const follow of follows) {
-        const newNotification = await Notification.create({
+
+    const onlineClients: { [key: string]: any } = {};
+    for (const client of clients) {
+        onlineClients[`${client.accountId}`] = client;
+    }
+    //console.log(onlineClients);
+    const notifications = follows.map((follow) => {
+        let isSent = false;
+        if (
+            follow.account_id ==
+            onlineClients[`${follow.account_id}`]?.accountId
+        ) {
+            isSent = true;
+        }
+        const newNotification = new Notification({
             type: NotificationType.JobPosted,
             message: `New job posted: ${job.title} on business ${job.business.name}`,
             jobId: job.id,
             businessId: job.business_id,
             accountId: follow.account_id,
+            isSent,
         });
-        //3- broadcast notification to all connected clients
-        for (const client of clients) {
-            if (follow.account_id == Number(client.accountId)) {
-                newNotification.isSent = true;
-                await newNotification.save();
-                client.res.write(
-                    `data: ${JSON.stringify(newNotification)}\n\n`,
-                );
-                break;
-            }
+        if (isSent) {
+            onlineClients[`${follow.account_id}`] = {
+                ...onlineClients[`${follow.account_id}`],
+                notification: newNotification,
+            };
         }
-    }
+        return newNotification;
+    });
+    Object.values(onlineClients).forEach((value) => {
+        value.res.write(`data: ${JSON.stringify(value.notification)}\n\n`);
+    });
+    await Notification.insertMany(notifications);
+    //console.log(onlineClients);
+
+    // for (const follow of follows) {
+    //     const newNotification = await Notification.create({
+    //         type: NotificationType.JobPosted,
+    //         message: `New job posted: ${job.title} on business ${job.business.name}`,
+    //         jobId: job.id,
+    //         businessId: job.business_id,
+    //         accountId: follow.account_id,
+    //     });
+    //     //3- broadcast notification to all connected clients
+    //     for (const client of clients) {
+    //         if (follow.account_id == Number(client.accountId)) {
+    //             newNotification.isSent = true;
+    //             await newNotification.save();
+    //             client.res.write(
+    //                 `data: ${JSON.stringify(newNotification)}\n\n`,
+    //             );
+    //             break;
+    //         }
+    //     }
+    // }
 };
 
 export const sendJobApplicationUpdateNotification = async (
     jobApplication: any,
 ) => {
+    console.log('hello from sending notifications job app0li');
     const newNotification = await Notification.create({
-        type: NotificationType.JobPosted,
+        type: NotificationType.JobApplicationStatusUpdated,
         message: `update on your job application on job ${jobApplication.job.title} posted on business ${jobApplication.job.business.name} with state ${jobApplication.state}`,
         jobId: jobApplication.job.id,
         businessId: jobApplication.job.business_id,
@@ -60,12 +97,12 @@ export const sendJobApplicationUpdateNotification = async (
     }
 };
 
-export const getAllUserNotifications = async (account_id: number) => {
+export const getAllUserNotificationService = async (account_id: number) => {
     const notifications = await Notification.find({ accountId: account_id });
     return notifications;
 };
 
-export const getOneUserNotification = async (
+export const getOneUserNotificationService = async (
     notificationId: string,
     account_id: number,
 ) => {
@@ -79,7 +116,7 @@ export const getOneUserNotification = async (
     return notification;
 };
 
-export const getDeleteUserNotification = async (
+export const deleteUserNotificationService = async (
     notificationId: string,
     account_id: number,
 ) => {
@@ -91,4 +128,30 @@ export const getDeleteUserNotification = async (
         throw new AppError('notification not found', 404);
     }
     return notification;
+};
+
+export const readNotificationService = async (
+    id: string,
+    accountId: number,
+) => {
+    const notification = await Notification.findOneAndUpdate(
+        { _id: id, accountId },
+        {
+            isRead: true,
+            isSeen: true,
+        },
+        { new: true },
+    );
+    if (!notification) {
+        throw new AppError('notification not found', 404);
+    }
+    return notification;
+};
+
+export const makeAllNotificationsSeenService = async (accountId: number) => {
+    const notifications = await Notification.updateMany(
+        { accountId: accountId, isSeen: false },
+        { isSeen: true },
+    );
+    return notifications;
 };

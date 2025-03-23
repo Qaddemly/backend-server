@@ -20,10 +20,10 @@ eventEmitter.on(
     'sendUpdateJobApplicationStatusNotification',
     async (jobApplication: JobApplication) => {
         try {
-            // console.log(
-            //     `Processing notification for jobApplication:`,
-            //     jobApplication,
-            // );
+            console.log(
+                `Processing notification for jobApplication:`,
+                jobApplication,
+            );
 
             await sendJobApplicationUpdateNotification(jobApplication);
         } catch (error) {
