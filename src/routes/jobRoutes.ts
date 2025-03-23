@@ -102,15 +102,11 @@ jobRouter.post(
     applyToJob,
 );
 
-jobRouter.get(
-    '/getAllJobs/',
-
-    getAllJobs,
-);
+jobRouter.get('/getAllJobs/', getAllJobs);
 
 jobRouter.get('/recommendedJobsForUser', protect, getRecommendedJobsForUser);
 
-jobRouter.post('/loadJobsFromCSV', protect, async (req, res) => {
+jobRouter.post('/loadJobsFromCSV', async (req, res) => {
     await loadJobsFromCSV();
     res.send('Loading jobs from CSV');
 });

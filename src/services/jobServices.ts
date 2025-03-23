@@ -781,14 +781,17 @@ export const loadJobsFromCSV = async () => {
                 job.skills = [data['skills']];
                 job.salary = parseSalary(data['Salary Range']);
                 job.employee_type = mapEmploymentType(data['Work Type']);
-                job.experience = parseExperience(data['Experience']);
+                job.experience = Math.floor(
+                    parseExperience(data['Experience']),
+                );
                 job.keywords = [data['Job Title'], data['skills']];
                 job.business_id = 1;
                 job.status = JobStatus.OPENED;
-                console.log('job', job);
                 await JobRepository.save(job);
+                console.log('Job Added');
             } catch (e) {
                 console.log('Error saving job');
+                console.log(e);
             }
         })
         .on('end', async () => {
