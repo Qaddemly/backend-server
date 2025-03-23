@@ -14,6 +14,7 @@
    "license": "ISC",
    "dependencies": {
       "@types/morgan": "^1.9.9",
+      "amqplib": "^0.10.5",
       "axios": "^1.7.9",
       "bcryptjs": "^2.4.3",
       "class-transformer": "^0.5.1",
@@ -46,6 +47,7 @@
       "winston-daily-rotate-file": "^5.0.0"
    },
    "devDependencies": {
+      "@types/amqplib": "^0.10.7",
       "@types/axios": "^0.9.36",
       "@types/bcryptjs": "^2.4.6",
       "@types/connect-mongodb-session": "^2.4.7",

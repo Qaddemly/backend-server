@@ -6,8 +6,9 @@ import { Country } from '../enums/country';
 export interface CreateJobBodyBTO {
     title: string;
     description: string;
-    country: Country;
-    city: string;
+
+    location: { country: Country; city: string };
+
     location_type: LocationType;
     skills: string[];
     salary: number;
@@ -17,15 +18,27 @@ export interface CreateJobBodyBTO {
     business_id: number;
 }
 
-export interface UpdateJobBodyBTO extends CreateJobBodyBTO {}
+export interface UpdateJobBodyBTO {
+    title?: string;
+    description?: string;
+
+    country: Country;
+    city: string;
+
+    location_type?: LocationType;
+    skills?: string[];
+    salary?: number;
+    employee_type?: EmploymentType;
+    keywords?: string[];
+    experience?: number;
+}
 export interface updateJobQueryData
     extends Pick<
         CreateJobBodyBTO,
         | 'description'
         | 'employee_type'
         | 'keywords'
-        | 'country'
-        | 'city'
+        | 'location'
         | 'salary'
         | 'location_type'
         | 'title'

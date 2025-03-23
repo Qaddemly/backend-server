@@ -10,6 +10,7 @@ import { reviewRouter } from './reviewRoutes';
 import statsRouter from './statsRoutes';
 
 import { resumeTemplateRouter } from './resumeTemplateRoutes';
+import notificationRouter from './notificationRoutes';
 
 const mountRoutes = (app: Express) => {
     const prefixUrl = '/api/v1';
@@ -22,6 +23,7 @@ const mountRoutes = (app: Express) => {
     app.use('/api/v1/review', reviewRouter);
     app.use('/api/v1/stats', statsRouter);
     app.use('/api/v1/resumeTemplate', resumeTemplateRouter);
+    app.use('/api/v1/notification', notificationRouter);
 };
 
 export default mountRoutes;
