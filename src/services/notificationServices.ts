@@ -22,6 +22,7 @@ export const sendJobNotification = async (job: Job) => {
     for (const client of clients) {
         onlineClients[`${client.accountId}`] = client;
     }
+    const receiveNotesClients: { [key: string]: any } = {};
     //console.log(onlineClients);
     const notifications = follows.map((follow) => {
         let isSent = false;
@@ -40,16 +41,18 @@ export const sendJobNotification = async (job: Job) => {
             isSent,
         });
         if (isSent) {
-            onlineClients[`${follow.account_id}`] = {
+            receiveNotesClients[`${follow.account_id}`] = {
                 ...onlineClients[`${follow.account_id}`],
                 notification: newNotification,
             };
         }
         return newNotification;
     });
-    Object.values(onlineClients).forEach((value) => {
+    console.log(receiveNotesClients);
+    Object.values(receiveNotesClients).forEach((value) => {
         value.res.write(`data: ${JSON.stringify(value.notification)}\n\n`);
     });
+
     await Notification.insertMany(notifications);
     //console.log(onlineClients);
 
