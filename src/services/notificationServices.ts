@@ -7,6 +7,7 @@ import { FollowBusinessRepository } from '../Repository/General/followBusinessRe
 import { clients } from '../controllers/notificationController';
 import AppError from '../utils/appError';
 import { JobApplication } from '../entity/Job/JobApplication';
+import { BusinessRepository } from '../Repository/Business/businessRepository';
 // async function getClientsList() {
 //     const clientStrings = await redisClient.lRange('clients', 0, -1); // Get all items
 //     return clientStrings.map((client) => JSON.parse(client)); // Convert JSON to object
@@ -102,7 +103,17 @@ export const sendJobApplicationUpdateNotification = async (
 
 export const getAllUserNotificationService = async (account_id: number) => {
     const notifications = await Notification.find({ accountId: account_id });
-    return notifications;
+    const businessIds = notifications.map((n) => n.businessId);
+    const businesses = await BusinessRepository.findByIds(businessIds);
+    const businessMap = new Map();
+    businesses.forEach((business) => businessMap.set(business.id, business));
+
+    const enrichedNotifications = notifications.map((notification) => ({
+        ...notification.toObject(),
+        business: businessMap.get(notification.businessId) || undefined, // Attach business data
+    }));
+
+    return enrichedNotifications;
 };
 
 export const getOneUserNotificationService = async (
