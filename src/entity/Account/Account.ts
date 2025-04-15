@@ -32,6 +32,7 @@ import { AccountArchivedJobApplications } from '../Job/AccountArchivedJobApplica
 import { AccountSavedJobs } from '../Job/AccountSavedJobs';
 import { AccountLinks } from './AccountLinks';
 import { ResumeTemplate } from '../ResumeTemplate/ResumeTemplate';
+import { CoverLetter } from '../CoverLetter/CoverLetter';
 
 @Entity()
 export class Account {
@@ -167,7 +168,10 @@ export class Account {
         { cascade: true },
     )
     resume_templates: ResumeTemplate[];
-
+    @OneToMany(() => CoverLetter, (coverLetter) => coverLetter.account, {
+        cascade: true,
+    })
+    coverLetters: CoverLetter[];
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 
