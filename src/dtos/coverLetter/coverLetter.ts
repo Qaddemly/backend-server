@@ -3,6 +3,7 @@ export interface CreateCoverLetterDto {
 }
 
 export interface UpdateCoverLetterInfoDto {
+    body?: string;
     name?: string;
     date?: Date;
     recipientDetails?: {

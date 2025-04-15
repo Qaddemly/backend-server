@@ -70,8 +70,9 @@ export const updateCoverLetterInfoService = async (
     if (!coverLetter) {
         throw new AppError('Cover letter not found', 404);
     }
-    coverLetter.name = data.name || coverLetter.name;
-    coverLetter.date = data.date || coverLetter.date;
+    coverLetter.name = data.name;
+    coverLetter.date = data.date;
+    coverLetter.body = data.body;
     if (data.recipientDetails) {
         coverLetter.recipientDetails.nameOfRecipient =
             data.recipientDetails?.nameOfRecipient || null;

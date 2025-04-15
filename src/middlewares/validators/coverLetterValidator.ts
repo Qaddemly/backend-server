@@ -17,6 +17,10 @@ export const UpdateCoverLetterValidator = [
         .isString()
         .trim()
         .withMessage('name must be valid string'),
+    body('body')
+        .optional()
+        .isString()
+        .withMessage('body must be a valid string'),
     body('date').optional().isDate().withMessage('date must be a valid date'),
     body('recipientDetails')
         .optional()

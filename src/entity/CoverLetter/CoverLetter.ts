@@ -21,6 +21,8 @@ export class CoverLetter {
     name: string;
     @Column({ default: new Date(), type: 'date' })
     date: Date;
+    @Column({ type: 'text', nullable: true })
+    body: string;
     @Column(() => RecipientDetails, { prefix: false })
     recipientDetails: RecipientDetails;
     @OneToOne(
