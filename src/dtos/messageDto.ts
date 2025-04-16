@@ -3,6 +3,4 @@ export interface messageDTO {
     senderId: number;
     receiverId: number;
     content: string;
-    isSeen: boolean;
-    isDelivered: boolean;
 }

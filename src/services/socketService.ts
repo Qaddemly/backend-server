@@ -14,7 +14,7 @@ export const SocketService = (server: any) => {
 
     io.on('connection', async (socket) => {
         socket.on('connect_user', async (userId) => {
-            // When User Connect (Save it's id in redis, to broadcast to it later)
+            // TODO: When user is connected, we need to make all messages as delivered
             try {
                 await redisClient.set(`User ${userId} Socket`, `${socket.id}`);
                 Logger.info(`${userId} Connected to server on ${socket.id}`);
@@ -23,15 +23,16 @@ export const SocketService = (server: any) => {
             }
         });
 
-        socket.on('message', async (message: messageDTO) => {
-            const receiverId = message.receiverId;
+        socket.on('message', async (messageDTO: messageDTO) => {
+            const receiverId = messageDTO.receiverId;
             const receiverSocketId = await redisClient.get(
                 `User ${receiverId} Socket`,
             );
             console.log(receiverSocketId);
             const receiverSocket = io.sockets.sockets.get(receiverSocketId);
             console.log(receiverSocket);
-            receiverSocket.emit('message', message);
+
+            receiverSocket.emit('message', messageDTO);
         });
 
         socket.on('disconnect', () => {

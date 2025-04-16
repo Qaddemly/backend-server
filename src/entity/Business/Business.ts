@@ -15,6 +15,7 @@ import { Job } from '../Job/Job';
 import { Address } from '../General/Address';
 import { BusinessPhone } from './BusinessPhone';
 import { JobApplicationState } from '../Job/JobApplicationStates';
+import { Chat } from '../Messaging/chat';
 
 @Entity()
 export class Business {
@@ -97,6 +98,11 @@ export class Business {
 
     @OneToMany(() => Job, (job) => job.business, { cascade: true })
     jobs: Job[];
+
+    @OneToMany(() => Chat, (businessChat) => businessChat.business, {
+        cascade: true,
+    })
+    chats: Chat[];
 
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;

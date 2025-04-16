@@ -32,6 +32,7 @@ import { AccountArchivedJobApplications } from '../Job/AccountArchivedJobApplica
 import { AccountSavedJobs } from '../Job/AccountSavedJobs';
 import { AccountLinks } from './AccountLinks';
 import { ResumeTemplate } from '../ResumeTemplate/ResumeTemplate';
+import { Chat } from '../Messaging/chat';
 
 @Entity()
 export class Account {
@@ -167,6 +168,11 @@ export class Account {
         { cascade: true },
     )
     resume_templates: ResumeTemplate[];
+
+    @OneToMany(() => Chat, (businessChat) => businessChat.account, {
+        cascade: true,
+    })
+    chats: Chat[];
 
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
