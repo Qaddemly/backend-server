@@ -1,6 +1,6 @@
 export interface messageDTO {
     chatId: number;
-    senderId: number;
-    receiverId: number;
+    userId: number;
+    businessId: number;
     content: string;
 }
