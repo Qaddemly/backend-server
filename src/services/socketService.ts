@@ -115,11 +115,31 @@ export const SocketService = (server: any) => {
                 userId: number;
             }) => {
                 const { businessId, userId } = connectUserBusinessDTO;
+
                 // We need to join or create a room (Broadcast) for the business users
                 socket.join(`business_${businessId}`);
                 Logger.info(
                     `User ${userId} joined business ${businessId} room`,
                 );
+
+                const connectedUsers = await chatNamespace
+                    .in(`business_${businessId}`)
+                    .fetchSockets();
+
+                // Means this is the first user, so make all messages deliverd
+                if (connectedUsers.length === 1) {
+                    const unDeliveredMessages =
+                        await MessageRepository.createQueryBuilder('message')
+                            .where('message.business_id = :businessId', {
+                                businessId,
+                            })
+                            .andWhere('message.is_delivered = false')
+                            .getMany();
+                    unDeliveredMessages.forEach(async (message) => {
+                        message.is_delivered = true;
+                        await MessageRepository.save(message);
+                    });
+                }
             },
         );
         socket.on('business_send_message', async (messageDTO: messageDTO) => {
@@ -149,6 +169,41 @@ export const SocketService = (server: any) => {
 
             await MessageRepository.save(message);
         });
+
+        socket.on(
+            'business_seen_message',
+            async (businessMakeItSeenDTO: {
+                chatId: number;
+                userId: number;
+                businessId: number;
+            }) => {
+                const userSocketId = await redisClient.get(
+                    `User ${businessMakeItSeenDTO.userId} Socket`,
+                );
+                const userSocket = chatNamespace.sockets.get(userSocketId);
+                if (userSocket) {
+                    userSocket.emit('business_seen_message', {
+                        ...businessMakeItSeenDTO,
+                    });
+                }
+
+                const messages = await MessageRepository.createQueryBuilder(
+                    'message',
+                )
+                    .where('message.chat_id = :chatId', {
+                        chatId: businessMakeItSeenDTO.chatId,
+                    })
+                    .andWhere('message.business_id = :businessId', {
+                        businessId: businessMakeItSeenDTO.businessId,
+                    })
+                    .andWhere('message.is_seen = false')
+                    .getMany();
+                messages.forEach(async (msg) => {
+                    msg.is_seen = true;
+                    await MessageRepository.save(msg);
+                });
+            },
+        );
 
         socket.on('disconnect', () => {
             console.log('Client disconnected');
