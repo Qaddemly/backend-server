@@ -19,6 +19,15 @@ export const SocketService = (server: any) => {
     chatNamespace.on('connection', async (socket) => {
         socket.on('connect_user', async (userId) => {
             // TODO: Make All Unread Messages as delivered
+            const unDeliveredMessages =
+                await MessageRepository.createQueryBuilder('message')
+                    .where('message.account_id = :userId', { userId })
+                    .andWhere('message.is_delivered = false')
+                    .getMany();
+            unDeliveredMessages.forEach(async (message) => {
+                message.is_delivered = true;
+                await MessageRepository.save(message);
+            });
 
             try {
                 await redisClient.set(`User ${userId} Socket`, `${socket.id}`);
@@ -45,6 +54,8 @@ export const SocketService = (server: any) => {
             const message = new Message();
             message.chat = chat;
             message.content = messageDTO.content;
+            message.account_id = messageDTO.userId;
+            message.business_id = messageDTO.businessId;
 
             // Send the message to the business (broadcast to all users in the business)
             socket
@@ -67,10 +78,35 @@ export const SocketService = (server: any) => {
         });
 
         socket.on(
-            'user_message_delivered',
-            async (messageDTO: messageDTO) => {},
+            'user_message_seen',
+            async (userMakeItSeenDTO: {
+                chatId: number;
+                userId: number;
+                businessId: number;
+            }) => {
+                // Emit to business broadcast that message is seen
+
+                socket
+                    .to(`business_${userMakeItSeenDTO.businessId}`)
+                    .emit('user_message_seen', {
+                        ...userMakeItSeenDTO,
+                    });
+
+                const { chatId, userId } = userMakeItSeenDTO;
+                const message = await MessageRepository.createQueryBuilder(
+                    'message',
+                )
+                    .where('message.chat_id = :chatId', { chatId })
+                    .andWhere('message.account_id = :userId', { userId })
+                    .andWhere('message.is_seen = false')
+                    .getMany();
+
+                message.forEach(async (msg) => {
+                    msg.is_seen = true;
+                    await MessageRepository.save(msg);
+                });
+            },
         );
-        socket.on('user_message_seen', async (messageDTO: messageDTO) => {});
 
         socket.on(
             'connect_user_in_business',
@@ -97,6 +133,8 @@ export const SocketService = (server: any) => {
             const message = new Message();
             message.chat = chat;
             message.content = messageDTO.content;
+            message.account_id = messageDTO.userId;
+            message.business_id = messageDTO.businessId;
 
             const userSocketId = await redisClient.get(
                 `User ${messageDTO.userId} Socket`,

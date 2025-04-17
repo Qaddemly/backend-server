@@ -14,6 +14,12 @@ export class Message {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ name: 'account_id' })
+    account_id: number;
+
+    @Column({ name: 'business_id' })
+    business_id: number;
+
     @Column({ name: 'chat_id' })
     chat_id: number;
 
