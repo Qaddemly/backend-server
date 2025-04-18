@@ -18,7 +18,7 @@ export const SocketService = (server: any) => {
 
     chatNamespace.on('connection', async (socket) => {
         socket.on('connect_user', async (userId) => {
-            // TODO: Make All Unread Messages as delivered
+            // TODO: Emit to business that message is deliverd
             const unDeliveredMessages =
                 await MessageRepository.createQueryBuilder('message')
                     .where('message.account_id = :userId', { userId })
@@ -26,6 +26,12 @@ export const SocketService = (server: any) => {
                     .getMany();
             unDeliveredMessages.forEach(async (message) => {
                 message.is_delivered = true;
+                // For Each Message, we need to send an event to business, that message have been delivered
+                socket
+                    .to(`business_${message.business_id}`)
+                    .emit('user_delivered_message', {
+                        ...message,
+                    });
                 await MessageRepository.save(message);
             });
 
@@ -114,6 +120,8 @@ export const SocketService = (server: any) => {
                 businessId: number;
                 userId: number;
             }) => {
+                // TODO: emit to users that message is delivered
+
                 const { businessId, userId } = connectUserBusinessDTO;
 
                 // We need to join or create a room (Broadcast) for the business users
@@ -127,6 +135,7 @@ export const SocketService = (server: any) => {
                     .fetchSockets();
 
                 // Means this is the first user, so make all messages deliverd
+
                 if (connectedUsers.length === 1) {
                     const unDeliveredMessages =
                         await MessageRepository.createQueryBuilder('message')
@@ -137,6 +146,17 @@ export const SocketService = (server: any) => {
                             .getMany();
                     unDeliveredMessages.forEach(async (message) => {
                         message.is_delivered = true;
+                        // For Each Message, we need to send to user, that message have been delivered
+                        const userSocket = await redisClient.get(
+                            `User ${message.account_id} Socket`,
+                        );
+                        const userSocketId =
+                            chatNamespace.sockets.get(userSocket);
+                        if (userSocketId) {
+                            userSocketId.emit('business_delivered_message', {
+                                ...message,
+                            });
+                        }
                         await MessageRepository.save(message);
                     });
                 }
@@ -150,6 +170,7 @@ export const SocketService = (server: any) => {
                 Logger.error(`Chat not found`);
                 return;
             }
+
             const message = new Message();
             message.chat = chat;
             message.content = messageDTO.content;
@@ -181,6 +202,7 @@ export const SocketService = (server: any) => {
                     `User ${businessMakeItSeenDTO.userId} Socket`,
                 );
                 const userSocket = chatNamespace.sockets.get(userSocketId);
+                console.log(`userSocketId`, userSocketId);
                 if (userSocket) {
                     userSocket.emit('business_seen_message', {
                         ...businessMakeItSeenDTO,
