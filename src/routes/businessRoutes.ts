@@ -39,6 +39,8 @@ import {
     getOneJobApplication,
 } from '../controllers/jobController';
 import jobRouter from './jobRoutes';
+import { CreateCustomJobApplicationValidator } from '../middlewares/validators/customJobApplicationValidator';
+import { createCustomJobApplication } from '../controllers/customJobApplicationController';
 
 export const businessRouter = express.Router();
 

@@ -30,6 +30,14 @@ import {
     getAllJobsApplicationsForJobService,
     loadJobsFromCSV,
 } from '../services/jobServices';
+import {
+    CreateCustomJobApplicationValidator,
+    JobIdValidator,
+} from '../middlewares/validators/customJobApplicationValidator';
+import {
+    createCustomJobApplication,
+    getCustomJobApplication,
+} from '../controllers/customJobApplicationController';
 
 const jobRouter = express.Router();
 
@@ -111,4 +119,17 @@ jobRouter.post('/loadJobsFromCSV', async (req, res) => {
     res.send('Loading jobs from CSV');
 });
 
+jobRouter.post(
+    '/:jobId/customJobApplication/create',
+    protect,
+    validateRequestMiddleware(CreateCustomJobApplicationValidator),
+    createCustomJobApplication,
+);
+
+jobRouter.get(
+    '/:jobId/customJobApplication',
+    protect,
+    validateRequestMiddleware(JobIdValidator),
+    getCustomJobApplication,
+);
 export default jobRouter;

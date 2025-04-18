@@ -9,6 +9,7 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Account } from './Account';
+import { CustomJobApplicationSubmit } from '../Job/customJobApplicatoinsSubmit';
 
 @Entity({ name: 'account_education' })
 export class AccountEducation {
@@ -41,4 +42,11 @@ export class AccountEducation {
         foreignKeyConstraintName: 'FK_EDUCATION_ACCOUNT',
     })
     account: Account;
+    @ManyToOne(
+        () => CustomJobApplicationSubmit,
+        (customJobApplicationSubmit) =>
+            customJobApplicationSubmit.accountEducation,
+    )
+    @JoinColumn({ name: 'custom_job_application_submit_id' }) // Links to CustomJobApplicationSubmit
+    custom_job_application_submit: CustomJobApplicationSubmit; // Foreign key to CustomJobApplicationSubmit
 }

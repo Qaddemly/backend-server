@@ -11,6 +11,7 @@ import {
 import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
 import { Account } from './Account';
+import { CustomJobApplicationSubmit } from '../Job/customJobApplicatoinsSubmit';
 
 @Entity({ name: 'account_experience' })
 export class AccountExperience {
@@ -53,4 +54,11 @@ export class AccountExperience {
 
     @Column('date', { nullable: true })
     end_date: Date;
+    @ManyToOne(
+        () => CustomJobApplicationSubmit,
+        (customJobApplicationSubmit) =>
+            customJobApplicationSubmit.accountEducation,
+    )
+    @JoinColumn({ name: 'custom_job_application_submit_id' }) // Links to CustomJobApplicationSubmit
+    custom_job_application_submit: CustomJobApplicationSubmit; // Foreign key to CustomJobApplicationSubmit
 }
