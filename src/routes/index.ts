@@ -12,6 +12,9 @@ import statsRouter from './statsRoutes';
 import { resumeTemplateRouter } from './resumeTemplateRoutes';
 import { chatRouter } from './chatRoutes';
 
+import notificationRouter from './notificationRoutes';
+import coverLetterRouter from './coverLetterRoutes';
+
 const mountRoutes = (app: Express) => {
     const prefixUrl = '/api/v1';
     app.use(prefixUrl + '/auth', authRouter);
@@ -24,6 +27,8 @@ const mountRoutes = (app: Express) => {
     app.use('/api/v1/review', reviewRouter);
     app.use('/api/v1/stats', statsRouter);
     app.use('/api/v1/resumeTemplate', resumeTemplateRouter);
+    app.use('/api/v1/notification', notificationRouter);
+    app.use('/api/v1/coverLetter', coverLetterRouter);
 };
 
 export default mountRoutes;

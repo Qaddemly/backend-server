@@ -29,6 +29,8 @@ import { JobApplicationStatesRepository } from '../Repository/Job/jobApplication
 import { JobStatus } from '../enums/jobStatus';
 import { Job } from '../entity/Job/Job';
 import { Not } from 'typeorm';
+import { eventEmitter } from '../events/eventEmitter';
+import { JobApplicationRepository } from '../Repository/Job/jobApplicationRepository';
 
 /**
  * TODO: mark the Account that created the business as the owner.
@@ -656,17 +658,23 @@ export const updateJobApplicationStatusService = async (
     applicationId: number,
     status: JobApplicationStateEnum,
 ) => {
-    const jobApplicationStatus = await JobApplicationStatesRepository.findOneBy(
-        {
-            job_application_id: applicationId,
-            job_id: jobId,
-        },
-    );
-    if (!jobApplicationStatus) {
+    const jobApplicationState = await JobApplicationStatesRepository.findOne({
+        where: { job_application_id: applicationId, job_id: jobId },
+    });
+    if (!jobApplicationState) {
         throw new AppError('Job Application not found', 404);
     }
-    jobApplicationStatus.state = status;
-    return await JobApplicationStatesRepository.save(jobApplicationStatus);
+    const jobApplication = await JobApplicationRepository.findOne({
+        where: { id: applicationId },
+        relations: ['job', 'job.business'],
+    });
+
+    jobApplicationState.state = status;
+    eventEmitter.emit('sendUpdateJobApplicationStatusNotification', {
+        ...jobApplication,
+        state: jobApplicationState.state,
+    });
+    return await JobApplicationStatesRepository.save(jobApplicationState);
 };
 export const getAllJobsFromDashboard = async (
     businessId: number,
