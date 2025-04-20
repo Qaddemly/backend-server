@@ -5,6 +5,7 @@ import { messageDTO } from '../dtos/messageDto';
 import { ChatRepository } from '../Repository/Messaging/chatRepository';
 import { Message } from '../entity/Messaging/Message';
 import { MessageRepository } from '../Repository/Messaging/messageRepository';
+import { MessageSentStatus } from '../enums/messageSentStatus';
 
 export const SocketService = (server: any) => {
     const io = new socketio.Server(server, {
@@ -62,7 +63,7 @@ export const SocketService = (server: any) => {
             message.content = messageDTO.content;
             message.account_id = messageDTO.userId;
             message.business_id = messageDTO.businessId;
-
+            message.sent_status = MessageSentStatus.USER;
             // Send the message to the business (broadcast to all users in the business)
             socket
                 .to(`business_${messageDTO.businessId}`)
@@ -176,7 +177,7 @@ export const SocketService = (server: any) => {
             message.content = messageDTO.content;
             message.account_id = messageDTO.userId;
             message.business_id = messageDTO.businessId;
-
+            message.sent_status = MessageSentStatus.BUSINESS;
             const userSocketId = await redisClient.get(
                 `User ${messageDTO.userId} Socket`,
             );
