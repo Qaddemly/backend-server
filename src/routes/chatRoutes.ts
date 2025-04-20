@@ -12,6 +12,7 @@ chatRouter.get(
     protect,
     chatController.getAllChatsOfUser,
 );
+
 chatRouter.get(
     '/user/getAllMessages/:chatId',
     protect,
@@ -25,14 +26,9 @@ chatRouter.get(
     chatController.getAllChatsOfBusiness,
 );
 
-// chatRouter.get(
-//     '/business/getAllMessages/:chatId',
-//     protect,
-//     chatController.getAllMessagesOfBusinessChat,
-// );
-
-// chatRouter.get(
-//     '/business/getAllMessages/:chatId',
-//     protect,
-//     chatController.getAllMessagesOfChat,
-// );
+chatRouter.get(
+    '/business/getAllMessages/:businessId/:chatId',
+    protect,
+    chatController.checkBusinessAuthorization,
+    chatController.getAllMessagesOfBusinessChat,
+);

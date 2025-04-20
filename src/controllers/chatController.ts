@@ -72,6 +72,23 @@ export const getAllChatsOfBusiness = catchAsync(
     },
 );
 
+export const getAllMessagesOfBusinessChat = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        const page = Number(req.query.page) || 1;
+        const chatId = Number(req.params.chatId);
+        const businessId = Number(req.params.businessId);
+        const messages = await chatService.getAllMessagesOfBusinessChat(
+            businessId,
+            chatId,
+            page,
+        );
+        res.status(200).json({
+            success: true,
+            messages,
+        });
+    },
+);
+
 export const createChat = catchAsync(
     async (
         req: Request<{}, {}, createChatDTO>,

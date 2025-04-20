@@ -5,9 +5,31 @@ import AppError from '../utils/appError';
 export const getAllChatsOfUser = async (userId: number) => {
     const chats = await ChatRepository.createQueryBuilder('chat')
         .leftJoinAndSelect('chat.business', 'business')
-        .leftJoinAndSelect('chat.account', 'account')
+        .leftJoin('chat.account', 'account')
+        .addSelect([
+            'account.id',
+            'account.first_name',
+            'account.last_name',
+            'account.email',
+            'account.profile_picture',
+            'account.about_me',
+            'account.subtitle',
+            'account.address.country',
+            'account.address.city',
+            'account.phone.country_code',
+            'account.phone.number',
+            'account.links.linkedin',
+            'account.links.github',
+            'account.links.portfolio',
+            'account.links.twitter',
+            'account.links.facebook',
+            'account.links.instagram',
+            'account.links.youtube',
+            'account.links.website',
+        ])
         .where('account.id = :userId', { userId })
         .getMany();
+
     return chats;
 };
 
@@ -59,8 +81,55 @@ export const createChat = async (businessId: number, accountId: number) => {
 export const getAllChatsOfBusiness = async (businessId: number) => {
     const chats = await ChatRepository.createQueryBuilder('chat')
         .leftJoinAndSelect('chat.business', 'business')
-        .leftJoinAndSelect('chat.account', 'account')
+        .leftJoin('chat.account', 'account')
+        .addSelect([
+            'account.id',
+            'account.first_name',
+            'account.last_name',
+            'account.email',
+            'account.profile_picture',
+            'account.about_me',
+            'account.subtitle',
+            'account.address.country',
+            'account.address.city',
+            'account.phone.country_code',
+            'account.phone.number',
+            'account.links.linkedin',
+            'account.links.github',
+            'account.links.portfolio',
+            'account.links.twitter',
+            'account.links.facebook',
+            'account.links.instagram',
+            'account.links.youtube',
+            'account.links.website',
+        ])
         .where('business.id = :businessId', { businessId })
         .getMany();
     return chats;
+};
+
+export const getAllMessagesOfBusinessChat = async (
+    businessId: number,
+    chatId: number,
+    page: number,
+) => {
+    // We need to check if the chatId is valid and belongs to the business
+    const chat = await ChatRepository.findOneBy({
+        id: chatId,
+        business_id: businessId,
+    });
+    if (!chat) {
+        throw new AppError(
+            'Chat not found or does not belong to the business',
+            403,
+        );
+    }
+
+    const messages = await MessageRepository.createQueryBuilder('message')
+        .where('message.chat_id = :chatId', { chatId })
+        .orderBy('message.created_at', 'DESC')
+        .skip((page - 1) * 100) // Assuming 10 messages per page
+        .take(100)
+        .getMany();
+    return messages.reverse();
 };
