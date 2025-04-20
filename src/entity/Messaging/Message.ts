@@ -8,6 +8,7 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Chat } from './chat';
+import { MessageSentStatus } from '../../enums/messageSentStatus';
 
 @Entity()
 export class Message {
@@ -37,6 +38,9 @@ export class Message {
         default: false,
     })
     is_seen: boolean;
+
+    @Column({ type: 'enum', enum: MessageSentStatus })
+    sent_status: MessageSentStatus; // Assuming you have an enum for this
 
     @ManyToOne(() => Chat, (chat) => chat.messages, {
         onDelete: 'CASCADE',
