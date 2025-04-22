@@ -21,7 +21,7 @@ import { Address } from '../General/Address';
 import { Country } from '../../enums/country';
 import { JobApplicationState } from './JobApplicationStates';
 import { AccountSavedJobs } from './AccountSavedJobs';
-import { CustomJobApplication } from './customJobApplication';
+import { CustomJobApplication } from './customJobApplication/CustomJobApplication';
 
 @Entity()
 export class Job {

@@ -34,6 +34,9 @@ import { AccountLinks } from './AccountLinks';
 import { ResumeTemplate } from '../ResumeTemplate/ResumeTemplate';
 import { CoverLetter } from '../CoverLetter/CoverLetter';
 import { Notification } from '../Notification/Notification';
+import { CustomJobApplication } from '../Job/customJobApplication/CustomJobApplication';
+import { CustomJobApplicationSubmit } from '../Job/customJobApplication/CustomJobApplicationSubmit';
+import { AccountArchivedCustomJobApplications } from '../Job/customJobApplication/AccountArchivedCustomJobApplications';
 
 @Entity()
 export class Account {
@@ -115,6 +118,14 @@ export class Account {
     job_applications: JobApplication[];
 
     @OneToMany(
+        () => CustomJobApplicationSubmit,
+        (custom_job_application_submit) =>
+            custom_job_application_submit.account,
+        { cascade: true },
+    )
+    custom_job_application_submits: CustomJobApplicationSubmit[];
+
+    @OneToMany(
         () => AccountSavedJobs,
         (accountSavedJobs) => accountSavedJobs.account,
         { cascade: true },
@@ -135,6 +146,14 @@ export class Account {
         { cascade: true },
     )
     archived_job_applications: AccountArchivedJobApplications[];
+
+    @OneToMany(
+        () => AccountArchivedCustomJobApplications,
+        (account_archived_custom_job_applications) =>
+            account_archived_custom_job_applications.account,
+        { cascade: true },
+    )
+    archived_custom_job_applications: AccountArchivedCustomJobApplications[];
 
     @OneToMany(() => Review, (review) => review.account, { cascade: true })
     reviews: Review[];

@@ -31,13 +31,19 @@ import {
     loadJobsFromCSV,
 } from '../services/jobServices';
 import {
+    CreateCustomJobApplicationSubmitValidator,
     CreateCustomJobApplicationValidator,
     JobIdValidator,
 } from '../middlewares/validators/customJobApplicationValidator';
 import {
     createCustomJobApplication,
+    createCustomJobApplicationSubmit,
     getCustomJobApplication,
 } from '../controllers/customJobApplicationController';
+import {
+    savingResumeInDisk,
+    uploadCustomJobApplicationResume,
+} from '../services/customJobApplicationServices';
 
 const jobRouter = express.Router();
 
@@ -131,5 +137,14 @@ jobRouter.get(
     protect,
     validateRequestMiddleware(JobIdValidator),
     getCustomJobApplication,
+);
+
+jobRouter.post(
+    '/customJobApplication/:customJobApplicationId/submit',
+    protect,
+    uploadCustomJobApplicationResume,
+    validateRequestMiddleware(CreateCustomJobApplicationSubmitValidator),
+    savingResumeInDisk,
+    createCustomJobApplicationSubmit,
 );
 export default jobRouter;

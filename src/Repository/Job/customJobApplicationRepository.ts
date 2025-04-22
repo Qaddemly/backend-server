@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { CustomJobApplication } from '../../entity/Job/customJobApplication';
+import { CustomJobApplication } from '../../entity/Job/customJobApplication/CustomJobApplication';
 import { AppDataSource } from '../../data-source';
 
 class CustomJobApplicationRepositoryClass extends Repository<CustomJobApplication> {}

@@ -16,7 +16,7 @@ import { Address } from '../General/Address';
 import { BusinessPhone } from './BusinessPhone';
 import { JobApplicationState } from '../Job/JobApplicationStates';
 import { Notification } from '../Notification/Notification';
-import { CustomJobApplication } from '../Job/customJobApplication';
+import { CustomJobApplication } from '../Job/customJobApplication/CustomJobApplication';
 
 @Entity()
 export class Business {
@@ -101,11 +101,7 @@ export class Business {
     jobs: Job[];
     @OneToMany(() => Notification, (notification) => notification.business)
     notifications: Notification[];
-    @OneToMany(
-        () => CustomJobApplication,
-        (custom_job_application) => custom_job_application.business,
-    )
-    custom_job_applications: CustomJobApplication[];
+
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 

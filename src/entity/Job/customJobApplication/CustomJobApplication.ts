@@ -3,12 +3,14 @@ import {
     Entity,
     JoinColumn,
     ManyToMany,
+    OneToMany,
     OneToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Job } from './Job';
+import { Job } from '../Job';
 import { join } from 'path';
-import { Business } from '../Business/Business';
+import { Business } from '../../Business/Business';
+import { CustomJobApplicationSubmit } from './CustomJobApplicationSubmit';
 
 @Entity()
 export class CustomJobApplication {
@@ -16,8 +18,7 @@ export class CustomJobApplication {
     id: number;
     @Column()
     job_id: number; // Foreign Key to Job table
-    @Column()
-    business_id: number; // Foreign Key to Business table
+
     // @Column({ default: true })
     // is_education_required: boolean; // Indicates if education is required for the job
     // @Column({ default: true })
@@ -29,11 +30,10 @@ export class CustomJobApplication {
     @OneToOne(() => Job, (job) => job.custom_job_application, { cascade: true })
     @JoinColumn({ name: 'job_id' }) // Links to Job
     job: Job; // One-to-One relationship with Job entity
-    @ManyToMany(
-        () => Business,
-        (business) => business.custom_job_applications,
-        { cascade: true },
+    @OneToMany(
+        () => CustomJobApplicationSubmit,
+        (customJobApplicationSubmit) =>
+            customJobApplicationSubmit.custom_job_application,
     )
-    @JoinColumn({ name: 'business_id' }) // Links to Business
-    business: Business; // Many-to-Many relationship with Business entity
+    custom_job_application: CustomJobApplicationSubmit[];
 }

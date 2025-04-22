@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import catchAsync from 'express-async-handler';
 import {
     createCustomJobApplicationService,
+    createCustomJobApplicationSubmitService,
     getCustomJobApplicationService,
 } from '../services/customJobApplicationServices';
 
@@ -34,6 +35,30 @@ export const getCustomJobApplication = catchAsync(
                 success: true,
                 message: 'Custom Job Application fetched successfully',
                 customJobApplication,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const createCustomJobApplicationSubmit = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const accountId = Number(req.user.id);
+            const customJobApplicationId = Number(
+                req.params.customJobApplicationId,
+            );
+            const customJobApplicationSubmit =
+                await createCustomJobApplicationSubmitService(
+                    accountId,
+                    customJobApplicationId,
+                    req.body,
+                );
+            res.status(201).json({
+                success: true,
+                message: 'congrats your application is submitted successfully',
+                customJobApplicationSubmit,
             });
         } catch (err) {
             return next(err);

@@ -1,13 +1,34 @@
-import { CreateCustomJobApplicationDto } from '../dtos/customJobApplicationDto';
-import { CustomJobApplication } from '../entity/Job/customJobApplication';
+import sharp from 'sharp';
+import {
+    CreateCustomJobApplicationDto,
+    CreateCustomJobApplicationSubmitDto,
+} from '../dtos/customJobApplicationDto';
+import { AccountArchivedCustomJobApplications } from '../entity/Job/customJobApplication/AccountArchivedCustomJobApplications';
+import { CustomJobApplication } from '../entity/Job/customJobApplication/CustomJobApplication';
+import { CustomJobApplicationEducation } from '../entity/Job/customJobApplication/CustomJobApplicationEducation';
+import { CustomJobApplicationExperience } from '../entity/Job/customJobApplication/CustomJobApplicationExperience';
+import { CustomJobApplicationResume } from '../entity/Job/customJobApplication/CustomJobApplicationResume';
+import { CustomJobApplicationState } from '../entity/Job/customJobApplication/CustomJobApplicationStates';
+import { CustomJobApplicationSubmit } from '../entity/Job/customJobApplication/CustomJobApplicationSubmit';
 import { HrRole } from '../enums/HrRole';
+import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
+import { JobStatus } from '../enums/jobStatus';
+import { uploadSingleResume } from '../middlewares/upload.middleWare';
+import { ApplicationAnswerModel } from '../models/customJobApplicationAnswers';
 import { ApplicationQuestionModel } from '../models/customJobApplicationQuestion';
-import { BusinessRepository } from '../Repository/Business/businessRepository';
 import { HrEmployeeRepository } from '../Repository/Business/hrEmployeeRepository';
+import { AccountArchivedCustomJobApplicationsRepository } from '../Repository/Job/accountArchivedCustomJobApplicationsRepository';
+import { CustomJobApplicationEducationRepository } from '../Repository/Job/customJobApplicationEducationRepository';
+import { CustomJobApplicationExperienceRepository } from '../Repository/Job/customJobApplicationExperienceRepository';
 import { CustomJobApplicationRepository } from '../Repository/Job/customJobApplicationRepository';
+import { CustomJobApplicationResumeRepository } from '../Repository/Job/customJobApplicationResumeRepository';
+import { CustomJobApplicationStatesRepository } from '../Repository/Job/customJobApplicationStateRepository';
+import { CustomJobApplicationSubmitRepository } from '../Repository/Job/customJobApplicationSubmitRepository';
 import { JobRepository } from '../Repository/Job/jobRepository';
 import AppError from '../utils/appError';
-
+import catchAsync from 'express-async-handler';
+import { NextFunction, Request, Response } from 'express';
+import * as fs from 'fs';
 export const createCustomJobApplicationService = async (
     userId: number,
     jobId: number,
@@ -48,9 +69,7 @@ export const createCustomJobApplicationService = async (
     }
     const newCustomJobApplication = new CustomJobApplication();
     newCustomJobApplication.job = job;
-    newCustomJobApplication.business = job.business;
     newCustomJobApplication.job_id = jobId;
-    newCustomJobApplication.business_id = job.business.id;
     const cs = await CustomJobApplicationRepository.save(
         newCustomJobApplication,
     );
@@ -70,7 +89,6 @@ export const createCustomJobApplicationService = async (
     const customJobApplication = {
         id: cs.id,
         job_id: jobId,
-        business_id: job.business.id,
         questions: questions,
     };
     return customJobApplication;
@@ -97,3 +115,173 @@ export const getCustomJobApplicationService = async (jobId: number) => {
     };
     return customJobApplicationWithQuestions;
 };
+
+export const createCustomJobApplicationSubmitService = async (
+    accountId: number,
+    customJobApplicationId: number,
+    data: CreateCustomJobApplicationSubmitDto,
+) => {
+    const customJobApplication = await CustomJobApplicationRepository.findOne({
+        where: { id: customJobApplicationId },
+        relations: ['job'],
+    });
+    if (!customJobApplication) {
+        throw new AppError('job application not found', 404);
+    }
+    if (customJobApplication.job.status !== JobStatus.OPENED) {
+        throw new AppError('jobs no longer accepts responses', 400);
+    }
+    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+        accountId,
+        customJobApplication.job.business_id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (isAllowedToPostJob) {
+        throw new AppError('you do not have permission to that action', 403);
+    }
+    const foundCustomJobApplicationSubmit =
+        await CustomJobApplicationSubmitRepository.findOne({
+            where: {
+                account: { id: accountId },
+                custom_job_application: customJobApplication,
+            },
+        });
+    if (foundCustomJobApplicationSubmit) {
+        throw new AppError('you have already applied to this job');
+    }
+    const newCustomJobApplicationSubmit = new CustomJobApplicationSubmit();
+    newCustomJobApplicationSubmit.first_name = data.personalInfo.first_name;
+    newCustomJobApplicationSubmit.last_name = data.personalInfo.last_name;
+    newCustomJobApplicationSubmit.birth_date = data.personalInfo.birth_date;
+    newCustomJobApplicationSubmit.email = data.personalInfo.email;
+    newCustomJobApplicationSubmit.phone = data.personalInfo.phone;
+    newCustomJobApplicationSubmit.custom_job_application_id =
+        customJobApplication.id;
+    newCustomJobApplicationSubmit.custom_job_application = customJobApplication;
+    newCustomJobApplicationSubmit.languages = data.languages;
+    newCustomJobApplicationSubmit.skills = data.skills;
+    newCustomJobApplicationSubmit.account.id = accountId;
+    const customJobApplicationSubmit =
+        await CustomJobApplicationSubmitRepository.save(
+            newCustomJobApplicationSubmit,
+        );
+
+    const educationPromises = data.educations.map(async (ed) => {
+        const education = new CustomJobApplicationEducation();
+        education.university = ed.university;
+        education.gpa = ed.gpa;
+        education.field_of_study = ed.fieldOfStudy;
+        education.start_date = ed.startDate;
+        education.end_date = ed.endDate;
+        education.custom_job_application_submit = customJobApplicationSubmit;
+        education.custom_job_application_submit_id =
+            customJobApplicationSubmit.id;
+
+        return await CustomJobApplicationEducationRepository.save(education);
+    });
+    const educations = await Promise.all(educationPromises);
+    const experiencePromises = data.experiences.map(async (exp) => {
+        const experience = new CustomJobApplicationExperience();
+        experience.company_name = exp.companyName;
+        experience.job_title = exp.jobTitle;
+        experience.location = exp.location;
+        experience.location_type = exp.locationType;
+        experience.employment_type = exp.employmentType;
+        experience.still_working = exp.stillWorking;
+        experience.start_date = exp.startDate;
+        experience.end_date = exp.endDate;
+        experience.custom_job_application_submit = customJobApplicationSubmit;
+        experience.custom_job_application_submit_id =
+            customJobApplicationSubmit.id;
+        return await CustomJobApplicationExperienceRepository.save(experience);
+    });
+    const experiences = await Promise.all(experiencePromises);
+    const newResume = new CustomJobApplicationResume();
+    newResume.name = data.resume.name;
+    newResume.size = data.resume.size;
+    newResume.url = data.resume.url;
+    newResume.custom_job_application_submit = customJobApplicationSubmit;
+    newResume.custom_job_application_submit_id = customJobApplicationSubmit.id;
+    const resume = await CustomJobApplicationResumeRepository.save(newResume);
+
+    const answerPromises = data.answers.map(async (ans) => {
+        const answer = await ApplicationAnswerModel.create({
+            answer: ans.answer,
+            questionId: ans.questionId,
+        });
+        return answer;
+    });
+    const answers = await Promise.all(answerPromises);
+
+    const customJobApplicationState = new CustomJobApplicationState();
+    customJobApplicationState.custom_job_application_submit_id =
+        customJobApplicationSubmit.id;
+    customJobApplicationState.custom_job_application_submit =
+        customJobApplicationSubmit;
+    customJobApplicationState.state = JobApplicationStateEnum.PENDING;
+    await CustomJobApplicationStatesRepository.save(customJobApplicationState);
+
+    const accountArchivedJobApplication =
+        new AccountArchivedCustomJobApplications();
+    accountArchivedJobApplication.account.id = accountId;
+    accountArchivedJobApplication.custom_job_application_submit_id =
+        customJobApplicationSubmit.id;
+    accountArchivedJobApplication.custom_job_application_submit =
+        customJobApplicationSubmit;
+    accountArchivedJobApplication.is_archived = false;
+    await AccountArchivedCustomJobApplicationsRepository.save(
+        accountArchivedJobApplication,
+    );
+
+    const returnedSubmit = {
+        ...customJobApplicationSubmit,
+        educations,
+        experiences,
+        resume,
+        answers,
+    };
+    return returnedSubmit;
+};
+
+export const uploadCustomJobApplicationResume = uploadSingleResume('resume');
+export const savingResumeInDisk = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            if (req.file) {
+                if (req.file!.fieldname == 'resume') {
+                    const resume = req.file;
+                    const originalFileName = resume.originalname;
+                    const resumeExtension = originalFileName.substring(
+                        originalFileName.lastIndexOf('.') + 1,
+                    );
+                    const resumeName = `resume-${Math.round(
+                        Math.random() * 1e9,
+                    )}-${Date.now()}.${resumeExtension}`;
+                    const resumeDbUrl = `${process.env.BASE_URL}/uploads/customJobApplicationResumes/${resumeName}`;
+                    // Save the PDF to disk
+                    const filePath = `src/uploads/customJobApplicationResumes/${resumeName}`;
+
+                    fs.writeFileSync(filePath, resume.buffer);
+
+                    req.body.resume = {
+                        url: resumeDbUrl,
+                        name: resume.originalname,
+                        size: resume.size,
+                    };
+                }
+            }
+            next();
+        } catch (err) {
+            const customError = new AppError('error while saving file');
+            customError.stack = err.stack;
+            return next(customError);
+        }
+    },
+);
