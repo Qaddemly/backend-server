@@ -89,9 +89,6 @@ export const SocketService = (server: any) => {
             message.business_id = messageDTO.businessId;
             message.sent_status = MessageSentStatus.USER;
             // Send the message to the business (broadcast to all users in the business)
-            socket
-                .to(`business_${messageDTO.businessId}`)
-                .emit('user_send_message', message);
 
             const sockets = await chatNamespace
                 .in(`business_${messageDTO.businessId}`)
@@ -100,6 +97,10 @@ export const SocketService = (server: any) => {
             if (sockets.length > 0) {
                 message.is_delivered = true;
             }
+            socket
+                .to(`business_${messageDTO.businessId}`)
+                .emit('user_send_message', message);
+
             Logger.info(
                 `User ${messageDTO.userId} sent message to business ${messageDTO.businessId}`,
             );
