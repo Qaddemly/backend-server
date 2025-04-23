@@ -91,9 +91,7 @@ export const SocketService = (server: any) => {
             // Send the message to the business (broadcast to all users in the business)
             socket
                 .to(`business_${messageDTO.businessId}`)
-                .emit('user_send_message', {
-                    ...messageDTO,
-                });
+                .emit('user_send_message', message);
 
             const sockets = await chatNamespace
                 .in(`business_${messageDTO.businessId}`)
@@ -223,12 +221,10 @@ export const SocketService = (server: any) => {
             const userSocket = chatNamespace.sockets.get(userSocketId);
             if (userSocket) {
                 message.is_delivered = true;
-                userSocket.emit('business_send_message', {
-                    ...messageDTO,
-                });
+                userSocket.emit('business_send_message', message);
             }
             Logger.info(
-                `Business ${messageDTO.userId} sent message to user ${messageDTO.userId}`,
+                `Business ${messageDTO.businessId} sent message to user ${messageDTO.userId}`,
             );
             await MessageRepository.save(message);
         });
@@ -270,9 +266,25 @@ export const SocketService = (server: any) => {
                 );
             },
         );
-
-        socket.on('disconnect', () => {
-            console.log('Client disconnected');
+        socket.on('user_disconnect', async (userId: number) => {
+            try {
+                await redisClient.del(`User ${userId} Socket`);
+                Logger.info(`User ${userId} disconnected from server`);
+            } catch (e) {
+                Logger.error(`Error deleting user socket id in redis`);
+            }
+            socket.disconnect();
+        });
+        socket.on(
+            'user_disconnect_from_business',
+            async (userId: number, businessId: number) => {
+                socket.leave(`business_${businessId}`);
+                socket.disconnect();
+            },
+        );
+        socket.on('disconnect', async () => {
+            Logger.info(`User disconnected from server`);
+            socket.disconnect();
         });
     });
 
