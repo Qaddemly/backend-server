@@ -19,6 +19,21 @@ export const SocketService = (server: any) => {
 
     chatNamespace.on('connection', async (socket) => {
         socket.on('connect_user', async (userId) => {
+            if (!userId) {
+                Logger.error(`User ID not found`);
+                socket.emit('error_connect_user', {
+                    message: 'User ID not found',
+                });
+                return;
+            }
+            if (typeof userId !== 'number') {
+                Logger.error(`User ID is not a number`);
+                socket.emit('error_connect_user', {
+                    message: 'User ID is not a number',
+                });
+                return;
+            }
+
             // TODO: Emit to business that message is deliverd
             const unDeliveredMessages =
                 await MessageRepository.createQueryBuilder('message')
