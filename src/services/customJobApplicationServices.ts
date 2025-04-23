@@ -1,4 +1,3 @@
-import sharp from 'sharp';
 import {
     CreateCustomJobApplicationDto,
     CreateCustomJobApplicationSubmitDto,
@@ -29,6 +28,14 @@ import AppError from '../utils/appError';
 import catchAsync from 'express-async-handler';
 import { NextFunction, Request, Response } from 'express';
 import * as fs from 'fs';
+import { AccountRepository } from '../Repository/Account/accountRepository';
+import { Paginate } from '../utils/pagination/decorator';
+import {
+    FilterOperator,
+    paginate,
+    PaginateConfig,
+    PaginationType,
+} from '../utils/pagination/typeorm-paginate';
 export const createCustomJobApplicationService = async (
     userId: number,
     jobId: number,
@@ -146,13 +153,16 @@ export const createCustomJobApplicationSubmitService = async (
     if (isAllowedToPostJob) {
         throw new AppError('you do not have permission to that action', 403);
     }
+    const account = await AccountRepository.findOneBy({ id: accountId });
+
     const foundCustomJobApplicationSubmit =
         await CustomJobApplicationSubmitRepository.findOne({
             where: {
                 account: { id: accountId },
-                custom_job_application: customJobApplication,
+                custom_job_application: { id: customJobApplicationId },
             },
         });
+
     if (foundCustomJobApplicationSubmit) {
         throw new AppError('you have already applied to this job');
     }
@@ -167,7 +177,7 @@ export const createCustomJobApplicationSubmitService = async (
     newCustomJobApplicationSubmit.custom_job_application = customJobApplication;
     newCustomJobApplicationSubmit.languages = data.languages;
     newCustomJobApplicationSubmit.skills = data.skills;
-    newCustomJobApplicationSubmit.account.id = accountId;
+    newCustomJobApplicationSubmit.account = account;
     const customJobApplicationSubmit =
         await CustomJobApplicationSubmitRepository.save(
             newCustomJobApplicationSubmit,
@@ -215,6 +225,8 @@ export const createCustomJobApplicationSubmitService = async (
         const answer = await ApplicationAnswerModel.create({
             answer: ans.answer,
             questionId: ans.questionId,
+            accountId: account.id,
+            customJobApplicationSubmitId: customJobApplicationSubmit.id,
         });
         return answer;
     });
@@ -230,7 +242,7 @@ export const createCustomJobApplicationSubmitService = async (
 
     const accountArchivedJobApplication =
         new AccountArchivedCustomJobApplications();
-    accountArchivedJobApplication.account.id = accountId;
+    accountArchivedJobApplication.account = account;
     accountArchivedJobApplication.custom_job_application_submit_id =
         customJobApplicationSubmit.id;
     accountArchivedJobApplication.custom_job_application_submit =
@@ -239,15 +251,6 @@ export const createCustomJobApplicationSubmitService = async (
     await AccountArchivedCustomJobApplicationsRepository.save(
         accountArchivedJobApplication,
     );
-
-    const returnedSubmit = {
-        ...customJobApplicationSubmit,
-        educations,
-        experiences,
-        resume,
-        answers,
-    };
-    return returnedSubmit;
 };
 
 export const uploadCustomJobApplicationResume = uploadSingleResume('resume');
@@ -285,3 +288,98 @@ export const savingResumeInDisk = catchAsync(
         }
     },
 );
+
+export const getAllCustomJobApplicationSubmitsService = async (
+    req: Request,
+) => {
+    const accountId = Number(req.user.id);
+    const customJobApplicationId = Number(req.params.customJobApplicationId);
+    const customJobApplication = await CustomJobApplicationRepository.findOne({
+        where: { id: customJobApplicationId },
+        relations: ['job'],
+    });
+    if (!customJobApplication) {
+        throw new AppError('job application not found', 404);
+    }
+    if (customJobApplication.job.status !== JobStatus.OPENED) {
+        throw new AppError('jobs no longer accepts responses', 400);
+    }
+    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+        accountId,
+        customJobApplication.job.business_id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (!isAllowedToPostJob) {
+        throw new AppError('you do not have permission to that action', 403);
+    }
+    try {
+        //console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        //console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<CustomJobApplicationSubmit> = {
+            //searchableColumns: ['first_name', 'last_name', 'email'],
+            sortableColumns: ['created_at'],
+            //filterableColumns:{id:5},
+            filterableColumns: {
+                'custom_job_application_state.state': [FilterOperator.EQ],
+            },
+
+            relations: ['account', 'custom_job_application_state'],
+            where: { custom_job_application: { id: customJobApplicationId } },
+            defaultSortBy: [['created_at', 'ASC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder =
+            CustomJobApplicationSubmitRepository.createQueryBuilder('cjas')
+                .select([
+                    'cjas.id',
+                    'cjas.created_at',
+                    'cjas.updated_at',
+                    'cjas.first_name',
+                    'cjas.last_name',
+                    'cjas.email',
+                    'cjas.phone',
+                    'cjas.birth_date',
+                    'cjas.skills',
+                    'cjas.languages',
+                    'cjas.custom_job_application_id',
+                ])
+
+                // LEFT JOIN Job
+                .where('cjas.custom_job_application_id = :id', {
+                    id: customJobApplicationId,
+                });
+        console.log(transformedQuery.search);
+        if (transformedQuery.search) {
+            queryBuilder.andWhere(
+                `cjas.first_name || ' ' || cjas.last_name  ILIKE :searchQuery`,
+                {
+                    searchQuery: `%${transformedQuery.search}%`,
+                },
+            );
+        }
+        const customJobApplicationSubmits =
+            await paginate<CustomJobApplicationSubmit>(
+                transformedQuery,
+                queryBuilder,
+                paginateConfig,
+            );
+        customJobApplicationSubmits.data.map((csa) => {
+            delete csa.account;
+        });
+        return customJobApplicationSubmits;
+    } catch (err) {
+        console.log(err);
+        throw new AppError('Error in getting customJobApplicationSubmits', 400);
+    }
+};

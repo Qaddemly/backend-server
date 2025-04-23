@@ -33,14 +33,17 @@ import {
 import {
     CreateCustomJobApplicationSubmitValidator,
     CreateCustomJobApplicationValidator,
+    customJobApplicationIdValidator,
     JobIdValidator,
 } from '../middlewares/validators/customJobApplicationValidator';
 import {
     createCustomJobApplication,
     createCustomJobApplicationSubmit,
+    getAllCustomJobApplicationSubmits,
     getCustomJobApplication,
 } from '../controllers/customJobApplicationController';
 import {
+    getAllCustomJobApplicationSubmitsService,
     savingResumeInDisk,
     uploadCustomJobApplicationResume,
 } from '../services/customJobApplicationServices';
@@ -146,5 +149,12 @@ jobRouter.post(
     validateRequestMiddleware(CreateCustomJobApplicationSubmitValidator),
     savingResumeInDisk,
     createCustomJobApplicationSubmit,
+);
+
+jobRouter.get(
+    '/customJobApplication/:customJobApplicationId/customJobApplicationSubmit',
+    protect,
+    validateRequestMiddleware(customJobApplicationIdValidator),
+    getAllCustomJobApplicationSubmits,
 );
 export default jobRouter;

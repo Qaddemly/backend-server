@@ -1,13 +1,23 @@
-import { body, checkSchema, param } from 'express-validator';
+import { body, param } from 'express-validator';
 import { ApplicationQuestionType } from '../../enums/applicationQuestionType';
 import mongoose from 'mongoose';
 import { ApplicationQuestionModel } from '../../models/customJobApplicationQuestion';
+import { EmploymentType } from '../../enums/employmentType';
+import { LocationType } from '../../enums/locationType';
 export const JobIdValidator = [
     param('jobId')
         .notEmpty()
         .withMessage('Job ID is required')
         .isInt()
         .withMessage('Job ID must be a number'),
+];
+
+export const customJobApplicationIdValidator = [
+    param('customJobApplicationId')
+        .notEmpty()
+        .withMessage('customJobApplicationId is required')
+        .isInt()
+        .withMessage('customJobApplicationId must be a number'),
 ];
 export const CreateCustomJobApplicationValidator = [
     JobIdValidator[0],
@@ -70,27 +80,36 @@ export const CreateCustomJobApplicationValidator = [
 ];
 
 export const CreateCustomJobApplicationSubmitValidator = [
+    customJobApplicationIdValidator[0],
     body('personalInfo')
-        .notEmpty()
-        .withMessage('Personal information is required'),
+        .custom((value) => typeof value === 'object' && value !== null)
+        .withMessage('personalInfo must be a non-null object'),
     body('personalInfo.first_name')
-        .isString()
         .notEmpty()
-        .withMessage('First name is required'),
+        .withMessage('First name is required')
+        .isString()
+        .withMessage('first name must be string'),
     body('personalInfo.last_name')
-        .isString()
         .notEmpty()
-        .withMessage('Last name is required'),
+        .withMessage('Last name is required')
+        .isString()
+        .withMessage('last name must be string'),
     body('personalInfo.email')
+        .notEmpty()
+        .withMessage('email is required')
         .isEmail()
         .withMessage('A valid email is required'),
     body('personalInfo.phone')
+        .notEmpty()
+        .withMessage('phone is required')
         .isMobilePhone('any')
         .withMessage('A valid phone number is required'),
     body('personalInfo.birth_date')
+        .notEmpty()
+        .withMessage('birth_date is required')
         .isDate()
         .withMessage('Birth date must be a valid date'),
-    // EDUCATIONS
+    // // EDUCATIONS
     body('educations').isArray().withMessage('Educations must be an array'),
     body('educations.*.university')
         .isString()
@@ -121,7 +140,11 @@ export const CreateCustomJobApplicationSubmitValidator = [
     body('experiences.*.employmentType')
         .isString()
         .notEmpty()
-        .withMessage('Employment type is required'),
+        .withMessage('Employment type is required')
+        .custom((value) => {
+            if (value in EmploymentType) return value;
+            else throw new Error('Invalid employment type');
+        }),
     body('experiences.*.companyName')
         .isString()
         .notEmpty()
@@ -133,6 +156,10 @@ export const CreateCustomJobApplicationSubmitValidator = [
     body('experiences.*.locationType')
         .isString()
         .notEmpty()
+        .custom((value) => {
+            if (value in LocationType) return value;
+            else throw new Error('Invalid location type');
+        })
         .withMessage('Location type is required'),
     body('experiences.*.stillWorking')
         .isBoolean()

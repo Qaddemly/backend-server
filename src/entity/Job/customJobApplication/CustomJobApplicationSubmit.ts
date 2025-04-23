@@ -1,11 +1,13 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     JoinColumn,
     ManyToOne,
     OneToMany,
     OneToOne,
     PrimaryGeneratedColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 import { CustomJobApplicationEducation } from './CustomJobApplicationEducation';
 import { CustomJobApplicationExperience } from './CustomJobApplicationExperience';
@@ -73,4 +75,8 @@ export class CustomJobApplicationSubmit {
         { cascade: true },
     )
     custom_job_application_resume: CustomJobApplicationResume[]; // List of resume details of the applicant
+    @CreateDateColumn()
+    created_at: Date;
+    @UpdateDateColumn()
+    updated_at: Date;
 }
