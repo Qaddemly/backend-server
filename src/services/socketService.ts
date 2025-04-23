@@ -102,7 +102,9 @@ export const SocketService = (server: any) => {
             if (sockets.length > 0) {
                 message.is_delivered = true;
             }
-
+            Logger.info(
+                `User ${messageDTO.userId} sent message to business ${messageDTO.businessId}`,
+            );
             await MessageRepository.save(message);
         });
 
@@ -134,6 +136,9 @@ export const SocketService = (server: any) => {
                     msg.is_seen = true;
                     await MessageRepository.save(msg);
                 });
+                Logger.info(
+                    `User ${userId} seen message in chat ${chatId} for business ${userMakeItSeenDTO.businessId}`,
+                );
             },
         );
 
@@ -222,7 +227,9 @@ export const SocketService = (server: any) => {
                     ...messageDTO,
                 });
             }
-
+            Logger.info(
+                `Business ${messageDTO.userId} sent message to user ${messageDTO.userId}`,
+            );
             await MessageRepository.save(message);
         });
 
@@ -258,6 +265,9 @@ export const SocketService = (server: any) => {
                     msg.is_seen = true;
                     await MessageRepository.save(msg);
                 });
+                Logger.info(
+                    `Business ${businessMakeItSeenDTO.businessId} seen message in chat ${businessMakeItSeenDTO.chatId} for user ${businessMakeItSeenDTO.userId}`,
+                );
             },
         );
 
