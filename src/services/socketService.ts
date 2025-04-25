@@ -39,6 +39,9 @@ export const SocketService = (server: any) => {
                 await MessageRepository.createQueryBuilder('message')
                     .where('message.account_id = :userId', { userId })
                     .andWhere('message.is_delivered = false')
+                    .andWhere('message.sent_status = :sentStatus', {
+                        sentStatus: MessageSentStatus.BUSINESS,
+                    })
                     .getMany();
 
             // TODO: we need to emit chat as whole not each message
@@ -116,6 +119,7 @@ export const SocketService = (server: any) => {
             }) => {
                 // Emit to business broadcast that message is seen
                 // make it emit chat as a whole, like user seen chat (not each message)
+                // TODO: we need to only seen messages that send by other user
                 socket
                     .to(`business_${userMakeItSeenDTO.businessId}`)
                     .emit('user_message_seen', {
@@ -129,12 +133,16 @@ export const SocketService = (server: any) => {
                     .where('message.chat_id = :chatId', { chatId })
                     .andWhere('message.account_id = :userId', { userId })
                     .andWhere('message.is_seen = false')
+                    .andWhere('message.sent_status = :sentStatus', {
+                        sentStatus: MessageSentStatus.BUSINESS,
+                    })
                     .getMany();
 
-                message.forEach(async (msg) => {
+                for (const msg of message) {
                     msg.is_seen = true;
                     await MessageRepository.save(msg);
-                });
+                }
+
                 Logger.info(
                     `User ${userId} seen message in chat ${chatId} for business ${userMakeItSeenDTO.businessId}`,
                 );
@@ -170,6 +178,9 @@ export const SocketService = (server: any) => {
                                 businessId,
                             })
                             .andWhere('message.is_delivered = false')
+                            .andWhere('message.sent_status = :sentStatus', {
+                                sentStatus: MessageSentStatus.USER,
+                            })
                             .getMany();
 
                     const unDeliveredChats = {};
@@ -257,11 +268,16 @@ export const SocketService = (server: any) => {
                         businessId: businessMakeItSeenDTO.businessId,
                     })
                     .andWhere('message.is_seen = false')
+                    .andWhere('message.sent_status = :sentStatus', {
+                        sentStatus: MessageSentStatus.USER,
+                    })
                     .getMany();
-                messages.forEach(async (msg) => {
+
+                for (const msg of messages) {
                     msg.is_seen = true;
                     await MessageRepository.save(msg);
-                });
+                }
+
                 Logger.info(
                     `Business ${businessMakeItSeenDTO.businessId} seen message in chat ${businessMakeItSeenDTO.chatId} for user ${businessMakeItSeenDTO.userId}`,
                 );
