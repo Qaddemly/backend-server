@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { ApplicationQuestionModel } from '../../models/customJobApplicationQuestion';
 import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
+import { JobApplicationStateEnum } from '../../enums/jobApplicationStateEnum';
 export const JobIdValidator = [
     param('jobId')
         .notEmpty()
@@ -18,6 +19,31 @@ export const customJobApplicationIdValidator = [
         .withMessage('customJobApplicationId is required')
         .isInt()
         .withMessage('customJobApplicationId must be a number'),
+];
+
+export const customJobApplicationSubmitIdValidator = [
+    param('customJobApplicationSubmitId')
+        .notEmpty()
+        .withMessage('customJobApplicationSubmitId is required')
+        .isInt()
+        .withMessage('customJobApplicationSubmitId must be a number'),
+];
+
+export const getOneCustomJobApplicationSubmitByBusinessValidator = [
+    customJobApplicationIdValidator[0],
+    customJobApplicationSubmitIdValidator[0],
+];
+
+export const updateCustomJobApplicationSubmitStateValidator = [
+    customJobApplicationIdValidator[0],
+    customJobApplicationSubmitIdValidator[0],
+    body('state')
+        .notEmpty()
+        .withMessage('State is required')
+        .isIn(Object.values(JobApplicationStateEnum))
+        .withMessage(
+            `Invalid state. Must be one of: ${Object.values(JobApplicationStateEnum).join(', ')}`,
+        ),
 ];
 export const CreateCustomJobApplicationValidator = [
     JobIdValidator[0],
@@ -231,4 +257,126 @@ export const CreateCustomJobApplicationSubmitValidator = [
 
         return true;
     }),
+];
+
+export const addQuestionToCustomJobApplicationValidator = [
+    customJobApplicationIdValidator[0],
+
+    body('questionText')
+        .notEmpty()
+        .withMessage('Question text is required')
+        .isString()
+        .withMessage('Question text must be a string'),
+    body('questionType')
+        .notEmpty()
+        .withMessage('questionType is required')
+        .isString()
+        .withMessage('questionType must be a string')
+        .isIn(Object.values(ApplicationQuestionType))
+        .withMessage(
+            `questionType must be one of: ${Object.values(ApplicationQuestionType).join(', ')}`,
+        ),
+    body('isRequired')
+        .optional()
+        .isBoolean()
+        .withMessage('isRequired must be a boolean'),
+    body('order')
+        .notEmpty()
+        .withMessage('Order is required')
+        .isInt()
+        .withMessage('Order must be a number')
+        .custom(async (value, { req }) => {
+            const questions = await ApplicationQuestionModel.find({
+                customJobApplicationId: req.params.customJobApplicationId,
+            }).sort({ order: 1 });
+            const questionOrders = questions.map((question) => question.order);
+            if (questionOrders.includes(value)) {
+                throw new Error(
+                    `${questionOrders} already exists in the custom job application`,
+                );
+            }
+            return true;
+        }),
+    body('options')
+        .optional()
+        .isArray()
+        .withMessage('Options must be an array')
+        .custom((value, { req }) => {
+            const questionType = value.questionType;
+            if (
+                questionType === ApplicationQuestionType.Multiple_Choice &&
+                !value
+            ) {
+                throw new Error(
+                    'Options are required for multiple choice questions',
+                );
+            }
+            return true;
+        }),
+];
+
+export const questionIdValidator = [
+    param('questionId')
+        .notEmpty()
+        .withMessage('Question ID is required')
+        .isMongoId()
+        .withMessage('Question ID must be a valid MongoDB ObjectId'),
+];
+
+export const updateQuestionToCustomJobApplicationValidator = [
+    customJobApplicationIdValidator[0],
+    questionIdValidator[0],
+    body('questionText')
+        .optional()
+        .isString()
+        .withMessage('Question text must be a string'),
+    body('questionType')
+        .optional()
+        .isString()
+        .withMessage('questionType must be a string')
+        .isIn(Object.values(ApplicationQuestionType))
+        .withMessage(
+            `questionType must be one of: ${Object.values(ApplicationQuestionType).join(', ')}`,
+        ),
+    body('isRequired')
+        .optional()
+        .isBoolean()
+        .withMessage('isRequired must be a boolean'),
+    body('order')
+        .optional()
+        .isInt()
+        .withMessage('Order must be a number')
+        .custom(async (value, { req }) => {
+            const questions = await ApplicationQuestionModel.find({
+                customJobApplicationId: req.params.customJobApplicationId,
+            }).sort({ order: 1 });
+            const questionOrders = questions.map((question) => question.order);
+            if (questionOrders.includes(value)) {
+                throw new Error(
+                    `${questionOrders} already exists in the custom job application`,
+                );
+            }
+            return true;
+        }),
+    body('options')
+        .optional()
+        .isArray()
+        .withMessage('Options must be an array')
+        .custom((value, { req }) => {
+            const questionType = value.questionType;
+            if (
+                questionType === ApplicationQuestionType.Multiple_Choice &&
+                !value
+            ) {
+                throw new Error(
+                    'Options are required for multiple choice questions',
+                );
+            }
+            return true;
+        }),
+];
+
+export const deleteQuestionToCustomJobApplicationValidator = [
+    customJobApplicationIdValidator[0],
+    questionIdValidator[0],
 ];

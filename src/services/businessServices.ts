@@ -654,10 +654,33 @@ export const getAllBusinessWithSearchAndFilterService = async (
     }
 };
 export const updateJobApplicationStatusService = async (
+    accountId: number,
     jobId: number,
     applicationId: number,
     status: JobApplicationStateEnum,
 ) => {
+    const job = await JobRepository.findOne({
+        where: { id: jobId },
+        relations: ['business'],
+    });
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+        accountId,
+        job.business_id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (!isAllowedToPostJob) {
+        throw new AppError('you do not have permission to that action', 403);
+    }
     const jobApplicationState = await JobApplicationStatesRepository.findOne({
         where: { job_application_id: applicationId, job_id: jobId },
     });

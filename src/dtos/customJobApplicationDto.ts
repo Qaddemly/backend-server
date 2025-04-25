@@ -30,3 +30,19 @@ export interface CreateCustomJobApplicationSubmitDto {
     languages: string[];
     answers: { questionId: Types.ObjectId; answer: string }[];
 }
+
+export interface CreateCustomJobApplicationQuestionDto {
+    questionText: string; // The question text
+    questionType: string; // The type of question (e.g., text, multiple choice, etc.)
+    options?: string[]; // Options for multiple choice questions
+    isRequired: boolean; // Whether the question is required or not
+    order: number; // The order of the question in the application form
+}
+
+export interface UpdateCustomJobApplicationQuestionDto {
+    questionText?: string; // The question text
+    questionType?: string; // The type of question (e.g., text, multiple choice, etc.)
+    options?: string[]; // Options for multiple choice questions
+    isRequired?: boolean; // Whether the question is required or not
+    order?: number; // The order of the question in the application form
+}

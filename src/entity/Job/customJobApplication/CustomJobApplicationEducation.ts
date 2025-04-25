@@ -26,13 +26,11 @@ export class CustomJobApplicationEducation {
     @Column('date')
     end_date: Date;
 
-    @Column({ name: 'custom_job_application_submit_id' })
-    custom_job_application_submit_id: number;
-
     @ManyToOne(
         () => CustomJobApplicationSubmit,
         (customJobApplicationSubmit) =>
             customJobApplicationSubmit.custom_job_application_education,
+        { onDelete: 'CASCADE' },
     )
     @JoinColumn({ name: 'custom_job_application_submit_id' }) // Links to CustomJobApplicationSubmit
     custom_job_application_submit: CustomJobApplicationSubmit; // Foreign key to CustomJobApplicationSubmit

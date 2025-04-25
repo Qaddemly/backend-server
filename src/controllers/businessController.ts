@@ -433,6 +433,7 @@ export const updateJobApplicationStatus = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             await businessServices.updateJobApplicationStatusService(
+                Number(req.user.id),
                 Number(req.params.jobId),
                 Number(req.params.applicationId),
                 req.body.status,

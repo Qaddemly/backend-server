@@ -2,11 +2,7 @@ import express from 'express';
 import {
     applyToJob,
     createJob,
-    getAllJobApplicationsToJob,
     getAllJobs,
-    getAllUserJobApplications,
-    getAllUserSavedJobs,
-    getOneJobApplication,
     getOneJob,
     getRecommendedJobsForUser,
     makeJobArchived,
@@ -15,8 +11,6 @@ import {
     saveJobToUser,
     unSaveJobFromUser,
     updateOneJob,
-    getNumberOfActiveJobs,
-    getNumberOfNewlyPostedJobs,
 } from '../controllers/jobController';
 import { protect, protectOptional } from '../services/authServices';
 import validateRequestMiddleware from '../middlewares/validator';
@@ -26,27 +20,16 @@ import {
     idJobValidator,
     updateJobValidator,
 } from '../middlewares/validators/jobValidator';
+import { loadJobsFromCSV } from '../services/jobServices';
 import {
-    getAllJobsApplicationsForJobService,
-    loadJobsFromCSV,
-} from '../services/jobServices';
-import {
-    CreateCustomJobApplicationSubmitValidator,
-    CreateCustomJobApplicationValidator,
-    customJobApplicationIdValidator,
-    JobIdValidator,
-} from '../middlewares/validators/customJobApplicationValidator';
-import {
-    createCustomJobApplication,
-    createCustomJobApplicationSubmit,
-    getAllCustomJobApplicationSubmits,
-    getCustomJobApplication,
-} from '../controllers/customJobApplicationController';
-import {
-    getAllCustomJobApplicationSubmitsService,
     savingResumeInDisk,
     uploadCustomJobApplicationResume,
 } from '../services/customJobApplicationServices';
+import {
+    CreateCustomJobApplicationSubmitValidator,
+    customJobApplicationIdValidator,
+} from '../middlewares/validators/customJobApplicationValidator';
+import { createCustomJobApplicationSubmit } from '../controllers/customJobApplicationController';
 
 const jobRouter = express.Router();
 
@@ -129,32 +112,11 @@ jobRouter.post('/loadJobsFromCSV', async (req, res) => {
 });
 
 jobRouter.post(
-    '/:jobId/customJobApplication/create',
-    protect,
-    validateRequestMiddleware(CreateCustomJobApplicationValidator),
-    createCustomJobApplication,
-);
-
-jobRouter.get(
-    '/:jobId/customJobApplication',
-    protect,
-    validateRequestMiddleware(JobIdValidator),
-    getCustomJobApplication,
-);
-
-jobRouter.post(
     '/customJobApplication/:customJobApplicationId/submit',
     protect,
     uploadCustomJobApplicationResume,
     validateRequestMiddleware(CreateCustomJobApplicationSubmitValidator),
     savingResumeInDisk,
     createCustomJobApplicationSubmit,
-);
-
-jobRouter.get(
-    '/customJobApplication/:customJobApplicationId/customJobApplicationSubmit',
-    protect,
-    validateRequestMiddleware(customJobApplicationIdValidator),
-    getAllCustomJobApplicationSubmits,
 );
 export default jobRouter;

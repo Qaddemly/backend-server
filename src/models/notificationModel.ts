@@ -10,6 +10,7 @@ export interface NotificationDoc extends mongoose.Document {
     jobId?: number;
     businessId?: number;
     jobApplicationId?: number;
+    customJobApplicationSubmitId?: number;
 }
 const notificationSchema = new mongoose.Schema<NotificationDoc>(
     {
@@ -28,6 +29,7 @@ const notificationSchema = new mongoose.Schema<NotificationDoc>(
         jobId: Number,
         businessId: Number,
         jobApplicationId: Number,
+        customJobApplicationSubmitId: Number,
         isSent: { type: Boolean, default: false },
     },
     { timestamps: true },

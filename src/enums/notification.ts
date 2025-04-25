@@ -3,4 +3,5 @@ export enum NotificationType {
     RecommendedJobPosted = 'RecommendedJobPosted',
     JobApplicationStatusUpdated = 'JobApplicationStatusUpdated',
     NewMessage = 'NewMessage',
+    CustomJobApplicationStatusUpdated = 'CustomJobApplicationStatusUpdated',
 }

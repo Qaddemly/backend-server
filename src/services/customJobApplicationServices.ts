@@ -1,6 +1,8 @@
 import {
     CreateCustomJobApplicationDto,
+    CreateCustomJobApplicationQuestionDto,
     CreateCustomJobApplicationSubmitDto,
+    UpdateCustomJobApplicationQuestionDto,
 } from '../dtos/customJobApplicationDto';
 import { AccountArchivedCustomJobApplications } from '../entity/Job/customJobApplication/AccountArchivedCustomJobApplications';
 import { CustomJobApplication } from '../entity/Job/customJobApplication/CustomJobApplication';
@@ -36,6 +38,7 @@ import {
     PaginateConfig,
     PaginationType,
 } from '../utils/pagination/typeorm-paginate';
+import { eventEmitter } from '../events/eventEmitter';
 export const createCustomJobApplicationService = async (
     userId: number,
     jobId: number,
@@ -114,7 +117,7 @@ export const getCustomJobApplicationService = async (jobId: number) => {
     }
     const questions = await ApplicationQuestionModel.find({
         customJobApplicationId: customJobApplication.id,
-    });
+    }).sort({ order: 1 });
     customJobApplication.job = job;
     const customJobApplicationWithQuestions = {
         ...customJobApplication,
@@ -155,25 +158,24 @@ export const createCustomJobApplicationSubmitService = async (
     }
     const account = await AccountRepository.findOneBy({ id: accountId });
 
-    const foundCustomJobApplicationSubmit =
-        await CustomJobApplicationSubmitRepository.findOne({
-            where: {
-                account: { id: accountId },
-                custom_job_application: { id: customJobApplicationId },
-            },
-        });
+    // const foundCustomJobApplicationSubmit =
+    //     await CustomJobApplicationSubmitRepository.findOne({
+    //         where: {
+    //             account: { id: accountId },
+    //             custom_job_application: { id: customJobApplicationId },
+    //         },
+    //     });
 
-    if (foundCustomJobApplicationSubmit) {
-        throw new AppError('you have already applied to this job');
-    }
+    // if (foundCustomJobApplicationSubmit) {
+    //     throw new AppError('you have already applied to this job');
+    // }
     const newCustomJobApplicationSubmit = new CustomJobApplicationSubmit();
     newCustomJobApplicationSubmit.first_name = data.personalInfo.first_name;
     newCustomJobApplicationSubmit.last_name = data.personalInfo.last_name;
     newCustomJobApplicationSubmit.birth_date = data.personalInfo.birth_date;
     newCustomJobApplicationSubmit.email = data.personalInfo.email;
     newCustomJobApplicationSubmit.phone = data.personalInfo.phone;
-    newCustomJobApplicationSubmit.custom_job_application_id =
-        customJobApplication.id;
+
     newCustomJobApplicationSubmit.custom_job_application = customJobApplication;
     newCustomJobApplicationSubmit.languages = data.languages;
     newCustomJobApplicationSubmit.skills = data.skills;
@@ -191,12 +193,11 @@ export const createCustomJobApplicationSubmitService = async (
         education.start_date = ed.startDate;
         education.end_date = ed.endDate;
         education.custom_job_application_submit = customJobApplicationSubmit;
-        education.custom_job_application_submit_id =
-            customJobApplicationSubmit.id;
 
         return await CustomJobApplicationEducationRepository.save(education);
     });
     const educations = await Promise.all(educationPromises);
+    console.log('educations', educations);
     const experiencePromises = data.experiences.map(async (exp) => {
         const experience = new CustomJobApplicationExperience();
         experience.company_name = exp.companyName;
@@ -208,25 +209,24 @@ export const createCustomJobApplicationSubmitService = async (
         experience.start_date = exp.startDate;
         experience.end_date = exp.endDate;
         experience.custom_job_application_submit = customJobApplicationSubmit;
-        experience.custom_job_application_submit_id =
-            customJobApplicationSubmit.id;
+
         return await CustomJobApplicationExperienceRepository.save(experience);
     });
     const experiences = await Promise.all(experiencePromises);
     const newResume = new CustomJobApplicationResume();
-    newResume.name = data.resume.name;
-    newResume.size = data.resume.size;
-    newResume.url = data.resume.url;
+    newResume.name = data.resume?.name;
+    newResume.size = data.resume?.size;
+    newResume.url = data.resume?.url;
     newResume.custom_job_application_submit = customJobApplicationSubmit;
-    newResume.custom_job_application_submit_id = customJobApplicationSubmit.id;
     const resume = await CustomJobApplicationResumeRepository.save(newResume);
 
     const answerPromises = data.answers.map(async (ans) => {
         const answer = await ApplicationAnswerModel.create({
             answer: ans.answer,
-            questionId: ans.questionId,
+            question: ans.questionId,
             accountId: account.id,
             customJobApplicationSubmitId: customJobApplicationSubmit.id,
+            customJobApplicationId: customJobApplication.id,
         });
         return answer;
     });
@@ -381,5 +381,262 @@ export const getAllCustomJobApplicationSubmitsService = async (
     } catch (err) {
         console.log(err);
         throw new AppError('Error in getting customJobApplicationSubmits', 400);
+    }
+};
+
+export const getCustomJobApplicationSubmitByBusinessService = async (
+    accountId: number,
+    customJobApplicationId: number,
+    customJobApplicationSubmitId: number,
+) => {
+    const customJobApplication = await CustomJobApplicationRepository.findOne({
+        where: { id: customJobApplicationId },
+        relations: ['job'],
+    });
+    if (!customJobApplication) {
+        throw new AppError('job application not found', 404);
+    }
+
+    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+        accountId,
+        customJobApplication.job.business_id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (!isAllowedToPostJob) {
+        throw new AppError('you do not have permission to that action', 403);
+    }
+    const customJobApplicationSubmit =
+        await CustomJobApplicationSubmitRepository.findOne({
+            where: { id: customJobApplicationSubmitId },
+            relations: [
+                'custom_job_application_education',
+                'custom_job_application_resume',
+                'custom_job_application_experience',
+                'custom_job_application_state',
+            ],
+        });
+    if (!customJobApplicationSubmit) {
+        throw new AppError('job application submit not found', 404);
+    }
+    const questionAnswers = await ApplicationAnswerModel.find({
+        customJobApplicationSubmitId,
+    })
+
+        .populate('question');
+
+    return {
+        ...customJobApplicationSubmit,
+        questionAnswers: questionAnswers,
+    };
+};
+
+export const updateCustomJobApplicationSubmitStateService = async (
+    accountId: number,
+    customJobApplicationId: number,
+    customJobApplicationSubmitId: number,
+    state: JobApplicationStateEnum,
+) => {
+    const customJobApplication = await CustomJobApplicationRepository.findOne({
+        where: { id: customJobApplicationId },
+        relations: ['job', 'job.business'],
+    });
+    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+        accountId,
+        customJobApplication.job.business_id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (!isAllowedToPostJob) {
+        throw new AppError('you do not have permission to that action', 403);
+    }
+    const customJobApplicationSubmit =
+        await CustomJobApplicationSubmitRepository.findOne({
+            where: { id: customJobApplicationSubmitId },
+            relations: ['account'],
+        });
+    console.log(customJobApplicationSubmit);
+    if (!customJobApplicationSubmit) {
+        throw new AppError('custom job application submit not found', 404);
+    }
+    const customJobApplicationState =
+        await CustomJobApplicationStatesRepository.findOne({
+            where: {
+                custom_job_application_submit_id: customJobApplicationSubmitId,
+            },
+        });
+    customJobApplicationState.state = state;
+
+    eventEmitter.emit('sendUpdateCustomJobApplicationStatusNotification', {
+        id: customJobApplicationSubmit.id,
+        account_id: customJobApplicationSubmit.account.id,
+        job: customJobApplication.job,
+        business: customJobApplication.job.business,
+        state: customJobApplicationState.state,
+    });
+    return await CustomJobApplicationStatesRepository.save(
+        customJobApplicationState,
+    );
+};
+
+export const deleteCustomJobApplicationService = async (
+    accountId: number,
+    customJobApplicationId: number,
+) => {
+    const customJobApplication = await CustomJobApplicationRepository.findOne({
+        where: { id: customJobApplicationId },
+        relations: ['job'],
+    });
+    if (!customJobApplication) {
+        throw new AppError('job application not found', 404);
+    }
+
+    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+        accountId,
+        customJobApplication.job.business_id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (!isAllowedToPostJob) {
+        throw new AppError('you do not have permission to that action', 403);
+    }
+
+    await CustomJobApplicationRepository.delete({ id: customJobApplicationId });
+    await ApplicationQuestionModel.deleteMany({
+        customJobApplicationId: customJobApplicationId,
+    });
+    await ApplicationAnswerModel.deleteMany({ customJobApplicationId });
+};
+
+export const addQuestionToCustomJobApplicationService = async (
+    accountId: number,
+    CustomJobApplicationId: number,
+    data: CreateCustomJobApplicationQuestionDto,
+) => {
+    const customJobApplication = await CustomJobApplicationRepository.findOne({
+        where: { id: CustomJobApplicationId },
+        relations: ['job'],
+    });
+    if (!customJobApplication) {
+        throw new AppError('job application not found', 404);
+    }
+    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+        accountId,
+        customJobApplication.job.business_id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (!isAllowedToPostJob) {
+        throw new AppError('you do not have permission to that action', 403);
+    }
+    const question = await ApplicationQuestionModel.create({
+        questionText: data.questionText,
+        questionType: data.questionType,
+        options: data.options,
+        isRequired: data.isRequired,
+        order: data.order,
+        jobId: customJobApplication.job_id,
+        customJobApplicationId: customJobApplication.id,
+    });
+    return question;
+};
+
+export const updateQuestionFromCustomJobApplicationService = async (
+    accountId: number,
+    customJobApplicationId: number,
+    questionId: string,
+    data: UpdateCustomJobApplicationQuestionDto,
+) => {
+    const customJobApplication = await CustomJobApplicationRepository.findOne({
+        where: { id: customJobApplicationId },
+        relations: ['job'],
+    });
+    if (!customJobApplication) {
+        throw new AppError('job application not found', 404);
+    }
+    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+        accountId,
+        customJobApplication.job.business_id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (!isAllowedToPostJob) {
+        throw new AppError('you do not have permission to that action', 403);
+    }
+    const question = await ApplicationQuestionModel.findOneAndUpdate(
+        {
+            _id: questionId,
+        },
+        data,
+        { new: true },
+    );
+    if (!question) {
+        throw new AppError('question not found', 404);
+    }
+    return question;
+};
+
+export const deleteQuestionFromCustomJobApplicationService = async (
+    accountId: number,
+    customJobApplicationId: number,
+    questionId: string,
+) => {
+    const customJobApplication = await CustomJobApplicationRepository.findOne({
+        where: { id: customJobApplicationId },
+        relations: ['job'],
+    });
+    if (!customJobApplication) {
+        throw new AppError('job application not found', 404);
+    }
+    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
+        accountId,
+        customJobApplication.job.business_id,
+        [
+            HrRole.SUPER_ADMIN,
+            HrRole.HR,
+            HrRole.RECRUITER,
+            HrRole.HIRING_MANAGER,
+            HrRole.SUPER_ADMIN,
+            HrRole.OWNER,
+        ],
+    );
+    if (!isAllowedToPostJob) {
+        throw new AppError('you do not have permission to that action', 403);
+    }
+    const question = await ApplicationQuestionModel.findOneAndDelete({
+        _id: questionId,
+    });
+    if (!question) {
+        throw new AppError('question not found', 404);
     }
 };

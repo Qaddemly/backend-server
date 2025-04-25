@@ -15,7 +15,14 @@ export class AccountArchivedCustomJobApplications {
     @PrimaryColumn()
     custom_job_application_submit_id: number; // Single column as both Primary & Foreign Key
 
-    @OneToOne(() => CustomJobApplicationSubmit, { onDelete: 'CASCADE' })
+    @OneToOne(
+        () => CustomJobApplicationSubmit,
+        (custom_job_application_submit) =>
+            custom_job_application_submit.account_archived_custom_job_application,
+        {
+            onDelete: 'CASCADE',
+        },
+    )
     @JoinColumn({ name: 'custom_job_application_submit_id' }) // Links to CustomJobApplicationSubmit
     custom_job_application_submit: CustomJobApplicationSubmit;
 

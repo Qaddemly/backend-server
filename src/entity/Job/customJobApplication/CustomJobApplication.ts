@@ -35,5 +35,5 @@ export class CustomJobApplication {
         (customJobApplicationSubmit) =>
             customJobApplicationSubmit.custom_job_application,
     )
-    custom_job_application: CustomJobApplicationSubmit[];
+    custom_job_application_submits: CustomJobApplicationSubmit[];
 }

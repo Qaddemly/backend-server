@@ -31,16 +31,20 @@ import {
     checkRoleInBusiness,
     updateJobApplicationStatus,
 } from '../controllers/businessController';
-import { getAllPhonesOfBusiness } from '../services/businessServices';
 import { idJobValidator } from '../middlewares/validators/jobValidator';
 import {
     getAllArchivedJobs,
     getAllJobApplicationsToJob,
     getOneJobApplication,
 } from '../controllers/jobController';
-import jobRouter from './jobRoutes';
 import { CreateCustomJobApplicationValidator } from '../middlewares/validators/customJobApplicationValidator';
 import { createCustomJobApplication } from '../controllers/customJobApplicationController';
+import * as customJobApplicationController from '../controllers/customJobApplicationController';
+import * as customJobApplicationValidator from '../middlewares/validators/customJobApplicationValidator';
+import {
+    savingResumeInDisk,
+    uploadCustomJobApplicationResume,
+} from '../services/customJobApplicationServices';
 
 export const businessRouter = express.Router();
 
@@ -239,4 +243,92 @@ businessRouter.get(
     protect,
     validateRequestMiddleware(idJobValidator),
     getAllArchivedJobs,
+);
+
+businessRouter.post(
+    '/dashboard/job/:jobId/customJobApplication/create',
+    protect,
+    validateRequestMiddleware(CreateCustomJobApplicationValidator),
+    createCustomJobApplication,
+);
+
+businessRouter.get(
+    '/dashboard/job/:jobId/customJobApplication',
+    protect,
+    validateRequestMiddleware(customJobApplicationValidator.JobIdValidator),
+    customJobApplicationController.getCustomJobApplication,
+);
+
+businessRouter.post(
+    '/dashboard/job/customJobApplication/:customJobApplicationId/submit',
+    protect,
+    uploadCustomJobApplicationResume,
+    validateRequestMiddleware(
+        customJobApplicationValidator.CreateCustomJobApplicationSubmitValidator,
+    ),
+    savingResumeInDisk,
+    customJobApplicationController.createCustomJobApplicationSubmit,
+);
+
+businessRouter.get(
+    '/dashboard/job/customJobApplication/:customJobApplicationId/customJobApplicationSubmit',
+    protect,
+    validateRequestMiddleware(
+        customJobApplicationValidator.customJobApplicationIdValidator,
+    ),
+    customJobApplicationController.getAllCustomJobApplicationSubmits,
+);
+
+businessRouter.get(
+    '/dashboard/job/customJobApplication/:customJobApplicationId/customJobApplicationSubmit/:customJobApplicationSubmitId',
+    protect,
+    validateRequestMiddleware(
+        customJobApplicationValidator.getOneCustomJobApplicationSubmitByBusinessValidator,
+    ),
+    customJobApplicationController.getOneCustomJobApplicationSubmitByBusiness,
+);
+
+businessRouter.put(
+    '/dashboard/job/customJobApplication/:customJobApplicationId/customJobApplicationSubmit/:customJobApplicationSubmitId/update-state',
+    protect,
+    validateRequestMiddleware(
+        customJobApplicationValidator.updateCustomJobApplicationSubmitStateValidator,
+    ),
+    customJobApplicationController.updateCustomJobApplicationSubmitState,
+);
+
+businessRouter.delete(
+    '/dashboard/job/customJobApplication/:customJobApplicationId',
+    protect,
+    validateRequestMiddleware(
+        customJobApplicationValidator.customJobApplicationIdValidator,
+    ),
+    customJobApplicationController.deleteCustomJobApplication,
+);
+
+businessRouter.post(
+    '/dashboard/job/customJobApplication/:customJobApplicationId/question/add',
+    protect,
+    validateRequestMiddleware(
+        customJobApplicationValidator.addQuestionToCustomJobApplicationValidator,
+    ),
+    customJobApplicationController.addCustomJobApplicationQuestion,
+);
+
+businessRouter.put(
+    '/dashboard/job/customJobApplication/:customJobApplicationId/question/update/:questionId',
+    protect,
+    validateRequestMiddleware(
+        customJobApplicationValidator.updateQuestionToCustomJobApplicationValidator,
+    ),
+    customJobApplicationController.updateCustomJobApplicationQuestion,
+);
+
+businessRouter.delete(
+    '/dashboard/job/customJobApplication/:customJobApplicationId/question/delete/:questionId',
+    protect,
+    validateRequestMiddleware(
+        customJobApplicationValidator.deleteQuestionToCustomJobApplicationValidator,
+    ),
+    customJobApplicationController.deleteCustomJobApplicationQuestion,
 );

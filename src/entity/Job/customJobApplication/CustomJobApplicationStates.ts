@@ -21,7 +21,7 @@ export class CustomJobApplicationState {
         () => CustomJobApplicationSubmit,
         (cja) => cja.custom_job_application_state,
         {
-            cascade: true,
+            onDelete: 'CASCADE',
         },
     )
     @JoinColumn({ name: 'custom_job_application_submit_id' }) // Links to CustomJobApplication

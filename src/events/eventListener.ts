@@ -1,5 +1,6 @@
 import { eventEmitter } from './eventEmitter';
 import {
+    sendCustomJobApplicationUpdateNotification,
     sendJobApplicationUpdateNotification,
     sendJobNotification,
 } from '../services/notificationServices';
@@ -26,6 +27,24 @@ eventEmitter.on(
             );
 
             await sendJobApplicationUpdateNotification(jobApplication);
+        } catch (error) {
+            console.error('Error sending notification:', error);
+        }
+    },
+);
+
+eventEmitter.on(
+    'sendUpdateCustomJobApplicationStatusNotification',
+    async (customJobApplication: JobApplication) => {
+        try {
+            console.log(
+                `Processing notification for customJobApplication:`,
+                customJobApplication,
+            );
+
+            await sendCustomJobApplicationUpdateNotification(
+                customJobApplication,
+            );
         } catch (error) {
             console.error('Error sending notification:', error);
         }
