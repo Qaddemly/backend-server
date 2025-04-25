@@ -34,9 +34,9 @@ import { AccountLinks } from './AccountLinks';
 import { ResumeTemplate } from '../ResumeTemplate/ResumeTemplate';
 import { CoverLetter } from '../CoverLetter/CoverLetter';
 import { Notification } from '../Notification/Notification';
-import { CustomJobApplication } from '../Job/customJobApplication/CustomJobApplication';
 import { CustomJobApplicationSubmit } from '../Job/customJobApplication/CustomJobApplicationSubmit';
 import { AccountArchivedCustomJobApplications } from '../Job/customJobApplication/AccountArchivedCustomJobApplications';
+import { Chat } from '../Messaging/chat';
 
 @Entity()
 export class Account {
@@ -194,6 +194,12 @@ export class Account {
     coverLetters: CoverLetter[];
     @OneToMany(() => Notification, (notification) => notification.account)
     notifications: Notification[];
+
+    @OneToMany(() => Chat, (businessChat) => businessChat.account, {
+        cascade: true,
+    })
+    chats: Chat[];
+
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 

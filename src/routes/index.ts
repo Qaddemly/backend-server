@@ -10,6 +10,8 @@ import { reviewRouter } from './reviewRoutes';
 import statsRouter from './statsRoutes';
 
 import { resumeTemplateRouter } from './resumeTemplateRoutes';
+import { chatRouter } from './chatRoutes';
+
 import notificationRouter from './notificationRoutes';
 import coverLetterRouter from './coverLetterRoutes';
 
@@ -19,6 +21,7 @@ const mountRoutes = (app: Express) => {
     app.use(prefixUrl + '/user', profileRouter);
     app.use(prefixUrl + '/job', jobRouter);
 
+    app.use(prefixUrl + '/chat', chatRouter);
     app.use('/api/v1/account', accountRouter);
     app.use('/api/v1/business', businessRouter);
     app.use('/api/v1/review', reviewRouter);

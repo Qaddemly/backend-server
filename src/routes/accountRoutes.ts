@@ -20,3 +20,5 @@ accountRouter.delete(
     protect,
     accountController.unfollowBusiness,
 );
+
+accountRouter.get('/testForAI', accountController.testForAI);

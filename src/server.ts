@@ -6,8 +6,15 @@ import databaseConnect from './config/database.connection';
 import { AppDataSource } from './data-source';
 import { Logger } from './utils/logger';
 import { redisClient } from './config/redis';
+import * as http from 'node:http';
+import { SocketService } from './services/socketService';
 
 const port = process.env.PORT || 3000;
+
+// @ts-ignore
+const server = http.createServer(app);
+
+const io = SocketService(server);
 
 redisClient
     .connect()
@@ -28,6 +35,6 @@ AppDataSource.initialize()
         Logger.error('Postgres Database connection failed', error);
     });
 
-app.listen(port, () => {
+server.listen(port, () => {
     Logger.info(`Server is running on port ${port}`);
 });
