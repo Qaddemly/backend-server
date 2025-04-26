@@ -14,6 +14,7 @@ import { JobApplication } from './JobApplication';
 import { Business } from '../Business/Business';
 import { JobApplicationStateEnum } from '../../enums/jobApplicationStateEnum';
 import { Job } from './Job';
+import { Notification } from '../Notification/Notification';
 
 @Entity()
 export class JobApplicationState {
@@ -35,7 +36,11 @@ export class JobApplicationState {
     })
     @JoinColumn({ name: 'job_id' })
     job: Job;
-
+    @OneToMany(
+        () => Notification,
+        (notification) => notification.job_application_state,
+    )
+    notifications: Notification[];
     @Column({
         type: 'enum',
         enum: JobApplicationStateEnum,

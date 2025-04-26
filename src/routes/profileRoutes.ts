@@ -88,6 +88,15 @@ import {
     getAllUserSavedJobs,
     getOneUserJobApplication,
 } from '../controllers/jobController';
+import {
+    customJobApplicationSubmitIdValidator,
+    getCustomJobApplicationSubmitValidator,
+} from '../middlewares/validators/customJobApplicationValidator';
+import { getCustomJobApplicationSubmitByIdService } from '../services/customJobApplicationServices';
+import {
+    getAllCustomJobApplicationSubmitsByAccountId,
+    getCustomJobApplicationSubmitById,
+} from '../controllers/customJobApplicationController';
 
 const profileRouter = Router();
 
@@ -338,5 +347,18 @@ profileRouter.get(
 
 profileRouter.get('/test', protect, getUserInfoAndJobs);
 profileRouter.get('/job/mySavedJobs', protect, getAllUserSavedJobs);
+
+profileRouter.get(
+    '/job/customJobApplication/:customJobApplicationId/customJobApplicationSubmit/:customJobApplicationSubmitId',
+    protect,
+    validateRequestMiddleware(getCustomJobApplicationSubmitValidator),
+    getCustomJobApplicationSubmitById,
+);
+
+profileRouter.get(
+    '/job/customJobApplicationSubmit',
+    protect,
+    getAllCustomJobApplicationSubmitsByAccountId,
+);
 
 export default profileRouter;

@@ -4,8 +4,6 @@ import {
     Index,
     JoinColumn,
     ManyToOne,
-    OneToOne,
-    PrimaryColumn,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Account } from './Account';

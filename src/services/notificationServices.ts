@@ -101,6 +101,28 @@ export const sendJobApplicationUpdateNotification = async (
     }
 };
 
+export const sendCustomJobApplicationUpdateNotification = async (
+    jobApplication: any,
+) => {
+    console.log('hello from sending notifications custom job app0li');
+    const newNotification = await Notification.create({
+        type: NotificationType.CustomJobApplicationStatusUpdated,
+        message: `update on your job application on job ${jobApplication.job.title} posted on business ${jobApplication.business.name} with state ${jobApplication.state}`,
+        jobId: jobApplication.job.id,
+        businessId: jobApplication.business.id,
+        accountId: jobApplication.account_id,
+        customJobApplicationSubmitId: jobApplication.id,
+    });
+    const client = clients.find(
+        (c) => Number(c.accountId) == jobApplication.account_id,
+    );
+    if (client) {
+        newNotification.isSent = true;
+        await newNotification.save();
+        client.res.write(`data: ${JSON.stringify(newNotification)}\n\n`);
+    }
+};
+
 export const getAllUserNotificationService = async (account_id: number) => {
     const notifications = await Notification.find({ accountId: account_id });
     const businessIds = notifications.map((n) => n.businessId);

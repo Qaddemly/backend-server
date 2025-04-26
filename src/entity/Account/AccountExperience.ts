@@ -3,9 +3,7 @@ import {
     Entity,
     Index,
     JoinColumn,
-    ManyToMany,
     ManyToOne,
-    PrimaryColumn,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { EmploymentType } from '../../enums/employmentType';

@@ -21,6 +21,7 @@ import { Address } from '../General/Address';
 import { Country } from '../../enums/country';
 import { JobApplicationState } from './JobApplicationStates';
 import { AccountSavedJobs } from './AccountSavedJobs';
+import { CustomJobApplication } from './customJobApplication/CustomJobApplication';
 
 @Entity()
 export class Job {
@@ -102,7 +103,11 @@ export class Job {
         (accountSavedJobs) => accountSavedJobs.job,
     )
     savedByAccounts: AccountSavedJobs[];
-
+    @OneToOne(
+        () => CustomJobApplication,
+        (customJobApplication) => customJobApplication.job,
+    )
+    custom_job_application: CustomJobApplication;
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 

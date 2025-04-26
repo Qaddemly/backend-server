@@ -15,6 +15,8 @@ import { Job } from '../Job/Job';
 import { Address } from '../General/Address';
 import { BusinessPhone } from './BusinessPhone';
 import { JobApplicationState } from '../Job/JobApplicationStates';
+import { Notification } from '../Notification/Notification';
+import { CustomJobApplication } from '../Job/customJobApplication/CustomJobApplication';
 import { Chat } from '../Messaging/chat';
 
 @Entity()
@@ -98,6 +100,8 @@ export class Business {
 
     @OneToMany(() => Job, (job) => job.business, { cascade: true })
     jobs: Job[];
+    @OneToMany(() => Notification, (notification) => notification.business)
+    notifications: Notification[];
 
     @OneToMany(() => Chat, (businessChat) => businessChat.business, {
         cascade: true,
