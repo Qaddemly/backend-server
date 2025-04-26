@@ -380,3 +380,8 @@ export const deleteQuestionToCustomJobApplicationValidator = [
     customJobApplicationIdValidator[0],
     questionIdValidator[0],
 ];
+
+export const getCustomJobApplicationSubmitValidator = [
+    customJobApplicationIdValidator[0],
+    customJobApplicationSubmitIdValidator[0],
+];

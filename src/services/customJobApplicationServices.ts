@@ -640,3 +640,101 @@ export const deleteQuestionFromCustomJobApplicationService = async (
         throw new AppError('question not found', 404);
     }
 };
+
+export const getCustomJobApplicationSubmitByIdService = async (
+    accountId: number,
+    customJobApplicationId: number,
+    customJobApplicationSubmitId: number,
+) => {
+    const customJobApplication = await CustomJobApplicationRepository.findOne({
+        where: { id: customJobApplicationId },
+        relations: ['job'],
+    });
+    const customJobApplicationSubmit =
+        await CustomJobApplicationSubmitRepository.findOne({
+            where: {
+                id: customJobApplicationSubmitId,
+                account: { id: accountId },
+            },
+            relations: [
+                'custom_job_application_education',
+                'custom_job_application_experience',
+                'custom_job_application_resume',
+                'custom_job_application_state',
+            ],
+        });
+    if (!customJobApplicationSubmit) {
+        throw new AppError('custom job application submit not found', 404);
+    }
+    const questionAnswers = await ApplicationAnswerModel.find({
+        customJobApplicationSubmitId,
+    }).populate('question');
+    return {
+        ...customJobApplicationSubmit,
+        job: customJobApplication.job,
+        questionAnswers: questionAnswers,
+    };
+};
+
+export const getAllCustomJobApplicationSubmitsByAccountIdService = async (
+    req: Request,
+) => {
+    const accountId = Number(req.user.id);
+    try {
+        //console.log('req', req.query);
+        const transformedQuery = Paginate(req);
+        //console.log('transformedQuery', transformedQuery);
+        const paginateConfig: PaginateConfig<CustomJobApplicationSubmit> = {
+            searchableColumns: ['custom_job_application.job.title'],
+            sortableColumns: ['created_at'],
+            //filterableColumns:{id:5},
+            filterableColumns: {
+                'custom_job_application_state.state': [FilterOperator.EQ],
+            },
+
+            relations: [
+                'custom_job_application_state',
+                'custom_job_application',
+                'custom_job_application.job',
+            ],
+            defaultSortBy: [['created_at', 'DESC']],
+            maxLimit: 20,
+            defaultLimit: transformedQuery.limit,
+
+            paginationType: PaginationType.TAKE_AND_SKIP,
+        };
+        const queryBuilder =
+            CustomJobApplicationSubmitRepository.createQueryBuilder('cjas')
+                .select([
+                    'cjas.id',
+                    'cjas.created_at',
+                    'cjas.updated_at',
+                    'cjas.first_name',
+                    'cjas.last_name',
+                    'cjas.email',
+                    'cjas.phone',
+                    'cjas.birth_date',
+                    'cjas.skills',
+                    'cjas.languages',
+                    'cjas.custom_job_application_id',
+                ])
+
+                // LEFT JOIN Job
+                .where('cjas.account_id = :id', {
+                    id: accountId,
+                });
+        const customJobApplicationSubmits =
+            await paginate<CustomJobApplicationSubmit>(
+                transformedQuery,
+                queryBuilder,
+                paginateConfig,
+            );
+        customJobApplicationSubmits.data.map((csa) => {
+            delete csa.account;
+        });
+        return customJobApplicationSubmits;
+    } catch (err) {
+        console.log(err);
+        throw new AppError('Error in getting customJobApplicationSubmits', 400);
+    }
+};

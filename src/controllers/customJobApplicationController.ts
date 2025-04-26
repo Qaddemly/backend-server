@@ -6,9 +6,11 @@ import {
     createCustomJobApplicationSubmitService,
     deleteCustomJobApplicationService,
     deleteQuestionFromCustomJobApplicationService,
+    getAllCustomJobApplicationSubmitsByAccountIdService,
     getAllCustomJobApplicationSubmitsService,
     getCustomJobApplicationService,
     getCustomJobApplicationSubmitByBusinessService,
+    getCustomJobApplicationSubmitByIdService,
     updateCustomJobApplicationSubmitStateService,
     updateQuestionFromCustomJobApplicationService,
 } from '../services/customJobApplicationServices';
@@ -227,6 +229,50 @@ export const deleteCustomJobApplicationQuestion = catchAsync(
             );
 
             res.status(204).json({});
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getCustomJobApplicationSubmitById = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const accountId = Number(req.user.id);
+            const customJobApplicationId = Number(
+                req.params.customJobApplicationId,
+            );
+            const customJobApplicationSubmitId = Number(
+                req.params.customJobApplicationSubmitId,
+            );
+
+            const customJobApplicationSubmit =
+                await getCustomJobApplicationSubmitByIdService(
+                    accountId,
+                    customJobApplicationId,
+                    customJobApplicationSubmitId,
+                );
+
+            res.status(200).json({
+                success: true,
+                customJobApplicationSubmit,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllCustomJobApplicationSubmitsByAccountId = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const customJobApplicationSubmits =
+                await getAllCustomJobApplicationSubmitsByAccountIdService(req);
+
+            res.status(200).json({
+                success: true,
+                customJobApplicationSubmits,
+            });
         } catch (err) {
             return next(err);
         }
