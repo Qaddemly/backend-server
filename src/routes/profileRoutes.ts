@@ -89,11 +89,14 @@ import {
     getOneUserJobApplication,
 } from '../controllers/jobController';
 import {
+    archiveCustomJobApplicationSubmitValidator,
     customJobApplicationSubmitIdValidator,
     getCustomJobApplicationSubmitValidator,
 } from '../middlewares/validators/customJobApplicationValidator';
 import { getCustomJobApplicationSubmitByIdService } from '../services/customJobApplicationServices';
 import {
+    archiveCustomJobApplicationSubmit,
+    getAllArchivedCustomJobApplicationSubmitsByAccountId,
     getAllCustomJobApplicationSubmitsByAccountId,
     getCustomJobApplicationSubmitById,
 } from '../controllers/customJobApplicationController';
@@ -361,4 +364,15 @@ profileRouter.get(
     getAllCustomJobApplicationSubmitsByAccountId,
 );
 
+profileRouter.put(
+    '/customJobApplicationSubmit/archived/:customJobApplicationSubmitId',
+    protect,
+    validateRequestMiddleware(archiveCustomJobApplicationSubmitValidator),
+    archiveCustomJobApplicationSubmit,
+);
+profileRouter.get(
+    '/customJobApplicationSubmit/archived/all',
+    protect,
+    getAllArchivedCustomJobApplicationSubmitsByAccountId,
+);
 export default profileRouter;

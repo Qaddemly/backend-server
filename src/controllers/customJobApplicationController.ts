@@ -2,10 +2,12 @@ import { Request, Response, NextFunction } from 'express';
 import catchAsync from 'express-async-handler';
 import {
     addQuestionToCustomJobApplicationService,
+    archiveCustomJobApplicationSubmitService,
     createCustomJobApplicationService,
     createCustomJobApplicationSubmitService,
     deleteCustomJobApplicationService,
     deleteQuestionFromCustomJobApplicationService,
+    getAllArchivedCustomApplicationsOfUserService,
     getAllCustomJobApplicationSubmitsByAccountIdService,
     getAllCustomJobApplicationSubmitsService,
     getCustomJobApplicationService,
@@ -272,6 +274,53 @@ export const getAllCustomJobApplicationSubmitsByAccountId = catchAsync(
             res.status(200).json({
                 success: true,
                 customJobApplicationSubmits,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const getAllArchivedCustomJobApplicationSubmitsByAccountId = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const accountId = Number(req.user.id);
+            const customJobApplicationSubmitId = Number(
+                req.params.customJobApplicationSubmitId,
+            );
+            const archive = req.query.archive;
+            const customJobApplicationSubmits =
+                await getAllArchivedCustomApplicationsOfUserService(accountId);
+
+            res.status(200).json({
+                success: true,
+                customJobApplicationSubmits,
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const archiveCustomJobApplicationSubmit = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const accountId = Number(req.user.id);
+            const customJobApplicationSubmitId = Number(
+                req.params.customJobApplicationSubmitId,
+            );
+            const archive = (req.query.archive as string) === 'true';
+
+            const customJobApplicationSubmit =
+                await archiveCustomJobApplicationSubmitService(
+                    accountId,
+                    customJobApplicationSubmitId,
+                    archive as any,
+                );
+
+            res.status(200).json({
+                success: true,
+                customJobApplicationSubmit,
             });
         } catch (err) {
             return next(err);

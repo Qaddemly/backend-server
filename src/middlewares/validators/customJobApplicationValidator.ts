@@ -1,4 +1,4 @@
-import { body, param } from 'express-validator';
+import { body, param, query } from 'express-validator';
 import { ApplicationQuestionType } from '../../enums/applicationQuestionType';
 import mongoose from 'mongoose';
 import { ApplicationQuestionModel } from '../../models/customJobApplicationQuestion';
@@ -384,4 +384,12 @@ export const deleteQuestionToCustomJobApplicationValidator = [
 export const getCustomJobApplicationSubmitValidator = [
     customJobApplicationIdValidator[0],
     customJobApplicationSubmitIdValidator[0],
+];
+export const archiveCustomJobApplicationSubmitValidator = [
+    customJobApplicationSubmitIdValidator[0],
+    query('archive')
+        .notEmpty()
+        .withMessage('archive is required')
+        .isBoolean()
+        .withMessage('archive must be a boolean'),
 ];

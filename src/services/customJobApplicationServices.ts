@@ -247,6 +247,7 @@ export const createCustomJobApplicationSubmitService = async (
         customJobApplicationSubmit.id;
     accountArchivedJobApplication.custom_job_application_submit =
         customJobApplicationSubmit;
+    accountArchivedJobApplication.custom_job_application = customJobApplication;
     accountArchivedJobApplication.is_archived = false;
     await AccountArchivedCustomJobApplicationsRepository.save(
         accountArchivedJobApplication,
@@ -720,9 +721,16 @@ export const getAllCustomJobApplicationSubmitsByAccountIdService = async (
                 ])
 
                 // LEFT JOIN Job
+                .leftJoin(
+                    'cjas.account_archived_custom_job_application',
+                    'account_archived_custom_job_application',
+                )
                 .where('cjas.account_id = :id', {
                     id: accountId,
-                });
+                })
+                .andWhere(
+                    'account_archived_custom_job_application.is_archived = false',
+                );
         const customJobApplicationSubmits =
             await paginate<CustomJobApplicationSubmit>(
                 transformedQuery,
@@ -737,4 +745,47 @@ export const getAllCustomJobApplicationSubmitsByAccountIdService = async (
         console.log(err);
         throw new AppError('Error in getting customJobApplicationSubmits', 400);
     }
+};
+
+export const archiveCustomJobApplicationSubmitService = async (
+    accountId: number,
+    customJobApplicationSubmitId: number,
+    archive: boolean,
+) => {
+    const customJobApplicationSubmitArchive =
+        await AccountArchivedCustomJobApplicationsRepository.findOne({
+            where: {
+                account: { id: accountId },
+                custom_job_application_submit_id: customJobApplicationSubmitId,
+            },
+        });
+    if (!customJobApplicationSubmitArchive) {
+        throw new AppError('custom job application submit not found', 404);
+    }
+    if (
+        (archive && customJobApplicationSubmitArchive.is_archived) ||
+        (!archive && customJobApplicationSubmitArchive.is_archived == false)
+    ) {
+        throw new AppError(
+            'custom Job Application already in the desired state',
+            400,
+        );
+    }
+    customJobApplicationSubmitArchive.is_archived = archive;
+    return await AccountArchivedCustomJobApplicationsRepository.save(
+        customJobApplicationSubmitArchive,
+    );
+};
+
+export const getAllArchivedCustomApplicationsOfUserService = (
+    accountId: number,
+) => {
+    return AccountArchivedCustomJobApplicationsRepository.find({
+        where: {
+            account: { id: accountId },
+            is_archived: true,
+        },
+        relations: ['custom_job_application'],
+        order: { created_at: 'DESC' },
+    });
 };

@@ -11,6 +11,7 @@ import { Job } from '../Job';
 import { join } from 'path';
 import { Business } from '../../Business/Business';
 import { CustomJobApplicationSubmit } from './CustomJobApplicationSubmit';
+import { AccountArchivedCustomJobApplications } from './AccountArchivedCustomJobApplications';
 
 @Entity()
 export class CustomJobApplication {
@@ -36,4 +37,12 @@ export class CustomJobApplication {
             customJobApplicationSubmit.custom_job_application,
     )
     custom_job_application_submits: CustomJobApplicationSubmit[];
+
+    @OneToMany(
+        () => AccountArchivedCustomJobApplications,
+        (archived_custom_job_applications) =>
+            archived_custom_job_applications.custom_job_application,
+        { onDelete: 'CASCADE' },
+    )
+    archived_custom_job_applications: AccountArchivedCustomJobApplications[];
 }

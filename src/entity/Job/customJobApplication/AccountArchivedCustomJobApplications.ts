@@ -1,5 +1,6 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     Index,
     JoinColumn,
@@ -9,6 +10,7 @@ import {
 } from 'typeorm';
 import { Account } from '../../Account/Account';
 import { CustomJobApplicationSubmit } from './CustomJobApplicationSubmit';
+import { CustomJobApplication } from './CustomJobApplication';
 
 @Entity()
 export class AccountArchivedCustomJobApplications {
@@ -38,6 +40,18 @@ export class AccountArchivedCustomJobApplications {
     @JoinColumn({ name: 'account_id' })
     account: Account;
 
+    @ManyToOne(
+        () => CustomJobApplication,
+        (customJobApplication) =>
+            customJobApplication.archived_custom_job_applications,
+        {
+            onDelete: 'CASCADE',
+        },
+    )
+    @JoinColumn({ name: 'custom_application_id' })
+    custom_job_application: CustomJobApplication;
     @Column('boolean')
     is_archived: boolean;
+    @CreateDateColumn()
+    created_at: Date; // Timestamp of when the record was created
 }
