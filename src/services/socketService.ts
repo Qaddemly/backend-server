@@ -99,6 +99,7 @@ export const SocketService = (server: any) => {
 
             if (sockets.length > 0) {
                 message.is_delivered = true;
+                socket.emit('my_message_is_delivered', message);
             }
             socket
                 .to(`business_${messageDTO.businessId}`)
@@ -234,6 +235,7 @@ export const SocketService = (server: any) => {
             if (userSocket) {
                 message.is_delivered = true;
                 userSocket.emit('business_send_message', message);
+                socket.emit('my_message_is_delivered', message);
             }
             Logger.info(
                 `Business ${messageDTO.businessId} sent message to user ${messageDTO.userId}`,
