@@ -1,10 +1,10 @@
 import { body, param, query } from 'express-validator';
 import { ApplicationQuestionType } from '../../enums/applicationQuestionType';
 import mongoose from 'mongoose';
-import { ApplicationQuestionModel } from '../../models/customJobApplicationQuestion';
 import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
 import { JobApplicationStateEnum } from '../../enums/jobApplicationStateEnum';
+import { ApplicationQuestionModel } from '../../models/jobApplicationQuestion';
 export const JobIdValidator = [
     param('jobId')
         .notEmpty()
@@ -13,30 +13,34 @@ export const JobIdValidator = [
         .withMessage('Job ID must be a number'),
 ];
 
-export const customJobApplicationIdValidator = [
-    param('customJobApplicationId')
+export const jobApplicationFormIdValidator = [
+    param('jobApplicationFormId')
         .notEmpty()
-        .withMessage('customJobApplicationId is required')
+        .withMessage('jobApplicationFormId is required')
         .isInt()
-        .withMessage('customJobApplicationId must be a number'),
+        .withMessage('jobApplicationFormId must be a number'),
 ];
 
-export const customJobApplicationSubmitIdValidator = [
-    param('customJobApplicationSubmitId')
+export const jobApplicationIdValidator = [
+    param('jobApplicationId')
         .notEmpty()
-        .withMessage('customJobApplicationSubmitId is required')
+        .withMessage('jobApplicationId is required')
         .isInt()
-        .withMessage('customJobApplicationSubmitId must be a number'),
+        .withMessage('jobApplicationId must be a number'),
 ];
 
-export const getOneCustomJobApplicationSubmitByBusinessValidator = [
-    customJobApplicationIdValidator[0],
-    customJobApplicationSubmitIdValidator[0],
+export const getOneJobApplicationByBusinessValidator = [
+    JobIdValidator[0],
+    jobApplicationIdValidator[0],
 ];
 
-export const updateCustomJobApplicationSubmitStateValidator = [
-    customJobApplicationIdValidator[0],
-    customJobApplicationSubmitIdValidator[0],
+export const getAccountOneJobApplicationValidator = [
+    jobApplicationIdValidator[0],
+];
+
+export const updateJobApplicationFormStateValidator = [
+    JobIdValidator[0],
+    jobApplicationIdValidator[0],
     body('state')
         .notEmpty()
         .withMessage('State is required')
@@ -45,7 +49,7 @@ export const updateCustomJobApplicationSubmitStateValidator = [
             `Invalid state. Must be one of: ${Object.values(JobApplicationStateEnum).join(', ')}`,
         ),
 ];
-export const CreateCustomJobApplicationValidator = [
+export const CreateJobApplicationFormValidator = [
     JobIdValidator[0],
     body('questions')
         .isArray({ min: 1 })
@@ -105,8 +109,8 @@ export const CreateCustomJobApplicationValidator = [
     }),
 ];
 
-export const CreateCustomJobApplicationSubmitValidator = [
-    customJobApplicationIdValidator[0],
+export const CreateJobApplicationValidator = [
+    JobIdValidator[0],
     body('personalInfo')
         .custom((value) => typeof value === 'object' && value !== null)
         .withMessage('personalInfo must be a non-null object'),
@@ -223,7 +227,6 @@ export const CreateCustomJobApplicationSubmitValidator = [
         .isString()
         .withMessage('Each answer must be a string'),
 
-    // ANSWERS CUSTOM VALIDATION BASED ON QUESTION TYPE
     body('answers').custom(async (answers) => {
         for (const ans of answers) {
             const question = await ApplicationQuestionModel.findById(
@@ -234,7 +237,6 @@ export const CreateCustomJobApplicationSubmitValidator = [
                 throw new Error(`Question not found for ID ${ans.questionId}`);
             }
 
-            // Required check
             if (
                 question.isRequired &&
                 (!ans.answer || ans.answer.trim() === '')
@@ -259,8 +261,8 @@ export const CreateCustomJobApplicationSubmitValidator = [
     }),
 ];
 
-export const addQuestionToCustomJobApplicationValidator = [
-    customJobApplicationIdValidator[0],
+export const addQuestionToJobApplicationFormValidator = [
+    jobApplicationFormIdValidator[0],
 
     body('questionText')
         .notEmpty()
@@ -287,12 +289,12 @@ export const addQuestionToCustomJobApplicationValidator = [
         .withMessage('Order must be a number')
         .custom(async (value, { req }) => {
             const questions = await ApplicationQuestionModel.find({
-                customJobApplicationId: req.params.customJobApplicationId,
+                jobApplicationFormId: req.params.jobApplicationFormId,
             }).sort({ order: 1 });
             const questionOrders = questions.map((question) => question.order);
             if (questionOrders.includes(value)) {
                 throw new Error(
-                    `${questionOrders} already exists in the custom job application`,
+                    `${questionOrders} already exists in the job application form`,
                 );
             }
             return true;
@@ -323,8 +325,8 @@ export const questionIdValidator = [
         .withMessage('Question ID must be a valid MongoDB ObjectId'),
 ];
 
-export const updateQuestionToCustomJobApplicationValidator = [
-    customJobApplicationIdValidator[0],
+export const updateQuestionToJobApplicationFormValidator = [
+    jobApplicationFormIdValidator[0],
     questionIdValidator[0],
     body('questionText')
         .optional()
@@ -348,12 +350,12 @@ export const updateQuestionToCustomJobApplicationValidator = [
         .withMessage('Order must be a number')
         .custom(async (value, { req }) => {
             const questions = await ApplicationQuestionModel.find({
-                customJobApplicationId: req.params.customJobApplicationId,
+                jobApplicationFormId: req.params.jobApplicationFormId,
             }).sort({ order: 1 });
             const questionOrders = questions.map((question) => question.order);
             if (questionOrders.includes(value)) {
                 throw new Error(
-                    `${questionOrders} already exists in the custom job application`,
+                    `${questionOrders} already exists in the job application form`,
                 );
             }
             return true;
@@ -376,17 +378,13 @@ export const updateQuestionToCustomJobApplicationValidator = [
         }),
 ];
 
-export const deleteQuestionToCustomJobApplicationValidator = [
-    customJobApplicationIdValidator[0],
+export const deleteQuestionToJobApplicationFormValidator = [
+    jobApplicationFormIdValidator[0],
     questionIdValidator[0],
 ];
 
-export const getCustomJobApplicationSubmitValidator = [
-    customJobApplicationIdValidator[0],
-    customJobApplicationSubmitIdValidator[0],
-];
-export const archiveCustomJobApplicationSubmitValidator = [
-    customJobApplicationSubmitIdValidator[0],
+export const archiveJobApplicationValidator = [
+    jobApplicationIdValidator[0],
     query('archive')
         .notEmpty()
         .withMessage('archive is required')

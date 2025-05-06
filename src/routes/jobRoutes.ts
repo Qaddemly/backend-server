@@ -1,6 +1,5 @@
 import express from 'express';
 import {
-    applyToJob,
     createJob,
     getAllJobs,
     getOneJob,
@@ -23,13 +22,10 @@ import {
 import { loadJobsFromCSV } from '../services/jobServices';
 import {
     savingResumeInDisk,
-    uploadCustomJobApplicationResume,
-} from '../services/customJobApplicationServices';
-import {
-    CreateCustomJobApplicationSubmitValidator,
-    customJobApplicationIdValidator,
-} from '../middlewares/validators/customJobApplicationValidator';
-import { createCustomJobApplicationSubmit } from '../controllers/customJobApplicationController';
+    uploadJobApplicationResume,
+} from '../services/jobApplicationServices';
+import { CreateJobApplicationValidator } from '../middlewares/validators/jobApplicationValidator';
+import { applyToJob } from '../controllers/jobApplicationController';
 
 const jobRouter = express.Router();
 
@@ -93,15 +89,6 @@ jobRouter.delete(
     unSaveJobFromUser,
 );
 
-jobRouter.post(
-    '/applyToJob/:id',
-    protect,
-    validateRequestMiddleware(idJobValidator),
-    validateRequestMiddleware(applyToJobValidator),
-
-    applyToJob,
-);
-
 jobRouter.get('/getAllJobs/', getAllJobs);
 
 jobRouter.get('/recommendedJobsForUser', protect, getRecommendedJobsForUser);
@@ -112,11 +99,11 @@ jobRouter.post('/loadJobsFromCSV', async (req, res) => {
 });
 
 jobRouter.post(
-    '/customJobApplication/:customJobApplicationId/submit',
+    '/:jobId/jobApplicationForm/jobApplication',
     protect,
-    uploadCustomJobApplicationResume,
-    validateRequestMiddleware(CreateCustomJobApplicationSubmitValidator),
+    uploadJobApplicationResume,
+    validateRequestMiddleware(CreateJobApplicationValidator),
     savingResumeInDisk,
-    createCustomJobApplicationSubmit,
+    applyToJob,
 );
 export default jobRouter;

@@ -25,12 +25,10 @@ import {
     PaginationType,
 } from '../utils/pagination/typeorm-paginate';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
-import { JobApplicationStatesRepository } from '../Repository/Job/jobApplicationStatesRepository';
 import { JobStatus } from '../enums/jobStatus';
 import { Job } from '../entity/Job/Job';
 import { Not } from 'typeorm';
 import { eventEmitter } from '../events/eventEmitter';
-import { JobApplicationRepository } from '../Repository/Job/jobApplicationRepository';
 
 /**
  * TODO: mark the Account that created the business as the owner.
@@ -653,52 +651,7 @@ export const getAllBusinessWithSearchAndFilterService = async (
         throw new AppError('Error in getting businesses', 400);
     }
 };
-export const updateJobApplicationStatusService = async (
-    accountId: number,
-    jobId: number,
-    applicationId: number,
-    status: JobApplicationStateEnum,
-) => {
-    const job = await JobRepository.findOne({
-        where: { id: jobId },
-        relations: ['business'],
-    });
-    if (!job) {
-        throw new AppError('Job not found', 404);
-    }
-    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
-        accountId,
-        job.business_id,
-        [
-            HrRole.SUPER_ADMIN,
-            HrRole.HR,
-            HrRole.RECRUITER,
-            HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
-            HrRole.OWNER,
-        ],
-    );
-    if (!isAllowedToPostJob) {
-        throw new AppError('you do not have permission to that action', 403);
-    }
-    const jobApplicationState = await JobApplicationStatesRepository.findOne({
-        where: { job_application_id: applicationId, job_id: jobId },
-    });
-    if (!jobApplicationState) {
-        throw new AppError('Job Application not found', 404);
-    }
-    const jobApplication = await JobApplicationRepository.findOne({
-        where: { id: applicationId },
-        relations: ['job', 'job.business'],
-    });
 
-    jobApplicationState.state = status;
-    eventEmitter.emit('sendUpdateJobApplicationStatusNotification', {
-        ...jobApplication,
-        state: jobApplicationState.state,
-    });
-    return await JobApplicationStatesRepository.save(jobApplicationState);
-};
 export const getAllJobsFromDashboard = async (
     businessId: number,
     status?: JobStatus,

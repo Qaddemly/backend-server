@@ -10,11 +10,11 @@ import {
 import { Job } from '../Job';
 import { join } from 'path';
 import { Business } from '../../Business/Business';
-import { CustomJobApplicationSubmit } from './CustomJobApplicationSubmit';
-import { AccountArchivedCustomJobApplications } from './AccountArchivedCustomJobApplications';
+import { JobApplication } from './JobApplication';
+import { AccountArchivedJobApplications } from './AccountArchivedJobApplications';
 
 @Entity()
-export class CustomJobApplication {
+export class JobApplicationForm {
     @PrimaryGeneratedColumn()
     id: number;
     @Column()
@@ -28,21 +28,20 @@ export class CustomJobApplication {
     // is_skills_required: boolean; // Indicates if skills are required for the job
     // @Column({ default: true })
     // is_languages_required: boolean; // Indicates if language is required for the job
-    @OneToOne(() => Job, (job) => job.custom_job_application, { cascade: true })
+    @OneToOne(() => Job, (job) => job.job_application_form, { cascade: true })
     @JoinColumn({ name: 'job_id' }) // Links to Job
     job: Job; // One-to-One relationship with Job entity
     @OneToMany(
-        () => CustomJobApplicationSubmit,
-        (customJobApplicationSubmit) =>
-            customJobApplicationSubmit.custom_job_application,
+        () => JobApplication,
+        (JobApplication) => JobApplication.job_application_form,
     )
-    custom_job_application_submits: CustomJobApplicationSubmit[];
+    job_applications: JobApplication[];
 
     @OneToMany(
-        () => AccountArchivedCustomJobApplications,
-        (archived_custom_job_applications) =>
-            archived_custom_job_applications.custom_job_application,
+        () => AccountArchivedJobApplications,
+        (archived_job_applications) =>
+            archived_job_applications.job_application_form,
         { onDelete: 'CASCADE' },
     )
-    archived_custom_job_applications: AccountArchivedCustomJobApplications[];
+    archived_job_applications: AccountArchivedJobApplications[];
 }

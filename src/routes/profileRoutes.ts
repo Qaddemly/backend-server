@@ -34,9 +34,6 @@ import {
     getMyALLCertificate,
     geALLCertificatesByUserId,
     getUserInfoAndJobs,
-    getAllArchivedApplicationsOfUser,
-    archiveJobApplication,
-    getAllDetailsAboutJobApplication,
     getExperiencesOfUserById,
     getSkillsOfLoggedInUser,
     getEducationsOfLoggedInUser,
@@ -83,23 +80,19 @@ import {
     resizeCertificateImage,
     uploadCertificateImage,
 } from '../services/profileServices';
+import { getAllUserSavedJobs } from '../controllers/jobController';
 import {
-    getAllUserJobApplications,
-    getAllUserSavedJobs,
-    getOneUserJobApplication,
-} from '../controllers/jobController';
+    archiveJobApplicationValidator,
+    getAccountOneJobApplicationValidator,
+    jobApplicationIdValidator,
+} from '../middlewares/validators/jobApplicationValidator';
+import { getAccountJobApplicationByIdService } from '../services/jobApplicationServices';
 import {
-    archiveCustomJobApplicationSubmitValidator,
-    customJobApplicationSubmitIdValidator,
-    getCustomJobApplicationSubmitValidator,
-} from '../middlewares/validators/customJobApplicationValidator';
-import { getCustomJobApplicationSubmitByIdService } from '../services/customJobApplicationServices';
-import {
-    archiveCustomJobApplicationSubmit,
-    getAllArchivedCustomJobApplicationSubmitsByAccountId,
-    getAllCustomJobApplicationSubmitsByAccountId,
-    getCustomJobApplicationSubmitById,
-} from '../controllers/customJobApplicationController';
+    archiveJobApplication,
+    getAccountJobApplicationById,
+    getAllArchivedJobApplicationsByAccountId,
+    getAllJobApplicationsByAccountId,
+} from '../controllers/jobApplicationController';
 
 const profileRouter = Router();
 
@@ -289,45 +282,15 @@ profileRouter.get('/skills/:userId', protect, getSkillsOfUserById);
 profileRouter.get('/myLanguages', protect, getLanguagesOfLoggedInUser);
 profileRouter.get('/languages/:userId', protect, getLanguagesOfUserById);
 
-profileRouter.get(
-    '/jobApplication/myAllJobApplications',
-    protect,
-    getAllUserJobApplications,
-);
-
-profileRouter.get(
-    '/jobApplication/:id',
-    protect,
-    getAllDetailsAboutJobApplication,
-);
 /**
  * Get All Job Applications of logged-in user
  * */
-profileRouter.get('/jobApplication', protect);
 
 /**
  * Get Details of certain job application (Joins)
  * */
 
 //profileRouter.get('/jobApplication/:id', protect, getOneUserJobApplication);
-
-/**
- * Get All Archived Job Applications of logged-in user
- * */
-profileRouter.get(
-    '/jobApplication/archived/all',
-    protect,
-    getAllArchivedApplicationsOfUser,
-);
-
-/**
- * Make Job Application Archived or Unarchived (Toggle) based on query params
- * */
-profileRouter.put(
-    '/jobApplication/archived/:id',
-    protect,
-    archiveJobApplication,
-);
 
 /**
  * Delete Job Application
@@ -352,27 +315,25 @@ profileRouter.get('/test', protect, getUserInfoAndJobs);
 profileRouter.get('/job/mySavedJobs', protect, getAllUserSavedJobs);
 
 profileRouter.get(
-    '/job/customJobApplication/:customJobApplicationId/customJobApplicationSubmit/:customJobApplicationSubmitId',
+    '/jobApplication/archived',
     protect,
-    validateRequestMiddleware(getCustomJobApplicationSubmitValidator),
-    getCustomJobApplicationSubmitById,
+    getAllArchivedJobApplicationsByAccountId,
 );
 
 profileRouter.get(
-    '/job/customJobApplicationSubmit',
+    '/jobApplication/:jobApplicationId',
     protect,
-    getAllCustomJobApplicationSubmitsByAccountId,
+    validateRequestMiddleware(getAccountOneJobApplicationValidator),
+    getAccountJobApplicationById,
 );
+
+profileRouter.get('/jobApplication', protect, getAllJobApplicationsByAccountId);
 
 profileRouter.put(
-    '/customJobApplicationSubmit/archived/:customJobApplicationSubmitId',
+    '/jobApplication/archived/:jobApplicationId',
     protect,
-    validateRequestMiddleware(archiveCustomJobApplicationSubmitValidator),
-    archiveCustomJobApplicationSubmit,
+    validateRequestMiddleware(archiveJobApplicationValidator),
+    archiveJobApplication,
 );
-profileRouter.get(
-    '/customJobApplicationSubmit/archived/all',
-    protect,
-    getAllArchivedCustomJobApplicationSubmitsByAccountId,
-);
+
 export default profileRouter;

@@ -10,9 +10,9 @@ import {
 } from 'typeorm';
 import { EmploymentType } from '../../../enums/employmentType';
 import { LocationType } from '../../../enums/locationType';
-import { CustomJobApplicationSubmit } from './CustomJobApplicationSubmit';
+import { JobApplication } from './JobApplication';
 @Entity()
-export class CustomJobApplicationExperience {
+export class JobApplicationExperience {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -41,11 +41,10 @@ export class CustomJobApplicationExperience {
     end_date: Date;
 
     @ManyToOne(
-        () => CustomJobApplicationSubmit,
-        (customJobApplicationSubmit) =>
-            customJobApplicationSubmit.custom_job_application_experience,
+        () => JobApplication,
+        (JobApplication) => JobApplication.job_application_experience,
         { onDelete: 'CASCADE' },
     )
-    @JoinColumn({ name: 'custom_job_application_submit_id' }) // Links to CustomJobApplicationSubmit
-    custom_job_application_submit: CustomJobApplicationSubmit; // Foreign key to CustomJobApplicationSubmit
+    @JoinColumn({ name: 'job_application_id' }) // Links to CustomJobApplicationSubmit
+    job_application: JobApplication; // Foreign key to CustomJobApplicationSubmit
 }

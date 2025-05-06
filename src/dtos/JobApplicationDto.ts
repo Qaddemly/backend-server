@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
 import { Education, Experience, ResumeType } from '../types/types';
 
-export interface CreateCustomJobApplicationDto {
+export interface CreateJobApplicationFormDto {
     questions: {
         questionText: string; // The question text
         questionType: string; // The type of question (e.g., text, multiple choice, etc.)
@@ -15,7 +15,7 @@ export interface CreateCustomJobApplicationDto {
     // is_languages_required?: boolean; // Indicates if language is required for the job
 }
 
-export interface CreateCustomJobApplicationSubmitDto {
+export interface CreateJobApplicationDto {
     personalInfo: {
         first_name: string; // First name of the applicant
         last_name: string; // Last name of the applicant
@@ -31,7 +31,7 @@ export interface CreateCustomJobApplicationSubmitDto {
     answers: { questionId: Types.ObjectId; answer: string }[];
 }
 
-export interface CreateCustomJobApplicationQuestionDto {
+export interface CreateJobApplicationFormQuestionDto {
     questionText: string; // The question text
     questionType: string; // The type of question (e.g., text, multiple choice, etc.)
     options?: string[]; // Options for multiple choice questions
@@ -39,7 +39,7 @@ export interface CreateCustomJobApplicationQuestionDto {
     order: number; // The order of the question in the application form
 }
 
-export interface UpdateCustomJobApplicationQuestionDto {
+export interface UpdateJobApplicationFormQuestionDto {
     questionText?: string; // The question text
     questionType?: string; // The type of question (e.g., text, multiple choice, etc.)
     options?: string[]; // Options for multiple choice questions
