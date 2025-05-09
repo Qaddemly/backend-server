@@ -35,6 +35,7 @@ import { redisClient } from '../config/redis';
 import { sendJobNotification } from './notificationServices';
 import { eventEmitter } from '../events/eventEmitter';
 import { publishToQueue } from '../config/rabbitMQ';
+import { ApplicationQuestionsModel } from '../models/jobApplicationQuestions';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -51,6 +52,7 @@ export const createJobService = async (
         keywords,
         experience,
         business_id,
+        questions,
     } = req.body;
     const userId = Number(req.user.id);
     const business = await BusinessRepository.findOneBy({ id: business_id });
@@ -86,10 +88,14 @@ export const createJobService = async (
     newJob.business = business;
     //await sendJobNotification(newJob);
     const job = await JobRepository.save(newJob);
-    eventEmitter.emit('sendJobPostedNotification', newJob);
+    const newQuestions = await ApplicationQuestionsModel.create({
+        questions,
+        jobId: job.id,
+    });
+    //eventEmitter.emit('sendJobPostedNotification', newJob);
     //await publishToQueue('send_notification', { jobId: newJob.id });
 
-    return job;
+    return { ...job, questions: newQuestions.questions };
 };
 
 export const getOneJobService = async (req: Request) => {

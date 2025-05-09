@@ -10,7 +10,6 @@ import {
 } from 'typeorm';
 import { Account } from '../../Account/Account';
 import { JobApplication } from './JobApplication';
-import { JobApplicationForm } from './JobApplicationForm';
 
 @Entity()
 export class AccountArchivedJobApplications {
@@ -35,15 +34,6 @@ export class AccountArchivedJobApplications {
     @JoinColumn({ name: 'account_id' })
     account: Account;
 
-    @ManyToOne(
-        () => JobApplicationForm,
-        (JobApplicationForm) => JobApplicationForm.archived_job_applications,
-        {
-            onDelete: 'CASCADE',
-        },
-    )
-    @JoinColumn({ name: 'job_application_form_id' })
-    job_application_form: JobApplicationForm;
     @Column('boolean')
     is_archived: boolean;
     @CreateDateColumn()

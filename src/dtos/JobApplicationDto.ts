@@ -28,7 +28,7 @@ export interface CreateJobApplicationDto {
     resume: ResumeType;
     skills: string[];
     languages: string[];
-    answers: { questionId: Types.ObjectId; answer: string }[];
+    answers: [];
 }
 
 export interface CreateJobApplicationFormQuestionDto {
@@ -36,7 +36,6 @@ export interface CreateJobApplicationFormQuestionDto {
     questionType: string; // The type of question (e.g., text, multiple choice, etc.)
     options?: string[]; // Options for multiple choice questions
     isRequired: boolean; // Whether the question is required or not
-    order: number; // The order of the question in the application form
 }
 
 export interface UpdateJobApplicationFormQuestionDto {

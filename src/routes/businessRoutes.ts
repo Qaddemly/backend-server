@@ -212,31 +212,29 @@ businessRouter.get(
     getAllArchivedJobs,
 );
 
-businessRouter.post(
-    '/dashboard/job/:jobId/jobApplicationForm',
-    protect,
-    validateRequestMiddleware(
-        jobApplicationValidator.CreateJobApplicationFormValidator,
-    ),
-    jobApplicationController.createJobApplicationForm,
-);
-
 businessRouter.get(
-    '/dashboard/job/:jobId/jobApplicationForm',
+    '/dashboard/job/:jobId/questions',
     protect,
     validateRequestMiddleware(jobApplicationValidator.JobIdValidator),
     jobApplicationController.getJobApplicationForm,
 );
 
+businessRouter.put(
+    '/dashboard/job/:jobId/questions',
+    protect,
+    validateRequestMiddleware(jobApplicationValidator.JobIdValidator),
+    jobApplicationController.updateJobApplicationsQuestions,
+);
+
 businessRouter.get(
-    '/dashboard/job/:jobId/jobApplicationForm/jobApplications',
+    '/dashboard/job/:jobId/jobApplications',
     protect,
     validateRequestMiddleware(jobApplicationValidator.JobIdValidator),
     jobApplicationController.getAllJobApplicationsToJob,
 );
 
 businessRouter.get(
-    '/dashboard/job/:jobId/jobApplicationFrom/jobApplication/:jobApplicationId',
+    '/dashboard/job/:jobId/jobApplication/:jobApplicationId',
     protect,
     validateRequestMiddleware(
         jobApplicationValidator.getOneJobApplicationByBusinessValidator,
@@ -245,44 +243,10 @@ businessRouter.get(
 );
 
 businessRouter.put(
-    '/dashboard/job/:jobId/jobApplicationFrom/jobApplication/:jobApplicationId/update-state',
+    '/dashboard/job/:jobId/jobApplication/:jobApplicationId/update-state',
     protect,
     validateRequestMiddleware(
         jobApplicationValidator.updateJobApplicationFormStateValidator,
     ),
     jobApplicationController.updateJobApplicationState,
-);
-
-businessRouter.delete(
-    '/dashboard/job/:jobId/jobApplicationFrom',
-    protect,
-    validateRequestMiddleware(jobApplicationValidator.JobIdValidator),
-    jobApplicationController.deleteJobApplicationForm,
-);
-
-businessRouter.post(
-    '/dashboard/jobApplicationForm/:jobApplicationFormId/question',
-    protect,
-    validateRequestMiddleware(
-        jobApplicationValidator.addQuestionToJobApplicationFormValidator,
-    ),
-    jobApplicationController.addJobApplicationFormQuestion,
-);
-
-businessRouter.put(
-    '/dashboard/jobApplicationForm/:jobApplicationFormId/question/:questionId',
-    protect,
-    validateRequestMiddleware(
-        jobApplicationValidator.updateQuestionToJobApplicationFormValidator,
-    ),
-    jobApplicationController.updateJobApplicationFormQuestion,
-);
-
-businessRouter.delete(
-    '/dashboard/jobApplicationForm/:jobApplicationFormId/question/:questionId',
-    protect,
-    validateRequestMiddleware(
-        jobApplicationValidator.deleteQuestionToJobApplicationFormValidator,
-    ),
-    jobApplicationController.deleteJobApplicationFormQuestion,
 );

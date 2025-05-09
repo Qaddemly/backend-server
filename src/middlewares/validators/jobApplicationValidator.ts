@@ -217,48 +217,6 @@ export const CreateJobApplicationValidator = [
         .isString()
         .notEmpty()
         .withMessage('Each language must be a non-empty string'),
-
-    // ANSWERS BASIC VALIDATION
-    body('answers').isArray().withMessage('Answers must be an array'),
-    body('answers.*.questionId')
-        .custom((value) => mongoose.Types.ObjectId.isValid(value))
-        .withMessage('Each questionId must be a valid MongoDB ObjectId'),
-    body('answers.*.answer')
-        .isString()
-        .withMessage('Each answer must be a string'),
-
-    body('answers').custom(async (answers) => {
-        for (const ans of answers) {
-            const question = await ApplicationQuestionModel.findById(
-                ans.questionId,
-            );
-
-            if (!question) {
-                throw new Error(`Question not found for ID ${ans.questionId}`);
-            }
-
-            if (
-                question.isRequired &&
-                (!ans.answer || ans.answer.trim() === '')
-            ) {
-                throw new Error(
-                    `Answer is required for question "${question.questionText}"`,
-                );
-            }
-
-            // Multiple choice validation
-            if (
-                question.questionType === 'multiple_choice' &&
-                (!question.options || !question.options.includes(ans.answer))
-            ) {
-                throw new Error(
-                    `Answer "${ans.answer}" is not a valid option for question "${question.questionText}"`,
-                );
-            }
-        }
-
-        return true;
-    }),
 ];
 
 export const addQuestionToJobApplicationFormValidator = [

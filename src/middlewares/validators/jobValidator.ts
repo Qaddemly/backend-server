@@ -4,6 +4,7 @@ import { EmploymentType } from '../../enums/employmentType';
 import { LocationType } from '../../enums/locationType';
 import { Language } from '../../enums/language';
 import { Country } from '../../enums/country';
+import { ApplicationQuestionType } from '../../enums/applicationQuestionType';
 
 export const createJobValidator: ValidationChain[] = [
     body('business_id')
@@ -66,6 +67,46 @@ export const createJobValidator: ValidationChain[] = [
         }),
     body('keywords').isArray().withMessage('in valid keywords'),
     body('skills').isArray().withMessage('in valid skills'),
+    body('questions')
+        .optional()
+        .isArray()
+        .withMessage('Questions must be an array'),
+
+    body('questions.*.questionText')
+        .notEmpty()
+        .withMessage('Question text is required')
+        .isString()
+        .withMessage('Question text must be a string'),
+    body('questions.*.questionType')
+        .notEmpty()
+        .withMessage('questionType is required')
+        .isString()
+        .withMessage('questionType must be a string')
+        .isIn(Object.values(ApplicationQuestionType))
+        .withMessage(
+            `questionType must be one of: ${Object.values(ApplicationQuestionType).join(', ')}`,
+        ),
+    body('questions.*.isRequired')
+        .optional()
+        .isBoolean()
+        .withMessage('isRequired must be a boolean'),
+
+    body('questions.*.options')
+        .optional()
+        .isArray()
+        .withMessage('Options must be an array')
+        .custom((value, { req }) => {
+            const questionType = value.questionType;
+            if (
+                questionType === ApplicationQuestionType.Multiple_Choice &&
+                !value
+            ) {
+                throw new Error(
+                    'Options are required for multiple choice questions',
+                );
+            }
+            return true;
+        }),
 ];
 
 export const updateJobValidator: ValidationChain[] = [

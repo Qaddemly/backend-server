@@ -27,8 +27,7 @@ import {
     PaginationType,
 } from '../utils/pagination/typeorm-paginate';
 import { eventEmitter } from '../events/eventEmitter';
-import { JobApplicationFormRepository } from '../Repository/Job/jobApplicationFormRepository';
-import { JobApplicationForm } from '../entity/Job/JobApplication/JobApplicationForm';
+
 import { JobApplicationRepository } from '../Repository/Job/jobApplicationRepository';
 import { JobApplication } from '../entity/Job/JobApplication/JobApplication';
 import { JobApplicationEducation } from '../entity/Job/JobApplication/JobApplicationEducation';
@@ -41,88 +40,38 @@ import { JobApplicationState } from '../entity/Job/JobApplication/JobApplication
 import { JobApplicationStatesRepository } from '../Repository/Job/jobApplicationStateRepository';
 import { AccountArchivedJobApplications } from '../entity/Job/JobApplication/AccountArchivedJobApplications';
 import { AccountArchivedJobApplicationsRepository } from '../Repository/Job/accountArchivedJobApplicationsRepository';
-export const createJobApplicationFormService = async (
-    userId: number,
-    jobId: number,
-    data: CreateJobApplicationFormDto,
-) => {
-    const job = await JobRepository.findOne({
-        where: { id: jobId },
-        relations: ['business'],
-    });
-    if (!job) {
-        throw new AppError('Job not found', 404);
-    }
-    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
-        userId,
-        job.business.id,
-        [
-            HrRole.SUPER_ADMIN,
-            HrRole.HR,
-            HrRole.RECRUITER,
-            HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
-            HrRole.OWNER,
-        ],
-    );
-    if (!isAllowedToPostJob) {
-        throw new AppError('you do not have permission to that action', 403);
-    }
+import { ApplicationQuestionsModel } from '../models/jobApplicationQuestions';
+import { ApplicationAnswersModel } from '../models/jobApplicationAnswerss';
+import { Job } from '../entity/Job/Job';
 
-    const foundJobApplicationForm = await JobApplicationFormRepository.findOne({
-        where: { job_id: jobId },
-    });
-    if (foundJobApplicationForm) {
-        throw new AppError(
-            ' job application form already exists for this job',
-            400,
-        );
-    }
-    const newJobApplicationForm = new JobApplicationForm();
-    newJobApplicationForm.job = job;
-    newJobApplicationForm.job_id = jobId;
-    const cs = await JobApplicationFormRepository.save(newJobApplicationForm);
-    const questionsPromises = data.questions.map(async (q) => {
-        const question = await ApplicationQuestionModel.create({
-            questionText: q.questionText,
-            questionType: q.questionType,
-            options: q.options,
-            isRequired: q.isRequired,
-            order: q.order,
-            jobId: jobId,
-            jobApplicationFormId: cs.id,
-        });
-        return question;
-    });
-    const questions = await Promise.all(questionsPromises);
-    const customJobApplicationForm = {
-        id: cs.id,
-        job_id: jobId,
-        questions: questions,
-    };
-    return customJobApplicationForm;
-};
-
-export const getJobApplicationFormService = async (jobId: number) => {
+export const getJobApplicationFormQuestionsService = async (jobId: number) => {
     const job = await JobRepository.findOne({ where: { id: jobId } });
     if (!job) {
         throw new AppError('Job not found', 404);
     }
-    const jobApplicationForm = await JobApplicationFormRepository.findOne({
-        where: { job_id: jobId },
+
+    const questions = await ApplicationQuestionsModel.findOne({
+        jobId: job.id,
     });
-    if (!jobApplicationForm) {
-        throw new AppError(' job application form not found', 404);
+
+    return { questions: questions.questions, jobId };
+};
+
+export const updateJobQuestionsService = async (jobId: number, data: any) => {
+    const job = await JobRepository.findOne({ where: { id: jobId } });
+    if (!job) {
+        throw new AppError('Job not found', 404);
     }
-    const questions = await ApplicationQuestionModel.find({
-        jobApplicationFormId: jobApplicationForm.id,
-    }).sort({ order: 1 });
-    jobApplicationForm.job = job;
-    const jobApplicationFormWithQuestions = {
-        ...jobApplicationForm,
-        questions: questions,
-    };
-    return jobApplicationFormWithQuestions;
+
+    const questions = await ApplicationQuestionsModel.findOneAndUpdate(
+        {
+            jobId: job.id,
+        },
+        data,
+        { new: true },
+    );
+
+    return { questions: questions.questions };
 };
 
 export const applyToJobService = async (
@@ -130,19 +79,17 @@ export const applyToJobService = async (
     jobId: number,
     data: CreateJobApplicationDto,
 ) => {
-    const jobApplicationForm = await JobApplicationFormRepository.findOne({
-        where: { job_id: jobId },
-        relations: ['job'],
-    });
-    if (!jobApplicationForm) {
-        throw new AppError('job application form not found', 404);
+    const job = await JobRepository.findOne({ where: { id: jobId } });
+
+    if (!job) {
+        throw new AppError('job not found', 404);
     }
-    if (jobApplicationForm.job.status !== JobStatus.OPENED) {
+    if (job.status !== JobStatus.OPENED) {
         throw new AppError('jobs no longer accepts responses', 400);
     }
     const isAllowedToDo = await HrEmployeeRepository.checkPermission(
         accountId,
-        jobApplicationForm.job.business_id,
+        job.business_id,
         [
             HrRole.SUPER_ADMIN,
             HrRole.HR,
@@ -156,16 +103,11 @@ export const applyToJobService = async (
         throw new AppError('you do not have permission to that action', 403);
     }
     const account = await AccountRepository.findOneBy({ id: accountId });
-
     const foundJobApplication = await JobApplicationRepository.findOne({
-        where: {
-            account: { id: accountId },
-            job_application_form: { id: jobApplicationForm.id },
-        },
+        where: { account: { id: accountId }, job: { id: job.id } },
     });
-
     if (foundJobApplication) {
-        throw new AppError('you have already applied to this job');
+        throw new AppError('you are already apply to this job');
     }
     const newJobApplication = new JobApplication();
     newJobApplication.first_name = data.personalInfo.first_name;
@@ -174,11 +116,10 @@ export const applyToJobService = async (
     newJobApplication.email = data.personalInfo.email;
     newJobApplication.phone = data.personalInfo.phone;
 
-    newJobApplication.job_application_form = jobApplicationForm;
     newJobApplication.languages = data.languages;
     newJobApplication.skills = data.skills;
     newJobApplication.account = account;
-    newJobApplication.job = jobApplicationForm.job;
+    newJobApplication.job = job;
     const jobApplication =
         await JobApplicationRepository.save(newJobApplication);
 
@@ -217,18 +158,12 @@ export const applyToJobService = async (
     newResume.job_application = jobApplication;
     const resume = await JobApplicationResumeRepository.save(newResume);
 
-    const answerPromises = data.answers.map(async (ans) => {
-        const answer = await ApplicationAnswerModel.create({
-            answer: ans.answer,
-            question: ans.questionId,
-            accountId: account.id,
-            jobApplicationFormId: jobApplicationForm.id,
-            jobApplicationId: jobApplication.id,
-        });
-        return answer;
+    const answers = await ApplicationAnswersModel.create({
+        jobId,
+        accountId,
+        answers: data.answers,
+        jobApplicationId: jobApplication.id,
     });
-    const answers = await Promise.all(answerPromises);
-
     const jobApplicationState = new JobApplicationState();
     jobApplicationState.job_application_id = jobApplication.id;
     jobApplicationState.job_application = jobApplication;
@@ -238,7 +173,6 @@ export const applyToJobService = async (
     const accountArchivedJobApplication = new AccountArchivedJobApplications();
     accountArchivedJobApplication.account = account;
     accountArchivedJobApplication.job_application_id = jobApplication.id;
-    accountArchivedJobApplication.job_application_form = jobApplicationForm;
     accountArchivedJobApplication.job_application = jobApplication;
     accountArchivedJobApplication.is_archived = false;
     await AccountArchivedJobApplicationsRepository.save(
@@ -285,17 +219,15 @@ export const savingResumeInDisk = catchAsync(
 export const getAllJobApplicationsToJobService = async (req: Request) => {
     const accountId = Number(req.user.id);
     const jobId = Number(req.params.jobId);
-    const jobApplicationForm = await JobApplicationFormRepository.findOne({
-        where: { job_id: jobId },
-        relations: ['job'],
-    });
-    if (!jobApplicationForm) {
-        throw new AppError('job application form not found', 404);
+    const job = await JobRepository.findOne({ where: { id: jobId } });
+
+    if (!job) {
+        throw new AppError('job not found', 404);
     }
 
     const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
         accountId,
-        jobApplicationForm.job.business_id,
+        job.business_id,
         [
             HrRole.SUPER_ADMIN,
             HrRole.HR,
@@ -320,8 +252,8 @@ export const getAllJobApplicationsToJobService = async (req: Request) => {
                 'job_application_state.state': [FilterOperator.EQ],
             },
 
-            relations: ['job_application_state', 'job_application_form'],
-            where: { job_application_form: { id: jobApplicationForm.id } },
+            relations: ['job_application_state'],
+            where: { job: { id: job.id } },
             defaultSortBy: [['created_at', 'ASC']],
             maxLimit: 20,
             defaultLimit: transformedQuery.limit,
@@ -340,12 +272,11 @@ export const getAllJobApplicationsToJobService = async (req: Request) => {
                 'ja.birth_date',
                 'ja.skills',
                 'ja.languages',
-                'ja.job_application_form_id',
             ])
 
             // LEFT JOIN Job
-            .where('ja.job_application_form_id = :id', {
-                id: jobApplicationForm.id,
+            .where('ja.job = :id', {
+                id: job.id,
             });
         if (transformedQuery.search) {
             queryBuilder.andWhere(
@@ -375,9 +306,7 @@ export const getJobApplicationByBusinessService = async (
 ) => {
     const job = await JobRepository.findOne({
         where: { id: jobId },
-        relations: ['job_application_form'],
     });
-    const jobApplicationForm = job.job_application_form;
     const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
         accountId,
         job.business_id,
@@ -396,7 +325,7 @@ export const getJobApplicationByBusinessService = async (
     const jobApplication = await JobApplicationRepository.findOne({
         where: {
             id: jobApplicationId,
-            job_application_form: { id: jobApplicationForm.id },
+            job: { id: job.id },
         },
         relations: [
             'job_application_education',
@@ -408,11 +337,10 @@ export const getJobApplicationByBusinessService = async (
     if (!jobApplication) {
         throw new AppError('job application not found', 404);
     }
-    const questionAnswers = await ApplicationAnswerModel.find({
+    const questionAnswers = await ApplicationAnswersModel.findOne({
         jobApplicationId,
-    })
+    });
 
-        .populate('question');
     return {
         ...jobApplication,
         questionAnswers: questionAnswers,
@@ -427,9 +355,8 @@ export const updateJobApplicationStateService = async (
 ) => {
     const job = await JobRepository.findOne({
         where: { id: jobId },
-        relations: ['job_application_form', 'business'],
+        relations: ['business'],
     });
-    const jobApplicationForm = job.job_application_form;
 
     const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
         accountId,
@@ -449,7 +376,7 @@ export const updateJobApplicationStateService = async (
     const jobApplication = await JobApplicationRepository.findOne({
         where: {
             id: jobApplicationId,
-            job_application_form: jobApplicationForm,
+            job: { id: job.id },
         },
         relations: ['account'],
     });
@@ -472,157 +399,6 @@ export const updateJobApplicationStateService = async (
     return await JobApplicationStatesRepository.save(jobApplicationState);
 };
 
-export const deleteJobApplicationFormService = async (
-    accountId: number,
-    jobId: number,
-) => {
-    const jobApplicationForm = await JobApplicationFormRepository.findOne({
-        where: { job_id: jobId },
-        relations: ['job'],
-    });
-    if (!jobApplicationForm) {
-        throw new AppError('job application form not found', 404);
-    }
-    const jobApplicationFormId = jobApplicationForm.id;
-
-    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
-        accountId,
-        jobApplicationForm.job.business_id,
-        [
-            HrRole.SUPER_ADMIN,
-            HrRole.HR,
-            HrRole.RECRUITER,
-            HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
-            HrRole.OWNER,
-        ],
-    );
-    if (!isAllowedToPostJob) {
-        throw new AppError('you do not have permission to that action', 403);
-    }
-
-    await JobApplicationFormRepository.delete({ id: jobApplicationFormId });
-    await ApplicationQuestionModel.deleteMany({
-        jobApplicationFormId: jobApplicationFormId,
-    });
-    await ApplicationAnswerModel.deleteMany({ jobApplicationFormId });
-};
-
-export const addQuestionToJobApplicationFormService = async (
-    accountId: number,
-    jobApplicationFormId: number,
-    data: CreateJobApplicationFormQuestionDto,
-) => {
-    const jobApplicationForm = await JobApplicationFormRepository.findOne({
-        where: { id: jobApplicationFormId },
-        relations: ['job'],
-    });
-    if (!jobApplicationForm) {
-        throw new AppError('job application form not found', 404);
-    }
-    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
-        accountId,
-        jobApplicationForm.job.business_id,
-        [
-            HrRole.SUPER_ADMIN,
-            HrRole.HR,
-            HrRole.RECRUITER,
-            HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
-            HrRole.OWNER,
-        ],
-    );
-    if (!isAllowedToPostJob) {
-        throw new AppError('you do not have permission to that action', 403);
-    }
-    const question = await ApplicationQuestionModel.create({
-        questionText: data.questionText,
-        questionType: data.questionType,
-        options: data.options,
-        isRequired: data.isRequired,
-        order: data.order,
-        jobId: jobApplicationForm.job_id,
-        jobApplicationFormId: jobApplicationForm.id,
-    });
-    return question;
-};
-
-export const updateQuestionFromJobApplicationService = async (
-    accountId: number,
-    jobApplicationFormId: number,
-    questionId: string,
-    data: UpdateJobApplicationFormQuestionDto,
-) => {
-    const jobApplicationForm = await JobApplicationFormRepository.findOne({
-        where: { id: jobApplicationFormId },
-        relations: ['job'],
-    });
-    if (!jobApplicationForm) {
-        throw new AppError('job application not found', 404);
-    }
-    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
-        accountId,
-        jobApplicationForm.job.business_id,
-        [
-            HrRole.SUPER_ADMIN,
-            HrRole.HR,
-            HrRole.RECRUITER,
-            HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
-            HrRole.OWNER,
-        ],
-    );
-    if (!isAllowedToPostJob) {
-        throw new AppError('you do not have permission to that action', 403);
-    }
-    const question = await ApplicationQuestionModel.findOneAndUpdate(
-        {
-            _id: questionId,
-        },
-        data,
-        { new: true },
-    );
-    if (!question) {
-        throw new AppError('question not found', 404);
-    }
-    return question;
-};
-
-export const deleteQuestionFromJobApplicationService = async (
-    accountId: number,
-    jobApplicationFormId: number,
-    questionId: string,
-) => {
-    const jobApplicationForm = await JobApplicationFormRepository.findOne({
-        where: { id: jobApplicationFormId },
-        relations: ['job'],
-    });
-    if (!jobApplicationForm) {
-        throw new AppError('job application not found', 404);
-    }
-    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
-        accountId,
-        jobApplicationForm.job.business_id,
-        [
-            HrRole.SUPER_ADMIN,
-            HrRole.HR,
-            HrRole.RECRUITER,
-            HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
-            HrRole.OWNER,
-        ],
-    );
-    if (!isAllowedToPostJob) {
-        throw new AppError('you do not have permission to that action', 403);
-    }
-    const question = await ApplicationQuestionModel.findOneAndDelete({
-        _id: questionId,
-    });
-    if (!question) {
-        throw new AppError('question not found', 404);
-    }
-};
-
 export const getAccountJobApplicationByIdService = async (
     accountId: number,
     jobApplicationId: number,
@@ -643,13 +419,12 @@ export const getAccountJobApplicationByIdService = async (
     if (!jobApplication) {
         throw new AppError('job application not found', 404);
     }
-    const questionAnswers = await ApplicationAnswerModel.find({
+    const questionAnswers = await ApplicationAnswersModel.findOne({
         jobApplicationId,
-    }).populate('question');
+    });
     return {
         ...jobApplication,
-        job: jobApplication.job,
-        questionAnswers: questionAnswers,
+        questionAnswers: questionAnswers.answers,
     };
 };
 
@@ -667,7 +442,7 @@ export const getAllJobApplicationByAccountIdService = async (req: Request) => {
                 'job_application_state.state': [FilterOperator.EQ],
             },
 
-            relations: ['job_application_state', 'job_application_form', 'job'],
+            relations: ['job_application_state', 'job'],
             defaultSortBy: [['created_at', 'DESC']],
             maxLimit: 20,
             defaultLimit: transformedQuery.limit,
@@ -686,7 +461,6 @@ export const getAllJobApplicationByAccountIdService = async (req: Request) => {
                 'cjas.birth_date',
                 'cjas.skills',
                 'cjas.languages',
-                'cjas.job_application_form_id',
             ])
 
             // LEFT JOIN Job

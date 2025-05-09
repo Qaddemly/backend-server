@@ -1,37 +1,28 @@
 import { Request, Response, NextFunction } from 'express';
 import catchAsync from 'express-async-handler';
 import {
-    addQuestionToJobApplicationFormService,
-    deleteQuestionFromJobApplicationService,
     getAllArchivedApplicationsOfUserService,
-    getJobApplicationFormService,
     getJobApplicationByBusinessService,
     updateJobApplicationStateService,
-    updateQuestionFromJobApplicationService,
-    createJobApplicationFormService,
     applyToJobService,
     getAllJobApplicationsToJobService,
-    deleteJobApplicationFormService,
     getAccountJobApplicationByIdService,
     getAllJobApplicationByAccountIdService,
     archiveJobApplicationService,
+    getJobApplicationFormQuestionsService,
+    updateJobQuestionsService,
 } from '../services/jobApplicationServices';
 
-export const createJobApplicationForm = catchAsync(
+export const getJobApplicationForm = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             const jobId = Number(req.params.jobId);
-            const userId = Number(req.user.id);
-            const data = req.body;
-            const jobApplicationFrom = await createJobApplicationFormService(
-                userId,
-                jobId,
-                data,
-            );
-            res.status(201).json({
+            const questions =
+                await getJobApplicationFormQuestionsService(jobId);
+            res.status(200).json({
                 success: true,
-                message: 'JobApplicationForm created successfully',
-                jobApplicationFrom,
+                message: ' Job questions fetched successfully',
+                questions,
             });
         } catch (err) {
             return next(err);
@@ -39,16 +30,15 @@ export const createJobApplicationForm = catchAsync(
     },
 );
 
-export const getJobApplicationForm = catchAsync(
+export const updateJobApplicationsQuestions = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             const jobId = Number(req.params.jobId);
-            const jobApplicationForm =
-                await getJobApplicationFormService(jobId);
+            const questions = await updateJobQuestionsService(jobId, req.body);
             res.status(200).json({
                 success: true,
-                message: ' Job Application form fetched successfully',
-                jobApplicationForm,
+                message: ' Job questions fetched successfully',
+                questions,
             });
         } catch (err) {
             return next(err);
@@ -128,90 +118,6 @@ export const updateJobApplicationState = catchAsync(
                 success: true,
                 message: ' Job Application state updated successfully',
             });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
-
-export const deleteJobApplicationForm = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const accountId = Number(req.user.id);
-            const jobId = Number(req.params.jobId);
-
-            await deleteJobApplicationFormService(accountId, jobId);
-            res.status(204).json({});
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
-
-export const addJobApplicationFormQuestion = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const accountId = Number(req.user.id);
-            const jobApplicationFormId = Number(
-                req.params.jobApplicationFormId,
-            );
-            const question = await addQuestionToJobApplicationFormService(
-                accountId,
-                jobApplicationFormId,
-                req.body,
-            );
-
-            res.status(201).json({
-                success: true,
-                question,
-            });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
-
-export const updateJobApplicationFormQuestion = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const accountId = Number(req.user.id);
-            const jobApplicationFormId = Number(
-                req.params.jobApplicationFormId,
-            );
-            const questionId = req.params.questionId;
-            const question = await updateQuestionFromJobApplicationService(
-                accountId,
-                jobApplicationFormId,
-                questionId,
-                req.body,
-            );
-
-            res.status(200).json({
-                success: true,
-                question,
-            });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
-
-export const deleteJobApplicationFormQuestion = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const accountId = Number(req.user.id);
-            const jobApplicationFormId = Number(
-                req.params.jobApplicationFormId,
-            );
-            const questionId = req.params.questionId;
-
-            await deleteQuestionFromJobApplicationService(
-                accountId,
-                jobApplicationFormId,
-                questionId,
-            );
-
-            res.status(204).json({});
         } catch (err) {
             return next(err);
         }

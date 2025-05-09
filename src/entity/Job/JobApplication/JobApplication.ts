@@ -12,7 +12,6 @@ import {
 
 import { Account } from '../../Account/Account';
 import { JobApplicationState } from './JobApplicationStates';
-import { JobApplicationForm } from './JobApplicationForm';
 import { JobApplicationEducation } from './JobApplicationEducation';
 import { JobApplicationResume } from './JobApplicationResume';
 import { JobApplicationExperience } from './JobApplicationExperience';
@@ -37,14 +36,6 @@ export class JobApplication {
     skills: string[]; // List of skills of the applicant
     @Column({ type: 'simple-array' })
     languages: string[]; // List of languages spoken by the applicant
-
-    @ManyToOne(
-        () => JobApplicationForm,
-        (JobApplicationForm) => JobApplicationForm.job_applications,
-        { onDelete: 'CASCADE' },
-    )
-    @JoinColumn({ name: 'job_application_form_id' })
-    job_application_form: JobApplicationForm;
 
     @OneToOne(() => JobApplicationState, (cjas) => cjas.job_application, {
         onDelete: 'CASCADE',

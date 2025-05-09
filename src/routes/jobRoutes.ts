@@ -24,8 +24,13 @@ import {
     savingResumeInDisk,
     uploadJobApplicationResume,
 } from '../services/jobApplicationServices';
-import { CreateJobApplicationValidator } from '../middlewares/validators/jobApplicationValidator';
+import {
+    CreateJobApplicationValidator,
+    jobApplicationIdValidator,
+} from '../middlewares/validators/jobApplicationValidator';
 import { applyToJob } from '../controllers/jobApplicationController';
+import * as jobApplicationController from '../controllers/jobApplicationController';
+import * as jobApplicationValidator from '../middlewares/validators/jobApplicationValidator';
 
 const jobRouter = express.Router();
 
@@ -99,11 +104,18 @@ jobRouter.post('/loadJobsFromCSV', async (req, res) => {
 });
 
 jobRouter.post(
-    '/:jobId/jobApplicationForm/jobApplication',
+    '/:jobId/jobApplication',
     protect,
     uploadJobApplicationResume,
     validateRequestMiddleware(CreateJobApplicationValidator),
     savingResumeInDisk,
     applyToJob,
+);
+
+jobRouter.get(
+    '/:jobId/questions',
+    protect,
+    validateRequestMiddleware(jobApplicationValidator.JobIdValidator),
+    jobApplicationController.getJobApplicationForm,
 );
 export default jobRouter;

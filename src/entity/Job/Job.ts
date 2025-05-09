@@ -19,7 +19,6 @@ import { JobStatus } from '../../enums/jobStatus';
 import { Address } from '../General/Address';
 import { Country } from '../../enums/country';
 import { AccountSavedJobs } from './AccountSavedJobs';
-import { JobApplicationForm } from './JobApplication/JobApplicationForm';
 import { JobApplication } from './JobApplication/JobApplication';
 
 @Entity()
@@ -90,11 +89,7 @@ export class Job {
         (accountSavedJobs) => accountSavedJobs.job,
     )
     savedByAccounts: AccountSavedJobs[];
-    @OneToOne(
-        () => JobApplicationForm,
-        (JobApplicationForm) => JobApplicationForm.job,
-    )
-    job_application_form: JobApplicationForm;
+
     @OneToMany(() => JobApplication, (JobApplication) => JobApplication.job)
     job_applications: JobApplication[];
     @CreateDateColumn({ type: 'timestamptz' })
