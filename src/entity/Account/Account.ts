@@ -14,13 +14,12 @@ import {
 import { Review } from '../General/Review';
 import { HrEmployee } from '../Business/HrEmployee';
 import { FollowBusiness } from '../General/FollowBusiness';
-import { JobApplication } from '../Job/JobApplication';
 import { Address } from '../General/Address';
 import { AccountEducation } from './AccountEducation';
 import { AccountExperience } from './AccountExperience';
 import { AccountLanguage } from './AccountLanguage';
 import { AccountSkill } from './AccountSkill';
-import { Job } from '../Job/Job';
+
 import { Phone } from '../General/Phone';
 import { AccountResume } from './AccountResume';
 
@@ -28,15 +27,15 @@ import { AccountCertificate } from './AccountCertificate';
 
 import { AccountProject } from './AccountProject';
 import { AccountVolunteering } from './AccountVolunteering';
-import { AccountArchivedJobApplications } from '../Job/AccountArchivedJobApplications';
 import { AccountSavedJobs } from '../Job/AccountSavedJobs';
 import { AccountLinks } from './AccountLinks';
 import { ResumeTemplate } from '../ResumeTemplate/ResumeTemplate';
 import { CoverLetter } from '../CoverLetter/CoverLetter';
 import { Notification } from '../Notification/Notification';
-import { CustomJobApplicationSubmit } from '../Job/customJobApplication/CustomJobApplicationSubmit';
-import { AccountArchivedCustomJobApplications } from '../Job/customJobApplication/AccountArchivedCustomJobApplications';
+
 import { Chat } from '../Messaging/chat';
+import { JobApplication } from '../Job/JobApplication/JobApplication';
+import { AccountArchivedJobApplications } from '../Job/JobApplication/AccountArchivedJobApplications';
 
 @Entity()
 export class Account {
@@ -112,18 +111,10 @@ export class Account {
 
     @OneToMany(
         () => JobApplication,
-        (jobApplication) => jobApplication.account,
+        (job_application) => job_application.account,
         { cascade: true },
     )
     job_applications: JobApplication[];
-
-    @OneToMany(
-        () => CustomJobApplicationSubmit,
-        (custom_job_application_submit) =>
-            custom_job_application_submit.account,
-        { cascade: true },
-    )
-    custom_job_application_submits: CustomJobApplicationSubmit[];
 
     @OneToMany(
         () => AccountSavedJobs,
@@ -141,19 +132,11 @@ export class Account {
 
     @OneToMany(
         () => AccountArchivedJobApplications,
-        (account_archived_job_applications) =>
-            account_archived_job_applications.account,
-        { cascade: true },
-    )
-    archived_job_applications: AccountArchivedJobApplications[];
-
-    @OneToMany(
-        () => AccountArchivedCustomJobApplications,
         (account_archived_custom_job_applications) =>
             account_archived_custom_job_applications.account,
         { cascade: true },
     )
-    archived_custom_job_applications: AccountArchivedCustomJobApplications[];
+    archived_job_applications: AccountArchivedJobApplications[];
 
     @OneToMany(() => Review, (review) => review.account, { cascade: true })
     reviews: Review[];

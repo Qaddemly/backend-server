@@ -9,7 +9,6 @@ import {
 } from 'typeorm';
 import { Account } from '../Account/Account';
 import { Business } from '../Business/Business';
-import { JobApplicationState } from '../Job/JobApplicationStates';
 
 @Entity()
 export class Notification {
@@ -33,15 +32,7 @@ export class Notification {
     })
     @JoinColumn({ name: 'business_id' }) // Links to Business
     business: Business;
-    @ManyToOne(
-        () => JobApplicationState,
-        (job_application_state) => job_application_state.notifications,
-        {
-            cascade: true,
-        },
-    )
-    @JoinColumn({ name: 'job_application_state_id' }) // Links to JobApplicationState
-    job_application_state: JobApplicationState;
+
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn()

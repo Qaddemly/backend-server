@@ -35,9 +35,6 @@ import {
     getAllCertificatesOfCurrentUserService,
     getAllCertificatesByUserIdService,
     getUserInfoToRecommendJobs,
-    getAllArchivedApplicationsOfUserService,
-    archiveJobApplicationService,
-    getAllDetailsAboutJobApplicationService,
     getAllEducationsOfLoggedInUserService,
     getAllEducationsOfUserByIdService,
     getExperiencesOfLoggedInUserService,
@@ -475,54 +472,6 @@ export const deleteCertificate = catchAsync(
         try {
             const certificate = await deleteCertificateService(req);
             res.status(204).json({});
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
-
-export const getAllArchivedApplicationsOfUser = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        const jobApplications = await getAllArchivedApplicationsOfUserService(
-            req.user.id,
-        );
-        res.status(200).json({
-            success: true,
-            jobApplications,
-        });
-    },
-);
-
-export const archiveJobApplication = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const jobApplication = await archiveJobApplicationService(
-                Number(req.params.id),
-                req.user.id,
-                req.query.archive === 'true',
-            );
-            res.status(200).json({
-                success: true,
-                jobApplication,
-            });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
-
-export const getAllDetailsAboutJobApplication = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const jobApplication =
-                await getAllDetailsAboutJobApplicationService(
-                    req.user.id,
-                    Number(req.params.id),
-                );
-            res.status(200).json({
-                success: true,
-                jobApplication,
-            });
         } catch (err) {
             return next(err);
         }

@@ -429,24 +429,6 @@ export const getAllBusinessWithSearchAndFilter = catchAsync(
     },
 );
 
-export const updateJobApplicationStatus = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            await businessServices.updateJobApplicationStatusService(
-                Number(req.user.id),
-                Number(req.params.jobId),
-                Number(req.params.applicationId),
-                req.body.status,
-            );
-            res.status(200).json({
-                success: true,
-                message: 'Job application status updated successfully',
-            });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
 export const getAllJobsFromDashboard = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {

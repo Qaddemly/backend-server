@@ -1,15 +1,14 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     Index,
     JoinColumn,
     ManyToOne,
-    OneToMany,
     OneToOne,
     PrimaryColumn,
-    PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Account } from '../Account/Account';
+import { Account } from '../../Account/Account';
 import { JobApplication } from './JobApplication';
 
 @Entity()
@@ -17,7 +16,13 @@ export class AccountArchivedJobApplications {
     @PrimaryColumn()
     job_application_id: number; // Single column as both Primary & Foreign Key
 
-    @OneToOne(() => JobApplication, { onDelete: 'CASCADE' })
+    @OneToOne(
+        () => JobApplication,
+        (job_application) => job_application.account_archived_job_application,
+        {
+            onDelete: 'CASCADE',
+        },
+    )
     @JoinColumn({ name: 'job_application_id' }) // Links to JobApplication
     job_application: JobApplication;
 
@@ -31,4 +36,6 @@ export class AccountArchivedJobApplications {
 
     @Column('boolean')
     is_archived: boolean;
+    @CreateDateColumn()
+    created_at: Date;
 }

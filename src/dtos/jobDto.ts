@@ -2,6 +2,7 @@ import { Address } from '../entity/General/Address';
 import { EmploymentType } from '../enums/employmentType';
 import { LocationType } from '../enums/locationType';
 import { Country } from '../enums/country';
+import { CreateJobApplicationFormQuestionDto } from './JobApplicationDto';
 
 export interface CreateJobBodyBTO {
     title: string;
@@ -16,6 +17,7 @@ export interface CreateJobBodyBTO {
     keywords: string[];
     experience: number;
     business_id: number;
+    questions: CreateJobApplicationFormQuestionDto;
 }
 
 export interface UpdateJobBodyBTO {
