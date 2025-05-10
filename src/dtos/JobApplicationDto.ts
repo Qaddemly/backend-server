@@ -28,7 +28,16 @@ export interface CreateJobApplicationDto {
     resume: ResumeType;
     skills: string[];
     languages: string[];
-    answers: [];
+    answers: {
+        question: {
+            _id: string;
+            questionText: string; // The question text
+            questionType: string; // The type of question (e.g., text, multiple choice, etc.)
+            options?: string[]; // Options for multiple choice questions
+            isRequired: boolean;
+        };
+        answer: string;
+    }[];
 }
 
 export interface CreateJobApplicationFormQuestionDto {

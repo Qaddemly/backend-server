@@ -92,7 +92,7 @@ export const createJobService = async (
         questions,
         jobId: job.id,
     });
-    //eventEmitter.emit('sendJobPostedNotification', newJob);
+    eventEmitter.emit('sendJobPostedNotification', newJob);
     //await publishToQueue('send_notification', { jobId: newJob.id });
 
     return { ...job, questions: newQuestions.questions };

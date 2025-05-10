@@ -222,7 +222,9 @@ businessRouter.get(
 businessRouter.put(
     '/dashboard/job/:jobId/questions',
     protect,
-    validateRequestMiddleware(jobApplicationValidator.JobIdValidator),
+    validateRequestMiddleware(
+        jobApplicationValidator.updateJobQuestionsValidator,
+    ),
     jobApplicationController.updateJobApplicationsQuestions,
 );
 
