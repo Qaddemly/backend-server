@@ -107,7 +107,7 @@ export const applyToJobService = async (
         where: { account: { id: accountId }, job: { id: job.id } },
     });
     if (foundJobApplication) {
-        throw new AppError('you are already apply to this job');
+        throw new AppError('you are already apply to this job', 400);
     }
     const newJobApplication = new JobApplication();
     newJobApplication.first_name = data.personalInfo.first_name;

@@ -252,7 +252,10 @@ export const CreateJobApplicationValidator = [
         .custom((arr) => arr.every((opt: any) => typeof opt === 'string'))
         .withMessage('Each option must be a string'),
 
-    body('answers.*.answer').notEmpty().withMessage('answer is required'),
+    body('answers.*.answer')
+        .optional()
+        .notEmpty()
+        .withMessage('answer is required'),
 
     // Custom validator that fetches questions from DB and validates each answer
     body('answers').custom(async (submittedAnswers, { req }) => {
