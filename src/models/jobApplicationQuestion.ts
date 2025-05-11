@@ -7,7 +7,7 @@ export interface IApplicationQuestion {
     isRequired: boolean; // Whether the question is required or not
     order: number; // The order of the question in the application form
     jobId: number; // The ID of the job this question is associated with
-    customJobApplicationId: number; // The ID of the custom job application this question is associated with
+    jobApplicationFormId: number; // The ID of the custom job application this question is associated with
 }
 
 const ApplicationQuestionSchema = new mongoose.Schema<IApplicationQuestion>(
@@ -18,7 +18,7 @@ const ApplicationQuestionSchema = new mongoose.Schema<IApplicationQuestion>(
         isRequired: { type: Boolean, default: false },
         order: { type: Number, required: true },
         jobId: { type: Number, required: true },
-        customJobApplicationId: { type: Number, required: true },
+        jobApplicationFormId: { type: Number, required: true },
     },
     { timestamps: true },
 );

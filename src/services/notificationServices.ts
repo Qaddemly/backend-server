@@ -6,7 +6,6 @@ import { Notification } from '../models/notificationModel';
 import { FollowBusinessRepository } from '../Repository/General/followBusinessRepository';
 import { clients } from '../controllers/notificationController';
 import AppError from '../utils/appError';
-import { JobApplication } from '../entity/Job/JobApplication';
 import { BusinessRepository } from '../Repository/Business/businessRepository';
 // async function getClientsList() {
 //     const clientStrings = await redisClient.lRange('clients', 0, -1); // Get all items
@@ -80,41 +79,19 @@ export const sendJobNotification = async (job: Job) => {
 };
 
 export const sendJobApplicationUpdateNotification = async (
-    jobApplication: any,
-) => {
-    console.log('hello from sending notifications job app0li');
-    const newNotification = await Notification.create({
-        type: NotificationType.JobApplicationStatusUpdated,
-        message: `update on your job application on job ${jobApplication.job.title} posted on business ${jobApplication.job.business.name} with state ${jobApplication.state}`,
-        jobId: jobApplication.job.id,
-        businessId: jobApplication.job.business_id,
-        accountId: jobApplication.account_id,
-        jobApplicationId: jobApplication.id,
-    });
-    const client = clients.find(
-        (c) => Number(c.accountId) == jobApplication.account_id,
-    );
-    if (client) {
-        newNotification.isSent = true;
-        await newNotification.save();
-        client.res.write(`data: ${JSON.stringify(newNotification)}\n\n`);
-    }
-};
-
-export const sendCustomJobApplicationUpdateNotification = async (
-    jobApplication: any,
+    notificationData: any,
 ) => {
     console.log('hello from sending notifications custom job app0li');
     const newNotification = await Notification.create({
-        type: NotificationType.CustomJobApplicationStatusUpdated,
-        message: `update on your job application on job ${jobApplication.job.title} posted on business ${jobApplication.business.name} with state ${jobApplication.state}`,
-        jobId: jobApplication.job.id,
-        businessId: jobApplication.business.id,
-        accountId: jobApplication.account_id,
-        customJobApplicationSubmitId: jobApplication.id,
+        type: NotificationType.JobApplicationStatusUpdated,
+        message: `update on your job application on job ${notificationData.job.title} posted on business ${notificationData.business.name} with state ${notificationData.state}`,
+        jobId: notificationData.job.id,
+        businessId: notificationData.business.id,
+        accountId: notificationData.account_id,
+        jobApplicationId: notificationData.id,
     });
     const client = clients.find(
-        (c) => Number(c.accountId) == jobApplication.account_id,
+        (c) => Number(c.accountId) == notificationData.account_id,
     );
     if (client) {
         newNotification.isSent = true;

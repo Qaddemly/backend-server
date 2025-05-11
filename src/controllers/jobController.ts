@@ -1,19 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 import AppError from '../utils/appError';
 import {
-    applyToJobService,
     changeJobStatus,
     createJobService,
     getAllArchivedJobsService,
-    getAllJobsApplicationsForJobService,
     getAllJobsSearchWithFilterService,
-    getAllUserJobsApplicationsService,
     getAllUserSavedJobsService,
     getNumberOfActiveJobsService,
     getNumberOfNewlyPostedJobsService,
-    getOneJobApplicationService,
     getOneJobService,
-    getOneUserJobApplicationService,
     getRecommendedJobsForUserService,
     removeSavedJobFromUserService,
     saveJobToUserService,
@@ -158,58 +153,6 @@ export const getAllUserSavedJobs = catchAsync(
     },
 );
 
-export const applyToJob = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const userId = Number(req.user.id);
-            const resumeId = Number(req.body.resume_id);
-            const jobId = Number(req.params.id);
-            const jobApplication = await applyToJobService(
-                userId,
-                jobId,
-                resumeId,
-            );
-            res.status(200).json({
-                success: true,
-                message: 'congrats your application is submitted successfully ',
-                jobApplication,
-            });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
-
-export const getAllUserJobApplications = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const jobApplications =
-                await getAllUserJobsApplicationsService(req);
-            res.status(200).json({
-                success: true,
-                jobApplications,
-            });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
-
-export const getAllJobApplicationsToJob = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const jobApplications =
-                await getAllJobsApplicationsForJobService(req);
-            res.status(200).json({
-                success: true,
-                jobApplications: jobApplications,
-            });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
-
 export const getAllJobs = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
@@ -231,44 +174,6 @@ export const getRecommendedJobsForUser = catchAsync(async (req, res, next) => {
         recommendedJobs,
     });
 });
-
-export const getOneUserJobApplication = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const accountId = Number(req.user.id);
-            const jobApplicationId = Number(req.params.id);
-            const jobApplication = await getOneUserJobApplicationService(
-                accountId,
-                jobApplicationId,
-            );
-            res.status(200).json({
-                success: true,
-                jobApplication,
-            });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
-
-export const getOneJobApplication = catchAsync(
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const accountId = Number(req.user.id);
-            const jobApplicationId = Number(req.params.id);
-            const jobApplication = await getOneJobApplicationService(
-                accountId,
-                jobApplicationId,
-            );
-            res.status(200).json({
-                success: true,
-                jobApplication,
-            });
-        } catch (err) {
-            return next(err);
-        }
-    },
-);
 
 export const getNumberOfActiveJobs = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {

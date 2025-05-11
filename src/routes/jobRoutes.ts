@@ -1,6 +1,5 @@
 import express from 'express';
 import {
-    applyToJob,
     createJob,
     getAllJobs,
     getOneJob,
@@ -23,13 +22,15 @@ import {
 import { loadJobsFromCSV } from '../services/jobServices';
 import {
     savingResumeInDisk,
-    uploadCustomJobApplicationResume,
-} from '../services/customJobApplicationServices';
+    uploadJobApplicationResume,
+} from '../services/jobApplicationServices';
 import {
-    CreateCustomJobApplicationSubmitValidator,
-    customJobApplicationIdValidator,
-} from '../middlewares/validators/customJobApplicationValidator';
-import { createCustomJobApplicationSubmit } from '../controllers/customJobApplicationController';
+    CreateJobApplicationValidator,
+    jobApplicationIdValidator,
+} from '../middlewares/validators/jobApplicationValidator';
+import { applyToJob } from '../controllers/jobApplicationController';
+import * as jobApplicationController from '../controllers/jobApplicationController';
+import * as jobApplicationValidator from '../middlewares/validators/jobApplicationValidator';
 
 const jobRouter = express.Router();
 
@@ -93,15 +94,6 @@ jobRouter.delete(
     unSaveJobFromUser,
 );
 
-jobRouter.post(
-    '/applyToJob/:id',
-    protect,
-    validateRequestMiddleware(idJobValidator),
-    validateRequestMiddleware(applyToJobValidator),
-
-    applyToJob,
-);
-
 jobRouter.get('/getAllJobs/', getAllJobs);
 
 jobRouter.get('/recommendedJobsForUser', protect, getRecommendedJobsForUser);
@@ -112,11 +104,18 @@ jobRouter.post('/loadJobsFromCSV', async (req, res) => {
 });
 
 jobRouter.post(
-    '/customJobApplication/:customJobApplicationId/submit',
+    '/:jobId/jobApplication',
     protect,
-    uploadCustomJobApplicationResume,
-    validateRequestMiddleware(CreateCustomJobApplicationSubmitValidator),
+    uploadJobApplicationResume,
+    validateRequestMiddleware(CreateJobApplicationValidator),
     savingResumeInDisk,
-    createCustomJobApplicationSubmit,
+    applyToJob,
+);
+
+jobRouter.get(
+    '/:jobId/questions',
+    protect,
+    validateRequestMiddleware(jobApplicationValidator.JobIdValidator),
+    jobApplicationController.getJobApplicationForm,
 );
 export default jobRouter;

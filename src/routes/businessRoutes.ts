@@ -29,22 +29,15 @@ import {
     updateBusiness,
     updateHrRole,
     checkRoleInBusiness,
-    updateJobApplicationStatus,
 } from '../controllers/businessController';
 import { idJobValidator } from '../middlewares/validators/jobValidator';
-import {
-    getAllArchivedJobs,
-    getAllJobApplicationsToJob,
-    getOneJobApplication,
-} from '../controllers/jobController';
-import { CreateCustomJobApplicationValidator } from '../middlewares/validators/customJobApplicationValidator';
-import { createCustomJobApplication } from '../controllers/customJobApplicationController';
-import * as customJobApplicationController from '../controllers/customJobApplicationController';
-import * as customJobApplicationValidator from '../middlewares/validators/customJobApplicationValidator';
+import { getAllArchivedJobs } from '../controllers/jobController';
+import * as jobApplicationController from '../controllers/jobApplicationController';
+import * as jobApplicationValidator from '../middlewares/validators/jobApplicationValidator';
 import {
     savingResumeInDisk,
-    uploadCustomJobApplicationResume,
-} from '../services/customJobApplicationServices';
+    uploadJobApplicationResume,
+} from '../services/jobApplicationServices';
 
 export const businessRouter = express.Router();
 
@@ -193,19 +186,6 @@ businessRouter.get(
     getFollowersOfBusiness,
 );
 // TODO : Recheck here
-businessRouter.get(
-    '/myBusiness/dashboard/job/:jobId/applications',
-    protect,
-    validateRequestMiddleware(idJobValidator),
-    getAllJobApplicationsToJob,
-);
-
-businessRouter.put(
-    '/myBusiness/dashboard/job/:jobId/applications/:applicationId',
-    protect,
-    validateRequestMiddleware(updateJobStatusValidator),
-    updateJobApplicationStatus,
-);
 
 // jobRouter.get(
 //     '/allJobApplicationsToOneJob/:id',
@@ -226,109 +206,49 @@ businessRouter.get(
 );
 
 businessRouter.get(
-    '/jobApplication/getAllJobApplications/job/:id',
-    protect,
-    validateRequestMiddleware(idJobValidator),
-    getAllJobApplicationsToJob,
-);
-businessRouter.get(
-    '/jobApplication/:id',
-    protect,
-    validateRequestMiddleware(idJobValidator),
-    getOneJobApplication,
-);
-
-businessRouter.get(
     '/myBusiness/dashboard/AllArchivedJobs/:id',
     protect,
     validateRequestMiddleware(idJobValidator),
     getAllArchivedJobs,
 );
 
-businessRouter.post(
-    '/dashboard/job/:jobId/customJobApplication/create',
-    protect,
-    validateRequestMiddleware(CreateCustomJobApplicationValidator),
-    createCustomJobApplication,
-);
-
 businessRouter.get(
-    '/dashboard/job/:jobId/customJobApplication',
+    '/dashboard/job/:jobId/questions',
     protect,
-    validateRequestMiddleware(customJobApplicationValidator.JobIdValidator),
-    customJobApplicationController.getCustomJobApplication,
-);
-
-businessRouter.post(
-    '/dashboard/job/customJobApplication/:customJobApplicationId/submit',
-    protect,
-    uploadCustomJobApplicationResume,
-    validateRequestMiddleware(
-        customJobApplicationValidator.CreateCustomJobApplicationSubmitValidator,
-    ),
-    savingResumeInDisk,
-    customJobApplicationController.createCustomJobApplicationSubmit,
-);
-
-businessRouter.get(
-    '/dashboard/job/customJobApplication/:customJobApplicationId/customJobApplicationSubmit',
-    protect,
-    validateRequestMiddleware(
-        customJobApplicationValidator.customJobApplicationIdValidator,
-    ),
-    customJobApplicationController.getAllCustomJobApplicationSubmits,
-);
-
-businessRouter.get(
-    '/dashboard/job/customJobApplication/:customJobApplicationId/customJobApplicationSubmit/:customJobApplicationSubmitId',
-    protect,
-    validateRequestMiddleware(
-        customJobApplicationValidator.getOneCustomJobApplicationSubmitByBusinessValidator,
-    ),
-    customJobApplicationController.getOneCustomJobApplicationSubmitByBusiness,
+    validateRequestMiddleware(jobApplicationValidator.JobIdValidator),
+    jobApplicationController.getJobApplicationForm,
 );
 
 businessRouter.put(
-    '/dashboard/job/customJobApplication/:customJobApplicationId/customJobApplicationSubmit/:customJobApplicationSubmitId/update-state',
+    '/dashboard/job/:jobId/questions',
     protect,
     validateRequestMiddleware(
-        customJobApplicationValidator.updateCustomJobApplicationSubmitStateValidator,
+        jobApplicationValidator.updateJobQuestionsValidator,
     ),
-    customJobApplicationController.updateCustomJobApplicationSubmitState,
+    jobApplicationController.updateJobApplicationsQuestions,
 );
 
-businessRouter.delete(
-    '/dashboard/job/customJobApplication/:customJobApplicationId',
+businessRouter.get(
+    '/dashboard/job/:jobId/jobApplications',
     protect,
-    validateRequestMiddleware(
-        customJobApplicationValidator.customJobApplicationIdValidator,
-    ),
-    customJobApplicationController.deleteCustomJobApplication,
+    validateRequestMiddleware(jobApplicationValidator.JobIdValidator),
+    jobApplicationController.getAllJobApplicationsToJob,
 );
 
-businessRouter.post(
-    '/dashboard/job/customJobApplication/:customJobApplicationId/question/add',
+businessRouter.get(
+    '/dashboard/job/:jobId/jobApplication/:jobApplicationId',
     protect,
     validateRequestMiddleware(
-        customJobApplicationValidator.addQuestionToCustomJobApplicationValidator,
+        jobApplicationValidator.getOneJobApplicationByBusinessValidator,
     ),
-    customJobApplicationController.addCustomJobApplicationQuestion,
+    jobApplicationController.getOneJobApplicationByBusiness,
 );
 
 businessRouter.put(
-    '/dashboard/job/customJobApplication/:customJobApplicationId/question/update/:questionId',
+    '/dashboard/job/:jobId/jobApplication/:jobApplicationId/update-state',
     protect,
     validateRequestMiddleware(
-        customJobApplicationValidator.updateQuestionToCustomJobApplicationValidator,
+        jobApplicationValidator.updateJobApplicationFormStateValidator,
     ),
-    customJobApplicationController.updateCustomJobApplicationQuestion,
-);
-
-businessRouter.delete(
-    '/dashboard/job/customJobApplication/:customJobApplicationId/question/delete/:questionId',
-    protect,
-    validateRequestMiddleware(
-        customJobApplicationValidator.deleteQuestionToCustomJobApplicationValidator,
-    ),
-    customJobApplicationController.deleteCustomJobApplicationQuestion,
+    jobApplicationController.updateJobApplicationState,
 );

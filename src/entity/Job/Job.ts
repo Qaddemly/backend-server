@@ -14,14 +14,12 @@ import {
 import { LocationType } from '../../enums/locationType';
 import { EmploymentType } from '../../enums/employmentType';
 import { Business } from '../Business/Business';
-import { JobApplication } from './JobApplication';
 import { Account } from '../Account/Account';
 import { JobStatus } from '../../enums/jobStatus';
 import { Address } from '../General/Address';
 import { Country } from '../../enums/country';
-import { JobApplicationState } from './JobApplicationStates';
 import { AccountSavedJobs } from './AccountSavedJobs';
-import { CustomJobApplication } from './customJobApplication/CustomJobApplication';
+import { JobApplication } from './JobApplication/JobApplication';
 
 @Entity()
 export class Job {
@@ -98,28 +96,14 @@ export class Job {
     })
     business: Business;
 
-    @OneToMany(() => JobApplication, (job_application) => job_application.job, {
-        cascade: true,
-    })
-    job_applications: JobApplication[];
-
-    @OneToMany(
-        () => JobApplicationState,
-        (business_job_application_state) => business_job_application_state.job,
-        { cascade: true },
-    )
-    job_application_states: JobApplicationState[];
-
     @OneToMany(
         () => AccountSavedJobs,
         (accountSavedJobs) => accountSavedJobs.job,
     )
     savedByAccounts: AccountSavedJobs[];
-    @OneToOne(
-        () => CustomJobApplication,
-        (customJobApplication) => customJobApplication.job,
-    )
-    custom_job_application: CustomJobApplication;
+
+    @OneToMany(() => JobApplication, (JobApplication) => JobApplication.job)
+    job_applications: JobApplication[];
     @CreateDateColumn({ type: 'timestamptz' })
     created_at: Date;
 
