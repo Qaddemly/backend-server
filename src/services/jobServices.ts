@@ -40,6 +40,7 @@ import { redisClient } from '../config/redis';
 import { sendJobNotification } from './notificationServices';
 import { eventEmitter } from '../events/eventEmitter';
 import { publishToQueue } from '../config/rabbitMQ';
+import { Logger } from '../utils/logger';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -56,6 +57,8 @@ export const createJobService = async (
         keywords,
         experience,
         business_id,
+        extra_application_link,
+        has_extra_link_application,
     } = req.body;
     const userId = Number(req.user.id);
     const business = await BusinessRepository.findOneBy({ id: business_id });
@@ -89,6 +92,9 @@ export const createJobService = async (
     newJob.keywords = keywords;
     newJob.experience = experience;
     newJob.business = business;
+    newJob.has_extra_link_application = has_extra_link_application;
+    newJob.extra_application_link = extra_application_link;
+
     //await sendJobNotification(newJob);
     const job = await JobRepository.save(newJob);
     eventEmitter.emit('sendJobPostedNotification', newJob);
@@ -130,6 +136,8 @@ export const updateJobService = async (
         employee_type,
         keywords,
         experience,
+        has_extra_link_application,
+        extra_application_link,
     } = req.body;
     const userId = Number(req.user.id);
     const jobId = Number(req.params.id);
@@ -167,6 +175,8 @@ export const updateJobService = async (
         employee_type: employee_type,
         keywords: keywords,
         experience: experience,
+        has_extra_link_application: has_extra_link_application,
+        extra_application_link: extra_application_link,
     });
     // const returnedJob: { [key: string]: any } = job;
     // delete returnedJob.business;

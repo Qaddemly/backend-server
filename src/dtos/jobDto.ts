@@ -16,6 +16,8 @@ export interface CreateJobBodyBTO {
     keywords: string[];
     experience: number;
     business_id: number;
+    has_extra_link_application: boolean;
+    extra_application_link: string;
 }
 
 export interface UpdateJobBodyBTO {
@@ -31,6 +33,8 @@ export interface UpdateJobBodyBTO {
     employee_type?: EmploymentType;
     keywords?: string[];
     experience?: number;
+    has_extra_link_application?: boolean;
+    extra_application_link?: string;
 }
 export interface updateJobQueryData
     extends Pick<
@@ -44,4 +48,6 @@ export interface updateJobQueryData
         | 'title'
         | 'experience'
         | 'skills'
+        | 'has_extra_link_application'
+        | 'extra_application_link'
     > {}
