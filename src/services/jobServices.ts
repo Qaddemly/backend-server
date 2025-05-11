@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { CreateJobBodyBTO } from '../dtos/jobDto';
+import { CreateJobBodyBTO, UpdateJobBodyBTO } from '../dtos/jobDto';
 import { BusinessRepository } from '../Repository/Business/businessRepository';
 import AppError from '../utils/appError';
 import { Job } from '../entity/Job/Job';
@@ -125,7 +125,7 @@ export const getOneJobService = async (req: Request) => {
 };
 
 export const updateJobService = async (
-    req: Request<{ id: string }, {}, CreateJobBodyBTO>,
+    req: Request<{ id: string }, {}, UpdateJobBodyBTO>,
 ) => {
     const {
         title,
@@ -165,23 +165,32 @@ export const updateJobService = async (
         throw new AppError('you do not have permission to post job', 403);
     }
 
-    const job = await JobRepository.updateOneJob(jobId, {
-        title: title,
-        description: description,
-        country: location.country,
-        city: location.city,
-        location_type: location_type,
-        skills: skills,
-        salary: salary,
-        employee_type: employee_type,
-        keywords: keywords,
-        experience: experience,
-        has_extra_link_application: has_extra_link_application,
-        extra_application_link: extra_application_link,
+    const job = await JobRepository.findOne({
+        where: { id: jobId },
     });
-    // const returnedJob: { [key: string]: any } = job;
-    // delete returnedJob.business;
-    // returnedJob.business_id = business_id;
+
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    if (title) job.title = title;
+    if (description) job.description = description;
+    if (location) {
+        job.country = location.country;
+        job.city = location.city;
+    }
+    if (location_type) job.location_type = location_type;
+    if (skills) job.skills = skills;
+    if (salary) job.salary = salary;
+    if (employee_type) job.employee_type = employee_type;
+    if (keywords) job.keywords = keywords;
+    if (experience) job.experience = experience;
+    if (has_extra_link_application)
+        job.has_extra_link_application = has_extra_link_application;
+    if (extra_application_link)
+        job.extra_application_link = extra_application_link;
+
+    await JobRepository.save(job);
+
     return job;
 };
 // export const makeJobClosedService = async (req: Request) => {

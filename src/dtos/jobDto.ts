@@ -26,8 +26,7 @@ export interface UpdateJobBodyBTO {
     title?: string;
     description?: string;
 
-    country: Country;
-    city: string;
+    location?: { country: Country; city: string };
 
     location_type?: LocationType;
     skills?: string[];
