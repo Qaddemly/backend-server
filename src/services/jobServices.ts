@@ -445,21 +445,29 @@ export const getRecommendedJobsForUserService = async (userId: number) => {
     const recommendedJobs: Job[] = [];
 
     try {
-        const response = await axios.post('http://localhost:8001/recommend', {
+        const response = await axios.post('http://0.0.0.0:8001/recommend', {
             user: userInfo,
             jobs,
+            select: 100,
         });
         console.log('response', response.data);
 
         // @ts-ignore
-        for (let i = 0; i < response.data.length; i++) {
+        console.log(
+            'response.data.recommendations',
             // @ts-ignore
-            // const job = await JobRepository.findOne({
-            //     // @ts-ignore
-            //     where: { id: response.data[i].id },
-            // });
+            response.data.recommendations.length,
+        );
+
+        // @ts-ignore
+        for (let i = 0; i < response.data.recommendations.length; i++) {
+            // @ts-ignore
             const job = await JobRepository.createQueryBuilder('job')
-                .where('job.id = :id', { id: response.data[i].id })
+                // @ts-ignore
+                .where('job.id = :id', {
+                    // @ts-ignore
+                    id: response.data.recommendations[i].id,
+                })
                 .leftJoinAndSelect('job.business', 'business')
                 .getOne();
 
@@ -551,6 +559,8 @@ export const loadJobsFromCSV = async () => {
                 job.keywords = [data['Job Title'], data['skills']];
                 job.business_id = 1;
                 job.status = JobStatus.OPENED;
+                job.extra_application_link = 'text.com';
+                job.has_extra_link_application = true;
                 await JobRepository.save(job);
                 console.log('Job Added');
             } catch (e) {

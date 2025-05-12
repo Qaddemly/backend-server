@@ -34,6 +34,15 @@ export const SocketService = (server: any) => {
                 return;
             }
 
+            // Store user id & user type in socket.data
+            socket.data.userType = 'user';
+            socket.data.userId = userId;
+
+            // Handle if user was switching from business to user
+            if (socket.data.businessId) {
+                socket.data.businessId = null;
+            }
+
             // TODO: Emit to business that message is deliverd
             const unDeliveredMessages =
                 await MessageRepository.createQueryBuilder('message')
@@ -159,6 +168,11 @@ export const SocketService = (server: any) => {
                 // TODO: emit to users that message is delivered
 
                 const { businessId, userId } = connectUserBusinessDTO;
+
+                // Store user id & business id & user type in socket.data
+                socket.data.userType = 'business_admin';
+                socket.data.userId = userId;
+                socket.data.businessId = businessId;
 
                 // We need to join or create a room (Broadcast) for the business users
                 socket.join(`business_${businessId}`);
@@ -301,8 +315,25 @@ export const SocketService = (server: any) => {
                 socket.disconnect();
             },
         );
+
         socket.on('disconnect', async () => {
-            Logger.info(`User disconnected from server`);
+            const { userId, businessId, userType } = socket.data;
+            if (userType === 'business_admin') {
+                socket.leave(`business_${businessId}`);
+                try {
+                    await redisClient.del(`User ${userId} Socket`);
+                    Logger.info(`Business ${userId} disconnected from server`);
+                } catch (e) {
+                    Logger.error(`Error deleting user socket id in redis`);
+                }
+            } else if (userType === 'user') {
+                try {
+                    await redisClient.del(`User ${userId} Socket`);
+                    Logger.info(`User ${userId} disconnected from server`);
+                } catch (e) {
+                    Logger.error(`Error deleting user socket id in redis`);
+                }
+            }
             socket.disconnect();
         });
     });
