@@ -71,6 +71,18 @@ export class Job {
     @Column('int')
     experience: number;
 
+    @Column({
+        type: 'boolean',
+        default: false,
+    })
+    has_extra_link_application: boolean;
+
+    @Column({
+        type: 'text',
+        nullable: true,
+    })
+    extra_application_link: string;
+
     @Column({ name: 'business_id' })
     business_id: number;
 

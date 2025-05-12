@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { CreateJobBodyBTO } from '../dtos/jobDto';
+import { CreateJobBodyBTO, UpdateJobBodyBTO } from '../dtos/jobDto';
 import { BusinessRepository } from '../Repository/Business/businessRepository';
 import AppError from '../utils/appError';
 import { Job } from '../entity/Job/Job';
@@ -36,6 +36,7 @@ import { sendJobNotification } from './notificationServices';
 import { eventEmitter } from '../events/eventEmitter';
 import { publishToQueue } from '../config/rabbitMQ';
 import { ApplicationQuestionsModel } from '../models/jobApplicationQuestions';
+import { Logger } from '../utils/logger';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
@@ -52,6 +53,8 @@ export const createJobService = async (
         keywords,
         experience,
         business_id,
+        extra_application_link,
+        has_extra_link_application,
         questions,
     } = req.body;
     const userId = Number(req.user.id);
@@ -86,6 +89,9 @@ export const createJobService = async (
     newJob.keywords = keywords;
     newJob.experience = experience;
     newJob.business = business;
+    newJob.has_extra_link_application = has_extra_link_application;
+    newJob.extra_application_link = extra_application_link;
+
     //await sendJobNotification(newJob);
     const job = await JobRepository.save(newJob);
     const newQuestions = await ApplicationQuestionsModel.create({
@@ -119,7 +125,7 @@ export const getOneJobService = async (req: Request) => {
 };
 
 export const updateJobService = async (
-    req: Request<{ id: string }, {}, CreateJobBodyBTO>,
+    req: Request<{ id: string }, {}, UpdateJobBodyBTO>,
 ) => {
     const {
         title,
@@ -131,6 +137,8 @@ export const updateJobService = async (
         employee_type,
         keywords,
         experience,
+        has_extra_link_application,
+        extra_application_link,
     } = req.body;
     const userId = Number(req.user.id);
     const jobId = Number(req.params.id);
@@ -157,21 +165,32 @@ export const updateJobService = async (
         throw new AppError('you do not have permission to post job', 403);
     }
 
-    const job = await JobRepository.updateOneJob(jobId, {
-        title: title,
-        description: description,
-        country: location.country,
-        city: location.city,
-        location_type: location_type,
-        skills: skills,
-        salary: salary,
-        employee_type: employee_type,
-        keywords: keywords,
-        experience: experience,
+    const job = await JobRepository.findOne({
+        where: { id: jobId },
     });
-    // const returnedJob: { [key: string]: any } = job;
-    // delete returnedJob.business;
-    // returnedJob.business_id = business_id;
+
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    if (title) job.title = title;
+    if (description) job.description = description;
+    if (location) {
+        job.country = location.country;
+        job.city = location.city;
+    }
+    if (location_type) job.location_type = location_type;
+    if (skills) job.skills = skills;
+    if (salary) job.salary = salary;
+    if (employee_type) job.employee_type = employee_type;
+    if (keywords) job.keywords = keywords;
+    if (experience) job.experience = experience;
+    if (has_extra_link_application)
+        job.has_extra_link_application = has_extra_link_application;
+    if (extra_application_link)
+        job.extra_application_link = extra_application_link;
+
+    await JobRepository.save(job);
+
     return job;
 };
 // export const makeJobClosedService = async (req: Request) => {
@@ -426,21 +445,29 @@ export const getRecommendedJobsForUserService = async (userId: number) => {
     const recommendedJobs: Job[] = [];
 
     try {
-        const response = await axios.post('http://localhost:8001/recommend', {
+        const response = await axios.post('http://0.0.0.0:8001/recommend', {
             user: userInfo,
             jobs,
+            select: 100,
         });
         console.log('response', response.data);
 
         // @ts-ignore
-        for (let i = 0; i < response.data.length; i++) {
+        console.log(
+            'response.data.recommendations',
             // @ts-ignore
-            // const job = await JobRepository.findOne({
-            //     // @ts-ignore
-            //     where: { id: response.data[i].id },
-            // });
+            response.data.recommendations.length,
+        );
+
+        // @ts-ignore
+        for (let i = 0; i < response.data.recommendations.length; i++) {
+            // @ts-ignore
             const job = await JobRepository.createQueryBuilder('job')
-                .where('job.id = :id', { id: response.data[i].id })
+                // @ts-ignore
+                .where('job.id = :id', {
+                    // @ts-ignore
+                    id: response.data.recommendations[i].id,
+                })
                 .leftJoinAndSelect('job.business', 'business')
                 .getOne();
 
@@ -532,6 +559,8 @@ export const loadJobsFromCSV = async () => {
                 job.keywords = [data['Job Title'], data['skills']];
                 job.business_id = 1;
                 job.status = JobStatus.OPENED;
+                job.extra_application_link = 'text.com';
+                job.has_extra_link_application = true;
                 await JobRepository.save(job);
                 console.log('Job Added');
             } catch (e) {
