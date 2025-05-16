@@ -2,6 +2,7 @@ import { eventEmitter } from './eventEmitter';
 import {
     sendJobApplicationUpdateNotification,
     sendJobNotification,
+    sendMessageFromBusiness,
     sendMessageToBusiness,
 } from '../services/notificationServices';
 import { Job } from '../entity/Job/Job';
@@ -30,6 +31,14 @@ eventEmitter.on(
 eventEmitter.on('userSentMessageToBusiness', async (messageData: any) => {
     try {
         await sendMessageToBusiness(messageData);
+    } catch (error) {
+        console.error('Error sending notification:', error);
+    }
+});
+
+eventEmitter.on('businessSentMessageToUser', async (messageData: any) => {
+    try {
+        await sendMessageFromBusiness(messageData);
     } catch (error) {
         console.error('Error sending notification:', error);
     }

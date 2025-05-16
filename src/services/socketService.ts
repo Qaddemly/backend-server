@@ -257,7 +257,9 @@ export const SocketService = (server: any) => {
             Logger.info(
                 `Business ${messageDTO.businessId} sent message to user ${messageDTO.userId}`,
             );
-            await MessageRepository.save(message);
+            const newMessage = await MessageRepository.save(message);
+            // handling notifications
+            eventEmitter.emit('businessSentMessageToUser', newMessage);
         });
 
         socket.on(
