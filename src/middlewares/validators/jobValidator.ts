@@ -73,14 +73,14 @@ export const createJobValidator: ValidationChain[] = [
         .isBoolean()
         .withMessage('has_extra_link_application must be a boolean')
         .custom((value, { req }) => {
-            if (
-                value === false &&
-                (!req.body.questions || req.body.questions.length === 0)
-            ) {
-                throw new Error(
-                    'extra_application_link must true With Extra link when there is no questions',
-                );
-            }
+            // if (
+            //     value === false &&
+            //     (!req.body.questions || req.body.questions.length === 0)
+            // ) {
+            //     throw new Error(
+            //         'extra_application_link must true With Extra link when there is no questions',
+            //     );
+            // }
             if (
                 value === true &&
                 req.body.questions &&
