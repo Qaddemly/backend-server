@@ -7,6 +7,10 @@ import { Message } from '../entity/Messaging/Message';
 import { MessageRepository } from '../Repository/Messaging/messageRepository';
 import { MessageSentStatus } from '../enums/messageSentStatus';
 import { eventEmitter } from '../events/eventEmitter';
+import {
+    readAllBusinessChatMessageNotifications,
+    readAllUserChatMessageNotifications,
+} from './notificationServices';
 
 export const SocketService = (server: any) => {
     const io = new socketio.Server(server, {
@@ -159,6 +163,8 @@ export const SocketService = (server: any) => {
                 Logger.info(
                     `User ${userId} seen message in chat ${chatId} for business ${userMakeItSeenDTO.businessId}`,
                 );
+                //handling read notification by user
+                await readAllUserChatMessageNotifications(userId, chatId);
             },
         );
 
@@ -301,6 +307,9 @@ export const SocketService = (server: any) => {
 
                 Logger.info(
                     `Business ${businessMakeItSeenDTO.businessId} seen message in chat ${businessMakeItSeenDTO.chatId} for user ${businessMakeItSeenDTO.userId}`,
+                );
+                await readAllBusinessChatMessageNotifications(
+                    businessMakeItSeenDTO.chatId,
                 );
             },
         );

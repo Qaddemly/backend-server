@@ -128,7 +128,7 @@ export const sendMessageToBusiness = async (notificationData: Message) => {
     });
     accounts.map(async (account) => {
         const newNotification = await Notification.create({
-            type: NotificationType.MessageSentFromBusiness,
+            type: NotificationType.MessageSentToBusiness,
             message: `${senderAccount?.first_name} ${senderAccount?.last_name} send message ${notificationData.content} to your business ${business?.name}`,
             businessId: notificationData.business_id,
             accountId: account.id,
@@ -157,7 +157,7 @@ export const sendMessageFromBusiness = async (notificationData: Message) => {
         where: { id: notificationData.business_id },
     });
     const newNotification = await Notification.create({
-        type: NotificationType.MessageSentToBusiness,
+        type: NotificationType.MessageSentFromBusiness,
         message: `business ${business.name} sends you a message ${notificationData.content}`,
         businessId: notificationData.business_id,
         accountId: notificationData.account_id,
@@ -258,4 +258,32 @@ export const makeAllNotificationsReadService = async (accountId: number) => {
         { isRead: true, isSeen: true },
     );
     return notifications;
+};
+
+export const readAllUserChatMessageNotifications = async (
+    accountId: number,
+    chatId: number,
+) => {
+    await Notification.updateMany(
+        {
+            accountId: accountId,
+            chatId: chatId,
+            isRead: false,
+            type: NotificationType.MessageSentFromBusiness,
+        },
+        { isRead: true, isSeen: true },
+    );
+};
+
+export const readAllBusinessChatMessageNotifications = async (
+    chatId: number,
+) => {
+    await Notification.updateMany(
+        {
+            chatId: chatId,
+            isRead: false,
+            type: NotificationType.MessageSentToBusiness,
+        },
+        { isRead: true, isSeen: true },
+    );
 };
