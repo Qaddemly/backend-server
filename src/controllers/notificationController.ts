@@ -6,6 +6,7 @@ import catchAsync from 'express-async-handler';
 import {
     deleteUserNotificationService,
     getAllUserNotificationService,
+    makeAllNotificationsReadService,
     makeAllNotificationsSeenService,
     readNotificationService,
 } from '../services/notificationServices';
@@ -16,7 +17,7 @@ export const setUpSSEevents = async (req: Request, res: Response) => {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
-    clients.push({ res, accountId: req.query.user });
+    clients.push({ res, accountId: req.query?.user });
     const notifications = await Notification.find({
         accountId: Number(req.query.user),
         isSent: false,
@@ -96,6 +97,22 @@ export const makeAllNotificationsSeen = catchAsync(
             res.status(200).json({
                 success: true,
                 message: 'notifications seen successfully ',
+            });
+        } catch (err) {
+            return next(err);
+        }
+    },
+);
+
+export const makeAllNotificationsRead = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const accountId = Number(req.user.id);
+            const seenNotifications =
+                await makeAllNotificationsReadService(accountId);
+            res.status(200).json({
+                success: true,
+                message: 'notifications Read successfully ',
             });
         } catch (err) {
             return next(err);

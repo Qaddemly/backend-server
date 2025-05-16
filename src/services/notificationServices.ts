@@ -7,6 +7,10 @@ import { FollowBusinessRepository } from '../Repository/General/followBusinessRe
 import { clients } from '../controllers/notificationController';
 import AppError from '../utils/appError';
 import { BusinessRepository } from '../Repository/Business/businessRepository';
+import { AccountRepository } from '../Repository/Account/accountRepository';
+import { HrRole } from '../enums/HrRole';
+import { NotificationMessageType } from '../types/types';
+import { Message } from '../entity/Messaging/Message';
 // async function getClientsList() {
 //     const clientStrings = await redisClient.lRange('clients', 0, -1); // Get all items
 //     return clientStrings.map((client) => JSON.parse(client)); // Convert JSON to object
@@ -100,16 +104,96 @@ export const sendJobApplicationUpdateNotification = async (
     }
 };
 
+export const sendMessageToBusiness = async (notificationData: Message) => {
+    console.log('sending message to business');
+    const onlineClients: { [key: string]: any } = {};
+    for (const client of clients) {
+        onlineClients[`${client.accountId}`] = client;
+    }
+    const accounts = await AccountRepository.createQueryBuilder('account')
+        .innerJoin('account.business_roles', 'hrEmployee')
+        .where('hrEmployee.business_id = :businessId', {
+            businessId: notificationData.business_id,
+        })
+        .andWhere('hrEmployee.role IN (:...roles)', {
+            roles: [HrRole.OWNER, HrRole.SUPER_ADMIN],
+        })
+        .getMany();
+    //console.log('accounts', accounts);
+    const senderAccount = await AccountRepository.findOne({
+        where: { id: notificationData.account_id },
+    });
+    const business = await BusinessRepository.findOne({
+        where: { id: notificationData.business_id },
+    });
+    accounts.map(async (account) => {
+        const newNotification = await Notification.create({
+            type: NotificationType.MessageSentToBusiness,
+            message: `${senderAccount?.first_name} ${senderAccount?.last_name} send message ${notificationData.content} to your business ${business?.name}`,
+            businessId: notificationData.business_id,
+            accountId: account.id,
+            userSenderId: senderAccount.id,
+            chatId: notificationData.chat.id,
+        });
+        await newNotification.save();
+        const client = onlineClients[account.id];
+        if (client) {
+            newNotification.isSent = true;
+            await newNotification.save();
+            const sentNotification: { [key: string]: any } = {
+                ...newNotification.toObject(),
+                userSender: senderAccount,
+            };
+
+            client.res.write(`data: ${JSON.stringify(sentNotification)}\n\n`);
+        }
+    });
+};
+
+export const sendMessageFromBusiness = async (notificationData: Message) => {
+    console.log('sending message From business');
+
+    const business = await BusinessRepository.findOne({
+        where: { id: notificationData.business_id },
+    });
+    const newNotification = await Notification.create({
+        type: NotificationType.MessageSentFromBusiness,
+        message: `business ${business.name} sends you a message ${notificationData.content}`,
+        businessId: notificationData.business_id,
+        accountId: notificationData.account_id,
+        chatId: notificationData.chat.id,
+    });
+    await newNotification.save();
+    const client = clients.find(
+        (c) => Number(c.accountId) == notificationData.account_id,
+    );
+    if (client) {
+        newNotification.isSent = true;
+        await newNotification.save();
+        const sentNotification = { ...newNotification.toObject(), business };
+        client.res.write(`data: ${JSON.stringify(sentNotification)}\n\n`);
+    }
+};
+
 export const getAllUserNotificationService = async (account_id: number) => {
-    const notifications = await Notification.find({ accountId: account_id });
+    const notifications = await Notification.find({
+        accountId: account_id,
+    }).sort({ createdAt: -1 });
     const businessIds = notifications.map((n) => n.businessId);
+    const userSenderIds = notifications.map((n) => n.userSenderId);
+
     const businesses = await BusinessRepository.findByIds(businessIds);
+    const userSenders = await AccountRepository.findByIds(userSenderIds);
     const businessMap = new Map();
     businesses.forEach((business) => businessMap.set(business.id, business));
-
+    const userSenderMap = new Map();
+    userSenders.forEach((userSender) =>
+        userSenderMap.set(userSender.id, userSender),
+    );
     const enrichedNotifications = notifications.map((notification) => ({
         ...notification.toObject(),
         business: businessMap.get(notification.businessId) || undefined, // Attach business data
+        userSender: userSenderMap.get(notification.userSenderId) || undefined,
     }));
 
     return enrichedNotifications;
@@ -167,4 +251,39 @@ export const makeAllNotificationsSeenService = async (accountId: number) => {
         { isSeen: true },
     );
     return notifications;
+};
+export const makeAllNotificationsReadService = async (accountId: number) => {
+    const notifications = await Notification.updateMany(
+        { accountId: accountId, isRead: false },
+        { isRead: true, isSeen: true },
+    );
+    return notifications;
+};
+
+export const readAllUserChatMessageNotifications = async (
+    accountId: number,
+    chatId: number,
+) => {
+    await Notification.updateMany(
+        {
+            accountId: accountId,
+            chatId: chatId,
+            isRead: false,
+            type: NotificationType.MessageSentFromBusiness,
+        },
+        { isRead: true, isSeen: true },
+    );
+};
+
+export const readAllBusinessChatMessageNotifications = async (
+    chatId: number,
+) => {
+    await Notification.updateMany(
+        {
+            chatId: chatId,
+            isRead: false,
+            type: NotificationType.MessageSentToBusiness,
+        },
+        { isRead: true, isSeen: true },
+    );
 };
