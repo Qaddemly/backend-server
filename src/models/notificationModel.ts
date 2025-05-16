@@ -11,6 +11,8 @@ export interface NotificationDoc extends mongoose.Document {
     businessId?: number;
     jobApplicationId?: number;
     jobApplicationFormId?: number;
+    userSenderId?: number;
+    chatId?: any;
 }
 const notificationSchema = new mongoose.Schema<NotificationDoc>(
     {
@@ -30,7 +32,9 @@ const notificationSchema = new mongoose.Schema<NotificationDoc>(
         businessId: Number,
         jobApplicationFormId: Number,
         jobApplicationId: Number,
+        userSenderId: Number,
         isSent: { type: Boolean, default: false },
+        chatId: { type: Number },
     },
     { timestamps: true },
 );

@@ -6,6 +6,7 @@ import { ChatRepository } from '../Repository/Messaging/chatRepository';
 import { Message } from '../entity/Messaging/Message';
 import { MessageRepository } from '../Repository/Messaging/messageRepository';
 import { MessageSentStatus } from '../enums/messageSentStatus';
+import { eventEmitter } from '../events/eventEmitter';
 
 export const SocketService = (server: any) => {
     const io = new socketio.Server(server, {
@@ -117,7 +118,9 @@ export const SocketService = (server: any) => {
             Logger.info(
                 `User ${messageDTO.userId} sent message to business ${messageDTO.businessId}`,
             );
-            await MessageRepository.save(message);
+            const newMessage = await MessageRepository.save(message);
+            //handling notifications
+            eventEmitter.emit('userSentMessageToBusiness', newMessage);
         });
 
         socket.on(
