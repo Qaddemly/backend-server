@@ -139,6 +139,7 @@ export const updateJobService = async (
         experience,
         has_extra_link_application,
         extra_application_link,
+        questions,
     } = req.body;
     const userId = Number(req.user.id);
     const jobId = Number(req.params.id);
@@ -189,9 +190,14 @@ export const updateJobService = async (
     if (extra_application_link)
         job.extra_application_link = extra_application_link;
 
-    await JobRepository.save(job);
+    const questionss = await ApplicationQuestionsModel.findOneAndUpdate(
+        { jobId: job.id },
+        { questions: questions || [] },
+        { new: true },
+    );
+    const updatedJob = await JobRepository.save(job);
 
-    return job;
+    return { ...updatedJob, questions: questionss.questions };
 };
 // export const makeJobClosedService = async (req: Request) => {
 //     const userId = Number(req.user.id);
