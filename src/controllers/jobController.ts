@@ -15,7 +15,7 @@ import {
     updateJobService,
 } from '../services/jobServices';
 import catchAsync from 'express-async-handler';
-import { CreateJobBodyBTO } from '../dtos/jobDto';
+import { CreateJobBodyBTO, UpdateJobBodyBTO } from '../dtos/jobDto';
 import { JobStatus } from '../enums/jobStatus';
 
 export const createJob = catchAsync(
@@ -49,7 +49,7 @@ export const getOneJob = catchAsync(
 
 export const updateOneJob = catchAsync(
     async (
-        req: Request<{ id: string }, {}, CreateJobBodyBTO>,
+        req: Request<{ id: string }, {}, UpdateJobBodyBTO>,
         res: Response,
         next: NextFunction,
     ) => {
