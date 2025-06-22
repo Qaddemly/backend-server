@@ -20,7 +20,7 @@ export const createCoverLetterService = async (
     const coverLetter = new CoverLetter();
     coverLetter.name = data.name || 'Untitled';
     coverLetter.account_id = account_id;
-    await CoverLetterRepository.save(coverLetter);
+    return await CoverLetterRepository.save(coverLetter);
 };
 
 export const getOneCoverLetterService = async (
