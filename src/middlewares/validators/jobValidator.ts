@@ -105,6 +105,12 @@ export const createJobValidator: ValidationChain[] = [
         }
         return true;
     }),
+    body('currency')
+        .optional()
+        .isString()
+        .withMessage('currency must be a string')
+        .notEmpty()
+        .withMessage('currency required'),
     body('questions')
         .optional()
         .isArray()
@@ -172,7 +178,12 @@ export const updateJobValidator: ValidationChain[] = [
             if (value in EmploymentType) return value;
             else throw new Error('Invalid employment type');
         }),
-
+    body('currency')
+        .optional()
+        .isString()
+        .withMessage('currency must be a string')
+        .notEmpty()
+        .withMessage('currency required'),
     body('country')
         .optional()
         .trim()
