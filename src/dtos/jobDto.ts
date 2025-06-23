@@ -7,7 +7,7 @@ import { CreateJobApplicationFormQuestionDto } from './JobApplicationDto';
 export interface CreateJobBodyBTO {
     title: string;
     description: string;
-
+    currency: string;
     location: { country: Country; city: string };
 
     location_type: LocationType;
@@ -25,7 +25,7 @@ export interface CreateJobBodyBTO {
 export interface UpdateJobBodyBTO {
     title?: string;
     description?: string;
-
+    currency?: string;
     location?: { country: Country; city: string };
 
     location_type?: LocationType;

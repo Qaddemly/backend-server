@@ -83,7 +83,8 @@ export class Business {
 
     @Column({ type: 'float', default: 0.0 })
     reviewsRatingsAverage: number;
-
+    @Column('int', { default: 0 })
+    reviewsCount: number;
     @OneToMany(
         () => FollowBusiness,
         (followBusiness) => followBusiness.business,

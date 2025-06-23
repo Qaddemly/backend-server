@@ -17,7 +17,7 @@ export const createReviewValidator: ValidationChain[] = [
     body('rating')
         .notEmpty()
         .withMessage('rating cant be empty')
-        .isNumeric()
+        .isInt()
         .withMessage('invalid rating')
         .custom((value) => {
             if (value >= 1 && value <= 5) return value;

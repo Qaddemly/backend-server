@@ -21,24 +21,19 @@ export const createReview = async (
             Logger.error('Business not found, id not found');
             throw new Error('Business not found');
         }
-        const foundedReview = await ReviewRepository.findOne({
-            where: {
-                business: { id: business.id },
-                account: { id: userId },
-            },
-        });
-        console.log(foundedReview);
-        if (foundedReview) {
-            throw new AppError('You have already reviewed this business');
-        }
+        // const foundedReview = await ReviewRepository.findOne({
+        //     where: {
+        //         business: { id: business.id },
+        //         account: { id: userId },
+        //     },
+        // });
+        // console.log(foundedReview);
+        // if (foundedReview) {
+        //     throw new AppError('You have already reviewed this business');
+        // }
         const review =
             await ReviewRepository.addReviewToBusiness(createReviewDTO);
-        await calculatingAvgRatings(
-            business,
-            review,
-            CalculationAvgOn.Create,
-            createReviewDTO.rating,
-        );
+        await calculatingAvgRatings(business);
 
         await BusinessRepository.save(business);
 
@@ -70,30 +65,14 @@ export const updateReview = async (req: Request) => {
     });
     review.description = description ? description : review.description;
     if (rating) {
-        // const reviews = await ReviewRepository.query(
-        //     `select * from review
-        //     where business_id=${business.id}`,
-        // );
-        // let num = reviews.length;
-        // business.reviewsRatingsQuantity =
-        //     business.reviewsRatingsQuantity - review.rating;
+        review.rating = rating;
+        await ReviewRepository.save(review);
 
-        // business.reviewsRatingsQuantity =
-        //     Number(business.reviewsRatingsQuantity) + Number(rating);
-        // business.reviewsRatingsAverage = Number(
-        //     (business.reviewsRatingsQuantity / num).toFixed(1),
-        // );
-        // console.log(business);
-        await calculatingAvgRatings(
-            business,
-            review,
-            CalculationAvgOn.Update,
-            rating,
-        );
-    }
-    review.rating = rating;
+        await calculatingAvgRatings(business);
+    } else await ReviewRepository.save(review);
+
+    //
     await BusinessRepository.save(business);
-    await ReviewRepository.save(review);
     const returnedReview = { ...review };
     returnedReview.business = undefined;
     returnedReview.account = undefined;
@@ -118,36 +97,50 @@ export const deleteReview = async (req: Request) => {
     const business = await BusinessRepository.findOneBy({
         id: review.business.id,
     });
-    await calculatingAvgRatings(business, review, CalculationAvgOn.Delete, 0);
-    await BusinessRepository.save(business);
-
     await ReviewRepository.remove(review);
+
+    await calculatingAvgRatings(business);
+    await BusinessRepository.save(business);
 };
 
-const calculatingAvgRatings = async (
-    business: Business,
-    review: Review,
-    operationType: CalculationAvgOn,
-    rating?: number,
-) => {
+// const calculatingAvgRatings = async (
+//     business: Business,
+//     review: Review,
+//     operationType: CalculationAvgOn,
+//     rating?: number,
+// ) => {
+//     const reviews = await ReviewRepository.query(
+//         `select * from review
+//         where business_id=${business.id}`,
+//     );
+//     let num = reviews.length;
+//     if (operationType == CalculationAvgOn.Update) {
+//         business.reviewsRatingsQuantity =
+//             business.reviewsRatingsQuantity - review.rating;
+//     } else if (operationType == CalculationAvgOn.Delete) {
+//         rating = -review.rating;
+//         num--;
+//     }
+//     // console.log('count', reviews.length);
+//     business.reviewsRatingsQuantity =
+//         Number(business.reviewsRatingsQuantity) + Number(rating);
+//     business.reviewsRatingsAverage = Number(
+//         (business.reviewsRatingsQuantity / num).toFixed(1),
+//     );
+//     // console.log(business);
+//     // await BusinessRepository.save(business);
+// };
+
+const calculatingAvgRatings = async (business: Business) => {
     const reviews = await ReviewRepository.query(
-        `select * from review
-        where business_id=${business.id}`,
+        `select sum(rating) as ratingSum,avg(rating) as ratingAverage ,count(*) as count
+from review where business_id=${business.id}`,
     );
-    let num = reviews.length;
-    if (operationType == CalculationAvgOn.Update) {
-        business.reviewsRatingsQuantity =
-            business.reviewsRatingsQuantity - review.rating;
-    } else if (operationType == CalculationAvgOn.Delete) {
-        rating = -review.rating;
-        num--;
-    }
-    // console.log('count', reviews.length);
-    business.reviewsRatingsQuantity =
-        Number(business.reviewsRatingsQuantity) + Number(rating);
-    business.reviewsRatingsAverage = Number(
-        (business.reviewsRatingsQuantity / num).toFixed(1),
-    );
-    // console.log(business);
-    // await BusinessRepository.save(business);
+    //console.log(reviews);
+    const { ratingsum, ratingaverage, count } = reviews[0];
+    //console.log('ratingsum', ratingsum);
+    //console.log('ratingaverage', ratingaverage);
+    business.reviewsRatingsQuantity = Number(ratingsum);
+    business.reviewsRatingsAverage = Number(Number(ratingaverage).toFixed(1));
+    business.reviewsCount = Number(count);
 };
