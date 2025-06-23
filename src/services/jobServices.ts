@@ -360,6 +360,7 @@ export const getAllJobsSearchWithFilterService = async (req: Request) => {
             sortableColumns: ['salary', 'created_at'],
             filterableColumns: {
                 country: [FilterOperator.EQ],
+                city: [FilterOperator.EQ],
                 salary: [
                     FilterOperator.EQ,
                     FilterOperator.GTE,
@@ -376,6 +377,7 @@ export const getAllJobsSearchWithFilterService = async (req: Request) => {
                 ],
                 location_type: [FilterOperator.IN, FilterOperator.ILIKE],
                 employee_type: [FilterOperator.IN, FilterOperator.CONTAINS],
+
                 //keywords: true,
                 keywords: [FilterOperator.IN, FilterOperator.ILIKE],
                 'business.industry': [FilterOperator.IN],
@@ -398,6 +400,7 @@ export const getAllJobsSearchWithFilterService = async (req: Request) => {
         );
         return jobs;
     } catch (err) {
+        console.error('Error in getting jobs', err);
         throw new AppError('Error in getting jobs', 400);
     }
 };
