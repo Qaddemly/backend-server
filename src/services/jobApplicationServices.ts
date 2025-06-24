@@ -43,6 +43,7 @@ import { AccountArchivedJobApplicationsRepository } from '../Repository/Job/acco
 import { ApplicationQuestionsModel } from '../models/jobApplicationQuestions';
 import { ApplicationAnswersModel } from '../models/jobApplicationAnswerss';
 import { Job } from '../entity/Job/Job';
+import { CountryCode } from '../enums/countryCode';
 
 export const getJobApplicationFormQuestionsService = async (jobId: number) => {
     const job = await JobRepository.findOne({ where: { id: jobId } });
@@ -114,6 +115,11 @@ export const applyToJobService = async (
     newJobApplication.last_name = data.personalInfo.last_name;
     newJobApplication.birth_date = data.personalInfo.birth_date;
     newJobApplication.email = data.personalInfo.email;
+    data.personalInfo.phone = {
+        //@ts-ignore
+        country_code: CountryCode[`${data.personalInfo.phone.country_code}`],
+        number: data.personalInfo.phone.number,
+    };
     newJobApplication.phone = data.personalInfo.phone;
 
     newJobApplication.languages = data.languages;
@@ -141,6 +147,7 @@ export const applyToJobService = async (
         experience.company_name = exp.companyName;
         experience.job_title = exp.jobTitle;
         experience.location = exp.location;
+        experience.description = exp.description;
         experience.location_type = exp.locationType;
         experience.employment_type = exp.employmentType;
         experience.still_working = exp.stillWorking;

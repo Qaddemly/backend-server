@@ -6,6 +6,7 @@ import { LocationType } from '../../enums/locationType';
 import { JobApplicationStateEnum } from '../../enums/jobApplicationStateEnum';
 import { ApplicationQuestionModel } from '../../models/jobApplicationQuestion';
 import { ApplicationQuestionsModel } from '../../models/jobApplicationQuestions';
+import { CountryCode } from '../../enums/countryCode';
 export const JobIdValidator = [
     param('jobId')
         .notEmpty()
@@ -130,11 +131,21 @@ export const CreateJobApplicationValidator = [
         .withMessage('email is required')
         .isEmail()
         .withMessage('A valid email is required'),
-    body('personalInfo.phone')
+    body('personalInfo.phone').exists().isObject(),
+    body('personalInfo.phone.country_code')
+        .if(body('personalInfo.phone').exists())
         .notEmpty()
-        .withMessage('phone is required')
-        .isMobilePhone('any')
-        .withMessage('A valid phone number is required'),
+        .withMessage('Country code cannot be empty')
+        .custom((value) => {
+            if (value in CountryCode) return value;
+            else throw new Error('Invalid country code');
+        }),
+    body('personalInfo.phone.number')
+        .if(body('personalInfo.phone').exists())
+        .notEmpty()
+        .withMessage('Phone number cannot be empty')
+        .isNumeric()
+        .withMessage('Phone number must be numeric'),
     body('personalInfo.birth_date')
         .notEmpty()
         .withMessage('birth_date is required')
@@ -168,6 +179,11 @@ export const CreateJobApplicationValidator = [
         .isString()
         .notEmpty()
         .withMessage('Job title is required'),
+    body('experiences.*.description')
+        .optional()
+        .isString()
+        .notEmpty()
+        .withMessage('Description is required'),
     body('experiences.*.employmentType')
         .isString()
         .notEmpty()
