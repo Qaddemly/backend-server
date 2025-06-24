@@ -96,8 +96,6 @@ jobRouter.delete(
 
 jobRouter.get('/getAllJobs/', getAllJobs);
 
-jobRouter.get('/recommendedJobsForUser', protect, getRecommendedJobsForUser);
-
 jobRouter.post('/loadJobsFromCSV', async (req, res) => {
     await loadJobsFromCSV();
     res.send('Loading jobs from CSV');

@@ -701,3 +701,152 @@ export const getUserInfoToRecommendJobs = async (userId: number) => {
         experiences,
     };
 };
+
+export const getAllUsersInfoForRecommendation = async () => {
+    const users = await AccountRepository.find({});
+    const usersInfo = await Promise.all(
+        users.map(async (user) => {
+            const skills = await SkillRepository.find({
+                where: { account: { id: user.id } },
+                select: ['name'],
+            });
+            const educations = await EducationRepository.find({
+                where: { account: { id: user.id } },
+            });
+            const experiences = await ExperienceRepository.find({
+                where: { account: { id: user.id } },
+            });
+
+            return {
+                id: user.id,
+                country: user.address.country,
+                city: user.address.city,
+                about_me: user.about_me,
+                subtitle: user.subtitle,
+                skills,
+                educations,
+                experiences,
+            };
+        }),
+    );
+    return usersInfo;
+};
+
+import * as fastcsv from 'fast-csv';
+import { Address } from '../entity/General/Address';
+import { EmploymentType } from '../enums/employmentType';
+
+export const LoadUsersData = async () => {
+    try {
+        const accountRepo = AccountRepository;
+        const users: any[] = [];
+
+        // Read and parse CSV
+        const stream = fs.createReadStream(
+            path.join(__dirname, '../../users.csv'),
+        );
+        const parser = fastcsv
+            .parse({ headers: true })
+            .on('error', (error) => {
+                console.error('CSV parse error:', error);
+            })
+            .on('data', (row) => {
+                // Collect each row
+                users.push(row);
+            })
+            .on('end', async () => {
+                console.log(
+                    `Parsing complete. Processing ${users.length} rows...`,
+                );
+                // Process each
+                let count = 0;
+                for (const row of users) {
+                    try {
+                        // Create and populate Account
+                        const account = new Account();
+                        account.first_name = row['first_name'];
+                        account.last_name = row['last_name'];
+                        account.email = `fakeemail${count++}@gmail.com`;
+                        account.about_me = row['about_me'];
+                        account.subtitle = row['subtitle'];
+                        account.password = 'dummy_password'; // using dummy password
+
+                        // Embedded Address
+                        const addr = new Address();
+                        addr.country = 'Egypt';
+                        addr.city = row['city'];
+                        account.address = addr;
+
+                        // Parse and add skills
+                        try {
+                            const skillList = JSON.parse(row['skills'] || '[]');
+                            account.skills = skillList.map((obj: any) => {
+                                const sk = new AccountSkill();
+                                sk.name = obj.name;
+                                return sk;
+                            });
+                        } catch (err) {
+                            console.error('Skipping invalid skills JSON:', err);
+                        }
+
+                        // Parse and add educations
+                        try {
+                            const eduList = JSON.parse(
+                                row['educations'] || '[]',
+                            );
+                            account.educations = eduList.map((obj: any) => {
+                                const edu = new AccountEducation();
+                                edu.university = obj.university;
+                                edu.field_of_study = obj.field_of_study;
+                                edu.gpa = obj.gpa;
+                                edu.start_date = obj.start_date;
+                                edu.end_date = obj.end_date;
+                                return edu;
+                            });
+                        } catch (err) {
+                            console.error(
+                                'Skipping invalid educations JSON:',
+                                err,
+                            );
+                        }
+
+                        // Parse and add experiences
+                        try {
+                            const expList = JSON.parse(
+                                row['experiences'] || '[]',
+                            );
+                            account.experiences = expList.map((obj: any) => {
+                                const exp = new AccountExperience();
+
+                                exp.job_title = obj.job_title;
+                                exp.employment_type = EmploymentType.FullTime;
+                                exp.company_name = obj.company_name;
+                                exp.location = obj.location;
+                                exp.location_type = obj.location_type;
+                                exp.still_working = obj.still_working;
+                                exp.start_date = obj.start_date;
+                                exp.end_date = obj.end_date;
+                                return exp;
+                            });
+                        } catch (err) {
+                            console.error(
+                                'Skipping invalid experiences JSON:',
+                                err,
+                            );
+                        }
+
+                        // Save account (cascades to skills/educations/experiences if so configured)
+                        const saved = await accountRepo.save(account);
+                        console.log(`Inserted Account ${saved.id}`);
+                    } catch (err) {
+                        console.error('Error inserting row:', err);
+                    }
+                }
+                console.log('CSV import completed.');
+            });
+
+        stream.pipe(parser);
+    } catch (err) {
+        console.error('Failed to run import script:', err);
+    }
+};

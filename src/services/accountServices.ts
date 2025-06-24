@@ -69,3 +69,18 @@ export const getNumberOfUsersService = async () => {
         await AccountRepository.createQueryBuilder('account').getCount();
     return count;
 };
+
+export const getAllUserInformationForAI = async (accountId:number) => {
+    const { password, password_changed_at, is_activated, ...user } =
+        await AccountRepository.createQueryBuilder('account')
+            .leftJoinAndSelect('account.skills', 'skills')
+            .leftJoinAndSelect('account.languages', 'languages')
+            .leftJoinAndSelect('account.certificates', 'certificates')
+            .leftJoinAndSelect('account.educations', 'educations')
+            .leftJoinAndSelect('account.experiences', 'experiences')
+            .leftJoinAndSelect('account.projects', 'projects')
+            .where('account.id = :id', { id: accountId })
+            .getOne();
+
+    return user;
+};

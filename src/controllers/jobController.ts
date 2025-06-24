@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import AppError from '../utils/appError';
 import {
     changeJobStatus,
     createJobService,

@@ -4,6 +4,7 @@ import catchAsync from 'express-async-handler';
 import * as accountServices from '../services/accountServices';
 import { AccountRepository } from '../Repository/Account/accountRepository';
 import { JobRepository } from '../Repository/Job/jobRepository';
+import { getAllUsersInfoForRecommendation } from '../services/profileServices';
 
 export const followBusiness = catchAsync(
     async (req: Request, res: Response) => {
@@ -59,26 +60,3 @@ export const getNumberOfUsers = catchAsync(
     },
 );
 
-export const testForAI = async (req, res, next) => {
-    const { password, password_changed_at, is_activated, ...user } =
-        await AccountRepository.createQueryBuilder('account')
-            .leftJoinAndSelect('account.skills', 'skills')
-            .leftJoinAndSelect('account.languages', 'languages')
-            .leftJoinAndSelect('account.certificates', 'certificates')
-            .leftJoinAndSelect('account.educations', 'educations')
-            .leftJoinAndSelect('account.experiences', 'experiences')
-            .leftJoinAndSelect('account.projects', 'projects')
-            .where('account.id = :id', { id: 2 })
-            .getOne();
-
-    const job = await JobRepository.createQueryBuilder('job')
-        .leftJoinAndSelect('job.business', 'business')
-        .where('job.id = :id', { id: 28746 })
-        .getOne();
-
-    res.status(200).json({
-        success: true,
-        user,
-        job,
-    });
-};

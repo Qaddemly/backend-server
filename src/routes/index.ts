@@ -9,6 +9,8 @@ import jobRouter from './jobRoutes';
 import { reviewRouter } from './reviewRoutes';
 import statsRouter from './statsRoutes';
 
+import { aiFeaturesRouter } from './aiFeaturesRoutes';
+
 import { resumeTemplateRouter } from './resumeTemplateRoutes';
 import { chatRouter } from './chatRoutes';
 
@@ -29,6 +31,7 @@ const mountRoutes = (app: Express) => {
     app.use('/api/v1/resumeTemplate', resumeTemplateRouter);
     app.use('/api/v1/notification', notificationRouter);
     app.use('/api/v1/coverLetter', coverLetterRouter);
+    app.use('/api/v1/AI-Feature', aiFeaturesRouter);
 };
 
 export default mountRoutes;
