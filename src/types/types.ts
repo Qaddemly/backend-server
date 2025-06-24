@@ -24,6 +24,7 @@ export interface Education {
 
 export interface Experience {
     jobTitle: string;
+    description: string;
     employmentType: EmploymentType;
     companyName: string;
     location: string;

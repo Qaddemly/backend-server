@@ -20,7 +20,10 @@ export interface CreateJobApplicationDto {
         first_name: string; // First name of the applicant
         last_name: string; // Last name of the applicant
         email: string; // Email address of the applicant
-        phone: string; // Phone number of the applicant
+        phone: {
+            country_code: number;
+            number: number;
+        }; // Phone number of the applicant
         birth_date: Date; // Birth date of the applicant
     };
     educations: Education[];
