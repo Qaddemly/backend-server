@@ -3,7 +3,6 @@ import {
     createJob,
     getAllJobs,
     getOneJob,
-    getRecommendedJobsForUser,
     makeJobArchived,
     makeJobClosed,
     makeJobOpened,
