@@ -465,7 +465,8 @@ export const getAllJobApplicationByAccountIdService = async (req: Request) => {
                 'cjas.first_name',
                 'cjas.last_name',
                 'cjas.email',
-                'cjas.phone',
+                'cjas.phone.country_code',
+                'cjas.phone.number',
                 'cjas.birth_date',
                 'cjas.skills',
                 'cjas.languages',
@@ -529,7 +530,7 @@ export const getAllArchivedApplicationsOfUserService = (accountId: number) => {
             account: { id: accountId },
             is_archived: true,
         },
-        relations: ['job_application'],
+        relations: ['job_application', 'job_application.job_application_state'],
         order: { created_at: 'DESC' },
     });
 };
