@@ -4,7 +4,7 @@ import { Job } from '../entity/Job/Job';
 import { JobStatus } from '../enums/jobStatus';
 import AppError from '../utils/appError';
 import * as accountServices from './accountServices';
-import { getUserInfoToRecommendJobs } from './profileServices';
+import { getAllUserProfileInfo } from './profileServices';
 import axios from 'axios';
 
 // ------------------------- Job Recommendations -------------------------
@@ -14,7 +14,7 @@ export const recommendJobsForUser = async (userId: number) => {
     if (isCached) {
         return JSON.parse(isCached);
     }
-    const userInfo = await getUserInfoToRecommendJobs(userId);
+    const userInfo = await getAllUserProfileInfo(userId);
     const jobs = await JobRepository.find({
         where: { status: JobStatus.OPENED },
     });
@@ -78,6 +78,9 @@ export const enhanceDescriptionOfJob = async (
             keywords: keywords || [],
         },
     );
+    if (!response.data) {
+        throw new AppError('Error enhancing job description', 500);
+    }
     return response.data;
 };
 
@@ -96,6 +99,9 @@ export const enhanceOrGenerateJobSkills = async (
             keywords: keywords || [],
         },
     );
+    if (!response.data) {
+        throw new AppError('Error enhancing or generating job skills', 500);
+    }
     return response.data;
 };
 
@@ -114,6 +120,9 @@ export const enhanceOrGenerateJobKeywords = async (
             keywords: keywords || [],
         },
     );
+    if (!response.data) {
+        throw new AppError('Error enhancing or generating job keywords', 500);
+    }
     return response.data;
 };
 
@@ -124,6 +133,43 @@ export const generateJobPost = async (prompt: string) => {
             prompt,
         },
     );
+    if (!response.data) {
+        throw new AppError('Error generating job post', 500);
+    }
+    return response.data;
+};
+
+// ------------------------- Matching Score -------------------------
+
+export const getMatchingScore = async (userId: number, jobId: number) => {
+    // TODO: make cache Layer
+    const isCached = await redisClient.get(`matchingScore:${userId}:${jobId}`);
+    if (isCached) {
+        return JSON.parse(isCached);
+    }
+
+    const userInfo = await getAllUserProfileInfo(userId);
+    const job = await JobRepository.findOne({
+        where: { id: jobId },
+    });
+
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    const response = await axios.post('http://127.0.0.1:8003/match-score', {
+        user: userInfo,
+        job: job,
+    });
+
+    await redisClient.set(
+        `matchingScore:${userId}:${jobId}`,
+        JSON.stringify(response.data),
+        { EX: 3 * 60 * 60 },
+    );
+
+    if (!response.data) {
+        throw new AppError('Error calculating matching score', 500);
+    }
     return response.data;
 };
 

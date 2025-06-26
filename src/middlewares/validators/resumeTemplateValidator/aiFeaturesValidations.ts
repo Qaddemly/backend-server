@@ -15,3 +15,6 @@ export const jobEnhancementOrGenerateValidation: ValidationChain[] = [
 export const jobPostGenerationValidation: ValidationChain[] = [
     body('prompt').notEmpty().withMessage('Prompt is required'),
 ];
+export const matchScoreValidation: ValidationChain[] = [
+    body('jobId').notEmpty().withMessage('Job ID is required'),
+];

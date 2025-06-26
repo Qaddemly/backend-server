@@ -9,6 +9,7 @@ import validateRequestMiddleware from '../middlewares/validator';
 import {
     jobEnhancementOrGenerateValidation,
     jobPostGenerationValidation,
+    matchScoreValidation,
 } from '../middlewares/validators/resumeTemplateValidator/aiFeaturesValidations';
 
 aiFeaturesRouter.get(
@@ -43,6 +44,13 @@ aiFeaturesRouter.post(
     protect,
     validateRequestMiddleware(jobPostGenerationValidation),
     aiFeaturesController.generateJobPost,
+);
+
+aiFeaturesRouter.get(
+    '/matchScore',
+    protect,
+    validateRequestMiddleware(matchScoreValidation),
+    aiFeaturesController.matchingScore,
 );
 
 aiFeaturesRouter.get(

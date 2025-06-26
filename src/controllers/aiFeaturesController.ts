@@ -77,6 +77,18 @@ export const generateJobPost = catchAsync(
     },
 );
 
+// ------------------------- Matching Score -------------------------
+export const matchingScore = catchAsync(async (req: Request, res: Response) => {
+    const { jobId } = req.body;
+    const userId = req.user?.id;
+
+    // Assuming you have a service to fetch matching score
+    const score = await aiFeaturesServices.getMatchingScore(userId, jobId);
+    res.status(200).json({
+        score,
+    });
+});
+
 // ------------------------- Cover Letter Builder -------------------------
 export const coverLetterBuilderInputData = catchAsync(
     async (req: Request, res: Response) => {
