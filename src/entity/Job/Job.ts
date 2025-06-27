@@ -70,7 +70,8 @@ export class Job {
 
     @Column('int')
     experience: number;
-
+    @Column({ default: 'EGP' })
+    currency: string;
     @Column({
         type: 'boolean',
         default: false,

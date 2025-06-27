@@ -2,6 +2,7 @@ import { CountryCode } from '../enums/countryCode';
 import { Country } from '../enums/country';
 import { EmploymentType } from '../enums/employmentType';
 import { LocationType } from '../enums/locationType';
+import { messageDTO } from '../dtos/messageDto';
 
 export interface Phone {
     countryCode: CountryCode;
@@ -23,6 +24,7 @@ export interface Education {
 
 export interface Experience {
     jobTitle: string;
+    description: string;
     employmentType: EmploymentType;
     companyName: string;
     location: string;
@@ -59,4 +61,11 @@ export interface hrDashboardUserInfo {
 
 export interface PublicObject {
     [index: string]: any;
+}
+
+export interface NotificationMessageType {
+    userId: number;
+    businessId: number;
+    content: string;
+    chat: any;
 }

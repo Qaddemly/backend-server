@@ -44,7 +44,7 @@ export const createJobService = async (
     const {
         title,
         description,
-
+        currency,
         location,
         location_type,
         skills,
@@ -91,6 +91,7 @@ export const createJobService = async (
     newJob.business = business;
     newJob.has_extra_link_application = has_extra_link_application;
     newJob.extra_application_link = extra_application_link;
+    newJob.currency = currency;
 
     //await sendJobNotification(newJob);
     const job = await JobRepository.save(newJob);
@@ -139,6 +140,8 @@ export const updateJobService = async (
         experience,
         has_extra_link_application,
         extra_application_link,
+        questions,
+        currency,
     } = req.body;
     const userId = Number(req.user.id);
     const jobId = Number(req.params.id);
@@ -189,9 +192,15 @@ export const updateJobService = async (
     if (extra_application_link)
         job.extra_application_link = extra_application_link;
 
-    await JobRepository.save(job);
+    if (currency) job.currency = currency;
+    const questionss = await ApplicationQuestionsModel.findOneAndUpdate(
+        { jobId: job.id },
+        { questions: questions || [] },
+        { new: true },
+    );
+    const updatedJob = await JobRepository.save(job);
 
-    return job;
+    return { ...updatedJob, questions: questionss.questions };
 };
 // export const makeJobClosedService = async (req: Request) => {
 //     const userId = Number(req.user.id);
@@ -354,6 +363,7 @@ export const getAllJobsSearchWithFilterService = async (req: Request) => {
             sortableColumns: ['salary', 'created_at'],
             filterableColumns: {
                 country: [FilterOperator.EQ],
+                city: [FilterOperator.EQ],
                 salary: [
                     FilterOperator.EQ,
                     FilterOperator.GTE,
@@ -370,6 +380,7 @@ export const getAllJobsSearchWithFilterService = async (req: Request) => {
                 ],
                 location_type: [FilterOperator.IN, FilterOperator.ILIKE],
                 employee_type: [FilterOperator.IN, FilterOperator.CONTAINS],
+
                 //keywords: true,
                 keywords: [FilterOperator.IN, FilterOperator.ILIKE],
                 'business.industry': [FilterOperator.IN],
@@ -392,6 +403,7 @@ export const getAllJobsSearchWithFilterService = async (req: Request) => {
         );
         return jobs;
     } catch (err) {
+        console.error('Error in getting jobs', err);
         throw new AppError('Error in getting jobs', 400);
     }
 };

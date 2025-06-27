@@ -73,14 +73,14 @@ export const createJobValidator: ValidationChain[] = [
         .isBoolean()
         .withMessage('has_extra_link_application must be a boolean')
         .custom((value, { req }) => {
-            if (
-                value === false &&
-                (!req.body.questions || req.body.questions.length === 0)
-            ) {
-                throw new Error(
-                    'extra_application_link must true With Extra link when there is no questions',
-                );
-            }
+            // if (
+            //     value === false &&
+            //     (!req.body.questions || req.body.questions.length === 0)
+            // ) {
+            //     throw new Error(
+            //         'extra_application_link must true With Extra link when there is no questions',
+            //     );
+            // }
             if (
                 value === true &&
                 req.body.questions &&
@@ -105,6 +105,12 @@ export const createJobValidator: ValidationChain[] = [
         }
         return true;
     }),
+    body('currency')
+        .optional()
+        .isString()
+        .withMessage('currency must be a string')
+        .notEmpty()
+        .withMessage('currency required'),
     body('questions')
         .optional()
         .isArray()
@@ -172,7 +178,12 @@ export const updateJobValidator: ValidationChain[] = [
             if (value in EmploymentType) return value;
             else throw new Error('Invalid employment type');
         }),
-
+    body('currency')
+        .optional()
+        .isString()
+        .withMessage('currency must be a string')
+        .notEmpty()
+        .withMessage('currency required'),
     body('country')
         .optional()
         .trim()
@@ -204,6 +215,86 @@ export const updateJobValidator: ValidationChain[] = [
         .withMessage('in valid salary'),
     body('keywords').optional().isArray().withMessage('in valid keywords'),
     body('skills').isArray().optional().withMessage('in valid skills'),
+    body('has_extra_link_application')
+        .notEmpty()
+        .withMessage('has_extra_link_application required')
+        .isBoolean()
+        .withMessage('has_extra_link_application must be a boolean')
+        .custom((value, { req }) => {
+            // if (
+            //     value === false &&
+            //     (!req.body.questions || req.body.questions.length === 0)
+            // ) {
+            //     throw new Error(
+            //         'extra_application_link must true With Extra link when there is no questions',
+            //     );
+            // }
+            if (
+                value === true &&
+                req.body.questions &&
+                req.body.questions.length > 0
+            ) {
+                throw new Error(
+                    'extra_application_link is not required when there are questions',
+                );
+            }
+            return true;
+        }),
+    body('extra_application_link').custom((value, { req }) => {
+        if (req.body.has_extra_link_application === true && !value) {
+            throw new Error(
+                'extra_application_link is required when has_extra_link_application is true',
+            );
+        }
+        if (req.body.has_extra_link_application === false && value) {
+            throw new Error(
+                'extra_application_link is not required when has_extra_link_application is false',
+            );
+        }
+        return true;
+    }),
+    body('questions')
+        .optional()
+        .isArray()
+        .withMessage('Questions must be an array'),
+
+    body('questions.*.questionText')
+        .notEmpty()
+        .withMessage('Question text is required')
+        .isString()
+        .withMessage('Question text must be a string'),
+    body('questions.*.questionType')
+        .notEmpty()
+        .withMessage('questionType is required')
+        .isString()
+        .withMessage('questionType must be a string')
+        .isIn(Object.values(ApplicationQuestionType))
+        .withMessage(
+            `questionType must be one of: ${Object.values(ApplicationQuestionType).join(', ')}`,
+        ),
+    // If the body has no questions, then extra_application_link is required
+
+    body('questions.*.isRequired')
+        .optional()
+        .isBoolean()
+        .withMessage('isRequired must be a boolean'),
+
+    body('questions.*.options')
+        .optional()
+        .isArray()
+        .withMessage('Options must be an array')
+        .custom((value, { req }) => {
+            const questionType = value.questionType;
+            if (
+                questionType === ApplicationQuestionType.Multiple_Choice &&
+                !value
+            ) {
+                throw new Error(
+                    'Options are required for multiple choice questions',
+                );
+            }
+            return true;
+        }),
 ];
 
 export const idJobValidator: ValidationChain[] = [

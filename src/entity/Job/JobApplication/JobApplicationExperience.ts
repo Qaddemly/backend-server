@@ -18,7 +18,8 @@ export class JobApplicationExperience {
 
     @Column('text')
     job_title: string;
-
+    @Column('text', { default: null })
+    description: string;
     @Column({ type: 'enum', enum: EmploymentType })
     employment_type: EmploymentType;
 

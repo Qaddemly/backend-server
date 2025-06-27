@@ -17,6 +17,7 @@ import { JobApplicationResume } from './JobApplicationResume';
 import { JobApplicationExperience } from './JobApplicationExperience';
 import { AccountArchivedJobApplications } from './AccountArchivedJobApplications';
 import { Job } from '../Job';
+import { Phone } from '../../General/Phone';
 
 @Entity()
 export class JobApplication {
@@ -28,8 +29,8 @@ export class JobApplication {
     last_name: string; // Last name of the applicant
     @Column()
     email: string; // Email address of the applicant
-    @Column()
-    phone: string; // Phone number of the applicant
+    @Column(() => Phone, { prefix: false })
+    phone: Phone;
     @Column({ type: 'date' })
     birth_date: Date; // Birth date of the applicant
     @Column({ type: 'simple-array' })

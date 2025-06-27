@@ -7,7 +7,7 @@ import { CreateJobApplicationFormQuestionDto } from './JobApplicationDto';
 export interface CreateJobBodyBTO {
     title: string;
     description: string;
-
+    currency: string;
     location: { country: Country; city: string };
 
     location_type: LocationType;
@@ -25,7 +25,7 @@ export interface CreateJobBodyBTO {
 export interface UpdateJobBodyBTO {
     title?: string;
     description?: string;
-
+    currency?: string;
     location?: { country: Country; city: string };
 
     location_type?: LocationType;
@@ -36,6 +36,13 @@ export interface UpdateJobBodyBTO {
     experience?: number;
     has_extra_link_application?: boolean;
     extra_application_link?: string;
+    questions?: {
+        _id: string;
+        questionText: string; // The question text
+        questionType: string; // The type of question (e.g., text, multiple choice, etc.)
+        options?: string[]; // Options for multiple choice questions
+        isRequired: boolean;
+    };
 }
 export interface updateJobQueryData
     extends Pick<
@@ -51,4 +58,5 @@ export interface updateJobQueryData
         | 'skills'
         | 'has_extra_link_application'
         | 'extra_application_link'
+        | 'questions'
     > {}

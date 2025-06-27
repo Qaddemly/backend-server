@@ -59,7 +59,6 @@ jobRouter.put(
     '/makeJobOpened/:id',
     protect,
     validateRequestMiddleware(idJobValidator),
-    validateRequestMiddleware(updateJobValidator),
     makeJobOpened,
 );
 
@@ -67,7 +66,6 @@ jobRouter.put(
     '/makeJobClosed/:id',
     protect,
     validateRequestMiddleware(idJobValidator),
-    validateRequestMiddleware(updateJobValidator),
     makeJobClosed,
 );
 
@@ -75,7 +73,6 @@ jobRouter.put(
     '/makeJobArchived/:id',
     protect,
     validateRequestMiddleware(idJobValidator),
-    validateRequestMiddleware(updateJobValidator),
     makeJobArchived,
 );
 
