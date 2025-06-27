@@ -77,6 +77,89 @@ export const generateJobPost = catchAsync(
     },
 );
 
+// ------------------------- Matching Score -------------------------
+export const matchingScore = catchAsync(async (req: Request, res: Response) => {
+    const { jobId } = req.body;
+    const userId = req.user?.id;
+
+    // Assuming you have a service to fetch matching score
+    const score = await aiFeaturesServices.getMatchingScore(userId, jobId);
+    res.status(200).json({
+        score,
+    });
+});
+
+// ------------------------- Resume Template Enhancements -------------------------
+
+export const generateOrEnhanceAboutMe = catchAsync(
+    async (req: Request, res: Response) => {
+        const { aboutMe } = req.body;
+        const userId = req.user?.id;
+
+        // Assuming you have a service to enhance or generate about me section
+        const enhancedAboutMe =
+            await aiFeaturesServices.generateOrEnhanceAboutMe(userId, aboutMe);
+        // @ts-ignore
+        res.status(200).json({
+            // @ts-ignore
+            enhancedAboutMe: enhancedAboutMe.about_me,
+        });
+    },
+);
+
+export const generateOrEnhanceAboutMeBasedOnJob = catchAsync(
+    async (req: Request, res: Response) => {
+        const { jobDescription, aboutMe } = req.body;
+        const userId = req.user?.id;
+
+        // Assuming you have a service to enhance or generate about me section based on job
+        const enhancedAboutMe =
+            await aiFeaturesServices.generateOrEnhanceAboutMeBasedOnJob(
+                userId,
+                jobDescription,
+                aboutMe,
+            );
+
+        res.status(200).json({
+            // @ts-ignore
+            enhancedAboutMe: enhancedAboutMe.about_me,
+        });
+    },
+);
+
+export const generateOrEnhanceSkills = catchAsync(
+    async (req: Request, res: Response) => {
+        const { skills } = req.body;
+        const userId = req.user?.id;
+
+        // Assuming you have a service to enhance or generate skills
+        const enhancedSkills = await aiFeaturesServices.generateOrEnhanceSkills(
+            userId,
+            skills,
+        );
+        res.status(200).json({
+            enhancedSkills,
+        });
+    },
+);
+
+export const generateOrEnhanceSkillsBasedOnJob = catchAsync(
+    async (req: Request, res: Response) => {
+        const { jobDescription, skills } = req.body;
+        const userId = req.user?.id;
+        // Assuming you have a service to enhance or generate skills based on job
+        const enhancedSkills =
+            await aiFeaturesServices.generateOrEnhanceSkillsBasedOnJob(
+                userId,
+                jobDescription,
+                skills,
+            );
+        res.status(200).json({
+            enhancedSkills,
+        });
+    },
+);
+
 // ------------------------- Cover Letter Builder -------------------------
 export const coverLetterBuilderInputData = catchAsync(
     async (req: Request, res: Response) => {

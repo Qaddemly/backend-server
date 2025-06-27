@@ -34,7 +34,7 @@ import {
     getOneCertificateService,
     getAllCertificatesOfCurrentUserService,
     getAllCertificatesByUserIdService,
-    getUserInfoToRecommendJobs,
+    getAllUserProfileInfo,
     getAllEducationsOfLoggedInUserService,
     getAllEducationsOfUserByIdService,
     getExperiencesOfLoggedInUserService,
@@ -497,7 +497,7 @@ export const getBasicInfoOfUserById = catchAsync(async (req, res, next) => {
 
 export const getUserInfoAndJobs = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-        const user = await getUserInfoToRecommendJobs(req.user.id);
+        const user = await getAllUserProfileInfo(req.user.id);
         const jobs = await getAllJobs();
         try {
             res.status(200).json({

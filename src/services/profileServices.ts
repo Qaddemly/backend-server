@@ -676,7 +676,7 @@ export const resizeCertificateImage = catchAsync(
 );
 
 // For AI
-export const getUserInfoToRecommendJobs = async (userId: number) => {
+export const getAllUserProfileInfo = async (userId: number) => {
     const user = await AccountRepository.findOneBy({ id: userId });
 
     const skills = await SkillRepository.find({

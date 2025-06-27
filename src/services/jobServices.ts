@@ -24,7 +24,7 @@ import { Not } from 'typeorm';
 import { Account } from '../entity/Account/Account';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
 
-import { getUserInfoToRecommendJobs } from './profileServices';
+import { getAllUserProfileInfo } from './profileServices';
 import { AccountSavedJobsRepository } from '../Repository/Job/accountSavedJobRepository';
 import { AccountSavedJobs } from '../entity/Job/AccountSavedJobs';
 import { EmploymentType } from '../enums/employmentType';
