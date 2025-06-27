@@ -53,6 +53,27 @@ aiFeaturesRouter.get(
     aiFeaturesController.matchingScore,
 );
 
+aiFeaturesRouter.post(
+    '/generateOrEnhanceAboutMe',
+    protect,
+    aiFeaturesController.generateOrEnhanceAboutMe,
+);
+aiFeaturesRouter.post(
+    '/generateOrEnhanceAboutMeBasedOnJob',
+    protect,
+    aiFeaturesController.generateOrEnhanceAboutMeBasedOnJob,
+);
+aiFeaturesRouter.post(
+    '/generateOrEnhanceSkills',
+    protect,
+    aiFeaturesController.generateOrEnhanceSkills,
+);
+aiFeaturesRouter.post(
+    '/generateOrEnhanceSkillsBasedOnJob',
+    protect,
+    aiFeaturesController.generateOrEnhanceSkillsBasedOnJob,
+);
+
 aiFeaturesRouter.get(
     '/coverLetterBuilderInputData',
     protect,

@@ -173,6 +173,93 @@ export const getMatchingScore = async (userId: number, jobId: number) => {
     return response.data;
 };
 
+// ------------------------- Resume Builder -------------------------
+
+export const generateOrEnhanceAboutMe = async (
+    userId: number,
+    aboutMe?: string,
+) => {
+    const user = await accountServices.getAllUserInformationForAI(userId);
+
+    const response = await axios.post(
+        'http://127.0.0.1:8004/generate-about-me',
+        {
+            user,
+            aboutMe: aboutMe || '',
+        },
+    );
+    if (!response.data) {
+        throw new AppError('Error generating or enhancing about me', 500);
+    }
+    return response.data;
+};
+export const generateOrEnhanceAboutMeBasedOnJob = async (
+    userId: number,
+    jobDescription: string,
+    aboutMe?: string,
+) => {
+    const user = await accountServices.getAllUserInformationForAI(userId);
+    // return {
+    //     user,
+    //     aboutMe: aboutMe || '',
+    //     jobDescription: jobDescription || '',
+    // };
+    const response = await axios.post(
+        'http://127.0.0.1:8004/generate-about-me',
+        {
+            user,
+            jobDescription: jobDescription || '',
+            aboutMe: aboutMe || '',
+        },
+    );
+    if (!response.data) {
+        throw new AppError(
+            'Error generating or enhancing about me based on job',
+            500,
+        );
+    }
+    return response.data;
+};
+
+export const generateOrEnhanceSkills = async (
+    userId: number,
+    skills?: [string],
+) => {
+    const user = await accountServices.getAllUserInformationForAI(userId);
+
+    const response = await axios.post('http://127.0.0.1:8004/generate-skills', {
+        user,
+        skills: skills || [],
+    });
+    if (!response.data) {
+        throw new AppError('Error generating or enhancing skills', 500);
+    }
+
+    return response.data['skills'].split(',').map((skill) => skill.trim());
+};
+
+export const generateOrEnhanceSkillsBasedOnJob = async (
+    userId: number,
+    jobDescription: string,
+    skills?: [string],
+) => {
+    const user = await accountServices.getAllUserInformationForAI(userId);
+
+    const response = await axios.post('http://127.0.0.1:8004/generate-skills', {
+        user,
+        jobDescription: jobDescription || '',
+        skills: skills || [],
+    });
+
+    if (!response.data) {
+        throw new AppError(
+            'Error generating or enhancing skills based on job',
+            500,
+        );
+    }
+    return response.data['skills'].split(',').map((skill) => skill.trim());
+};
+
 // ------------------------- Cover Letter Builder -------------------------
 export const coverLetterBuilderInputData = async (
     userId: number,
