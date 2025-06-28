@@ -48,7 +48,7 @@ export const SocketService = (server: any) => {
                 socket.data.businessId = null;
             }
 
-            // TODO: Emit to business that message is deliverd
+            // TODO: Emit to business that message is delivered
             const unDeliveredMessages =
                 await MessageRepository.createQueryBuilder('message')
                     .where('message.account_id = :userId', { userId })
@@ -58,13 +58,12 @@ export const SocketService = (server: any) => {
                     })
                     .getMany();
 
-            // TODO: we need to emit chat as whole not each message
-            const deliverdChats = {};
+            const deliveredChats = {};
 
             for (const message of unDeliveredMessages) {
                 message.is_delivered = true;
                 // For Each Message, we need to send an event to business, that message have been delivered
-                if (!deliverdChats[message.chat_id]) {
+                if (!deliveredChats[message.chat_id]) {
                     socket
                         .to(`business_${message.business_id}`)
                         .emit('user_delivered_message', {
@@ -72,7 +71,7 @@ export const SocketService = (server: any) => {
                             userId: message.account_id,
                             businessId: message.business_id,
                         });
-                    deliverdChats[message.chat_id] = true;
+                    deliveredChats[message.chat_id] = true;
                 }
                 await MessageRepository.save(message);
             }
