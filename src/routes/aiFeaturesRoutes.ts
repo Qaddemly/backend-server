@@ -49,7 +49,6 @@ aiFeaturesRouter.post(
 aiFeaturesRouter.get(
     '/matchScore/:jobId',
     protect,
-    validateRequestMiddleware(matchScoreValidation),
     aiFeaturesController.matchingScore,
 );
 
