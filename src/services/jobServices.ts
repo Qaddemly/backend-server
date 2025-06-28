@@ -355,9 +355,7 @@ export const getAllUserSavedJobsService = async (req: Request) => {
 
 export const getAllJobsSearchWithFilterService = async (req: Request) => {
     try {
-        //console.log('req', req.query);
         const transformedQuery = Paginate(req);
-        //console.log('transformedQuery', transformedQuery);
         const paginateConfig: PaginateConfig<Job> = {
             searchableColumns: ['title', 'business.name', 'description'],
             sortableColumns: ['salary', 'created_at'],
@@ -381,7 +379,6 @@ export const getAllJobsSearchWithFilterService = async (req: Request) => {
                 location_type: [FilterOperator.IN, FilterOperator.ILIKE],
                 employee_type: [FilterOperator.IN, FilterOperator.CONTAINS],
 
-                //keywords: true,
                 keywords: [FilterOperator.IN, FilterOperator.ILIKE],
                 'business.industry': [FilterOperator.IN],
             },
