@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import AppError from '../utils/appError';
 import {
     changeJobStatus,
     createJobService,
@@ -9,7 +8,6 @@ import {
     getNumberOfActiveJobsService,
     getNumberOfNewlyPostedJobsService,
     getOneJobService,
-    getRecommendedJobsForUserService,
     removeSavedJobFromUserService,
     saveJobToUserService,
     updateJobService,
@@ -166,14 +164,6 @@ export const getAllJobs = catchAsync(
         }
     },
 );
-
-export const getRecommendedJobsForUser = catchAsync(async (req, res, next) => {
-    const recommendedJobs = await getRecommendedJobsForUserService(req.user.id);
-    res.status(200).json({
-        success: true,
-        recommendedJobs,
-    });
-});
 
 export const getNumberOfActiveJobs = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {

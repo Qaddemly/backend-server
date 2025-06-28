@@ -24,7 +24,7 @@ import { Not } from 'typeorm';
 import { Account } from '../entity/Account/Account';
 import { JobApplicationStateEnum } from '../enums/jobApplicationStateEnum';
 
-import { getUserInfoToRecommendJobs } from './profileServices';
+import { getAllUserProfileInfo } from './profileServices';
 import { AccountSavedJobsRepository } from '../Repository/Job/accountSavedJobRepository';
 import { AccountSavedJobs } from '../entity/Job/AccountSavedJobs';
 import { EmploymentType } from '../enums/employmentType';
@@ -439,61 +439,6 @@ export const changeJobStatus = async (req: Request, status: JobStatus) => {
     return job;
 };
 
-export const getRecommendedJobsForUserService = async (userId: number) => {
-    const isCached = await redisClient.get(`recommendedJobs:${userId}`);
-
-    if (isCached) {
-        return JSON.parse(isCached);
-    }
-
-    const userInfo = await getUserInfoToRecommendJobs(userId);
-    const jobs = await JobRepository.find({
-        where: { status: JobStatus.OPENED },
-    });
-
-    const recommendedJobs: Job[] = [];
-
-    try {
-        const response = await axios.post('http://0.0.0.0:8001/recommend', {
-            user: userInfo,
-            jobs,
-            select: 100,
-        });
-        console.log('response', response.data);
-
-        // @ts-ignore
-        console.log(
-            'response.data.recommendations',
-            // @ts-ignore
-            response.data.recommendations.length,
-        );
-
-        // @ts-ignore
-        for (let i = 0; i < response.data.recommendations.length; i++) {
-            // @ts-ignore
-            const job = await JobRepository.createQueryBuilder('job')
-                // @ts-ignore
-                .where('job.id = :id', {
-                    // @ts-ignore
-                    id: response.data.recommendations[i].id,
-                })
-                .leftJoinAndSelect('job.business', 'business')
-                .getOne();
-
-            recommendedJobs.push(job);
-        }
-        // Set expiration time for 3 hours
-        await redisClient.set(
-            `recommendedJobs:${userId}`,
-            JSON.stringify(recommendedJobs),
-            { EX: 3 * 60 * 60 },
-        );
-        return recommendedJobs;
-    } catch (e) {
-        throw new AppError('Error in getting recommended jobs', 400);
-    }
-};
-
 export const getAllJobs = async () => {
     return await JobRepository.find();
 };
@@ -656,4 +601,12 @@ export const getAllArchivedJobsService = async (req: Request) => {
     } catch (err) {
         throw new AppError('Error in getting jobs', 400);
     }
+};
+
+export const getJobDataAndBusiness = async (jobId: number) => {
+    const job = await JobRepository.createQueryBuilder('job')
+        .leftJoinAndSelect('job.business', 'business')
+        .where('job.id = :id', { id: jobId })
+        .getOne();
+    return job;
 };

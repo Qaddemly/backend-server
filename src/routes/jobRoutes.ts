@@ -3,7 +3,6 @@ import {
     createJob,
     getAllJobs,
     getOneJob,
-    getRecommendedJobsForUser,
     makeJobArchived,
     makeJobClosed,
     makeJobOpened,
@@ -92,8 +91,6 @@ jobRouter.delete(
 );
 
 jobRouter.get('/getAllJobs/', getAllJobs);
-
-jobRouter.get('/recommendedJobsForUser', protect, getRecommendedJobsForUser);
 
 jobRouter.post('/loadJobsFromCSV', async (req, res) => {
     await loadJobsFromCSV();
