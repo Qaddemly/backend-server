@@ -159,8 +159,27 @@ export const generateOrEnhanceSkillsBasedOnJob = catchAsync(
     },
 );
 
+// ------------------------- KeyWord Optimization -------------------------
+
+export const keywordOptimization = catchAsync(
+    async (req: Request, res: Response) => {
+        const { resumeId, jobDescription } = req.body;
+        const userId = req.user?.id;
+
+        // Assuming you have a service to optimize keywords
+        const optimizedKeywords = await aiFeaturesServices.keywordOptimization(
+            resumeId,
+            userId,
+            jobDescription,
+        );
+        res.status(200).json({
+            optimizedKeywords,
+        });
+    },
+);
+
 // ------------------------- Cover Letter Builder -------------------------
-export const coverLetterBuilderInputData = catchAsync(
+export const coverLetterBuilderOrEnhance = catchAsync(
     async (req: Request, res: Response) => {
         const { jobDescription, existingBody } = req.body;
         const userId = req.user?.id;

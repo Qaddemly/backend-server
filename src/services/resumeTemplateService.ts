@@ -20,6 +20,7 @@ import { ResumeCourse } from '../entity/ResumeTemplate/ResumeCourse';
 import { ResumeOrganization } from '../entity/ResumeTemplate/ResumeOrganization';
 import { ResumeCustomSection } from '../entity/ResumeTemplate/ResumeCustomSection';
 import { ResumeReference } from '../entity/ResumeTemplate/ResumeReference';
+import AppError from '../utils/appError';
 
 export const getAllResumeTemplatesOfUser = async (userId: number) => {
     return await ResumeTemplateRepository.find({
@@ -684,4 +685,33 @@ export const deleteReferenceOfResumeTemplate = async (
         throw new Error('Reference not found');
     }
     await AppDataSource.getRepository(ResumeReference).remove(reference);
+};
+export const getAllResumeInfo = async (
+    resumeTemplateId: number,
+    accountId: number,
+) => {
+    const resumeTemplate = await ResumeTemplateRepository.findOne({
+        where: { id: resumeTemplateId, account_id: accountId },
+        relations: [
+            'account',
+            'personalInfo',
+            'skills',
+            'educations',
+            'certificates',
+            'awards',
+            'publications',
+            'projects',
+            'experiences',
+            'languages',
+            'interests',
+            'courses',
+            'organizations',
+            'references',
+            'custom_sections',
+        ],
+    });
+    if (!resumeTemplate) {
+        throw new AppError('Resume Template not found', 404);
+    }
+    return resumeTemplate;
 };
