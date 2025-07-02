@@ -24,8 +24,11 @@ export const createProjectValidator: ValidationChain[] = [
         .isInt({ min: 1900, max: new Date().getFullYear() })
         .withMessage('Start year must be a valid year'),
 
-    body('start_date').isDate().withMessage('invalid start date'),
-    body('end_date').isDate().withMessage('invalid end date'),
+    body('end_year')
+        .optional()
+        .isInt({ min: 1900, max: new Date().getFullYear() })
+        .withMessage('End year must be a valid year'),
+
     body('description')
         .optional()
         .isString()

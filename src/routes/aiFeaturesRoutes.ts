@@ -11,6 +11,7 @@ import {
     jobPostGenerationValidation,
     matchScoreValidation,
 } from '../middlewares/validators/resumeTemplateValidator/aiFeaturesValidations';
+import { coverLetterBuilderOrEnhance } from '../controllers/aiFeaturesController';
 
 aiFeaturesRouter.get(
     '/recommendJobsForUser',
@@ -72,9 +73,13 @@ aiFeaturesRouter.post(
     protect,
     aiFeaturesController.generateOrEnhanceSkillsBasedOnJob,
 );
-
-aiFeaturesRouter.get(
-    '/coverLetterBuilderInputData',
+aiFeaturesRouter.post(
+    '/keywordOptimization',
     protect,
-    aiFeaturesController.coverLetterBuilderInputData,
+    aiFeaturesController.keywordOptimization,
+);
+aiFeaturesRouter.post(
+    '/coverLetterBuilder',
+    protect,
+    aiFeaturesController.coverLetterBuilderOrEnhance,
 );

@@ -6,6 +6,7 @@ import AppError from '../utils/appError';
 import * as accountServices from './accountServices';
 import { getAllUserProfileInfo } from './profileServices';
 import axios from 'axios';
+import { getAllResumeInfo } from './resumeTemplateService';
 
 // ------------------------- Job Recommendations -------------------------
 export const recommendJobsForUser = async (userId: number) => {
@@ -260,6 +261,20 @@ export const generateOrEnhanceSkillsBasedOnJob = async (
     return response.data['skills'].split(',').map((skill) => skill.trim());
 };
 
+// ------------------------- KeyWord Optimization -------------------------
+
+export const keywordOptimization = async (
+    resumeId: number,
+    accountId: number,
+    jobDescription: string,
+) => {
+    const resumeData = await getAllResumeInfo(resumeId, accountId);
+    return {
+        resumeData,
+        jobDescription,
+    };
+};
+
 // ------------------------- Cover Letter Builder -------------------------
 export const coverLetterBuilderInputData = async (
     userId: number,
@@ -268,9 +283,19 @@ export const coverLetterBuilderInputData = async (
 ) => {
     const user = await accountServices.getAllUserInformationForAI(userId);
 
+    const response = await axios.post(
+        'http://127.0.0.1:8005/generate-enhance-cover-letter',
+        {
+            user,
+            jobDescription: jobDescription || '',
+            existingBody: existingBody || '',
+        },
+    );
+    if (!response.data) {
+        throw new AppError('Error generating cover letter input data', 500);
+    }
     return {
-        user,
-        jobDescription: jobDescription,
-        existingBody: existingBody || '',
+        // @ts-ignore
+        coverLetterBody: response.data.result,
     };
 };
