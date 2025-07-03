@@ -235,8 +235,8 @@ export const generateOrEnhanceSkills = async (
     if (!response.data) {
         throw new AppError('Error generating or enhancing skills', 500);
     }
-
-    return response.data['skills'].split(',').map((skill) => skill.trim());
+    // @ts-ignore
+    return response.data.skills;
 };
 
 export const generateOrEnhanceSkillsBasedOnJob = async (
@@ -258,7 +258,8 @@ export const generateOrEnhanceSkillsBasedOnJob = async (
             500,
         );
     }
-    return response.data['skills'].split(',').map((skill) => skill.trim());
+    // @ts-ignore
+    return response.data.skills;
 };
 
 // ------------------------- KeyWord Optimization -------------------------
