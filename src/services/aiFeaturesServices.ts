@@ -355,7 +355,10 @@ export const atsScanning = async (jobId: number) => {
             'job_application_state',
         ],
     });
-    const atsScanUrl = `http://127.0.0.1:3000/process`;
+    if (!jobApplications) {
+        throw new AppError('No job applications found for this job', 404);
+    }
+    const atsScanUrl = `http://127.0.0.1:8010/process`;
     const atsScanBody = { success: true, job, jobApplication: jobApplications };
     try {
         const response = await axios.post(atsScanUrl, atsScanBody);
