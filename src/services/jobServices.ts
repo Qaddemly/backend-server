@@ -95,14 +95,17 @@ export const createJobService = async (
 
     //await sendJobNotification(newJob);
     const job = await JobRepository.save(newJob);
-    const newQuestions = await ApplicationQuestionsModel.create({
-        questions,
-        jobId: job.id,
-    });
+
+    const newQuestions = questions
+        ? await ApplicationQuestionsModel.create({
+              questions,
+              jobId: job.id,
+          })
+        : undefined;
     eventEmitter.emit('sendJobPostedNotification', newJob);
     //await publishToQueue('send_notification', { jobId: newJob.id });
 
-    return { ...job, questions: newQuestions.questions };
+    return { ...job, questions: newQuestions?.questions };
 };
 
 export const getOneJobService = async (req: Request) => {

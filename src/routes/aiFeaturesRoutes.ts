@@ -90,3 +90,9 @@ aiFeaturesRouter.post(
     protect,
     aiFeaturesController.coverLetterBuilderOrEnhance,
 );
+
+aiFeaturesRouter.get(
+    '/ats-scan/:jobId',
+    protect,
+    aiFeaturesController.atsScanning,
+);

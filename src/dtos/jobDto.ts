@@ -17,7 +17,7 @@ export interface CreateJobBodyBTO {
     keywords: string[];
     experience: number;
     business_id: number;
-    questions: CreateJobApplicationFormQuestionDto;
+    questions: CreateJobApplicationFormQuestionDto[];
     has_extra_link_application: boolean;
     extra_application_link: string;
 }
