@@ -178,6 +178,17 @@ export const keywordOptimization = catchAsync(
     },
 );
 
+export const keywordOptimizationPdf = catchAsync(
+    async (req: Request, res: Response) => {
+        const optimizedKeywords =
+            await aiFeaturesServices.keywordOptimizationPdf(req);
+
+        res.status(200).json({
+            optimizedKeywords,
+        });
+    },
+);
+
 // ------------------------- Cover Letter Builder -------------------------
 export const coverLetterBuilderOrEnhance = catchAsync(
     async (req: Request, res: Response) => {

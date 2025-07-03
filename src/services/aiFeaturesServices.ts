@@ -7,6 +7,8 @@ import * as accountServices from './accountServices';
 import { getAllUserProfileInfo } from './profileServices';
 import axios from 'axios';
 import { getAllResumeInfo } from './resumeTemplateService';
+import { Request } from 'express';
+import FormData from 'form-data';
 
 // ------------------------- Job Recommendations -------------------------
 export const recommendJobsForUser = async (userId: number) => {
@@ -270,10 +272,42 @@ export const keywordOptimization = async (
     jobDescription: string,
 ) => {
     const resumeData = await getAllResumeInfo(resumeId, accountId);
-    return {
+    const userData =
+        await accountServices.getAllUserInformationForAI(accountId);
+
+    const response = await axios.post('http://127.0.0.1:8006/optimize-resume', {
+        userData,
         resumeData,
         jobDescription,
-    };
+    });
+
+    return response.data;
+};
+
+export const keywordOptimizationPdf = async (req: Request) => {
+    const userData = await accountServices.getAllUserInformationForAI(
+        req.user.id,
+    );
+
+    const form = new FormData();
+
+    form.append('resume_pdf', req.file.buffer, req.file.originalname);
+
+    form.append('job_description', req.body.job_description);
+    form.append('user_data', JSON.stringify(userData));
+    const response = await axios.post(
+        'http://127.0.0.1:8006/optimize-resume-pdf',
+        form,
+        {
+            headers: {
+                ...form.getHeaders(),
+                Accept: 'application/json',
+            },
+            // @ts-ignore
+            maxBodyLength: Infinity,
+        },
+    );
+    return response.data;
 };
 
 // ------------------------- Cover Letter Builder -------------------------

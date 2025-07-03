@@ -12,6 +12,7 @@ import {
     matchScoreValidation,
 } from '../middlewares/validators/resumeTemplateValidator/aiFeaturesValidations';
 import { coverLetterBuilderOrEnhance } from '../controllers/aiFeaturesController';
+import { uploadSingleResume } from '../middlewares/upload.middleWare';
 
 aiFeaturesRouter.get(
     '/recommendJobsForUser',
@@ -77,6 +78,12 @@ aiFeaturesRouter.post(
     '/keywordOptimization',
     protect,
     aiFeaturesController.keywordOptimization,
+);
+aiFeaturesRouter.post(
+    '/keywordOptimizationPdf',
+    protect,
+    uploadSingleResume('resume_pdf'),
+    aiFeaturesController.keywordOptimizationPdf,
 );
 aiFeaturesRouter.post(
     '/coverLetterBuilder',
