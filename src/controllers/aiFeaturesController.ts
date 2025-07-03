@@ -79,9 +79,8 @@ export const generateJobPost = catchAsync(
 
 // ------------------------- Matching Score -------------------------
 export const matchingScore = catchAsync(async (req: Request, res: Response) => {
-    const { jobId } = req.body;
     const userId = req.user?.id;
-
+    const jobId = Number(req.params.jobId);
     // Assuming you have a service to fetch matching score
     const score = await aiFeaturesServices.getMatchingScore(userId, jobId);
     res.status(200).json({
@@ -160,8 +159,38 @@ export const generateOrEnhanceSkillsBasedOnJob = catchAsync(
     },
 );
 
+// ------------------------- KeyWord Optimization -------------------------
+
+export const keywordOptimization = catchAsync(
+    async (req: Request, res: Response) => {
+        const { resumeId, jobDescription } = req.body;
+        const userId = req.user?.id;
+
+        // Assuming you have a service to optimize keywords
+        const optimizedKeywords = await aiFeaturesServices.keywordOptimization(
+            resumeId,
+            userId,
+            jobDescription,
+        );
+        res.status(200).json({
+            optimizedKeywords,
+        });
+    },
+);
+
+export const keywordOptimizationPdf = catchAsync(
+    async (req: Request, res: Response) => {
+        const optimizedKeywords =
+            await aiFeaturesServices.keywordOptimizationPdf(req);
+
+        res.status(200).json({
+            optimizedKeywords,
+        });
+    },
+);
+
 // ------------------------- Cover Letter Builder -------------------------
-export const coverLetterBuilderInputData = catchAsync(
+export const coverLetterBuilderOrEnhance = catchAsync(
     async (req: Request, res: Response) => {
         const { jobDescription, existingBody } = req.body;
         const userId = req.user?.id;

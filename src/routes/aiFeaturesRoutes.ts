@@ -11,6 +11,8 @@ import {
     jobPostGenerationValidation,
     matchScoreValidation,
 } from '../middlewares/validators/resumeTemplateValidator/aiFeaturesValidations';
+import { coverLetterBuilderOrEnhance } from '../controllers/aiFeaturesController';
+import { uploadSingleResume } from '../middlewares/upload.middleWare';
 
 aiFeaturesRouter.get(
     '/recommendJobsForUser',
@@ -47,9 +49,8 @@ aiFeaturesRouter.post(
 );
 
 aiFeaturesRouter.get(
-    '/matchScore',
+    '/matchScore/:jobId',
     protect,
-    validateRequestMiddleware(matchScoreValidation),
     aiFeaturesController.matchingScore,
 );
 
@@ -73,9 +74,19 @@ aiFeaturesRouter.post(
     protect,
     aiFeaturesController.generateOrEnhanceSkillsBasedOnJob,
 );
-
-aiFeaturesRouter.get(
-    '/coverLetterBuilderInputData',
+aiFeaturesRouter.post(
+    '/keywordOptimization',
     protect,
-    aiFeaturesController.coverLetterBuilderInputData,
+    aiFeaturesController.keywordOptimization,
+);
+aiFeaturesRouter.post(
+    '/keywordOptimizationPdf',
+    protect,
+    uploadSingleResume('resume_pdf'),
+    aiFeaturesController.keywordOptimizationPdf,
+);
+aiFeaturesRouter.post(
+    '/coverLetterBuilder',
+    protect,
+    aiFeaturesController.coverLetterBuilderOrEnhance,
 );
