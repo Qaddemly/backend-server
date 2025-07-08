@@ -334,3 +334,23 @@ export const coverLetterBuilderInputData = async (
         coverLetterBody: response.data.result,
     };
 };
+
+export const chatBot = async (userId: number, message: string) => {
+    const allUserData =
+        await accountServices.getAllUserInformationForAI(userId);
+
+    const user_type = 'candidate';
+
+    const response = await axios.post(
+        'https://151198407666.ngrok-free.app/qaddemly-bot',
+        {
+            question: message,
+            user_type,
+            user_data: allUserData,
+        },
+    );
+    if (!response.data) {
+        throw new AppError('Error in chat bot response', 500);
+    }
+    return response.data;
+};
