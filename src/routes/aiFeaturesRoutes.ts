@@ -92,9 +92,12 @@ aiFeaturesRouter.post(
     aiFeaturesController.coverLetterBuilderOrEnhance,
 );
 
+
 aiFeaturesRouter.get(
     '/ats-scan/:jobId',
     protect,
     validateRequestMiddleware(JobIdValidator),
     aiFeaturesController.atsScanning,
 );
+
+aiFeaturesRouter.post('/chatBot', protect, aiFeaturesController.chatBot);
