@@ -205,3 +205,15 @@ export const coverLetterBuilderOrEnhance = catchAsync(
         });
     },
 );
+// ------------------------- Chat Bot -------------------------
+export const chatBot = catchAsync(async (req: Request, res: Response) => {
+    const { message } = req.body;
+    const userId = req.user?.id;
+
+    // Assuming you have a service to handle chat Bot interactions
+    const response = await aiFeaturesServices.chatBot(userId, message);
+    res.status(200).json({
+        // @ts-ignore
+        ...response,
+    });
+});

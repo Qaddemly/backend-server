@@ -73,7 +73,7 @@ export const enhanceDescriptionOfJob = async (
     keywords?: [string],
 ) => {
     const response = await axios.post(
-        'http://127.0.0.1:8002/enhance-description',
+        'http://0.0.0.0:8002/enhance-description',
         {
             title,
             description,
@@ -94,7 +94,7 @@ export const enhanceOrGenerateJobSkills = async (
     keywords?: [string],
 ) => {
     const response = await axios.post(
-        'http://127.0.0.1:8002/enhance-or-generate-skills',
+        'http://0.0.0.0:8002/enhance-or-generate-skills',
         {
             title,
             description,
@@ -115,7 +115,7 @@ export const enhanceOrGenerateJobKeywords = async (
     keywords?: [string],
 ) => {
     const response = await axios.post(
-        'http://127.0.0.1:8002/enhance-or-generate-keywords',
+        'http://0.0.0.0:8002/enhance-or-generate-keywords',
         {
             title,
             description,
@@ -131,7 +131,7 @@ export const enhanceOrGenerateJobKeywords = async (
 
 export const generateJobPost = async (prompt: string) => {
     const response = await axios.post(
-        'http://127.0.0.1:8002/generate-job-from-prompt',
+        'http://0.0.0.0:8002/generate-job-from-prompt',
         {
             prompt,
         },
@@ -184,13 +184,10 @@ export const generateOrEnhanceAboutMe = async (
 ) => {
     const user = await accountServices.getAllUserInformationForAI(userId);
 
-    const response = await axios.post(
-        'http://127.0.0.1:8004/generate-about-me',
-        {
-            user,
-            aboutMe: aboutMe || '',
-        },
-    );
+    const response = await axios.post('http://0.0.0.0:8004/generate-about-me', {
+        user,
+        aboutMe: aboutMe || '',
+    });
     if (!response.data) {
         throw new AppError('Error generating or enhancing about me', 500);
     }
@@ -207,14 +204,11 @@ export const generateOrEnhanceAboutMeBasedOnJob = async (
     //     aboutMe: aboutMe || '',
     //     jobDescription: jobDescription || '',
     // };
-    const response = await axios.post(
-        'http://127.0.0.1:8004/generate-about-me',
-        {
-            user,
-            jobDescription: jobDescription || '',
-            aboutMe: aboutMe || '',
-        },
-    );
+    const response = await axios.post('http://0.0.0.0:8004/generate-about-me', {
+        user,
+        jobDescription: jobDescription || '',
+        aboutMe: aboutMe || '',
+    });
     if (!response.data) {
         throw new AppError(
             'Error generating or enhancing about me based on job',
@@ -230,7 +224,7 @@ export const generateOrEnhanceSkills = async (
 ) => {
     const user = await accountServices.getAllUserInformationForAI(userId);
 
-    const response = await axios.post('http://127.0.0.1:8004/generate-skills', {
+    const response = await axios.post('http://0.0.0.0:8004/generate-skills', {
         user,
         skills: skills || [],
     });
@@ -248,7 +242,7 @@ export const generateOrEnhanceSkillsBasedOnJob = async (
 ) => {
     const user = await accountServices.getAllUserInformationForAI(userId);
 
-    const response = await axios.post('http://127.0.0.1:8004/generate-skills', {
+    const response = await axios.post('http://0.0.0.0:8004/generate-skills', {
         user,
         jobDescription: jobDescription || '',
         skills: skills || [],
@@ -319,7 +313,7 @@ export const coverLetterBuilderInputData = async (
     const user = await accountServices.getAllUserInformationForAI(userId);
 
     const response = await axios.post(
-        'http://127.0.0.1:8005/generate-enhance-cover-letter',
+        'http://0.0.0.0:8005/generate-enhance-cover-letter',
         {
             user,
             jobDescription: jobDescription || '',
@@ -333,4 +327,24 @@ export const coverLetterBuilderInputData = async (
         // @ts-ignore
         coverLetterBody: response.data.result,
     };
+};
+
+export const chatBot = async (userId: number, message: string) => {
+    const allUserData =
+        await accountServices.getAllUserInformationForAI(userId);
+
+    const user_type = 'candidate';
+
+    const response = await axios.post(
+        'https://151198407666.ngrok-free.app/qaddemly-bot',
+        {
+            question: message,
+            user_type,
+            user_data: allUserData,
+        },
+    );
+    if (!response.data) {
+        throw new AppError('Error in chat bot response', 500);
+    }
+    return response.data;
 };

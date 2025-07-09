@@ -90,3 +90,4 @@ aiFeaturesRouter.post(
     protect,
     aiFeaturesController.coverLetterBuilderOrEnhance,
 );
+aiFeaturesRouter.post('/chatBot', protect, aiFeaturesController.chatBot);
