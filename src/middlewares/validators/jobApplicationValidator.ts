@@ -234,9 +234,7 @@ export const CreateJobApplicationValidator = [
         .isString()
         .notEmpty()
         .withMessage('Each language must be a non-empty string'),
-    body('answers')
-        .isArray({ min: 1 })
-        .withMessage('answers must be a non-empty array'),
+    body('answers').isArray().withMessage('answers must be a non-empty array'),
     body('answers.*.question._id')
         .notEmpty()
         .withMessage('question._id is required')
@@ -281,9 +279,8 @@ export const CreateJobApplicationValidator = [
 
         const application = await ApplicationQuestionsModel.findOne({ jobId });
         if (!application) {
-            throw new Error(`No application found for jobId: ${jobId}`);
+            return true; // No questions to validate against
         }
-
         const storedQuestions = application.questions;
 
         for (const submitted of submittedAnswers) {

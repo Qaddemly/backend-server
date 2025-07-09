@@ -205,6 +205,27 @@ export const coverLetterBuilderOrEnhance = catchAsync(
         });
     },
 );
+
+
+// -------------------------- ats Scanning --------------------------
+export const atsScanning = catchAsync(async (req: Request, res: Response) => {
+    try {
+        const { jobId } = req.params;
+
+        // Assuming you have a service to perform ATS scanning
+        const atsResults = await aiFeaturesServices.atsScanning(Number(jobId));
+        res.status(200).json({
+            success: true,
+            message: 'ATS scanning completed successfully.',
+            atsResults,
+        });
+    } catch (error) {
+        console.error('Error in atsScanning:', error);
+        res.status(500).json({
+            message: 'An error occurred while processing ATS scanning.',
+            error: error.message,
+        });
+    }
 // ------------------------- Chat Bot -------------------------
 export const chatBot = catchAsync(async (req: Request, res: Response) => {
     const { message } = req.body;

@@ -31,7 +31,6 @@ import { AccountSavedJobs } from '../Job/AccountSavedJobs';
 import { AccountLinks } from './AccountLinks';
 import { ResumeTemplate } from '../ResumeTemplate/ResumeTemplate';
 import { CoverLetter } from '../CoverLetter/CoverLetter';
-import { Notification } from '../Notification/Notification';
 
 import { Chat } from '../Messaging/chat';
 import { JobApplication } from '../Job/JobApplication/JobApplication';
@@ -175,8 +174,6 @@ export class Account {
         cascade: true,
     })
     coverLetters: CoverLetter[];
-    @OneToMany(() => Notification, (notification) => notification.account)
-    notifications: Notification[];
 
     @OneToMany(() => Chat, (businessChat) => businessChat.account, {
         cascade: true,

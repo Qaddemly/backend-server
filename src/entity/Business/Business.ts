@@ -14,7 +14,6 @@ import { FollowBusiness } from '../General/FollowBusiness';
 import { Job } from '../Job/Job';
 import { Address } from '../General/Address';
 import { BusinessPhone } from './BusinessPhone';
-import { Notification } from '../Notification/Notification';
 import { Chat } from '../Messaging/chat';
 
 @Entity()
@@ -99,8 +98,6 @@ export class Business {
 
     @OneToMany(() => Job, (job) => job.business, { cascade: true })
     jobs: Job[];
-    @OneToMany(() => Notification, (notification) => notification.business)
-    notifications: Notification[];
 
     @OneToMany(() => Chat, (businessChat) => businessChat.business, {
         cascade: true,

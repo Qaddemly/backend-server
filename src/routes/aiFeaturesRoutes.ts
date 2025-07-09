@@ -13,6 +13,7 @@ import {
 } from '../middlewares/validators/resumeTemplateValidator/aiFeaturesValidations';
 import { coverLetterBuilderOrEnhance } from '../controllers/aiFeaturesController';
 import { uploadSingleResume } from '../middlewares/upload.middleWare';
+import { JobIdValidator } from '../middlewares/validators/jobApplicationValidator';
 
 aiFeaturesRouter.get(
     '/recommendJobsForUser',
@@ -90,4 +91,13 @@ aiFeaturesRouter.post(
     protect,
     aiFeaturesController.coverLetterBuilderOrEnhance,
 );
+
+
+aiFeaturesRouter.get(
+    '/ats-scan/:jobId',
+    protect,
+    validateRequestMiddleware(JobIdValidator),
+    aiFeaturesController.atsScanning,
+);
+
 aiFeaturesRouter.post('/chatBot', protect, aiFeaturesController.chatBot);

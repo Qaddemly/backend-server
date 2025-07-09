@@ -9,6 +9,7 @@ import axios from 'axios';
 import { getAllResumeInfo } from './resumeTemplateService';
 import { Request } from 'express';
 import FormData from 'form-data';
+import { JobApplicationRepository } from '../Repository/Job/jobApplicationRepository';
 
 // ------------------------- Job Recommendations -------------------------
 export const recommendJobsForUser = async (userId: number) => {
@@ -328,6 +329,39 @@ export const coverLetterBuilderInputData = async (
         coverLetterBody: response.data.result,
     };
 };
+
+//------------------------- ATS scanning -------------------------
+
+export const atsScanning = async (jobId: number) => {
+    const job = await JobRepository.findOne({
+        where: { id: jobId },
+    });
+
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    const jobApplications = await JobApplicationRepository.find({
+        where: { job: { id: jobId } },
+        relations: [
+            'job_application_education',
+            'job_application_experience',
+            'job_application_resume',
+            'job_application_state',
+        ],
+    });
+    if (!jobApplications) {
+        throw new AppError('No job applications found for this job', 404);
+    }
+    const atsScanUrl = `http://127.0.0.1:8010/process`;
+    const atsScanBody = { success: true, job, jobApplication: jobApplications };
+    try {
+        const response = await axios.post(atsScanUrl, atsScanBody);
+        //@ts-ignore
+        return response.data.results;
+    } catch (error) {
+        console.error('Error during ATS scanning:', error);
+        throw new AppError('Error during ATS scanning', 500);
+    }
 
 export const chatBot = async (userId: number, message: string) => {
     const allUserData =

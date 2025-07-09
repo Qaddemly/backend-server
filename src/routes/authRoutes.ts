@@ -42,14 +42,13 @@ authRouter.post(
 authRouter.put(
     '/completeRegistration',
     protect,
-    //uploadUserImage,
-    // uploadUserResume,
     uploadUserPICAndResume,
     validateRequestMiddleware(userCreationValidatorStepTwo),
     resizeUserImage,
     savingResumeInDisk,
     SignUpStepTwo,
 );
+
 authRouter.put('/activateEmail/:activationToken', activateEmail);
 authRouter.put('/resendActivateCode/:activationToken', resendActivationCode);
 authRouter.post(
