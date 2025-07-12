@@ -206,7 +206,6 @@ export const coverLetterBuilderOrEnhance = catchAsync(
     },
 );
 
-
 // -------------------------- ats Scanning --------------------------
 export const atsScanning = catchAsync(async (req: Request, res: Response) => {
     try {
@@ -226,6 +225,8 @@ export const atsScanning = catchAsync(async (req: Request, res: Response) => {
             error: error.message,
         });
     }
+});
+
 // ------------------------- Chat Bot -------------------------
 export const chatBot = catchAsync(async (req: Request, res: Response) => {
     const { message } = req.body;

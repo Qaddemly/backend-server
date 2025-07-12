@@ -352,7 +352,7 @@ export const atsScanning = async (jobId: number) => {
     if (!jobApplications) {
         throw new AppError('No job applications found for this job', 404);
     }
-    const atsScanUrl = `http://127.0.0.1:8010/process`;
+    const atsScanUrl = `http://0.0.0.0:8007/process`;
     const atsScanBody = { success: true, job, jobApplication: jobApplications };
     try {
         const response = await axios.post(atsScanUrl, atsScanBody);
@@ -362,23 +362,43 @@ export const atsScanning = async (jobId: number) => {
         console.error('Error during ATS scanning:', error);
         throw new AppError('Error during ATS scanning', 500);
     }
-
+};
+// ------------------------- Chat Bot 8008-------------------------
 export const chatBot = async (userId: number, message: string) => {
     const allUserData =
         await accountServices.getAllUserInformationForAI(userId);
 
     const user_type = 'candidate';
 
-    const response = await axios.post(
-        'https://151198407666.ngrok-free.app/qaddemly-bot',
-        {
-            question: message,
-            user_type,
-            user_data: allUserData,
-        },
-    );
+    const response = await axios.post('http://0.0.0.0:8008/qaddemly-bot', {
+        question: message,
+        user_type,
+        user_data: allUserData,
+    });
     if (!response.data) {
         throw new AppError('Error in chat bot response', 500);
     }
+    return response.data;
+};
+// ------------------------- Recommendation Job to users 8009-------------------------
+export const recommendJobToUsers = async (jobId: number) => {
+    const job = await JobRepository.findOne({
+        where: { id: jobId },
+    });
+
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+    const users = await accountServices.getAllUsersInformationForAI();
+
+    const response = await axios.post('http://0.0.0.0:8009/recommend-users', {
+        job,
+        users,
+        top_n: 20,
+    });
+    if (!response.data) {
+        throw new AppError('Error in recommending job to users', 500);
+    }
+    // TODO: Send notification to users about the recommended job
     return response.data;
 };
