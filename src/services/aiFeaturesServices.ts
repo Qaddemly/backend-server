@@ -10,6 +10,7 @@ import { getAllResumeInfo } from './resumeTemplateService';
 import { Request } from 'express';
 import FormData from 'form-data';
 import { JobApplicationRepository } from '../Repository/Job/jobApplicationRepository';
+import { eventEmitter } from '../events/eventEmitter';
 
 // ------------------------- Job Recommendations -------------------------
 export const recommendJobsForUser = async (userId: number) => {
@@ -399,6 +400,11 @@ export const recommendJobToUsers = async (jobId: number) => {
     if (!response.data) {
         throw new AppError('Error in recommending job to users', 500);
     }
+
+    eventEmitter.emit('sendRecommendationJobToUsers', {
+        data: response.data,
+        job,
+    });
     // TODO: Send notification to users about the recommended job
     return response.data;
 };
