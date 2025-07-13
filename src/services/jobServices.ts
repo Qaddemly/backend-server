@@ -37,10 +37,23 @@ import { eventEmitter } from '../events/eventEmitter';
 import { publishToQueue } from '../config/rabbitMQ';
 import { ApplicationQuestionsModel } from '../models/jobApplicationQuestions';
 import { Logger } from '../utils/logger';
+import { Business } from '../entity/Business/Business';
 
 export const createJobService = async (
     req: Request<{}, {}, CreateJobBodyBTO>,
 ) => {
+    const business_id = Number(req.body.business_id);
+    const business = await BusinessRepository.findOneBy({ id: business_id });
+    if (!business) {
+        throw new AppError('Business with that id not found', 404);
+    }
+
+    const job = await insertNewJob(business, req.body);
+    const newQuestions = await insertJobQuestions(job, req.body.questions);
+    eventEmitter.emit('sendJobPostedNotification', job);
+    return { ...job, questions: newQuestions?.questions };
+};
+const insertNewJob = async (business: Business, data: CreateJobBodyBTO) => {
     const {
         title,
         description,
@@ -56,27 +69,7 @@ export const createJobService = async (
         extra_application_link,
         has_extra_link_application,
         questions,
-    } = req.body;
-    const userId = Number(req.user.id);
-    const business = await BusinessRepository.findOneBy({ id: business_id });
-    if (!business) {
-        throw new AppError('Business with that id not found', 404);
-    }
-    const isAllowedToPostJob = await HrEmployeeRepository.checkPermission(
-        userId,
-        business.id,
-        [
-            HrRole.SUPER_ADMIN,
-            HrRole.HR,
-            HrRole.RECRUITER,
-            HrRole.HIRING_MANAGER,
-            HrRole.SUPER_ADMIN,
-            HrRole.OWNER,
-        ],
-    );
-    if (!isAllowedToPostJob) {
-        throw new AppError('you do not have permission to that action', 403);
-    }
+    } = data;
     const newJob = new Job();
     newJob.title = title;
     newJob.description = description;
@@ -92,22 +85,21 @@ export const createJobService = async (
     newJob.has_extra_link_application = has_extra_link_application;
     newJob.extra_application_link = extra_application_link;
     newJob.currency = currency;
-
-    //await sendJobNotification(newJob);
     const job = await JobRepository.save(newJob);
-
+    return job;
+};
+const insertJobQuestions = async (
+    job: Job,
+    questions?: CreateJobBodyBTO['questions'],
+) => {
     const newQuestions = questions
         ? await ApplicationQuestionsModel.create({
               questions,
               jobId: job.id,
           })
         : undefined;
-    eventEmitter.emit('sendJobPostedNotification', newJob);
-    //await publishToQueue('send_notification', { jobId: newJob.id });
-
-    return { ...job, questions: newQuestions?.questions };
+    return newQuestions;
 };
-
 export const getOneJobService = async (req: Request) => {
     const jobId = Number(req.params.id);
     let userId = req.user && req.user.id ? Number(req.user.id) : null;
@@ -131,6 +123,26 @@ export const getOneJobService = async (req: Request) => {
 export const updateJobService = async (
     req: Request<{ id: string }, {}, UpdateJobBodyBTO>,
 ) => {
+    const jobId = Number(req.params.id);
+
+    const job = await JobRepository.findOne({
+        where: { id: jobId },
+    });
+
+    if (!job) {
+        throw new AppError('Job not found', 404);
+    }
+
+    const questionss = await ApplicationQuestionsModel.findOneAndUpdate(
+        { jobId: job.id },
+        { questions: req.body.questions || [] },
+        { new: true },
+    );
+    const updatedJob = await updateJobRecord(job, req.body);
+
+    return { ...updatedJob, questions: questionss.questions };
+};
+const updateJobRecord = async (job: Job, data: UpdateJobBodyBTO) => {
     const {
         title,
         description,
@@ -145,39 +157,7 @@ export const updateJobService = async (
         extra_application_link,
         questions,
         currency,
-    } = req.body;
-    const userId = Number(req.user.id);
-    const jobId = Number(req.params.id);
-    const foundedJob = await JobRepository.findOne({
-        where: { id: jobId },
-        relations: ['business'],
-    });
-    if (!foundedJob) {
-        throw new AppError('Job not found', 404);
-    }
-    const isAllowedToUpdateJob = await HrEmployeeRepository.checkPermission(
-        userId,
-
-        foundedJob.business.id,
-        [
-            HrRole.OWNER,
-            HrRole.SUPER_ADMIN,
-            HrRole.HR,
-            HrRole.RECRUITER,
-            HrRole.HIRING_MANAGER,
-        ],
-    );
-    if (!isAllowedToUpdateJob) {
-        throw new AppError('you do not have permission to post job', 403);
-    }
-
-    const job = await JobRepository.findOne({
-        where: { id: jobId },
-    });
-
-    if (!job) {
-        throw new AppError('Job not found', 404);
-    }
+    } = data;
     if (title) job.title = title;
     if (description) job.description = description;
     if (location) {
@@ -196,15 +176,10 @@ export const updateJobService = async (
         job.extra_application_link = extra_application_link;
 
     if (currency) job.currency = currency;
-    const questionss = await ApplicationQuestionsModel.findOneAndUpdate(
-        { jobId: job.id },
-        { questions: questions || [] },
-        { new: true },
-    );
     const updatedJob = await JobRepository.save(job);
-
-    return { ...updatedJob, questions: questionss.questions };
+    return updatedJob;
 };
+
 // export const makeJobClosedService = async (req: Request) => {
 //     const userId = Number(req.user.id);
 //     const jobId = Number(req.params.id);

@@ -30,6 +30,10 @@ import {
 import { applyToJob } from '../controllers/jobApplicationController';
 import * as jobApplicationController from '../controllers/jobApplicationController';
 import * as jobApplicationValidator from '../middlewares/validators/jobApplicationValidator';
+import {
+    hasPermissionToPostJob,
+    hasPermissionToUpdateJob,
+} from '../middlewares/permissions.middleWare';
 
 const jobRouter = express.Router();
 
@@ -37,6 +41,7 @@ jobRouter.post(
     '/postJob',
     protect,
     validateRequestMiddleware(createJobValidator),
+    hasPermissionToPostJob,
     createJob,
 );
 
@@ -52,6 +57,7 @@ jobRouter.put(
     protect,
     validateRequestMiddleware(idJobValidator),
     validateRequestMiddleware(updateJobValidator),
+    hasPermissionToUpdateJob,
     updateOneJob,
 );
 

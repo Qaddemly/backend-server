@@ -442,12 +442,12 @@ export const protectRoutes = (accessMode: AccessMode) =>
 
                 res.cookie('refreshToken', refreshToken, {
                     httpOnly: true,
-                    secure: true,
+                    expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
                     maxAge: 10 * 24 * 60 * 60 * 1000,
                 });
                 res.cookie('accessToken', accessToken, {
                     httpOnly: true,
-                    secure: true,
+                    expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
                     maxAge: 10 * 24 * 60 * 60 * 1000,
                 });
                 req.user = user;
@@ -617,12 +617,12 @@ const createTokensForLoggedInUser = async (
     await userTempData.save();
     res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
-        secure: true,
+        expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
         maxAge: 10 * 24 * 60 * 60 * 1000,
     });
     res.cookie('accessToken', accessToken, {
         httpOnly: true,
-        secure: true,
+        expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
         maxAge: 10 * 24 * 60 * 60 * 1000,
     });
     return [
