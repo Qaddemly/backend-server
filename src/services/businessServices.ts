@@ -204,10 +204,13 @@ export const getAllJobsForBusinessService = async (req: Request) => {
 
             paginationType: PaginationType.TAKE_AND_SKIP,
         };
-        const queryBuilder = JobRepository.createQueryBuilder('job').where({
-            status: Not(JobStatus.ARCHIVED), // Excludes ARCHIVED
-            business,
-        });
+        const queryBuilder = JobRepository.createQueryBuilder('job')
+            .where({ status: Not(JobStatus.ARCHIVED), business }) // keep your filter
+            .leftJoinAndSelect('job.business', 'business') // keep the eager business data
+            .loadRelationCountAndMap(
+                'job.applicationsCount', // ← virtual field
+                'job.job_applications', // ← relation to count
+            );
 
         const jobs = await paginate<Job>(
             transformedQuery,
