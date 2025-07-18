@@ -287,3 +287,39 @@ export const readAllBusinessChatMessageNotifications = async (
         { isRead: true, isSeen: true },
     );
 };
+
+export const recommendJobToUsers = async (job: Job, data: any) => {
+    const onlineClients: { [key: string]: any } = {};
+    for (const client of clients) {
+        onlineClients[`${client.accountId}`] = client;
+    }
+    const receiveNotesClients: { [key: string]: any } = {};
+    //console.log(onlineClients);
+    const notifications = data.map((d) => {
+        let isSent = false;
+        if (d.id == onlineClients[`${d.id}`]?.accountId) {
+            isSent = true;
+        }
+        const newNotification = new Notification({
+            type: NotificationType.RecommendedJobPosted,
+            message: `there is a job posted: ${job.title} recommended for you`,
+            jobId: job.id,
+            businessId: job.business_id,
+            accountId: d.id,
+            isSent,
+        });
+        if (isSent) {
+            receiveNotesClients[`${d.id}`] = {
+                ...onlineClients[`${d.id}`],
+                notification: newNotification,
+            };
+        }
+        return newNotification;
+    });
+    console.log(receiveNotesClients);
+    Object.values(receiveNotesClients).forEach((value) => {
+        value.res.write(`data: ${JSON.stringify(value.notification)}\n\n`);
+    });
+
+    await Notification.insertMany(notifications);
+};

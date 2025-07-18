@@ -328,9 +328,6 @@ export const logInService = async (
     email: string,
     password: string,
 ) => {
-    //console.log(typeof req.query.limit, typeof req.query.page);
-    //1- find user by email
-    //const user = await User.findOne({ email });
     const account = await AccountRepository.findOneBy({ email: email });
     if (!account) {
         throw new AppError('email or password is incorrect', 400);
@@ -366,12 +363,8 @@ export const logInService = async (
 export const protectRoutes = (accessMode: AccessMode) =>
     catchAsync(async (req: Request, res: Response, next: NextFunction) => {
         let user: any; // user from postgres
-        let userTempData: any; // user temp data from mongo like (refresh token ,password reset token, ...)
 
         try {
-            const [refreshTokenDecodedEmail, foundedUser, foundUserTempData] =
-                await refreshTokenHandler(req, res);
-            userTempData = foundUserTempData;
             let token: string;
             if (
                 req.headers.authorization &&
@@ -384,7 +377,7 @@ export const protectRoutes = (accessMode: AccessMode) =>
             if (!token) {
                 throw new AppError('there is no access token', 401);
             }
-            user = foundedUser; // this line because when access token expired it will not got to the line after decoded
+
             const decoded = (await verifyTokenAsync(
                 token,
                 'access',
@@ -396,12 +389,7 @@ export const protectRoutes = (accessMode: AccessMode) =>
                     401,
                 );
             }
-            if (user.email !== refreshTokenDecodedEmail) {
-                throw new AppError(
-                    'malicious, refresh token does not match with access token',
-                    403,
-                );
-            }
+
             if (user.password_changed_at) {
                 const passChangedAtTimeStamp = parseInt(
                     `${user.password_changed_at.getTime() / 1000}`,
@@ -416,55 +404,16 @@ export const protectRoutes = (accessMode: AccessMode) =>
                 }
             }
             req.user = user; // for letting user to use protected routes
-            req.user.googleId = userTempData.googleId;
 
-            // if (user.passwordResetVerificationToken || user.activationToken) {
-            //     await resettingUserCodeFields(user);
-            // }
-
-            next();
+            return next();
         } catch (err) {
-            if ((err as Error).message === 'jwt expired') {
-                // from access expiration
-                const accessToken = createAccessToken(user?.id);
-                const refreshToken = createRefreshToken(user?.email);
-                const newRefreshTokens = userTempData.refreshTokens;
-                const refreshTokenList: any[] = [];
-                for (const rt of newRefreshTokens) {
-                    if (rt !== req.cookies.refreshToken)
-                        refreshTokenList.push(rt);
-                }
-                userTempData.refreshTokens = [
-                    ...refreshTokenList,
-                    refreshToken as string,
-                ];
-                await userTempData.save();
-
-                res.cookie('refreshToken', refreshToken, {
-                    httpOnly: true,
-                    secure: true,
-                    maxAge: 10 * 24 * 60 * 60 * 1000,
-                });
-                res.cookie('accessToken', accessToken, {
-                    httpOnly: true,
-                    secure: true,
-                    maxAge: 10 * 24 * 60 * 60 * 1000,
-                });
-                req.user = user;
-                req.user.googleId = userTempData.googleId;
-
-                next();
-            } else {
-                if (accessMode === AccessMode.Optional) {
-                    return next();
-                }
-                let customError = new AppError( //any error is caught except 'jwt expired' it will display the same message in order to prevent attacker from knowing any thing about the error
-                    'you are not logged in please login to access this route',
-                    401,
-                );
-                customError.stack = (err as Error).stack; //to know from where the error is occurred
-                return next(customError);
+            if (accessMode === AccessMode.Optional) {
+                return next();
             }
+            if ((err as Error).message === 'jwt expired') {
+                return next(new AppError('Expired access token', 401));
+            }
+            return next(err);
         }
     });
 export const protect = protectRoutes(AccessMode.Required);
@@ -606,24 +555,13 @@ const createTokensForLoggedInUser = async (
     const accessToken = createAccessToken(user.id);
     const refreshToken = createRefreshToken(user.email);
     //try to login and he already logged in
-    const cookies = req.cookies;
-    let newRefreshTokens = !cookies?.refreshToken
-        ? userTempData.refreshTokens
-        : userTempData.refreshTokens.filter(
-              (rt) => rt !== cookies.refreshToken,
-          );
 
-    userTempData.refreshTokens = [...newRefreshTokens, refreshToken as string];
     await userTempData.save();
-    res.cookie('refreshToken', refreshToken, {
-        httpOnly: true,
-        secure: true,
-        maxAge: 10 * 24 * 60 * 60 * 1000,
-    });
+
     res.cookie('accessToken', accessToken, {
         httpOnly: true,
-        secure: true,
-        maxAge: 10 * 24 * 60 * 60 * 1000,
+        expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+        maxAge: 100 * 24 * 60 * 60 * 1000,
     });
     return [
         accessToken,
@@ -673,7 +611,6 @@ export const changeCurrentPassword = async (
     res: Response,
 ) => {
     const { currentPassword, newPassword } = req.body;
-    const refreshToken = req.cookies.refreshToken;
     const currentUser = await AccountRepository.findOneBy({ id: req.user?.id });
     if ((req.user! as UserType).password) {
         const userPass = (req.user! as UserType).password;
@@ -694,15 +631,9 @@ export const changeCurrentPassword = async (
         currentUser!.password = hashedNewPassword;
         currentUser!.password_changed_at = new Date(Date.now());
     }
-    const userTempData = await AccountTempData.findOne({
-        accountId: currentUser.id,
-    });
-    userTempData!.refreshTokens = userTempData!.refreshTokens.filter(
-        (rt) => rt !== refreshToken,
-    );
-    await userTempData!.save();
+
     await AccountRepository.save(currentUser);
-    clearCookies(res);
+    //clearCookies(res);
 };
 
 export const clearCookies = (res: Response) => {

@@ -236,19 +236,9 @@ export const logIn = catchAsync(
 
 export const logOut = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-        const refreshToken = req.cookies.refreshToken;
         const currentUser = await AccountRepository.findOneBy({
             id: req.user?.id,
         });
-        const userTempData = await AccountTempData.findOne({
-            accountId: currentUser.id,
-        });
-        if (currentUser) {
-            userTempData.refreshTokens = userTempData.refreshTokens.filter(
-                (rt) => rt !== refreshToken,
-            );
-            await userTempData.save();
-        }
 
         clearCookies(res);
         res.status(200).json({

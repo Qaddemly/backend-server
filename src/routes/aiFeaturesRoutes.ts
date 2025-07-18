@@ -21,6 +21,12 @@ aiFeaturesRouter.get(
     aiFeaturesController.recommendJobsForUser,
 );
 
+aiFeaturesRouter.get(
+    '/recommendUsersForJob/:jobId',
+    validateRequestMiddleware(JobIdValidator),
+    protect,
+    aiFeaturesController.recommendUsersForJob,
+);
 aiFeaturesRouter.post(
     '/enhanceJobDescription',
     protect,
@@ -91,7 +97,6 @@ aiFeaturesRouter.post(
     protect,
     aiFeaturesController.coverLetterBuilderOrEnhance,
 );
-
 
 aiFeaturesRouter.get(
     '/ats-scan/:jobId',

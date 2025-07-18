@@ -13,6 +13,17 @@ export const recommendJobsForUser = catchAsync(
         });
     },
 );
+
+export const recommendUsersForJob = catchAsync(
+    async (req: Request, res: Response) => {
+        const jobId = Number(req.params.jobId);
+        const recommendedUsers =
+            await aiFeaturesServices.recommendJobToUsers(jobId);
+        res.status(200).json({
+            recommendedUsers,
+        });
+    },
+);
 // ------------------------- Job Posting Enhancements -------------------------
 export const enhanceJobDescription = catchAsync(
     async (req: Request, res: Response) => {
