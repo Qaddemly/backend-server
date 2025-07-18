@@ -10,6 +10,7 @@ import { getAllResumeInfo } from './resumeTemplateService';
 import { Request } from 'express';
 import FormData from 'form-data';
 import { JobApplicationRepository } from '../Repository/Job/jobApplicationRepository';
+import { eventEmitter } from '../events/eventEmitter';
 
 // ------------------------- Job Recommendations -------------------------
 export const recommendJobsForUser = async (userId: number) => {
@@ -355,8 +356,8 @@ export const atsScanning = async (jobId: number) => {
     const atsScanUrl = `http://0.0.0.0:8007/process`;
     const atsScanBody = {
         success: true,
+        job_application_state: { job_application_id: 10, state: 'PENDING' }, // temp because deployment issue
         job,
-        job_application_state: { job_application_id: 10, state: 'PENDING' },
         jobApplication: jobApplications,
     };
     try {
@@ -407,6 +408,11 @@ export const recommendJobToUsers = async (jobId: number) => {
     if (!response.data) {
         throw new AppError('Error in recommending job to users', 500);
     }
+
+    eventEmitter.emit('sendRecommendationJobToUsers', {
+        data: response.data,
+        job,
+    });
     // TODO: Send notification to users about the recommended job
     return response.data;
 };

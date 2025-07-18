@@ -1,5 +1,6 @@
 import { eventEmitter } from './eventEmitter';
 import {
+    recommendJobToUsers,
     sendJobApplicationUpdateNotification,
     sendJobNotification,
     sendMessageFromBusiness,
@@ -41,5 +42,14 @@ eventEmitter.on('businessSentMessageToUser', async (messageData: any) => {
         await sendMessageFromBusiness(messageData);
     } catch (error) {
         console.error('Error sending notification:', error);
+    }
+});
+
+eventEmitter.on('sendRecommendationJobToUsers', async ({ data, job }) => {
+    try {
+        console.log(`Processing recommendation for job:`, job);
+        await recommendJobToUsers(job, data);
+    } catch (error) {
+        console.error('Error sending recommendation:', error);
     }
 });

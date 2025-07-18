@@ -16,7 +16,6 @@ passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 passport.deserializeUser(async (id, done) => {
-    console.log('a7aaaaaaaaaaaaaaaaaaaaa');
     const user = await AccountRepository.findOneBy({ id: id as never });
     done(null, user);
 });
@@ -29,7 +28,6 @@ passport.use(
         },
         // call back function
         async (accessToken, RefreshToken, profile, done) => {
-            //console.log(profile, 'a7aaaaaaaaaaaaa');
             let userTempData = await AccountTempData.findOne({
                 googleId: profile.id,
             });
