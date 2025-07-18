@@ -52,9 +52,6 @@ export class Business {
     @Column('integer')
     company_size: number;
 
-    /**
-     * TODO: Convert this to enum
-     * */
     @Column('text')
     industry: string;
 

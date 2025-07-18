@@ -353,7 +353,12 @@ export const atsScanning = async (jobId: number) => {
         throw new AppError('No job applications found for this job', 404);
     }
     const atsScanUrl = `http://0.0.0.0:8007/process`;
-    const atsScanBody = { success: true, job, jobApplication: jobApplications };
+    const atsScanBody = {
+        success: true,
+        job,
+        job_application_state: { job_application_id: 10, state: 'PENDING' },
+        jobApplication: jobApplications,
+    };
     try {
         const response = await axios.post(atsScanUrl, atsScanBody);
         //@ts-ignore
@@ -370,11 +375,14 @@ export const chatBot = async (userId: number, message: string) => {
 
     const user_type = 'candidate';
 
-    const response = await axios.post('http://0.0.0.0:8008/qaddemly-bot', {
-        question: message,
-        user_type,
-        user_data: allUserData,
-    });
+    const response = await axios.post(
+        'https://95e2c0719d11.ngrok-free.app/qaddemly-bot',
+        {
+            question: message,
+            user_type,
+            user_data: allUserData,
+        },
+    );
     if (!response.data) {
         throw new AppError('Error in chat bot response', 500);
     }
