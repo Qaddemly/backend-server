@@ -154,7 +154,7 @@ export const getAllReviewsOfBusiness = async (businessId: number) => {
     }
     return await ReviewRepository.getAllReviewsOfBusiness(businessId);
 };
-export const getAllJobsOfBusiness = async (businessId: number) => {
+export const getAllJobsOfBusiness = async (businessId: number, page=0, limit=20) => {
     const business = await BusinessRepository.findOneBy({ id: businessId });
     if (!business) {
         Logger.error('Business not found');
@@ -163,7 +163,10 @@ export const getAllJobsOfBusiness = async (businessId: number) => {
     // return await JobRepository.getAllJobsOfBusiness(businessId);
     return await JobRepository.createQueryBuilder('job')
         .leftJoinAndSelect('job.business', 'business')
-        .getMany();
+        .offset(page * limit)
+        .limit(limit)
+        .getMany()
+    ;
 };
 
 export const getAllJobsForBusinessService = async (req: Request) => {

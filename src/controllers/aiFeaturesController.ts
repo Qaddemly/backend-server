@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import catchAsync from 'express-async-handler';
 
 import * as aiFeaturesServices from '../services/aiFeaturesServices';
+import multer from 'multer';
+import AppError from '../utils/appError';
 
 export const recommendJobsForUser = catchAsync(
     async (req: Request, res: Response) => {
@@ -250,3 +252,22 @@ export const chatBot = catchAsync(async (req: Request, res: Response) => {
         ...response,
     });
 });
+
+export const uploadResumeInKeyWordOptimization = catchAsync(
+    async (req: Request, res: Response, next: Function) => {
+        console.log(req);
+        const upload = multer({
+            storage: multer.memoryStorage(), // Store file in memory
+            limits: {
+                fileSize: 5 * 1024 * 1024, // Limit file size (e.g., 5MB)
+            },
+            fileFilter: (req, file, cb) => {
+                if (file.mimetype === 'application/pdf') {
+                    cb(null, true); // Accept PDF files
+                } else {
+                    cb(null, false);
+                }
+            },
+        }).single('resumepdf');
+    },
+);

@@ -15,12 +15,6 @@ import { HrRole } from '../../enums/HrRole';
 
 @Entity()
 export class HrEmployee {
-    /**
-     * a composite index is created on (account_id, business_id)
-     * It's effective when querying account_id only or both together
-     * It's not effective if querying business_id only
-     * So We need to create another idx on business_id
-     *  **/
     @PrimaryColumn({ name: 'account_id' })
     account_id: number;
 

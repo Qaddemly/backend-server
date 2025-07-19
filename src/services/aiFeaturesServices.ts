@@ -286,7 +286,8 @@ export const keywordOptimizationPdf = async (req: Request) => {
     );
 
     const form = new FormData();
-
+    console.log(req.file);
+    console.log(req.files);
     form.append('resume_pdf', req.file.buffer, req.file.originalname);
 
     form.append('job_description', req.body.job_description);
