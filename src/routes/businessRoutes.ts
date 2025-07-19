@@ -46,7 +46,7 @@ businessRouter.post(
     protect,
     uploadSingleImage('logo'),
     resizeBusinessLogo,
-    validateRequestMiddleware(businessCreationValidator),
+    // validateRequestMiddleware(businessCreationValidator),
     businessController.createBusiness,
 );
 businessRouter.get(

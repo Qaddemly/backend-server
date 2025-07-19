@@ -472,6 +472,13 @@ export const loadJobsFromCSV = async () => {
         return sum / numbers.length;
     };
 
+    const getRandomId = ():number => {
+          const sizes = [4, 5, 6, 8, 9, 10, 2, 3];
+            const randomIndex = Math.floor(Math.random() * sizes.length);
+            return sizes[randomIndex];
+    }
+
+
     fs.createReadStream(path.join(__dirname, '../../job_descriptions.csv'))
         .pipe(csvParser())
         .on('data', async (data) => {
@@ -489,7 +496,7 @@ export const loadJobsFromCSV = async () => {
                     parseExperience(data['Experience']),
                 );
                 job.keywords = [data['Job Title'], data['skills']];
-                job.business_id = 1;
+                job.business_id = getRandomId();
                 job.status = JobStatus.OPENED;
                 job.extra_application_link = 'text.com';
                 job.has_extra_link_application = true;
@@ -497,7 +504,7 @@ export const loadJobsFromCSV = async () => {
                 console.log('Job Added');
             } catch (e) {
                 console.log('Error saving job');
-                console.log(e);
+                // console.log(e);
             }
         })
         .on('end', async () => {
@@ -588,3 +595,10 @@ export const getJobDataAndBusiness = async (jobId: number) => {
         .getOne();
     return job;
 };
+export const getAllJobsOfBusinessOpenForEveryone = async (business_id) => {
+    const jobs = await JobRepository.createQueryBuilder('job')
+        .where('job.business_id = :businessId', { businessId: business_id })
+        .andWhere('job.status = :status', { status: JobStatus.OPENED })
+        .getMany();
+    return jobs;
+}

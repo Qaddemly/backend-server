@@ -286,7 +286,8 @@ export const keywordOptimizationPdf = async (req: Request) => {
     );
 
     const form = new FormData();
-
+    console.log(req.file);
+    console.log(req.files);
     form.append('resume_pdf', req.file.buffer, req.file.originalname);
 
     form.append('job_description', req.body.job_description);
@@ -376,11 +377,14 @@ export const chatBot = async (userId: number, message: string) => {
 
     const user_type = 'candidate';
 
-    const response = await axios.post('http://0.0.0.0:8008/qaddemly-bot', {
-        question: message,
-        user_type,
-        user_data: allUserData,
-    });
+    const response = await axios.post(
+        'https://95e2c0719d11.ngrok-free.app/qaddemly-bot',
+        {
+            question: message,
+            user_type,
+            user_data: allUserData,
+        },
+    );
     if (!response.data) {
         throw new AppError('Error in chat bot response', 500);
     }
